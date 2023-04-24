@@ -7,24 +7,24 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class ProductsReasonsFilters1: Codable {
-        public var identifier: String?
-
         public var quantity: Int?
+
+        public var identifier: String?
 
         public var lineNumber: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case identifier
-
             case quantity
+
+            case identifier
 
             case lineNumber = "line_number"
         }
 
         public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
-            self.identifier = identifier
-
             self.quantity = quantity
+
+            self.identifier = identifier
 
             self.lineNumber = lineNumber
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
         }

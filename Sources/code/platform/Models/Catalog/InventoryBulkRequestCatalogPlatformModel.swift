@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var user: [String: Any]?
 
-        public var companyId: Int
-
         public var sizes: [InventoryJobPayload]
+
+        public var companyId: Int
 
         public enum CodingKeys: String, CodingKey {
             case batchId = "batch_id"
 
             case user
 
-            case companyId = "company_id"
-
             case sizes
+
+            case companyId = "company_id"
         }
 
         public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.user = user
 
-            self.companyId = companyId
-
             self.sizes = sizes
+
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
-
             sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
+
+            companyId = try container.decode(Int.self, forKey: .companyId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(sizes, forKey: .sizes)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var user: [String: Any]?
 
-        public var companyId: Int
-
         public var sizes: [InventoryJobPayload]
+
+        public var companyId: Int
 
         public enum CodingKeys: String, CodingKey {
             case batchId = "batch_id"
 
             case user
 
-            case companyId = "company_id"
-
             case sizes
+
+            case companyId = "company_id"
         }
 
         public init(batchId: String, companyId: Int, sizes: [InventoryJobPayload], user: [String: Any]? = nil) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.user = user
 
-            self.companyId = companyId
-
             self.sizes = sizes
+
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
-
             sizes = try container.decode([InventoryJobPayload].self, forKey: .sizes)
+
+            companyId = try container.decode(Int.self, forKey: .companyId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(sizes, forKey: .sizes)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }

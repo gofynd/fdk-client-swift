@@ -4,44 +4,44 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: JioCodeUpsertDataSet
+         Model: GiftCard
          Used By: Order
      */
 
-    class JioCodeUpsertDataSet: Codable {
-        public var itemId: String?
+    class GiftCard: Codable {
+        public var isGiftApplied: Bool?
 
-        public var companyId: String?
+        public var displayText: String?
 
-        public var jioCode: String?
+        public var giftPrice: Int?
 
-        public var articleId: String?
+        public var giftMessage: String?
 
         public enum CodingKeys: String, CodingKey {
-            case itemId = "item_id"
+            case isGiftApplied = "is_gift_applied"
 
-            case companyId = "company_id"
+            case displayText = "display_text"
 
-            case jioCode = "jio_code"
+            case giftPrice = "gift_price"
 
-            case articleId = "article_id"
+            case giftMessage = "gift_message"
         }
 
-        public init(articleId: String? = nil, companyId: String? = nil, itemId: String? = nil, jioCode: String? = nil) {
-            self.itemId = itemId
+        public init(displayText: String? = nil, giftMessage: String? = nil, giftPrice: Int? = nil, isGiftApplied: Bool? = nil) {
+            self.isGiftApplied = isGiftApplied
 
-            self.companyId = companyId
+            self.displayText = displayText
 
-            self.jioCode = jioCode
+            self.giftPrice = giftPrice
 
-            self.articleId = articleId
+            self.giftMessage = giftMessage
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemId = try container.decode(String.self, forKey: .itemId)
+                isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                companyId = try container.decode(String.self, forKey: .companyId)
+                displayText = try container.decode(String.self, forKey: .displayText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                jioCode = try container.decode(String.self, forKey: .jioCode)
+                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                giftMessage = try container.decode(String.self, forKey: .giftMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,57 +76,57 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
 
-            try? container.encodeIfPresent(jioCode, forKey: .jioCode)
+            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
 
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
+            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: JioCodeUpsertDataSet
+         Model: GiftCard
          Used By: Order
      */
 
-    class JioCodeUpsertDataSet: Codable {
-        public var itemId: String?
+    class GiftCard: Codable {
+        public var isGiftApplied: Bool?
 
-        public var companyId: String?
+        public var displayText: String?
 
-        public var jioCode: String?
+        public var giftPrice: Int?
 
-        public var articleId: String?
+        public var giftMessage: String?
 
         public enum CodingKeys: String, CodingKey {
-            case itemId = "item_id"
+            case isGiftApplied = "is_gift_applied"
 
-            case companyId = "company_id"
+            case displayText = "display_text"
 
-            case jioCode = "jio_code"
+            case giftPrice = "gift_price"
 
-            case articleId = "article_id"
+            case giftMessage = "gift_message"
         }
 
-        public init(articleId: String? = nil, companyId: String? = nil, itemId: String? = nil, jioCode: String? = nil) {
-            self.itemId = itemId
+        public init(displayText: String? = nil, giftMessage: String? = nil, giftPrice: Int? = nil, isGiftApplied: Bool? = nil) {
+            self.isGiftApplied = isGiftApplied
 
-            self.companyId = companyId
+            self.displayText = displayText
 
-            self.jioCode = jioCode
+            self.giftPrice = giftPrice
 
-            self.articleId = articleId
+            self.giftMessage = giftMessage
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemId = try container.decode(String.self, forKey: .itemId)
+                isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                companyId = try container.decode(String.self, forKey: .companyId)
+                displayText = try container.decode(String.self, forKey: .displayText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                jioCode = try container.decode(String.self, forKey: .jioCode)
+                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                giftMessage = try container.decode(String.self, forKey: .giftMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
 
-            try? container.encodeIfPresent(jioCode, forKey: .jioCode)
+            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
 
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
+            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
         }
     }
 }
