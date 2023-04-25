@@ -9,38 +9,36 @@ public extension PlatformClient.Order {
      */
 
     class OrderStatus: Codable {
-        public var startDate: String
-
         public var orderDetails: [FyndOrderIdList]?
-
-        public var mobile: Int
 
         public var endDate: String
 
-        public enum CodingKeys: String, CodingKey {
-            case startDate = "start_date"
+        public var mobile: Int
 
+        public var startDate: String
+
+        public enum CodingKeys: String, CodingKey {
             case orderDetails = "order_details"
+
+            case endDate = "end_date"
 
             case mobile
 
-            case endDate = "end_date"
+            case startDate = "start_date"
         }
 
         public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
-            self.startDate = startDate
-
             self.orderDetails = orderDetails
+
+            self.endDate = endDate
 
             self.mobile = mobile
 
-            self.endDate = endDate
+            self.startDate = startDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            startDate = try container.decode(String.self, forKey: .startDate)
 
             do {
                 orderDetails = try container.decode([FyndOrderIdList].self, forKey: .orderDetails)
@@ -50,21 +48,23 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            endDate = try container.decode(String.self, forKey: .endDate)
+
             mobile = try container.decode(Int.self, forKey: .mobile)
 
-            endDate = try container.decode(String.self, forKey: .endDate)
+            startDate = try container.decode(String.self, forKey: .startDate)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
-
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
+
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
         }
     }
 }
@@ -76,38 +76,36 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderStatus: Codable {
-        public var startDate: String
-
         public var orderDetails: [FyndOrderIdList]?
-
-        public var mobile: Int
 
         public var endDate: String
 
-        public enum CodingKeys: String, CodingKey {
-            case startDate = "start_date"
+        public var mobile: Int
 
+        public var startDate: String
+
+        public enum CodingKeys: String, CodingKey {
             case orderDetails = "order_details"
+
+            case endDate = "end_date"
 
             case mobile
 
-            case endDate = "end_date"
+            case startDate = "start_date"
         }
 
         public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
-            self.startDate = startDate
-
             self.orderDetails = orderDetails
+
+            self.endDate = endDate
 
             self.mobile = mobile
 
-            self.endDate = endDate
+            self.startDate = startDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            startDate = try container.decode(String.self, forKey: .startDate)
 
             do {
                 orderDetails = try container.decode([FyndOrderIdList].self, forKey: .orderDetails)
@@ -117,21 +115,23 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            endDate = try container.decode(String.self, forKey: .endDate)
+
             mobile = try container.decode(Int.self, forKey: .mobile)
 
-            endDate = try container.decode(String.self, forKey: .endDate)
+            startDate = try container.decode(String.self, forKey: .startDate)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
-
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
+
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
         }
     }
 }

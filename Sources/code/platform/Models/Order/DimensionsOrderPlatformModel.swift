@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var width: Int?
 
-        public var height: Int?
+        public var unit: String?
 
         public var isDefault: Bool?
 
-        public var unit: String?
+        public var height: Int?
 
         public enum CodingKeys: String, CodingKey {
             case length
 
             case width
 
-            case height
+            case unit
 
             case isDefault = "is_default"
 
-            case unit
+            case height
         }
 
         public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.width = width
 
-            self.height = height
+            self.unit = unit
 
             self.isDefault = isDefault
 
-            self.unit = unit
+            self.height = height
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                height = try container.decode(Int.self, forKey: .height)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                height = try container.decode(Int.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,11 +94,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(height, forKey: .height)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(height, forKey: .height)
         }
     }
 }
@@ -114,22 +114,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var width: Int?
 
-        public var height: Int?
+        public var unit: String?
 
         public var isDefault: Bool?
 
-        public var unit: String?
+        public var height: Int?
 
         public enum CodingKeys: String, CodingKey {
             case length
 
             case width
 
-            case height
+            case unit
 
             case isDefault = "is_default"
 
-            case unit
+            case height
         }
 
         public init(height: Int? = nil, isDefault: Bool? = nil, length: Int? = nil, unit: String? = nil, width: Int? = nil) {
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.width = width
 
-            self.height = height
+            self.unit = unit
 
             self.isDefault = isDefault
 
-            self.unit = unit
+            self.height = height
         }
 
         required public init(from decoder: Decoder) throws {
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                height = try container.decode(Int.self, forKey: .height)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                height = try container.decode(Int.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,11 +195,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(height, forKey: .height)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(height, forKey: .height)
         }
     }
 }

@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentDetail: Codable {
-        public var id: Int
-
         public var remarks: String?
+
+        public var id: Int
 
         public var meta: Meta1
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public var status: String?
 
         public enum CodingKeys: String, CodingKey {
-            case id
-
             case remarks
+
+            case id
 
             case meta
 
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
         }
 
         public init(bagList: [Int]? = nil, id: Int, meta: Meta1, remarks: String? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.id = id
-
             self.remarks = remarks
+
+            self.id = id
 
             self.meta = meta
 
@@ -52,8 +52,6 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            id = try container.decode(Int.self, forKey: .id)
-
             do {
                 remarks = try container.decode(String.self, forKey: .remarks)
 
@@ -61,6 +59,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(Int.self, forKey: .id)
 
             meta = try container.decode(Meta1.self, forKey: .meta)
 
@@ -92,9 +92,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(remarks, forKey: .remarks)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentDetail: Codable {
-        public var id: Int
-
         public var remarks: String?
+
+        public var id: Int
 
         public var meta: Meta1
 
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public var status: String?
 
         public enum CodingKeys: String, CodingKey {
-            case id
-
             case remarks
+
+            case id
 
             case meta
 
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(bagList: [Int]? = nil, id: Int, meta: Meta1, remarks: String? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.id = id
-
             self.remarks = remarks
+
+            self.id = id
 
             self.meta = meta
 
@@ -157,8 +157,6 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            id = try container.decode(Int.self, forKey: .id)
-
             do {
                 remarks = try container.decode(String.self, forKey: .remarks)
 
@@ -166,6 +164,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(Int.self, forKey: .id)
 
             meta = try container.decode(Meta1.self, forKey: .meta)
 
@@ -197,9 +197,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(remarks, forKey: .remarks)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 

@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class TrackingList: Codable {
         public var text: String
 
-        public var time: String?
-
         public var status: String
+
+        public var time: String?
 
         public var isCurrent: Bool?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case time
-
             case status
+
+            case time
 
             case isCurrent = "is_current"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Order {
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
             self.text = text
 
-            self.time = time
-
             self.status = status
+
+            self.time = time
 
             self.isCurrent = isCurrent
 
@@ -48,6 +48,8 @@ public extension PlatformClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
+            status = try container.decode(String.self, forKey: .status)
+
             do {
                 time = try container.decode(String.self, forKey: .time)
 
@@ -55,8 +57,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
 
             do {
                 isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(time, forKey: .time)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(time, forKey: .time)
 
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
@@ -100,9 +100,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class TrackingList: Codable {
         public var text: String
 
-        public var time: String?
-
         public var status: String
+
+        public var time: String?
 
         public var isCurrent: Bool?
 
@@ -111,9 +111,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case time
-
             case status
+
+            case time
 
             case isCurrent = "is_current"
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
             self.text = text
 
-            self.time = time
-
             self.status = status
+
+            self.time = time
 
             self.isCurrent = isCurrent
 
@@ -137,6 +137,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
+            status = try container.decode(String.self, forKey: .status)
+
             do {
                 time = try container.decode(String.self, forKey: .time)
 
@@ -144,8 +146,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
 
             do {
                 isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
@@ -169,9 +169,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(time, forKey: .time)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(time, forKey: .time)
 
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
