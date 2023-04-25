@@ -9,9 +9,9 @@ public extension ApplicationClient.Catalog {
     class StoreDepartments: Codable {
         public var name: String?
 
-        public var slug: String?
-
         public var priorityOrder: Int?
+
+        public var slug: String?
 
         public var uid: Int?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case slug
-
             case priorityOrder = "priority_order"
+
+            case slug
 
             case uid
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Catalog {
         public init(logo: String? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
             self.name = name
 
-            self.slug = slug
-
             self.priorityOrder = priorityOrder
+
+            self.slug = slug
 
             self.uid = uid
 
@@ -53,7 +53,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
