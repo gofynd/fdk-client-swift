@@ -11,26 +11,26 @@ public extension ApplicationClient.Cart {
 
         public var addressId: String?
 
-        public var aggregatorName: String?
+        public var paymentIdentifier: String?
 
-        public var merchantCode: String?
+        public var aggregatorName: String?
 
         public var id: String?
 
-        public var paymentIdentifier: String?
+        public var merchantCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case paymentMode = "payment_mode"
 
             case addressId = "address_id"
 
-            case aggregatorName = "aggregator_name"
+            case paymentIdentifier = "payment_identifier"
 
-            case merchantCode = "merchant_code"
+            case aggregatorName = "aggregator_name"
 
             case id
 
-            case paymentIdentifier = "payment_identifier"
+            case merchantCode = "merchant_code"
         }
 
         public init(addressId: String? = nil, aggregatorName: String? = nil, id: String? = nil, merchantCode: String? = nil, paymentIdentifier: String? = nil, paymentMode: String? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient.Cart {
 
             self.addressId = addressId
 
-            self.aggregatorName = aggregatorName
+            self.paymentIdentifier = paymentIdentifier
 
-            self.merchantCode = merchantCode
+            self.aggregatorName = aggregatorName
 
             self.id = id
 
-            self.paymentIdentifier = paymentIdentifier
+            self.merchantCode = merchantCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,7 +67,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                merchantCode = try container.decode(String.self, forKey: .merchantCode)
+                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(addressId, forKey: .addressId)
 
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 
-            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
         }
     }
 }

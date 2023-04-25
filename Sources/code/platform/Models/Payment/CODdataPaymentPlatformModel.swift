@@ -15,9 +15,9 @@ public extension PlatformClient.Payment {
 
         public var isActive: Bool
 
-        public var userId: String
-
         public var usages: Int
+
+        public var userId: String
 
         public enum CodingKeys: String, CodingKey {
             case remainingLimit = "remaining_limit"
@@ -26,9 +26,9 @@ public extension PlatformClient.Payment {
 
             case isActive = "is_active"
 
-            case userId = "user_id"
-
             case usages
+
+            case userId = "user_id"
         }
 
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Payment {
 
             self.isActive = isActive
 
-            self.userId = userId
-
             self.usages = usages
+
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Payment {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            userId = try container.decode(String.self, forKey: .userId)
-
             usages = try container.decode(Int.self, forKey: .usages)
+
+            userId = try container.decode(String.self, forKey: .userId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +66,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(usages, forKey: .usages)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }
@@ -86,9 +86,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var isActive: Bool
 
-        public var userId: String
-
         public var usages: Int
+
+        public var userId: String
 
         public enum CodingKeys: String, CodingKey {
             case remainingLimit = "remaining_limit"
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case isActive = "is_active"
 
-            case userId = "user_id"
-
             case usages
+
+            case userId = "user_id"
         }
 
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.isActive = isActive
 
-            self.userId = userId
-
             self.usages = usages
+
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            userId = try container.decode(String.self, forKey: .userId)
-
             usages = try container.decode(Int.self, forKey: .usages)
+
+            userId = try container.decode(String.self, forKey: .userId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(usages, forKey: .usages)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }

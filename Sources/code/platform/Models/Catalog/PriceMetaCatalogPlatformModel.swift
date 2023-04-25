@@ -11,26 +11,26 @@ public extension PlatformClient.Catalog {
     class PriceMeta: Codable {
         public var updatedAt: String?
 
-        public var currency: String
+        public var transfer: Double
 
         public var marked: Double
 
-        public var tpNotes: [String: Any]?
+        public var currency: String
 
-        public var transfer: Double
+        public var tpNotes: [String: Any]?
 
         public var effective: Double
 
         public enum CodingKeys: String, CodingKey {
             case updatedAt = "updated_at"
 
-            case currency
+            case transfer
 
             case marked
 
-            case tpNotes = "tp_notes"
+            case currency
 
-            case transfer
+            case tpNotes = "tp_notes"
 
             case effective
         }
@@ -38,13 +38,13 @@ public extension PlatformClient.Catalog {
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
             self.updatedAt = updatedAt
 
-            self.currency = currency
+            self.transfer = transfer
 
             self.marked = marked
 
-            self.tpNotes = tpNotes
+            self.currency = currency
 
-            self.transfer = transfer
+            self.tpNotes = tpNotes
 
             self.effective = effective
         }
@@ -60,9 +60,11 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            currency = try container.decode(String.self, forKey: .currency)
+            transfer = try container.decode(Double.self, forKey: .transfer)
 
             marked = try container.decode(Double.self, forKey: .marked)
+
+            currency = try container.decode(String.self, forKey: .currency)
 
             do {
                 tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
@@ -72,8 +74,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            transfer = try container.decode(Double.self, forKey: .transfer)
-
             effective = try container.decode(Double.self, forKey: .effective)
         }
 
@@ -82,13 +82,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(transfer, forKey: .transfer)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(transfer, forKey: .transfer)
+            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
         }
@@ -104,26 +104,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class PriceMeta: Codable {
         public var updatedAt: String?
 
-        public var currency: String
+        public var transfer: Double
 
         public var marked: Double
 
-        public var tpNotes: [String: Any]?
+        public var currency: String
 
-        public var transfer: Double
+        public var tpNotes: [String: Any]?
 
         public var effective: Double
 
         public enum CodingKeys: String, CodingKey {
             case updatedAt = "updated_at"
 
-            case currency
+            case transfer
 
             case marked
 
-            case tpNotes = "tp_notes"
+            case currency
 
-            case transfer
+            case tpNotes = "tp_notes"
 
             case effective
         }
@@ -131,13 +131,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
             self.updatedAt = updatedAt
 
-            self.currency = currency
+            self.transfer = transfer
 
             self.marked = marked
 
-            self.tpNotes = tpNotes
+            self.currency = currency
 
-            self.transfer = transfer
+            self.tpNotes = tpNotes
 
             self.effective = effective
         }
@@ -153,9 +153,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            currency = try container.decode(String.self, forKey: .currency)
+            transfer = try container.decode(Double.self, forKey: .transfer)
 
             marked = try container.decode(Double.self, forKey: .marked)
+
+            currency = try container.decode(String.self, forKey: .currency)
 
             do {
                 tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
@@ -165,8 +167,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            transfer = try container.decode(Double.self, forKey: .transfer)
-
             effective = try container.decode(Double.self, forKey: .effective)
         }
 
@@ -175,13 +175,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(transfer, forKey: .transfer)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
+            try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(transfer, forKey: .transfer)
+            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
         }

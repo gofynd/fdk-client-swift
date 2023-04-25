@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var duration: Int?
 
-        public var cron: String?
-
         public var start: String?
+
+        public var cron: String?
 
         public var nextSchedule: [NextSchedule]?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case duration
 
-            case cron
-
             case start
+
+            case cron
 
             case nextSchedule = "next_schedule"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.duration = duration
 
-            self.cron = cron
-
             self.start = start
+
+            self.cron = cron
 
             self.nextSchedule = nextSchedule
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                cron = try container.decode(String.self, forKey: .cron)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                cron = try container.decode(String.self, forKey: .cron)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encode(duration, forKey: .duration)
 
-            try? container.encode(cron, forKey: .cron)
-
             try? container.encodeIfPresent(start, forKey: .start)
+
+            try? container.encode(cron, forKey: .cron)
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var duration: Int?
 
-        public var cron: String?
-
         public var start: String?
+
+        public var cron: String?
 
         public var nextSchedule: [NextSchedule]?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case duration
 
-            case cron
-
             case start
+
+            case cron
 
             case nextSchedule = "next_schedule"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.duration = duration
 
-            self.cron = cron
-
             self.start = start
+
+            self.cron = cron
 
             self.nextSchedule = nextSchedule
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                cron = try container.decode(String.self, forKey: .cron)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                cron = try container.decode(String.self, forKey: .cron)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encode(duration, forKey: .duration)
 
-            try? container.encode(cron, forKey: .cron)
-
             try? container.encodeIfPresent(start, forKey: .start)
+
+            try? container.encode(cron, forKey: .cron)
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
         }

@@ -17,9 +17,9 @@ public extension PlatformClient.Catalog {
 
         public var items: [CollectionItem]?
 
-        public var type: String?
-
         public var allowFacets: Bool?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case query
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
 
             case items
 
-            case type
-
             case allowFacets = "allow_facets"
+
+            case type
         }
 
         public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItem]? = nil, query: [CollectionQuery]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil) {
@@ -44,9 +44,9 @@ public extension PlatformClient.Catalog {
 
             self.items = items
 
-            self.type = type
-
             self.allowFacets = allowFacets
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,7 +85,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,9 +112,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -134,9 +134,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var items: [CollectionItem]?
 
-        public var type: String?
-
         public var allowFacets: Bool?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case query
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case items
 
-            case type
-
             case allowFacets = "allow_facets"
+
+            case type
         }
 
         public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItem]? = nil, query: [CollectionQuery]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil) {
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.items = items
 
-            self.type = type
-
             self.allowFacets = allowFacets
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,9 +229,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
