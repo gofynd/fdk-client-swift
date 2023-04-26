@@ -13,9 +13,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var hasPrevious: Bool?
 
-        public var current: Int?
-
         public var hasNext: Bool?
+
+        public var current: Int?
 
         public var total: Int?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case hasPrevious = "has_previous"
 
-            case current
-
             case hasNext = "has_next"
+
+            case current
 
             case total
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.hasPrevious = hasPrevious
 
-            self.current = current
-
             self.hasNext = hasNext
+
+            self.current = current
 
             self.total = total
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(total, forKey: .total)
         }

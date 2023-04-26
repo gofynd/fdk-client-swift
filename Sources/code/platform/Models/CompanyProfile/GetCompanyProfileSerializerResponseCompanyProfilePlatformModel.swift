@@ -9,179 +9,153 @@ public extension PlatformClient.CompanyProfile {
      */
 
     class GetCompanyProfileSerializerResponse: Codable {
-        public var customJson: [String: Any]?
-
-        public var addresses: [GetAddressSerializer]?
-
-        public var uid: Int
-
-        public var modifiedOn: String?
-
-        public var notificationEmails: [String]?
+        public var businessInfo: String?
 
         public var businessCountryInfo: BusinessCountryInfo?
 
-        public var taxes: [CompanyTaxesSerializer]?
-
-        public var verifiedBy: UserSerializer?
-
-        public var businessInfo: String?
-
-        public var name: String?
+        public var companyType: String
 
         public var contactDetails: ContactDetails?
 
-        public var franchiseEnabled: Bool?
+        public var verifiedBy: UserSerializer?
 
-        public var documents: [Document]?
+        public var taxes: [CompanyTaxesSerializer]?
 
-        public var businessDetails: BusinessDetails?
+        public var uid: Int
 
-        public var createdOn: String?
+        public var customJson: [String: Any]?
+
+        public var modifiedBy: UserSerializer?
 
         public var businessType: String
 
+        public var businessDetails: BusinessDetails?
+
         public var createdBy: UserSerializer?
 
-        public var verifiedOn: String?
+        public var name: String?
 
-        public var companyType: String
+        public var addresses: [GetAddressSerializer]?
 
         public var warnings: [String: Any]?
 
-        public var modifiedBy: UserSerializer?
+        public var verifiedOn: String?
+
+        public var modifiedOn: String?
+
+        public var createdOn: String?
+
+        public var documents: [Document]?
+
+        public var notificationEmails: [String]?
 
         public var mode: String?
 
         public var stage: String?
 
+        public var franchiseEnabled: Bool?
+
         public enum CodingKeys: String, CodingKey {
-            case customJson = "_custom_json"
-
-            case addresses
-
-            case uid
-
-            case modifiedOn = "modified_on"
-
-            case notificationEmails = "notification_emails"
+            case businessInfo = "business_info"
 
             case businessCountryInfo = "business_country_info"
 
-            case taxes
-
-            case verifiedBy = "verified_by"
-
-            case businessInfo = "business_info"
-
-            case name
+            case companyType = "company_type"
 
             case contactDetails = "contact_details"
 
-            case franchiseEnabled = "franchise_enabled"
+            case verifiedBy = "verified_by"
 
-            case documents
+            case taxes
 
-            case businessDetails = "business_details"
+            case uid
 
-            case createdOn = "created_on"
+            case customJson = "_custom_json"
+
+            case modifiedBy = "modified_by"
 
             case businessType = "business_type"
 
+            case businessDetails = "business_details"
+
             case createdBy = "created_by"
 
-            case verifiedOn = "verified_on"
+            case name
 
-            case companyType = "company_type"
+            case addresses
 
             case warnings
 
-            case modifiedBy = "modified_by"
+            case verifiedOn = "verified_on"
+
+            case modifiedOn = "modified_on"
+
+            case createdOn = "created_on"
+
+            case documents
+
+            case notificationEmails = "notification_emails"
 
             case mode
 
             case stage
+
+            case franchiseEnabled = "franchise_enabled"
         }
 
         public init(addresses: [GetAddressSerializer]? = nil, businessCountryInfo: BusinessCountryInfo? = nil, businessDetails: BusinessDetails? = nil, businessInfo: String? = nil, businessType: String, companyType: String, contactDetails: ContactDetails? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, documents: [Document]? = nil, franchiseEnabled: Bool? = nil, mode: String? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String? = nil, notificationEmails: [String]? = nil, stage: String? = nil, taxes: [CompanyTaxesSerializer]? = nil, uid: Int, verifiedBy: UserSerializer? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
-            self.customJson = customJson
-
-            self.addresses = addresses
-
-            self.uid = uid
-
-            self.modifiedOn = modifiedOn
-
-            self.notificationEmails = notificationEmails
+            self.businessInfo = businessInfo
 
             self.businessCountryInfo = businessCountryInfo
 
-            self.taxes = taxes
-
-            self.verifiedBy = verifiedBy
-
-            self.businessInfo = businessInfo
-
-            self.name = name
+            self.companyType = companyType
 
             self.contactDetails = contactDetails
 
-            self.franchiseEnabled = franchiseEnabled
+            self.verifiedBy = verifiedBy
 
-            self.documents = documents
+            self.taxes = taxes
 
-            self.businessDetails = businessDetails
+            self.uid = uid
 
-            self.createdOn = createdOn
+            self.customJson = customJson
+
+            self.modifiedBy = modifiedBy
 
             self.businessType = businessType
 
+            self.businessDetails = businessDetails
+
             self.createdBy = createdBy
 
-            self.verifiedOn = verifiedOn
+            self.name = name
 
-            self.companyType = companyType
+            self.addresses = addresses
 
             self.warnings = warnings
 
-            self.modifiedBy = modifiedBy
+            self.verifiedOn = verifiedOn
+
+            self.modifiedOn = modifiedOn
+
+            self.createdOn = createdOn
+
+            self.documents = documents
+
+            self.notificationEmails = notificationEmails
 
             self.mode = mode
 
             self.stage = stage
+
+            self.franchiseEnabled = franchiseEnabled
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                addresses = try container.decode([GetAddressSerializer].self, forKey: .addresses)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            uid = try container.decode(Int.self, forKey: .uid)
-
-            do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+                businessInfo = try container.decode(String.self, forKey: .businessInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -196,8 +170,10 @@ public extension PlatformClient.CompanyProfile {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            companyType = try container.decode(String.self, forKey: .companyType)
+
             do {
-                taxes = try container.decode([CompanyTaxesSerializer].self, forKey: .taxes)
+                contactDetails = try container.decode(ContactDetails.self, forKey: .contactDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -213,7 +189,43 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                businessInfo = try container.decode(String.self, forKey: .businessInfo)
+                taxes = try container.decode([CompanyTaxesSerializer].self, forKey: .taxes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            uid = try container.decode(Int.self, forKey: .uid)
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            businessType = try container.decode(String.self, forKey: .businessType)
+
+            do {
+                businessDetails = try container.decode(BusinessDetails.self, forKey: .businessDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdBy = try container.decode(UserSerializer.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,7 +241,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                contactDetails = try container.decode(ContactDetails.self, forKey: .contactDetails)
+                addresses = try container.decode([GetAddressSerializer].self, forKey: .addresses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -237,7 +249,31 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                franchiseEnabled = try container.decode(Bool.self, forKey: .franchiseEnabled)
+                warnings = try container.decode([String: Any].self, forKey: .warnings)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -253,51 +289,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                businessDetails = try container.decode(BusinessDetails.self, forKey: .businessDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            businessType = try container.decode(String.self, forKey: .businessType)
-
-            do {
-                createdBy = try container.decode(UserSerializer.self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            companyType = try container.decode(String.self, forKey: .companyType)
-
-            do {
-                warnings = try container.decode([String: Any].self, forKey: .warnings)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -319,56 +311,64 @@ public extension PlatformClient.CompanyProfile {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                franchiseEnabled = try container.decode(Bool.self, forKey: .franchiseEnabled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(addresses, forKey: .addresses)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
 
             try? container.encodeIfPresent(businessCountryInfo, forKey: .businessCountryInfo)
 
-            try? container.encodeIfPresent(taxes, forKey: .taxes)
-
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
-
-            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(companyType, forKey: .companyType)
 
             try? container.encodeIfPresent(contactDetails, forKey: .contactDetails)
 
-            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
 
-            try? container.encodeIfPresent(documents, forKey: .documents)
+            try? container.encodeIfPresent(taxes, forKey: .taxes)
 
-            try? container.encodeIfPresent(businessDetails, forKey: .businessDetails)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
             try? container.encodeIfPresent(businessType, forKey: .businessType)
 
+            try? container.encodeIfPresent(businessDetails, forKey: .businessDetails)
+
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(companyType, forKey: .companyType)
+            try? container.encodeIfPresent(addresses, forKey: .addresses)
 
             try? container.encodeIfPresent(warnings, forKey: .warnings)
 
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(documents, forKey: .documents)
+
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(stage, forKey: .stage)
+
+            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
         }
     }
 }

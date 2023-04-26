@@ -17,6 +17,8 @@ public extension PlatformClient.ApplicationClient.User {
 
         public var androidHash: String?
 
+        public var type: String?
+
         public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
 
@@ -25,9 +27,11 @@ public extension PlatformClient.ApplicationClient.User {
             case mobile
 
             case androidHash = "android_hash"
+
+            case type
         }
 
-        public init(androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, mobile: String? = nil) {
+        public init(androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, mobile: String? = nil, type: String? = nil) {
             self.countryCode = countryCode
 
             self.captchaCode = captchaCode
@@ -35,6 +39,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.mobile = mobile
 
             self.androidHash = androidHash
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,6 +77,14 @@ public extension PlatformClient.ApplicationClient.User {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -83,6 +97,8 @@ public extension PlatformClient.ApplicationClient.User {
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
             try? container.encodeIfPresent(androidHash, forKey: .androidHash)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

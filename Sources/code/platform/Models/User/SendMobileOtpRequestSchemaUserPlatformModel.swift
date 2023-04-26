@@ -23,6 +23,8 @@ public extension PlatformClient.ApplicationClient.User {
 
         public var captchaCode: String?
 
+        public var type: String?
+
         public enum CodingKeys: String, CodingKey {
             case mobile
 
@@ -37,9 +39,11 @@ public extension PlatformClient.ApplicationClient.User {
             case force
 
             case captchaCode = "captcha_code"
+
+            case type
         }
 
-        public init(action: String? = nil, androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil) {
+        public init(action: String? = nil, androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, force: String? = nil, mobile: String? = nil, token: String? = nil, type: String? = nil) {
             self.mobile = mobile
 
             self.countryCode = countryCode
@@ -53,6 +57,8 @@ public extension PlatformClient.ApplicationClient.User {
             self.force = force
 
             self.captchaCode = captchaCode
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -113,6 +119,14 @@ public extension PlatformClient.ApplicationClient.User {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -131,6 +145,8 @@ public extension PlatformClient.ApplicationClient.User {
             try? container.encodeIfPresent(force, forKey: .force)
 
             try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

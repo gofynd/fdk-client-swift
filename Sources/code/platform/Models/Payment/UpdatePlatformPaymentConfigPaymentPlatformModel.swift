@@ -13,22 +13,22 @@ public extension PlatformClient.Payment {
 
         public var codAmountLimit: Int?
 
+        public var anonymousCod: Bool?
+
         public var codCharges: Int?
 
         public var paymentSelectionLock: [String: Any]?
-
-        public var anonymousCod: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case methods
 
             case codAmountLimit = "cod_amount_limit"
 
+            case anonymousCod = "anonymous_cod"
+
             case codCharges = "cod_charges"
 
             case paymentSelectionLock = "payment_selection_lock"
-
-            case anonymousCod = "anonymous_cod"
         }
 
         public init(anonymousCod: Bool? = nil, codAmountLimit: Int? = nil, codCharges: Int? = nil, methods: [String: Any], paymentSelectionLock: [String: Any]? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Payment {
 
             self.codAmountLimit = codAmountLimit
 
+            self.anonymousCod = anonymousCod
+
             self.codCharges = codCharges
 
             self.paymentSelectionLock = paymentSelectionLock
-
-            self.anonymousCod = anonymousCod
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,6 +50,14 @@ public extension PlatformClient.Payment {
 
             do {
                 codAmountLimit = try container.decode(Int.self, forKey: .codAmountLimit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,14 +79,6 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -88,11 +88,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
 
+            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
+
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
 
             try? container.encodeIfPresent(paymentSelectionLock, forKey: .paymentSelectionLock)
-
-            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
         }
     }
 }
@@ -108,22 +108,22 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var codAmountLimit: Int?
 
+        public var anonymousCod: Bool?
+
         public var codCharges: Int?
 
         public var paymentSelectionLock: [String: Any]?
-
-        public var anonymousCod: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case methods
 
             case codAmountLimit = "cod_amount_limit"
 
+            case anonymousCod = "anonymous_cod"
+
             case codCharges = "cod_charges"
 
             case paymentSelectionLock = "payment_selection_lock"
-
-            case anonymousCod = "anonymous_cod"
         }
 
         public init(anonymousCod: Bool? = nil, codAmountLimit: Int? = nil, codCharges: Int? = nil, methods: [String: Any], paymentSelectionLock: [String: Any]? = nil) {
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.codAmountLimit = codAmountLimit
 
+            self.anonymousCod = anonymousCod
+
             self.codCharges = codCharges
 
             self.paymentSelectionLock = paymentSelectionLock
-
-            self.anonymousCod = anonymousCod
         }
 
         required public init(from decoder: Decoder) throws {
@@ -145,6 +145,14 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             do {
                 codAmountLimit = try container.decode(Int.self, forKey: .codAmountLimit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -166,14 +174,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -183,11 +183,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
 
+            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
+
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
 
             try? container.encodeIfPresent(paymentSelectionLock, forKey: .paymentSelectionLock)
-
-            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
         }
     }
 }

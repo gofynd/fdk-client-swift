@@ -1980,7 +1980,8 @@ Success. Returns a JSON object containing the all the platform configurations. R
   "forgot_password": true,
   "login": {
     "password": true,
-    "otp": true
+    "otp": true,
+    "voice_otp": false
   },
   "skip_captcha": false,
   "display": "Fynd",
@@ -3184,6 +3185,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | androidHash | String? |  yes  |  |
  | force | String? |  yes  |  |
  | captchaCode | String? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
@@ -3299,6 +3301,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | captchaCode | String? |  yes  |  |
  | mobile | String? |  yes  |  |
  | androidHash | String? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
@@ -4032,6 +4035,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | ---------- | ---- | -------- | ----------- |
  | password | Bool? |  yes  |  |
  | otp | Bool? |  yes  |  |
+ | voiceOtp | Bool? |  yes  |  |
 
 ---
 

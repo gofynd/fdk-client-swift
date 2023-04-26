@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var type: String?
 
-        public var visibleFacetsKeys: [String]?
-
         public var allowFacets: Bool?
+
+        public var visibleFacetsKeys: [String]?
 
         public var allowSort: Bool?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case type
 
-            case visibleFacetsKeys = "visible_facets_keys"
-
             case allowFacets = "allow_facets"
+
+            case visibleFacetsKeys = "visible_facets_keys"
 
             case allowSort = "allow_sort"
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Catalog {
 
             self.type = type
 
-            self.visibleFacetsKeys = visibleFacetsKeys
-
             self.allowFacets = allowFacets
+
+            self.visibleFacetsKeys = visibleFacetsKeys
 
             self.allowSort = allowSort
 
@@ -69,7 +69,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
+                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
+                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
             try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
+
+            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
 
             try? container.encodeIfPresent(allowSort, forKey: .allowSort)
 
@@ -130,9 +130,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var type: String?
 
-        public var visibleFacetsKeys: [String]?
-
         public var allowFacets: Bool?
+
+        public var visibleFacetsKeys: [String]?
 
         public var allowSort: Bool?
 
@@ -143,9 +143,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case type
 
-            case visibleFacetsKeys = "visible_facets_keys"
-
             case allowFacets = "allow_facets"
+
+            case visibleFacetsKeys = "visible_facets_keys"
 
             case allowSort = "allow_sort"
 
@@ -157,9 +157,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.type = type
 
-            self.visibleFacetsKeys = visibleFacetsKeys
-
             self.allowFacets = allowFacets
+
+            self.visibleFacetsKeys = visibleFacetsKeys
 
             self.allowSort = allowSort
 
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
+                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
+                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,9 +225,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
             try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
+
+            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
 
             try? container.encodeIfPresent(allowSort, forKey: .allowSort)
 
