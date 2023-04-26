@@ -11,22 +11,22 @@ public extension ApplicationClient.PosCart {
 
         public var outOfStock: Bool?
 
+        public var sizes: [String]?
+
         public var otherStoreQuantity: Int?
 
         public var isValid: Bool?
-
-        public var sizes: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case deliverable
 
             case outOfStock = "out_of_stock"
 
+            case sizes
+
             case otherStoreQuantity = "other_store_quantity"
 
             case isValid = "is_valid"
-
-            case sizes
         }
 
         public init(deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.PosCart {
 
             self.outOfStock = outOfStock
 
+            self.sizes = sizes
+
             self.otherStoreQuantity = otherStoreQuantity
 
             self.isValid = isValid
-
-            self.sizes = sizes
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,6 +61,14 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
+                sizes = try container.decode([String].self, forKey: .sizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -75,14 +83,6 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                sizes = try container.decode([String].self, forKey: .sizes)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,11 +92,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
 
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
+
             try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
-
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
         }
     }
 }

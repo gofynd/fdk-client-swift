@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var key: String?
 
-        public var filterTypes: [String]?
-
         public var display: String?
+
+        public var filterTypes: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case units
 
             case key
 
-            case filterTypes = "filter_types"
-
             case display
+
+            case filterTypes = "filter_types"
         }
 
         public init(display: String? = nil, filterTypes: [String]? = nil, key: String? = nil, units: [[String: Any]]? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.key = key
 
-            self.filterTypes = filterTypes
-
             self.display = display
+
+            self.filterTypes = filterTypes
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                filterTypes = try container.decode([String].self, forKey: .filterTypes)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                filterTypes = try container.decode([String].self, forKey: .filterTypes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(filterTypes, forKey: .filterTypes)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(filterTypes, forKey: .filterTypes)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var key: String?
 
-        public var filterTypes: [String]?
-
         public var display: String?
+
+        public var filterTypes: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case units
 
             case key
 
-            case filterTypes = "filter_types"
-
             case display
+
+            case filterTypes = "filter_types"
         }
 
         public init(display: String? = nil, filterTypes: [String]? = nil, key: String? = nil, units: [[String: Any]]? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.key = key
 
-            self.filterTypes = filterTypes
-
             self.display = display
+
+            self.filterTypes = filterTypes
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                filterTypes = try container.decode([String].self, forKey: .filterTypes)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                filterTypes = try container.decode([String].self, forKey: .filterTypes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(filterTypes, forKey: .filterTypes)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(filterTypes, forKey: .filterTypes)
         }
     }
 }

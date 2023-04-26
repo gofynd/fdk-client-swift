@@ -13,22 +13,22 @@ public extension PlatformClient.Catalog {
 
         public var fromDate: String?
 
-        public var templates: [String]
+        public var toDate: String?
 
         public var catalogueTypes: [String]
 
-        public var toDate: String?
+        public var templates: [String]
 
         public enum CodingKeys: String, CodingKey {
             case brands
 
             case fromDate = "from_date"
 
-            case templates
+            case toDate = "to_date"
 
             case catalogueTypes = "catalogue_types"
 
-            case toDate = "to_date"
+            case templates
         }
 
         public init(brands: [String]? = nil, catalogueTypes: [String], fromDate: String? = nil, templates: [String], toDate: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Catalog {
 
             self.fromDate = fromDate
 
-            self.templates = templates
+            self.toDate = toDate
 
             self.catalogueTypes = catalogueTypes
 
-            self.toDate = toDate
+            self.templates = templates
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,10 +62,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            templates = try container.decode([String].self, forKey: .templates)
-
-            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
-
             do {
                 toDate = try container.decode(String.self, forKey: .toDate)
 
@@ -73,6 +69,10 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
+
+            templates = try container.decode([String].self, forKey: .templates)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -82,11 +82,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 
-            try? container.encodeIfPresent(templates, forKey: .templates)
+            try? container.encodeIfPresent(toDate, forKey: .toDate)
 
             try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
 
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
+            try? container.encodeIfPresent(templates, forKey: .templates)
         }
     }
 }
@@ -102,22 +102,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var fromDate: String?
 
-        public var templates: [String]
+        public var toDate: String?
 
         public var catalogueTypes: [String]
 
-        public var toDate: String?
+        public var templates: [String]
 
         public enum CodingKeys: String, CodingKey {
             case brands
 
             case fromDate = "from_date"
 
-            case templates
+            case toDate = "to_date"
 
             case catalogueTypes = "catalogue_types"
 
-            case toDate = "to_date"
+            case templates
         }
 
         public init(brands: [String]? = nil, catalogueTypes: [String], fromDate: String? = nil, templates: [String], toDate: String? = nil) {
@@ -125,11 +125,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.fromDate = fromDate
 
-            self.templates = templates
+            self.toDate = toDate
 
             self.catalogueTypes = catalogueTypes
 
-            self.toDate = toDate
+            self.templates = templates
         }
 
         required public init(from decoder: Decoder) throws {
@@ -151,10 +151,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            templates = try container.decode([String].self, forKey: .templates)
-
-            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
-
             do {
                 toDate = try container.decode(String.self, forKey: .toDate)
 
@@ -162,6 +158,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
+
+            templates = try container.decode([String].self, forKey: .templates)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -171,11 +171,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 
-            try? container.encodeIfPresent(templates, forKey: .templates)
+            try? container.encodeIfPresent(toDate, forKey: .toDate)
 
             try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
 
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
+            try? container.encodeIfPresent(templates, forKey: .templates)
         }
     }
 }

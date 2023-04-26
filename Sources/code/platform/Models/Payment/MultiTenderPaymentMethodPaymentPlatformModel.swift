@@ -11,18 +11,18 @@ public extension PlatformClient.Payment {
     class MultiTenderPaymentMethod: Codable {
         public var amount: Double
 
-        public var meta: MultiTenderPaymentMeta?
-
         public var name: String?
+
+        public var meta: MultiTenderPaymentMeta?
 
         public var mode: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case meta
-
             case name
+
+            case meta
 
             case mode
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Payment {
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
             self.amount = amount
 
-            self.meta = meta
-
             self.name = name
+
+            self.meta = meta
 
             self.mode = mode
         }
@@ -43,7 +43,7 @@ public extension PlatformClient.Payment {
             amount = try container.decode(Double.self, forKey: .amount)
 
             do {
-                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -66,9 +66,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
         }
@@ -84,18 +84,18 @@ public extension PlatformClient.ApplicationClient.Payment {
     class MultiTenderPaymentMethod: Codable {
         public var amount: Double
 
-        public var meta: MultiTenderPaymentMeta?
-
         public var name: String?
+
+        public var meta: MultiTenderPaymentMeta?
 
         public var mode: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case meta
-
             case name
+
+            case meta
 
             case mode
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
             self.amount = amount
 
-            self.meta = meta
-
             self.name = name
+
+            self.meta = meta
 
             self.mode = mode
         }
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             amount = try container.decode(Double.self, forKey: .amount)
 
             do {
-                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
         }

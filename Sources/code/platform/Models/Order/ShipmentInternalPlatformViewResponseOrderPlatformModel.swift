@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class ShipmentInternalPlatformViewResponse: Codable {
         public var items: [ShipmentItem]?
 
-        public var appliedFilters: [String: Any]?
-
         public var page: [String: Any]?
+
+        public var appliedFilters: [String: Any]?
 
         public var filters: [FiltersInfo]?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case appliedFilters = "applied_filters"
-
             case page
+
+            case appliedFilters = "applied_filters"
 
             case filters
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(appliedFilters: [String: Any]? = nil, filters: [FiltersInfo]? = nil, items: [ShipmentItem]? = nil, page: [String: Any]? = nil) {
             self.items = items
 
-            self.appliedFilters = appliedFilters
-
             self.page = page
+
+            self.appliedFilters = appliedFilters
 
             self.filters = filters
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                appliedFilters = try container.decode([String: Any].self, forKey: .appliedFilters)
+                page = try container.decode([String: Any].self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                page = try container.decode([String: Any].self, forKey: .page)
+                appliedFilters = try container.decode([String: Any].self, forKey: .appliedFilters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentInternalPlatformViewResponse: Codable {
         public var items: [ShipmentItem]?
 
-        public var appliedFilters: [String: Any]?
-
         public var page: [String: Any]?
+
+        public var appliedFilters: [String: Any]?
 
         public var filters: [FiltersInfo]?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case appliedFilters = "applied_filters"
-
             case page
+
+            case appliedFilters = "applied_filters"
 
             case filters
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(appliedFilters: [String: Any]? = nil, filters: [FiltersInfo]? = nil, items: [ShipmentItem]? = nil, page: [String: Any]? = nil) {
             self.items = items
 
-            self.appliedFilters = appliedFilters
-
             self.page = page
+
+            self.appliedFilters = appliedFilters
 
             self.filters = filters
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                appliedFilters = try container.decode([String: Any].self, forKey: .appliedFilters)
+                page = try container.decode([String: Any].self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                page = try container.decode([String: Any].self, forKey: .page)
+                appliedFilters = try container.decode([String: Any].self, forKey: .appliedFilters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
         }

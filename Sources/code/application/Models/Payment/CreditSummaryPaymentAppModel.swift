@@ -7,18 +7,18 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class CreditSummary: Codable {
-        public var status: String
-
         public var merchantCustomerRefId: String
+
+        public var status: String
 
         public var statusMessage: String
 
         public var balance: BalanceDetails?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case merchantCustomerRefId = "merchant_customer_ref_id"
+
+            case status
 
             case statusMessage = "status_message"
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Payment {
         }
 
         public init(balance: BalanceDetails? = nil, merchantCustomerRefId: String, status: String, statusMessage: String) {
-            self.status = status
-
             self.merchantCustomerRefId = merchantCustomerRefId
+
+            self.status = status
 
             self.statusMessage = statusMessage
 
@@ -38,9 +38,9 @@ public extension ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            status = try container.decode(String.self, forKey: .status)
-
             merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
+
+            status = try container.decode(String.self, forKey: .status)
 
             statusMessage = try container.decode(String.self, forKey: .statusMessage)
 
@@ -56,9 +56,9 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
 
