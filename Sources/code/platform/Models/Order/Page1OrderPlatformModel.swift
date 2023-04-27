@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class Page1: Codable {
         public var current: Int
 
-        public var size: Int
-
         public var hasNext: Bool
+
+        public var size: Int
 
         public var pageType: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case current
 
-            case size
-
             case hasNext = "has_next"
+
+            case size
 
             case pageType = "page_type"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Order {
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
             self.current = current
 
-            self.size = size
-
             self.hasNext = hasNext
+
+            self.size = size
 
             self.pageType = pageType
 
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
 
             current = try container.decode(Int.self, forKey: .current)
 
-            size = try container.decode(Int.self, forKey: .size)
-
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            size = try container.decode(Int.self, forKey: .size)
 
             pageType = try container.decode(String.self, forKey: .pageType)
 
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(pageType, forKey: .pageType)
 
@@ -82,9 +82,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class Page1: Codable {
         public var current: Int
 
-        public var size: Int
-
         public var hasNext: Bool
+
+        public var size: Int
 
         public var pageType: String
 
@@ -93,9 +93,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case current
 
-            case size
-
             case hasNext = "has_next"
+
+            case size
 
             case pageType = "page_type"
 
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
             self.current = current
 
-            self.size = size
-
             self.hasNext = hasNext
+
+            self.size = size
 
             self.pageType = pageType
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             current = try container.decode(Int.self, forKey: .current)
 
-            size = try container.decode(Int.self, forKey: .size)
-
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            size = try container.decode(Int.self, forKey: .size)
 
             pageType = try container.decode(String.self, forKey: .pageType)
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(pageType, forKey: .pageType)
 

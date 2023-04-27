@@ -11,48 +11,48 @@ public extension PlatformClient.ApplicationClient.Cart {
     class DiscountOffer: Codable {
         public var maxDiscountAmount: Double?
 
-        public var discountPercentage: Double?
-
-        public var discountAmount: Double?
-
         public var code: String?
 
         public var maxOfferQuantity: Int?
+
+        public var discountPercentage: Double?
 
         public var minOfferQuantity: Int?
 
         public var discountPrice: Double?
 
+        public var discountAmount: Double?
+
         public enum CodingKeys: String, CodingKey {
             case maxDiscountAmount = "max_discount_amount"
-
-            case discountPercentage = "discount_percentage"
-
-            case discountAmount = "discount_amount"
 
             case code
 
             case maxOfferQuantity = "max_offer_quantity"
 
+            case discountPercentage = "discount_percentage"
+
             case minOfferQuantity = "min_offer_quantity"
 
             case discountPrice = "discount_price"
+
+            case discountAmount = "discount_amount"
         }
 
         public init(code: String? = nil, discountAmount: Double? = nil, discountPercentage: Double? = nil, discountPrice: Double? = nil, maxDiscountAmount: Double? = nil, maxOfferQuantity: Int? = nil, minOfferQuantity: Int? = nil) {
             self.maxDiscountAmount = maxDiscountAmount
 
-            self.discountPercentage = discountPercentage
-
-            self.discountAmount = discountAmount
-
             self.code = code
 
             self.maxOfferQuantity = maxOfferQuantity
 
+            self.discountPercentage = discountPercentage
+
             self.minOfferQuantity = minOfferQuantity
 
             self.discountPrice = discountPrice
+
+            self.discountAmount = discountAmount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,22 +60,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 maxDiscountAmount = try container.decode(Double.self, forKey: .maxDiscountAmount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discountPercentage = try container.decode(Double.self, forKey: .discountPercentage)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discountAmount = try container.decode(Double.self, forKey: .discountAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,6 +83,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
+                discountPercentage = try container.decode(Double.self, forKey: .discountPercentage)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 minOfferQuantity = try container.decode(Int.self, forKey: .minOfferQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -113,6 +105,14 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                discountAmount = try container.decode(Double.self, forKey: .discountAmount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -120,17 +120,17 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(maxDiscountAmount, forKey: .maxDiscountAmount)
 
-            try? container.encodeIfPresent(discountPercentage, forKey: .discountPercentage)
-
-            try? container.encodeIfPresent(discountAmount, forKey: .discountAmount)
-
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(maxOfferQuantity, forKey: .maxOfferQuantity)
 
+            try? container.encodeIfPresent(discountPercentage, forKey: .discountPercentage)
+
             try? container.encodeIfPresent(minOfferQuantity, forKey: .minOfferQuantity)
 
             try? container.encodeIfPresent(discountPrice, forKey: .discountPrice)
+
+            try? container.encodeIfPresent(discountAmount, forKey: .discountAmount)
         }
     }
 }

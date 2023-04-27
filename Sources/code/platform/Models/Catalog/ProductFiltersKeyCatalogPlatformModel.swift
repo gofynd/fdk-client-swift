@@ -13,22 +13,22 @@ public extension PlatformClient.Catalog {
 
         public var logo: String?
 
-        public var kind: String?
+        public var operators: [String]?
 
         public var display: String
 
-        public var operators: [String]?
+        public var kind: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case logo
 
-            case kind
+            case operators
 
             case display
 
-            case operators
+            case kind
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Catalog {
 
             self.logo = logo
 
-            self.kind = kind
+            self.operators = operators
 
             self.display = display
 
-            self.operators = operators
+            self.kind = kind
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                kind = try container.decode(String.self, forKey: .kind)
+                operators = try container.decode([String].self, forKey: .operators)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension PlatformClient.Catalog {
             display = try container.decode(String.self, forKey: .display)
 
             do {
-                operators = try container.decode([String].self, forKey: .operators)
+                kind = try container.decode(String.self, forKey: .kind)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,11 +82,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(kind, forKey: .kind)
+            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
+            try? container.encodeIfPresent(kind, forKey: .kind)
         }
     }
 }
@@ -102,22 +102,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var logo: String?
 
-        public var kind: String?
+        public var operators: [String]?
 
         public var display: String
 
-        public var operators: [String]?
+        public var kind: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case logo
 
-            case kind
+            case operators
 
             case display
 
-            case operators
+            case kind
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
@@ -125,11 +125,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.logo = logo
 
-            self.kind = kind
+            self.operators = operators
 
             self.display = display
 
-            self.operators = operators
+            self.kind = kind
         }
 
         required public init(from decoder: Decoder) throws {
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                kind = try container.decode(String.self, forKey: .kind)
+                operators = try container.decode([String].self, forKey: .operators)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             display = try container.decode(String.self, forKey: .display)
 
             do {
-                operators = try container.decode([String].self, forKey: .operators)
+                kind = try container.decode(String.self, forKey: .kind)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -171,11 +171,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(kind, forKey: .kind)
+            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
+            try? container.encodeIfPresent(kind, forKey: .kind)
         }
     }
 }

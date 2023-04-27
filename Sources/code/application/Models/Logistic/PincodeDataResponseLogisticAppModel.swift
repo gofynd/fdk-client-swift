@@ -9,60 +9,60 @@ public extension ApplicationClient.Logistic {
     class PincodeDataResponse: Codable {
         public var meta: PincodeMetaResponse?
 
-        public var parents: [PincodeParentsResponse]?
-
         public var displayName: String?
 
         public var subType: String?
 
-        public var uid: String?
+        public var name: String?
 
         public var metaCode: CountryMetaResponse?
 
+        public var latLong: PincodeLatLongData?
+
+        public var parents: [PincodeParentsResponse]?
+
         public var error: PincodeErrorSchemaResponse
 
-        public var name: String?
-
-        public var latLong: PincodeLatLongData?
+        public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
             case meta
-
-            case parents
 
             case displayName = "display_name"
 
             case subType = "sub_type"
 
-            case uid
+            case name
 
             case metaCode = "meta_code"
 
+            case latLong = "lat_long"
+
+            case parents
+
             case error
 
-            case name
-
-            case latLong = "lat_long"
+            case uid
         }
 
         public init(displayName: String? = nil, error: PincodeErrorSchemaResponse, latLong: PincodeLatLongData? = nil, meta: PincodeMetaResponse? = nil, metaCode: CountryMetaResponse? = nil, name: String? = nil, parents: [PincodeParentsResponse]? = nil, subType: String? = nil, uid: String? = nil) {
             self.meta = meta
 
-            self.parents = parents
-
             self.displayName = displayName
 
             self.subType = subType
 
-            self.uid = uid
+            self.name = name
 
             self.metaCode = metaCode
 
+            self.latLong = latLong
+
+            self.parents = parents
+
             self.error = error
 
-            self.name = name
-
-            self.latLong = latLong
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,14 +70,6 @@ public extension ApplicationClient.Logistic {
 
             do {
                 meta = try container.decode(PincodeMetaResponse.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                parents = try container.decode([PincodeParentsResponse].self, forKey: .parents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,7 +93,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,10 +108,8 @@ public extension ApplicationClient.Logistic {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
-
             do {
-                name = try container.decode(String.self, forKey: .name)
+                latLong = try container.decode(PincodeLatLongData.self, forKey: .latLong)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,7 +117,17 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                latLong = try container.decode(PincodeLatLongData.self, forKey: .latLong)
+                parents = try container.decode([PincodeParentsResponse].self, forKey: .parents)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,21 +140,21 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(parents, forKey: .parents)
-
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(subType, forKey: .subType)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(metaCode, forKey: .metaCode)
 
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
+
+            try? container.encodeIfPresent(parents, forKey: .parents)
+
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(latLong, forKey: .latLong)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

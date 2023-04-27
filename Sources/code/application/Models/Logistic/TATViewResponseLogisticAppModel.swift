@@ -7,19 +7,13 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class TATViewResponse: Codable {
-        public var toPincode: String?
-
-        public var requestUuid: String?
-
-        public var locationDetails: [TATLocationDetailsResponse]?
-
-        public var stormbreakerUuid: String?
-
         public var paymentMode: String?
+
+        public var action: String?
 
         public var isCodAvailable: Bool?
 
-        public var action: String?
+        public var success: Bool?
 
         public var identifier: String?
 
@@ -29,24 +23,24 @@ public extension ApplicationClient.Logistic {
 
         public var error: TATErrorSchemaResponse?
 
-        public var success: Bool?
+        public var requestUuid: String?
+
+        public var locationDetails: [TATLocationDetailsResponse]?
 
         public var source: String?
 
+        public var toPincode: String?
+
+        public var stormbreakerUuid: String?
+
         public enum CodingKeys: String, CodingKey {
-            case toPincode = "to_pincode"
-
-            case requestUuid = "request_uuid"
-
-            case locationDetails = "location_details"
-
-            case stormbreakerUuid = "stormbreaker_uuid"
-
             case paymentMode = "payment_mode"
+
+            case action
 
             case isCodAvailable = "is_cod_available"
 
-            case action
+            case success
 
             case identifier
 
@@ -56,25 +50,25 @@ public extension ApplicationClient.Logistic {
 
             case error
 
-            case success
+            case requestUuid = "request_uuid"
+
+            case locationDetails = "location_details"
 
             case source
+
+            case toPincode = "to_pincode"
+
+            case stormbreakerUuid = "stormbreaker_uuid"
         }
 
         public init(action: String? = nil, error: TATErrorSchemaResponse? = nil, identifier: String? = nil, isCodAvailable: Bool? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsResponse]? = nil, paymentMode: String? = nil, requestUuid: String? = nil, source: String? = nil, stormbreakerUuid: String? = nil, success: Bool? = nil, toCity: String? = nil, toPincode: String? = nil) {
-            self.toPincode = toPincode
-
-            self.requestUuid = requestUuid
-
-            self.locationDetails = locationDetails
-
-            self.stormbreakerUuid = stormbreakerUuid
-
             self.paymentMode = paymentMode
+
+            self.action = action
 
             self.isCodAvailable = isCodAvailable
 
-            self.action = action
+            self.success = success
 
             self.identifier = identifier
 
@@ -84,48 +78,30 @@ public extension ApplicationClient.Logistic {
 
             self.error = error
 
-            self.success = success
+            self.requestUuid = requestUuid
+
+            self.locationDetails = locationDetails
 
             self.source = source
+
+            self.toPincode = toPincode
+
+            self.stormbreakerUuid = stormbreakerUuid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                toPincode = try container.decode(String.self, forKey: .toPincode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                requestUuid = try container.decode(String.self, forKey: .requestUuid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                locationDetails = try container.decode([TATLocationDetailsResponse].self, forKey: .locationDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                stormbreakerUuid = try container.decode(String.self, forKey: .stormbreakerUuid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(String.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,7 +117,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                action = try container.decode(String.self, forKey: .action)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -181,7 +157,15 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                requestUuid = try container.decode(String.self, forKey: .requestUuid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                locationDetails = try container.decode([TATLocationDetailsResponse].self, forKey: .locationDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,24 +179,34 @@ public extension ApplicationClient.Logistic {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                toPincode = try container.decode(String.self, forKey: .toPincode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stormbreakerUuid = try container.decode(String.self, forKey: .stormbreakerUuid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
-
-            try? container.encodeIfPresent(requestUuid, forKey: .requestUuid)
-
-            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
-
-            try? container.encodeIfPresent(stormbreakerUuid, forKey: .stormbreakerUuid)
-
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
@@ -222,9 +216,15 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(requestUuid, forKey: .requestUuid)
+
+            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
             try? container.encodeIfPresent(source, forKey: .source)
+
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
+
+            try? container.encodeIfPresent(stormbreakerUuid, forKey: .stormbreakerUuid)
         }
     }
 }
