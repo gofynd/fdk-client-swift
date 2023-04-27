@@ -7,8 +7,6 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class CurrentStatus: Codable {
-        public var createdAt: String?
-
         public var status: String?
 
         public var journeyType: String?
@@ -17,9 +15,9 @@ public extension ApplicationClient.Order {
 
         public var name: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case createdAt = "created_at"
+        public var createdAt: String?
 
+        public enum CodingKeys: String, CodingKey {
             case status
 
             case journeyType = "journey_type"
@@ -27,11 +25,11 @@ public extension ApplicationClient.Order {
             case updatedAt = "updated_at"
 
             case name
+
+            case createdAt = "created_at"
         }
 
         public init(createdAt: String? = nil, journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
-            self.createdAt = createdAt
-
             self.status = status
 
             self.journeyType = journeyType
@@ -39,18 +37,12 @@ public extension ApplicationClient.Order {
             self.updatedAt = updatedAt
 
             self.name = name
+
+            self.createdAt = createdAt
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 status = try container.decode(String.self, forKey: .status)
@@ -83,12 +75,18 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                createdAt = try container.decode(String.self, forKey: .createdAt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
@@ -97,6 +95,8 @@ public extension ApplicationClient.Order {
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
         }
     }
 }

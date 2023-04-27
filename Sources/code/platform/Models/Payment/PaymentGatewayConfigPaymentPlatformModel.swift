@@ -11,9 +11,9 @@ public extension PlatformClient.Payment {
     class PaymentGatewayConfig: Codable {
         public var isActive: Bool?
 
-        public var secret: String
-
         public var configType: String
+
+        public var secret: String
 
         public var merchantSalt: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case secret
-
             case configType = "config_type"
+
+            case secret
 
             case merchantSalt = "merchant_salt"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.isActive = isActive
 
-            self.secret = secret
-
             self.configType = configType
+
+            self.secret = secret
 
             self.merchantSalt = merchantSalt
 
@@ -54,9 +54,9 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            secret = try container.decode(String.self, forKey: .secret)
-
             configType = try container.decode(String.self, forKey: .configType)
+
+            secret = try container.decode(String.self, forKey: .secret)
 
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
 
@@ -68,9 +68,9 @@ public extension PlatformClient.Payment {
 
             try? container.encode(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(secret, forKey: .secret)
-
             try? container.encodeIfPresent(configType, forKey: .configType)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
 
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
 
@@ -88,9 +88,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentGatewayConfig: Codable {
         public var isActive: Bool?
 
-        public var secret: String
-
         public var configType: String
+
+        public var secret: String
 
         public var merchantSalt: String
 
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case secret
-
             case configType = "config_type"
+
+            case secret
 
             case merchantSalt = "merchant_salt"
 
@@ -111,9 +111,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.isActive = isActive
 
-            self.secret = secret
-
             self.configType = configType
+
+            self.secret = secret
 
             self.merchantSalt = merchantSalt
 
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            secret = try container.decode(String.self, forKey: .secret)
-
             configType = try container.decode(String.self, forKey: .configType)
+
+            secret = try container.decode(String.self, forKey: .secret)
 
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
 
@@ -145,9 +145,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(secret, forKey: .secret)
-
             try? container.encodeIfPresent(configType, forKey: .configType)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
 
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
 

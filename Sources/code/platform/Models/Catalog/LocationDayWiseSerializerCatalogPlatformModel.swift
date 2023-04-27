@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class LocationDayWiseSerializer: Codable {
         public var opening: LocationTimingSerializer?
 
-        public var weekday: String
-
         public var open: Bool
+
+        public var weekday: String
 
         public var closing: LocationTimingSerializer?
 
         public enum CodingKeys: String, CodingKey {
             case opening
 
-            case weekday
-
             case open
+
+            case weekday
 
             case closing
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
             self.opening = opening
 
-            self.weekday = weekday
-
             self.open = open
+
+            self.weekday = weekday
 
             self.closing = closing
         }
@@ -48,9 +48,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            weekday = try container.decode(String.self, forKey: .weekday)
-
             open = try container.decode(Bool.self, forKey: .open)
+
+            weekday = try container.decode(String.self, forKey: .weekday)
 
             do {
                 closing = try container.decode(LocationTimingSerializer.self, forKey: .closing)
@@ -66,9 +66,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(opening, forKey: .opening)
 
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
-
             try? container.encodeIfPresent(open, forKey: .open)
+
+            try? container.encodeIfPresent(weekday, forKey: .weekday)
 
             try? container.encodeIfPresent(closing, forKey: .closing)
         }
@@ -84,18 +84,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class LocationDayWiseSerializer: Codable {
         public var opening: LocationTimingSerializer?
 
-        public var weekday: String
-
         public var open: Bool
+
+        public var weekday: String
 
         public var closing: LocationTimingSerializer?
 
         public enum CodingKeys: String, CodingKey {
             case opening
 
-            case weekday
-
             case open
+
+            case weekday
 
             case closing
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
             self.opening = opening
 
-            self.weekday = weekday
-
             self.open = open
+
+            self.weekday = weekday
 
             self.closing = closing
         }
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            weekday = try container.decode(String.self, forKey: .weekday)
-
             open = try container.decode(Bool.self, forKey: .open)
+
+            weekday = try container.decode(String.self, forKey: .weekday)
 
             do {
                 closing = try container.decode(LocationTimingSerializer.self, forKey: .closing)
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(opening, forKey: .opening)
 
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
-
             try? container.encodeIfPresent(open, forKey: .open)
+
+            try? container.encodeIfPresent(weekday, forKey: .weekday)
 
             try? container.encodeIfPresent(closing, forKey: .closing)
         }

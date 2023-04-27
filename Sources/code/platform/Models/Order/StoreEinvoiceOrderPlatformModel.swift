@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class StoreEinvoice: Codable {
         public var user: String?
 
-        public var enabled: Bool
-
         public var username: String?
+
+        public var enabled: Bool
 
         public var password: String?
 
         public enum CodingKeys: String, CodingKey {
             case user
 
-            case enabled
-
             case username
+
+            case enabled
 
             case password
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
             self.user = user
 
-            self.enabled = enabled
-
             self.username = username
+
+            self.enabled = enabled
 
             self.password = password
         }
@@ -48,8 +48,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            enabled = try container.decode(Bool.self, forKey: .enabled)
-
             do {
                 username = try container.decode(String.self, forKey: .username)
 
@@ -57,6 +55,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            enabled = try container.decode(Bool.self, forKey: .enabled)
 
             do {
                 password = try container.decode(String.self, forKey: .password)
@@ -72,9 +72,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(password, forKey: .password)
         }
@@ -90,18 +90,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class StoreEinvoice: Codable {
         public var user: String?
 
-        public var enabled: Bool
-
         public var username: String?
+
+        public var enabled: Bool
 
         public var password: String?
 
         public enum CodingKeys: String, CodingKey {
             case user
 
-            case enabled
-
             case username
+
+            case enabled
 
             case password
         }
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
             self.user = user
 
-            self.enabled = enabled
-
             self.username = username
+
+            self.enabled = enabled
 
             self.password = password
         }
@@ -127,8 +127,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            enabled = try container.decode(Bool.self, forKey: .enabled)
-
             do {
                 username = try container.decode(String.self, forKey: .username)
 
@@ -136,6 +134,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            enabled = try container.decode(Bool.self, forKey: .enabled)
 
             do {
                 password = try container.decode(String.self, forKey: .password)
@@ -151,9 +151,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(password, forKey: .password)
         }
