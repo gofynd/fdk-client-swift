@@ -9,79 +9,63 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryPayload: Codable {
-        public var tags: [String]?
-
-        public var traceId: String?
-
-        public var priceEffective: Double?
+        public var priceMarked: Double?
 
         public var totalQuantity: Int?
 
+        public var priceEffective: Double?
+
         public var expirationDate: String?
 
-        public var priceMarked: Double?
+        public var tags: [String]?
 
         public var sellerIdentifier: String
 
         public var storeId: Int
 
+        public var traceId: String?
+
         public enum CodingKeys: String, CodingKey {
-            case tags
-
-            case traceId = "trace_id"
-
-            case priceEffective = "price_effective"
+            case priceMarked = "price_marked"
 
             case totalQuantity = "total_quantity"
 
+            case priceEffective = "price_effective"
+
             case expirationDate = "expiration_date"
 
-            case priceMarked = "price_marked"
+            case tags
 
             case sellerIdentifier = "seller_identifier"
 
             case storeId = "store_id"
+
+            case traceId = "trace_id"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
-            self.tags = tags
-
-            self.traceId = traceId
-
-            self.priceEffective = priceEffective
+            self.priceMarked = priceMarked
 
             self.totalQuantity = totalQuantity
 
+            self.priceEffective = priceEffective
+
             self.expirationDate = expirationDate
 
-            self.priceMarked = priceMarked
+            self.tags = tags
 
             self.sellerIdentifier = sellerIdentifier
 
             self.storeId = storeId
+
+            self.traceId = traceId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                tags = try container.decode([String].self, forKey: .tags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                traceId = try container.decode(String.self, forKey: .traceId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,6 +81,14 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
+                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 expirationDate = try container.decode(String.self, forKey: .expirationDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -105,7 +97,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
+                tags = try container.decode([String].self, forKey: .tags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,26 +107,34 @@ public extension PlatformClient.Catalog {
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             storeId = try container.decode(Int.self, forKey: .storeId)
+
+            do {
+                traceId = try container.decode(String.self, forKey: .traceId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(tags, forKey: .tags)
-
-            try? container.encodeIfPresent(traceId, forKey: .traceId)
-
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
             try? container.encode(totalQuantity, forKey: .totalQuantity)
 
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+
             try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+            try? container.encode(tags, forKey: .tags)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(traceId, forKey: .traceId)
         }
     }
 }
@@ -146,79 +146,63 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryPayload: Codable {
-        public var tags: [String]?
-
-        public var traceId: String?
-
-        public var priceEffective: Double?
+        public var priceMarked: Double?
 
         public var totalQuantity: Int?
 
+        public var priceEffective: Double?
+
         public var expirationDate: String?
 
-        public var priceMarked: Double?
+        public var tags: [String]?
 
         public var sellerIdentifier: String
 
         public var storeId: Int
 
+        public var traceId: String?
+
         public enum CodingKeys: String, CodingKey {
-            case tags
-
-            case traceId = "trace_id"
-
-            case priceEffective = "price_effective"
+            case priceMarked = "price_marked"
 
             case totalQuantity = "total_quantity"
 
+            case priceEffective = "price_effective"
+
             case expirationDate = "expiration_date"
 
-            case priceMarked = "price_marked"
+            case tags
 
             case sellerIdentifier = "seller_identifier"
 
             case storeId = "store_id"
+
+            case traceId = "trace_id"
         }
 
         public init(expirationDate: String? = nil, priceEffective: Double? = nil, priceMarked: Double? = nil, sellerIdentifier: String, storeId: Int, tags: [String]? = nil, totalQuantity: Int? = nil, traceId: String? = nil) {
-            self.tags = tags
-
-            self.traceId = traceId
-
-            self.priceEffective = priceEffective
+            self.priceMarked = priceMarked
 
             self.totalQuantity = totalQuantity
 
+            self.priceEffective = priceEffective
+
             self.expirationDate = expirationDate
 
-            self.priceMarked = priceMarked
+            self.tags = tags
 
             self.sellerIdentifier = sellerIdentifier
 
             self.storeId = storeId
+
+            self.traceId = traceId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                tags = try container.decode([String].self, forKey: .tags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                traceId = try container.decode(String.self, forKey: .traceId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -234,6 +218,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
+                priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 expirationDate = try container.decode(String.self, forKey: .expirationDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -242,7 +234,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                priceMarked = try container.decode(Double.self, forKey: .priceMarked)
+                tags = try container.decode([String].self, forKey: .tags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -252,26 +244,34 @@ public extension PlatformClient.ApplicationClient.Catalog {
             sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             storeId = try container.decode(Int.self, forKey: .storeId)
+
+            do {
+                traceId = try container.decode(String.self, forKey: .traceId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(tags, forKey: .tags)
-
-            try? container.encodeIfPresent(traceId, forKey: .traceId)
-
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
             try? container.encode(totalQuantity, forKey: .totalQuantity)
 
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+
             try? container.encodeIfPresent(expirationDate, forKey: .expirationDate)
 
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+            try? container.encode(tags, forKey: .tags)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(traceId, forKey: .traceId)
         }
     }
 }

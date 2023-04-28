@@ -13445,6 +13445,133 @@ public class PlatformClient {
                     }
                 )
             }
+
+            /**
+             *
+             * Summary: Get coupon options enums with display values
+             * Description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields
+             **/
+            public func getCouponOptionValues(
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon_options",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = data.dictionary
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Check if coupon is already created with coupon code
+             * Description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique.
+             **/
+            public func getCouponCodeExists(
+                code: String?,
+
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = code {
+                    xQuery["code"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/coupon_code_exists",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = data.dictionary
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Check if promotion is already created with promotion code
+             * Description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique.
+             **/
+            public func getPromotionCodeExists(
+                code: String?,
+
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = code {
+                    xQuery["code"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/promotion_code_exists",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = data.dictionary
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
         }
 
         public class Rewards {
