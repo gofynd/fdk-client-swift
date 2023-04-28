@@ -9,27 +9,27 @@ public extension PlatformClient.Order {
      */
 
     class Dates: Codable {
-        public var orderCreated: String?
-
         public var deliveryDate: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case orderCreated = "order_created"
+        public var orderCreated: String?
 
+        public enum CodingKeys: String, CodingKey {
             case deliveryDate = "delivery_date"
+
+            case orderCreated = "order_created"
         }
 
         public init(deliveryDate: [String: Any]? = nil, orderCreated: String? = nil) {
-            self.orderCreated = orderCreated
-
             self.deliveryDate = deliveryDate
+
+            self.orderCreated = orderCreated
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                orderCreated = try container.decode(String.self, forKey: .orderCreated)
+                deliveryDate = try container.decode([String: Any].self, forKey: .deliveryDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                deliveryDate = try container.decode([String: Any].self, forKey: .deliveryDate)
+                orderCreated = try container.decode(String.self, forKey: .orderCreated)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderCreated, forKey: .orderCreated)
-
             try? container.encode(deliveryDate, forKey: .deliveryDate)
+
+            try? container.encodeIfPresent(orderCreated, forKey: .orderCreated)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Dates: Codable {
-        public var orderCreated: String?
-
         public var deliveryDate: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case orderCreated = "order_created"
+        public var orderCreated: String?
 
+        public enum CodingKeys: String, CodingKey {
             case deliveryDate = "delivery_date"
+
+            case orderCreated = "order_created"
         }
 
         public init(deliveryDate: [String: Any]? = nil, orderCreated: String? = nil) {
-            self.orderCreated = orderCreated
-
             self.deliveryDate = deliveryDate
+
+            self.orderCreated = orderCreated
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                orderCreated = try container.decode(String.self, forKey: .orderCreated)
+                deliveryDate = try container.decode([String: Any].self, forKey: .deliveryDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                deliveryDate = try container.decode([String: Any].self, forKey: .deliveryDate)
+                orderCreated = try container.decode(String.self, forKey: .orderCreated)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderCreated, forKey: .orderCreated)
-
             try? container.encode(deliveryDate, forKey: .deliveryDate)
+
+            try? container.encodeIfPresent(orderCreated, forKey: .orderCreated)
         }
     }
 }

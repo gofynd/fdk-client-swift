@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var type: String
 
-        public var verified: Bool?
-
         public var value: String
+
+        public var verified: Bool?
 
         public var legalName: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case type
 
-            case verified
-
             case value
+
+            case verified
 
             case legalName = "legal_name"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.type = type
 
-            self.verified = verified
-
             self.value = value
+
+            self.verified = verified
 
             self.legalName = legalName
         }
@@ -56,6 +56,8 @@ public extension PlatformClient.Catalog {
 
             type = try container.decode(String.self, forKey: .type)
 
+            value = try container.decode(String.self, forKey: .value)
+
             do {
                 verified = try container.decode(Bool.self, forKey: .verified)
 
@@ -63,8 +65,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            value = try container.decode(String.self, forKey: .value)
 
             do {
                 legalName = try container.decode(String.self, forKey: .legalName)
@@ -82,9 +82,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
         }
@@ -102,9 +102,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var type: String
 
-        public var verified: Bool?
-
         public var value: String
+
+        public var verified: Bool?
 
         public var legalName: String?
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case type
 
-            case verified
-
             case value
+
+            case verified
 
             case legalName = "legal_name"
         }
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.type = type
 
-            self.verified = verified
-
             self.value = value
+
+            self.verified = verified
 
             self.legalName = legalName
         }
@@ -145,6 +145,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             type = try container.decode(String.self, forKey: .type)
 
+            value = try container.decode(String.self, forKey: .value)
+
             do {
                 verified = try container.decode(Bool.self, forKey: .verified)
 
@@ -152,8 +154,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            value = try container.decode(String.self, forKey: .value)
 
             do {
                 legalName = try container.decode(String.self, forKey: .legalName)
@@ -171,9 +171,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
         }
