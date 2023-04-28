@@ -11,36 +11,36 @@ public extension PlatformClient.ApplicationClient.Cart {
     class AbandonedCartResponse: Codable {
         public var result: [String: Any]?
 
-        public var message: String?
+        public var items: [AbandonedCart]?
 
         public var page: Page?
 
         public var success: Bool?
 
-        public var items: [AbandonedCart]?
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case result
 
-            case message
+            case items
 
             case page
 
             case success
 
-            case items
+            case message
         }
 
         public init(items: [AbandonedCart]? = nil, message: String? = nil, page: Page? = nil, result: [String: Any]? = nil, success: Bool? = nil) {
             self.result = result
 
-            self.message = message
+            self.items = items
 
             self.page = page
 
             self.success = success
 
-            self.items = items
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                items = try container.decode([AbandonedCart].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                items = try container.decode([AbandonedCart].self, forKey: .items)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,13 +92,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(result, forKey: .result)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
