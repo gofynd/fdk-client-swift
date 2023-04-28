@@ -7,48 +7,50 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class CreatePaymentLinkRequest: Codable {
+        public var meta: CreatePaymentLinkMeta
+
         public var externalOrderId: String
 
         public var mobileNumber: String
 
         public var amount: Double
 
-        public var meta: CreatePaymentLinkMeta
+        public var email: String
 
         public var description: String?
 
-        public var email: String
-
         public enum CodingKeys: String, CodingKey {
+            case meta
+
             case externalOrderId = "external_order_id"
 
             case mobileNumber = "mobile_number"
 
             case amount
 
-            case meta
+            case email
 
             case description
-
-            case email
         }
 
         public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
+            self.meta = meta
+
             self.externalOrderId = externalOrderId
 
             self.mobileNumber = mobileNumber
 
             self.amount = amount
 
-            self.meta = meta
+            self.email = email
 
             self.description = description
-
-            self.email = email
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
 
             externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
 
@@ -56,7 +58,7 @@ public extension ApplicationClient.Payment {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
+            email = try container.decode(String.self, forKey: .email)
 
             do {
                 description = try container.decode(String.self, forKey: .description)
@@ -65,12 +67,12 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            email = try container.decode(String.self, forKey: .email)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
 
@@ -78,11 +80,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encode(description, forKey: .description)
-
-            try? container.encodeIfPresent(email, forKey: .email)
         }
     }
 }

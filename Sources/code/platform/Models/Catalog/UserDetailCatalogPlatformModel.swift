@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var contact: String?
 
-        public var userId: String
-
         public var username: String
+
+        public var userId: String
 
         public enum CodingKeys: String, CodingKey {
             case superUser = "super_user"
 
             case contact
 
-            case userId = "user_id"
-
             case username
+
+            case userId = "user_id"
         }
 
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.contact = contact
 
-            self.userId = userId
-
             self.username = username
+
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,9 +56,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            userId = try container.decode(String.self, forKey: .userId)
-
             username = try container.decode(String.self, forKey: .username)
+
+            userId = try container.decode(String.self, forKey: .userId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,9 +68,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(contact, forKey: .contact)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }
@@ -86,18 +86,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var contact: String?
 
-        public var userId: String
-
         public var username: String
+
+        public var userId: String
 
         public enum CodingKeys: String, CodingKey {
             case superUser = "super_user"
 
             case contact
 
-            case userId = "user_id"
-
             case username
+
+            case userId = "user_id"
         }
 
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.contact = contact
 
-            self.userId = userId
-
             self.username = username
+
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            userId = try container.decode(String.self, forKey: .userId)
-
             username = try container.decode(String.self, forKey: .username)
+
+            userId = try container.decode(String.self, forKey: .userId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(contact, forKey: .contact)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }

@@ -11,9 +11,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class StaffCheckout: Codable {
         public var employeeCode: String?
 
-        public var lastName: String
-
         public var id: String
+
+        public var lastName: String
 
         public var firstName: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case employeeCode = "employee_code"
 
-            case lastName = "last_name"
-
             case id = "_id"
+
+            case lastName = "last_name"
 
             case firstName = "first_name"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(employeeCode: String? = nil, firstName: String, lastName: String, user: String, id: String) {
             self.employeeCode = employeeCode
 
-            self.lastName = lastName
-
             self.id = id
+
+            self.lastName = lastName
 
             self.firstName = firstName
 
@@ -54,9 +54,9 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            lastName = try container.decode(String.self, forKey: .lastName)
-
             id = try container.decode(String.self, forKey: .id)
+
+            lastName = try container.decode(String.self, forKey: .lastName)
 
             firstName = try container.decode(String.self, forKey: .firstName)
 
@@ -68,9 +68,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
