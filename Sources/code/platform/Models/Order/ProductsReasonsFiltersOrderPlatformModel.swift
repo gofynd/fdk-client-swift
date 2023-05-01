@@ -9,33 +9,33 @@ public extension PlatformClient.Order {
      */
 
     class ProductsReasonsFilters: Codable {
-        public var lineNumber: Int?
+        public var quantity: Int?
 
         public var identifier: String?
 
-        public var quantity: Int?
+        public var lineNumber: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case lineNumber = "line_number"
+            case quantity
 
             case identifier
 
-            case quantity
+            case lineNumber = "line_number"
         }
 
         public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
-            self.lineNumber = lineNumber
+            self.quantity = quantity
 
             self.identifier = identifier
 
-            self.quantity = quantity
+            self.lineNumber = lineNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
         }
     }
 }
@@ -78,33 +78,33 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ProductsReasonsFilters: Codable {
-        public var lineNumber: Int?
+        public var quantity: Int?
 
         public var identifier: String?
 
-        public var quantity: Int?
+        public var lineNumber: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case lineNumber = "line_number"
+            case quantity
 
             case identifier
 
-            case quantity
+            case lineNumber = "line_number"
         }
 
         public init(identifier: String? = nil, lineNumber: Int? = nil, quantity: Int? = nil) {
-            self.lineNumber = lineNumber
+            self.quantity = quantity
 
             self.identifier = identifier
 
-            self.quantity = quantity
+            self.lineNumber = lineNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
         }
     }
 }

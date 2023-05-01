@@ -17,9 +17,9 @@ public extension PlatformClient.Order {
 
         public var size: Int?
 
-        public var hasPrevious: Bool?
-
         public var type: String?
+
+        public var hasPrevious: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case current
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
 
             case size
 
-            case hasPrevious = "has_previous"
-
             case type
+
+            case hasPrevious = "has_previous"
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, size: Int? = nil, total: Int? = nil, type: String? = nil) {
@@ -44,9 +44,9 @@ public extension PlatformClient.Order {
 
             self.size = size
 
-            self.hasPrevious = hasPrevious
-
             self.type = type
+
+            self.hasPrevious = hasPrevious
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,7 +85,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,9 +112,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
         }
     }
 }
@@ -134,9 +134,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var size: Int?
 
-        public var hasPrevious: Bool?
-
         public var type: String?
+
+        public var hasPrevious: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case current
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case size
 
-            case hasPrevious = "has_previous"
-
             case type
+
+            case hasPrevious = "has_previous"
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, size: Int? = nil, total: Int? = nil, type: String? = nil) {
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.size = size
 
-            self.hasPrevious = hasPrevious
-
             self.type = type
+
+            self.hasPrevious = hasPrevious
         }
 
         required public init(from decoder: Decoder) throws {
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,9 +229,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
         }
     }
 }

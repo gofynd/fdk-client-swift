@@ -9,129 +9,117 @@ public extension PlatformClient.Catalog {
      */
 
     class StoreAssignResponse: Codable {
-        public var priceMarked: Int?
-
-        public var articleAssignment: ArticleAssignment1
-
-        public var status: Bool
-
-        public var companyId: Int?
+        public var meta: [String: Any]?
 
         public var priceEffective: Int?
 
-        public var storeId: Int?
-
         public var storePincode: Int?
-
-        public var size: String
-
-        public var sCity: String?
-
-        public var meta: [String: Any]?
-
-        public var quantity: Int
-
-        public var strategyWiseListing: [[String: Any]]?
-
-        public var id: String?
-
-        public var index: Int?
-
-        public var uid: String?
-
-        public var groupId: String?
 
         public var itemId: Int
 
+        public var priceMarked: Int?
+
+        public var index: Int?
+
+        public var companyId: Int?
+
+        public var groupId: String?
+
+        public var strategyWiseListing: [[String: Any]]?
+
+        public var status: Bool
+
+        public var id: String?
+
+        public var sCity: String?
+
+        public var quantity: Int
+
+        public var size: String
+
+        public var articleAssignment: ArticleAssignment1
+
+        public var storeId: Int?
+
+        public var uid: String?
+
         public enum CodingKeys: String, CodingKey {
-            case priceMarked = "price_marked"
-
-            case articleAssignment = "article_assignment"
-
-            case status
-
-            case companyId = "company_id"
+            case meta
 
             case priceEffective = "price_effective"
 
-            case storeId = "store_id"
-
             case storePincode = "store_pincode"
 
-            case size
+            case itemId = "item_id"
 
-            case sCity = "s_city"
-
-            case meta
-
-            case quantity
-
-            case strategyWiseListing = "strategy_wise_listing"
-
-            case id = "_id"
+            case priceMarked = "price_marked"
 
             case index
 
-            case uid
+            case companyId = "company_id"
 
             case groupId = "group_id"
 
-            case itemId = "item_id"
+            case strategyWiseListing = "strategy_wise_listing"
+
+            case status
+
+            case id = "_id"
+
+            case sCity = "s_city"
+
+            case quantity
+
+            case size
+
+            case articleAssignment = "article_assignment"
+
+            case storeId = "store_id"
+
+            case uid
         }
 
         public init(articleAssignment: ArticleAssignment1, companyId: Int? = nil, groupId: String? = nil, index: Int? = nil, itemId: Int, meta: [String: Any]? = nil, priceEffective: Int? = nil, priceMarked: Int? = nil, quantity: Int, size: String, status: Bool, storeId: Int? = nil, storePincode: Int? = nil, strategyWiseListing: [[String: Any]]? = nil, sCity: String? = nil, uid: String? = nil, id: String? = nil) {
-            self.priceMarked = priceMarked
-
-            self.articleAssignment = articleAssignment
-
-            self.status = status
-
-            self.companyId = companyId
+            self.meta = meta
 
             self.priceEffective = priceEffective
 
-            self.storeId = storeId
-
             self.storePincode = storePincode
 
-            self.size = size
+            self.itemId = itemId
 
-            self.sCity = sCity
-
-            self.meta = meta
-
-            self.quantity = quantity
-
-            self.strategyWiseListing = strategyWiseListing
-
-            self.id = id
+            self.priceMarked = priceMarked
 
             self.index = index
 
-            self.uid = uid
+            self.companyId = companyId
 
             self.groupId = groupId
 
-            self.itemId = itemId
+            self.strategyWiseListing = strategyWiseListing
+
+            self.status = status
+
+            self.id = id
+
+            self.sCity = sCity
+
+            self.quantity = quantity
+
+            self.size = size
+
+            self.articleAssignment = articleAssignment
+
+            self.storeId = storeId
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                priceMarked = try container.decode(Int.self, forKey: .priceMarked)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            articleAssignment = try container.decode(ArticleAssignment1.self, forKey: .articleAssignment)
-
-            status = try container.decode(Bool.self, forKey: .status)
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,14 +135,6 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 storePincode = try container.decode(Int.self, forKey: .storePincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -162,36 +142,10 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            size = try container.decode(String.self, forKey: .size)
+            itemId = try container.decode(Int.self, forKey: .itemId)
 
             do {
-                sCity = try container.decode(String.self, forKey: .sCity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            quantity = try container.decode(Int.self, forKey: .quantity)
-
-            do {
-                strategyWiseListing = try container.decode([[String: Any]].self, forKey: .strategyWiseListing)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                id = try container.decode(String.self, forKey: .id)
+                priceMarked = try container.decode(Int.self, forKey: .priceMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -207,7 +161,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,45 +176,91 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            itemId = try container.decode(Int.self, forKey: .itemId)
+            do {
+                strategyWiseListing = try container.decode([[String: Any]].self, forKey: .strategyWiseListing)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            status = try container.decode(Bool.self, forKey: .status)
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sCity = try container.decode(String.self, forKey: .sCity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            quantity = try container.decode(Int.self, forKey: .quantity)
+
+            size = try container.decode(String.self, forKey: .size)
+
+            articleAssignment = try container.decode(ArticleAssignment1.self, forKey: .articleAssignment)
+
+            do {
+                storeId = try container.decode(Int.self, forKey: .storeId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
-
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
             try? container.encodeIfPresent(storePincode, forKey: .storePincode)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(sCity, forKey: .sCity)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(strategyWiseListing, forKey: .strategyWiseListing)
-
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
             try? container.encodeIfPresent(index, forKey: .index)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(strategyWiseListing, forKey: .strategyWiseListing)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(sCity, forKey: .sCity)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
@@ -272,129 +272,117 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class StoreAssignResponse: Codable {
-        public var priceMarked: Int?
-
-        public var articleAssignment: ArticleAssignment1
-
-        public var status: Bool
-
-        public var companyId: Int?
+        public var meta: [String: Any]?
 
         public var priceEffective: Int?
 
-        public var storeId: Int?
-
         public var storePincode: Int?
-
-        public var size: String
-
-        public var sCity: String?
-
-        public var meta: [String: Any]?
-
-        public var quantity: Int
-
-        public var strategyWiseListing: [[String: Any]]?
-
-        public var id: String?
-
-        public var index: Int?
-
-        public var uid: String?
-
-        public var groupId: String?
 
         public var itemId: Int
 
+        public var priceMarked: Int?
+
+        public var index: Int?
+
+        public var companyId: Int?
+
+        public var groupId: String?
+
+        public var strategyWiseListing: [[String: Any]]?
+
+        public var status: Bool
+
+        public var id: String?
+
+        public var sCity: String?
+
+        public var quantity: Int
+
+        public var size: String
+
+        public var articleAssignment: ArticleAssignment1
+
+        public var storeId: Int?
+
+        public var uid: String?
+
         public enum CodingKeys: String, CodingKey {
-            case priceMarked = "price_marked"
-
-            case articleAssignment = "article_assignment"
-
-            case status
-
-            case companyId = "company_id"
+            case meta
 
             case priceEffective = "price_effective"
 
-            case storeId = "store_id"
-
             case storePincode = "store_pincode"
 
-            case size
+            case itemId = "item_id"
 
-            case sCity = "s_city"
-
-            case meta
-
-            case quantity
-
-            case strategyWiseListing = "strategy_wise_listing"
-
-            case id = "_id"
+            case priceMarked = "price_marked"
 
             case index
 
-            case uid
+            case companyId = "company_id"
 
             case groupId = "group_id"
 
-            case itemId = "item_id"
+            case strategyWiseListing = "strategy_wise_listing"
+
+            case status
+
+            case id = "_id"
+
+            case sCity = "s_city"
+
+            case quantity
+
+            case size
+
+            case articleAssignment = "article_assignment"
+
+            case storeId = "store_id"
+
+            case uid
         }
 
         public init(articleAssignment: ArticleAssignment1, companyId: Int? = nil, groupId: String? = nil, index: Int? = nil, itemId: Int, meta: [String: Any]? = nil, priceEffective: Int? = nil, priceMarked: Int? = nil, quantity: Int, size: String, status: Bool, storeId: Int? = nil, storePincode: Int? = nil, strategyWiseListing: [[String: Any]]? = nil, sCity: String? = nil, uid: String? = nil, id: String? = nil) {
-            self.priceMarked = priceMarked
-
-            self.articleAssignment = articleAssignment
-
-            self.status = status
-
-            self.companyId = companyId
+            self.meta = meta
 
             self.priceEffective = priceEffective
 
-            self.storeId = storeId
-
             self.storePincode = storePincode
 
-            self.size = size
+            self.itemId = itemId
 
-            self.sCity = sCity
-
-            self.meta = meta
-
-            self.quantity = quantity
-
-            self.strategyWiseListing = strategyWiseListing
-
-            self.id = id
+            self.priceMarked = priceMarked
 
             self.index = index
 
-            self.uid = uid
+            self.companyId = companyId
 
             self.groupId = groupId
 
-            self.itemId = itemId
+            self.strategyWiseListing = strategyWiseListing
+
+            self.status = status
+
+            self.id = id
+
+            self.sCity = sCity
+
+            self.quantity = quantity
+
+            self.size = size
+
+            self.articleAssignment = articleAssignment
+
+            self.storeId = storeId
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                priceMarked = try container.decode(Int.self, forKey: .priceMarked)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            articleAssignment = try container.decode(ArticleAssignment1.self, forKey: .articleAssignment)
-
-            status = try container.decode(Bool.self, forKey: .status)
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -410,14 +398,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 storePincode = try container.decode(Int.self, forKey: .storePincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -425,36 +405,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            size = try container.decode(String.self, forKey: .size)
+            itemId = try container.decode(Int.self, forKey: .itemId)
 
             do {
-                sCity = try container.decode(String.self, forKey: .sCity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            quantity = try container.decode(Int.self, forKey: .quantity)
-
-            do {
-                strategyWiseListing = try container.decode([[String: Any]].self, forKey: .strategyWiseListing)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                id = try container.decode(String.self, forKey: .id)
+                priceMarked = try container.decode(Int.self, forKey: .priceMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -470,7 +424,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -485,45 +439,91 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            itemId = try container.decode(Int.self, forKey: .itemId)
+            do {
+                strategyWiseListing = try container.decode([[String: Any]].self, forKey: .strategyWiseListing)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            status = try container.decode(Bool.self, forKey: .status)
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sCity = try container.decode(String.self, forKey: .sCity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            quantity = try container.decode(Int.self, forKey: .quantity)
+
+            size = try container.decode(String.self, forKey: .size)
+
+            articleAssignment = try container.decode(ArticleAssignment1.self, forKey: .articleAssignment)
+
+            do {
+                storeId = try container.decode(Int.self, forKey: .storeId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
-
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
             try? container.encodeIfPresent(storePincode, forKey: .storePincode)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(sCity, forKey: .sCity)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(strategyWiseListing, forKey: .strategyWiseListing)
-
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
 
             try? container.encodeIfPresent(index, forKey: .index)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(strategyWiseListing, forKey: .strategyWiseListing)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(sCity, forKey: .sCity)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

@@ -7,30 +7,30 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class CompanyStore: Codable {
-        public var businessType: String?
+        public var uid: Int?
 
         public var companyType: String?
 
-        public var uid: Int?
+        public var businessType: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case businessType = "business_type"
+            case uid
 
             case companyType = "company_type"
 
-            case uid
+            case businessType = "business_type"
 
             case name
         }
 
         public init(businessType: String? = nil, companyType: String? = nil, name: String? = nil, uid: Int? = nil) {
-            self.businessType = businessType
+            self.uid = uid
 
             self.companyType = companyType
 
-            self.uid = uid
+            self.businessType = businessType
 
             self.name = name
         }
@@ -39,7 +39,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                businessType = try container.decode(String.self, forKey: .businessType)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                businessType = try container.decode(String.self, forKey: .businessType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,11 +74,11 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(businessType, forKey: .businessType)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(companyType, forKey: .companyType)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(businessType, forKey: .businessType)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
