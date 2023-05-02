@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var id: Int?
 
-        public var qcType: [String]?
-
         public var displayName: String?
+
+        public var qcType: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case questionSet = "question_set"
 
             case id
 
-            case qcType = "qc_type"
-
             case displayName = "display_name"
+
+            case qcType = "qc_type"
         }
 
         public init(displayName: String? = nil, id: Int? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.id = id
 
-            self.qcType = qcType
-
             self.displayName = displayName
+
+            self.qcType = qcType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                qcType = try container.decode([String].self, forKey: .qcType)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                qcType = try container.decode([String].self, forKey: .qcType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(qcType, forKey: .qcType)
-
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(qcType, forKey: .qcType)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var id: Int?
 
-        public var qcType: [String]?
-
         public var displayName: String?
+
+        public var qcType: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case questionSet = "question_set"
 
             case id
 
-            case qcType = "qc_type"
-
             case displayName = "display_name"
+
+            case qcType = "qc_type"
         }
 
         public init(displayName: String? = nil, id: Int? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.id = id
 
-            self.qcType = qcType
-
             self.displayName = displayName
+
+            self.qcType = qcType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                qcType = try container.decode([String].self, forKey: .qcType)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                qcType = try container.decode([String].self, forKey: .qcType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(qcType, forKey: .qcType)
-
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(qcType, forKey: .qcType)
         }
     }
 }

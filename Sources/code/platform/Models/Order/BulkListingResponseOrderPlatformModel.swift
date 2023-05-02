@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class BulkListingResponse: Codable {
         public var data: [bulkListingData]?
 
-        public var error: String?
-
         public var success: Bool?
+
+        public var error: String?
 
         public var page: BulkListingPage?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case error
-
             case success
+
+            case error
 
             case page
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(data: [bulkListingData]? = nil, error: String? = nil, page: BulkListingPage? = nil, success: Bool? = nil) {
             self.data = data
 
-            self.error = error
-
             self.success = success
+
+            self.error = error
 
             self.page = page
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(page, forKey: .page)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class BulkListingResponse: Codable {
         public var data: [bulkListingData]?
 
-        public var error: String?
-
         public var success: Bool?
+
+        public var error: String?
 
         public var page: BulkListingPage?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case error
-
             case success
+
+            case error
 
             case page
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(data: [bulkListingData]? = nil, error: String? = nil, page: BulkListingPage? = nil, success: Bool? = nil) {
             self.data = data
 
-            self.error = error
-
             self.success = success
+
+            self.error = error
 
             self.page = page
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                error = try container.decode(String.self, forKey: .error)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(page, forKey: .page)
         }

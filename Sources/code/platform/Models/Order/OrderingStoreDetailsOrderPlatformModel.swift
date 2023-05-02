@@ -11,9 +11,7 @@ public extension PlatformClient.Order {
     class OrderingStoreDetails: Codable {
         public var country: String
 
-        public var orderingStoreId: Int
-
-        public var city: String
+        public var code: String
 
         public var storeName: String
 
@@ -21,22 +19,22 @@ public extension PlatformClient.Order {
 
         public var state: String
 
-        public var address: String
+        public var city: String
 
-        public var meta: [String: Any]
-
-        public var code: String
+        public var phone: String
 
         public var pincode: String
 
-        public var phone: String
+        public var meta: [String: Any]
+
+        public var address: String
+
+        public var orderingStoreId: Int
 
         public enum CodingKeys: String, CodingKey {
             case country
 
-            case orderingStoreId = "ordering_store_id"
-
-            case city
+            case code
 
             case storeName = "store_name"
 
@@ -44,23 +42,23 @@ public extension PlatformClient.Order {
 
             case state
 
-            case address
+            case city
 
-            case meta
-
-            case code
+            case phone
 
             case pincode
 
-            case phone
+            case meta
+
+            case address
+
+            case orderingStoreId = "ordering_store_id"
         }
 
         public init(address: String, city: String, code: String, contactPerson: String, country: String, meta: [String: Any], orderingStoreId: Int, phone: String, pincode: String, state: String, storeName: String) {
             self.country = country
 
-            self.orderingStoreId = orderingStoreId
-
-            self.city = city
+            self.code = code
 
             self.storeName = storeName
 
@@ -68,15 +66,17 @@ public extension PlatformClient.Order {
 
             self.state = state
 
-            self.address = address
+            self.city = city
 
-            self.meta = meta
-
-            self.code = code
+            self.phone = phone
 
             self.pincode = pincode
 
-            self.phone = phone
+            self.meta = meta
+
+            self.address = address
+
+            self.orderingStoreId = orderingStoreId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -84,9 +84,7 @@ public extension PlatformClient.Order {
 
             country = try container.decode(String.self, forKey: .country)
 
-            orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
-
-            city = try container.decode(String.self, forKey: .city)
+            code = try container.decode(String.self, forKey: .code)
 
             storeName = try container.decode(String.self, forKey: .storeName)
 
@@ -94,15 +92,17 @@ public extension PlatformClient.Order {
 
             state = try container.decode(String.self, forKey: .state)
 
-            address = try container.decode(String.self, forKey: .address)
+            city = try container.decode(String.self, forKey: .city)
 
-            meta = try container.decode([String: Any].self, forKey: .meta)
-
-            code = try container.decode(String.self, forKey: .code)
+            phone = try container.decode(String.self, forKey: .phone)
 
             pincode = try container.decode(String.self, forKey: .pincode)
 
-            phone = try container.decode(String.self, forKey: .phone)
+            meta = try container.decode([String: Any].self, forKey: .meta)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -110,9 +110,7 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
-
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(storeName, forKey: .storeName)
 
@@ -120,15 +118,17 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
         }
     }
 }
@@ -142,9 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderingStoreDetails: Codable {
         public var country: String
 
-        public var orderingStoreId: Int
-
-        public var city: String
+        public var code: String
 
         public var storeName: String
 
@@ -152,22 +150,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var state: String
 
-        public var address: String
+        public var city: String
 
-        public var meta: [String: Any]
-
-        public var code: String
+        public var phone: String
 
         public var pincode: String
 
-        public var phone: String
+        public var meta: [String: Any]
+
+        public var address: String
+
+        public var orderingStoreId: Int
 
         public enum CodingKeys: String, CodingKey {
             case country
 
-            case orderingStoreId = "ordering_store_id"
-
-            case city
+            case code
 
             case storeName = "store_name"
 
@@ -175,23 +173,23 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case state
 
-            case address
+            case city
 
-            case meta
-
-            case code
+            case phone
 
             case pincode
 
-            case phone
+            case meta
+
+            case address
+
+            case orderingStoreId = "ordering_store_id"
         }
 
         public init(address: String, city: String, code: String, contactPerson: String, country: String, meta: [String: Any], orderingStoreId: Int, phone: String, pincode: String, state: String, storeName: String) {
             self.country = country
 
-            self.orderingStoreId = orderingStoreId
-
-            self.city = city
+            self.code = code
 
             self.storeName = storeName
 
@@ -199,15 +197,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.state = state
 
-            self.address = address
+            self.city = city
 
-            self.meta = meta
-
-            self.code = code
+            self.phone = phone
 
             self.pincode = pincode
 
-            self.phone = phone
+            self.meta = meta
+
+            self.address = address
+
+            self.orderingStoreId = orderingStoreId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -215,9 +215,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             country = try container.decode(String.self, forKey: .country)
 
-            orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
-
-            city = try container.decode(String.self, forKey: .city)
+            code = try container.decode(String.self, forKey: .code)
 
             storeName = try container.decode(String.self, forKey: .storeName)
 
@@ -225,15 +223,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             state = try container.decode(String.self, forKey: .state)
 
-            address = try container.decode(String.self, forKey: .address)
+            city = try container.decode(String.self, forKey: .city)
 
-            meta = try container.decode([String: Any].self, forKey: .meta)
-
-            code = try container.decode(String.self, forKey: .code)
+            phone = try container.decode(String.self, forKey: .phone)
 
             pincode = try container.decode(String.self, forKey: .pincode)
 
-            phone = try container.decode(String.self, forKey: .phone)
+            meta = try container.decode([String: Any].self, forKey: .meta)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -241,9 +241,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
-
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(storeName, forKey: .storeName)
 
@@ -251,15 +249,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
         }
     }
 }

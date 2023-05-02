@@ -13,9 +13,9 @@ public extension ApplicationClient.Payment {
 
         public var device: DeviceDetails?
 
-        public var aggregator: String
-
         public var businessInfo: BusinessDetails?
+
+        public var aggregator: String
 
         public var source: String
 
@@ -28,9 +28,9 @@ public extension ApplicationClient.Payment {
 
             case device
 
-            case aggregator
-
             case businessInfo = "business_info"
+
+            case aggregator
 
             case source
 
@@ -44,9 +44,9 @@ public extension ApplicationClient.Payment {
 
             self.device = device
 
-            self.aggregator = aggregator
-
             self.businessInfo = businessInfo
+
+            self.aggregator = aggregator
 
             self.source = source
 
@@ -80,8 +80,6 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             do {
                 businessInfo = try container.decode(BusinessDetails.self, forKey: .businessInfo)
 
@@ -89,6 +87,8 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             source = try container.decode(String.self, forKey: .source)
 
@@ -104,9 +104,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(device, forKey: .device)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(source, forKey: .source)
 

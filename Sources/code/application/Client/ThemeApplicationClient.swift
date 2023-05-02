@@ -17,6 +17,10 @@ public extension ApplicationClient {
 
             ulrs["getThemeForPreview"] = config.domain.appendAsPath("/service/application/theme/v1.0/{theme_id}/preview")
 
+            ulrs["getAppliedThemeV2"] = config.domain.appendAsPath("/service/application/theme/v2.0/applied-theme")
+
+            ulrs["getThemeForPreviewV2"] = config.domain.appendAsPath("/service/application/theme/v2.0/{theme_id}/preview")
+
             self.relativeUrls = ulrs
         }
 
@@ -165,6 +169,88 @@ public extension ApplicationClient {
             onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["getThemeForPreview"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ThemesSchema.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get the theme currently applied to an application
+         * Description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
+         **/
+        public func getAppliedThemeV2(
+            onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
+        ) {
+            let fullUrl = relativeUrls["getAppliedThemeV2"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ThemesSchema.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get a theme for a preview
+         * Description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
+         **/
+        public func getThemeForPreviewV2(
+            themeId: String,
+
+            onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["getThemeForPreviewV2"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "theme_id" + "}", with: "\(themeId)")
 

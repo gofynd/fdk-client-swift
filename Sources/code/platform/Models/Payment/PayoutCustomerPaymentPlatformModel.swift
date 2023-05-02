@@ -11,18 +11,18 @@ public extension PlatformClient.Payment {
     class PayoutCustomer: Codable {
         public var name: String?
 
-        public var uniqueExternalId: String?
-
         public var id: Int?
+
+        public var uniqueExternalId: String?
 
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case uniqueExternalId = "unique_external_id"
-
             case id
+
+            case uniqueExternalId = "unique_external_id"
 
             case mobile
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Payment {
         public init(id: Int? = nil, mobile: String? = nil, name: String? = nil, uniqueExternalId: String? = nil) {
             self.name = name
 
-            self.uniqueExternalId = uniqueExternalId
-
             self.id = id
+
+            self.uniqueExternalId = uniqueExternalId
 
             self.mobile = mobile
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Payment {
 
             try? container.encode(name, forKey: .name)
 
-            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
-
             try? container.encode(id, forKey: .id)
+
+            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encode(mobile, forKey: .mobile)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PayoutCustomer: Codable {
         public var name: String?
 
-        public var uniqueExternalId: String?
-
         public var id: Int?
+
+        public var uniqueExternalId: String?
 
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case uniqueExternalId = "unique_external_id"
-
             case id
+
+            case uniqueExternalId = "unique_external_id"
 
             case mobile
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(id: Int? = nil, mobile: String? = nil, name: String? = nil, uniqueExternalId: String? = nil) {
             self.name = name
 
-            self.uniqueExternalId = uniqueExternalId
-
             self.id = id
+
+            self.uniqueExternalId = uniqueExternalId
 
             self.mobile = mobile
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(name, forKey: .name)
 
-            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
-
             try? container.encode(id, forKey: .id)
+
+            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encode(mobile, forKey: .mobile)
         }
