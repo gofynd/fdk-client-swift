@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var labelUrl: String?
 
-        public var updatedDate: String?
-
         public var storeInvoiceId: String?
+
+        public var updatedDate: String?
 
         public var invoiceUrl: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case labelUrl = "label_url"
 
-            case updatedDate = "updated_date"
-
             case storeInvoiceId = "store_invoice_id"
+
+            case updatedDate = "updated_date"
 
             case invoiceUrl = "invoice_url"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.labelUrl = labelUrl
 
-            self.updatedDate = updatedDate
-
             self.storeInvoiceId = storeInvoiceId
+
+            self.updatedDate = updatedDate
 
             self.invoiceUrl = invoiceUrl
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                updatedDate = try container.decode(String.self, forKey: .updatedDate)
+                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
 
-            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
-
             try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
+
+            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
             try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var labelUrl: String?
 
-        public var updatedDate: String?
-
         public var storeInvoiceId: String?
+
+        public var updatedDate: String?
 
         public var invoiceUrl: String?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case labelUrl = "label_url"
 
-            case updatedDate = "updated_date"
-
             case storeInvoiceId = "store_invoice_id"
+
+            case updatedDate = "updated_date"
 
             case invoiceUrl = "invoice_url"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.labelUrl = labelUrl
 
-            self.updatedDate = updatedDate
-
             self.storeInvoiceId = storeInvoiceId
+
+            self.updatedDate = updatedDate
 
             self.invoiceUrl = invoiceUrl
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                updatedDate = try container.decode(String.self, forKey: .updatedDate)
+                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
 
-            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
-
             try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
+
+            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
             try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
         }

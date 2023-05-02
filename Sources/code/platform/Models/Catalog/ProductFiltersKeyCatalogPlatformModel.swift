@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var display: String
 
-        public var name: String
-
         public var operators: [String]?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case logo
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case display
 
-            case name
-
             case operators
+
+            case name
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Catalog {
 
             self.display = display
 
-            self.name = name
-
             self.operators = operators
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,8 +64,6 @@ public extension PlatformClient.Catalog {
 
             display = try container.decode(String.self, forKey: .display)
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 operators = try container.decode([String].self, forKey: .operators)
 
@@ -73,6 +71,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -84,9 +84,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -104,9 +104,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var display: String
 
-        public var name: String
-
         public var operators: [String]?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case logo
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case display
 
-            case name
-
             case operators
+
+            case name
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.display = display
 
-            self.name = name
-
             self.operators = operators
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -153,8 +153,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             display = try container.decode(String.self, forKey: .display)
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 operators = try container.decode([String].self, forKey: .operators)
 
@@ -162,6 +160,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -173,9 +173,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

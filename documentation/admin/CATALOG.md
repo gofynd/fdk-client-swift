@@ -32,8 +32,8 @@ Catalog - Administrator Front API's API's allows you to access list of products,
 * [getVariantByUID](#getvariantbyuid)
 * [createProductTemplate](#createproducttemplate)
 * [listProductTemplate](#listproducttemplate)
-* [deleteProductTemplate](#deleteproducttemplate)
 * [updateProductTemplate](#updateproducttemplate)
+* [deleteProductTemplate](#deleteproducttemplate)
 * [getProductTemplate](#getproducttemplate)
 * [downloadProductTemplateViews](#downloadproducttemplateviews)
 * [validateProductTemplate](#validateproducttemplate)
@@ -3932,63 +3932,6 @@ List of product templates. See example below or refer `TemplatesResponse` for de
 ---
 
 
-#### deleteProductTemplate
-Delete a Product Template by slug.
-
-
-
-
-```swift
-adminClient.catalog.deleteProductTemplate(slug: slug) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| slug | String | yes | A `slug` is a unique identifier for a particular product template. |  
-
-
-
-Delete a Product Template by slug.
-
-*Returned Response:*
-
-
-
-
-[SuccessSingleResponse](#SuccessSingleResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "Success"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### updateProductTemplate
 Update a Product Template by Slug.
 
@@ -4047,6 +3990,63 @@ Returns a success response
     "variant-field-3"
   ],
   "logo": "https://hdn-1.addsale.com/addsale/products/pictures/template/logo/original/1UZtJvzM0-test-variant-template.png"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteProductTemplate
+Delete a Product Template by slug.
+
+
+
+
+```swift
+adminClient.catalog.deleteProductTemplate(slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| slug | String | yes | A `slug` is a unique identifier for a particular product template. |  
+
+
+
+Delete a Product Template by slug.
+
+*Returned Response:*
+
+
+
+
+[SuccessSingleResponse](#SuccessSingleResponse)
+
+Returns a success response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "Success"
 }
 ```
 </details>
@@ -6453,9 +6453,9 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l2 | Int |  no  |  |
- | department | Int |  no  |  |
  | l1 | Int |  no  |  |
+ | department | Int |  no  |  |
+ | l2 | Int |  no  |  |
 
 ---
 
@@ -6479,17 +6479,17 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | priority | Int? |  yes  |  |
  | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
- | level | Int |  no  |  |
  | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
- | slug | String? |  yes  |  |
- | synonyms | [String]? |  yes  |  |
  | isActive | Bool |  no  |  |
  | media | [Media](#Media)? |  yes  |  |
- | departments | [Int] |  no  |  |
- | name | String |  no  |  |
+ | synonyms | [String]? |  yes  |  |
  | tryouts | [String]? |  yes  |  |
- | priority | Int? |  yes  |  |
+ | departments | [Int] |  no  |  |
+ | level | Int |  no  |  |
+ | slug | String? |  yes  |  |
 
 ---
 
@@ -6513,37 +6513,10 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | code | String? |  yes  |  |
  | status | Int? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Category](#Category)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
- | level | Int |  no  |  |
- | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
- | slug | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | synonyms | [String]? |  yes  |  |
- | isActive | Bool |  no  |  |
- | createdBy | [String: Any]? |  yes  |  |
- | departments | [Int] |  no  |  |
- | media | [Media](#Media)? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | name | String |  no  |  |
- | id | String? |  yes  |  |
- | tryouts | [String]? |  yes  |  |
- | uid | Int? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | priority | Int? |  yes  |  |
 
 ---
 
@@ -6554,13 +6527,40 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | itemTotal | Int? |  yes  |  |
+ | type | String |  no  |  |
+ | hasPrevious | Bool? |  yes  |  |
+ | current | Int? |  yes  |  |
  | hasNext | Bool? |  yes  |  |
  | nextId | String? |  yes  |  |
- | type | String |  no  |  |
  | size | Int? |  yes  |  |
- | current | Int? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Category](#Category)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | priority | Int? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | marketplaces | [CategoryMapping](#CategoryMapping)? |  yes  |  |
+ | hierarchy | [[Hierarchy](#Hierarchy)]? |  yes  |  |
+ | isActive | Bool |  no  |  |
+ | media | [Media](#Media)? |  yes  |  |
+ | synonyms | [String]? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | tryouts | [String]? |  yes  |  |
+ | departments | [Int] |  no  |  |
+ | level | Int |  no  |  |
+ | slug | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
@@ -6571,8 +6571,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Category](#Category)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+ | items | [[Category](#Category)]? |  yes  |  |
 
 ---
 
@@ -6606,17 +6606,17 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | tags | [String]? |  yes  |  |
- | slug | String? |  yes  |  |
- | logo | String |  no  |  |
- | isActive | Bool? |  yes  |  |
- | priorityOrder | Int |  no  |  |
- | synonyms | [String]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
  | name | String |  no  |  |
- | uid | Int? |  yes  |  |
- | cls | String? |  yes  |  |
  | platforms | [String: Any]? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | synonyms | [String]? |  yes  |  |
+ | cls | String? |  yes  |  |
+ | priorityOrder | Int |  no  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | logo | String |  no  |  |
 
 ---
 
@@ -6627,10 +6627,10 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | userId | String |  no  |  |
- | contact | String? |  yes  |  |
  | superUser | Bool? |  yes  |  |
+ | contact | String? |  yes  |  |
  | username | String |  no  |  |
+ | userId | String |  no  |  |
 
 ---
 
@@ -6641,22 +6641,22 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int |  no  |  |
- | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | slug | [String: Any] |  no  |  |
- | logo | [String: Any] |  no  |  |
- | isActive | Bool? |  yes  |  |
- | priorityOrder | Int |  no  |  |
- | synonyms | [[String: Any]]? |  yes  |  |
- | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | createdOn | String |  no  |  |
  | name | [String: Any] |  no  |  |
- | verifiedOn | String? |  yes  |  |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | createdOn | String |  no  |  |
+ | isActive | Bool? |  yes  |  |
+ | synonyms | [[String: Any]]? |  yes  |  |
+ | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
  | modifiedOn | String |  no  |  |
+ | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
  | cls | [String: Any]? |  yes  |  |
+ | priorityOrder | Int |  no  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | slug | [String: Any] |  no  |  |
+ | uid | Int |  no  |  |
  | id | [String: Any]? |  yes  |  |
+ | logo | [String: Any] |  no  |  |
+ | verifiedOn | String? |  yes  |  |
 
 ---
 
@@ -6679,10 +6679,10 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | contact | String? |  yes  |  |
- | userId | String? |  yes  |  |
  | username | String? |  yes  |  |
  | uid | String? |  yes  |  |
  | id | String? |  yes  |  |
+ | userId | String? |  yes  |  |
 
 ---
 
@@ -6693,21 +6693,21 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemType | String? |  yes  |  |
- | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | pageNo | Int? |  yes  |  |
- | slug | String? |  yes  |  |
- | logo | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | priorityOrder | Int? |  yes  |  |
- | synonyms | [String]? |  yes  |  |
- | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
- | createdOn | String? |  yes  |  |
  | name | String? |  yes  |  |
  | search | String? |  yes  |  |
+ | createdBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
  | pageSize | Int? |  yes  |  |
- | uid | Int? |  yes  |  |
+ | synonyms | [String]? |  yes  |  |
+ | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
  | modifiedOn | String? |  yes  |  |
+ | priorityOrder | Int? |  yes  |  |
+ | pageNo | Int? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | itemType | String? |  yes  |  |
 
 ---
 
@@ -6718,8 +6718,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetDepartment](#GetDepartment)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+ | items | [[GetDepartment](#GetDepartment)]? |  yes  |  |
 
 ---
 
@@ -6730,11 +6730,11 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | errors | [String: Any]? |  yes  |  |
  | code | String? |  yes  |  |
  | status | Int? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | message | String? |  yes  |  |
 
 ---
 
@@ -6780,8 +6780,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
  | slug | String? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -6792,8 +6792,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributeDetails | [[AttributeDetailsResponse](#AttributeDetailsResponse)]? |  yes  |  |
  | sequence | [String]? |  yes  |  |
+ | attributeDetails | [[AttributeDetailsResponse](#AttributeDetailsResponse)]? |  yes  |  |
 
 ---
 
@@ -6805,8 +6805,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | Bool? |  yes  |  |
- | message | String? |  yes  |  |
  | data | [ShuffleAttributeDataResponse](#ShuffleAttributeDataResponse)? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -6818,22 +6818,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | Bool? |  yes  |  |
- | message | String? |  yes  |  |
  | data | [ShuffleAttributeFilter](#ShuffleAttributeFilter)? |  yes  |  |
-
----
-
-
- 
- 
- #### [AttributeMasterGroupComparisons](#AttributeMasterGroupComparisons)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | templateSlugs | [[String: Any]]? |  yes  |  |
- | priority | Int? |  yes  |  |
- | attributes | [[String: Any]]? |  yes  |  |
- | display | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -6845,9 +6831,23 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | templateSlugs | [[String: Any]]? |  yes  |  |
+ | display | Bool? |  yes  |  |
  | priority | Int? |  yes  |  |
  | attributes | [[String: Any]]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterGroupComparisons](#AttributeMasterGroupComparisons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | templateSlugs | [[String: Any]]? |  yes  |  |
  | display | Bool? |  yes  |  |
+ | priority | Int? |  yes  |  |
+ | attributes | [[String: Any]]? |  yes  |  |
 
 ---
 
@@ -6858,19 +6858,19 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int |  no  |  |
- | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | slug | [String: Any] |  no  |  |
- | comparisons | [AttributeMasterGroupComparisons](#AttributeMasterGroupComparisons)? |  yes  |  |
- | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
- | type | [String: Any]? |  yes  |  |
- | createdOn | String |  no  |  |
  | name | [String: Any]? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | modifiedOn | String |  no  |  |
- | id | [String: Any]? |  yes  |  |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
  | details | [AttributeMasterGroupDetails](#AttributeMasterGroupDetails)? |  yes  |  |
+ | createdOn | String |  no  |  |
+ | type | [String: Any]? |  yes  |  |
+ | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | modifiedOn | String |  no  |  |
+ | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | comparisons | [AttributeMasterGroupComparisons](#AttributeMasterGroupComparisons)? |  yes  |  |
+ | slug | [String: Any] |  no  |  |
+ | uid | Int |  no  |  |
+ | id | [String: Any]? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
 
 ---
 
@@ -6892,21 +6892,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AttributeMasterGroupModel](#AttributeMasterGroupModel)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
-
----
-
-
- 
- 
- #### [AttributeMasterFilter](#AttributeMasterFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dependsOn | [[String: Any]]? |  yes  |  |
- | indexing | Bool |  no  |  |
- | priority | Int? |  yes  |  |
+ | items | [[AttributeMasterGroupModel](#AttributeMasterGroupModel)]? |  yes  |  |
 
 ---
 
@@ -6917,8 +6904,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | max | Int? |  yes  |  |
  | min | Int? |  yes  |  |
+ | max | Int? |  yes  |  |
 
 ---
 
@@ -6929,12 +6916,25 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | range | [AttributeSchemaRange](#AttributeSchemaRange)? |  yes  |  |
- | type | [String: Any] |  no  |  |
- | multi | Bool? |  yes  |  |
  | allowedValues | [[String: Any]]? |  yes  |  |
+ | type | [String: Any] |  no  |  |
  | format | [String: Any]? |  yes  |  |
+ | multi | Bool? |  yes  |  |
+ | range | [AttributeSchemaRange](#AttributeSchemaRange)? |  yes  |  |
  | mandatory | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AttributeMasterFilter](#AttributeMasterFilter)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | Int? |  yes  |  |
+ | indexing | Bool |  no  |  |
+ | dependsOn | [[String: Any]]? |  yes  |  |
 
 ---
 
@@ -6956,29 +6956,29 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | rawKey | [String: Any]? |  yes  |  |
- | suggestion | [String: Any]? |  yes  |  |
- | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | logo | String? |  yes  |  |
- | synonyms | [String: Any]? |  yes  |  |
  | isNested | Bool? |  yes  |  |
- | departments | [[String: Any]] |  no  |  |
- | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
- | schema | [AttributeMaster](#AttributeMaster) |  no  |  |
- | modifiedOn | String |  no  |  |
- | id | [String: Any]? |  yes  |  |
  | description | [String: Any]? |  yes  |  |
- | tags | [[String: Any]]? |  yes  |  |
- | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
- | unit | [String: Any]? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
- | enabledForEndConsumer | Bool? |  yes  |  |
- | slug | [String: Any] |  no  |  |
- | createdOn | String |  no  |  |
- | name | [String: Any]? |  yes  |  |
+ | rawKey | [String: Any]? |  yes  |  |
  | variant | Bool? |  yes  |  |
+ | name | [String: Any]? |  yes  |  |
+ | tags | [[String: Any]]? |  yes  |  |
+ | schema | [AttributeMaster](#AttributeMaster) |  no  |  |
+ | enabledForEndConsumer | Bool? |  yes  |  |
+ | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | suggestion | [String: Any]? |  yes  |  |
+ | createdOn | String |  no  |  |
+ | synonyms | [String: Any]? |  yes  |  |
+ | modifiedOn | String |  no  |  |
+ | unit | [String: Any]? |  yes  |  |
+ | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
+ | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
+ | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | departments | [[String: Any]] |  no  |  |
+ | slug | [String: Any] |  no  |  |
+ | id | [String: Any]? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
 
 ---
 
@@ -7001,13 +7001,13 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | maxWidth | Int? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
  | minWidth | Int? |  yes  |  |
  | minHeight | Int? |  yes  |  |
- | aspectRatio | String? |  yes  |  |
  | maxSize | Int? |  yes  |  |
- | maxWidth | Int? |  yes  |  |
- | fileType | [String]? |  yes  |  |
  | maintainAspectRatio | Bool? |  yes  |  |
+ | fileType | [String]? |  yes  |  |
  | maxHeight | Int? |  yes  |  |
 
 ---
@@ -7019,23 +7019,23 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | priority | Int? |  yes  |  |
- | uid | Int? |  yes  |  |
- | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | displayType | [[String: Any]]? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | templates | [[String: Any]]? |  yes  |  |
  | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
  | display | [String: Any]? |  yes  |  |
- | departments | [[String: Any]]? |  yes  |  |
- | imageConfig | [SwatchImageConfig](#SwatchImageConfig)? |  yes  |  |
  | createdOn | String |  no  |  |
- | verifiedOn | String? |  yes  |  |
- | modifiedOn | String |  no  |  |
- | cls | [String: Any]? |  yes  |  |
- | id | [String: Any]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | priority | Int? |  yes  |  |
+ | displayType | [[String: Any]]? |  yes  |  |
  | key | [String: Any]? |  yes  |  |
+ | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | modifiedOn | String |  no  |  |
+ | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | cls | [String: Any]? |  yes  |  |
+ | departments | [[String: Any]]? |  yes  |  |
+ | templates | [[String: Any]]? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | id | [String: Any]? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | imageConfig | [SwatchImageConfig](#SwatchImageConfig)? |  yes  |  |
 
 ---
 
@@ -7053,13 +7053,27 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  
  
+ #### [Pagination](#Pagination)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hasNext | Bool |  no  |  |
+ | hasPrevious | Bool |  no  |  |
+ | totalItemCount | Int |  no  |  |
+ | nextPageId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [UserSerializer1](#UserSerializer1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | userId | String? |  yes  |  |
  | contact | String? |  yes  |  |
  | username | String? |  yes  |  |
+ | userId | String? |  yes  |  |
 
 ---
 
@@ -7070,13 +7084,13 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | maxWidth | Int? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
  | minWidth | Int? |  yes  |  |
  | minHeight | Int? |  yes  |  |
- | aspectRatio | String? |  yes  |  |
  | maxSize | Int? |  yes  |  |
- | maxWidth | Int? |  yes  |  |
- | fileType | [String]? |  yes  |  |
  | maintainAspectRatio | Bool? |  yes  |  |
+ | fileType | [String]? |  yes  |  |
  | maxHeight | Int? |  yes  |  |
 
 ---
@@ -7088,33 +7102,19 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | priority | Int? |  yes  |  |
  | displayType | [String]? |  yes  |  |
  | isActive | Bool? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | modifiedBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | departments | [String]? |  yes  |  |
  | templates | [String]? |  yes  |  |
- | imageConfig | [SwatchImageConfig1](#SwatchImageConfig1)? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | display | String? |  yes  |  |
  | key | String? |  yes  |  |
- | departments | [String]? |  yes  |  |
- | createdBy | [UserSerializer1](#UserSerializer1)? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | priority | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [Pagination](#Pagination)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hasPrevious | Bool |  no  |  |
- | hasNext | Bool |  no  |  |
- | nextPageId | String? |  yes  |  |
- | totalItemCount | Int |  no  |  |
+ | imageConfig | [SwatchImageConfig1](#SwatchImageConfig1)? |  yes  |  |
 
 ---
 
@@ -7125,8 +7125,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[GetVariantAttributesSerializer](#GetVariantAttributesSerializer)]? |  yes  |  |
  | page | [Pagination](#Pagination) |  no  |  |
+ | items | [[GetVariantAttributesSerializer](#GetVariantAttributesSerializer)]? |  yes  |  |
 
 ---
 
@@ -7148,25 +7148,25 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributes | [[String: Any]]? |  yes  |  |
- | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | logo | [String: Any]? |  yes  |  |
- | isPhysical | Bool |  no  |  |
- | departments | [[String: Any]]? |  yes  |  |
- | modifiedOn | String |  no  |  |
- | id | [String: Any]? |  yes  |  |
  | description | [String: Any]? |  yes  |  |
- | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
- | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
- | isExpirable | Bool? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
  | tag | [String: Any]? |  yes  |  |
- | isArchived | Bool? |  yes  |  |
- | slug | [String: Any] |  no  |  |
- | isActive | Bool? |  yes  |  |
- | categories | [[String: Any]]? |  yes  |  |
- | createdOn | String |  no  |  |
+ | isPhysical | Bool |  no  |  |
  | name | [String: Any]? |  yes  |  |
+ | isArchived | Bool? |  yes  |  |
+ | attributes | [[String: Any]]? |  yes  |  |
+ | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | logo | [String: Any]? |  yes  |  |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | createdOn | String |  no  |  |
+ | modifiedOn | String |  no  |  |
+ | isExpirable | Bool? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | departments | [[String: Any]]? |  yes  |  |
+ | slug | [String: Any] |  no  |  |
+ | id | [String: Any]? |  yes  |  |
+ | categories | [[String: Any]]? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
 
 ---
 
@@ -7177,22 +7177,22 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isArchived | Bool? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | slug | String |  no  |  |
- | logo | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | isPhysical | Bool |  no  |  |
- | categories | [String]? |  yes  |  |
- | isExpirable | Bool |  no  |  |
- | departments | [String]? |  yes  |  |
- | createdBy | [String: Any]? |  yes  |  |
- | createdOn | String? |  yes  |  |
  | name | String? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | isArchived | Bool? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | logo | String? |  yes  |  |
  | modifiedOn | String? |  yes  |  |
  | tag | String? |  yes  |  |
- | description | String? |  yes  |  |
+ | departments | [String]? |  yes  |  |
  | attributes | [String]? |  yes  |  |
+ | slug | String |  no  |  |
+ | categories | [String]? |  yes  |  |
+ | isPhysical | Bool |  no  |  |
+ | isExpirable | Bool |  no  |  |
 
 ---
 
@@ -7203,8 +7203,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductTemplate](#ProductTemplate)? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+ | items | [ProductTemplate](#ProductTemplate)? |  yes  |  |
 
 ---
 
@@ -7215,11 +7215,11 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | errors | [String: Any]? |  yes  |  |
  | code | String? |  yes  |  |
  | status | Int? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | message | String? |  yes  |  |
 
 ---
 
@@ -7230,8 +7230,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
  | code | Int? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -7242,35 +7242,35 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | variants | [String: Any]? |  yes  |  |
- | productGroupTag | [String: Any]? |  yes  |  |
- | isDependent | [String: Any]? |  yes  |  |
- | noOfBoxes | [String: Any]? |  yes  |  |
- | countryOfOrigin | [String: Any]? |  yes  |  |
- | itemType | [String: Any]? |  yes  |  |
- | traderType | [String: Any]? |  yes  |  |
- | currency | [String: Any]? |  yes  |  |
- | shortDescription | [String: Any]? |  yes  |  |
- | command | [String: Any]? |  yes  |  |
- | description | [String: Any]? |  yes  |  |
- | tags | [String: Any]? |  yes  |  |
- | brandUid | [String: Any]? |  yes  |  |
- | hsnCode | [String: Any]? |  yes  |  |
- | productPublish | [String: Any]? |  yes  |  |
- | sizeGuide | [String: Any]? |  yes  |  |
- | multiSize | [String: Any]? |  yes  |  |
- | highlights | [String: Any]? |  yes  |  |
  | teaserTag | [String: Any]? |  yes  |  |
- | slug | [String: Any]? |  yes  |  |
- | customOrder | [String: Any]? |  yes  |  |
- | categorySlug | [String: Any]? |  yes  |  |
- | isActive | [String: Any]? |  yes  |  |
  | media | [String: Any]? |  yes  |  |
- | trader | [String: Any]? |  yes  |  |
- | returnConfig | [String: Any]? |  yes  |  |
- | name | [String: Any]? |  yes  |  |
+ | description | [String: Any]? |  yes  |  |
  | sizes | [String: Any]? |  yes  |  |
+ | countryOfOrigin | [String: Any]? |  yes  |  |
+ | command | [String: Any]? |  yes  |  |
+ | shortDescription | [String: Any]? |  yes  |  |
+ | categorySlug | [String: Any]? |  yes  |  |
+ | highlights | [String: Any]? |  yes  |  |
+ | name | [String: Any]? |  yes  |  |
+ | tags | [String: Any]? |  yes  |  |
+ | trader | [String: Any]? |  yes  |  |
+ | hsnCode | [String: Any]? |  yes  |  |
+ | productGroupTag | [String: Any]? |  yes  |  |
+ | variants | [String: Any]? |  yes  |  |
+ | multiSize | [String: Any]? |  yes  |  |
+ | returnConfig | [String: Any]? |  yes  |  |
+ | currency | [String: Any]? |  yes  |  |
  | itemCode | [String: Any]? |  yes  |  |
+ | sizeGuide | [String: Any]? |  yes  |  |
+ | noOfBoxes | [String: Any]? |  yes  |  |
+ | traderType | [String: Any]? |  yes  |  |
+ | customOrder | [String: Any]? |  yes  |  |
+ | isDependent | [String: Any]? |  yes  |  |
+ | itemType | [String: Any]? |  yes  |  |
+ | productPublish | [String: Any]? |  yes  |  |
+ | isActive | [String: Any]? |  yes  |  |
+ | brandUid | [String: Any]? |  yes  |  |
+ | slug | [String: Any]? |  yes  |  |
 
 ---
 
@@ -7281,12 +7281,12 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | title | String? |  yes  |  |
+ | definitions | [String: Any]? |  yes  |  |
  | type | String? |  yes  |  |
  | required | [String]? |  yes  |  |
- | properties | [Properties](#Properties)? |  yes  |  |
- | definitions | [String: Any]? |  yes  |  |
- | title | String? |  yes  |  |
  | description | String? |  yes  |  |
+ | properties | [Properties](#Properties)? |  yes  |  |
 
 ---
 
@@ -7309,19 +7309,19 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isArchived | Bool? |  yes  |  |
- | slug | String |  no  |  |
- | logo | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | isPhysical | Bool |  no  |  |
- | categories | [String]? |  yes  |  |
- | isExpirable | Bool |  no  |  |
- | departments | [String]? |  yes  |  |
  | name | String? |  yes  |  |
- | id | String? |  yes  |  |
- | tag | String? |  yes  |  |
+ | isArchived | Bool? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
  | description | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | logo | String? |  yes  |  |
+ | tag | String? |  yes  |  |
+ | departments | [String]? |  yes  |  |
  | attributes | [String]? |  yes  |  |
+ | slug | String |  no  |  |
+ | categories | [String]? |  yes  |  |
+ | isPhysical | Bool |  no  |  |
+ | isExpirable | Bool |  no  |  |
 
 ---
 
@@ -7340,14 +7340,30 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  
  
+ #### [BasePage](#BasePage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemTotal | Int? |  yes  |  |
+ | type | String |  no  |  |
+ | hasPrevious | Bool? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | nextId | String? |  yes  |  |
+ | size | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CompanyVerificationStats](#CompanyVerificationStats)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pending | Int? |  yes  |  |
  | verified | Int? |  yes  |  |
- | total | Int? |  yes  |  |
+ | pending | Int? |  yes  |  |
  | rejected | Int? |  yes  |  |
+ | total | Int? |  yes  |  |
 
 ---
 
@@ -7358,25 +7374,9 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | [CompanyVerificationStats](#CompanyVerificationStats)? |  yes  |  |
  | uid | Int |  no  |  |
+ | status | [CompanyVerificationStats](#CompanyVerificationStats)? |  yes  |  |
  | name | String |  no  |  |
-
----
-
-
- 
- 
- #### [BasePage](#BasePage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hasNext | Bool? |  yes  |  |
- | nextId | String? |  yes  |  |
- | type | String |  no  |  |
- | size | Int? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
 
 ---
 
@@ -7387,8 +7387,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CompanyVerification](#CompanyVerification)]? |  yes  |  |
  | page | [BasePage](#BasePage)? |  yes  |  |
+ | items | [[CompanyVerification](#CompanyVerification)]? |  yes  |  |
 
 ---
 
@@ -7399,21 +7399,21 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | createdOn | String |  no  |  |
+ | product | [String: Any]? |  yes  |  |
+ | remark | [String: Any]? |  yes  |  |
  | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | modifiedOn | String |  no  |  |
  | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | rejectedFields | [String: Any]? |  yes  |  |
  | brandUid | Int |  no  |  |
+ | companyIds | [Int] |  no  |  |
  | itemId | Int |  no  |  |
  | slug | [String: Any] |  no  |  |
- | product | [String: Any]? |  yes  |  |
- | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
- | status | [String: Any] |  no  |  |
- | createdOn | String |  no  |  |
- | rejectedFields | [String: Any]? |  yes  |  |
- | remark | [String: Any]? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | modifiedOn | String |  no  |  |
  | id | [String: Any]? |  yes  |  |
- | companyIds | [Int] |  no  |  |
+ | status | [String: Any] |  no  |  |
+ | verifiedOn | String? |  yes  |  |
  | itemCode | [String: Any] |  no  |  |
 
 ---
@@ -7425,8 +7425,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductVerificationModel](#ProductVerificationModel)]? |  yes  |  |
  | page | [BasePage](#BasePage)? |  yes  |  |
+ | items | [[ProductVerificationModel](#ProductVerificationModel)]? |  yes  |  |
 
 ---
 
@@ -7438,8 +7438,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | uid | String? |  yes  |  |
- | userId | String? |  yes  |  |
  | username | String? |  yes  |  |
+ | userId | String? |  yes  |  |
  | email | String? |  yes  |  |
 
 ---
@@ -7451,17 +7451,17 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brandUid | Int |  no  |  |
- | modifiedBy | [UserInfo](#UserInfo) |  no  |  |
- | slug | String |  no  |  |
  | createdBy | [UserInfo](#UserInfo) |  no  |  |
- | status | String |  no  |  |
  | createdOn | String |  no  |  |
- | rejectedFields | [String: Any]? |  yes  |  |
  | remark | String? |  yes  |  |
- | itemId | Int |  no  |  |
+ | modifiedBy | [UserInfo](#UserInfo) |  no  |  |
  | modifiedOn | String? |  yes  |  |
+ | rejectedFields | [String: Any]? |  yes  |  |
+ | brandUid | Int |  no  |  |
  | companyIds | [Int] |  no  |  |
+ | slug | String |  no  |  |
+ | status | String |  no  |  |
+ | itemId | Int |  no  |  |
  | itemCode | String |  no  |  |
 
 ---
@@ -7473,8 +7473,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | String? |  yes  |  |
  | values | [[String: Any]]? |  yes  |  |
+ | unit | String? |  yes  |  |
  | headers | [String: Any]? |  yes  |  |
 
 ---
@@ -7497,21 +7497,21 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | guide | [Guide](#Guide)? |  yes  |  |
- | brandId | Int? |  yes  |  |
- | subtitle | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
+ | title | String |  no  |  |
+ | name | String |  no  |  |
  | createdBy | [String: Any]? |  yes  |  |
  | createdOn | String? |  yes  |  |
+ | subtitle | String? |  yes  |  |
+ | brandId | Int? |  yes  |  |
+ | guide | [Guide](#Guide)? |  yes  |  |
  | description | String? |  yes  |  |
- | name | String |  no  |  |
- | id | String? |  yes  |  |
  | image | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | title | String |  no  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
  | modifiedOn | String? |  yes  |  |
+ | id | String? |  yes  |  |
  | tag | String? |  yes  |  |
  | active | Bool? |  yes  |  |
+ | companyId | Int? |  yes  |  |
 
 ---
 
@@ -7533,8 +7533,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[String: Any]]? |  yes  |  |
  | page | [String: Any]? |  yes  |  |
+ | items | [[String: Any]]? |  yes  |  |
 
 ---
 
@@ -7545,19 +7545,58 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | guide | [String: Any]? |  yes  |  |
- | brandId | Int? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | subtitle | String? |  yes  |  |
- | createdBy | [String: Any]? |  yes  |  |
- | tag | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | name | String? |  yes  |  |
- | id | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
  | title | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | subtitle | String? |  yes  |  |
+ | brandId | Int? |  yes  |  |
+ | guide | [String: Any]? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | tag | String? |  yes  |  |
  | active | Bool? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Media1](#Media1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | url | String |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Trader](#Trader)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | [String: Any] |  no  |  |
+ | type | String? |  yes  |  |
+ | address | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ReturnConfigResponse](#ReturnConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | returnable | Bool? |  yes  |  |
+ | unit | String? |  yes  |  |
+ | time | Int? |  yes  |  |
 
 ---
 
@@ -7568,47 +7607,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | userId | String? |  yes  |  |
  | username | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductPublished](#ProductPublished)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | productOnlineDate | Int? |  yes  |  |
- | isSet | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Logo](#Logo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aspectRatio | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
- | aspectRatioF | Int? |  yes  |  |
- | url | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Brand](#Brand)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | logo | [Logo](#Logo)? |  yes  |  |
- | name | String? |  yes  |  |
+ | userId | String? |  yes  |  |
 
 ---
 
@@ -7631,49 +7631,49 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspectRatio | String? |  yes  |  |
  | secureUrl | String? |  yes  |  |
- | aspectRatioF | Double? |  yes  |  |
  | url | String? |  yes  |  |
+ | aspectRatioF | Double? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [Media1](#Media1)
+ #### [Logo](#Logo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [String: Any]? |  yes  |  |
- | url | String |  no  |  |
- | type | String? |  yes  |  |
+ | secureUrl | String? |  yes  |  |
+ | url | String? |  yes  |  |
+ | aspectRatioF | Int? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [Trader](#Trader)
+ #### [Brand](#Brand)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [String]? |  yes  |  |
- | name | [String: Any] |  no  |  |
- | type | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | logo | [Logo](#Logo)? |  yes  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [ReturnConfigResponse](#ReturnConfigResponse)
+ #### [ProductPublished](#ProductPublished)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | returnable | Bool? |  yes  |  |
- | unit | String? |  yes  |  |
- | time | Int? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | productOnlineDate | Int? |  yes  |  |
 
 ---
 
@@ -7684,68 +7684,68 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | variants | [String: Any]? |  yes  |  |
- | templateTag | String? |  yes  |  |
- | allIdentifiers | [String]? |  yes  |  |
- | category | [String: Any]? |  yes  |  |
- | productGroupTag | [String]? |  yes  |  |
- | isDependent | Bool? |  yes  |  |
- | pending | String? |  yes  |  |
- | id | String? |  yes  |  |
- | taxIdentifier | [String: Any]? |  yes  |  |
- | noOfBoxes | Int? |  yes  |  |
- | countryOfOrigin | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | itemType | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | stage | String? |  yes  |  |
- | isPhysical | Bool? |  yes  |  |
- | departments | [Int]? |  yes  |  |
- | currency | String? |  yes  |  |
- | shortDescription | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | description | String? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | brandUid | Int? |  yes  |  |
- | verifiedBy | [VerifiedBy](#VerifiedBy)? |  yes  |  |
- | isSet | Bool? |  yes  |  |
- | moq | [String: Any]? |  yes  |  |
  | teaserTag | [String: Any]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
+ | moq | [String: Any]? |  yes  |  |
+ | media | [[Media1](#Media1)]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | allSizes | [[String: Any]]? |  yes  |  |
+ | sizes | [[String: Any]]? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | countryOfOrigin | String? |  yes  |  |
+ | categorySlug | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | allIdentifiers | [String]? |  yes  |  |
+ | highlights | [String]? |  yes  |  |
+ | isPhysical | Bool? |  yes  |  |
+ | name | String? |  yes  |  |
+ | color | String? |  yes  |  |
+ | variantMedia | [String: Any]? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | trader | [[Trader](#Trader)]? |  yes  |  |
  | hsnCode | String? |  yes  |  |
- | isExpirable | Bool? |  yes  |  |
+ | pending | String? |  yes  |  |
+ | productGroupTag | [String]? |  yes  |  |
+ | id | String? |  yes  |  |
+ | templateTag | String? |  yes  |  |
+ | taxIdentifier | [String: Any]? |  yes  |  |
+ | variants | [String: Any]? |  yes  |  |
+ | multiSize | Bool? |  yes  |  |
+ | returnConfig | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | verifiedBy | [VerifiedBy](#VerifiedBy)? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | sizeGuide | String? |  yes  |  |
  | createdBy | [String: Any]? |  yes  |  |
  | l3Mapping | [String]? |  yes  |  |
- | productPublish | [ProductPublished](#ProductPublished)? |  yes  |  |
- | sizeGuide | String? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | multiSize | Bool? |  yes  |  |
- | brand | [Brand](#Brand)? |  yes  |  |
- | netQuantity | [NetQuantityResponse](#NetQuantityResponse)? |  yes  |  |
- | highlights | [String]? |  yes  |  |
- | allCompanyIds | [Int]? |  yes  |  |
- | color | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | imageNature | String? |  yes  |  |
- | categorySlug | String? |  yes  |  |
- | customOrder | [String: Any]? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | images | [[Image](#Image)]? |  yes  |  |
- | allSizes | [[String: Any]]? |  yes  |  |
- | primaryColor | String? |  yes  |  |
- | media | [[Media1](#Media1)]? |  yes  |  |
- | categoryUid | Int? |  yes  |  |
- | variantMedia | [String: Any]? |  yes  |  |
- | trader | [[Trader](#Trader)]? |  yes  |  |
  | createdOn | String? |  yes  |  |
- | returnConfig | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
- | name | String? |  yes  |  |
- | isImageLessProduct | Bool? |  yes  |  |
+ | netQuantity | [NetQuantityResponse](#NetQuantityResponse)? |  yes  |  |
+ | noOfBoxes | Int? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | category | [String: Any]? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | images | [[Image](#Image)]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | brand | [Brand](#Brand)? |  yes  |  |
+ | isDependent | Bool? |  yes  |  |
+ | customOrder | [String: Any]? |  yes  |  |
+ | itemType | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | isExpirable | Bool? |  yes  |  |
+ | primaryColor | String? |  yes  |  |
+ | allCompanyIds | [Int]? |  yes  |  |
+ | productPublish | [ProductPublished](#ProductPublished)? |  yes  |  |
+ | categoryUid | Int? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | brandUid | Int? |  yes  |  |
+ | imageNature | String? |  yes  |  |
  | variantGroup | [String: Any]? |  yes  |  |
- | sizes | [[String: Any]]? |  yes  |  |
- | itemCode | String? |  yes  |  |
+ | departments | [Int]? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | isImageLessProduct | Bool? |  yes  |  |
 
 ---
 
@@ -7756,8 +7756,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Product](#Product)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+ | items | [[Product](#Product)]? |  yes  |  |
 
 ---
 
@@ -7768,11 +7768,11 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | trackingUrl | String |  no  | It contains url of the uploaded file. |
+ | totalCount | Int |  no  | Total no of records for import. |
  | jobType | [String: Any] |  no  | It contains the name of entity for the job. |
  | notificationEmails | [[String: Any]]? |  yes  | User email to get notification post completion of the job. |
- | totalCount | Int |  no  | Total no of records for import. |
  | fileType | [String: Any] |  no  | It contains the type of file. |
+ | trackingUrl | String |  no  | It contains url of the uploaded file. |
 
 ---
 
@@ -7797,23 +7797,23 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cancelledRecords | [[String: Any]]? |  yes  | It contains all the canceled records with specific message. |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | failedRecords | [[String: Any]]? |  yes  | It contains all the failed records with specific errors. |
+ | createdOn | String |  no  |  |
+ | isActive | Bool? |  yes  | Field to track whether the job is active or not. |
  | stats | [BulkJobsStats](#BulkJobsStats) |  no  | It contains the stats of job. |
- | trackingUrl | String |  no  | It contains url of the uploaded file. |
  | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | modifiedOn | String |  no  |  |
  | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
  | jobType | [String: Any] |  no  | It contains the name of entity for the job. |
- | stage | [String: Any]? |  yes  | Field to track the current stage of job. |
- | completedOn | String? |  yes  | Date of completion of the job. |
- | cancelledRecords | [[String: Any]]? |  yes  | It contains all the canceled records with specific message. |
- | isActive | Bool? |  yes  | Field to track whether the job is active or not. |
- | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
  | notificationEmails | [[String: Any]]? |  yes  | User email to get notification post completion of the job. |
- | createdOn | String |  no  |  |
+ | stage | [String: Any]? |  yes  | Field to track the current stage of job. |
  | fileType | [String: Any] |  no  | It contains the type of file. |
- | verifiedOn | String? |  yes  |  |
- | modifiedOn | String |  no  |  |
- | failedRecords | [[String: Any]]? |  yes  | It contains all the failed records with specific errors. |
+ | completedOn | String? |  yes  | Date of completion of the job. |
+ | trackingUrl | String |  no  | It contains url of the uploaded file. |
  | id | [String: Any]? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
 
 ---
 
@@ -7824,8 +7824,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pageNo | Int? |  yes  |  |
  | pageSize | Int? |  yes  |  |
+ | pageNo | Int? |  yes  |  |
 
 ---
 
@@ -7836,8 +7836,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BulkImportJobModel](#BulkImportJobModel)]? |  yes  |  |
  | page | [PageRequest](#PageRequest)? |  yes  |  |
+ | items | [[BulkImportJobModel](#BulkImportJobModel)]? |  yes  |  |
 
 ---
 
@@ -7848,10 +7848,10 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | notificationEmails | [[String: Any]]? |  yes  |  |
- | filters | [String: Any]? |  yes  |  |
- | completedOn | String? |  yes  |  |
  | fileType | [String: Any] |  no  |  |
+ | completedOn | String? |  yes  |  |
+ | filters | [String: Any]? |  yes  |  |
+ | notificationEmails | [[String: Any]]? |  yes  |  |
 
 ---
 
@@ -7862,20 +7862,20 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | createdOn | String |  no  |  |
+ | isActive | Bool? |  yes  | Field to track whether the job is active or not. |
  | modifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
+ | modifiedOn | String |  no  |  |
  | verifiedBy | [UserDetail](#UserDetail)? |  yes  |  |
  | jobType | [String: Any] |  no  | It contains the name of entity for the job. |
- | stage | [String: Any]? |  yes  | Field to track the current stage of job. |
- | completedOn | String? |  yes  | Date of completion of the job. |
- | isActive | Bool? |  yes  | Field to track whether the job is active or not. |
- | createdBy | [UserDetail](#UserDetail)? |  yes  |  |
  | notificationEmails | [[String: Any]]? |  yes  | User email to get notification post completion of the job. |
- | createdOn | String |  no  |  |
- | filters | [String: Any]? |  yes  | It contains the filters to apply while exporting the data. |
+ | stage | [String: Any]? |  yes  | Field to track the current stage of job. |
  | fileType | [String: Any] |  no  | It contains the type of file. |
- | verifiedOn | String? |  yes  |  |
- | modifiedOn | String |  no  |  |
+ | completedOn | String? |  yes  | Date of completion of the job. |
+ | filters | [String: Any]? |  yes  | It contains the filters to apply while exporting the data. |
  | id | [String: Any]? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
 
 ---
 
@@ -7886,8 +7886,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BulkExportJobModel](#BulkExportJobModel)]? |  yes  |  |
  | page | [PageRequest](#PageRequest)? |  yes  |  |
+ | items | [[BulkExportJobModel](#BulkExportJobModel)]? |  yes  |  |
 
 ---
 
@@ -7909,10 +7909,10 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | effectiveDate | String |  no  |  |
  | cess | Double? |  yes  |  |
  | threshold | Double |  no  |  |
  | rate | Double |  no  |  |
- | effectiveDate | String |  no  |  |
 
 ---
 
@@ -7923,11 +7923,11 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | taxes | [[TaxSlab](#TaxSlab)] |  no  |  |
- | hsnCode | String |  no  |  |
  | type | String |  no  |  |
- | countryCode | String |  no  |  |
+ | hsnCode | String |  no  |  |
  | description | String |  no  |  |
+ | countryCode | String |  no  |  |
+ | taxes | [[TaxSlab](#TaxSlab)] |  no  |  |
 
 ---
 
@@ -7939,13 +7939,28 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | reportingHsn | String |  no  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | taxes | [[TaxSlab](#TaxSlab)] |  no  |  |
- | hsnCode | String |  no  |  |
  | createdBy | [String: Any]? |  yes  |  |
  | type | String |  no  |  |
- | countryCode | String |  no  |  |
+ | hsnCode | String |  no  |  |
  | description | String |  no  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | countryCode | String |  no  |  |
+ | taxes | [[TaxSlab](#TaxSlab)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PageResponse](#PageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemTotal | Int? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
+ | current | String? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | size | Int? |  yes  |  |
 
 ---
 
@@ -7957,31 +7972,16 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | reportingHsn | String |  no  |  |
- | hsnCodeId | String? |  yes  |  |
- | modifiedBy | [String: Any]? |  yes  |  |
- | taxes | [[TaxSlab](#TaxSlab)] |  no  |  |
- | hsnCode | String |  no  |  |
  | createdBy | [String: Any]? |  yes  |  |
  | type | String |  no  |  |
  | createdOn | String? |  yes  |  |
- | countryCode | String |  no  |  |
- | modifiedOn | String? |  yes  |  |
+ | hsnCode | String |  no  |  |
  | description | String |  no  |  |
-
----
-
-
- 
- 
- #### [PageResponse](#PageResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | hasNext | Bool? |  yes  |  |
- | size | Int? |  yes  |  |
- | current | String? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | countryCode | String |  no  |  |
+ | hsnCodeId | String? |  yes  |  |
+ | taxes | [[TaxSlab](#TaxSlab)] |  no  |  |
 
 ---
 
@@ -7992,8 +7992,8 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[HSNDataInsertV2](#HSNDataInsertV2)]? |  yes  |  |
  | page | [PageResponse](#PageResponse)? |  yes  |  |
+ | items | [[HSNDataInsertV2](#HSNDataInsertV2)]? |  yes  |  |
 
 ---
 
