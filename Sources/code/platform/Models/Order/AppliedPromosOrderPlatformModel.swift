@@ -13,15 +13,15 @@ public extension PlatformClient.Order {
 
         public var promotionName: String?
 
+        public var amount: Double?
+
         public var promoId: String?
 
         public var promotionType: String?
 
-        public var amount: Double?
+        public var buyRules: [BuyRules]?
 
         public var discountRules: [DiscountRules]?
-
-        public var buyRules: [BuyRules]?
 
         public var mrpPromotion: Bool?
 
@@ -30,15 +30,15 @@ public extension PlatformClient.Order {
 
             case promotionName = "promotion_name"
 
+            case amount
+
             case promoId = "promo_id"
 
             case promotionType = "promotion_type"
 
-            case amount
+            case buyRules = "buy_rules"
 
             case discountRules = "discount_rules"
-
-            case buyRules = "buy_rules"
 
             case mrpPromotion = "mrp_promotion"
         }
@@ -48,15 +48,15 @@ public extension PlatformClient.Order {
 
             self.promotionName = promotionName
 
+            self.amount = amount
+
             self.promoId = promoId
 
             self.promotionType = promotionType
 
-            self.amount = amount
+            self.buyRules = buyRules
 
             self.discountRules = discountRules
-
-            self.buyRules = buyRules
 
             self.mrpPromotion = mrpPromotion
         }
@@ -81,6 +81,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                amount = try container.decode(Double.self, forKey: .amount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 promoId = try container.decode(String.self, forKey: .promoId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -97,7 +105,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
+                buyRules = try container.decode([BuyRules].self, forKey: .buyRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,14 +114,6 @@ public extension PlatformClient.Order {
 
             do {
                 discountRules = try container.decode([DiscountRules].self, forKey: .discountRules)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                buyRules = try container.decode([BuyRules].self, forKey: .buyRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,15 +136,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(promotionName, forKey: .promotionName)
 
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
             try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
 
             try? container.encodeIfPresent(discountRules, forKey: .discountRules)
-
-            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
         }
@@ -162,15 +162,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var promotionName: String?
 
+        public var amount: Double?
+
         public var promoId: String?
 
         public var promotionType: String?
 
-        public var amount: Double?
+        public var buyRules: [BuyRules]?
 
         public var discountRules: [DiscountRules]?
-
-        public var buyRules: [BuyRules]?
 
         public var mrpPromotion: Bool?
 
@@ -179,15 +179,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case promotionName = "promotion_name"
 
+            case amount
+
             case promoId = "promo_id"
 
             case promotionType = "promotion_type"
 
-            case amount
+            case buyRules = "buy_rules"
 
             case discountRules = "discount_rules"
-
-            case buyRules = "buy_rules"
 
             case mrpPromotion = "mrp_promotion"
         }
@@ -197,15 +197,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.promotionName = promotionName
 
+            self.amount = amount
+
             self.promoId = promoId
 
             self.promotionType = promotionType
 
-            self.amount = amount
+            self.buyRules = buyRules
 
             self.discountRules = discountRules
-
-            self.buyRules = buyRules
 
             self.mrpPromotion = mrpPromotion
         }
@@ -230,6 +230,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                amount = try container.decode(Double.self, forKey: .amount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 promoId = try container.decode(String.self, forKey: .promoId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -246,7 +254,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
+                buyRules = try container.decode([BuyRules].self, forKey: .buyRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -255,14 +263,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 discountRules = try container.decode([DiscountRules].self, forKey: .discountRules)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                buyRules = try container.decode([BuyRules].self, forKey: .buyRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -285,15 +285,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(promotionName, forKey: .promotionName)
 
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
             try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
 
             try? container.encodeIfPresent(discountRules, forKey: .discountRules)
-
-            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
         }

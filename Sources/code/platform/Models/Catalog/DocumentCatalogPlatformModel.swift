@@ -9,36 +9,36 @@ public extension PlatformClient.Catalog {
      */
 
     class Document: Codable {
-        public var url: String?
+        public var verified: Bool?
 
         public var type: String
 
         public var legalName: String?
 
-        public var verified: Bool?
+        public var url: String?
 
         public var value: String
 
         public enum CodingKeys: String, CodingKey {
-            case url
+            case verified
 
             case type
 
             case legalName = "legal_name"
 
-            case verified
+            case url
 
             case value
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
-            self.url = url
+            self.verified = verified
 
             self.type = type
 
             self.legalName = legalName
 
-            self.verified = verified
+            self.url = url
 
             self.value = value
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,13 +78,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }
@@ -98,36 +98,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Document: Codable {
-        public var url: String?
+        public var verified: Bool?
 
         public var type: String
 
         public var legalName: String?
 
-        public var verified: Bool?
+        public var url: String?
 
         public var value: String
 
         public enum CodingKeys: String, CodingKey {
-            case url
+            case verified
 
             case type
 
             case legalName = "legal_name"
 
-            case verified
+            case url
 
             case value
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
-            self.url = url
+            self.verified = verified
 
             self.type = type
 
             self.legalName = legalName
 
-            self.verified = verified
+            self.url = url
 
             self.value = value
         }
@@ -136,7 +136,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,7 +154,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,13 +167,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }

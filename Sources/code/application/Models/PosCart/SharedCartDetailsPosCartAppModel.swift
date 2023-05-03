@@ -11,22 +11,22 @@ public extension ApplicationClient.PosCart {
 
         public var createdOn: String?
 
-        public var user: [String: Any]?
+        public var source: [String: Any]?
 
         public var token: String?
 
-        public var source: [String: Any]?
+        public var user: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
             case createdOn = "created_on"
 
-            case user
+            case source
 
             case token
 
-            case source
+            case user
         }
 
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.PosCart {
 
             self.createdOn = createdOn
 
-            self.user = user
+            self.source = source
 
             self.token = token
 
-            self.source = source
+            self.user = user
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                user = try container.decode([String: Any].self, forKey: .user)
+                source = try container.decode([String: Any].self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                source = try container.decode([String: Any].self, forKey: .source)
+                user = try container.decode([String: Any].self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(token, forKey: .token)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(user, forKey: .user)
         }
     }
 }
