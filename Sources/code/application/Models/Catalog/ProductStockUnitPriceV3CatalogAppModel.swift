@@ -7,30 +7,30 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ProductStockUnitPriceV3: Codable {
-        public var currencyCode: String?
+        public var price: Double?
 
         public var currencySymbol: String?
 
-        public var price: Double?
+        public var currencyCode: String?
 
         public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
-            case currencyCode = "currency_code"
+            case price
 
             case currencySymbol = "currency_symbol"
 
-            case price
+            case currencyCode = "currency_code"
 
             case unit
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, price: Double? = nil, unit: String? = nil) {
-            self.currencyCode = currencyCode
+            self.price = price
 
             self.currencySymbol = currencySymbol
 
-            self.price = price
+            self.currencyCode = currencyCode
 
             self.unit = unit
         }
@@ -39,7 +39,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                price = try container.decode(Double.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                price = try container.decode(Double.self, forKey: .price)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,11 +74,11 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }

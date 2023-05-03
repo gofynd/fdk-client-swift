@@ -11,11 +11,11 @@ public extension PlatformClient.Catalog {
     class AttributeMaster: Codable {
         public var mandatory: Bool?
 
-        public var format: String?
+        public var range: AttributeSchemaRange?
 
         public var type: String
 
-        public var range: AttributeSchemaRange?
+        public var format: String?
 
         public var multi: Bool?
 
@@ -24,11 +24,11 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case mandatory
 
-            case format
+            case range
 
             case type
 
-            case range
+            case format
 
             case multi
 
@@ -38,11 +38,11 @@ public extension PlatformClient.Catalog {
         public init(allowedValues: [String]? = nil, format: String? = nil, mandatory: Bool? = nil, multi: Bool? = nil, range: AttributeSchemaRange? = nil, type: String) {
             self.mandatory = mandatory
 
-            self.format = format
+            self.range = range
 
             self.type = type
 
-            self.range = range
+            self.format = format
 
             self.multi = multi
 
@@ -61,7 +61,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                format = try container.decode(String.self, forKey: .format)
+                range = try container.decode(AttributeSchemaRange.self, forKey: .range)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             type = try container.decode(String.self, forKey: .type)
 
             do {
-                range = try container.decode(AttributeSchemaRange.self, forKey: .range)
+                format = try container.decode(String.self, forKey: .format)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,11 +100,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(mandatory, forKey: .mandatory)
 
-            try? container.encodeIfPresent(format, forKey: .format)
+            try? container.encodeIfPresent(range, forKey: .range)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(range, forKey: .range)
+            try? container.encodeIfPresent(format, forKey: .format)
 
             try? container.encodeIfPresent(multi, forKey: .multi)
 
@@ -122,11 +122,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AttributeMaster: Codable {
         public var mandatory: Bool?
 
-        public var format: String?
+        public var range: AttributeSchemaRange?
 
         public var type: String
 
-        public var range: AttributeSchemaRange?
+        public var format: String?
 
         public var multi: Bool?
 
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case mandatory
 
-            case format
+            case range
 
             case type
 
-            case range
+            case format
 
             case multi
 
@@ -149,11 +149,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(allowedValues: [String]? = nil, format: String? = nil, mandatory: Bool? = nil, multi: Bool? = nil, range: AttributeSchemaRange? = nil, type: String) {
             self.mandatory = mandatory
 
-            self.format = format
+            self.range = range
 
             self.type = type
 
-            self.range = range
+            self.format = format
 
             self.multi = multi
 
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                format = try container.decode(String.self, forKey: .format)
+                range = try container.decode(AttributeSchemaRange.self, forKey: .range)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -182,7 +182,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             type = try container.decode(String.self, forKey: .type)
 
             do {
-                range = try container.decode(AttributeSchemaRange.self, forKey: .range)
+                format = try container.decode(String.self, forKey: .format)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,11 +211,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(mandatory, forKey: .mandatory)
 
-            try? container.encodeIfPresent(format, forKey: .format)
+            try? container.encodeIfPresent(range, forKey: .range)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(range, forKey: .range)
+            try? container.encodeIfPresent(format, forKey: .format)
 
             try? container.encodeIfPresent(multi, forKey: .multi)
 

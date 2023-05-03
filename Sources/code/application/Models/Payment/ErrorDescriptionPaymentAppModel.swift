@@ -7,34 +7,34 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class ErrorDescription: Codable {
-        public var expired: Bool?
-
-        public var invalidId: Bool?
+        public var paymentTransactionId: String?
 
         public var cancelled: Bool?
 
         public var merchantOrderId: String?
 
-        public var amount: Double?
+        public var invalidId: Bool?
 
-        public var paymentTransactionId: String?
+        public var expired: Bool?
+
+        public var amount: Double?
 
         public var msg: String?
 
         public var merchantName: String?
 
         public enum CodingKeys: String, CodingKey {
-            case expired
-
-            case invalidId = "invalid_id"
+            case paymentTransactionId = "payment_transaction_id"
 
             case cancelled
 
             case merchantOrderId = "merchant_order_id"
 
-            case amount
+            case invalidId = "invalid_id"
 
-            case paymentTransactionId = "payment_transaction_id"
+            case expired
+
+            case amount
 
             case msg
 
@@ -42,17 +42,17 @@ public extension ApplicationClient.Payment {
         }
 
         public init(amount: Double? = nil, cancelled: Bool? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
-            self.expired = expired
-
-            self.invalidId = invalidId
+            self.paymentTransactionId = paymentTransactionId
 
             self.cancelled = cancelled
 
             self.merchantOrderId = merchantOrderId
 
-            self.amount = amount
+            self.invalidId = invalidId
 
-            self.paymentTransactionId = paymentTransactionId
+            self.expired = expired
+
+            self.amount = amount
 
             self.msg = msg
 
@@ -63,15 +63,7 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                expired = try container.decode(Bool.self, forKey: .expired)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                invalidId = try container.decode(Bool.self, forKey: .invalidId)
+                paymentTransactionId = try container.decode(String.self, forKey: .paymentTransactionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,7 +87,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
+                invalidId = try container.decode(Bool.self, forKey: .invalidId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +95,15 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                paymentTransactionId = try container.decode(String.self, forKey: .paymentTransactionId)
+                expired = try container.decode(Bool.self, forKey: .expired)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,17 +130,17 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(expired, forKey: .expired)
-
-            try? container.encode(invalidId, forKey: .invalidId)
+            try? container.encode(paymentTransactionId, forKey: .paymentTransactionId)
 
             try? container.encode(cancelled, forKey: .cancelled)
 
             try? container.encode(merchantOrderId, forKey: .merchantOrderId)
 
-            try? container.encode(amount, forKey: .amount)
+            try? container.encode(invalidId, forKey: .invalidId)
 
-            try? container.encode(paymentTransactionId, forKey: .paymentTransactionId)
+            try? container.encode(expired, forKey: .expired)
+
+            try? container.encode(amount, forKey: .amount)
 
             try? container.encode(msg, forKey: .msg)
 

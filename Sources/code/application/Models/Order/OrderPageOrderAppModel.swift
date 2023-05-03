@@ -7,6 +7,8 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class OrderPage: Codable {
+        public var type: String?
+
         public var itemTotal: Int?
 
         public var current: Int?
@@ -15,9 +17,9 @@ public extension ApplicationClient.Order {
 
         public var size: Int?
 
-        public var type: String?
-
         public enum CodingKeys: String, CodingKey {
+            case type
+
             case itemTotal = "item_total"
 
             case current
@@ -25,11 +27,11 @@ public extension ApplicationClient.Order {
             case hasNext = "has_next"
 
             case size
-
-            case type
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
+            self.type = type
+
             self.itemTotal = itemTotal
 
             self.current = current
@@ -37,12 +39,18 @@ public extension ApplicationClient.Order {
             self.hasNext = hasNext
 
             self.size = size
-
-            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 itemTotal = try container.decode(Int.self, forKey: .itemTotal)
@@ -75,18 +83,12 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
@@ -95,8 +97,6 @@ public extension ApplicationClient.Order {
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

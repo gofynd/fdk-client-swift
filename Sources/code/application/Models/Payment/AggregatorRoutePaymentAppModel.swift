@@ -9,30 +9,30 @@ public extension ApplicationClient.Payment {
     class AggregatorRoute: Codable {
         public var paymentFlow: String?
 
-        public var paymentFlowData: String?
+        public var apiLink: String?
 
         public var data: [String: Any]?
 
-        public var apiLink: String?
+        public var paymentFlowData: String?
 
         public enum CodingKeys: String, CodingKey {
             case paymentFlow = "payment_flow"
 
-            case paymentFlowData = "payment_flow_data"
+            case apiLink = "api_link"
 
             case data
 
-            case apiLink = "api_link"
+            case paymentFlowData = "payment_flow_data"
         }
 
         public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: String? = nil) {
             self.paymentFlow = paymentFlow
 
-            self.paymentFlowData = paymentFlowData
+            self.apiLink = apiLink
 
             self.data = data
 
-            self.apiLink = apiLink
+            self.paymentFlowData = paymentFlowData
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                paymentFlowData = try container.decode(String.self, forKey: .paymentFlowData)
+                apiLink = try container.decode(String.self, forKey: .apiLink)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                apiLink = try container.decode(String.self, forKey: .apiLink)
+                paymentFlowData = try container.decode(String.self, forKey: .paymentFlowData)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(paymentFlow, forKey: .paymentFlow)
 
-            try? container.encode(paymentFlowData, forKey: .paymentFlowData)
+            try? container.encode(apiLink, forKey: .apiLink)
 
             try? container.encode(data, forKey: .data)
 
-            try? container.encode(apiLink, forKey: .apiLink)
+            try? container.encode(paymentFlowData, forKey: .paymentFlowData)
         }
     }
 }
