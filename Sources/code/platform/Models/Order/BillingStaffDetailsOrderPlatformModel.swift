@@ -9,6 +9,8 @@ public extension PlatformClient.Order {
      */
 
     class BillingStaffDetails: Codable {
+        public var firstName: String?
+
         public var employeeCode: String?
 
         public var staffId: Int?
@@ -17,9 +19,9 @@ public extension PlatformClient.Order {
 
         public var user: String?
 
-        public var firstName: String?
-
         public enum CodingKeys: String, CodingKey {
+            case firstName = "first_name"
+
             case employeeCode = "employee_code"
 
             case staffId = "staff_id"
@@ -27,11 +29,11 @@ public extension PlatformClient.Order {
             case lastName = "last_name"
 
             case user
-
-            case firstName = "first_name"
         }
 
         public init(employeeCode: String? = nil, firstName: String? = nil, lastName: String? = nil, staffId: Int? = nil, user: String? = nil) {
+            self.firstName = firstName
+
             self.employeeCode = employeeCode
 
             self.staffId = staffId
@@ -39,12 +41,18 @@ public extension PlatformClient.Order {
             self.lastName = lastName
 
             self.user = user
-
-            self.firstName = firstName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                firstName = try container.decode(String.self, forKey: .firstName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 employeeCode = try container.decode(String.self, forKey: .employeeCode)
@@ -77,18 +85,12 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                firstName = try container.decode(String.self, forKey: .firstName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
 
@@ -97,8 +99,6 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(user, forKey: .user)
-
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
         }
     }
 }
@@ -110,6 +110,8 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class BillingStaffDetails: Codable {
+        public var firstName: String?
+
         public var employeeCode: String?
 
         public var staffId: Int?
@@ -118,9 +120,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var user: String?
 
-        public var firstName: String?
-
         public enum CodingKeys: String, CodingKey {
+            case firstName = "first_name"
+
             case employeeCode = "employee_code"
 
             case staffId = "staff_id"
@@ -128,11 +130,11 @@ public extension PlatformClient.ApplicationClient.Order {
             case lastName = "last_name"
 
             case user
-
-            case firstName = "first_name"
         }
 
         public init(employeeCode: String? = nil, firstName: String? = nil, lastName: String? = nil, staffId: Int? = nil, user: String? = nil) {
+            self.firstName = firstName
+
             self.employeeCode = employeeCode
 
             self.staffId = staffId
@@ -140,12 +142,18 @@ public extension PlatformClient.ApplicationClient.Order {
             self.lastName = lastName
 
             self.user = user
-
-            self.firstName = firstName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                firstName = try container.decode(String.self, forKey: .firstName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 employeeCode = try container.decode(String.self, forKey: .employeeCode)
@@ -178,18 +186,12 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                firstName = try container.decode(String.self, forKey: .firstName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
 
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
 
@@ -198,8 +200,6 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(user, forKey: .user)
-
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
         }
     }
 }

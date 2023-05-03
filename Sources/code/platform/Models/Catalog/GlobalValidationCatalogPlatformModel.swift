@@ -13,11 +13,11 @@ public extension PlatformClient.Catalog {
 
         public var properties: Properties?
 
-        public var type: String?
+        public var description: String?
 
         public var title: String?
 
-        public var description: String?
+        public var type: String?
 
         public var definitions: [String: Any]?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Catalog {
 
             case properties
 
-            case type
+            case description
 
             case title
 
-            case description
+            case type
 
             case definitions
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Catalog {
 
             self.properties = properties
 
-            self.type = type
+            self.description = description
 
             self.title = title
 
-            self.description = description
+            self.type = type
 
             self.definitions = definitions
         }
@@ -69,7 +69,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,11 +108,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(properties, forKey: .properties)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(definitions, forKey: .definitions)
         }
@@ -130,11 +130,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var properties: Properties?
 
-        public var type: String?
+        public var description: String?
 
         public var title: String?
 
-        public var description: String?
+        public var type: String?
 
         public var definitions: [String: Any]?
 
@@ -143,11 +143,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case properties
 
-            case type
+            case description
 
             case title
 
-            case description
+            case type
 
             case definitions
         }
@@ -157,11 +157,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.properties = properties
 
-            self.type = type
+            self.description = description
 
             self.title = title
 
-            self.description = description
+            self.type = type
 
             self.definitions = definitions
         }
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,11 +225,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(properties, forKey: .properties)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(definitions, forKey: .definitions)
         }

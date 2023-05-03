@@ -13,26 +13,26 @@ public extension PlatformClient.Catalog {
 
         public var transfer: Double
 
+        public var effective: Double
+
         public var marked: Double
 
         public var tpNotes: [String: Any]?
 
         public var currency: String
 
-        public var effective: Double
-
         public enum CodingKeys: String, CodingKey {
             case updatedAt = "updated_at"
 
             case transfer
+
+            case effective
 
             case marked
 
             case tpNotes = "tp_notes"
 
             case currency
-
-            case effective
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Catalog {
 
             self.transfer = transfer
 
+            self.effective = effective
+
             self.marked = marked
 
             self.tpNotes = tpNotes
 
             self.currency = currency
-
-            self.effective = effective
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,6 +62,8 @@ public extension PlatformClient.Catalog {
 
             transfer = try container.decode(Double.self, forKey: .transfer)
 
+            effective = try container.decode(Double.self, forKey: .effective)
+
             marked = try container.decode(Double.self, forKey: .marked)
 
             do {
@@ -73,8 +75,6 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             currency = try container.decode(String.self, forKey: .currency)
-
-            effective = try container.decode(Double.self, forKey: .effective)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -84,13 +84,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
+            try? container.encodeIfPresent(effective, forKey: .effective)
+
             try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(effective, forKey: .effective)
         }
     }
 }
@@ -106,26 +106,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var transfer: Double
 
+        public var effective: Double
+
         public var marked: Double
 
         public var tpNotes: [String: Any]?
 
         public var currency: String
 
-        public var effective: Double
-
         public enum CodingKeys: String, CodingKey {
             case updatedAt = "updated_at"
 
             case transfer
+
+            case effective
 
             case marked
 
             case tpNotes = "tp_notes"
 
             case currency
-
-            case effective
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
@@ -133,13 +133,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.transfer = transfer
 
+            self.effective = effective
+
             self.marked = marked
 
             self.tpNotes = tpNotes
 
             self.currency = currency
-
-            self.effective = effective
         }
 
         required public init(from decoder: Decoder) throws {
@@ -155,6 +155,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             transfer = try container.decode(Double.self, forKey: .transfer)
 
+            effective = try container.decode(Double.self, forKey: .effective)
+
             marked = try container.decode(Double.self, forKey: .marked)
 
             do {
@@ -166,8 +168,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             currency = try container.decode(String.self, forKey: .currency)
-
-            effective = try container.decode(Double.self, forKey: .effective)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -177,13 +177,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
+            try? container.encodeIfPresent(effective, forKey: .effective)
+
             try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(effective, forKey: .effective)
         }
     }
 }
