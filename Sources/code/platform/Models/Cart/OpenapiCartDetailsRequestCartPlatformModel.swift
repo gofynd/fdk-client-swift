@@ -9,20 +9,20 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class OpenapiCartDetailsRequest: Codable {
-        public var cartItems: [CartItem]
+        public var cartItems: [CartItemSchema]
 
         public enum CodingKeys: String, CodingKey {
             case cartItems = "cart_items"
         }
 
-        public init(cartItems: [CartItem]) {
+        public init(cartItems: [CartItemSchema]) {
             self.cartItems = cartItems
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            cartItems = try container.decode([CartItem].self, forKey: .cartItems)
+            cartItems = try container.decode([CartItemSchema].self, forKey: .cartItems)
         }
 
         public func encode(to encoder: Encoder) throws {

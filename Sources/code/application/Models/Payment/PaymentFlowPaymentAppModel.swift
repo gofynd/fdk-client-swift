@@ -7,101 +7,93 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class PaymentFlow: Codable {
-        public var simpl: AggregatorRoute?
-
-        public var upiRazorpay: AggregatorRoute?
+        public var razorpay: AggregatorRoute?
 
         public var ccavenue: AggregatorRoute?
 
-        public var payubiz: AggregatorRoute?
+        public var juspay: AggregatorRoute?
 
-        public var fynd: AggregatorRoute?
-
-        public var razorpay: AggregatorRoute?
+        public var epaylater: AggregatorRoute?
 
         public var mswipe: AggregatorRoute?
 
-        public var rupifi: AggregatorRoute?
-
-        public var epaylater: AggregatorRoute?
+        public var upiRazorpay: AggregatorRoute?
 
         public var stripe: AggregatorRoute?
 
         public var bqrRazorpay: AggregatorRoute?
 
+        public var fynd: AggregatorRoute?
+
+        public var simpl: AggregatorRoute?
+
+        public var payubiz: AggregatorRoute?
+
         public var jiopay: AggregatorRoute?
 
-        public var juspay: AggregatorRoute?
+        public var rupifi: AggregatorRoute?
 
         public enum CodingKeys: String, CodingKey {
-            case simpl
-
-            case upiRazorpay = "upi_razorpay"
+            case razorpay
 
             case ccavenue
 
-            case payubiz
+            case juspay
 
-            case fynd
-
-            case razorpay
+            case epaylater
 
             case mswipe
 
-            case rupifi
-
-            case epaylater
+            case upiRazorpay = "upi_razorpay"
 
             case stripe
 
             case bqrRazorpay = "bqr_razorpay"
 
+            case fynd
+
+            case simpl
+
+            case payubiz
+
             case jiopay
 
-            case juspay
+            case rupifi
         }
 
         public init(bqrRazorpay: AggregatorRoute? = nil, ccavenue: AggregatorRoute? = nil, epaylater: AggregatorRoute? = nil, fynd: AggregatorRoute? = nil, jiopay: AggregatorRoute? = nil, juspay: AggregatorRoute? = nil, mswipe: AggregatorRoute? = nil, payubiz: AggregatorRoute? = nil, razorpay: AggregatorRoute? = nil, rupifi: AggregatorRoute? = nil, simpl: AggregatorRoute? = nil, stripe: AggregatorRoute? = nil, upiRazorpay: AggregatorRoute? = nil) {
-            self.simpl = simpl
-
-            self.upiRazorpay = upiRazorpay
+            self.razorpay = razorpay
 
             self.ccavenue = ccavenue
 
-            self.payubiz = payubiz
+            self.juspay = juspay
 
-            self.fynd = fynd
-
-            self.razorpay = razorpay
+            self.epaylater = epaylater
 
             self.mswipe = mswipe
 
-            self.rupifi = rupifi
-
-            self.epaylater = epaylater
+            self.upiRazorpay = upiRazorpay
 
             self.stripe = stripe
 
             self.bqrRazorpay = bqrRazorpay
 
+            self.fynd = fynd
+
+            self.simpl = simpl
+
+            self.payubiz = payubiz
+
             self.jiopay = jiopay
 
-            self.juspay = juspay
+            self.rupifi = rupifi
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                simpl = try container.decode(AggregatorRoute.self, forKey: .simpl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                upiRazorpay = try container.decode(AggregatorRoute.self, forKey: .upiRazorpay)
+                razorpay = try container.decode(AggregatorRoute.self, forKey: .razorpay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +109,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                payubiz = try container.decode(AggregatorRoute.self, forKey: .payubiz)
+                juspay = try container.decode(AggregatorRoute.self, forKey: .juspay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,15 +117,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                fynd = try container.decode(AggregatorRoute.self, forKey: .fynd)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                razorpay = try container.decode(AggregatorRoute.self, forKey: .razorpay)
+                epaylater = try container.decode(AggregatorRoute.self, forKey: .epaylater)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,15 +133,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                rupifi = try container.decode(AggregatorRoute.self, forKey: .rupifi)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                epaylater = try container.decode(AggregatorRoute.self, forKey: .epaylater)
+                upiRazorpay = try container.decode(AggregatorRoute.self, forKey: .upiRazorpay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -181,6 +157,30 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
+                fynd = try container.decode(AggregatorRoute.self, forKey: .fynd)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                simpl = try container.decode(AggregatorRoute.self, forKey: .simpl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                payubiz = try container.decode(AggregatorRoute.self, forKey: .payubiz)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 jiopay = try container.decode(AggregatorRoute.self, forKey: .jiopay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -189,7 +189,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                juspay = try container.decode(AggregatorRoute.self, forKey: .juspay)
+                rupifi = try container.decode(AggregatorRoute.self, forKey: .rupifi)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -200,31 +200,31 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(simpl, forKey: .simpl)
-
-            try? container.encode(upiRazorpay, forKey: .upiRazorpay)
+            try? container.encode(razorpay, forKey: .razorpay)
 
             try? container.encode(ccavenue, forKey: .ccavenue)
 
-            try? container.encode(payubiz, forKey: .payubiz)
+            try? container.encode(juspay, forKey: .juspay)
 
-            try? container.encode(fynd, forKey: .fynd)
-
-            try? container.encode(razorpay, forKey: .razorpay)
+            try? container.encode(epaylater, forKey: .epaylater)
 
             try? container.encode(mswipe, forKey: .mswipe)
 
-            try? container.encode(rupifi, forKey: .rupifi)
-
-            try? container.encode(epaylater, forKey: .epaylater)
+            try? container.encode(upiRazorpay, forKey: .upiRazorpay)
 
             try? container.encode(stripe, forKey: .stripe)
 
             try? container.encode(bqrRazorpay, forKey: .bqrRazorpay)
 
+            try? container.encode(fynd, forKey: .fynd)
+
+            try? container.encode(simpl, forKey: .simpl)
+
+            try? container.encode(payubiz, forKey: .payubiz)
+
             try? container.encode(jiopay, forKey: .jiopay)
 
-            try? container.encode(juspay, forKey: .juspay)
+            try? container.encode(rupifi, forKey: .rupifi)
         }
     }
 }

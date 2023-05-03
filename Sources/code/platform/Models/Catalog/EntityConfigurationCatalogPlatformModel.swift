@@ -13,11 +13,11 @@ public extension PlatformClient.Catalog {
 
         public var product: GetCatalogConfigurationDetailsProduct?
 
-        public var id: String?
-
         public var configType: String
 
         public var appId: String
+
+        public var id: String?
 
         public var configId: String?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Catalog {
 
             case product
 
-            case id
-
             case configType = "config_type"
 
             case appId = "app_id"
+
+            case id
 
             case configId = "config_id"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Catalog {
 
             self.product = product
 
-            self.id = id
-
             self.configType = configType
 
             self.appId = appId
+
+            self.id = id
 
             self.configId = configId
         }
@@ -68,6 +68,10 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            configType = try container.decode(String.self, forKey: .configType)
+
+            appId = try container.decode(String.self, forKey: .appId)
+
             do {
                 id = try container.decode(String.self, forKey: .id)
 
@@ -75,10 +79,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            configType = try container.decode(String.self, forKey: .configType)
-
-            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 configId = try container.decode(String.self, forKey: .configId)
@@ -96,11 +96,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(product, forKey: .product)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(configType, forKey: .configType)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(configId, forKey: .configId)
         }
@@ -118,11 +118,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var product: GetCatalogConfigurationDetailsProduct?
 
-        public var id: String?
-
         public var configType: String
 
         public var appId: String
+
+        public var id: String?
 
         public var configId: String?
 
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case product
 
-            case id
-
             case configType = "config_type"
 
             case appId = "app_id"
+
+            case id
 
             case configId = "config_id"
         }
@@ -145,11 +145,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.product = product
 
-            self.id = id
-
             self.configType = configType
 
             self.appId = appId
+
+            self.id = id
 
             self.configId = configId
         }
@@ -173,6 +173,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            configType = try container.decode(String.self, forKey: .configType)
+
+            appId = try container.decode(String.self, forKey: .appId)
+
             do {
                 id = try container.decode(String.self, forKey: .id)
 
@@ -180,10 +184,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            configType = try container.decode(String.self, forKey: .configType)
-
-            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 configId = try container.decode(String.self, forKey: .configId)
@@ -201,11 +201,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(product, forKey: .product)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(configType, forKey: .configType)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(configId, forKey: .configId)
         }

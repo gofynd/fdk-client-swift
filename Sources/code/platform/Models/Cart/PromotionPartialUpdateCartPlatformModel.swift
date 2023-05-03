@@ -11,7 +11,7 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PromotionPartialUpdate: Codable {
         public var archive: Bool?
 
-        public var schedule: PromotionSchedule?
+        public var schedule: PromotionScheduleSchema?
 
         public enum CodingKeys: String, CodingKey {
             case archive
@@ -19,7 +19,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             case schedule
         }
 
-        public init(archive: Bool? = nil, schedule: PromotionSchedule? = nil) {
+        public init(archive: Bool? = nil, schedule: PromotionScheduleSchema? = nil) {
             self.archive = archive
 
             self.schedule = schedule
@@ -37,7 +37,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                schedule = try container.decode(PromotionSchedule.self, forKey: .schedule)
+                schedule = try container.decode(PromotionScheduleSchema.self, forKey: .schedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

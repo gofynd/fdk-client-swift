@@ -8642,45 +8642,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get a Search Keywords Details
-             * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
-             **/
-            public func getSearchKeywords(
-                id: String,
-
-                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Update Search Keyword
              * Description: Update Search Keyword by its id. On successful request, returns the updated collection
              **/
@@ -8706,6 +8667,45 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(GetSearchWordsData.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get a Search Keywords Details
+             * Description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
+             **/
+            public func getSearchKeywords(
+                id: String,
+
+                onResponse: @escaping (_ response: GetSearchWordsDetailResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetSearchWordsDetailResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -8834,20 +8834,20 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get a Autocomplete Keywords Details
-             * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
+             * Summary: Create & Update Autocomplete Keyword
+             * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
              **/
-            public func getAutocompleteKeywordDetail(
+            public func updateAutocompleteKeyword(
                 id: String,
-
+                body: CreateAutocompleteKeyword,
                 onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "get",
+                    method: "put",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
                     query: nil,
-                    body: nil,
+                    body: body.dictionary,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -8873,20 +8873,20 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Create & Update Autocomplete Keyword
-             * Description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
+             * Summary: Get a Autocomplete Keywords Details
+             * Description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
              **/
-            public func updateAutocompleteKeyword(
+            public func getAutocompleteKeywordDetail(
                 id: String,
-                body: CreateAutocompleteKeyword,
+
                 onResponse: @escaping (_ response: GetAutocompleteWordsResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "put",
+                    method: "get",
                     url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
                     query: nil,
-                    body: body.dictionary,
+                    body: nil,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { responseData, error, responseCode in
@@ -13132,7 +13132,7 @@ public class PlatformClient {
              * Description: Create new coupon
              **/
             public func createCoupon(
-                body: CouponAdd,
+                body: CouponAddSchema,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
@@ -13172,7 +13172,7 @@ public class PlatformClient {
             public func getCouponById(
                 id: String,
 
-                onResponse: @escaping (_ response: CouponUpdate?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CouponUpdateSchema?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
@@ -13190,7 +13190,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(CouponUpdate.self, from: data)
+                            let response = Utility.decode(CouponUpdateSchema.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -13210,7 +13210,7 @@ public class PlatformClient {
              **/
             public func updateCoupon(
                 id: String,
-                body: CouponUpdate,
+                body: CouponUpdateSchema,
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
@@ -13407,8 +13407,8 @@ public class PlatformClient {
              * Description: Create new promotion
              **/
             public func createPromotion(
-                body: PromotionAdd,
-                onResponse: @escaping (_ response: PromotionAdd?, _ error: FDKError?) -> Void
+                body: PromotionAddSchema,
+                onResponse: @escaping (_ response: PromotionAddSchema?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
@@ -13426,7 +13426,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(PromotionAdd.self, from: data)
+                            let response = Utility.decode(PromotionAddSchema.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -13447,7 +13447,7 @@ public class PlatformClient {
             public func getPromotionById(
                 id: String,
 
-                onResponse: @escaping (_ response: PromotionUpdate?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PromotionUpdateSchema?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
@@ -13465,7 +13465,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(PromotionUpdate.self, from: data)
+                            let response = Utility.decode(PromotionUpdateSchema.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -13485,8 +13485,8 @@ public class PlatformClient {
              **/
             public func updatePromotion(
                 id: String,
-                body: PromotionUpdate,
-                onResponse: @escaping (_ response: PromotionUpdate?, _ error: FDKError?) -> Void
+                body: PromotionUpdateSchema,
+                onResponse: @escaping (_ response: PromotionUpdateSchema?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
@@ -13504,7 +13504,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(PromotionUpdate.self, from: data)
+                            let response = Utility.decode(PromotionUpdateSchema.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -13675,7 +13675,7 @@ public class PlatformClient {
              * Description: Generate Fynd order for cart details send with provided `cart_items`
              **/
             public func checkoutCart(
-                body: OpenApiPlatformCheckoutReq,
+                body: OpenApiPlatformCheckoutReqSchema,
                 onResponse: @escaping (_ response: OpenApiCheckoutResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
@@ -13721,7 +13721,7 @@ public class PlatformClient {
                 lastId: String?,
                 sortOn: String?,
 
-                onResponse: @escaping (_ response: AbandonedCartResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: AbandonedCartResponseSchema?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
 
@@ -13769,7 +13769,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(AbandonedCartResponse.self, from: data)
+                            let response = Utility.decode(AbandonedCartResponseSchema.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -13795,9 +13795,9 @@ public class PlatformClient {
                 lastId: String?,
                 sortOn: String?
 
-            ) -> Paginator<AbandonedCartResponse> {
+            ) -> Paginator<AbandonedCartResponseSchema> {
                 let pageSize = pageSize ?? 20
-                let paginator = Paginator<AbandonedCartResponse>(pageSize: pageSize, type: "number")
+                let paginator = Paginator<AbandonedCartResponseSchema>(pageSize: pageSize, type: "number")
                 paginator.onPage = {
                     self.getAbandonedCart(
                         pageNo: paginator.pageNo,
@@ -14101,7 +14101,7 @@ public class PlatformClient {
                 toDate: String?,
                 filterOn: String?,
 
-                onResponse: @escaping (_ response: MultiCartResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: MultiCartResponseSchema?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
 
@@ -14133,7 +14133,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(MultiCartResponse.self, from: data)
+                            let response = Utility.decode(MultiCartResponseSchema.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -15178,7 +15178,7 @@ public class PlatformClient {
             public func platformCheckoutCart(
                 id: String?,
                 body: PlatformCartCheckoutDetailRequest,
-                onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: CartCheckoutResponseSchema?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
 
@@ -15202,7 +15202,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(CartCheckoutResponse.self, from: data)
+                            let response = Utility.decode(CartCheckoutResponseSchema.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -15370,7 +15370,7 @@ public class PlatformClient {
                 aggregatorName: String?,
                 merchantCode: String?,
 
-                onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PaymentCouponValidateSchema?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
 
@@ -15418,7 +15418,102 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(PaymentCouponValidate.self, from: data)
+                            let response = Utility.decode(PaymentCouponValidateSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Checkout all items in the cart
+             * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+             **/
+            public func platformCheckoutCartV2(
+                id: String?,
+                body: PlatformCartCheckoutDetailV2Request,
+                onResponse: @escaping (_ response: CartCheckoutResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = id {
+                    xQuery["id"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/cart/v2.0/company/\(companyId)/application/\(applicationId)/checkout",
+                    query: xQuery,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(CartCheckoutResponseSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update cart payment
+             * Description: Use this API to update cart payment.
+             **/
+            public func selectPaymentModeV2(
+                id: String?,
+                buyNow: Bool?,
+                body: UpdateCartPaymentRequestV2,
+                onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = id {
+                    xQuery["id"] = value
+                }
+
+                if let value = buyNow {
+                    xQuery["buy_now"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/cart/v2.0/company/\(companyId)/application/\(applicationId)/payment",
+                    query: xQuery,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(CartDetailResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {

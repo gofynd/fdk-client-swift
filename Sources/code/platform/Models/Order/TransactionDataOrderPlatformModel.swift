@@ -9,68 +9,60 @@ public extension PlatformClient.Order {
      */
 
     class TransactionData: Codable {
-        public var terminalId: String?
-
         public var paymentId: String?
 
-        public var transactionId: String?
-
-        public var currency: String?
+        public var terminalId: String?
 
         public var amountPaid: String?
 
-        public var uniqueReferenceNumber: String?
-
         public var status: String?
+
+        public var currency: String?
+
+        public var transactionId: String?
 
         public var entity: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case terminalId = "terminal_id"
+        public var uniqueReferenceNumber: String?
 
+        public enum CodingKeys: String, CodingKey {
             case paymentId = "payment_id"
 
-            case transactionId = "transaction_id"
-
-            case currency
+            case terminalId = "terminal_id"
 
             case amountPaid = "amount_paid"
 
-            case uniqueReferenceNumber = "unique_reference_number"
-
             case status
 
+            case currency
+
+            case transactionId = "transaction_id"
+
             case entity
+
+            case uniqueReferenceNumber = "unique_reference_number"
         }
 
         public init(amountPaid: String? = nil, currency: String? = nil, entity: String? = nil, paymentId: String? = nil, status: String? = nil, terminalId: String? = nil, transactionId: String? = nil, uniqueReferenceNumber: String? = nil) {
-            self.terminalId = terminalId
-
             self.paymentId = paymentId
 
-            self.transactionId = transactionId
-
-            self.currency = currency
+            self.terminalId = terminalId
 
             self.amountPaid = amountPaid
 
-            self.uniqueReferenceNumber = uniqueReferenceNumber
-
             self.status = status
 
+            self.currency = currency
+
+            self.transactionId = transactionId
+
             self.entity = entity
+
+            self.uniqueReferenceNumber = uniqueReferenceNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                terminalId = try container.decode(String.self, forKey: .terminalId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 paymentId = try container.decode(String.self, forKey: .paymentId)
@@ -81,15 +73,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                transactionId = try container.decode(String.self, forKey: .transactionId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
+                terminalId = try container.decode(String.self, forKey: .terminalId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +89,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                uniqueReferenceNumber = try container.decode(String.self, forKey: .uniqueReferenceNumber)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,7 +97,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                currency = try container.decode(String.self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                transactionId = try container.decode(String.self, forKey: .transactionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,26 +119,34 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                uniqueReferenceNumber = try container.decode(String.self, forKey: .uniqueReferenceNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(terminalId, forKey: .terminalId)
-
             try? container.encodeIfPresent(paymentId, forKey: .paymentId)
 
-            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(terminalId, forKey: .terminalId)
 
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
-
             try? container.encodeIfPresent(status, forKey: .status)
 
+            try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
+
             try? container.encodeIfPresent(entity, forKey: .entity)
+
+            try? container.encodeIfPresent(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
         }
     }
 }
@@ -158,68 +158,60 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class TransactionData: Codable {
-        public var terminalId: String?
-
         public var paymentId: String?
 
-        public var transactionId: String?
-
-        public var currency: String?
+        public var terminalId: String?
 
         public var amountPaid: String?
 
-        public var uniqueReferenceNumber: String?
-
         public var status: String?
+
+        public var currency: String?
+
+        public var transactionId: String?
 
         public var entity: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case terminalId = "terminal_id"
+        public var uniqueReferenceNumber: String?
 
+        public enum CodingKeys: String, CodingKey {
             case paymentId = "payment_id"
 
-            case transactionId = "transaction_id"
-
-            case currency
+            case terminalId = "terminal_id"
 
             case amountPaid = "amount_paid"
 
-            case uniqueReferenceNumber = "unique_reference_number"
-
             case status
 
+            case currency
+
+            case transactionId = "transaction_id"
+
             case entity
+
+            case uniqueReferenceNumber = "unique_reference_number"
         }
 
         public init(amountPaid: String? = nil, currency: String? = nil, entity: String? = nil, paymentId: String? = nil, status: String? = nil, terminalId: String? = nil, transactionId: String? = nil, uniqueReferenceNumber: String? = nil) {
-            self.terminalId = terminalId
-
             self.paymentId = paymentId
 
-            self.transactionId = transactionId
-
-            self.currency = currency
+            self.terminalId = terminalId
 
             self.amountPaid = amountPaid
 
-            self.uniqueReferenceNumber = uniqueReferenceNumber
-
             self.status = status
 
+            self.currency = currency
+
+            self.transactionId = transactionId
+
             self.entity = entity
+
+            self.uniqueReferenceNumber = uniqueReferenceNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                terminalId = try container.decode(String.self, forKey: .terminalId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 paymentId = try container.decode(String.self, forKey: .paymentId)
@@ -230,15 +222,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                transactionId = try container.decode(String.self, forKey: .transactionId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
+                terminalId = try container.decode(String.self, forKey: .terminalId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -254,7 +238,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                uniqueReferenceNumber = try container.decode(String.self, forKey: .uniqueReferenceNumber)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -262,7 +246,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                currency = try container.decode(String.self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                transactionId = try container.decode(String.self, forKey: .transactionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -276,26 +268,34 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                uniqueReferenceNumber = try container.decode(String.self, forKey: .uniqueReferenceNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(terminalId, forKey: .terminalId)
-
             try? container.encodeIfPresent(paymentId, forKey: .paymentId)
 
-            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(terminalId, forKey: .terminalId)
 
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
-
             try? container.encodeIfPresent(status, forKey: .status)
 
+            try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
+
             try? container.encodeIfPresent(entity, forKey: .entity)
+
+            try? container.encodeIfPresent(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
         }
     }
 }

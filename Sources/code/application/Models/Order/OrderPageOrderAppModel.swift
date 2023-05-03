@@ -11,9 +11,9 @@ public extension ApplicationClient.Order {
 
         public var hasNext: Bool?
 
-        public var current: Int?
-
         public var type: String?
+
+        public var current: Int?
 
         public var size: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Order {
 
             case hasNext = "has_next"
 
-            case current
-
             case type
+
+            case current
 
             case size
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Order {
 
             self.hasNext = hasNext
 
-            self.current = current
-
             self.type = type
+
+            self.current = current
 
             self.size = size
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(size, forKey: .size)
         }
