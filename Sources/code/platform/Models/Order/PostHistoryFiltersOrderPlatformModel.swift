@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class PostHistoryFilters: Codable {
         public var identifier: String?
 
-        public var lineNumber: String?
-
         public var shipmentId: String
+
+        public var lineNumber: String?
 
         public enum CodingKeys: String, CodingKey {
             case identifier
 
-            case lineNumber = "line_number"
-
             case shipmentId = "shipment_id"
+
+            case lineNumber = "line_number"
         }
 
         public init(identifier: String? = nil, lineNumber: String? = nil, shipmentId: String) {
             self.identifier = identifier
 
-            self.lineNumber = lineNumber
-
             self.shipmentId = shipmentId
+
+            self.lineNumber = lineNumber
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
             do {
                 lineNumber = try container.decode(String.self, forKey: .lineNumber)
 
@@ -49,8 +51,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class PostHistoryFilters: Codable {
         public var identifier: String?
 
-        public var lineNumber: String?
-
         public var shipmentId: String
+
+        public var lineNumber: String?
 
         public enum CodingKeys: String, CodingKey {
             case identifier
 
-            case lineNumber = "line_number"
-
             case shipmentId = "shipment_id"
+
+            case lineNumber = "line_number"
         }
 
         public init(identifier: String? = nil, lineNumber: String? = nil, shipmentId: String) {
             self.identifier = identifier
 
-            self.lineNumber = lineNumber
-
             self.shipmentId = shipmentId
+
+            self.lineNumber = lineNumber
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,6 +105,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
             do {
                 lineNumber = try container.decode(String.self, forKey: .lineNumber)
 
@@ -112,8 +114,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
         }
     }
 }

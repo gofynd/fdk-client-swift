@@ -9,30 +9,30 @@ public extension ApplicationClient.Payment {
     class ValidateUPI: Codable {
         public var customerName: String
 
-        public var upiVpa: String
-
         public var isValid: Bool
 
         public var status: String
 
+        public var upiVpa: String
+
         public enum CodingKeys: String, CodingKey {
             case customerName = "customer_name"
-
-            case upiVpa = "upi_vpa"
 
             case isValid = "is_valid"
 
             case status
+
+            case upiVpa = "upi_vpa"
         }
 
         public init(customerName: String, isValid: Bool, status: String, upiVpa: String) {
             self.customerName = customerName
 
-            self.upiVpa = upiVpa
-
             self.isValid = isValid
 
             self.status = status
+
+            self.upiVpa = upiVpa
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,11 +40,11 @@ public extension ApplicationClient.Payment {
 
             customerName = try container.decode(String.self, forKey: .customerName)
 
-            upiVpa = try container.decode(String.self, forKey: .upiVpa)
-
             isValid = try container.decode(Bool.self, forKey: .isValid)
 
             status = try container.decode(String.self, forKey: .status)
+
+            upiVpa = try container.decode(String.self, forKey: .upiVpa)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,11 +52,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
-            try? container.encodeIfPresent(upiVpa, forKey: .upiVpa)
-
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(upiVpa, forKey: .upiVpa)
         }
     }
 }

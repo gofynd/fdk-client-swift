@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var amount: [String: Any]
 
-        public var type: String
-
         public var tax: Tax?
+
+        public var type: String
 
         public var name: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case amount
 
-            case type
-
             case tax
+
+            case type
 
             case name
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.amount = amount
 
-            self.type = type
-
             self.tax = tax
+
+            self.type = type
 
             self.name = name
         }
@@ -56,8 +56,6 @@ public extension PlatformClient.Order {
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 tax = try container.decode(Tax.self, forKey: .tax)
 
@@ -65,6 +63,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
 
             name = try container.decode(String.self, forKey: .name)
         }
@@ -76,9 +76,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(tax, forKey: .tax)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -96,9 +96,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var amount: [String: Any]
 
-        public var type: String
-
         public var tax: Tax?
+
+        public var type: String
 
         public var name: String
 
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case amount
 
-            case type
-
             case tax
+
+            case type
 
             case name
         }
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.amount = amount
 
-            self.type = type
-
             self.tax = tax
+
+            self.type = type
 
             self.name = name
         }
@@ -139,8 +139,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 tax = try container.decode(Tax.self, forKey: .tax)
 
@@ -148,6 +146,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
 
             name = try container.decode(String.self, forKey: .name)
         }
@@ -159,9 +159,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(tax, forKey: .tax)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

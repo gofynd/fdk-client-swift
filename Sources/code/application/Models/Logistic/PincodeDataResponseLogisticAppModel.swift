@@ -7,69 +7,71 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class PincodeDataResponse: Codable {
-        public var meta: PincodeMetaResponse?
-
-        public var latLong: PincodeLatLongData?
-
-        public var metaCode: CountryMetaResponse?
+        public var error: PincodeErrorSchemaResponse
 
         public var parents: [PincodeParentsResponse]?
 
-        public var uid: String?
-
-        public var error: PincodeErrorSchemaResponse
-
         public var displayName: String?
 
-        public var subType: String?
+        public var metaCode: CountryMetaResponse?
 
         public var name: String?
 
+        public var uid: String?
+
+        public var latLong: PincodeLatLongData?
+
+        public var meta: PincodeMetaResponse?
+
+        public var subType: String?
+
         public enum CodingKeys: String, CodingKey {
-            case meta
-
-            case latLong = "lat_long"
-
-            case metaCode = "meta_code"
+            case error
 
             case parents
 
-            case uid
-
-            case error
-
             case displayName = "display_name"
 
-            case subType = "sub_type"
+            case metaCode = "meta_code"
 
             case name
+
+            case uid
+
+            case latLong = "lat_long"
+
+            case meta
+
+            case subType = "sub_type"
         }
 
         public init(displayName: String? = nil, error: PincodeErrorSchemaResponse, latLong: PincodeLatLongData? = nil, meta: PincodeMetaResponse? = nil, metaCode: CountryMetaResponse? = nil, name: String? = nil, parents: [PincodeParentsResponse]? = nil, subType: String? = nil, uid: String? = nil) {
-            self.meta = meta
-
-            self.latLong = latLong
-
-            self.metaCode = metaCode
+            self.error = error
 
             self.parents = parents
 
-            self.uid = uid
-
-            self.error = error
-
             self.displayName = displayName
 
-            self.subType = subType
+            self.metaCode = metaCode
 
             self.name = name
+
+            self.uid = uid
+
+            self.latLong = latLong
+
+            self.meta = meta
+
+            self.subType = subType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
+
             do {
-                meta = try container.decode(PincodeMetaResponse.self, forKey: .meta)
+                parents = try container.decode([PincodeParentsResponse].self, forKey: .parents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +79,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                latLong = try container.decode(PincodeLatLongData.self, forKey: .latLong)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +95,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                parents = try container.decode([PincodeParentsResponse].self, forKey: .parents)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,10 +110,16 @@ public extension ApplicationClient.Logistic {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            error = try container.decode(PincodeErrorSchemaResponse.self, forKey: .error)
+            do {
+                latLong = try container.decode(PincodeLatLongData.self, forKey: .latLong)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                meta = try container.decode(PincodeMetaResponse.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,36 +133,28 @@ public extension ApplicationClient.Logistic {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(latLong, forKey: .latLong)
-
-            try? container.encodeIfPresent(metaCode, forKey: .metaCode)
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(parents, forKey: .parents)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(subType, forKey: .subType)
+            try? container.encodeIfPresent(metaCode, forKey: .metaCode)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(latLong, forKey: .latLong)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(subType, forKey: .subType)
         }
     }
 }

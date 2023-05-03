@@ -11,26 +11,26 @@ public extension PlatformClient.Catalog {
     class GlobalValidation: Codable {
         public var properties: Properties?
 
-        public var title: String?
+        public var definitions: [String: Any]?
 
         public var description: String?
 
         public var type: String?
 
-        public var definitions: [String: Any]?
+        public var title: String?
 
         public var required: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case properties
 
-            case title
+            case definitions
 
             case description
 
             case type
 
-            case definitions
+            case title
 
             case required
         }
@@ -38,13 +38,13 @@ public extension PlatformClient.Catalog {
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
             self.properties = properties
 
-            self.title = title
+            self.definitions = definitions
 
             self.description = description
 
             self.type = type
 
-            self.definitions = definitions
+            self.title = title
 
             self.required = required
         }
@@ -61,7 +61,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(properties, forKey: .properties)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(required, forKey: .required)
         }
@@ -128,26 +128,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GlobalValidation: Codable {
         public var properties: Properties?
 
-        public var title: String?
+        public var definitions: [String: Any]?
 
         public var description: String?
 
         public var type: String?
 
-        public var definitions: [String: Any]?
+        public var title: String?
 
         public var required: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case properties
 
-            case title
+            case definitions
 
             case description
 
             case type
 
-            case definitions
+            case title
 
             case required
         }
@@ -155,13 +155,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
             self.properties = properties
 
-            self.title = title
+            self.definitions = definitions
 
             self.description = description
 
             self.type = type
 
-            self.definitions = definitions
+            self.title = title
 
             self.required = required
         }
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,13 +223,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(properties, forKey: .properties)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(required, forKey: .required)
         }

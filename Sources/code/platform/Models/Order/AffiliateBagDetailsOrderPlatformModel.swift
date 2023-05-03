@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var affiliateMeta: AffiliateMeta
 
-        public var affiliateBagId: String
-
         public var affiliateOrderId: String
+
+        public var affiliateBagId: String
 
         public var employeeDiscount: Double?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case affiliateMeta = "affiliate_meta"
 
-            case affiliateBagId = "affiliate_bag_id"
-
             case affiliateOrderId = "affiliate_order_id"
+
+            case affiliateBagId = "affiliate_bag_id"
 
             case employeeDiscount = "employee_discount"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.affiliateMeta = affiliateMeta
 
-            self.affiliateBagId = affiliateBagId
-
             self.affiliateOrderId = affiliateOrderId
+
+            self.affiliateBagId = affiliateBagId
 
             self.employeeDiscount = employeeDiscount
         }
@@ -56,9 +56,9 @@ public extension PlatformClient.Order {
 
             affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
 
-            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
-
             affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+
+            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             do {
                 employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
@@ -76,9 +76,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
 
-            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
-
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
             try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
         }
@@ -96,9 +96,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var affiliateMeta: AffiliateMeta
 
-        public var affiliateBagId: String
-
         public var affiliateOrderId: String
+
+        public var affiliateBagId: String
 
         public var employeeDiscount: Double?
 
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case affiliateMeta = "affiliate_meta"
 
-            case affiliateBagId = "affiliate_bag_id"
-
             case affiliateOrderId = "affiliate_order_id"
+
+            case affiliateBagId = "affiliate_bag_id"
 
             case employeeDiscount = "employee_discount"
         }
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.affiliateMeta = affiliateMeta
 
-            self.affiliateBagId = affiliateBagId
-
             self.affiliateOrderId = affiliateOrderId
+
+            self.affiliateBagId = affiliateBagId
 
             self.employeeDiscount = employeeDiscount
         }
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
 
-            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
-
             affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+
+            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             do {
                 employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
@@ -159,9 +159,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
 
-            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
-
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
             try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
         }
