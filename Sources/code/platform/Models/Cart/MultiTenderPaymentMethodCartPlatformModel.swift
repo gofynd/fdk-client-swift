@@ -11,18 +11,18 @@ public extension PlatformClient.ApplicationClient.Cart {
     class MultiTenderPaymentMethod: Codable {
         public var name: String?
 
-        public var amount: Double
-
         public var meta: MultiTenderPaymentMeta?
+
+        public var amount: Double
 
         public var mode: String
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case amount
-
             case meta
+
+            case amount
 
             case mode
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
             self.name = name
 
-            self.amount = amount
-
             self.meta = meta
+
+            self.amount = amount
 
             self.mode = mode
         }
@@ -48,8 +48,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            amount = try container.decode(Double.self, forKey: .amount)
-
             do {
                 meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
 
@@ -57,6 +55,8 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            amount = try container.decode(Double.self, forKey: .amount)
 
             mode = try container.decode(String.self, forKey: .mode)
         }
@@ -66,9 +66,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
         }

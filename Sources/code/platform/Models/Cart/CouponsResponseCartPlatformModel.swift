@@ -9,7 +9,7 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CouponsResponse: Codable {
-        public var items: CouponAdd?
+        public var items: CouponAddSchema?
 
         public var page: Page?
 
@@ -19,7 +19,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             case page
         }
 
-        public init(items: CouponAdd? = nil, page: Page? = nil) {
+        public init(items: CouponAddSchema? = nil, page: Page? = nil) {
             self.items = items
 
             self.page = page
@@ -29,7 +29,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode(CouponAdd.self, forKey: .items)
+                items = try container.decode(CouponAddSchema.self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -7,7 +7,7 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class LadderPriceOffers: Codable {
-        public var currency: CurrencyInfo?
+        public var currency: CurrencyInfoSchema?
 
         public var availableOffers: [LadderPriceOffer]?
 
@@ -17,7 +17,7 @@ public extension ApplicationClient.Cart {
             case availableOffers = "available_offers"
         }
 
-        public init(availableOffers: [LadderPriceOffer]? = nil, currency: CurrencyInfo? = nil) {
+        public init(availableOffers: [LadderPriceOffer]? = nil, currency: CurrencyInfoSchema? = nil) {
             self.currency = currency
 
             self.availableOffers = availableOffers
@@ -27,7 +27,7 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currency = try container.decode(CurrencyInfo.self, forKey: .currency)
+                currency = try container.decode(CurrencyInfoSchema.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

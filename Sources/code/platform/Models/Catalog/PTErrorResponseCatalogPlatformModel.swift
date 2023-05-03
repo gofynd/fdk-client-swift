@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var status: Int?
 
-        public var code: String?
-
         public var meta: [String: Any]?
+
+        public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case status
 
-            case code
-
             case meta
+
+            case code
         }
 
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Catalog {
 
             self.status = status
 
-            self.code = code
-
             self.meta = meta
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(code, forKey: .code)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var status: Int?
 
-        public var code: String?
-
         public var meta: [String: Any]?
+
+        public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case status
 
-            case code
-
             case meta
+
+            case code
         }
 
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.status = status
 
-            self.code = code
-
             self.meta = meta
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,9 +197,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(code, forKey: .code)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }
