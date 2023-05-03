@@ -201,6 +201,7 @@ public extension ApplicationClient {
             b: Bool?,
             areaCode: String?,
             buyNow: Bool?,
+            id: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -220,6 +221,10 @@ public extension ApplicationClient {
 
             if let value = buyNow {
                 xQuery["buy_now"] = value
+            }
+
+            if let value = id {
+                xQuery["id"] = value
             }
 
             let fullUrl = relativeUrls["addItems"] ?? ""
@@ -615,7 +620,7 @@ public extension ApplicationClient {
             i: Bool?,
             b: Bool?,
             buyNow: Bool?,
-            body: RewardPointRequest,
+            body: RewardPointRequestSchema,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
@@ -1068,7 +1073,7 @@ public extension ApplicationClient {
             aggregatorName: String?,
             merchantCode: String?,
 
-            onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentCouponValidateSchema?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -1118,7 +1123,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(PaymentCouponValidate.self, from: data)
+                        let response = Utility.decode(PaymentCouponValidateSchema.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1288,7 +1293,7 @@ public extension ApplicationClient {
         public func checkoutCart(
             id: String?,
             body: CartPosCheckoutDetailRequest,
-            onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartCheckoutResponseSchema?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -1314,7 +1319,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartCheckoutResponse.self, from: data)
+                        let response = Utility.decode(CartCheckoutResponseSchema.self, from: data)
 
                         onResponse(response, nil)
                     } else {

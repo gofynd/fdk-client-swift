@@ -9,11 +9,11 @@ public extension ApplicationClient.Cart {
     class ProductAvailability: Codable {
         public var availableSizes: [ProductAvailabilitySize]?
 
-        public var otherStoreQuantity: Int?
-
         public var isValid: Bool?
 
         public var deliverable: Bool?
+
+        public var otherStoreQuantity: Int?
 
         public var outOfStock: Bool?
 
@@ -22,11 +22,11 @@ public extension ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case availableSizes = "available_sizes"
 
-            case otherStoreQuantity = "other_store_quantity"
-
             case isValid = "is_valid"
 
             case deliverable
+
+            case otherStoreQuantity = "other_store_quantity"
 
             case outOfStock = "out_of_stock"
 
@@ -36,11 +36,11 @@ public extension ApplicationClient.Cart {
         public init(availableSizes: [ProductAvailabilitySize]? = nil, deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
             self.availableSizes = availableSizes
 
-            self.otherStoreQuantity = otherStoreQuantity
-
             self.isValid = isValid
 
             self.deliverable = deliverable
+
+            self.otherStoreQuantity = otherStoreQuantity
 
             self.outOfStock = outOfStock
 
@@ -59,14 +59,6 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,6 +68,14 @@ public extension ApplicationClient.Cart {
 
             do {
                 deliverable = try container.decode(Bool.self, forKey: .deliverable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,11 +104,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
-            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
-
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
+
+            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
 

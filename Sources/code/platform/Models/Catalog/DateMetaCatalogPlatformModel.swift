@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var modifiedOn: String?
 
-        public var createdOn: String?
-
         public var addedOnStore: String?
+
+        public var createdOn: String?
 
         public enum CodingKeys: String, CodingKey {
             case inventoryUpdatedOn = "inventory_updated_on"
 
             case modifiedOn = "modified_on"
 
-            case createdOn = "created_on"
-
             case addedOnStore = "added_on_store"
+
+            case createdOn = "created_on"
         }
 
         public init(addedOnStore: String? = nil, createdOn: String? = nil, inventoryUpdatedOn: String? = nil, modifiedOn: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.modifiedOn = modifiedOn
 
-            self.createdOn = createdOn
-
             self.addedOnStore = addedOnStore
+
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                addedOnStore = try container.decode(String.self, forKey: .addedOnStore)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                addedOnStore = try container.decode(String.self, forKey: .addedOnStore)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
             try? container.encodeIfPresent(addedOnStore, forKey: .addedOnStore)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var modifiedOn: String?
 
-        public var createdOn: String?
-
         public var addedOnStore: String?
+
+        public var createdOn: String?
 
         public enum CodingKeys: String, CodingKey {
             case inventoryUpdatedOn = "inventory_updated_on"
 
             case modifiedOn = "modified_on"
 
-            case createdOn = "created_on"
-
             case addedOnStore = "added_on_store"
+
+            case createdOn = "created_on"
         }
 
         public init(addedOnStore: String? = nil, createdOn: String? = nil, inventoryUpdatedOn: String? = nil, modifiedOn: String? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.modifiedOn = modifiedOn
 
-            self.createdOn = createdOn
-
             self.addedOnStore = addedOnStore
+
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                addedOnStore = try container.decode(String.self, forKey: .addedOnStore)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                addedOnStore = try container.decode(String.self, forKey: .addedOnStore)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
             try? container.encodeIfPresent(addedOnStore, forKey: .addedOnStore)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }

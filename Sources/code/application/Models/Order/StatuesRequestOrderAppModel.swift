@@ -9,24 +9,24 @@ public extension ApplicationClient.Order {
     class StatuesRequest: Codable {
         public var status: String?
 
-        public var shipments: [ShipmentsRequest]?
-
         public var excludeBagsNextState: String?
+
+        public var shipments: [ShipmentsRequest]?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case shipments
-
             case excludeBagsNextState = "exclude_bags_next_state"
+
+            case shipments
         }
 
         public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
             self.status = status
 
-            self.shipments = shipments
-
             self.excludeBagsNextState = excludeBagsNextState
+
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                shipments = try container.decode([ShipmentsRequest].self, forKey: .shipments)
+                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+                shipments = try container.decode([ShipmentsRequest].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
-
             try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
+
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }

@@ -11,9 +11,9 @@ public extension ApplicationClient.Cart {
 
         public var paymentMode: String?
 
-        public var paymentIdentifier: String?
-
         public var id: String?
+
+        public var paymentIdentifier: String?
 
         public var merchantCode: String?
 
@@ -24,9 +24,9 @@ public extension ApplicationClient.Cart {
 
             case paymentMode = "payment_mode"
 
-            case paymentIdentifier = "payment_identifier"
-
             case id
+
+            case paymentIdentifier = "payment_identifier"
 
             case merchantCode = "merchant_code"
 
@@ -38,9 +38,9 @@ public extension ApplicationClient.Cart {
 
             self.paymentMode = paymentMode
 
-            self.paymentIdentifier = paymentIdentifier
-
             self.id = id
+
+            self.paymentIdentifier = paymentIdentifier
 
             self.merchantCode = merchantCode
 
@@ -67,7 +67,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 

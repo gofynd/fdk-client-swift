@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var gstFee: Double
 
-        public var gstinCode: String
-
         public var brandCalculatedAmount: Double
+
+        public var gstinCode: String
 
         public var taxCollectedAtSource: Double
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case gstFee = "gst_fee"
 
-            case gstinCode = "gstin_code"
-
             case brandCalculatedAmount = "brand_calculated_amount"
+
+            case gstinCode = "gstin_code"
 
             case taxCollectedAtSource = "tax_collected_at_source"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.gstFee = gstFee
 
-            self.gstinCode = gstinCode
-
             self.brandCalculatedAmount = brandCalculatedAmount
+
+            self.gstinCode = gstinCode
 
             self.taxCollectedAtSource = taxCollectedAtSource
         }
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
 
             gstFee = try container.decode(Double.self, forKey: .gstFee)
 
-            gstinCode = try container.decode(String.self, forKey: .gstinCode)
-
             brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
+
+            gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
             taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
         }
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
 
-            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
-
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
             try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
         }
@@ -84,9 +84,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var gstFee: Double
 
-        public var gstinCode: String
-
         public var brandCalculatedAmount: Double
+
+        public var gstinCode: String
 
         public var taxCollectedAtSource: Double
 
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case gstFee = "gst_fee"
 
-            case gstinCode = "gstin_code"
-
             case brandCalculatedAmount = "brand_calculated_amount"
+
+            case gstinCode = "gstin_code"
 
             case taxCollectedAtSource = "tax_collected_at_source"
         }
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.gstFee = gstFee
 
-            self.gstinCode = gstinCode
-
             self.brandCalculatedAmount = brandCalculatedAmount
+
+            self.gstinCode = gstinCode
 
             self.taxCollectedAtSource = taxCollectedAtSource
         }
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             gstFee = try container.decode(Double.self, forKey: .gstFee)
 
-            gstinCode = try container.decode(String.self, forKey: .gstinCode)
-
             brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
+
+            gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
             taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
         }
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
 
-            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
-
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+
+            try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
             try? container.encodeIfPresent(taxCollectedAtSource, forKey: .taxCollectedAtSource)
         }

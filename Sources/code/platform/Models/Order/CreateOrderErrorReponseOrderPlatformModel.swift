@@ -9,65 +9,63 @@ public extension PlatformClient.Order {
      */
 
     class CreateOrderErrorReponse: Codable {
-        public var status: Int
-
-        public var requestId: String?
+        public var exception: String?
 
         public var message: String
 
-        public var exception: String?
+        public var meta: String?
 
         public var stackTrace: String?
 
         public var code: String?
 
+        public var requestId: String?
+
         public var info: [String: Any]?
 
-        public var meta: String?
+        public var status: Int
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
-            case requestId = "request_id"
+            case exception
 
             case message
 
-            case exception
+            case meta
 
             case stackTrace = "stack_trace"
 
             case code
 
+            case requestId = "request_id"
+
             case info
 
-            case meta
+            case status
         }
 
         public init(code: String? = nil, exception: String? = nil, info: [String: Any]? = nil, message: String, meta: String? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int) {
-            self.status = status
-
-            self.requestId = requestId
+            self.exception = exception
 
             self.message = message
 
-            self.exception = exception
+            self.meta = meta
 
             self.stackTrace = stackTrace
 
             self.code = code
 
+            self.requestId = requestId
+
             self.info = info
 
-            self.meta = meta
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            status = try container.decode(Int.self, forKey: .status)
-
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                exception = try container.decode(String.self, forKey: .exception)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +75,7 @@ public extension PlatformClient.Order {
             message = try container.decode(String.self, forKey: .message)
 
             do {
-                exception = try container.decode(String.self, forKey: .exception)
+                meta = try container.decode(String.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,7 +99,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                info = try container.decode([String: Any].self, forKey: .info)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,32 +107,34 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                meta = try container.decode(String.self, forKey: .meta)
+                info = try container.decode([String: Any].self, forKey: .info)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encode(requestId, forKey: .requestId)
+            try? container.encode(exception, forKey: .exception)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encode(exception, forKey: .exception)
+            try? container.encode(meta, forKey: .meta)
 
             try? container.encode(stackTrace, forKey: .stackTrace)
 
             try? container.encode(code, forKey: .code)
 
+            try? container.encode(requestId, forKey: .requestId)
+
             try? container.encode(info, forKey: .info)
 
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
@@ -146,65 +146,63 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class CreateOrderErrorReponse: Codable {
-        public var status: Int
-
-        public var requestId: String?
+        public var exception: String?
 
         public var message: String
 
-        public var exception: String?
+        public var meta: String?
 
         public var stackTrace: String?
 
         public var code: String?
 
+        public var requestId: String?
+
         public var info: [String: Any]?
 
-        public var meta: String?
+        public var status: Int
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
-            case requestId = "request_id"
+            case exception
 
             case message
 
-            case exception
+            case meta
 
             case stackTrace = "stack_trace"
 
             case code
 
+            case requestId = "request_id"
+
             case info
 
-            case meta
+            case status
         }
 
         public init(code: String? = nil, exception: String? = nil, info: [String: Any]? = nil, message: String, meta: String? = nil, requestId: String? = nil, stackTrace: String? = nil, status: Int) {
-            self.status = status
-
-            self.requestId = requestId
+            self.exception = exception
 
             self.message = message
 
-            self.exception = exception
+            self.meta = meta
 
             self.stackTrace = stackTrace
 
             self.code = code
 
+            self.requestId = requestId
+
             self.info = info
 
-            self.meta = meta
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            status = try container.decode(Int.self, forKey: .status)
-
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                exception = try container.decode(String.self, forKey: .exception)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Order {
             message = try container.decode(String.self, forKey: .message)
 
             do {
-                exception = try container.decode(String.self, forKey: .exception)
+                meta = try container.decode(String.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -238,7 +236,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                info = try container.decode([String: Any].self, forKey: .info)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -246,32 +244,34 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                meta = try container.decode(String.self, forKey: .meta)
+                info = try container.decode([String: Any].self, forKey: .info)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encode(requestId, forKey: .requestId)
+            try? container.encode(exception, forKey: .exception)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encode(exception, forKey: .exception)
+            try? container.encode(meta, forKey: .meta)
 
             try? container.encode(stackTrace, forKey: .stackTrace)
 
             try? container.encode(code, forKey: .code)
 
+            try? container.encode(requestId, forKey: .requestId)
+
             try? container.encode(info, forKey: .info)
 
-            try? container.encode(meta, forKey: .meta)
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

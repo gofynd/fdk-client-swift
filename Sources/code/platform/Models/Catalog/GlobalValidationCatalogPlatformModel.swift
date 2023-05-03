@@ -9,48 +9,56 @@ public extension PlatformClient.Catalog {
      */
 
     class GlobalValidation: Codable {
+        public var definitions: [String: Any]?
+
         public var properties: Properties?
 
         public var type: String?
 
         public var required: [String]?
 
-        public var definitions: [String: Any]?
+        public var title: String?
 
         public var description: String?
 
-        public var title: String?
-
         public enum CodingKeys: String, CodingKey {
+            case definitions
+
             case properties
 
             case type
 
             case required
 
-            case definitions
+            case title
 
             case description
-
-            case title
         }
 
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
+            self.definitions = definitions
+
             self.properties = properties
 
             self.type = type
 
             self.required = required
 
-            self.definitions = definitions
+            self.title = title
 
             self.description = description
-
-            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 properties = try container.decode(Properties.self, forKey: .properties)
@@ -77,7 +85,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,18 +99,12 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(properties, forKey: .properties)
 
@@ -110,11 +112,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(required, forKey: .required)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }
@@ -126,48 +126,56 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class GlobalValidation: Codable {
+        public var definitions: [String: Any]?
+
         public var properties: Properties?
 
         public var type: String?
 
         public var required: [String]?
 
-        public var definitions: [String: Any]?
+        public var title: String?
 
         public var description: String?
 
-        public var title: String?
-
         public enum CodingKeys: String, CodingKey {
+            case definitions
+
             case properties
 
             case type
 
             case required
 
-            case definitions
+            case title
 
             case description
-
-            case title
         }
 
         public init(definitions: [String: Any]? = nil, description: String? = nil, properties: Properties? = nil, required: [String]? = nil, title: String? = nil, type: String? = nil) {
+            self.definitions = definitions
+
             self.properties = properties
 
             self.type = type
 
             self.required = required
 
-            self.definitions = definitions
+            self.title = title
 
             self.description = description
-
-            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                definitions = try container.decode([String: Any].self, forKey: .definitions)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 properties = try container.decode(Properties.self, forKey: .properties)
@@ -194,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                definitions = try container.decode([String: Any].self, forKey: .definitions)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -208,18 +216,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(definitions, forKey: .definitions)
 
             try? container.encodeIfPresent(properties, forKey: .properties)
 
@@ -227,11 +229,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(required, forKey: .required)
 
-            try? container.encodeIfPresent(definitions, forKey: .definitions)
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

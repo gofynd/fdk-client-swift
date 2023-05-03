@@ -7,27 +7,27 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class BagsForReorderArticleAssignment: Codable {
-        public var strategy: String?
-
         public var level: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case strategy
+        public var strategy: String?
 
+        public enum CodingKeys: String, CodingKey {
             case level
+
+            case strategy
         }
 
         public init(level: String? = nil, strategy: String? = nil) {
-            self.strategy = strategy
-
             self.level = level
+
+            self.strategy = strategy
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                strategy = try container.decode(String.self, forKey: .strategy)
+                level = try container.decode(String.self, forKey: .level)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                strategy = try container.decode(String.self, forKey: .strategy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(strategy, forKey: .strategy)
-
             try? container.encodeIfPresent(level, forKey: .level)
+
+            try? container.encodeIfPresent(strategy, forKey: .strategy)
         }
     }
 }
