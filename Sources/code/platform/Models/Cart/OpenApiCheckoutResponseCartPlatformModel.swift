@@ -11,18 +11,18 @@ public extension PlatformClient.ApplicationClient.Cart {
     class OpenApiCheckoutResponse: Codable {
         public var success: Bool?
 
-        public var orderId: String
-
         public var orderRefId: String?
+
+        public var orderId: String
 
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case orderId = "order_id"
-
             case orderRefId = "order_ref_id"
+
+            case orderId = "order_id"
 
             case message
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(message: String? = nil, orderId: String, orderRefId: String? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.orderId = orderId
-
             self.orderRefId = orderRefId
+
+            self.orderId = orderId
 
             self.message = message
         }
@@ -48,8 +48,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderId = try container.decode(String.self, forKey: .orderId)
-
             do {
                 orderRefId = try container.decode(String.self, forKey: .orderRefId)
 
@@ -57,6 +55,8 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            orderId = try container.decode(String.self, forKey: .orderId)
 
             do {
                 message = try container.decode(String.self, forKey: .message)
@@ -72,9 +72,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
             try? container.encodeIfPresent(orderRefId, forKey: .orderRefId)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }

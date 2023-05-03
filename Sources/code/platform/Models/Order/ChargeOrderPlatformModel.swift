@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var tax: Tax?
 
-        public var type: String
-
         public var code: String?
 
         public var amount: [String: Any]
+
+        public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case tax
 
-            case type
-
             case code
 
             case amount
+
+            case type
         }
 
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.tax = tax
 
-            self.type = type
-
             self.code = code
 
             self.amount = amount
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,8 +56,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 code = try container.decode(String.self, forKey: .code)
 
@@ -67,6 +65,8 @@ public extension PlatformClient.Order {
             } catch {}
 
             amount = try container.decode([String: Any].self, forKey: .amount)
+
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(tax, forKey: .tax)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -96,22 +96,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var tax: Tax?
 
-        public var type: String
-
         public var code: String?
 
         public var amount: [String: Any]
+
+        public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case tax
 
-            case type
-
             case code
 
             case amount
+
+            case type
         }
 
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
@@ -119,11 +119,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.tax = tax
 
-            self.type = type
-
             self.code = code
 
             self.amount = amount
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -139,8 +139,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 code = try container.decode(String.self, forKey: .code)
 
@@ -150,6 +148,8 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             amount = try container.decode([String: Any].self, forKey: .amount)
+
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -159,11 +159,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(tax, forKey: .tax)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

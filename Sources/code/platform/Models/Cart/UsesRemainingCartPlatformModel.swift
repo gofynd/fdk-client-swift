@@ -11,24 +11,24 @@ public extension PlatformClient.ApplicationClient.Cart {
     class UsesRemaining: Codable {
         public var app: Int?
 
-        public var user: Int?
-
         public var total: Int?
+
+        public var user: Int?
 
         public enum CodingKeys: String, CodingKey {
             case app
 
-            case user
-
             case total
+
+            case user
         }
 
         public init(app: Int? = nil, total: Int? = nil, user: Int? = nil) {
             self.app = app
 
-            self.user = user
-
             self.total = total
+
+            self.user = user
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                user = try container.decode(Int.self, forKey: .user)
+                total = try container.decode(Int.self, forKey: .total)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                total = try container.decode(Int.self, forKey: .total)
+                user = try container.decode(Int.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(app, forKey: .app)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(total, forKey: .total)
+
+            try? container.encodeIfPresent(user, forKey: .user)
         }
     }
 }

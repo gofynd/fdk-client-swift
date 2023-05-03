@@ -11,18 +11,18 @@ public extension ApplicationClient.Order {
 
         public var message: String?
 
-        public var requestId: String?
-
         public var resendTimer: Int?
+
+        public var requestId: String?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case message
 
-            case requestId = "request_id"
-
             case resendTimer = "resend_timer"
+
+            case requestId = "request_id"
         }
 
         public init(message: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, success: Bool? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Order {
 
             self.message = message
 
-            self.requestId = requestId
-
             self.resendTimer = resendTimer
+
+            self.requestId = requestId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
-
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
+
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
         }
     }
 }
