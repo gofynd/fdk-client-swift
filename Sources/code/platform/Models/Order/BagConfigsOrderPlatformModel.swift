@@ -9,42 +9,42 @@ public extension PlatformClient.Order {
      */
 
     class BagConfigs: Codable {
+        public var canBeCancelled: Bool
+
+        public var isReturnable: Bool
+
+        public var enableTracking: Bool
+
         public var allowForceReturn: Bool
 
         public var isCustomerReturnAllowed: Bool
 
-        public var enableTracking: Bool
-
-        public var isReturnable: Bool
-
-        public var canBeCancelled: Bool
-
         public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case allowForceReturn = "allow_force_return"
-
-            case isCustomerReturnAllowed = "is_customer_return_allowed"
-
-            case enableTracking = "enable_tracking"
+            case canBeCancelled = "can_be_cancelled"
 
             case isReturnable = "is_returnable"
 
-            case canBeCancelled = "can_be_cancelled"
+            case enableTracking = "enable_tracking"
+
+            case allowForceReturn = "allow_force_return"
+
+            case isCustomerReturnAllowed = "is_customer_return_allowed"
 
             case isActive = "is_active"
         }
 
         public init(allowForceReturn: Bool, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
-            self.allowForceReturn = allowForceReturn
-
-            self.isCustomerReturnAllowed = isCustomerReturnAllowed
-
-            self.enableTracking = enableTracking
+            self.canBeCancelled = canBeCancelled
 
             self.isReturnable = isReturnable
 
-            self.canBeCancelled = canBeCancelled
+            self.enableTracking = enableTracking
+
+            self.allowForceReturn = allowForceReturn
+
+            self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
             self.isActive = isActive
         }
@@ -52,15 +52,15 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
-
-            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
-
-            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
+            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
 
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
 
-            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
+            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
+
+            allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
+
+            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
         }
@@ -68,15 +68,15 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
-
-            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
-
-            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
+            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
 
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
 
-            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
+            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
+
+            try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
+
+            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
@@ -90,42 +90,42 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class BagConfigs: Codable {
+        public var canBeCancelled: Bool
+
+        public var isReturnable: Bool
+
+        public var enableTracking: Bool
+
         public var allowForceReturn: Bool
 
         public var isCustomerReturnAllowed: Bool
 
-        public var enableTracking: Bool
-
-        public var isReturnable: Bool
-
-        public var canBeCancelled: Bool
-
         public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case allowForceReturn = "allow_force_return"
-
-            case isCustomerReturnAllowed = "is_customer_return_allowed"
-
-            case enableTracking = "enable_tracking"
+            case canBeCancelled = "can_be_cancelled"
 
             case isReturnable = "is_returnable"
 
-            case canBeCancelled = "can_be_cancelled"
+            case enableTracking = "enable_tracking"
+
+            case allowForceReturn = "allow_force_return"
+
+            case isCustomerReturnAllowed = "is_customer_return_allowed"
 
             case isActive = "is_active"
         }
 
         public init(allowForceReturn: Bool, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
-            self.allowForceReturn = allowForceReturn
-
-            self.isCustomerReturnAllowed = isCustomerReturnAllowed
-
-            self.enableTracking = enableTracking
+            self.canBeCancelled = canBeCancelled
 
             self.isReturnable = isReturnable
 
-            self.canBeCancelled = canBeCancelled
+            self.enableTracking = enableTracking
+
+            self.allowForceReturn = allowForceReturn
+
+            self.isCustomerReturnAllowed = isCustomerReturnAllowed
 
             self.isActive = isActive
         }
@@ -133,15 +133,15 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
-
-            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
-
-            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
+            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
 
             isReturnable = try container.decode(Bool.self, forKey: .isReturnable)
 
-            canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
+            enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
+
+            allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
+
+            isCustomerReturnAllowed = try container.decode(Bool.self, forKey: .isCustomerReturnAllowed)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
         }
@@ -149,15 +149,15 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
-
-            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
-
-            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
+            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
 
             try? container.encodeIfPresent(isReturnable, forKey: .isReturnable)
 
-            try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
+            try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
+
+            try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
+
+            try? container.encodeIfPresent(isCustomerReturnAllowed, forKey: .isCustomerReturnAllowed)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
