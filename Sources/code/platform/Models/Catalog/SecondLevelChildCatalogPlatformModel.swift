@@ -9,13 +9,13 @@ public extension PlatformClient.Catalog {
      */
 
     class SecondLevelChild: Codable {
-        public var slug: String?
+        public var childs: [ThirdLevelChild]?
 
-        public var uid: Int?
+        public var slug: String?
 
         public var name: String?
 
-        public var childs: [ThirdLevelChild]?
+        public var uid: Int?
 
         public var banners: ImageUrls?
 
@@ -24,13 +24,13 @@ public extension PlatformClient.Catalog {
         public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case slug
+            case childs
 
-            case uid
+            case slug
 
             case name
 
-            case childs
+            case uid
 
             case banners
 
@@ -40,13 +40,13 @@ public extension PlatformClient.Catalog {
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [ThirdLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.slug = slug
+            self.childs = childs
 
-            self.uid = uid
+            self.slug = slug
 
             self.name = name
 
-            self.childs = childs
+            self.uid = uid
 
             self.banners = banners
 
@@ -59,7 +59,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                childs = try container.decode([ThirdLevelChild].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                childs = try container.decode([ThirdLevelChild].self, forKey: .childs)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,13 +118,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
@@ -142,13 +142,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class SecondLevelChild: Codable {
-        public var slug: String?
+        public var childs: [ThirdLevelChild]?
 
-        public var uid: Int?
+        public var slug: String?
 
         public var name: String?
 
-        public var childs: [ThirdLevelChild]?
+        public var uid: Int?
 
         public var banners: ImageUrls?
 
@@ -157,13 +157,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case slug
+            case childs
 
-            case uid
+            case slug
 
             case name
 
-            case childs
+            case uid
 
             case banners
 
@@ -173,13 +173,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [ThirdLevelChild]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.slug = slug
+            self.childs = childs
 
-            self.uid = uid
+            self.slug = slug
 
             self.name = name
 
-            self.childs = childs
+            self.uid = uid
 
             self.banners = banners
 
@@ -192,7 +192,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                childs = try container.decode([ThirdLevelChild].self, forKey: .childs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -200,7 +200,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,7 +216,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                childs = try container.decode([ThirdLevelChild].self, forKey: .childs)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,13 +251,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(childs, forKey: .childs)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 

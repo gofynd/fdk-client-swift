@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var secureUrl: String?
 
-        public var aspectRatioF: Int?
-
         public var aspectRatio: String?
+
+        public var aspectRatioF: Int?
 
         public enum CodingKeys: String, CodingKey {
             case url
 
             case secureUrl = "secure_url"
 
-            case aspectRatioF = "aspect_ratio_f"
-
             case aspectRatio = "aspect_ratio"
+
+            case aspectRatioF = "aspect_ratio_f"
         }
 
         public init(aspectRatio: String? = nil, aspectRatioF: Int? = nil, secureUrl: String? = nil, url: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.secureUrl = secureUrl
 
-            self.aspectRatioF = aspectRatioF
-
             self.aspectRatio = aspectRatio
+
+            self.aspectRatioF = aspectRatioF
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                aspectRatioF = try container.decode(Int.self, forKey: .aspectRatioF)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                aspectRatioF = try container.decode(Int.self, forKey: .aspectRatioF)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
 
-            try? container.encodeIfPresent(aspectRatioF, forKey: .aspectRatioF)
-
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
+
+            try? container.encodeIfPresent(aspectRatioF, forKey: .aspectRatioF)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var secureUrl: String?
 
-        public var aspectRatioF: Int?
-
         public var aspectRatio: String?
+
+        public var aspectRatioF: Int?
 
         public enum CodingKeys: String, CodingKey {
             case url
 
             case secureUrl = "secure_url"
 
-            case aspectRatioF = "aspect_ratio_f"
-
             case aspectRatio = "aspect_ratio"
+
+            case aspectRatioF = "aspect_ratio_f"
         }
 
         public init(aspectRatio: String? = nil, aspectRatioF: Int? = nil, secureUrl: String? = nil, url: String? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.secureUrl = secureUrl
 
-            self.aspectRatioF = aspectRatioF
-
             self.aspectRatio = aspectRatio
+
+            self.aspectRatioF = aspectRatioF
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                aspectRatioF = try container.decode(Int.self, forKey: .aspectRatioF)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                aspectRatioF = try container.decode(Int.self, forKey: .aspectRatioF)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
 
-            try? container.encodeIfPresent(aspectRatioF, forKey: .aspectRatioF)
-
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
+
+            try? container.encodeIfPresent(aspectRatioF, forKey: .aspectRatioF)
         }
     }
 }

@@ -203,7 +203,6 @@ public extension ApplicationClient {
             b: Bool?,
             areaCode: String?,
             buyNow: Bool?,
-            id: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -223,10 +222,6 @@ public extension ApplicationClient {
 
             if let value = buyNow {
                 xQuery["buy_now"] = value
-            }
-
-            if let value = id {
-                xQuery["id"] = value
             }
 
             let fullUrl = relativeUrls["addItems"] ?? ""
@@ -1489,7 +1484,6 @@ public extension ApplicationClient {
             slug: String?,
             pageSize: Int?,
             promotionGroup: String?,
-            storeId: Int?,
 
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1505,10 +1499,6 @@ public extension ApplicationClient {
 
             if let value = promotionGroup {
                 xQuery["promotion_group"] = value
-            }
-
-            if let value = storeId {
-                xQuery["store_id"] = value
             }
 
             let fullUrl = relativeUrls["getPromotionOffers"] ?? ""

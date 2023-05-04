@@ -9,42 +9,42 @@ public extension PlatformClient.Order {
      */
 
     class CreateChannelConfig: Codable {
-        public var logoUrl: [String: Any]?
+        public var dpConfiguration: DpConfiguration?
 
         public var paymentInfo: CreateChannelPaymentInfo?
 
         public var locationReassignment: Bool?
 
-        public var shipmentAssignment: String?
+        public var logoUrl: [String: Any]?
 
-        public var dpConfiguration: DpConfiguration?
+        public var shipmentAssignment: String?
 
         public var lockStates: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case logoUrl = "logo_url"
+            case dpConfiguration = "dp_configuration"
 
             case paymentInfo = "payment_info"
 
             case locationReassignment = "location_reassignment"
 
-            case shipmentAssignment = "shipment_assignment"
+            case logoUrl = "logo_url"
 
-            case dpConfiguration = "dp_configuration"
+            case shipmentAssignment = "shipment_assignment"
 
             case lockStates = "lock_states"
         }
 
         public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
-            self.logoUrl = logoUrl
+            self.dpConfiguration = dpConfiguration
 
             self.paymentInfo = paymentInfo
 
             self.locationReassignment = locationReassignment
 
-            self.shipmentAssignment = shipmentAssignment
+            self.logoUrl = logoUrl
 
-            self.dpConfiguration = dpConfiguration
+            self.shipmentAssignment = shipmentAssignment
 
             self.lockStates = lockStates
         }
@@ -53,7 +53,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logoUrl = try container.decode([String: Any].self, forKey: .logoUrl)
+                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
+                logoUrl = try container.decode([String: Any].self, forKey: .logoUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
+                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,15 +104,15 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
+            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
 
             try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
 
             try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
 
-            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
-            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
+            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
 
             try? container.encodeIfPresent(lockStates, forKey: .lockStates)
         }
@@ -126,42 +126,42 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class CreateChannelConfig: Codable {
-        public var logoUrl: [String: Any]?
+        public var dpConfiguration: DpConfiguration?
 
         public var paymentInfo: CreateChannelPaymentInfo?
 
         public var locationReassignment: Bool?
 
-        public var shipmentAssignment: String?
+        public var logoUrl: [String: Any]?
 
-        public var dpConfiguration: DpConfiguration?
+        public var shipmentAssignment: String?
 
         public var lockStates: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case logoUrl = "logo_url"
+            case dpConfiguration = "dp_configuration"
 
             case paymentInfo = "payment_info"
 
             case locationReassignment = "location_reassignment"
 
-            case shipmentAssignment = "shipment_assignment"
+            case logoUrl = "logo_url"
 
-            case dpConfiguration = "dp_configuration"
+            case shipmentAssignment = "shipment_assignment"
 
             case lockStates = "lock_states"
         }
 
         public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
-            self.logoUrl = logoUrl
+            self.dpConfiguration = dpConfiguration
 
             self.paymentInfo = paymentInfo
 
             self.locationReassignment = locationReassignment
 
-            self.shipmentAssignment = shipmentAssignment
+            self.logoUrl = logoUrl
 
-            self.dpConfiguration = dpConfiguration
+            self.shipmentAssignment = shipmentAssignment
 
             self.lockStates = lockStates
         }
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logoUrl = try container.decode([String: Any].self, forKey: .logoUrl)
+                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
+                logoUrl = try container.decode([String: Any].self, forKey: .logoUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
+                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,15 +221,15 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
+            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
 
             try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
 
             try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
 
-            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
-            try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
+            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
 
             try? container.encodeIfPresent(lockStates, forKey: .lockStates)
         }

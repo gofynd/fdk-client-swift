@@ -11,36 +11,36 @@ public extension PlatformClient.Catalog {
     class CategoriesResponse: Codable {
         public var slug: String?
 
-        public var uid: Int?
-
         public var name: String?
 
-        public var slugKey: String?
+        public var uid: Int?
 
         public var templateSlug: String?
+
+        public var slugKey: String?
 
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case uid
-
             case name
 
-            case slugKey = "slug_key"
+            case uid
 
             case templateSlug = "template_slug"
+
+            case slugKey = "slug_key"
         }
 
         public init(name: String? = nil, slug: String? = nil, slugKey: String? = nil, templateSlug: String? = nil, uid: Int? = nil) {
             self.slug = slug
 
-            self.uid = uid
-
             self.name = name
 
-            self.slugKey = slugKey
+            self.uid = uid
 
             self.templateSlug = templateSlug
+
+            self.slugKey = slugKey
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,14 +48,6 @@ public extension PlatformClient.Catalog {
 
             do {
                 slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                slugKey = try container.decode(String.self, forKey: .slugKey)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,6 +77,14 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                slugKey = try container.decode(String.self, forKey: .slugKey)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,13 +92,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
+
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
         }
     }
 }
@@ -112,36 +112,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CategoriesResponse: Codable {
         public var slug: String?
 
-        public var uid: Int?
-
         public var name: String?
 
-        public var slugKey: String?
+        public var uid: Int?
 
         public var templateSlug: String?
+
+        public var slugKey: String?
 
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case uid
-
             case name
 
-            case slugKey = "slug_key"
+            case uid
 
             case templateSlug = "template_slug"
+
+            case slugKey = "slug_key"
         }
 
         public init(name: String? = nil, slug: String? = nil, slugKey: String? = nil, templateSlug: String? = nil, uid: Int? = nil) {
             self.slug = slug
 
-            self.uid = uid
-
             self.name = name
 
-            self.slugKey = slugKey
+            self.uid = uid
 
             self.templateSlug = templateSlug
+
+            self.slugKey = slugKey
         }
 
         required public init(from decoder: Decoder) throws {
@@ -149,14 +149,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slugKey = try container.decode(String.self, forKey: .slugKey)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,6 +178,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                slugKey = try container.decode(String.self, forKey: .slugKey)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -193,13 +193,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
+
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
         }
     }
 }
