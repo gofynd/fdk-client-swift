@@ -9,7 +9,7 @@ public extension ApplicationClient.Cart {
     class GetCouponResponse: Codable {
         public var availableCouponList: [Coupon]?
 
-        public var page: PageCouponSchema?
+        public var page: PageCoupon?
 
         public enum CodingKeys: String, CodingKey {
             case availableCouponList = "available_coupon_list"
@@ -17,7 +17,7 @@ public extension ApplicationClient.Cart {
             case page
         }
 
-        public init(availableCouponList: [Coupon]? = nil, page: PageCouponSchema? = nil) {
+        public init(availableCouponList: [Coupon]? = nil, page: PageCoupon? = nil) {
             self.availableCouponList = availableCouponList
 
             self.page = page
@@ -35,7 +35,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                page = try container.decode(PageCouponSchema.self, forKey: .page)
+                page = try container.decode(PageCoupon.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

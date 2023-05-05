@@ -9,36 +9,36 @@ public extension PlatformClient.CompanyProfile {
      */
 
     class CompanySocialAccounts: Codable {
-        public var url: String
-
         public var name: String
 
-        public enum CodingKeys: String, CodingKey {
-            case url
+        public var url: String
 
+        public enum CodingKeys: String, CodingKey {
             case name
+
+            case url
         }
 
         public init(name: String, url: String) {
-            self.url = url
-
             self.name = name
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            url = try container.decode(String.self, forKey: .url)
-
             name = try container.decode(String.self, forKey: .name)
+
+            url = try container.decode(String.self, forKey: .url)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }

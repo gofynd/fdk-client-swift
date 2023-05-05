@@ -9,11 +9,13 @@ public extension PlatformClient.Order {
      */
 
     class SmsDataPayload: Codable {
-        public var message: String
-
         public var amountPaid: Int
 
-        public var brandName: String
+        public var message: String
+
+        public var countryCode: String
+
+        public var phoneNumber: Int
 
         public var shipmentId: Int
 
@@ -21,18 +23,18 @@ public extension PlatformClient.Order {
 
         public var customerName: String
 
+        public var brandName: String
+
         public var paymentMode: String
 
-        public var phoneNumber: Int
-
-        public var countryCode: String
-
         public enum CodingKeys: String, CodingKey {
-            case message
-
             case amountPaid = "amount_paid"
 
-            case brandName = "brand_name"
+            case message
+
+            case countryCode = "country_code"
+
+            case phoneNumber = "phone_number"
 
             case shipmentId = "shipment_id"
 
@@ -40,19 +42,19 @@ public extension PlatformClient.Order {
 
             case customerName = "customer_name"
 
+            case brandName = "brand_name"
+
             case paymentMode = "payment_mode"
-
-            case phoneNumber = "phone_number"
-
-            case countryCode = "country_code"
         }
 
         public init(amountPaid: Int, brandName: String, countryCode: String, customerName: String, message: String, orderId: String, paymentMode: String, phoneNumber: Int, shipmentId: Int) {
-            self.message = message
-
             self.amountPaid = amountPaid
 
-            self.brandName = brandName
+            self.message = message
+
+            self.countryCode = countryCode
+
+            self.phoneNumber = phoneNumber
 
             self.shipmentId = shipmentId
 
@@ -60,21 +62,21 @@ public extension PlatformClient.Order {
 
             self.customerName = customerName
 
+            self.brandName = brandName
+
             self.paymentMode = paymentMode
-
-            self.phoneNumber = phoneNumber
-
-            self.countryCode = countryCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            message = try container.decode(String.self, forKey: .message)
-
             amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
-            brandName = try container.decode(String.self, forKey: .brandName)
+            message = try container.decode(String.self, forKey: .message)
+
+            countryCode = try container.decode(String.self, forKey: .countryCode)
+
+            phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
             shipmentId = try container.decode(Int.self, forKey: .shipmentId)
 
@@ -82,21 +84,21 @@ public extension PlatformClient.Order {
 
             customerName = try container.decode(String.self, forKey: .customerName)
 
+            brandName = try container.decode(String.self, forKey: .brandName)
+
             paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
-
-            countryCode = try container.decode(String.self, forKey: .countryCode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
@@ -104,11 +106,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
+
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
-
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
         }
     }
 }
@@ -120,11 +120,13 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class SmsDataPayload: Codable {
-        public var message: String
-
         public var amountPaid: Int
 
-        public var brandName: String
+        public var message: String
+
+        public var countryCode: String
+
+        public var phoneNumber: Int
 
         public var shipmentId: Int
 
@@ -132,18 +134,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var customerName: String
 
+        public var brandName: String
+
         public var paymentMode: String
 
-        public var phoneNumber: Int
-
-        public var countryCode: String
-
         public enum CodingKeys: String, CodingKey {
-            case message
-
             case amountPaid = "amount_paid"
 
-            case brandName = "brand_name"
+            case message
+
+            case countryCode = "country_code"
+
+            case phoneNumber = "phone_number"
 
             case shipmentId = "shipment_id"
 
@@ -151,19 +153,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case customerName = "customer_name"
 
+            case brandName = "brand_name"
+
             case paymentMode = "payment_mode"
-
-            case phoneNumber = "phone_number"
-
-            case countryCode = "country_code"
         }
 
         public init(amountPaid: Int, brandName: String, countryCode: String, customerName: String, message: String, orderId: String, paymentMode: String, phoneNumber: Int, shipmentId: Int) {
-            self.message = message
-
             self.amountPaid = amountPaid
 
-            self.brandName = brandName
+            self.message = message
+
+            self.countryCode = countryCode
+
+            self.phoneNumber = phoneNumber
 
             self.shipmentId = shipmentId
 
@@ -171,21 +173,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.customerName = customerName
 
+            self.brandName = brandName
+
             self.paymentMode = paymentMode
-
-            self.phoneNumber = phoneNumber
-
-            self.countryCode = countryCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            message = try container.decode(String.self, forKey: .message)
-
             amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
-            brandName = try container.decode(String.self, forKey: .brandName)
+            message = try container.decode(String.self, forKey: .message)
+
+            countryCode = try container.decode(String.self, forKey: .countryCode)
+
+            phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
             shipmentId = try container.decode(Int.self, forKey: .shipmentId)
 
@@ -193,21 +195,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
             customerName = try container.decode(String.self, forKey: .customerName)
 
+            brandName = try container.decode(String.self, forKey: .brandName)
+
             paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
-
-            countryCode = try container.decode(String.self, forKey: .countryCode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
@@ -215,11 +217,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
+
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
-
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
         }
     }
 }

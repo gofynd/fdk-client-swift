@@ -11,42 +11,42 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PlatformCartMetaRequest: Codable {
         public var gstin: String?
 
+        public var comment: String?
+
+        public var checkoutMode: String?
+
         public var pickUpCustomerDetails: [String: Any]?
 
         public var giftDetails: [String: Any]?
 
         public var panNo: String?
 
-        public var checkoutMode: String?
-
-        public var comment: String?
-
         public enum CodingKeys: String, CodingKey {
             case gstin
+
+            case comment
+
+            case checkoutMode = "checkout_mode"
 
             case pickUpCustomerDetails = "pick_up_customer_details"
 
             case giftDetails = "gift_details"
 
             case panNo = "pan_no"
-
-            case checkoutMode = "checkout_mode"
-
-            case comment
         }
 
         public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: [String: Any]? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
             self.gstin = gstin
+
+            self.comment = comment
+
+            self.checkoutMode = checkoutMode
 
             self.pickUpCustomerDetails = pickUpCustomerDetails
 
             self.giftDetails = giftDetails
 
             self.panNo = panNo
-
-            self.checkoutMode = checkoutMode
-
-            self.comment = comment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,6 +54,22 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 gstin = try container.decode(String.self, forKey: .gstin)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                comment = try container.decode(String.self, forKey: .comment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,22 +99,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                comment = try container.decode(String.self, forKey: .comment)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -106,15 +106,15 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 
+            try? container.encodeIfPresent(comment, forKey: .comment)
+
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
             try? container.encode(giftDetails, forKey: .giftDetails)
 
             try? container.encodeIfPresent(panNo, forKey: .panNo)
-
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-
-            try? container.encodeIfPresent(comment, forKey: .comment)
         }
     }
 }

@@ -9,18 +9,18 @@ public extension ApplicationClient.Order {
     class ShipmentsRequest1: Codable {
         public var products: [Products1]?
 
-        public var dataUpdates: DataUpdates?
-
         public var identifier: String
+
+        public var dataUpdates: DataUpdates?
 
         public var reasons: ReasonsData1?
 
         public enum CodingKeys: String, CodingKey {
             case products
 
-            case dataUpdates = "data_updates"
-
             case identifier
+
+            case dataUpdates = "data_updates"
 
             case reasons
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Order {
         public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products1]? = nil, reasons: ReasonsData1? = nil) {
             self.products = products
 
-            self.dataUpdates = dataUpdates
-
             self.identifier = identifier
+
+            self.dataUpdates = dataUpdates
 
             self.reasons = reasons
         }
@@ -46,6 +46,8 @@ public extension ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            identifier = try container.decode(String.self, forKey: .identifier)
+
             do {
                 dataUpdates = try container.decode(DataUpdates.self, forKey: .dataUpdates)
 
@@ -53,8 +55,6 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            identifier = try container.decode(String.self, forKey: .identifier)
 
             do {
                 reasons = try container.decode(ReasonsData1.self, forKey: .reasons)
@@ -70,9 +70,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(products, forKey: .products)
 
-            try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
 
             try? container.encodeIfPresent(reasons, forKey: .reasons)
         }

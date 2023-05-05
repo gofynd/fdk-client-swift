@@ -9,13 +9,13 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class OpenapiCartDetailsRequest: Codable {
-        public var cartItems: CartItemSchema?
+        public var cartItems: CartItem?
 
         public enum CodingKeys: String, CodingKey {
             case cartItems = "cart_items"
         }
 
-        public init(cartItems: CartItemSchema? = nil) {
+        public init(cartItems: CartItem? = nil) {
             self.cartItems = cartItems
         }
 
@@ -23,7 +23,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cartItems = try container.decode(CartItemSchema.self, forKey: .cartItems)
+                cartItems = try container.decode(CartItem.self, forKey: .cartItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

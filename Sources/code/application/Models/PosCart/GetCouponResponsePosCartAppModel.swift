@@ -7,7 +7,7 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class GetCouponResponse: Codable {
-        public var page: PageCouponSchema?
+        public var page: PageCoupon?
 
         public var availableCouponList: [Coupon]?
 
@@ -17,7 +17,7 @@ public extension ApplicationClient.PosCart {
             case availableCouponList = "available_coupon_list"
         }
 
-        public init(availableCouponList: [Coupon]? = nil, page: PageCouponSchema? = nil) {
+        public init(availableCouponList: [Coupon]? = nil, page: PageCoupon? = nil) {
             self.page = page
 
             self.availableCouponList = availableCouponList
@@ -27,7 +27,7 @@ public extension ApplicationClient.PosCart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                page = try container.decode(PageCouponSchema.self, forKey: .page)
+                page = try container.decode(PageCoupon.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
