@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class OrderConfig: Codable {
-        public var affiliate: Affiliate
-
         public var bagEndState: String?
+
+        public var affiliate: Affiliate
 
         public var storeLookup: String?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public var createUser: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case affiliate
-
             case bagEndState = "bag_end_state"
+
+            case affiliate
 
             case storeLookup = "store_lookup"
 
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
-            self.affiliate = affiliate
-
             self.bagEndState = bagEndState
+
+            self.affiliate = affiliate
 
             self.storeLookup = storeLookup
 
@@ -52,8 +52,6 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
-
             do {
                 bagEndState = try container.decode(String.self, forKey: .bagEndState)
 
@@ -61,6 +59,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
 
             do {
                 storeLookup = try container.decode(String.self, forKey: .storeLookup)
@@ -92,9 +92,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
-
             try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
+
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
             try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
 
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderConfig: Codable {
-        public var affiliate: Affiliate
-
         public var bagEndState: String?
+
+        public var affiliate: Affiliate
 
         public var storeLookup: String?
 
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public var createUser: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case affiliate
-
             case bagEndState = "bag_end_state"
+
+            case affiliate
 
             case storeLookup = "store_lookup"
 
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
-            self.affiliate = affiliate
-
             self.bagEndState = bagEndState
+
+            self.affiliate = affiliate
 
             self.storeLookup = storeLookup
 
@@ -157,8 +157,6 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
-
             do {
                 bagEndState = try container.decode(String.self, forKey: .bagEndState)
 
@@ -166,6 +164,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
 
             do {
                 storeLookup = try container.decode(String.self, forKey: .storeLookup)
@@ -197,9 +197,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
-
             try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
+
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
             try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
 

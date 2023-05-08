@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class Bags: Codable {
-        public var bagId: Int?
-
         public var affiliateBagId: String?
+
+        public var bagId: Int?
 
         public var isLocked: Bool?
 
         public var affiliateOrderId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case bagId = "bag_id"
-
             case affiliateBagId = "affiliate_bag_id"
+
+            case bagId = "bag_id"
 
             case isLocked = "is_locked"
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(affiliateBagId: String? = nil, affiliateOrderId: String? = nil, bagId: Int? = nil, isLocked: Bool? = nil) {
-            self.bagId = bagId
-
             self.affiliateBagId = affiliateBagId
+
+            self.bagId = bagId
 
             self.isLocked = isLocked
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                bagId = try container.decode(Int.self, forKey: .bagId)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
+                bagId = try container.decode(Int.self, forKey: .bagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
-
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
+
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
 
             try? container.encodeIfPresent(isLocked, forKey: .isLocked)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Bags: Codable {
-        public var bagId: Int?
-
         public var affiliateBagId: String?
+
+        public var bagId: Int?
 
         public var isLocked: Bool?
 
         public var affiliateOrderId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case bagId = "bag_id"
-
             case affiliateBagId = "affiliate_bag_id"
+
+            case bagId = "bag_id"
 
             case isLocked = "is_locked"
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(affiliateBagId: String? = nil, affiliateOrderId: String? = nil, bagId: Int? = nil, isLocked: Bool? = nil) {
-            self.bagId = bagId
-
             self.affiliateBagId = affiliateBagId
+
+            self.bagId = bagId
 
             self.isLocked = isLocked
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                bagId = try container.decode(Int.self, forKey: .bagId)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
+                bagId = try container.decode(Int.self, forKey: .bagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
-
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
+
+            try? container.encodeIfPresent(bagId, forKey: .bagId)
 
             try? container.encodeIfPresent(isLocked, forKey: .isLocked)
 

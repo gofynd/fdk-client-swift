@@ -13,30 +13,30 @@ public extension PlatformClient.Order {
 
         public var category: [String: Any]
 
+        public var attributes: [String: Any]
+
         public var quantity: Int
-
-        public var dimension: [String: Any]
-
-        public var brandId: Int
 
         public var weight: [String: Any]
 
-        public var attributes: [String: Any]
+        public var brandId: Int
+
+        public var dimension: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
 
             case category
 
+            case attributes
+
             case quantity
-
-            case dimension
-
-            case brandId = "brand_id"
 
             case weight
 
-            case attributes
+            case brandId = "brand_id"
+
+            case dimension
         }
 
         public init(attributes: [String: Any], brandId: Int, category: [String: Any], dimension: [String: Any], quantity: Int, weight: [String: Any], id: String) {
@@ -44,15 +44,15 @@ public extension PlatformClient.Order {
 
             self.category = category
 
+            self.attributes = attributes
+
             self.quantity = quantity
-
-            self.dimension = dimension
-
-            self.brandId = brandId
 
             self.weight = weight
 
-            self.attributes = attributes
+            self.brandId = brandId
+
+            self.dimension = dimension
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,15 +62,15 @@ public extension PlatformClient.Order {
 
             category = try container.decode([String: Any].self, forKey: .category)
 
+            attributes = try container.decode([String: Any].self, forKey: .attributes)
+
             quantity = try container.decode(Int.self, forKey: .quantity)
-
-            dimension = try container.decode([String: Any].self, forKey: .dimension)
-
-            brandId = try container.decode(Int.self, forKey: .brandId)
 
             weight = try container.decode([String: Any].self, forKey: .weight)
 
-            attributes = try container.decode([String: Any].self, forKey: .attributes)
+            brandId = try container.decode(Int.self, forKey: .brandId)
+
+            dimension = try container.decode([String: Any].self, forKey: .dimension)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -80,15 +80,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(category, forKey: .category)
 
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(dimension, forKey: .dimension)
-
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
+
+            try? container.encodeIfPresent(dimension, forKey: .dimension)
         }
     }
 }
@@ -104,30 +104,30 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var category: [String: Any]
 
+        public var attributes: [String: Any]
+
         public var quantity: Int
-
-        public var dimension: [String: Any]
-
-        public var brandId: Int
 
         public var weight: [String: Any]
 
-        public var attributes: [String: Any]
+        public var brandId: Int
+
+        public var dimension: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
 
             case category
 
+            case attributes
+
             case quantity
-
-            case dimension
-
-            case brandId = "brand_id"
 
             case weight
 
-            case attributes
+            case brandId = "brand_id"
+
+            case dimension
         }
 
         public init(attributes: [String: Any], brandId: Int, category: [String: Any], dimension: [String: Any], quantity: Int, weight: [String: Any], id: String) {
@@ -135,15 +135,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.category = category
 
+            self.attributes = attributes
+
             self.quantity = quantity
-
-            self.dimension = dimension
-
-            self.brandId = brandId
 
             self.weight = weight
 
-            self.attributes = attributes
+            self.brandId = brandId
+
+            self.dimension = dimension
         }
 
         required public init(from decoder: Decoder) throws {
@@ -153,15 +153,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             category = try container.decode([String: Any].self, forKey: .category)
 
+            attributes = try container.decode([String: Any].self, forKey: .attributes)
+
             quantity = try container.decode(Int.self, forKey: .quantity)
-
-            dimension = try container.decode([String: Any].self, forKey: .dimension)
-
-            brandId = try container.decode(Int.self, forKey: .brandId)
 
             weight = try container.decode([String: Any].self, forKey: .weight)
 
-            attributes = try container.decode([String: Any].self, forKey: .attributes)
+            brandId = try container.decode(Int.self, forKey: .brandId)
+
+            dimension = try container.decode([String: Any].self, forKey: .dimension)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -171,15 +171,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(category, forKey: .category)
 
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
             try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(dimension, forKey: .dimension)
-
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
+
+            try? container.encodeIfPresent(dimension, forKey: .dimension)
         }
     }
 }

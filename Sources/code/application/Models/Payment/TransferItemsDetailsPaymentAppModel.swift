@@ -9,22 +9,22 @@ public extension ApplicationClient.Payment {
     class TransferItemsDetails: Codable {
         public var logoSmall: String
 
-        public var displayName: String?
+        public var id: Int
 
         public var logoLarge: String
 
-        public var id: Int
+        public var displayName: String?
 
         public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case logoSmall = "logo_small"
 
-            case displayName = "display_name"
+            case id
 
             case logoLarge = "logo_large"
 
-            case id
+            case displayName = "display_name"
 
             case name
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Payment {
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
             self.logoSmall = logoSmall
 
-            self.displayName = displayName
+            self.id = id
 
             self.logoLarge = logoLarge
 
-            self.id = id
+            self.displayName = displayName
 
             self.name = name
         }
@@ -46,6 +46,10 @@ public extension ApplicationClient.Payment {
 
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
+            id = try container.decode(Int.self, forKey: .id)
+
+            logoLarge = try container.decode(String.self, forKey: .logoLarge)
+
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
 
@@ -53,10 +57,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            logoLarge = try container.decode(String.self, forKey: .logoLarge)
-
-            id = try container.decode(Int.self, forKey: .id)
 
             name = try container.decode(String.self, forKey: .name)
         }
@@ -66,11 +66,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

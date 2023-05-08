@@ -15,13 +15,13 @@ public extension PlatformClient.Order {
 
         public var gstTag: String?
 
-        public var isDefaultHsnCode: Bool?
+        public var valueOfGood: Double?
 
-        public var hsnCode: String?
+        public var isDefaultHsnCode: Bool?
 
         public var gstinCode: String?
 
-        public var valueOfGood: Double?
+        public var hsnCode: String?
 
         public var brandCalculatedAmount: Double?
 
@@ -32,13 +32,13 @@ public extension PlatformClient.Order {
 
             case gstTag = "gst_tag"
 
-            case isDefaultHsnCode = "is_default_hsn_code"
+            case valueOfGood = "value_of_good"
 
-            case hsnCode = "hsn_code"
+            case isDefaultHsnCode = "is_default_hsn_code"
 
             case gstinCode = "gstin_code"
 
-            case valueOfGood = "value_of_good"
+            case hsnCode = "hsn_code"
 
             case brandCalculatedAmount = "brand_calculated_amount"
         }
@@ -50,13 +50,13 @@ public extension PlatformClient.Order {
 
             self.gstTag = gstTag
 
-            self.isDefaultHsnCode = isDefaultHsnCode
+            self.valueOfGood = valueOfGood
 
-            self.hsnCode = hsnCode
+            self.isDefaultHsnCode = isDefaultHsnCode
 
             self.gstinCode = gstinCode
 
-            self.valueOfGood = valueOfGood
+            self.hsnCode = hsnCode
 
             self.brandCalculatedAmount = brandCalculatedAmount
         }
@@ -89,7 +89,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                isDefaultHsnCode = try container.decode(Bool.self, forKey: .isDefaultHsnCode)
+                valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                hsnCode = try container.decode(String.self, forKey: .hsnCode)
+                isDefaultHsnCode = try container.decode(Bool.self, forKey: .isDefaultHsnCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,7 +113,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
+                hsnCode = try container.decode(String.self, forKey: .hsnCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,13 +138,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(gstTag, forKey: .gstTag)
 
-            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
+            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
-            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
 
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
         }
@@ -164,13 +164,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var gstTag: String?
 
-        public var isDefaultHsnCode: Bool?
+        public var valueOfGood: Double?
 
-        public var hsnCode: String?
+        public var isDefaultHsnCode: Bool?
 
         public var gstinCode: String?
 
-        public var valueOfGood: Double?
+        public var hsnCode: String?
 
         public var brandCalculatedAmount: Double?
 
@@ -181,13 +181,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case gstTag = "gst_tag"
 
-            case isDefaultHsnCode = "is_default_hsn_code"
+            case valueOfGood = "value_of_good"
 
-            case hsnCode = "hsn_code"
+            case isDefaultHsnCode = "is_default_hsn_code"
 
             case gstinCode = "gstin_code"
 
-            case valueOfGood = "value_of_good"
+            case hsnCode = "hsn_code"
 
             case brandCalculatedAmount = "brand_calculated_amount"
         }
@@ -199,13 +199,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.gstTag = gstTag
 
-            self.isDefaultHsnCode = isDefaultHsnCode
+            self.valueOfGood = valueOfGood
 
-            self.hsnCode = hsnCode
+            self.isDefaultHsnCode = isDefaultHsnCode
 
             self.gstinCode = gstinCode
 
-            self.valueOfGood = valueOfGood
+            self.hsnCode = hsnCode
 
             self.brandCalculatedAmount = brandCalculatedAmount
         }
@@ -238,7 +238,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                isDefaultHsnCode = try container.decode(Bool.self, forKey: .isDefaultHsnCode)
+                valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -246,7 +246,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                hsnCode = try container.decode(String.self, forKey: .hsnCode)
+                isDefaultHsnCode = try container.decode(Bool.self, forKey: .isDefaultHsnCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -262,7 +262,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
+                hsnCode = try container.decode(String.self, forKey: .hsnCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -287,13 +287,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(gstTag, forKey: .gstTag)
 
-            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
+            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
-            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
+            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
-            try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
 
             try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
         }
