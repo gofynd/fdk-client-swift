@@ -9,9 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class CollectionItemUpdate: Codable {
-        public var visibleFacetsKeys: [String]?
-
         public var items: [CollectionItem]?
+
+        public var visibleFacetsKeys: [String]?
 
         public var type: String?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         public var allowSort: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case visibleFacetsKeys = "visible_facets_keys"
-
             case items
+
+            case visibleFacetsKeys = "visible_facets_keys"
 
             case type
 
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItem]? = nil, query: [CollectionQuery]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil) {
-            self.visibleFacetsKeys = visibleFacetsKeys
-
             self.items = items
+
+            self.visibleFacetsKeys = visibleFacetsKeys
 
             self.type = type
 
@@ -53,7 +53,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
+                items = try container.decode([CollectionItem].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([CollectionItem].self, forKey: .items)
+                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,9 +104,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
@@ -126,9 +126,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class CollectionItemUpdate: Codable {
-        public var visibleFacetsKeys: [String]?
-
         public var items: [CollectionItem]?
+
+        public var visibleFacetsKeys: [String]?
 
         public var type: String?
 
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var allowSort: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case visibleFacetsKeys = "visible_facets_keys"
-
             case items
+
+            case visibleFacetsKeys = "visible_facets_keys"
 
             case type
 
@@ -153,9 +153,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItem]? = nil, query: [CollectionQuery]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil) {
-            self.visibleFacetsKeys = visibleFacetsKeys
-
             self.items = items
+
+            self.visibleFacetsKeys = visibleFacetsKeys
 
             self.type = type
 
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
+                items = try container.decode([CollectionItem].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([CollectionItem].self, forKey: .items)
+                visibleFacetsKeys = try container.decode([String].self, forKey: .visibleFacetsKeys)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,9 +221,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

@@ -9,9 +9,9 @@ public extension ApplicationClient.Catalog {
     class ProductBrand: Codable {
         public var action: ProductListingAction?
 
-        public var description: String?
-
         public var logo: Media?
+
+        public var description: String?
 
         public var uid: Int?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case description
-
             case logo
+
+            case description
 
             case uid
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Catalog {
         public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
             self.action = action
 
-            self.description = description
-
             self.logo = logo
+
+            self.description = description
 
             self.uid = uid
 
@@ -53,7 +53,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 

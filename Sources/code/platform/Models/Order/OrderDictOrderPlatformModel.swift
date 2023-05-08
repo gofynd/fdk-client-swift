@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class OrderDict: Codable {
-        public var paymentMethods: [String: Any]?
-
         public var meta: OrderMeta?
+
+        public var paymentMethods: [String: Any]?
 
         public var orderDate: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public var taxDetails: TaxDetails?
 
         public enum CodingKeys: String, CodingKey {
-            case paymentMethods = "payment_methods"
-
             case meta
+
+            case paymentMethods = "payment_methods"
 
             case orderDate = "order_date"
 
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
         }
 
         public init(fyndOrderId: String, meta: OrderMeta? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
-            self.paymentMethods = paymentMethods
-
             self.meta = meta
+
+            self.paymentMethods = paymentMethods
 
             self.orderDate = orderDate
 
@@ -53,7 +53,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+                meta = try container.decode(OrderMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                meta = try container.decode(OrderMeta.self, forKey: .meta)
+                paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderDict: Codable {
-        public var paymentMethods: [String: Any]?
-
         public var meta: OrderMeta?
+
+        public var paymentMethods: [String: Any]?
 
         public var orderDate: String
 
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public var taxDetails: TaxDetails?
 
         public enum CodingKeys: String, CodingKey {
-            case paymentMethods = "payment_methods"
-
             case meta
+
+            case paymentMethods = "payment_methods"
 
             case orderDate = "order_date"
 
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(fyndOrderId: String, meta: OrderMeta? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
-            self.paymentMethods = paymentMethods
-
             self.meta = meta
+
+            self.paymentMethods = paymentMethods
 
             self.orderDate = orderDate
 
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+                meta = try container.decode(OrderMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -166,7 +166,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                meta = try container.decode(OrderMeta.self, forKey: .meta)
+                paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,9 +197,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 

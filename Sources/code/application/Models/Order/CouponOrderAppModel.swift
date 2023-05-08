@@ -11,9 +11,9 @@ public extension ApplicationClient.Order {
 
         public var id: Double?
 
-        public var couponType: String?
-
         public var value: Double?
+
+        public var couponType: String?
 
         public var payableCategory: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Order {
 
             case id
 
-            case couponType = "coupon_type"
-
             case value
+
+            case couponType = "coupon_type"
 
             case payableCategory = "payable_category"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Order {
 
             self.id = id
 
-            self.couponType = couponType
-
             self.value = value
+
+            self.couponType = couponType
 
             self.payableCategory = payableCategory
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                couponType = try container.decode(String.self, forKey: .couponType)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                couponType = try container.decode(String.self, forKey: .couponType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(couponType, forKey: .couponType)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
 
             try? container.encodeIfPresent(payableCategory, forKey: .payableCategory)
         }

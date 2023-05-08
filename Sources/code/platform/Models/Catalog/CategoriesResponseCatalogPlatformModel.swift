@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var templateSlug: String?
 
-        public var slugKey: String?
-
         public var slug: String?
+
+        public var slugKey: String?
 
         public var name: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case templateSlug = "template_slug"
 
-            case slugKey = "slug_key"
-
             case slug
+
+            case slugKey = "slug_key"
 
             case name
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.templateSlug = templateSlug
 
-            self.slugKey = slugKey
-
             self.slug = slug
+
+            self.slugKey = slugKey
 
             self.name = name
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                slugKey = try container.decode(String.self, forKey: .slugKey)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                slugKey = try container.decode(String.self, forKey: .slugKey)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
 
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var templateSlug: String?
 
-        public var slugKey: String?
-
         public var slug: String?
+
+        public var slugKey: String?
 
         public var name: String?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case templateSlug = "template_slug"
 
-            case slugKey = "slug_key"
-
             case slug
+
+            case slugKey = "slug_key"
 
             case name
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.templateSlug = templateSlug
 
-            self.slugKey = slugKey
-
             self.slug = slug
+
+            self.slugKey = slugKey
 
             self.name = name
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slugKey = try container.decode(String.self, forKey: .slugKey)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                slugKey = try container.decode(String.self, forKey: .slugKey)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(templateSlug, forKey: .templateSlug)
 
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

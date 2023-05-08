@@ -7,18 +7,18 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class Price: Codable {
-        public var currencySymbol: String?
-
         public var currencyCode: String?
+
+        public var currencySymbol: String?
 
         public var max: Double?
 
         public var min: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case currencySymbol = "currency_symbol"
-
             case currencyCode = "currency_code"
+
+            case currencySymbol = "currency_symbol"
 
             case max
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Catalog {
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
-            self.currencySymbol = currencySymbol
-
             self.currencyCode = currencyCode
+
+            self.currencySymbol = currencySymbol
 
             self.max = max
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(max, forKey: .max)
 
