@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var logistics: AffiliateInventoryLogisticsConfig?
 
-        public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
-
         public var payment: AffiliateInventoryPaymentConfig?
+
+        public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
 
         public var order: AffiliateInventoryOrderConfig?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case logistics
 
-            case articleAssignment = "article_assignment"
-
             case payment
+
+            case articleAssignment = "article_assignment"
 
             case order
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.logistics = logistics
 
-            self.articleAssignment = articleAssignment
-
             self.payment = payment
+
+            self.articleAssignment = articleAssignment
 
             self.order = order
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(AffiliateInventoryArticleAssignmentConfig.self, forKey: .articleAssignment)
+                payment = try container.decode(AffiliateInventoryPaymentConfig.self, forKey: .payment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                payment = try container.decode(AffiliateInventoryPaymentConfig.self, forKey: .payment)
+                articleAssignment = try container.decode(AffiliateInventoryArticleAssignmentConfig.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(logistics, forKey: .logistics)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
-
             try? container.encodeIfPresent(payment, forKey: .payment)
+
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(order, forKey: .order)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var logistics: AffiliateInventoryLogisticsConfig?
 
-        public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
-
         public var payment: AffiliateInventoryPaymentConfig?
+
+        public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
 
         public var order: AffiliateInventoryOrderConfig?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case logistics
 
-            case articleAssignment = "article_assignment"
-
             case payment
+
+            case articleAssignment = "article_assignment"
 
             case order
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.logistics = logistics
 
-            self.articleAssignment = articleAssignment
-
             self.payment = payment
+
+            self.articleAssignment = articleAssignment
 
             self.order = order
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(AffiliateInventoryArticleAssignmentConfig.self, forKey: .articleAssignment)
+                payment = try container.decode(AffiliateInventoryPaymentConfig.self, forKey: .payment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                payment = try container.decode(AffiliateInventoryPaymentConfig.self, forKey: .payment)
+                articleAssignment = try container.decode(AffiliateInventoryArticleAssignmentConfig.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(logistics, forKey: .logistics)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
-
             try? container.encodeIfPresent(payment, forKey: .payment)
+
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(order, forKey: .order)
         }

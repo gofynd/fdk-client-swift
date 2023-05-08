@@ -11,42 +11,44 @@ public extension PlatformClient.Payment {
     class PaymentStatusUpdateResponse: Codable {
         public var status: String
 
+        public var retry: Bool
+
         public var redirectUrl: String?
 
         public var aggregatorName: String
 
         public var success: Bool?
 
-        public var retry: Bool
-
         public enum CodingKeys: String, CodingKey {
             case status
+
+            case retry
 
             case redirectUrl = "redirect_url"
 
             case aggregatorName = "aggregator_name"
 
             case success
-
-            case retry
         }
 
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
             self.status = status
+
+            self.retry = retry
 
             self.redirectUrl = redirectUrl
 
             self.aggregatorName = aggregatorName
 
             self.success = success
-
-            self.retry = retry
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             status = try container.decode(String.self, forKey: .status)
+
+            retry = try container.decode(Bool.self, forKey: .retry)
 
             do {
                 redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
@@ -65,8 +67,6 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            retry = try container.decode(Bool.self, forKey: .retry)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,13 +74,13 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
+            try? container.encodeIfPresent(retry, forKey: .retry)
+
             try? container.encode(redirectUrl, forKey: .redirectUrl)
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
             try? container.encode(success, forKey: .success)
-
-            try? container.encodeIfPresent(retry, forKey: .retry)
         }
     }
 }
@@ -94,42 +94,44 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentStatusUpdateResponse: Codable {
         public var status: String
 
+        public var retry: Bool
+
         public var redirectUrl: String?
 
         public var aggregatorName: String
 
         public var success: Bool?
 
-        public var retry: Bool
-
         public enum CodingKeys: String, CodingKey {
             case status
+
+            case retry
 
             case redirectUrl = "redirect_url"
 
             case aggregatorName = "aggregator_name"
 
             case success
-
-            case retry
         }
 
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
             self.status = status
+
+            self.retry = retry
 
             self.redirectUrl = redirectUrl
 
             self.aggregatorName = aggregatorName
 
             self.success = success
-
-            self.retry = retry
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             status = try container.decode(String.self, forKey: .status)
+
+            retry = try container.decode(Bool.self, forKey: .retry)
 
             do {
                 redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
@@ -148,8 +150,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            retry = try container.decode(Bool.self, forKey: .retry)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -157,13 +157,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
+            try? container.encodeIfPresent(retry, forKey: .retry)
+
             try? container.encode(redirectUrl, forKey: .redirectUrl)
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
             try? container.encode(success, forKey: .success)
-
-            try? container.encodeIfPresent(retry, forKey: .retry)
         }
     }
 }

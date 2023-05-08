@@ -9,18 +9,18 @@ public extension ApplicationClient.Catalog {
     class ProductVariantResponse: Codable {
         public var key: String?
 
-        public var items: [ProductVariantItemResponse]?
-
         public var header: String?
+
+        public var items: [ProductVariantItemResponse]?
 
         public var displayType: String?
 
         public enum CodingKeys: String, CodingKey {
             case key
 
-            case items
-
             case header
+
+            case items
 
             case displayType = "display_type"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Catalog {
         public init(displayType: String? = nil, header: String? = nil, items: [ProductVariantItemResponse]? = nil, key: String? = nil) {
             self.key = key
 
-            self.items = items
-
             self.header = header
+
+            self.items = items
 
             self.displayType = displayType
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
+                header = try container.decode(String.self, forKey: .header)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                header = try container.decode(String.self, forKey: .header)
+                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(header, forKey: .header)
+
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
         }
