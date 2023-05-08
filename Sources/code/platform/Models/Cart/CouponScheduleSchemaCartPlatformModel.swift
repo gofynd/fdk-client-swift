@@ -15,9 +15,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var cron: String?
 
-        public var duration: Int?
-
         public var end: String?
+
+        public var duration: Int?
 
         public enum CodingKeys: String, CodingKey {
             case start
@@ -26,9 +26,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case cron
 
-            case duration
-
             case end
+
+            case duration
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, start: String? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.cron = cron
 
-            self.duration = duration
-
             self.end = end
+
+            self.duration = duration
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                duration = try container.decode(Int.self, forKey: .duration)
+                end = try container.decode(String.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                end = try container.decode(String.self, forKey: .end)
+                duration = try container.decode(Int.self, forKey: .duration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encode(cron, forKey: .cron)
 
-            try? container.encode(duration, forKey: .duration)
-
             try? container.encode(end, forKey: .end)
+
+            try? container.encode(duration, forKey: .duration)
         }
     }
 }

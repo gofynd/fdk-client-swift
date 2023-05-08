@@ -9,7 +9,7 @@ public extension PlatformClient.Order {
      */
 
     class InvoiceInfo: Codable {
-        public var labelUrl: String?
+        public var storeInvoiceId: String?
 
         public var updatedDate: String?
 
@@ -17,10 +17,10 @@ public extension PlatformClient.Order {
 
         public var creditNoteId: String?
 
-        public var storeInvoiceId: String?
+        public var labelUrl: String?
 
         public enum CodingKeys: String, CodingKey {
-            case labelUrl = "label_url"
+            case storeInvoiceId = "store_invoice_id"
 
             case updatedDate = "updated_date"
 
@@ -28,11 +28,11 @@ public extension PlatformClient.Order {
 
             case creditNoteId = "credit_note_id"
 
-            case storeInvoiceId = "store_invoice_id"
+            case labelUrl = "label_url"
         }
 
         public init(creditNoteId: String? = nil, invoiceUrl: String? = nil, labelUrl: String? = nil, storeInvoiceId: String? = nil, updatedDate: String? = nil) {
-            self.labelUrl = labelUrl
+            self.storeInvoiceId = storeInvoiceId
 
             self.updatedDate = updatedDate
 
@@ -40,14 +40,14 @@ public extension PlatformClient.Order {
 
             self.creditNoteId = creditNoteId
 
-            self.storeInvoiceId = storeInvoiceId
+            self.labelUrl = labelUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                labelUrl = try container.decode(String.self, forKey: .labelUrl)
+                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
+                labelUrl = try container.decode(String.self, forKey: .labelUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
 
             try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
@@ -98,7 +98,7 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
 
-            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
+            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
         }
     }
 }
@@ -110,7 +110,7 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class InvoiceInfo: Codable {
-        public var labelUrl: String?
+        public var storeInvoiceId: String?
 
         public var updatedDate: String?
 
@@ -118,10 +118,10 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var creditNoteId: String?
 
-        public var storeInvoiceId: String?
+        public var labelUrl: String?
 
         public enum CodingKeys: String, CodingKey {
-            case labelUrl = "label_url"
+            case storeInvoiceId = "store_invoice_id"
 
             case updatedDate = "updated_date"
 
@@ -129,11 +129,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case creditNoteId = "credit_note_id"
 
-            case storeInvoiceId = "store_invoice_id"
+            case labelUrl = "label_url"
         }
 
         public init(creditNoteId: String? = nil, invoiceUrl: String? = nil, labelUrl: String? = nil, storeInvoiceId: String? = nil, updatedDate: String? = nil) {
-            self.labelUrl = labelUrl
+            self.storeInvoiceId = storeInvoiceId
 
             self.updatedDate = updatedDate
 
@@ -141,14 +141,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.creditNoteId = creditNoteId
 
-            self.storeInvoiceId = storeInvoiceId
+            self.labelUrl = labelUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                labelUrl = try container.decode(String.self, forKey: .labelUrl)
+                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
+                labelUrl = try container.decode(String.self, forKey: .labelUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,7 +191,7 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
 
             try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
 
@@ -199,7 +199,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(creditNoteId, forKey: .creditNoteId)
 
-            try? container.encodeIfPresent(storeInvoiceId, forKey: .storeInvoiceId)
+            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
         }
     }
 }

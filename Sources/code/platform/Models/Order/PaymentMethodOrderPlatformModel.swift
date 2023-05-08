@@ -9,48 +9,48 @@ public extension PlatformClient.Order {
      */
 
     class PaymentMethod: Codable {
+        public var refundBy: String
+
+        public var mode: String
+
+        public var meta: [String: Any]?
+
+        public var amount: Double
+
         public var collectBy: String
 
         public var transactionData: [String: Any]?
 
-        public var amount: Double
-
-        public var mode: String
-
-        public var refundBy: String
-
-        public var meta: [String: Any]?
-
         public var name: String
 
         public enum CodingKeys: String, CodingKey {
-            case collectBy = "collect_by"
-
-            case transactionData = "transaction_data"
-
-            case amount
+            case refundBy = "refund_by"
 
             case mode
 
-            case refundBy = "refund_by"
-
             case meta
+
+            case amount
+
+            case collectBy = "collect_by"
+
+            case transactionData = "transaction_data"
 
             case name
         }
 
         public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
-            self.collectBy = collectBy
-
-            self.transactionData = transactionData
-
-            self.amount = amount
+            self.refundBy = refundBy
 
             self.mode = mode
 
-            self.refundBy = refundBy
-
             self.meta = meta
+
+            self.amount = amount
+
+            self.collectBy = collectBy
+
+            self.transactionData = transactionData
 
             self.name = name
         }
@@ -58,10 +58,12 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            collectBy = try container.decode(String.self, forKey: .collectBy)
+            refundBy = try container.decode(String.self, forKey: .refundBy)
+
+            mode = try container.decode(String.self, forKey: .mode)
 
             do {
-                transactionData = try container.decode([String: Any].self, forKey: .transactionData)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,12 +72,10 @@ public extension PlatformClient.Order {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            mode = try container.decode(String.self, forKey: .mode)
-
-            refundBy = try container.decode(String.self, forKey: .refundBy)
+            collectBy = try container.decode(String.self, forKey: .collectBy)
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                transactionData = try container.decode([String: Any].self, forKey: .transactionData)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,17 +88,17 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
-
-            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
+
+            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -112,48 +112,48 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PaymentMethod: Codable {
+        public var refundBy: String
+
+        public var mode: String
+
+        public var meta: [String: Any]?
+
+        public var amount: Double
+
         public var collectBy: String
 
         public var transactionData: [String: Any]?
 
-        public var amount: Double
-
-        public var mode: String
-
-        public var refundBy: String
-
-        public var meta: [String: Any]?
-
         public var name: String
 
         public enum CodingKeys: String, CodingKey {
-            case collectBy = "collect_by"
-
-            case transactionData = "transaction_data"
-
-            case amount
+            case refundBy = "refund_by"
 
             case mode
 
-            case refundBy = "refund_by"
-
             case meta
+
+            case amount
+
+            case collectBy = "collect_by"
+
+            case transactionData = "transaction_data"
 
             case name
         }
 
         public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
-            self.collectBy = collectBy
-
-            self.transactionData = transactionData
-
-            self.amount = amount
+            self.refundBy = refundBy
 
             self.mode = mode
 
-            self.refundBy = refundBy
-
             self.meta = meta
+
+            self.amount = amount
+
+            self.collectBy = collectBy
+
+            self.transactionData = transactionData
 
             self.name = name
         }
@@ -161,10 +161,12 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            collectBy = try container.decode(String.self, forKey: .collectBy)
+            refundBy = try container.decode(String.self, forKey: .refundBy)
+
+            mode = try container.decode(String.self, forKey: .mode)
 
             do {
-                transactionData = try container.decode([String: Any].self, forKey: .transactionData)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,12 +175,10 @@ public extension PlatformClient.ApplicationClient.Order {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            mode = try container.decode(String.self, forKey: .mode)
-
-            refundBy = try container.decode(String.self, forKey: .refundBy)
+            collectBy = try container.decode(String.self, forKey: .collectBy)
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                transactionData = try container.decode([String: Any].self, forKey: .transactionData)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,17 +191,17 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
-
-            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
+
+            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
