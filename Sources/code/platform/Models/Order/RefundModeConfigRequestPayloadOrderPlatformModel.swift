@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var customerMobileNumber: String?
 
-        public var sellerId: String
-
         public var orderingChannel: String
+
+        public var sellerId: String
 
         public var affiliateId: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case customerMobileNumber = "customer_mobile_number"
 
-            case sellerId = "seller_id"
-
             case orderingChannel = "ordering_channel"
+
+            case sellerId = "seller_id"
 
             case affiliateId = "affiliate_id"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.customerMobileNumber = customerMobileNumber
 
-            self.sellerId = sellerId
-
             self.orderingChannel = orderingChannel
+
+            self.sellerId = sellerId
 
             self.affiliateId = affiliateId
         }
@@ -56,9 +56,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sellerId = try container.decode(String.self, forKey: .sellerId)
-
             orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+
+            sellerId = try container.decode(String.self, forKey: .sellerId)
 
             affiliateId = try container.decode(String.self, forKey: .affiliateId)
         }
@@ -70,9 +70,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
 
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }
@@ -90,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var customerMobileNumber: String?
 
-        public var sellerId: String
-
         public var orderingChannel: String
+
+        public var sellerId: String
 
         public var affiliateId: String
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case customerMobileNumber = "customer_mobile_number"
 
-            case sellerId = "seller_id"
-
             case orderingChannel = "ordering_channel"
+
+            case sellerId = "seller_id"
 
             case affiliateId = "affiliate_id"
         }
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.customerMobileNumber = customerMobileNumber
 
-            self.sellerId = sellerId
-
             self.orderingChannel = orderingChannel
+
+            self.sellerId = sellerId
 
             self.affiliateId = affiliateId
         }
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sellerId = try container.decode(String.self, forKey: .sellerId)
-
             orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+
+            sellerId = try container.decode(String.self, forKey: .sellerId)
 
             affiliateId = try container.decode(String.self, forKey: .affiliateId)
         }
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
 
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }

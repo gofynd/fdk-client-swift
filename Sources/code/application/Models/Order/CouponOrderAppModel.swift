@@ -11,22 +11,22 @@ public extension ApplicationClient.Order {
 
         public var payableCategory: String?
 
-        public var id: Double?
-
         public var code: String?
 
         public var value: Double?
+
+        public var id: Double?
 
         public enum CodingKeys: String, CodingKey {
             case couponType = "coupon_type"
 
             case payableCategory = "payable_category"
 
-            case id
-
             case code
 
             case value
+
+            case id
         }
 
         public init(code: String? = nil, couponType: String? = nil, id: Double? = nil, payableCategory: String? = nil, value: Double? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Order {
 
             self.payableCategory = payableCategory
 
-            self.id = id
-
             self.code = code
 
             self.value = value
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,14 +61,6 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                id = try container.decode(Double.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -83,6 +75,14 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                id = try container.decode(Double.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,11 +92,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(payableCategory, forKey: .payableCategory)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

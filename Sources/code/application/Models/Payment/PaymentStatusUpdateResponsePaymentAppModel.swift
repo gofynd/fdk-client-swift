@@ -11,22 +11,22 @@ public extension ApplicationClient.Payment {
 
         public var aggregatorName: String
 
-        public var retry: Bool
-
         public var redirectUrl: String?
 
         public var success: Bool?
+
+        public var retry: Bool
 
         public enum CodingKeys: String, CodingKey {
             case status
 
             case aggregatorName = "aggregator_name"
 
-            case retry
-
             case redirectUrl = "redirect_url"
 
             case success
+
+            case retry
         }
 
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Payment {
 
             self.aggregatorName = aggregatorName
 
-            self.retry = retry
-
             self.redirectUrl = redirectUrl
 
             self.success = success
+
+            self.retry = retry
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,8 +47,6 @@ public extension ApplicationClient.Payment {
             status = try container.decode(String.self, forKey: .status)
 
             aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
-
-            retry = try container.decode(Bool.self, forKey: .retry)
 
             do {
                 redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
@@ -65,6 +63,8 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            retry = try container.decode(Bool.self, forKey: .retry)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,11 +74,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
-            try? container.encodeIfPresent(retry, forKey: .retry)
-
             try? container.encode(redirectUrl, forKey: .redirectUrl)
 
             try? container.encode(success, forKey: .success)
+
+            try? container.encodeIfPresent(retry, forKey: .retry)
         }
     }
 }

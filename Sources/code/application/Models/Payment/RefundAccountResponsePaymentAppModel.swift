@@ -7,18 +7,18 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class RefundAccountResponse: Codable {
-        public var isVerifiedFlag: Bool?
-
         public var success: Bool
+
+        public var isVerifiedFlag: Bool?
 
         public var message: String
 
         public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case isVerifiedFlag = "is_verified_flag"
-
             case success
+
+            case isVerifiedFlag = "is_verified_flag"
 
             case message
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Payment {
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
-            self.isVerifiedFlag = isVerifiedFlag
-
             self.success = success
+
+            self.isVerifiedFlag = isVerifiedFlag
 
             self.message = message
 
@@ -38,6 +38,8 @@ public extension ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
 
@@ -45,8 +47,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
 
             message = try container.decode(String.self, forKey: .message)
 
@@ -62,9 +62,9 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
