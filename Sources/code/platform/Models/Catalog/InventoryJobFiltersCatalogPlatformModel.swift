@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var toDate: String?
 
-        public var fromDate: String?
-
         public var quantity: InventoryExportQuantityFilter?
+
+        public var fromDate: String?
 
         public var brands: [String]?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case toDate = "to_date"
 
-            case fromDate = "from_date"
-
             case quantity
+
+            case fromDate = "from_date"
 
             case brands
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.toDate = toDate
 
-            self.fromDate = fromDate
-
             self.quantity = quantity
+
+            self.fromDate = fromDate
 
             self.brands = brands
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                fromDate = try container.decode(String.self, forKey: .fromDate)
+                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
+                fromDate = try container.decode(String.self, forKey: .fromDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
 
-            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 
             try? container.encodeIfPresent(brands, forKey: .brands)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var toDate: String?
 
-        public var fromDate: String?
-
         public var quantity: InventoryExportQuantityFilter?
+
+        public var fromDate: String?
 
         public var brands: [String]?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case toDate = "to_date"
 
-            case fromDate = "from_date"
-
             case quantity
+
+            case fromDate = "from_date"
 
             case brands
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.toDate = toDate
 
-            self.fromDate = fromDate
-
             self.quantity = quantity
+
+            self.fromDate = fromDate
 
             self.brands = brands
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                fromDate = try container.decode(String.self, forKey: .fromDate)
+                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(InventoryExportQuantityFilter.self, forKey: .quantity)
+                fromDate = try container.decode(String.self, forKey: .fromDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
 
-            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 
             try? container.encodeIfPresent(brands, forKey: .brands)
         }

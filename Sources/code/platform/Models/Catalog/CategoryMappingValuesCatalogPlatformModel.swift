@@ -9,26 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class CategoryMappingValues: Codable {
-        public var name: String
-
         public var catalogId: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case name
+        public var name: String
 
+        public enum CodingKeys: String, CodingKey {
             case catalogId = "catalog_id"
+
+            case name
         }
 
         public init(catalogId: Int? = nil, name: String) {
-            self.name = name
-
             self.catalogId = catalogId
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 catalogId = try container.decode(Int.self, forKey: .catalogId)
@@ -37,14 +35,16 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(catalogId, forKey: .catalogId)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -56,26 +56,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class CategoryMappingValues: Codable {
-        public var name: String
-
         public var catalogId: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case name
+        public var name: String
 
+        public enum CodingKeys: String, CodingKey {
             case catalogId = "catalog_id"
+
+            case name
         }
 
         public init(catalogId: Int? = nil, name: String) {
-            self.name = name
-
             self.catalogId = catalogId
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 catalogId = try container.decode(Int.self, forKey: .catalogId)
@@ -84,14 +82,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(catalogId, forKey: .catalogId)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

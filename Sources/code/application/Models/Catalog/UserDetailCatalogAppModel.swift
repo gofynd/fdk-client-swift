@@ -9,30 +9,30 @@ public extension ApplicationClient.Catalog {
     class UserDetail: Codable {
         public var contact: String?
 
-        public var superUser: Bool?
+        public var userId: String
 
         public var username: String
 
-        public var userId: String
+        public var superUser: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case contact
 
-            case superUser = "super_user"
+            case userId = "user_id"
 
             case username
 
-            case userId = "user_id"
+            case superUser = "super_user"
         }
 
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
             self.contact = contact
 
-            self.superUser = superUser
+            self.userId = userId
 
             self.username = username
 
-            self.userId = userId
+            self.superUser = superUser
         }
 
         required public init(from decoder: Decoder) throws {
@@ -46,6 +46,10 @@ public extension ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            userId = try container.decode(String.self, forKey: .userId)
+
+            username = try container.decode(String.self, forKey: .username)
+
             do {
                 superUser = try container.decode(Bool.self, forKey: .superUser)
 
@@ -53,10 +57,6 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            username = try container.decode(String.self, forKey: .username)
-
-            userId = try container.decode(String.self, forKey: .userId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(contact, forKey: .contact)
 
-            try? container.encodeIfPresent(superUser, forKey: .superUser)
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(superUser, forKey: .superUser)
         }
     }
 }
