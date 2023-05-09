@@ -9,9 +9,9 @@ public extension PlatformClient.Payment {
      */
 
     class PayoutRequest: Codable {
-        public var users: [String: Any]
-
         public var bankDetails: PayoutBankDetails
+
+        public var users: [String: Any]
 
         public var aggregator: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Payment {
         public var transferType: String
 
         public enum CodingKeys: String, CodingKey {
-            case users
-
             case bankDetails = "bank_details"
+
+            case users
 
             case aggregator
 
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
         }
 
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
-            self.users = users
-
             self.bankDetails = bankDetails
+
+            self.users = users
 
             self.aggregator = aggregator
 
@@ -52,9 +52,9 @@ public extension PlatformClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            users = try container.decode([String: Any].self, forKey: .users)
-
             bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
+
+            users = try container.decode([String: Any].self, forKey: .users)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
@@ -68,9 +68,9 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(users, forKey: .users)
-
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
+
+            try? container.encodeIfPresent(users, forKey: .users)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
@@ -90,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class PayoutRequest: Codable {
-        public var users: [String: Any]
-
         public var bankDetails: PayoutBankDetails
+
+        public var users: [String: Any]
 
         public var aggregator: String
 
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public var transferType: String
 
         public enum CodingKeys: String, CodingKey {
-            case users
-
             case bankDetails = "bank_details"
+
+            case users
 
             case aggregator
 
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         }
 
         public init(aggregator: String, bankDetails: PayoutBankDetails, isActive: Bool, transferType: String, uniqueExternalId: String, users: [String: Any]) {
-            self.users = users
-
             self.bankDetails = bankDetails
+
+            self.users = users
 
             self.aggregator = aggregator
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            users = try container.decode([String: Any].self, forKey: .users)
-
             bankDetails = try container.decode(PayoutBankDetails.self, forKey: .bankDetails)
+
+            users = try container.decode([String: Any].self, forKey: .users)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
@@ -149,9 +149,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(users, forKey: .users)
-
             try? container.encodeIfPresent(bankDetails, forKey: .bankDetails)
+
+            try? container.encodeIfPresent(users, forKey: .users)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 

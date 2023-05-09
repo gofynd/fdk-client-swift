@@ -7,69 +7,69 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ProductStockStatusItem: Codable {
-        public var company: CompanyDetail?
+        public var store: StoreDetail?
 
-        public var uid: String?
+        public var identifier: [String: Any]?
 
         public var size: String?
 
         public var itemId: Int?
 
-        public var identifier: [String: Any]?
+        public var quantity: Int?
 
         public var seller: Seller?
 
-        public var store: StoreDetail?
+        public var company: CompanyDetail?
 
         public var price: ProductStockPrice?
 
-        public var quantity: Int?
+        public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
-            case company
+            case store
 
-            case uid
+            case identifier
 
             case size
 
             case itemId = "item_id"
 
-            case identifier
+            case quantity
 
             case seller
 
-            case store
+            case company
 
             case price
 
-            case quantity
+            case uid
         }
 
         public init(company: CompanyDetail? = nil, identifier: [String: Any]? = nil, itemId: Int? = nil, price: ProductStockPrice? = nil, quantity: Int? = nil, seller: Seller? = nil, size: String? = nil, store: StoreDetail? = nil, uid: String? = nil) {
-            self.company = company
+            self.store = store
 
-            self.uid = uid
+            self.identifier = identifier
 
             self.size = size
 
             self.itemId = itemId
 
-            self.identifier = identifier
+            self.quantity = quantity
 
             self.seller = seller
 
-            self.store = store
+            self.company = company
 
             self.price = price
 
-            self.quantity = quantity
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                company = try container.decode(CompanyDetail.self, forKey: .company)
+                store = try container.decode(StoreDetail.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                identifier = try container.decode([String: Any].self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,7 +101,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                identifier = try container.decode([String: Any].self, forKey: .identifier)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +117,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                store = try container.decode(StoreDetail.self, forKey: .store)
+                company = try container.decode(CompanyDetail.self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +133,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,23 +144,23 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encodeIfPresent(store, forKey: .store)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(seller, forKey: .seller)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(price, forKey: .price)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
