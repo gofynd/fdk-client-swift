@@ -4,53 +4,39 @@ import Foundation
 public extension PlatformClient {
     /*
          Model: Error
-         Used By: Serviceability
+         Used By: Order
      */
 
     class Error: Codable {
-        public var type: String?
-
-        public var value: String?
-
         public var message: String?
 
+        public var success: Bool?
+
         public enum CodingKeys: String, CodingKey {
-            case type
-
-            case value
-
             case message
+
+            case success
         }
 
-        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
-            self.type = type
-
-            self.value = value
-
+        public init(message: String? = nil, success: Bool? = nil) {
             self.message = message
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,11 +47,9 @@ public extension PlatformClient {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

@@ -10,24 +10,24 @@ public extension PlatformClient {
     class EntityRegionView_Items: Codable {
         public var name: String
 
-        public var uid: String
-
         public var subType: String
+
+        public var uid: String
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case uid
-
             case subType = "sub_type"
+
+            case uid
         }
 
         public init(name: String, subType: String, uid: String) {
             self.name = name
 
-            self.uid = uid
-
             self.subType = subType
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -35,9 +35,9 @@ public extension PlatformClient {
 
             name = try container.decode(String.self, forKey: .name)
 
-            uid = try container.decode(String.self, forKey: .uid)
-
             subType = try container.decode(String.self, forKey: .subType)
+
+            uid = try container.decode(String.self, forKey: .uid)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -45,9 +45,9 @@ public extension PlatformClient {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

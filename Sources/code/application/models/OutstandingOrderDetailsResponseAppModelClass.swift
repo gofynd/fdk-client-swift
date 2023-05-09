@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class OutstandingOrderDetailsResponse: Codable {
         public var statusCode: Int
 
-        public var message: String?
-
         public var success: Bool
+
+        public var message: String?
 
         public var data: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case statusCode = "status_code"
 
-            case message
-
             case success
+
+            case message
 
             case data
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(data: [[String: Any]]? = nil, message: String? = nil, statusCode: Int, success: Bool) {
             self.statusCode = statusCode
 
-            self.message = message
-
             self.success = success
+
+            self.message = message
 
             self.data = data
         }
@@ -40,6 +40,8 @@ public extension ApplicationClient {
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 message = try container.decode(String.self, forKey: .message)
 
@@ -47,8 +49,6 @@ public extension ApplicationClient {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 data = try container.decode([[String: Any]].self, forKey: .data)
@@ -64,9 +64,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encode(message, forKey: .message)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encode(message, forKey: .message)
 
             try? container.encode(data, forKey: .data)
         }

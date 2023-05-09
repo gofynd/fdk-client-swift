@@ -8,7 +8,7 @@ public extension PlatformClient {
      */
 
     class ShareMessages: Codable {
-        public var email: Int?
+        public var email: String?
 
         public var facebook: String?
 
@@ -46,7 +46,7 @@ public extension PlatformClient {
             case whatsapp
         }
 
-        public init(email: Int? = nil, facebook: String? = nil, fallback: String? = nil, message: String? = nil, messenger: String? = nil, sms: String? = nil, text: String? = nil, twitter: String? = nil, whatsapp: String? = nil) {
+        public init(email: String? = nil, facebook: String? = nil, fallback: String? = nil, message: String? = nil, messenger: String? = nil, sms: String? = nil, text: String? = nil, twitter: String? = nil, whatsapp: String? = nil) {
             self.email = email
 
             self.facebook = facebook
@@ -70,7 +70,7 @@ public extension PlatformClient {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                email = try container.decode(Int.self, forKey: .email)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

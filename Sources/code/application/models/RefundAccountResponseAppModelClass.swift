@@ -9,18 +9,18 @@ public extension ApplicationClient {
     class RefundAccountResponse: Codable {
         public var isVerifiedFlag: Bool?
 
-        public var message: String
-
         public var success: Bool
+
+        public var message: String
 
         public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case isVerifiedFlag = "is_verified_flag"
 
-            case message
-
             case success
+
+            case message
 
             case data
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient {
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.isVerifiedFlag = isVerifiedFlag
 
-            self.message = message
-
             self.success = success
+
+            self.message = message
 
             self.data = data
         }
@@ -46,9 +46,9 @@ public extension ApplicationClient {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            message = try container.decode(String.self, forKey: .message)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            message = try container.decode(String.self, forKey: .message)
 
             do {
                 data = try container.decode([String: Any].self, forKey: .data)
@@ -64,9 +64,9 @@ public extension ApplicationClient {
 
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(data, forKey: .data)
         }
