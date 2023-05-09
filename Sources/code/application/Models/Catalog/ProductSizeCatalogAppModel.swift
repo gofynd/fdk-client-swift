@@ -11,13 +11,13 @@ public extension ApplicationClient.Catalog {
 
         public var dimension: Dimension?
 
-        public var sellerIdentifiers: [String]?
+        public var value: String?
 
         public var display: String?
 
-        public var value: String?
-
         public var quantity: Int?
+
+        public var sellerIdentifiers: [String]?
 
         public var weight: Weight?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient.Catalog {
 
             case dimension
 
-            case sellerIdentifiers = "seller_identifiers"
+            case value
 
             case display
 
-            case value
-
             case quantity
+
+            case sellerIdentifiers = "seller_identifiers"
 
             case weight
         }
@@ -42,13 +42,13 @@ public extension ApplicationClient.Catalog {
 
             self.dimension = dimension
 
-            self.sellerIdentifiers = sellerIdentifiers
+            self.value = value
 
             self.display = display
 
-            self.value = value
-
             self.quantity = quantity
+
+            self.sellerIdentifiers = sellerIdentifiers
 
             self.weight = weight
         }
@@ -73,7 +73,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                sellerIdentifiers = try container.decode([String].self, forKey: .sellerIdentifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,13 +120,13 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
-            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(sellerIdentifiers, forKey: .sellerIdentifiers)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
         }

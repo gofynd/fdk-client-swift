@@ -9,24 +9,26 @@ public extension PlatformClient.Catalog {
      */
 
     class ConfigurationListingSort: Codable {
-        public var config: [ConfigurationListingSortConfig]?
-
         public var defaultKey: String
 
-        public enum CodingKeys: String, CodingKey {
-            case config
+        public var config: [ConfigurationListingSortConfig]?
 
+        public enum CodingKeys: String, CodingKey {
             case defaultKey = "default_key"
+
+            case config
         }
 
         public init(config: [ConfigurationListingSortConfig]? = nil, defaultKey: String) {
-            self.config = config
-
             self.defaultKey = defaultKey
+
+            self.config = config
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            defaultKey = try container.decode(String.self, forKey: .defaultKey)
 
             do {
                 config = try container.decode([ConfigurationListingSortConfig].self, forKey: .config)
@@ -35,16 +37,14 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            defaultKey = try container.decode(String.self, forKey: .defaultKey)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(config, forKey: .config)
-
             try? container.encodeIfPresent(defaultKey, forKey: .defaultKey)
+
+            try? container.encodeIfPresent(config, forKey: .config)
         }
     }
 }
@@ -56,24 +56,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ConfigurationListingSort: Codable {
-        public var config: [ConfigurationListingSortConfig]?
-
         public var defaultKey: String
 
-        public enum CodingKeys: String, CodingKey {
-            case config
+        public var config: [ConfigurationListingSortConfig]?
 
+        public enum CodingKeys: String, CodingKey {
             case defaultKey = "default_key"
+
+            case config
         }
 
         public init(config: [ConfigurationListingSortConfig]? = nil, defaultKey: String) {
-            self.config = config
-
             self.defaultKey = defaultKey
+
+            self.config = config
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            defaultKey = try container.decode(String.self, forKey: .defaultKey)
 
             do {
                 config = try container.decode([ConfigurationListingSortConfig].self, forKey: .config)
@@ -82,16 +84,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            defaultKey = try container.decode(String.self, forKey: .defaultKey)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(config, forKey: .config)
-
             try? container.encodeIfPresent(defaultKey, forKey: .defaultKey)
+
+            try? container.encodeIfPresent(config, forKey: .config)
         }
     }
 }

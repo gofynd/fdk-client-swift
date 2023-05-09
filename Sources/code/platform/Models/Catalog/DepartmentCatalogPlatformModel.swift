@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var name: String?
 
-        public var logo: Media?
-
         public var slug: String?
+
+        public var logo: Media?
 
         public var priorityOrder: Int?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case name
 
-            case logo
-
             case slug
+
+            case logo
 
             case priorityOrder = "priority_order"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.name = name
 
-            self.logo = logo
-
             self.slug = slug
+
+            self.logo = logo
 
             self.priorityOrder = priorityOrder
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var name: String?
 
-        public var logo: Media?
-
         public var slug: String?
+
+        public var logo: Media?
 
         public var priorityOrder: Int?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case name
 
-            case logo
-
             case slug
+
+            case logo
 
             case priorityOrder = "priority_order"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.name = name
 
-            self.logo = logo
-
             self.slug = slug
+
+            self.logo = logo
 
             self.priorityOrder = priorityOrder
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
         }

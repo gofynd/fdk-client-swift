@@ -9,18 +9,18 @@ public extension ApplicationClient.Payment {
     class CreditSummary: Codable {
         public var status: String
 
-        public var balance: BalanceDetails?
-
         public var merchantCustomerRefId: String
+
+        public var balance: BalanceDetails?
 
         public var statusMessage: String
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case balance
-
             case merchantCustomerRefId = "merchant_customer_ref_id"
+
+            case balance
 
             case statusMessage = "status_message"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Payment {
         public init(balance: BalanceDetails? = nil, merchantCustomerRefId: String, status: String, statusMessage: String) {
             self.status = status
 
-            self.balance = balance
-
             self.merchantCustomerRefId = merchantCustomerRefId
+
+            self.balance = balance
 
             self.statusMessage = statusMessage
         }
@@ -40,6 +40,8 @@ public extension ApplicationClient.Payment {
 
             status = try container.decode(String.self, forKey: .status)
 
+            merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
+
             do {
                 balance = try container.decode(BalanceDetails.self, forKey: .balance)
 
@@ -47,8 +49,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
 
             statusMessage = try container.decode(String.self, forKey: .statusMessage)
         }
@@ -58,9 +58,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(balance, forKey: .balance)
-
             try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
+
+            try? container.encodeIfPresent(balance, forKey: .balance)
 
             try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
         }

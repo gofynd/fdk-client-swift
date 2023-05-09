@@ -11,24 +11,24 @@ public extension PlatformClient.CompanyProfile {
     class InvoiceCredSerializer: Codable {
         public var enabled: Bool?
 
-        public var password: String?
-
         public var username: String?
+
+        public var password: String?
 
         public enum CodingKeys: String, CodingKey {
             case enabled
 
-            case password
-
             case username
+
+            case password
         }
 
         public init(enabled: Bool? = nil, password: String? = nil, username: String? = nil) {
             self.enabled = enabled
 
-            self.password = password
-
             self.username = username
+
+            self.password = password
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                password = try container.decode(String.self, forKey: .password)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                password = try container.decode(String.self, forKey: .password)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
-            try? container.encodeIfPresent(password, forKey: .password)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(password, forKey: .password)
         }
     }
 }
