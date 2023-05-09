@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class UpdateShipmentLockPayload: Codable {
         public var actionType: String
 
-        public var entityType: String
-
         public var entities: [Entities]
+
+        public var entityType: String
 
         public var action: String
 
         public enum CodingKeys: String, CodingKey {
             case actionType = "action_type"
 
-            case entityType = "entity_type"
-
             case entities
+
+            case entityType = "entity_type"
 
             case action
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(action: String, actionType: String, entities: [Entities], entityType: String) {
             self.actionType = actionType
 
-            self.entityType = entityType
-
             self.entities = entities
+
+            self.entityType = entityType
 
             self.action = action
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Order {
 
             actionType = try container.decode(String.self, forKey: .actionType)
 
-            entityType = try container.decode(String.self, forKey: .entityType)
-
             entities = try container.decode([Entities].self, forKey: .entities)
+
+            entityType = try container.decode(String.self, forKey: .entityType)
 
             action = try container.decode(String.self, forKey: .action)
         }
@@ -54,9 +54,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(actionType, forKey: .actionType)
 
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
-
             try? container.encodeIfPresent(entities, forKey: .entities)
+
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }
@@ -72,18 +72,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class UpdateShipmentLockPayload: Codable {
         public var actionType: String
 
-        public var entityType: String
-
         public var entities: [Entities]
+
+        public var entityType: String
 
         public var action: String
 
         public enum CodingKeys: String, CodingKey {
             case actionType = "action_type"
 
-            case entityType = "entity_type"
-
             case entities
+
+            case entityType = "entity_type"
 
             case action
         }
@@ -91,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(action: String, actionType: String, entities: [Entities], entityType: String) {
             self.actionType = actionType
 
-            self.entityType = entityType
-
             self.entities = entities
+
+            self.entityType = entityType
 
             self.action = action
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             actionType = try container.decode(String.self, forKey: .actionType)
 
-            entityType = try container.decode(String.self, forKey: .entityType)
-
             entities = try container.decode([Entities].self, forKey: .entities)
+
+            entityType = try container.decode(String.self, forKey: .entityType)
 
             action = try container.decode(String.self, forKey: .action)
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(actionType, forKey: .actionType)
 
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
-
             try? container.encodeIfPresent(entities, forKey: .entities)
+
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }
