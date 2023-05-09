@@ -7,9 +7,9 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class CategoryMetaResponse: Codable {
-        public var logo: Media?
-
         public var customJson: [String: Any]?
+
+        public var logo: Media?
 
         public var banners: ImageUrls?
 
@@ -18,9 +18,9 @@ public extension ApplicationClient.Catalog {
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
-
             case customJson = "_custom_json"
+
+            case logo
 
             case banners
 
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
         }
 
         public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.logo = logo
-
             self.customJson = customJson
+
+            self.logo = logo
 
             self.banners = banners
 
@@ -45,7 +45,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,9 +88,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 

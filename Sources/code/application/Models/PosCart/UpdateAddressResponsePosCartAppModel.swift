@@ -9,30 +9,30 @@ public extension ApplicationClient.PosCart {
     class UpdateAddressResponse: Codable {
         public var id: String?
 
-        public var isUpdated: Bool?
-
         public var success: Bool?
 
         public var isDefaultAddress: Bool?
 
+        public var isUpdated: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case id
-
-            case isUpdated = "is_updated"
 
             case success
 
             case isDefaultAddress = "is_default_address"
+
+            case isUpdated = "is_updated"
         }
 
         public init(id: String? = nil, isDefaultAddress: Bool? = nil, isUpdated: Bool? = nil, success: Bool? = nil) {
             self.id = id
 
-            self.isUpdated = isUpdated
-
             self.success = success
 
             self.isDefaultAddress = isDefaultAddress
+
+            self.isUpdated = isUpdated
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,14 +40,6 @@ public extension ApplicationClient.PosCart {
 
             do {
                 id = try container.decode(String.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isUpdated = try container.decode(Bool.self, forKey: .isUpdated)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +61,14 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                isUpdated = try container.decode(Bool.self, forKey: .isUpdated)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(isUpdated, forKey: .isUpdated)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(isDefaultAddress, forKey: .isDefaultAddress)
+
+            try? container.encodeIfPresent(isUpdated, forKey: .isUpdated)
         }
     }
 }

@@ -9,48 +9,66 @@ public extension PlatformClient.Catalog {
      */
 
     class ApplicationDepartment: Codable {
+        public var isActive: Bool?
+
+        public var appId: String
+
+        public var name: String?
+
         public var logo: String?
 
         public var customJson: [String: Any]?
 
         public var uid: Int
 
-        public var appId: String
-
-        public var isActive: Bool?
-
-        public var name: String?
-
         public enum CodingKeys: String, CodingKey {
+            case isActive = "is_active"
+
+            case appId = "app_id"
+
+            case name
+
             case logo
 
             case customJson = "_custom_json"
 
             case uid
-
-            case appId = "app_id"
-
-            case isActive = "is_active"
-
-            case name
         }
 
         public init(appId: String, isActive: Bool? = nil, logo: String? = nil, name: String? = nil, uid: Int, customJson: [String: Any]? = nil) {
+            self.isActive = isActive
+
+            self.appId = appId
+
+            self.name = name
+
             self.logo = logo
 
             self.customJson = customJson
 
             self.uid = uid
-
-            self.appId = appId
-
-            self.isActive = isActive
-
-            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -69,40 +87,22 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             uid = try container.decode(Int.self, forKey: .uid)
-
-            appId = try container.decode(String.self, forKey: .appId)
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -114,48 +114,66 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ApplicationDepartment: Codable {
+        public var isActive: Bool?
+
+        public var appId: String
+
+        public var name: String?
+
         public var logo: String?
 
         public var customJson: [String: Any]?
 
         public var uid: Int
 
-        public var appId: String
-
-        public var isActive: Bool?
-
-        public var name: String?
-
         public enum CodingKeys: String, CodingKey {
+            case isActive = "is_active"
+
+            case appId = "app_id"
+
+            case name
+
             case logo
 
             case customJson = "_custom_json"
 
             case uid
-
-            case appId = "app_id"
-
-            case isActive = "is_active"
-
-            case name
         }
 
         public init(appId: String, isActive: Bool? = nil, logo: String? = nil, name: String? = nil, uid: Int, customJson: [String: Any]? = nil) {
+            self.isActive = isActive
+
+            self.appId = appId
+
+            self.name = name
+
             self.logo = logo
 
             self.customJson = customJson
 
             self.uid = uid
-
-            self.appId = appId
-
-            self.isActive = isActive
-
-            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            appId = try container.decode(String.self, forKey: .appId)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -174,40 +192,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             uid = try container.decode(Int.self, forKey: .uid)
-
-            appId = try container.decode(String.self, forKey: .appId)
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

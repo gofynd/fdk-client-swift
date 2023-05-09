@@ -11,22 +11,22 @@ public extension ApplicationClient.Payment {
 
         public var checkoutMode: String
 
-        public var pincode: String
-
         public var amount: String
 
         public var cartId: String
+
+        public var pincode: String
 
         public enum CodingKeys: String, CodingKey {
             case assignCardId = "assign_card_id"
 
             case checkoutMode = "checkout_mode"
 
-            case pincode
-
             case amount
 
             case cartId = "cart_id"
+
+            case pincode
         }
 
         public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Payment {
 
             self.checkoutMode = checkoutMode
 
-            self.pincode = pincode
-
             self.amount = amount
 
             self.cartId = cartId
+
+            self.pincode = pincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,11 +54,11 @@ public extension ApplicationClient.Payment {
 
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
-            pincode = try container.decode(String.self, forKey: .pincode)
-
             amount = try container.decode(String.self, forKey: .amount)
 
             cartId = try container.decode(String.self, forKey: .cartId)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,11 +68,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
         }
     }
 }

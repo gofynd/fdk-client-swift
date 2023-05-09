@@ -47,6 +47,15 @@ Manages email, sms, push notifications sent to users
 * [updateSmsTemplateById](#updatesmstemplatebyid)
 * [deleteSmsTemplateById](#deletesmstemplatebyid)
 * [getSystemSystemTemplates](#getsystemsystemtemplates)
+* [getVoiceProviders](#getvoiceproviders)
+* [createVoiceProvider](#createvoiceprovider)
+* [getVoiceProviderById](#getvoiceproviderbyid)
+* [getVoiceTemplates](#getvoicetemplates)
+* [createVoiceTemplate](#createvoicetemplate)
+* [getVoiceTemplateById](#getvoicetemplatebyid)
+* [updateVoiceTemplateById](#updatevoicetemplatebyid)
+* [deleteVoiceTemplateById](#deletevoicetemplatebyid)
+* [getSystemVoiceTemplates](#getsystemvoicetemplates)
 
 
 
@@ -4159,6 +4168,770 @@ Success
 ---
 
 
+#### getVoiceProviders
+Get voice providers
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.getVoiceProviders(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageNo | Int? | no | Current page no |   
+| pageSize | Int? | no | Current request items count |   
+| sort | [String: Any]? | no | To sort based on created_at |  
+
+
+
+Get voice providers
+
+*Returned Response:*
+
+
+
+
+[VoiceProviders](#VoiceProviders)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "643e76194f4a21735ab87d7a",
+        "username": "16b0357856247a0dcb9330bb3911ae46890350e1a1dc16c4",
+        "password": "849320ef5051ca4d56ce98f097761bc225595f2465917e26",
+        "caller_id": "09513886363",
+        "applet_url": "http://my.exotel.com/exoml/start/628847",
+        "whitelisted_ip": [
+          "127.0.0.2",
+          "127.0.0.3"
+        ],
+        "application": "637b6355dc65337da9b5c951",
+        "type": "application",
+        "name": "Exotel Sales Channel",
+        "description": "Exotel Voice Provider",
+        "provider": "exotel",
+        "created_at": "2023-04-18T10:51:05.186Z",
+        "updated_at": "2023-04-22T15:59:42.471Z",
+        "slug": "Exotel-Sales-Channel-application-exotel-VC-Wdk7xC",
+        "__v": 2
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 1,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createVoiceProvider
+Create voice provider
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.createVoiceProvider(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | VoiceProviderReq | yes | Request body |
+
+
+Create voice provider
+
+*Returned Response:*
+
+
+
+
+[VoiceProvider](#VoiceProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "643e76194f4a21735ab87d7a",
+    "username": "16b0357856247a0dcb9330bb3911ae46890350e1a1dc16c4",
+    "password": "849320ef5051ca4d56ce98f097761bc225595f2465917e26",
+    "caller_id": "09513886363",
+    "applet_url": "http://my.exotel.com/exoml/start/628847",
+    "whitelisted_ip": [
+      "127.0.0.2",
+      "127.0.0.3"
+    ],
+    "application": "637b6355dc65337da9b5c951",
+    "type": "application",
+    "name": "Exotel Sales Channel",
+    "description": "Exotel Voice Provider",
+    "provider": "exotel",
+    "created_at": "2023-04-18T10:51:05.186Z",
+    "updated_at": "2023-04-22T15:59:42.471Z",
+    "slug": "Exotel-Sales-Channel-application-exotel-VC-Wdk7xC",
+    "__v": 2
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getVoiceProviderById
+Get voice provider by id
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.getVoiceProviderById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes | Voice provider id |  
+
+
+
+Get voice provider by id
+
+*Returned Response:*
+
+
+
+
+[VoiceProvider](#VoiceProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "643e76194f4a21735ab87d7a",
+    "username": "16b0357856247a0dcb9330bb3911ae46890350e1a1dc16c4",
+    "password": "849320ef5051ca4d56ce98f097761bc225595f2465917e26",
+    "caller_id": "09513886363",
+    "applet_url": "http://my.exotel.com/exoml/start/628847",
+    "whitelisted_ip": [
+      "127.0.0.2",
+      "127.0.0.3"
+    ],
+    "application": "637b6355dc65337da9b5c951",
+    "type": "application",
+    "name": "Exotel Sales Channel",
+    "description": "Exotel Voice Provider",
+    "provider": "exotel",
+    "created_at": "2023-04-18T10:51:05.186Z",
+    "updated_at": "2023-04-22T15:59:42.471Z",
+    "slug": "Exotel-Sales-Channel-application-exotel-VC-Wdk7xC",
+    "__v": 2
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getVoiceTemplates
+Get voice templates
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.getVoiceTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageNo | Int? | no | Current page no |   
+| pageSize | Int? | no | Current request items count |   
+| sort | [String: Any]? | no | To sort based on created_at |  
+
+
+
+Get voice templates
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplates](#VoiceTemplates)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "is_system": false,
+        "is_internal": true,
+        "description": "This is a test voice template",
+        "priority": "high",
+        "tags": [],
+        "published": true,
+        "_id": "5fd447728394dbf0d21329b3",
+        "slug": "test-voice",
+        "name": "Test voice",
+        "message": {
+          "template_type": "nunjucks",
+          "template": "This is a test voice for order - {{ orderId }}"
+        },
+        "template_variables": {
+          "orderId": "12345"
+        },
+        "created_at": "2020-12-12T04:30:42.456Z",
+        "updated_at": "2020-12-24T15:13:20.558Z",
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 66,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createVoiceTemplate
+Create voice template
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.createVoiceTemplate(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | VoiceTemplateReq | yes | Request body |
+
+
+Create voice template
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplateRes](#VoiceTemplateRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": true,
+    "description": "This is a test voice template",
+    "priority": "high",
+    "tags": [],
+    "published": true,
+    "_id": "5fd447728394dbf0d21329b3",
+    "slug": "test-voice",
+    "name": "Test voice",
+    "message": {
+      "template_type": "nunjucks",
+      "template": "This is a test voice for order - {{ orderId }}"
+    },
+    "template_variables": {
+      "orderId": "12345"
+    },
+    "created_at": "2020-12-12T04:30:42.456Z",
+    "updated_at": "2020-12-24T15:13:20.558Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getVoiceTemplateById
+Get voice template by id
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.getVoiceTemplateById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes | Voice template id |  
+
+
+
+Get voice template by id
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplate](#VoiceTemplate)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": true,
+    "description": "This is a test voice template",
+    "priority": "high",
+    "tags": [],
+    "published": true,
+    "_id": "5fd447728394dbf0d21329b3",
+    "slug": "test-voice",
+    "name": "Test voice",
+    "message": {
+      "template_type": "nunjucks",
+      "template": "This is a test voice for order - {{ orderId }}"
+    },
+    "template_variables": {
+      "orderId": "12345"
+    },
+    "created_at": "2020-12-12T04:30:42.456Z",
+    "updated_at": "2020-12-24T15:13:20.558Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateVoiceTemplateById
+Update voice template by id
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.updateVoiceTemplateById(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes | Voice template id |  
+| body | VoiceTemplateReq | yes | Request body |
+
+
+Update voice template by id
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplateRes](#VoiceTemplateRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "is_system": false,
+    "is_internal": true,
+    "description": "This is a test voice template",
+    "priority": "high",
+    "tags": [],
+    "published": true,
+    "_id": "5fd447728394dbf0d21329b3",
+    "slug": "test-voice",
+    "name": "Test voice",
+    "message": {
+      "template_type": "nunjucks",
+      "template": "This is a test voice for order - {{ orderId }}"
+    },
+    "template_variables": {
+      "orderId": "12345"
+    },
+    "created_at": "2020-12-12T04:30:42.456Z",
+    "updated_at": "2020-12-24T15:13:20.558Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteVoiceTemplateById
+Delete voice template by id
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.deleteVoiceTemplateById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes | Voice template id |  
+
+
+
+Delete voice template by id
+
+*Returned Response:*
+
+
+
+
+[VoiceTemplateDeleteSuccessRes](#VoiceTemplateDeleteSuccessRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getSystemVoiceTemplates
+Get system voice templates
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.getSystemVoiceTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| pageNo | Int? | no | Current page no |   
+| pageSize | Int? | no | Current request items count |   
+| sort | [String: Any]? | no | To sort based on created_at |  
+
+
+
+Get system voice templates
+
+*Returned Response:*
+
+
+
+
+[SystemVoiceTemplates](#SystemVoiceTemplates)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "is_system": true,
+        "is_internal": true,
+        "description": "This is a test voice template",
+        "priority": "high",
+        "tags": [],
+        "published": true,
+        "_id": "5fd447728394dbf0d21329b3",
+        "slug": "test-voice",
+        "name": "Test voice",
+        "message": {
+          "template_type": "nunjucks",
+          "template": "This is a test voice for order - {{ orderId }}"
+        },
+        "template_variables": {
+          "orderId": "12345"
+        },
+        "created_at": "2020-12-12T04:30:42.456Z",
+        "updated_at": "2020-12-24T15:13:20.558Z",
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 1,
+      "item_total": 66,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -5583,6 +6356,209 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[SystemNotification](#SystemNotification)]? |  yes  |  |
  | lastReadAnchor | Int? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VoiceProviderReq](#VoiceProviderReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | sender | String? |  yes  |  |
+ | username | String? |  yes  |  |
+ | authkey | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | provider | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VoiceProvider](#VoiceProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  | The unique identifier for the voice provider |
+ | application | String? |  yes  | The unique identifier of the application to which the voice provider belongs |
+ | type | String? |  yes  | The type of the voice provider |
+ | name | String? |  yes  | The name of the voice provider |
+ | description | String? |  yes  | The description of the voice provider |
+ | slug | String? |  yes  | The slug of the voice provider |
+ | provider | String? |  yes  | The name of the voice provider implementation |
+ | createdAt | String? |  yes  | The date and time the voice provider was created |
+ | updatedAt | String? |  yes  | The date and time the voice provider was last updated |
+ | v | Double? |  yes  | The version of the voice provider document |
+ | discriminator | String? |  yes  | The discriminator key for the voice provider implementation |
+ | username | String? |  yes  | The username for the Exotel voice provider implementation |
+ | password | String? |  yes  | The password for the Exotel voice provider implementation |
+ | callerId | String? |  yes  | The caller ID for the Exotel voice provider implementation |
+ | appletUrl | String? |  yes  | The URL for the Exotel applet used by the voice provider |
+ | whitelistedIp | [String]? |  yes  | An array of whitelisted IP addresses for the Exotel voice provider implementation |
+
+---
+
+
+ 
+ 
+ #### [VoiceProviders](#VoiceProviders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[VoiceProvider](#VoiceProvider)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VoiceTemplateDeleteSuccessRes](#VoiceTemplateDeleteSuccessRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VoiceTemplateDeleteFailureRes](#VoiceTemplateDeleteFailureRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VoiceTemplateMessage](#VoiceTemplateMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | templateType | String? |  yes  |  |
+ | template | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VoiceTemplateReq](#VoiceTemplateReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | message | [VoiceTemplateMessage](#VoiceTemplateMessage)? |  yes  |  |
+ | templateVariables | [String: Any]? |  yes  |  |
+ | attachments | [[String: Any]]? |  yes  |  |
+ | priority | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VoiceTemplateRes](#VoiceTemplateRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isSystem | Bool? |  yes  |  |
+ | isInternal | Bool? |  yes  |  |
+ | description | String? |  yes  |  |
+ | tags | [[String: Any]]? |  yes  |  |
+ | priority | String? |  yes  |  |
+ | published | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | message | [VoiceTemplateMessage](#VoiceTemplateMessage)? |  yes  |  |
+ | templateVariables | [String: Any]? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | v | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VoiceTemplate](#VoiceTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isSystem | Bool? |  yes  |  |
+ | isInternal | Bool? |  yes  |  |
+ | description | String? |  yes  |  |
+ | priority | String? |  yes  |  |
+ | tags | [[String: Any]]? |  yes  |  |
+ | published | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | message | [VoiceTemplateMessage](#VoiceTemplateMessage)? |  yes  |  |
+ | templateVariables | [String: Any]? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | v | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemVoiceTemplate](#SystemVoiceTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isSystem | Bool? |  yes  |  |
+ | isInternal | Bool? |  yes  |  |
+ | description | String? |  yes  |  |
+ | tags | [[String: Any]]? |  yes  |  |
+ | priority | String? |  yes  |  |
+ | published | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | message | [VoiceTemplateMessage](#VoiceTemplateMessage)? |  yes  |  |
+ | templateVariables | [String: Any]? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | v | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [VoiceTemplates](#VoiceTemplates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[VoiceTemplate](#VoiceTemplate)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SystemVoiceTemplates](#SystemVoiceTemplates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SystemVoiceTemplate](#SystemVoiceTemplate)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
 
 ---

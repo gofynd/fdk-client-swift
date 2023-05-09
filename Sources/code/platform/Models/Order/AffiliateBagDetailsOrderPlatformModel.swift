@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var loyaltyDiscount: Double?
 
-        public var affiliateBagId: String
-
         public var affiliateOrderId: String
+
+        public var affiliateBagId: String
 
         public enum CodingKeys: String, CodingKey {
             case affiliateMeta = "affiliate_meta"
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case loyaltyDiscount = "loyalty_discount"
 
-            case affiliateBagId = "affiliate_bag_id"
-
             case affiliateOrderId = "affiliate_order_id"
+
+            case affiliateBagId = "affiliate_bag_id"
         }
 
         public init(affiliateBagId: String, affiliateMeta: AffiliateMeta, affiliateOrderId: String, employeeDiscount: Double? = nil, loyaltyDiscount: Double? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.loyaltyDiscount = loyaltyDiscount
 
-            self.affiliateBagId = affiliateBagId
-
             self.affiliateOrderId = affiliateOrderId
+
+            self.affiliateBagId = affiliateBagId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
-
             affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+
+            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,9 +78,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
 
-            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
-
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
         }
     }
 }
@@ -98,9 +98,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var loyaltyDiscount: Double?
 
-        public var affiliateBagId: String
-
         public var affiliateOrderId: String
+
+        public var affiliateBagId: String
 
         public enum CodingKeys: String, CodingKey {
             case affiliateMeta = "affiliate_meta"
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case loyaltyDiscount = "loyalty_discount"
 
-            case affiliateBagId = "affiliate_bag_id"
-
             case affiliateOrderId = "affiliate_order_id"
+
+            case affiliateBagId = "affiliate_bag_id"
         }
 
         public init(affiliateBagId: String, affiliateMeta: AffiliateMeta, affiliateOrderId: String, employeeDiscount: Double? = nil, loyaltyDiscount: Double? = nil) {
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.loyaltyDiscount = loyaltyDiscount
 
-            self.affiliateBagId = affiliateBagId
-
             self.affiliateOrderId = affiliateOrderId
+
+            self.affiliateBagId = affiliateBagId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
-
             affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+
+            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
 
-            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
-
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
+
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
         }
     }
 }
