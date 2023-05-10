@@ -7,7 +7,7 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class SellerGroupAttributes: Codable {
-        public var details: [DetailsSchemaV2]?
+        public var details: [DetailsSchemaV3]?
 
         public var title: String?
 
@@ -17,7 +17,7 @@ public extension ApplicationClient.Catalog {
             case title
         }
 
-        public init(details: [DetailsSchemaV2]? = nil, title: String? = nil) {
+        public init(details: [DetailsSchemaV3]? = nil, title: String? = nil) {
             self.details = details
 
             self.title = title
@@ -27,7 +27,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                details = try container.decode([DetailsSchemaV2].self, forKey: .details)
+                details = try container.decode([DetailsSchemaV3].self, forKey: .details)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

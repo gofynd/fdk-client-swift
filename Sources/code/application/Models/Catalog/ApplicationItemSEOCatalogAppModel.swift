@@ -3,37 +3,31 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: HomeListingResponse
+         Model: ApplicationItemSEO
          Used By: Catalog
      */
-    class HomeListingResponse: Codable {
-        public var message: String?
+    class ApplicationItemSEO: Codable {
+        public var description: [String: Any]?
 
-        public var items: [ProductListingDetail]?
-
-        public var page: Page
+        public var title: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case message
+            case description
 
-            case items
-
-            case page
+            case title
         }
 
-        public init(items: [ProductListingDetail]? = nil, message: String? = nil, page: Page) {
-            self.message = message
+        public init(description: [String: Any]? = nil, title: [String: Any]? = nil) {
+            self.description = description
 
-            self.items = items
-
-            self.page = page
+            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                description = try container.decode([String: Any].self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,24 +35,20 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([ProductListingDetail].self, forKey: .items)
+                title = try container.decode([String: Any].self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            page = try container.decode(Page.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

@@ -3,37 +3,37 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: ReturnConfigSchemaV2
+         Model: StoreV3
          Used By: Catalog
      */
-    class ReturnConfigSchemaV2: Codable {
-        public var returnable: Bool?
+    class StoreV3: Codable {
+        public var count: Int?
 
-        public var time: Int?
+        public var name: String?
 
-        public var unit: String?
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case returnable
+            case count
 
-            case time
+            case name
 
-            case unit
+            case uid
         }
 
-        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
-            self.returnable = returnable
+        public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
+            self.count = count
 
-            self.time = time
+            self.name = name
 
-            self.unit = unit
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                returnable = try container.decode(Bool.self, forKey: .returnable)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                time = try container.decode(Int.self, forKey: .time)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(returnable, forKey: .returnable)
+            try? container.encodeIfPresent(count, forKey: .count)
 
-            try? container.encodeIfPresent(time, forKey: .time)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

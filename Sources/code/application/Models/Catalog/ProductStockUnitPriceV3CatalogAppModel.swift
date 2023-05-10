@@ -3,10 +3,10 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: ProductStockUnitPriceV2
+         Model: ProductStockUnitPriceV3
          Used By: Catalog
      */
-    class ProductStockUnitPriceV2: Codable {
+    class ProductStockUnitPriceV3: Codable {
         public var currencyCode: String?
 
         public var price: Double?
