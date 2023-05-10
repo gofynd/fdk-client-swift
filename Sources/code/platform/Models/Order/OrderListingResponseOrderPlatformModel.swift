@@ -9,7 +9,7 @@ public extension PlatformClient.Order {
      */
 
     class OrderListingResponse: Codable {
-        public var lane: String?
+        public var page: Page?
 
         public var success: Bool?
 
@@ -17,12 +17,12 @@ public extension PlatformClient.Order {
 
         public var totalCount: Int?
 
-        public var page: Page?
-
         public var message: String?
 
+        public var lane: String?
+
         public enum CodingKeys: String, CodingKey {
-            case lane
+            case page
 
             case success
 
@@ -30,13 +30,13 @@ public extension PlatformClient.Order {
 
             case totalCount = "total_count"
 
-            case page
-
             case message
+
+            case lane
         }
 
         public init(items: [PlatformOrderItems]? = nil, lane: String? = nil, message: String? = nil, page: Page? = nil, success: Bool? = nil, totalCount: Int? = nil) {
-            self.lane = lane
+            self.page = page
 
             self.success = success
 
@@ -44,16 +44,16 @@ public extension PlatformClient.Order {
 
             self.totalCount = totalCount
 
-            self.page = page
-
             self.message = message
+
+            self.lane = lane
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lane = try container.decode(String.self, forKey: .lane)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                lane = try container.decode(String.self, forKey: .lane)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lane, forKey: .lane)
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(lane, forKey: .lane)
         }
     }
 }
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderListingResponse: Codable {
-        public var lane: String?
+        public var page: Page?
 
         public var success: Bool?
 
@@ -134,12 +134,12 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var totalCount: Int?
 
-        public var page: Page?
-
         public var message: String?
 
+        public var lane: String?
+
         public enum CodingKeys: String, CodingKey {
-            case lane
+            case page
 
             case success
 
@@ -147,13 +147,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case totalCount = "total_count"
 
-            case page
-
             case message
+
+            case lane
         }
 
         public init(items: [PlatformOrderItems]? = nil, lane: String? = nil, message: String? = nil, page: Page? = nil, success: Bool? = nil, totalCount: Int? = nil) {
-            self.lane = lane
+            self.page = page
 
             self.success = success
 
@@ -161,16 +161,16 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.totalCount = totalCount
 
-            self.page = page
-
             self.message = message
+
+            self.lane = lane
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lane = try container.decode(String.self, forKey: .lane)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                lane = try container.decode(String.self, forKey: .lane)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,7 +221,7 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lane, forKey: .lane)
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
@@ -229,9 +229,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(lane, forKey: .lane)
         }
     }
 }

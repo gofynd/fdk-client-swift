@@ -3,31 +3,31 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: MarketPlaceSttributesSchemaV3
+         Model: ProductSetV2
          Used By: Catalog
      */
-    class MarketPlaceSttributesSchemaV3: Codable {
-        public var title: String?
+    class ProductSetV2: Codable {
+        public var quantity: Int?
 
-        public var details: [DetailsSchemaV3]?
+        public var sizeDistribution: ProductSetDistributionV2?
 
         public enum CodingKeys: String, CodingKey {
-            case title
+            case quantity
 
-            case details
+            case sizeDistribution = "size_distribution"
         }
 
-        public init(details: [DetailsSchemaV3]? = nil, title: String? = nil) {
-            self.title = title
+        public init(quantity: Int? = nil, sizeDistribution: ProductSetDistributionV2? = nil) {
+            self.quantity = quantity
 
-            self.details = details
+            self.sizeDistribution = sizeDistribution
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                details = try container.decode([DetailsSchemaV3].self, forKey: .details)
+                sizeDistribution = try container.decode(ProductSetDistributionV2.self, forKey: .sizeDistribution)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(details, forKey: .details)
+            try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
         }
     }
 }

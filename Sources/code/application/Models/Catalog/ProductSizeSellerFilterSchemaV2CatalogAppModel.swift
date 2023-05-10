@@ -3,30 +3,30 @@
 import Foundation
 public extension ApplicationClient.Catalog {
     /*
-         Model: StoreV3
+         Model: ProductSizeSellerFilterSchemaV2
          Used By: Catalog
      */
-    class StoreV3: Codable {
+    class ProductSizeSellerFilterSchemaV2: Codable {
         public var name: String?
 
-        public var uid: Int?
+        public var value: String?
 
-        public var count: Int?
+        public var isSelected: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case uid
+            case value
 
-            case count
+            case isSelected = "is_selected"
         }
 
-        public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
             self.name = name
 
-            self.uid = uid
+            self.value = value
 
-            self.count = count
+            self.isSelected = isSelected
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(count, forKey: .count)
+            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
         }
     }
 }

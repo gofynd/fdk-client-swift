@@ -9,69 +9,69 @@ public extension PlatformClient.Order {
      */
 
     class OrderDetailsData: Codable {
-        public var orderingChannel: String?
+        public var affiliateId: String?
 
-        public var taxDetails: [String: Any]?
+        public var orderDate: String?
 
         public var orderValue: String?
 
-        public var affiliateId: String?
+        public var fyndOrderId: String
+
+        public var orderingChannel: String?
 
         public var source: String?
 
-        public var fyndOrderId: String
+        public var taxDetails: [String: Any]?
 
         public var codCharges: String?
 
         public var orderingChannelLogo: [String: Any]?
 
-        public var orderDate: String?
-
         public enum CodingKeys: String, CodingKey {
-            case orderingChannel = "ordering_channel"
+            case affiliateId = "affiliate_id"
 
-            case taxDetails = "tax_details"
+            case orderDate = "order_date"
 
             case orderValue = "order_value"
 
-            case affiliateId = "affiliate_id"
+            case fyndOrderId = "fynd_order_id"
+
+            case orderingChannel = "ordering_channel"
 
             case source
 
-            case fyndOrderId = "fynd_order_id"
+            case taxDetails = "tax_details"
 
             case codCharges = "cod_charges"
 
             case orderingChannelLogo = "ordering_channel_logo"
-
-            case orderDate = "order_date"
         }
 
         public init(affiliateId: String? = nil, codCharges: String? = nil, fyndOrderId: String, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
-            self.orderingChannel = orderingChannel
+            self.affiliateId = affiliateId
 
-            self.taxDetails = taxDetails
+            self.orderDate = orderDate
 
             self.orderValue = orderValue
 
-            self.affiliateId = affiliateId
+            self.fyndOrderId = fyndOrderId
+
+            self.orderingChannel = orderingChannel
 
             self.source = source
 
-            self.fyndOrderId = fyndOrderId
+            self.taxDetails = taxDetails
 
             self.codCharges = codCharges
 
             self.orderingChannelLogo = orderingChannelLogo
-
-            self.orderDate = orderDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                taxDetails = try container.decode([String: Any].self, forKey: .taxDetails)
+                orderDate = try container.decode(String.self, forKey: .orderDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,8 +94,10 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
             do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,7 +112,13 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+            do {
+                taxDetails = try container.decode([String: Any].self, forKey: .taxDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 codCharges = try container.decode(String.self, forKey: .codCharges)
@@ -127,36 +135,28 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                orderDate = try container.decode(String.self, forKey: .orderDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
-            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
+            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
             try? container.encodeIfPresent(orderValue, forKey: .orderValue)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
             try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
 
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
 
             try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
-
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
         }
     }
 }
@@ -168,69 +168,69 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderDetailsData: Codable {
-        public var orderingChannel: String?
+        public var affiliateId: String?
 
-        public var taxDetails: [String: Any]?
+        public var orderDate: String?
 
         public var orderValue: String?
 
-        public var affiliateId: String?
+        public var fyndOrderId: String
+
+        public var orderingChannel: String?
 
         public var source: String?
 
-        public var fyndOrderId: String
+        public var taxDetails: [String: Any]?
 
         public var codCharges: String?
 
         public var orderingChannelLogo: [String: Any]?
 
-        public var orderDate: String?
-
         public enum CodingKeys: String, CodingKey {
-            case orderingChannel = "ordering_channel"
+            case affiliateId = "affiliate_id"
 
-            case taxDetails = "tax_details"
+            case orderDate = "order_date"
 
             case orderValue = "order_value"
 
-            case affiliateId = "affiliate_id"
+            case fyndOrderId = "fynd_order_id"
+
+            case orderingChannel = "ordering_channel"
 
             case source
 
-            case fyndOrderId = "fynd_order_id"
+            case taxDetails = "tax_details"
 
             case codCharges = "cod_charges"
 
             case orderingChannelLogo = "ordering_channel_logo"
-
-            case orderDate = "order_date"
         }
 
         public init(affiliateId: String? = nil, codCharges: String? = nil, fyndOrderId: String, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
-            self.orderingChannel = orderingChannel
+            self.affiliateId = affiliateId
 
-            self.taxDetails = taxDetails
+            self.orderDate = orderDate
 
             self.orderValue = orderValue
 
-            self.affiliateId = affiliateId
+            self.fyndOrderId = fyndOrderId
+
+            self.orderingChannel = orderingChannel
 
             self.source = source
 
-            self.fyndOrderId = fyndOrderId
+            self.taxDetails = taxDetails
 
             self.codCharges = codCharges
 
             self.orderingChannelLogo = orderingChannelLogo
-
-            self.orderDate = orderDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -238,7 +238,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                taxDetails = try container.decode([String: Any].self, forKey: .taxDetails)
+                orderDate = try container.decode(String.self, forKey: .orderDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -253,8 +253,10 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
             do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -269,7 +271,13 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+            do {
+                taxDetails = try container.decode([String: Any].self, forKey: .taxDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 codCharges = try container.decode(String.self, forKey: .codCharges)
@@ -286,36 +294,28 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                orderDate = try container.decode(String.self, forKey: .orderDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
-            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
+            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
             try? container.encodeIfPresent(orderValue, forKey: .orderValue)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
             try? container.encodeIfPresent(source, forKey: .source)
 
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
 
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
 
             try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
-
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
         }
     }
 }

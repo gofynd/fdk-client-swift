@@ -1514,7 +1514,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Update product categories
-         * Description: Update a product category using this apu
+         * Description: Update a product category using this api
          **/
         public func updateCategory(
             uid: String,
