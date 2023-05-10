@@ -11,11 +11,11 @@ public extension PlatformClient.Catalog {
     class ConfigurationProductConfig: Codable {
         public var logo: String?
 
-        public var size: ProductSize?
+        public var subtitle: String?
 
         public var priority: Int
 
-        public var subtitle: String?
+        public var size: ProductSize?
 
         public var title: String?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case size
+            case subtitle
 
             case priority
 
-            case subtitle
+            case size
 
             case title
 
@@ -42,11 +42,11 @@ public extension PlatformClient.Catalog {
         public init(isActive: Bool, key: String, logo: String? = nil, priority: Int, size: ProductSize? = nil, subtitle: String? = nil, title: String? = nil) {
             self.logo = logo
 
-            self.size = size
+            self.subtitle = subtitle
 
             self.priority = priority
 
-            self.subtitle = subtitle
+            self.size = size
 
             self.title = title
 
@@ -67,7 +67,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                size = try container.decode(ProductSize.self, forKey: .size)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             priority = try container.decode(Int.self, forKey: .priority)
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                size = try container.decode(ProductSize.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,11 +102,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
@@ -126,11 +126,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ConfigurationProductConfig: Codable {
         public var logo: String?
 
-        public var size: ProductSize?
+        public var subtitle: String?
 
         public var priority: Int
 
-        public var subtitle: String?
+        public var size: ProductSize?
 
         public var title: String?
 
@@ -141,11 +141,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case size
+            case subtitle
 
             case priority
 
-            case subtitle
+            case size
 
             case title
 
@@ -157,11 +157,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(isActive: Bool, key: String, logo: String? = nil, priority: Int, size: ProductSize? = nil, subtitle: String? = nil, title: String? = nil) {
             self.logo = logo
 
-            self.size = size
+            self.subtitle = subtitle
 
             self.priority = priority
 
-            self.subtitle = subtitle
+            self.size = size
 
             self.title = title
 
@@ -182,7 +182,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                size = try container.decode(ProductSize.self, forKey: .size)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -192,7 +192,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             priority = try container.decode(Int.self, forKey: .priority)
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                size = try container.decode(ProductSize.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -217,11 +217,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(title, forKey: .title)
 

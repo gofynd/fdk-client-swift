@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var compare: [String: Any]?
 
-        public var variant: [String: Any]?
-
         public var similar: [String: Any]?
+
+        public var variant: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case detail
 
             case compare
 
-            case variant
-
             case similar
+
+            case variant
         }
 
         public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.compare = compare
 
-            self.variant = variant
-
             self.similar = similar
+
+            self.variant = variant
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                variant = try container.decode([String: Any].self, forKey: .variant)
+                similar = try container.decode([String: Any].self, forKey: .similar)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                similar = try container.decode([String: Any].self, forKey: .similar)
+                variant = try container.decode([String: Any].self, forKey: .variant)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(compare, forKey: .compare)
 
-            try? container.encodeIfPresent(variant, forKey: .variant)
-
             try? container.encodeIfPresent(similar, forKey: .similar)
+
+            try? container.encodeIfPresent(variant, forKey: .variant)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var compare: [String: Any]?
 
-        public var variant: [String: Any]?
-
         public var similar: [String: Any]?
+
+        public var variant: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case detail
 
             case compare
 
-            case variant
-
             case similar
+
+            case variant
         }
 
         public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.compare = compare
 
-            self.variant = variant
-
             self.similar = similar
+
+            self.variant = variant
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                variant = try container.decode([String: Any].self, forKey: .variant)
+                similar = try container.decode([String: Any].self, forKey: .similar)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                similar = try container.decode([String: Any].self, forKey: .similar)
+                variant = try container.decode([String: Any].self, forKey: .variant)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(compare, forKey: .compare)
 
-            try? container.encodeIfPresent(variant, forKey: .variant)
-
             try? container.encodeIfPresent(similar, forKey: .similar)
+
+            try? container.encodeIfPresent(variant, forKey: .variant)
         }
     }
 }
