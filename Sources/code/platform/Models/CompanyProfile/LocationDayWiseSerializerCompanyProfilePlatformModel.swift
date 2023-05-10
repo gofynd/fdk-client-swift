@@ -11,18 +11,18 @@ public extension PlatformClient.CompanyProfile {
     class LocationDayWiseSerializer: Codable {
         public var weekday: String
 
-        public var open: Bool
-
         public var closing: LocationTimingSerializer?
+
+        public var open: Bool
 
         public var opening: LocationTimingSerializer?
 
         public enum CodingKeys: String, CodingKey {
             case weekday
 
-            case open
-
             case closing
+
+            case open
 
             case opening
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.CompanyProfile {
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
             self.weekday = weekday
 
-            self.open = open
-
             self.closing = closing
+
+            self.open = open
 
             self.opening = opening
         }
@@ -42,8 +42,6 @@ public extension PlatformClient.CompanyProfile {
 
             weekday = try container.decode(String.self, forKey: .weekday)
 
-            open = try container.decode(Bool.self, forKey: .open)
-
             do {
                 closing = try container.decode(LocationTimingSerializer.self, forKey: .closing)
 
@@ -51,6 +49,8 @@ public extension PlatformClient.CompanyProfile {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            open = try container.decode(Bool.self, forKey: .open)
 
             do {
                 opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
@@ -66,9 +66,9 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(weekday, forKey: .weekday)
 
-            try? container.encodeIfPresent(open, forKey: .open)
-
             try? container.encodeIfPresent(closing, forKey: .closing)
+
+            try? container.encodeIfPresent(open, forKey: .open)
 
             try? container.encodeIfPresent(opening, forKey: .opening)
         }

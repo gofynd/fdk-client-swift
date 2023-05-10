@@ -13,26 +13,26 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var currencySymbol: String?
 
-        public var value: Double?
+        public var message: [String]?
 
         public var display: String?
 
-        public var message: [String]?
-
         public var currencyCode: String?
+
+        public var value: Double?
 
         public enum CodingKeys: String, CodingKey {
             case key
 
             case currencySymbol = "currency_symbol"
 
-            case value
+            case message
 
             case display
 
-            case message
-
             case currencyCode = "currency_code"
+
+            case value
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, key: String? = nil, message: [String]? = nil, value: Double? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.currencySymbol = currencySymbol
 
-            self.value = value
+            self.message = message
 
             self.display = display
 
-            self.message = message
-
             self.currencyCode = currencyCode
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                message = try container.decode([String].self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode([String].self, forKey: .message)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,13 +108,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

@@ -9,30 +9,34 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CartItemSchema: Codable {
-        public var quantity: Int?
+        public var productId: String
 
         public var size: String
 
-        public var productId: String
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case quantity
+            case productId = "product_id"
 
             case size
 
-            case productId = "product_id"
+            case quantity
         }
 
         public init(productId: String, quantity: Int? = nil, size: String) {
-            self.quantity = quantity
+            self.productId = productId
 
             self.size = size
 
-            self.productId = productId
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            productId = try container.decode(String.self, forKey: .productId)
+
+            size = try container.decode(String.self, forKey: .size)
 
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
@@ -41,20 +45,16 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            size = try container.decode(String.self, forKey: .size)
-
-            productId = try container.decode(String.self, forKey: .productId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(productId, forKey: .productId)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(productId, forKey: .productId)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }

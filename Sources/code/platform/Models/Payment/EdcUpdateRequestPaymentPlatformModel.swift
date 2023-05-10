@@ -13,30 +13,30 @@ public extension PlatformClient.Payment {
 
         public var storeId: Int?
 
+        public var merchantStorePosCode: String?
+
+        public var deviceTag: String?
+
         public var aggregatorId: Int?
 
         public var edcModel: String?
 
         public var isActive: Bool?
 
-        public var merchantStorePosCode: String?
-
-        public var deviceTag: String?
-
         public enum CodingKeys: String, CodingKey {
             case edcDeviceSerialNo = "edc_device_serial_no"
 
             case storeId = "store_id"
+
+            case merchantStorePosCode = "merchant_store_pos_code"
+
+            case deviceTag = "device_tag"
 
             case aggregatorId = "aggregator_id"
 
             case edcModel = "edc_model"
 
             case isActive = "is_active"
-
-            case merchantStorePosCode = "merchant_store_pos_code"
-
-            case deviceTag = "device_tag"
         }
 
         public init(aggregatorId: Int? = nil, deviceTag: String? = nil, edcDeviceSerialNo: String? = nil, edcModel: String? = nil, isActive: Bool? = nil, merchantStorePosCode: String? = nil, storeId: Int? = nil) {
@@ -44,15 +44,15 @@ public extension PlatformClient.Payment {
 
             self.storeId = storeId
 
+            self.merchantStorePosCode = merchantStorePosCode
+
+            self.deviceTag = deviceTag
+
             self.aggregatorId = aggregatorId
 
             self.edcModel = edcModel
 
             self.isActive = isActive
-
-            self.merchantStorePosCode = merchantStorePosCode
-
-            self.deviceTag = deviceTag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -68,6 +68,22 @@ public extension PlatformClient.Payment {
 
             do {
                 storeId = try container.decode(Int.self, forKey: .storeId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                merchantStorePosCode = try container.decode(String.self, forKey: .merchantStorePosCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,22 +113,6 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                merchantStorePosCode = try container.decode(String.self, forKey: .merchantStorePosCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deviceTag = try container.decode(String.self, forKey: .deviceTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -122,15 +122,15 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
+            try? container.encodeIfPresent(merchantStorePosCode, forKey: .merchantStorePosCode)
+
+            try? container.encode(deviceTag, forKey: .deviceTag)
+
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
             try? container.encodeIfPresent(edcModel, forKey: .edcModel)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(merchantStorePosCode, forKey: .merchantStorePosCode)
-
-            try? container.encode(deviceTag, forKey: .deviceTag)
         }
     }
 }
@@ -146,30 +146,30 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var storeId: Int?
 
+        public var merchantStorePosCode: String?
+
+        public var deviceTag: String?
+
         public var aggregatorId: Int?
 
         public var edcModel: String?
 
         public var isActive: Bool?
 
-        public var merchantStorePosCode: String?
-
-        public var deviceTag: String?
-
         public enum CodingKeys: String, CodingKey {
             case edcDeviceSerialNo = "edc_device_serial_no"
 
             case storeId = "store_id"
+
+            case merchantStorePosCode = "merchant_store_pos_code"
+
+            case deviceTag = "device_tag"
 
             case aggregatorId = "aggregator_id"
 
             case edcModel = "edc_model"
 
             case isActive = "is_active"
-
-            case merchantStorePosCode = "merchant_store_pos_code"
-
-            case deviceTag = "device_tag"
         }
 
         public init(aggregatorId: Int? = nil, deviceTag: String? = nil, edcDeviceSerialNo: String? = nil, edcModel: String? = nil, isActive: Bool? = nil, merchantStorePosCode: String? = nil, storeId: Int? = nil) {
@@ -177,15 +177,15 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.storeId = storeId
 
+            self.merchantStorePosCode = merchantStorePosCode
+
+            self.deviceTag = deviceTag
+
             self.aggregatorId = aggregatorId
 
             self.edcModel = edcModel
 
             self.isActive = isActive
-
-            self.merchantStorePosCode = merchantStorePosCode
-
-            self.deviceTag = deviceTag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -201,6 +201,22 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             do {
                 storeId = try container.decode(Int.self, forKey: .storeId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                merchantStorePosCode = try container.decode(String.self, forKey: .merchantStorePosCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -230,22 +246,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                merchantStorePosCode = try container.decode(String.self, forKey: .merchantStorePosCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deviceTag = try container.decode(String.self, forKey: .deviceTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -255,15 +255,15 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
+            try? container.encodeIfPresent(merchantStorePosCode, forKey: .merchantStorePosCode)
+
+            try? container.encode(deviceTag, forKey: .deviceTag)
+
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
             try? container.encodeIfPresent(edcModel, forKey: .edcModel)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(merchantStorePosCode, forKey: .merchantStorePosCode)
-
-            try? container.encode(deviceTag, forKey: .deviceTag)
         }
     }
 }
