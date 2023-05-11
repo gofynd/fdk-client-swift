@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class UpdateShipmentStatusRequest: Codable {
         public var lockAfterTransition: Bool?
 
-        public var statuses: [StatuesRequest]?
-
         public var unlockBeforeTransition: Bool?
+
+        public var statuses: [StatuesRequest]?
 
         public var task: Bool?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case lockAfterTransition = "lock_after_transition"
 
-            case statuses
-
             case unlockBeforeTransition = "unlock_before_transition"
+
+            case statuses
 
             case task
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Order {
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             self.lockAfterTransition = lockAfterTransition
 
-            self.statuses = statuses
-
             self.unlockBeforeTransition = unlockBeforeTransition
+
+            self.statuses = statuses
 
             self.task = task
 
@@ -55,7 +55,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
+                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
-            try? container.encodeIfPresent(statuses, forKey: .statuses)
-
             try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
+
+            try? container.encodeIfPresent(statuses, forKey: .statuses)
 
             try? container.encodeIfPresent(task, forKey: .task)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class UpdateShipmentStatusRequest: Codable {
         public var lockAfterTransition: Bool?
 
-        public var statuses: [StatuesRequest]?
-
         public var unlockBeforeTransition: Bool?
+
+        public var statuses: [StatuesRequest]?
 
         public var task: Bool?
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case lockAfterTransition = "lock_after_transition"
 
-            case statuses
-
             case unlockBeforeTransition = "unlock_before_transition"
+
+            case statuses
 
             case task
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
             self.lockAfterTransition = lockAfterTransition
 
-            self.statuses = statuses
-
             self.unlockBeforeTransition = unlockBeforeTransition
+
+            self.statuses = statuses
 
             self.task = task
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
+                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,9 +193,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
-            try? container.encodeIfPresent(statuses, forKey: .statuses)
-
             try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
+
+            try? container.encodeIfPresent(statuses, forKey: .statuses)
 
             try? container.encodeIfPresent(task, forKey: .task)
 

@@ -11,9 +11,9 @@ public extension ApplicationClient.Catalog {
 
         public var displayType: String?
 
-        public var key: String?
-
         public var items: [ProductVariantItemResponse]?
+
+        public var key: String?
 
         public var total: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Catalog {
 
             case displayType = "display_type"
 
-            case key
-
             case items
+
+            case key
 
             case total
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Catalog {
 
             self.displayType = displayType
 
-            self.key = key
-
             self.items = items
+
+            self.key = key
 
             self.total = total
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([ProductVariantItemResponse].self, forKey: .items)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(total, forKey: .total)
         }
