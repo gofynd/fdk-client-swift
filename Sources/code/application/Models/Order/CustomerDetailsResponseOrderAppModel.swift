@@ -13,9 +13,9 @@ public extension ApplicationClient.Order {
 
         public var name: String?
 
-        public var phone: String?
-
         public var orderId: String?
+
+        public var phone: String?
 
         public enum CodingKeys: String, CodingKey {
             case shipmentId = "shipment_id"
@@ -24,9 +24,9 @@ public extension ApplicationClient.Order {
 
             case name
 
-            case phone
-
             case orderId = "order_id"
+
+            case phone
         }
 
         public init(country: String? = nil, name: String? = nil, orderId: String? = nil, phone: String? = nil, shipmentId: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.Order {
 
             self.name = name
 
-            self.phone = phone
-
             self.orderId = orderId
+
+            self.phone = phone
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                phone = try container.decode(String.self, forKey: .phone)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                phone = try container.decode(String.self, forKey: .phone)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(phone, forKey: .phone)
         }
     }
 }

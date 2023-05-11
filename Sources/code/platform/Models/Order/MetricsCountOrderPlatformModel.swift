@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class MetricsCount: Codable {
         public var value: Int
 
-        public var text: String
-
         public var options: [Options]?
+
+        public var text: String
 
         public var key: String
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case text
-
             case options
+
+            case text
 
             case key
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.value = value
 
-            self.text = text
-
             self.options = options
+
+            self.text = text
 
             self.key = key
         }
@@ -42,8 +42,6 @@ public extension PlatformClient.Order {
 
             value = try container.decode(Int.self, forKey: .value)
 
-            text = try container.decode(String.self, forKey: .text)
-
             do {
                 options = try container.decode([Options].self, forKey: .options)
 
@@ -51,6 +49,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            text = try container.decode(String.self, forKey: .text)
 
             key = try container.decode(String.self, forKey: .key)
         }
@@ -60,9 +60,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(text, forKey: .text)
-
             try? container.encodeIfPresent(options, forKey: .options)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(key, forKey: .key)
         }
@@ -78,18 +78,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class MetricsCount: Codable {
         public var value: Int
 
-        public var text: String
-
         public var options: [Options]?
+
+        public var text: String
 
         public var key: String
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case text
-
             case options
+
+            case text
 
             case key
         }
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.value = value
 
-            self.text = text
-
             self.options = options
+
+            self.text = text
 
             self.key = key
         }
@@ -109,8 +109,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             value = try container.decode(Int.self, forKey: .value)
 
-            text = try container.decode(String.self, forKey: .text)
-
             do {
                 options = try container.decode([Options].self, forKey: .options)
 
@@ -118,6 +116,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            text = try container.decode(String.self, forKey: .text)
 
             key = try container.decode(String.self, forKey: .key)
         }
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(text, forKey: .text)
-
             try? container.encodeIfPresent(options, forKey: .options)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(key, forKey: .key)
         }

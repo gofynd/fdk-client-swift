@@ -13,13 +13,13 @@ public extension ApplicationClient.Order {
 
         public var totalShipmentsInOrder: Int?
 
-        public var breakupValues: [BreakupValues]?
-
-        public var orderCreatedTime: String?
+        public var orderId: String?
 
         public var shipments: [Shipments]?
 
-        public var orderId: String?
+        public var orderCreatedTime: String?
+
+        public var breakupValues: [BreakupValues]?
 
         public enum CodingKeys: String, CodingKey {
             case userInfo = "user_info"
@@ -28,13 +28,13 @@ public extension ApplicationClient.Order {
 
             case totalShipmentsInOrder = "total_shipments_in_order"
 
-            case breakupValues = "breakup_values"
-
-            case orderCreatedTime = "order_created_time"
+            case orderId = "order_id"
 
             case shipments
 
-            case orderId = "order_id"
+            case orderCreatedTime = "order_created_time"
+
+            case breakupValues = "breakup_values"
         }
 
         public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, orderCreatedTime: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
@@ -44,13 +44,13 @@ public extension ApplicationClient.Order {
 
             self.totalShipmentsInOrder = totalShipmentsInOrder
 
-            self.breakupValues = breakupValues
-
-            self.orderCreatedTime = orderCreatedTime
+            self.orderId = orderId
 
             self.shipments = shipments
 
-            self.orderId = orderId
+            self.orderCreatedTime = orderCreatedTime
+
+            self.breakupValues = breakupValues
         }
 
         required public init(from decoder: Decoder) throws {
@@ -81,15 +81,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                breakupValues = try container.decode([BreakupValues].self, forKey: .breakupValues)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +97,15 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                breakupValues = try container.decode([BreakupValues].self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,13 +122,13 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
 
-            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-
-            try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
+
+            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
         }
     }
 }
