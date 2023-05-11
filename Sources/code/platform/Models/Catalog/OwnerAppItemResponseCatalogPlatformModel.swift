@@ -11,22 +11,22 @@ public extension PlatformClient.Catalog {
     class OwnerAppItemResponse: Codable {
         public var altText: [String: Any]?
 
+        public var seo: SEOData?
+
         public var isCod: Bool?
 
         public var isGift: Bool?
-
-        public var seo: SEOData?
 
         public var moq: MOQData?
 
         public enum CodingKeys: String, CodingKey {
             case altText = "alt_text"
 
+            case seo
+
             case isCod = "is_cod"
 
             case isGift = "is_gift"
-
-            case seo
 
             case moq
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Catalog {
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
             self.altText = altText
 
+            self.seo = seo
+
             self.isCod = isCod
 
             self.isGift = isGift
-
-            self.seo = seo
 
             self.moq = moq
         }
@@ -48,6 +48,14 @@ public extension PlatformClient.Catalog {
 
             do {
                 altText = try container.decode([String: Any].self, forKey: .altText)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                seo = try container.decode(SEOData.self, forKey: .seo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,14 +79,6 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                seo = try container.decode(SEOData.self, forKey: .seo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 moq = try container.decode(MOQData.self, forKey: .moq)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -92,11 +92,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(altText, forKey: .altText)
 
+            try? container.encodeIfPresent(seo, forKey: .seo)
+
             try? container.encodeIfPresent(isCod, forKey: .isCod)
 
             try? container.encodeIfPresent(isGift, forKey: .isGift)
-
-            try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(moq, forKey: .moq)
         }
@@ -112,22 +112,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class OwnerAppItemResponse: Codable {
         public var altText: [String: Any]?
 
+        public var seo: SEOData?
+
         public var isCod: Bool?
 
         public var isGift: Bool?
-
-        public var seo: SEOData?
 
         public var moq: MOQData?
 
         public enum CodingKeys: String, CodingKey {
             case altText = "alt_text"
 
+            case seo
+
             case isCod = "is_cod"
 
             case isGift = "is_gift"
-
-            case seo
 
             case moq
         }
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
             self.altText = altText
 
+            self.seo = seo
+
             self.isCod = isCod
 
             self.isGift = isGift
-
-            self.seo = seo
 
             self.moq = moq
         }
@@ -149,6 +149,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 altText = try container.decode([String: Any].self, forKey: .altText)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                seo = try container.decode(SEOData.self, forKey: .seo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,14 +180,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                seo = try container.decode(SEOData.self, forKey: .seo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 moq = try container.decode(MOQData.self, forKey: .moq)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -193,11 +193,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(altText, forKey: .altText)
 
+            try? container.encodeIfPresent(seo, forKey: .seo)
+
             try? container.encodeIfPresent(isCod, forKey: .isCod)
 
             try? container.encodeIfPresent(isGift, forKey: .isGift)
-
-            try? container.encodeIfPresent(seo, forKey: .seo)
 
             try? container.encodeIfPresent(moq, forKey: .moq)
         }

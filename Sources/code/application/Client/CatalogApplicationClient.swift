@@ -1109,6 +1109,8 @@ public extension ApplicationClient {
             sortOn: String?,
             pageId: String?,
             pageSize: Int?,
+            pageNo: Int?,
+            pageType: String?,
 
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1132,6 +1134,14 @@ public extension ApplicationClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
+            }
+
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+
+            if let value = pageType {
+                xQuery["page_type"] = value
             }
 
             var fullUrl = relativeUrls["getCollectionItemsBySlug"] ?? ""
@@ -1190,7 +1200,11 @@ public extension ApplicationClient {
                     sortOn: sortOn,
                     pageId: paginator.pageId,
 
-                    pageSize: paginator.pageSize
+                    pageSize: paginator.pageSize,
+
+                    pageNo: paginator.pageNo,
+
+                    pageType: paginator.type
 
                 ) { response, error in
                     if let response = response {
