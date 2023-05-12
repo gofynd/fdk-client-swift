@@ -9,30 +9,30 @@ public extension ApplicationClient.Order {
     class CurrentStatus: Codable {
         public var updatedAt: String?
 
-        public var name: String?
-
         public var journeyType: String?
 
         public var status: String?
 
+        public var name: String?
+
         public enum CodingKeys: String, CodingKey {
             case updatedAt = "updated_at"
-
-            case name
 
             case journeyType = "journey_type"
 
             case status
+
+            case name
         }
 
         public init(journeyType: String? = nil, name: String? = nil, status: String? = nil, updatedAt: String? = nil) {
             self.updatedAt = updatedAt
 
-            self.name = name
-
             self.journeyType = journeyType
 
             self.status = status
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,14 +40,6 @@ public extension ApplicationClient.Order {
 
             do {
                 updatedAt = try container.decode(String.self, forKey: .updatedAt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +61,14 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(journeyType, forKey: .journeyType)
 
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

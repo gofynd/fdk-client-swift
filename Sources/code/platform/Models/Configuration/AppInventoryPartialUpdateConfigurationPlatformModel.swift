@@ -19,8 +19,6 @@ public extension PlatformClient.Configuration {
 
         public var commsEnabled: Bool?
 
-        public var communication: CommunicationConfig?
-
         public enum CodingKeys: String, CodingKey {
             case rewardPoints = "reward_points"
 
@@ -31,11 +29,9 @@ public extension PlatformClient.Configuration {
             case loyaltyPoints = "loyalty_points"
 
             case commsEnabled = "comms_enabled"
-
-            case communication
         }
 
-        public init(cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, payment: AppPaymentConfig? = nil, rewardPoints: RewardPointsConfig? = nil) {
+        public init(cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, payment: AppPaymentConfig? = nil, rewardPoints: RewardPointsConfig? = nil) {
             self.rewardPoints = rewardPoints
 
             self.cart = cart
@@ -45,8 +41,6 @@ public extension PlatformClient.Configuration {
             self.loyaltyPoints = loyaltyPoints
 
             self.commsEnabled = commsEnabled
-
-            self.communication = communication
         }
 
         required public init(from decoder: Decoder) throws {
@@ -91,14 +85,6 @@ public extension PlatformClient.Configuration {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                communication = try container.decode(CommunicationConfig.self, forKey: .communication)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -113,8 +99,6 @@ public extension PlatformClient.Configuration {
             try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
 
             try? container.encodeIfPresent(commsEnabled, forKey: .commsEnabled)
-
-            try? container.encodeIfPresent(communication, forKey: .communication)
         }
     }
 }
@@ -136,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         public var commsEnabled: Bool?
 
-        public var communication: CommunicationConfig?
-
         public enum CodingKeys: String, CodingKey {
             case rewardPoints = "reward_points"
 
@@ -148,11 +130,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             case loyaltyPoints = "loyalty_points"
 
             case commsEnabled = "comms_enabled"
-
-            case communication
         }
 
-        public init(cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, communication: CommunicationConfig? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, payment: AppPaymentConfig? = nil, rewardPoints: RewardPointsConfig? = nil) {
+        public init(cart: AppCartConfig? = nil, commsEnabled: Bool? = nil, loyaltyPoints: LoyaltyPointsConfig? = nil, payment: AppPaymentConfig? = nil, rewardPoints: RewardPointsConfig? = nil) {
             self.rewardPoints = rewardPoints
 
             self.cart = cart
@@ -162,8 +142,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.loyaltyPoints = loyaltyPoints
 
             self.commsEnabled = commsEnabled
-
-            self.communication = communication
         }
 
         required public init(from decoder: Decoder) throws {
@@ -208,14 +186,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                communication = try container.decode(CommunicationConfig.self, forKey: .communication)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -230,8 +200,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
 
             try? container.encodeIfPresent(commsEnabled, forKey: .commsEnabled)
-
-            try? container.encodeIfPresent(communication, forKey: .communication)
         }
     }
 }

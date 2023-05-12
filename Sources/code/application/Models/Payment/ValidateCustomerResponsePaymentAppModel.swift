@@ -9,24 +9,24 @@ public extension ApplicationClient.Payment {
     class ValidateCustomerResponse: Codable {
         public var success: Bool
 
-        public var data: [String: Any]
-
         public var message: String
+
+        public var data: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case data
-
             case message
+
+            case data
         }
 
         public init(data: [String: Any], message: String, success: Bool) {
             self.success = success
 
-            self.data = data
-
             self.message = message
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            data = try container.decode([String: Any].self, forKey: .data)
-
             message = try container.decode(String.self, forKey: .message)
+
+            data = try container.decode([String: Any].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,9 +44,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

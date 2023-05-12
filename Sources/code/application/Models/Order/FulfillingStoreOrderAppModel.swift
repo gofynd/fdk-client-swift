@@ -7,7 +7,7 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class FulfillingStore: Codable {
-        public var id: Int?
+        public var code: String?
 
         public var companyId: Int?
 
@@ -15,10 +15,10 @@ public extension ApplicationClient.Order {
 
         public var name: String?
 
-        public var code: String?
+        public var id: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case code
 
             case companyId = "company_id"
 
@@ -26,11 +26,11 @@ public extension ApplicationClient.Order {
 
             case name
 
-            case code
+            case id
         }
 
         public init(code: String? = nil, companyId: Int? = nil, companyName: String? = nil, id: Int? = nil, name: String? = nil) {
-            self.id = id
+            self.code = code
 
             self.companyId = companyId
 
@@ -38,14 +38,14 @@ public extension ApplicationClient.Order {
 
             self.name = name
 
-            self.code = code
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
@@ -96,7 +96,7 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

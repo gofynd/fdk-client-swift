@@ -9,13 +9,13 @@ public extension PlatformClient.ApplicationClient.User {
      */
 
     class SessionListResponseSchema: Codable {
-        public var items: [SessionListResponseInfo]?
+        public var items: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case items
         }
 
-        public init(items: [SessionListResponseInfo]? = nil) {
+        public init(items: [String]? = nil) {
             self.items = items
         }
 
@@ -23,7 +23,7 @@ public extension PlatformClient.ApplicationClient.User {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([SessionListResponseInfo].self, forKey: .items)
+                items = try container.decode([String].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

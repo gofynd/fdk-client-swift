@@ -9,7 +9,7 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class OpenApiCartServiceabilityRequest: Codable {
-        public var cartItems: [CartItem]
+        public var cartItems: CartItem?
 
         public var shippingAddress: ShippingAddress
 
@@ -19,7 +19,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             case shippingAddress = "shipping_address"
         }
 
-        public init(cartItems: [CartItem], shippingAddress: ShippingAddress) {
+        public init(cartItems: CartItem? = nil, shippingAddress: ShippingAddress) {
             self.cartItems = cartItems
 
             self.shippingAddress = shippingAddress
@@ -28,7 +28,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            cartItems = try container.decode([CartItem].self, forKey: .cartItems)
+            do {
+                cartItems = try container.decode(CartItem.self, forKey: .cartItems)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             shippingAddress = try container.decode(ShippingAddress.self, forKey: .shippingAddress)
         }

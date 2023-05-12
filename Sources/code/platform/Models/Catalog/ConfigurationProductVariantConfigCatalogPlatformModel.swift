@@ -13,30 +13,30 @@ public extension PlatformClient.Catalog {
 
         public var key: String
 
+        public var name: String
+
+        public var displayType: String
+
         public var priority: Int
 
         public var logo: String?
 
-        public var name: String
-
         public var size: ProductSize
-
-        public var displayType: String
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
             case key
 
+            case name
+
+            case displayType = "display_type"
+
             case priority
 
             case logo
 
-            case name
-
             case size
-
-            case displayType = "display_type"
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
@@ -44,15 +44,15 @@ public extension PlatformClient.Catalog {
 
             self.key = key
 
+            self.name = name
+
+            self.displayType = displayType
+
             self.priority = priority
 
             self.logo = logo
 
-            self.name = name
-
             self.size = size
-
-            self.displayType = displayType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,6 +61,10 @@ public extension PlatformClient.Catalog {
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             key = try container.decode(String.self, forKey: .key)
+
+            name = try container.decode(String.self, forKey: .name)
+
+            displayType = try container.decode(String.self, forKey: .displayType)
 
             priority = try container.decode(Int.self, forKey: .priority)
 
@@ -72,11 +76,7 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             size = try container.decode(ProductSize.self, forKey: .size)
-
-            displayType = try container.decode(String.self, forKey: .displayType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -86,15 +86,15 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(displayType, forKey: .displayType)
+
             try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
         }
     }
 }
@@ -110,30 +110,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var key: String
 
+        public var name: String
+
+        public var displayType: String
+
         public var priority: Int
 
         public var logo: String?
 
-        public var name: String
-
         public var size: ProductSize
-
-        public var displayType: String
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
             case key
 
+            case name
+
+            case displayType = "display_type"
+
             case priority
 
             case logo
 
-            case name
-
             case size
-
-            case displayType = "display_type"
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
@@ -141,15 +141,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.key = key
 
+            self.name = name
+
+            self.displayType = displayType
+
             self.priority = priority
 
             self.logo = logo
 
-            self.name = name
-
             self.size = size
-
-            self.displayType = displayType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -158,6 +158,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
             key = try container.decode(String.self, forKey: .key)
+
+            name = try container.decode(String.self, forKey: .name)
+
+            displayType = try container.decode(String.self, forKey: .displayType)
 
             priority = try container.decode(Int.self, forKey: .priority)
 
@@ -169,11 +173,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             size = try container.decode(ProductSize.self, forKey: .size)
-
-            displayType = try container.decode(String.self, forKey: .displayType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -183,15 +183,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(displayType, forKey: .displayType)
+
             try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(displayType, forKey: .displayType)
         }
     }
 }

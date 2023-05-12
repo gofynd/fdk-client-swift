@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var min: Double?
 
-        public var max: Double?
-
         public var currencySymbol: String?
+
+        public var max: Double?
 
         public enum CodingKeys: String, CodingKey {
             case currencyCode = "currency_code"
 
             case min
 
-            case max
-
             case currencySymbol = "currency_symbol"
+
+            case max
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.min = min
 
-            self.max = max
-
             self.currencySymbol = currencySymbol
+
+            self.max = max
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(min, forKey: .min)
 
-            try? container.encodeIfPresent(max, forKey: .max)
-
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
+            try? container.encodeIfPresent(max, forKey: .max)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var min: Double?
 
-        public var max: Double?
-
         public var currencySymbol: String?
+
+        public var max: Double?
 
         public enum CodingKeys: String, CodingKey {
             case currencyCode = "currency_code"
 
             case min
 
-            case max
-
             case currencySymbol = "currency_symbol"
+
+            case max
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.min = min
 
-            self.max = max
-
             self.currencySymbol = currencySymbol
+
+            self.max = max
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(min, forKey: .min)
 
-            try? container.encodeIfPresent(max, forKey: .max)
-
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
+            try? container.encodeIfPresent(max, forKey: .max)
         }
     }
 }

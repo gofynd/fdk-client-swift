@@ -15,26 +15,20 @@ public extension PlatformClient.Order {
 
         public var platformUserFirstName: String?
 
-        public var platformUserEmployeeCode: String?
-
         public enum CodingKeys: String, CodingKey {
             case platformUserLastName = "platform_user_last_name"
 
             case platformUserId = "platform_user_id"
 
             case platformUserFirstName = "platform_user_first_name"
-
-            case platformUserEmployeeCode = "platform_user_employee_code"
         }
 
-        public init(platformUserEmployeeCode: String? = nil, platformUserFirstName: String? = nil, platformUserId: String? = nil, platformUserLastName: String? = nil) {
+        public init(platformUserFirstName: String? = nil, platformUserId: String? = nil, platformUserLastName: String? = nil) {
             self.platformUserLastName = platformUserLastName
 
             self.platformUserId = platformUserId
 
             self.platformUserFirstName = platformUserFirstName
-
-            self.platformUserEmployeeCode = platformUserEmployeeCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,14 +57,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                platformUserEmployeeCode = try container.decode(String.self, forKey: .platformUserEmployeeCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -81,8 +67,6 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(platformUserId, forKey: .platformUserId)
 
             try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
-
-            try? container.encodeIfPresent(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
         }
     }
 }
@@ -100,26 +84,20 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var platformUserFirstName: String?
 
-        public var platformUserEmployeeCode: String?
-
         public enum CodingKeys: String, CodingKey {
             case platformUserLastName = "platform_user_last_name"
 
             case platformUserId = "platform_user_id"
 
             case platformUserFirstName = "platform_user_first_name"
-
-            case platformUserEmployeeCode = "platform_user_employee_code"
         }
 
-        public init(platformUserEmployeeCode: String? = nil, platformUserFirstName: String? = nil, platformUserId: String? = nil, platformUserLastName: String? = nil) {
+        public init(platformUserFirstName: String? = nil, platformUserId: String? = nil, platformUserLastName: String? = nil) {
             self.platformUserLastName = platformUserLastName
 
             self.platformUserId = platformUserId
 
             self.platformUserFirstName = platformUserFirstName
-
-            self.platformUserEmployeeCode = platformUserEmployeeCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -148,14 +126,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                platformUserEmployeeCode = try container.decode(String.self, forKey: .platformUserEmployeeCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -166,8 +136,6 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(platformUserId, forKey: .platformUserId)
 
             try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
-
-            try? container.encodeIfPresent(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
         }
     }
 }

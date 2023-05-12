@@ -3667,7 +3667,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
+ | items | [String]? |  yes  |  |
 
 ---
 
@@ -3831,21 +3831,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug)? |  yes  |  |
  | active | Bool? |  yes  |  |
  | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails)? |  yes  |  |
-
----
-
-
- 
- 
- #### [SessionListResponseInfo](#SessionListResponseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sessionId | String? |  yes  |  |
- | userAgent | String? |  yes  |  |
- | ip | String? |  yes  |  |
- | domain | String? |  yes  |  |
- | expireIn | String? |  yes  |  |
 
 ---
 
@@ -4252,37 +4237,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | gender | String? |  yes  |  |
  | externalId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
- | phoneNumbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
- | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [UserEmails](#UserEmails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | Bool? |  yes  |  |
- | primary | Bool? |  yes  |  |
- | verified | Bool? |  yes  |  |
- | email | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [UserPhoneNumbers](#UserPhoneNumbers)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | Bool? |  yes  |  |
- | primary | Bool? |  yes  |  |
- | verified | Bool? |  yes  |  |
- | phone | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
 
 ---
 
