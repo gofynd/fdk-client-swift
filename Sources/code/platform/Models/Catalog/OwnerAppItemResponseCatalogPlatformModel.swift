@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var altText: [String: Any]?
 
-        public var isGift: Bool?
-
         public var isCod: Bool?
+
+        public var isGift: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case seo
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case altText = "alt_text"
 
-            case isGift = "is_gift"
-
             case isCod = "is_cod"
+
+            case isGift = "is_gift"
         }
 
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Catalog {
 
             self.altText = altText
 
-            self.isGift = isGift
-
             self.isCod = isCod
+
+            self.isGift = isGift
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isGift = try container.decode(Bool.self, forKey: .isGift)
+                isCod = try container.decode(Bool.self, forKey: .isCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
+                isGift = try container.decode(Bool.self, forKey: .isGift)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(altText, forKey: .altText)
 
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
-
             try? container.encodeIfPresent(isCod, forKey: .isCod)
+
+            try? container.encodeIfPresent(isGift, forKey: .isGift)
         }
     }
 }
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var altText: [String: Any]?
 
-        public var isGift: Bool?
-
         public var isCod: Bool?
+
+        public var isGift: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case seo
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case altText = "alt_text"
 
-            case isGift = "is_gift"
-
             case isCod = "is_cod"
+
+            case isGift = "is_gift"
         }
 
         public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: MOQData? = nil, seo: SEOData? = nil) {
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.altText = altText
 
-            self.isGift = isGift
-
             self.isCod = isCod
+
+            self.isGift = isGift
         }
 
         required public init(from decoder: Decoder) throws {
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isGift = try container.decode(Bool.self, forKey: .isGift)
+                isCod = try container.decode(Bool.self, forKey: .isCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isCod = try container.decode(Bool.self, forKey: .isCod)
+                isGift = try container.decode(Bool.self, forKey: .isGift)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,9 +197,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(altText, forKey: .altText)
 
-            try? container.encodeIfPresent(isGift, forKey: .isGift)
-
             try? container.encodeIfPresent(isCod, forKey: .isCod)
+
+            try? container.encodeIfPresent(isGift, forKey: .isGift)
         }
     }
 }

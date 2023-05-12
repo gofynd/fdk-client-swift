@@ -13,13 +13,13 @@ public extension ApplicationClient.Payment {
 
         public var success: Bool
 
-        public var orderId: String
+        public var message: String
 
         public var deliveryAddressId: String?
 
-        public var message: String
-
         public var aggregator: String
+
+        public var orderId: String
 
         public enum CodingKeys: String, CodingKey {
             case status
@@ -28,13 +28,13 @@ public extension ApplicationClient.Payment {
 
             case success
 
-            case orderId = "order_id"
+            case message
 
             case deliveryAddressId = "delivery_address_id"
 
-            case message
-
             case aggregator
+
+            case orderId = "order_id"
         }
 
         public init(aggregator: String, cartId: String? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
@@ -44,13 +44,13 @@ public extension ApplicationClient.Payment {
 
             self.success = success
 
-            self.orderId = orderId
+            self.message = message
 
             self.deliveryAddressId = deliveryAddressId
 
-            self.message = message
-
             self.aggregator = aggregator
+
+            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -68,7 +68,7 @@ public extension ApplicationClient.Payment {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            orderId = try container.decode(String.self, forKey: .orderId)
+            message = try container.decode(String.self, forKey: .message)
 
             do {
                 deliveryAddressId = try container.decode(String.self, forKey: .deliveryAddressId)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            message = try container.decode(String.self, forKey: .message)
-
             aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,13 +92,13 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
     }
 }

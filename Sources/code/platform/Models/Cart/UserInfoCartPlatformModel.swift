@@ -9,60 +9,60 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class UserInfo: Codable {
-        public var createdAt: String?
+        public var uid: String?
 
-        public var id: String?
+        public var createdAt: String?
 
         public var externalId: String?
 
-        public var uid: String?
+        public var gender: String?
 
         public var firstName: String?
-
-        public var gender: String?
 
         public var modifiedOn: String?
 
         public var lastName: String?
 
+        public var id: String?
+
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
-            case createdAt = "created_at"
+            case uid
 
-            case id = "_id"
+            case createdAt = "created_at"
 
             case externalId = "external_id"
 
-            case uid
+            case gender
 
             case firstName = "first_name"
-
-            case gender
 
             case modifiedOn = "modified_on"
 
             case lastName = "last_name"
 
+            case id = "_id"
+
             case mobile
         }
 
         public init(createdAt: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil, modifiedOn: String? = nil, uid: String? = nil, id: String? = nil) {
-            self.createdAt = createdAt
+            self.uid = uid
 
-            self.id = id
+            self.createdAt = createdAt
 
             self.externalId = externalId
 
-            self.uid = uid
+            self.gender = gender
 
             self.firstName = firstName
-
-            self.gender = gender
 
             self.modifiedOn = modifiedOn
 
             self.lastName = lastName
+
+            self.id = id
 
             self.mobile = mobile
         }
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                createdAt = try container.decode(String.self, forKey: .createdAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,7 +95,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,14 +104,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 firstName = try container.decode(String.self, forKey: .firstName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,6 +127,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 mobile = try container.decode(String.self, forKey: .mobile)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -146,21 +146,21 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(externalId, forKey: .externalId)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
-
-            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
