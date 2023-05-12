@@ -11,44 +11,42 @@ public extension PlatformClient.Order {
     class AffiliateBagDetails: Codable {
         public var affiliateOrderId: String
 
-        public var affiliateMeta: AffiliateMeta
-
         public var loyaltyDiscount: Double?
 
         public var employeeDiscount: Double?
 
         public var affiliateBagId: String
 
+        public var affiliateMeta: AffiliateMeta
+
         public enum CodingKeys: String, CodingKey {
             case affiliateOrderId = "affiliate_order_id"
-
-            case affiliateMeta = "affiliate_meta"
 
             case loyaltyDiscount = "loyalty_discount"
 
             case employeeDiscount = "employee_discount"
 
             case affiliateBagId = "affiliate_bag_id"
+
+            case affiliateMeta = "affiliate_meta"
         }
 
         public init(affiliateBagId: String, affiliateMeta: AffiliateMeta, affiliateOrderId: String, employeeDiscount: Double? = nil, loyaltyDiscount: Double? = nil) {
             self.affiliateOrderId = affiliateOrderId
-
-            self.affiliateMeta = affiliateMeta
 
             self.loyaltyDiscount = loyaltyDiscount
 
             self.employeeDiscount = employeeDiscount
 
             self.affiliateBagId = affiliateBagId
+
+            self.affiliateMeta = affiliateMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
-
-            affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
 
             do {
                 loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
@@ -67,6 +65,8 @@ public extension PlatformClient.Order {
             } catch {}
 
             affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
+
+            affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,13 +74,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
-            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
-
             try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
 
             try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
+
+            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
         }
     }
 }
@@ -94,44 +94,42 @@ public extension PlatformClient.ApplicationClient.Order {
     class AffiliateBagDetails: Codable {
         public var affiliateOrderId: String
 
-        public var affiliateMeta: AffiliateMeta
-
         public var loyaltyDiscount: Double?
 
         public var employeeDiscount: Double?
 
         public var affiliateBagId: String
 
+        public var affiliateMeta: AffiliateMeta
+
         public enum CodingKeys: String, CodingKey {
             case affiliateOrderId = "affiliate_order_id"
-
-            case affiliateMeta = "affiliate_meta"
 
             case loyaltyDiscount = "loyalty_discount"
 
             case employeeDiscount = "employee_discount"
 
             case affiliateBagId = "affiliate_bag_id"
+
+            case affiliateMeta = "affiliate_meta"
         }
 
         public init(affiliateBagId: String, affiliateMeta: AffiliateMeta, affiliateOrderId: String, employeeDiscount: Double? = nil, loyaltyDiscount: Double? = nil) {
             self.affiliateOrderId = affiliateOrderId
-
-            self.affiliateMeta = affiliateMeta
 
             self.loyaltyDiscount = loyaltyDiscount
 
             self.employeeDiscount = employeeDiscount
 
             self.affiliateBagId = affiliateBagId
+
+            self.affiliateMeta = affiliateMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
-
-            affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
 
             do {
                 loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
@@ -150,6 +148,8 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
+
+            affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -157,13 +157,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
-            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
-
             try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
 
             try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
+
+            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
         }
     }
 }

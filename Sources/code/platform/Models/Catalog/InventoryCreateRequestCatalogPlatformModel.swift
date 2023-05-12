@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var data: [String]?
 
-        public var notificationEmails: [String]?
-
         public var filters: InventoryExportFilter
+
+        public var notificationEmails: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
             case data
 
-            case notificationEmails = "notification_emails"
-
             case filters
+
+            case notificationEmails = "notification_emails"
         }
 
         public init(data: [String]? = nil, filters: InventoryExportFilter, notificationEmails: [String]? = nil, type: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.data = data
 
-            self.notificationEmails = notificationEmails
-
             self.filters = filters
+
+            self.notificationEmails = notificationEmails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,6 +56,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
+
             do {
                 notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
@@ -63,8 +65,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,9 +74,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
         }
     }
 }
@@ -92,18 +92,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var data: [String]?
 
-        public var notificationEmails: [String]?
-
         public var filters: InventoryExportFilter
+
+        public var notificationEmails: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
             case data
 
-            case notificationEmails = "notification_emails"
-
             case filters
+
+            case notificationEmails = "notification_emails"
         }
 
         public init(data: [String]? = nil, filters: InventoryExportFilter, notificationEmails: [String]? = nil, type: String? = nil) {
@@ -111,9 +111,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.data = data
 
-            self.notificationEmails = notificationEmails
-
             self.filters = filters
+
+            self.notificationEmails = notificationEmails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -135,6 +135,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
+
             do {
                 notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
@@ -142,8 +144,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            filters = try container.decode(InventoryExportFilter.self, forKey: .filters)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -153,9 +153,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
         }
     }
 }

@@ -11,36 +11,36 @@ public extension PlatformClient.Order {
     class Document: Codable {
         public var legalName: String
 
-        public var verified: Bool
-
         public var value: String
+
+        public var dsType: String
 
         public var url: String?
 
-        public var dsType: String
+        public var verified: Bool
 
         public enum CodingKeys: String, CodingKey {
             case legalName = "legal_name"
 
-            case verified
-
             case value
+
+            case dsType = "ds_type"
 
             case url
 
-            case dsType = "ds_type"
+            case verified
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
             self.legalName = legalName
 
-            self.verified = verified
-
             self.value = value
+
+            self.dsType = dsType
 
             self.url = url
 
-            self.dsType = dsType
+            self.verified = verified
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
 
             legalName = try container.decode(String.self, forKey: .legalName)
 
-            verified = try container.decode(Bool.self, forKey: .verified)
-
             value = try container.decode(String.self, forKey: .value)
+
+            dsType = try container.decode(String.self, forKey: .dsType)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -60,7 +60,7 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            dsType = try container.decode(String.self, forKey: .dsType)
+            verified = try container.decode(Bool.self, forKey: .verified)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,13 +68,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
+            try? container.encodeIfPresent(verified, forKey: .verified)
         }
     }
 }
@@ -88,36 +88,36 @@ public extension PlatformClient.ApplicationClient.Order {
     class Document: Codable {
         public var legalName: String
 
-        public var verified: Bool
-
         public var value: String
+
+        public var dsType: String
 
         public var url: String?
 
-        public var dsType: String
+        public var verified: Bool
 
         public enum CodingKeys: String, CodingKey {
             case legalName = "legal_name"
 
-            case verified
-
             case value
+
+            case dsType = "ds_type"
 
             case url
 
-            case dsType = "ds_type"
+            case verified
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
             self.legalName = legalName
 
-            self.verified = verified
-
             self.value = value
+
+            self.dsType = dsType
 
             self.url = url
 
-            self.dsType = dsType
+            self.verified = verified
         }
 
         required public init(from decoder: Decoder) throws {
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             legalName = try container.decode(String.self, forKey: .legalName)
 
-            verified = try container.decode(Bool.self, forKey: .verified)
-
             value = try container.decode(String.self, forKey: .value)
+
+            dsType = try container.decode(String.self, forKey: .dsType)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -137,7 +137,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            dsType = try container.decode(String.self, forKey: .dsType)
+            verified = try container.decode(Bool.self, forKey: .verified)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -145,13 +145,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
+            try? container.encodeIfPresent(verified, forKey: .verified)
         }
     }
 }
