@@ -9,48 +9,42 @@ public extension ApplicationClient.Payment {
     class TransferItemsDetails: Codable {
         public var logoSmall: String
 
-        public var name: String
+        public var displayName: String?
 
         public var id: Int
 
         public var logoLarge: String
 
-        public var displayName: String?
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case logoSmall = "logo_small"
 
-            case name
+            case displayName = "display_name"
 
             case id
 
             case logoLarge = "logo_large"
 
-            case displayName = "display_name"
+            case name
         }
 
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
             self.logoSmall = logoSmall
 
-            self.name = name
+            self.displayName = displayName
 
             self.id = id
 
             self.logoLarge = logoLarge
 
-            self.displayName = displayName
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             logoSmall = try container.decode(String.self, forKey: .logoSmall)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            id = try container.decode(Int.self, forKey: .id)
-
-            logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
@@ -59,6 +53,12 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(Int.self, forKey: .id)
+
+            logoLarge = try container.decode(String.self, forKey: .logoLarge)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,13 +66,13 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

@@ -1681,6 +1681,7 @@ Success
  | links | [String: Any]? |  yes  |  |
  | enabled | Bool? |  yes  |  |
  | displayText | String? |  yes  |  |
+ | config | [String: Any]? |  yes  |  |
 
 ---
 

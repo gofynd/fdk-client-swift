@@ -13,11 +13,11 @@ public extension PlatformClient.Catalog {
 
         public var visibleFacetsKeys: [String]?
 
-        public var query: [CollectionQuery]?
-
         public var allowSort: Bool?
 
         public var type: String?
+
+        public var query: [CollectionQuery]?
 
         public var items: [CollectionItem]?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Catalog {
 
             case visibleFacetsKeys = "visible_facets_keys"
 
-            case query
-
             case allowSort = "allow_sort"
 
             case type
+
+            case query
 
             case items
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Catalog {
 
             self.visibleFacetsKeys = visibleFacetsKeys
 
-            self.query = query
-
             self.allowSort = allowSort
 
             self.type = type
+
+            self.query = query
 
             self.items = items
         }
@@ -69,14 +69,6 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 allowSort = try container.decode(Bool.self, forKey: .allowSort)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -86,6 +78,14 @@ public extension PlatformClient.Catalog {
 
             do {
                 type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                query = try container.decode([CollectionQuery].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,11 +108,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
 
-            try? container.encodeIfPresent(query, forKey: .query)
-
             try? container.encodeIfPresent(allowSort, forKey: .allowSort)
 
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(query, forKey: .query)
 
             try? container.encodeIfPresent(items, forKey: .items)
         }
@@ -130,11 +130,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var visibleFacetsKeys: [String]?
 
-        public var query: [CollectionQuery]?
-
         public var allowSort: Bool?
 
         public var type: String?
+
+        public var query: [CollectionQuery]?
 
         public var items: [CollectionItem]?
 
@@ -143,11 +143,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case visibleFacetsKeys = "visible_facets_keys"
 
-            case query
-
             case allowSort = "allow_sort"
 
             case type
+
+            case query
 
             case items
         }
@@ -157,11 +157,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.visibleFacetsKeys = visibleFacetsKeys
 
-            self.query = query
-
             self.allowSort = allowSort
 
             self.type = type
+
+            self.query = query
 
             self.items = items
         }
@@ -186,14 +186,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                query = try container.decode([CollectionQuery].self, forKey: .query)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 allowSort = try container.decode(Bool.self, forKey: .allowSort)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -203,6 +195,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                query = try container.decode([CollectionQuery].self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,11 +225,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
 
-            try? container.encodeIfPresent(query, forKey: .query)
-
             try? container.encodeIfPresent(allowSort, forKey: .allowSort)
 
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(query, forKey: .query)
 
             try? container.encodeIfPresent(items, forKey: .items)
         }

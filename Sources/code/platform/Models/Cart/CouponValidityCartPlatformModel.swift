@@ -9,6 +9,8 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CouponValidity: Codable {
+        public var displayMessageEn: String?
+
         public var valid: Bool?
 
         public var discount: Double?
@@ -17,9 +19,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var title: String?
 
-        public var displayMessageEn: String?
-
         public enum CodingKeys: String, CodingKey {
+            case displayMessageEn = "display_message_en"
+
             case valid
 
             case discount
@@ -27,11 +29,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             case code
 
             case title
-
-            case displayMessageEn = "display_message_en"
         }
 
         public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, title: String? = nil, valid: Bool? = nil) {
+            self.displayMessageEn = displayMessageEn
+
             self.valid = valid
 
             self.discount = discount
@@ -39,12 +41,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.code = code
 
             self.title = title
-
-            self.displayMessageEn = displayMessageEn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 valid = try container.decode(Bool.self, forKey: .valid)
@@ -77,18 +85,12 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encode(displayMessageEn, forKey: .displayMessageEn)
 
             try? container.encodeIfPresent(valid, forKey: .valid)
 
@@ -97,8 +99,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             try? container.encode(code, forKey: .code)
 
             try? container.encodeIfPresent(title, forKey: .title)
-
-            try? container.encode(displayMessageEn, forKey: .displayMessageEn)
         }
     }
 }

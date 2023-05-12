@@ -11,7 +11,13 @@ public extension PlatformClient.Catalog {
     class AttributeDetailsGroup: Codable {
         public var slug: String?
 
+        public var unit: String?
+
+        public var name: String
+
         public var displayType: String
+
+        public var priority: Int
 
         public var key: String?
 
@@ -19,46 +25,40 @@ public extension PlatformClient.Catalog {
 
         public var isActive: Bool
 
-        public var priority: Int
-
-        public var name: String
-
-        public var unit: String?
-
         public enum CodingKeys: String, CodingKey {
             case slug
 
+            case unit
+
+            case name
+
             case displayType = "display_type"
+
+            case priority
 
             case key
 
             case logo
 
             case isActive = "is_active"
-
-            case priority
-
-            case name
-
-            case unit
         }
 
         public init(displayType: String, isActive: Bool, key: String? = nil, logo: String? = nil, name: String, priority: Int, slug: String? = nil, unit: String? = nil) {
             self.slug = slug
 
+            self.unit = unit
+
+            self.name = name
+
             self.displayType = displayType
+
+            self.priority = priority
 
             self.key = key
 
             self.logo = logo
 
             self.isActive = isActive
-
-            self.priority = priority
-
-            self.name = name
-
-            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -72,7 +72,19 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                unit = try container.decode(String.self, forKey: .unit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
+
             displayType = try container.decode(String.self, forKey: .displayType)
+
+            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 key = try container.decode(String.self, forKey: .key)
@@ -91,18 +103,6 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            do {
-                unit = try container.decode(String.self, forKey: .unit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -110,19 +110,19 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
+            try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(displayType, forKey: .displayType)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }
@@ -136,7 +136,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AttributeDetailsGroup: Codable {
         public var slug: String?
 
+        public var unit: String?
+
+        public var name: String
+
         public var displayType: String
+
+        public var priority: Int
 
         public var key: String?
 
@@ -144,46 +150,40 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var isActive: Bool
 
-        public var priority: Int
-
-        public var name: String
-
-        public var unit: String?
-
         public enum CodingKeys: String, CodingKey {
             case slug
 
+            case unit
+
+            case name
+
             case displayType = "display_type"
+
+            case priority
 
             case key
 
             case logo
 
             case isActive = "is_active"
-
-            case priority
-
-            case name
-
-            case unit
         }
 
         public init(displayType: String, isActive: Bool, key: String? = nil, logo: String? = nil, name: String, priority: Int, slug: String? = nil, unit: String? = nil) {
             self.slug = slug
 
+            self.unit = unit
+
+            self.name = name
+
             self.displayType = displayType
+
+            self.priority = priority
 
             self.key = key
 
             self.logo = logo
 
             self.isActive = isActive
-
-            self.priority = priority
-
-            self.name = name
-
-            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -197,7 +197,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                unit = try container.decode(String.self, forKey: .unit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
+
             displayType = try container.decode(String.self, forKey: .displayType)
+
+            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 key = try container.decode(String.self, forKey: .key)
@@ -216,18 +228,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            do {
-                unit = try container.decode(String.self, forKey: .unit)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -235,19 +235,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
+            try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(displayType, forKey: .displayType)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }

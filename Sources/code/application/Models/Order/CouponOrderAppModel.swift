@@ -11,9 +11,9 @@ public extension ApplicationClient.Order {
 
         public var code: String?
 
-        public var couponType: String?
-
         public var id: Double?
+
+        public var couponType: String?
 
         public var value: Double?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Order {
 
             case code
 
-            case couponType = "coupon_type"
-
             case id
+
+            case couponType = "coupon_type"
 
             case value
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Order {
 
             self.code = code
 
-            self.couponType = couponType
-
             self.id = id
+
+            self.couponType = couponType
 
             self.value = value
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                couponType = try container.decode(String.self, forKey: .couponType)
+                id = try container.decode(Double.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                id = try container.decode(Double.self, forKey: .id)
+                couponType = try container.decode(String.self, forKey: .couponType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(couponType, forKey: .couponType)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(couponType, forKey: .couponType)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }
