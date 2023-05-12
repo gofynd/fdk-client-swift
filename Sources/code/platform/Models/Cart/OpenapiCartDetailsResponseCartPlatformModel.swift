@@ -13,18 +13,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var message: String?
 
-        public var breakupValues: CartBreakupSchema?
-
         public var items: [CartProductInfo]?
+
+        public var breakupValues: CartBreakupSchema?
 
         public enum CodingKeys: String, CodingKey {
             case isValid = "is_valid"
 
             case message
 
-            case breakupValues = "breakup_values"
-
             case items
+
+            case breakupValues = "breakup_values"
         }
 
         public init(breakupValues: CartBreakupSchema? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.message = message
 
-            self.breakupValues = breakupValues
-
             self.items = items
+
+            self.breakupValues = breakupValues
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                breakupValues = try container.decode(CartBreakupSchema.self, forKey: .breakupValues)
+                items = try container.decode([CartProductInfo].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                items = try container.decode([CartProductInfo].self, forKey: .items)
+                breakupValues = try container.decode(CartBreakupSchema.self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
         }
     }
 }

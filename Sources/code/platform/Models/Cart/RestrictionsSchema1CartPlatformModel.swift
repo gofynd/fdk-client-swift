@@ -9,60 +9,60 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class RestrictionsSchema1: Codable {
-        public var userId: [String]?
-
-        public var payments: [PromotionPaymentModesSchema]?
+        public var orderQuantity: Int?
 
         public var anonymousUsers: Bool?
 
         public var userRegistered: UserRegisteredSchema?
 
-        public var userGroups: [Int]?
+        public var userId: [String]?
+
+        public var uses: UsesRestrictionSchema1
+
+        public var payments: [PromotionPaymentModesSchema]?
 
         public var postOrder: PostOrderSchema1?
 
-        public var orderQuantity: Int?
-
-        public var uses: UsesRestrictionSchema1
+        public var userGroups: [Int]?
 
         public var platforms: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case userId = "user_id"
-
-            case payments
+            case orderQuantity = "order_quantity"
 
             case anonymousUsers = "anonymous_users"
 
             case userRegistered = "user_registered"
 
-            case userGroups = "user_groups"
+            case userId = "user_id"
+
+            case uses
+
+            case payments
 
             case postOrder = "post_order"
 
-            case orderQuantity = "order_quantity"
-
-            case uses
+            case userGroups = "user_groups"
 
             case platforms
         }
 
         public init(anonymousUsers: Bool? = nil, orderQuantity: Int? = nil, payments: [PromotionPaymentModesSchema]? = nil, platforms: [String]? = nil, postOrder: PostOrderSchema1? = nil, userGroups: [Int]? = nil, userId: [String]? = nil, userRegistered: UserRegisteredSchema? = nil, uses: UsesRestrictionSchema1) {
-            self.userId = userId
-
-            self.payments = payments
+            self.orderQuantity = orderQuantity
 
             self.anonymousUsers = anonymousUsers
 
             self.userRegistered = userRegistered
 
-            self.userGroups = userGroups
+            self.userId = userId
+
+            self.uses = uses
+
+            self.payments = payments
 
             self.postOrder = postOrder
 
-            self.orderQuantity = orderQuantity
-
-            self.uses = uses
+            self.userGroups = userGroups
 
             self.platforms = platforms
         }
@@ -71,15 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                userId = try container.decode([String].self, forKey: .userId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                payments = try container.decode([PromotionPaymentModesSchema].self, forKey: .payments)
+                orderQuantity = try container.decode(Int.self, forKey: .orderQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +95,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                userGroups = try container.decode([Int].self, forKey: .userGroups)
+                userId = try container.decode([String].self, forKey: .userId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            uses = try container.decode(UsesRestrictionSchema1.self, forKey: .uses)
+
+            do {
+                payments = try container.decode([PromotionPaymentModesSchema].self, forKey: .payments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,14 +121,12 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                orderQuantity = try container.decode(Int.self, forKey: .orderQuantity)
+                userGroups = try container.decode([Int].self, forKey: .userGroups)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            uses = try container.decode(UsesRestrictionSchema1.self, forKey: .uses)
 
             do {
                 platforms = try container.decode([String].self, forKey: .platforms)
@@ -140,21 +140,21 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
-            try? container.encodeIfPresent(payments, forKey: .payments)
+            try? container.encodeIfPresent(orderQuantity, forKey: .orderQuantity)
 
             try? container.encodeIfPresent(anonymousUsers, forKey: .anonymousUsers)
 
             try? container.encode(userRegistered, forKey: .userRegistered)
 
-            try? container.encodeIfPresent(userGroups, forKey: .userGroups)
+            try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(uses, forKey: .uses)
+
+            try? container.encodeIfPresent(payments, forKey: .payments)
 
             try? container.encodeIfPresent(postOrder, forKey: .postOrder)
 
-            try? container.encodeIfPresent(orderQuantity, forKey: .orderQuantity)
-
-            try? container.encodeIfPresent(uses, forKey: .uses)
+            try? container.encodeIfPresent(userGroups, forKey: .userGroups)
 
             try? container.encodeIfPresent(platforms, forKey: .platforms)
         }

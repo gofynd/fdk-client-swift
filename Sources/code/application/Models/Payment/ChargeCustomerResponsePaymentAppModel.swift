@@ -7,7 +7,7 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class ChargeCustomerResponse: Codable {
-        public var status: String
+        public var message: String
 
         public var orderId: String
 
@@ -15,14 +15,14 @@ public extension ApplicationClient.Payment {
 
         public var deliveryAddressId: String?
 
+        public var status: String
+
         public var cartId: String?
 
         public var aggregator: String
 
-        public var message: String
-
         public enum CodingKeys: String, CodingKey {
-            case status
+            case message
 
             case orderId = "order_id"
 
@@ -30,15 +30,15 @@ public extension ApplicationClient.Payment {
 
             case deliveryAddressId = "delivery_address_id"
 
+            case status
+
             case cartId = "cart_id"
 
             case aggregator
-
-            case message
         }
 
         public init(aggregator: String, cartId: String? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
-            self.status = status
+            self.message = message
 
             self.orderId = orderId
 
@@ -46,17 +46,17 @@ public extension ApplicationClient.Payment {
 
             self.deliveryAddressId = deliveryAddressId
 
+            self.status = status
+
             self.cartId = cartId
 
             self.aggregator = aggregator
-
-            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            status = try container.decode(String.self, forKey: .status)
+            message = try container.decode(String.self, forKey: .message)
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
@@ -70,6 +70,8 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode(String.self, forKey: .status)
+
             do {
                 cartId = try container.decode(String.self, forKey: .cartId)
 
@@ -79,14 +81,12 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
@@ -94,11 +94,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
 
+            try? container.encodeIfPresent(status, forKey: .status)
+
             try? container.encode(cartId, forKey: .cartId)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
-            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

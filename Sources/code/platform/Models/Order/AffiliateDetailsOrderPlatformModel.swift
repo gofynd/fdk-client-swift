@@ -9,72 +9,76 @@ public extension PlatformClient.Order {
      */
 
     class AffiliateDetails: Codable {
-        public var adId: String?
-
-        public var affiliateStoreId: String
+        public var affiliateBagId: String
 
         public var affiliateOrderId: String
 
-        public var shipmentMeta: ShipmentMeta
-
-        public var affiliateBagId: String
+        public var adId: String?
 
         public var affiliateShipmentId: String
-
-        public var affiliateMeta: AffiliateMeta
 
         public var affiliateId: String?
 
         public var pdfLinks: PDFLinks?
 
+        public var affiliateMeta: AffiliateMeta
+
+        public var affiliateStoreId: String
+
         public var companyAffiliateTag: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case adId = "ad_id"
+        public var shipmentMeta: ShipmentMeta
 
-            case affiliateStoreId = "affiliate_store_id"
+        public enum CodingKeys: String, CodingKey {
+            case affiliateBagId = "affiliate_bag_id"
 
             case affiliateOrderId = "affiliate_order_id"
 
-            case shipmentMeta = "shipment_meta"
-
-            case affiliateBagId = "affiliate_bag_id"
+            case adId = "ad_id"
 
             case affiliateShipmentId = "affiliate_shipment_id"
-
-            case affiliateMeta = "affiliate_meta"
 
             case affiliateId = "affiliate_id"
 
             case pdfLinks = "pdf_links"
 
+            case affiliateMeta = "affiliate_meta"
+
+            case affiliateStoreId = "affiliate_store_id"
+
             case companyAffiliateTag = "company_affiliate_tag"
+
+            case shipmentMeta = "shipment_meta"
         }
 
         public init(adId: String? = nil, affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
-            self.adId = adId
-
-            self.affiliateStoreId = affiliateStoreId
+            self.affiliateBagId = affiliateBagId
 
             self.affiliateOrderId = affiliateOrderId
 
-            self.shipmentMeta = shipmentMeta
-
-            self.affiliateBagId = affiliateBagId
+            self.adId = adId
 
             self.affiliateShipmentId = affiliateShipmentId
-
-            self.affiliateMeta = affiliateMeta
 
             self.affiliateId = affiliateId
 
             self.pdfLinks = pdfLinks
 
+            self.affiliateMeta = affiliateMeta
+
+            self.affiliateStoreId = affiliateStoreId
+
             self.companyAffiliateTag = companyAffiliateTag
+
+            self.shipmentMeta = shipmentMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
+
+            affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
 
             do {
                 adId = try container.decode(String.self, forKey: .adId)
@@ -84,17 +88,7 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliateStoreId = try container.decode(String.self, forKey: .affiliateStoreId)
-
-            affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
-
-            shipmentMeta = try container.decode(ShipmentMeta.self, forKey: .shipmentMeta)
-
-            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
-
             affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
-
-            affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
 
             do {
                 affiliateId = try container.decode(String.self, forKey: .affiliateId)
@@ -112,6 +106,10 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
+
+            affiliateStoreId = try container.decode(String.self, forKey: .affiliateStoreId)
+
             do {
                 companyAffiliateTag = try container.decode(String.self, forKey: .companyAffiliateTag)
 
@@ -119,30 +117,32 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            shipmentMeta = try container.decode(ShipmentMeta.self, forKey: .shipmentMeta)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(adId, forKey: .adId)
-
-            try? container.encodeIfPresent(affiliateStoreId, forKey: .affiliateStoreId)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
-            try? container.encodeIfPresent(shipmentMeta, forKey: .shipmentMeta)
-
-            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
+            try? container.encodeIfPresent(adId, forKey: .adId)
 
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-
-            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
             try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
 
+            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
+
+            try? container.encodeIfPresent(affiliateStoreId, forKey: .affiliateStoreId)
+
             try? container.encodeIfPresent(companyAffiliateTag, forKey: .companyAffiliateTag)
+
+            try? container.encodeIfPresent(shipmentMeta, forKey: .shipmentMeta)
         }
     }
 }
@@ -154,72 +154,76 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AffiliateDetails: Codable {
-        public var adId: String?
-
-        public var affiliateStoreId: String
+        public var affiliateBagId: String
 
         public var affiliateOrderId: String
 
-        public var shipmentMeta: ShipmentMeta
-
-        public var affiliateBagId: String
+        public var adId: String?
 
         public var affiliateShipmentId: String
-
-        public var affiliateMeta: AffiliateMeta
 
         public var affiliateId: String?
 
         public var pdfLinks: PDFLinks?
 
+        public var affiliateMeta: AffiliateMeta
+
+        public var affiliateStoreId: String
+
         public var companyAffiliateTag: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case adId = "ad_id"
+        public var shipmentMeta: ShipmentMeta
 
-            case affiliateStoreId = "affiliate_store_id"
+        public enum CodingKeys: String, CodingKey {
+            case affiliateBagId = "affiliate_bag_id"
 
             case affiliateOrderId = "affiliate_order_id"
 
-            case shipmentMeta = "shipment_meta"
-
-            case affiliateBagId = "affiliate_bag_id"
+            case adId = "ad_id"
 
             case affiliateShipmentId = "affiliate_shipment_id"
-
-            case affiliateMeta = "affiliate_meta"
 
             case affiliateId = "affiliate_id"
 
             case pdfLinks = "pdf_links"
 
+            case affiliateMeta = "affiliate_meta"
+
+            case affiliateStoreId = "affiliate_store_id"
+
             case companyAffiliateTag = "company_affiliate_tag"
+
+            case shipmentMeta = "shipment_meta"
         }
 
         public init(adId: String? = nil, affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
-            self.adId = adId
-
-            self.affiliateStoreId = affiliateStoreId
+            self.affiliateBagId = affiliateBagId
 
             self.affiliateOrderId = affiliateOrderId
 
-            self.shipmentMeta = shipmentMeta
-
-            self.affiliateBagId = affiliateBagId
+            self.adId = adId
 
             self.affiliateShipmentId = affiliateShipmentId
-
-            self.affiliateMeta = affiliateMeta
 
             self.affiliateId = affiliateId
 
             self.pdfLinks = pdfLinks
 
+            self.affiliateMeta = affiliateMeta
+
+            self.affiliateStoreId = affiliateStoreId
+
             self.companyAffiliateTag = companyAffiliateTag
+
+            self.shipmentMeta = shipmentMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
+
+            affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
 
             do {
                 adId = try container.decode(String.self, forKey: .adId)
@@ -229,17 +233,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliateStoreId = try container.decode(String.self, forKey: .affiliateStoreId)
-
-            affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
-
-            shipmentMeta = try container.decode(ShipmentMeta.self, forKey: .shipmentMeta)
-
-            affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
-
             affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
-
-            affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
 
             do {
                 affiliateId = try container.decode(String.self, forKey: .affiliateId)
@@ -257,6 +251,10 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            affiliateMeta = try container.decode(AffiliateMeta.self, forKey: .affiliateMeta)
+
+            affiliateStoreId = try container.decode(String.self, forKey: .affiliateStoreId)
+
             do {
                 companyAffiliateTag = try container.decode(String.self, forKey: .companyAffiliateTag)
 
@@ -264,30 +262,32 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            shipmentMeta = try container.decode(ShipmentMeta.self, forKey: .shipmentMeta)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(adId, forKey: .adId)
-
-            try? container.encodeIfPresent(affiliateStoreId, forKey: .affiliateStoreId)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
-            try? container.encodeIfPresent(shipmentMeta, forKey: .shipmentMeta)
-
-            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
+            try? container.encodeIfPresent(adId, forKey: .adId)
 
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-
-            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
             try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
 
+            try? container.encodeIfPresent(affiliateMeta, forKey: .affiliateMeta)
+
+            try? container.encodeIfPresent(affiliateStoreId, forKey: .affiliateStoreId)
+
             try? container.encodeIfPresent(companyAffiliateTag, forKey: .companyAffiliateTag)
+
+            try? container.encodeIfPresent(shipmentMeta, forKey: .shipmentMeta)
         }
     }
 }

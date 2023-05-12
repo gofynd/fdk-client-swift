@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class AttachUserInfo: Codable {
         public var mobile: Int
 
-        public var lastName: String
-
         public var firstName: String
+
+        public var lastName: String
 
         public var countryCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case mobile
 
-            case lastName = "last_name"
-
             case firstName = "first_name"
+
+            case lastName = "last_name"
 
             case countryCode = "country_code"
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(countryCode: String? = nil, firstName: String, lastName: String, mobile: Int) {
             self.mobile = mobile
 
-            self.lastName = lastName
-
             self.firstName = firstName
+
+            self.lastName = lastName
 
             self.countryCode = countryCode
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Order {
 
             mobile = try container.decode(Int.self, forKey: .mobile)
 
-            lastName = try container.decode(String.self, forKey: .lastName)
-
             firstName = try container.decode(String.self, forKey: .firstName)
+
+            lastName = try container.decode(String.self, forKey: .lastName)
 
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
@@ -60,9 +60,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
             try? container.encodeIfPresent(firstName, forKey: .firstName)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
         }
@@ -78,18 +78,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class AttachUserInfo: Codable {
         public var mobile: Int
 
-        public var lastName: String
-
         public var firstName: String
+
+        public var lastName: String
 
         public var countryCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case mobile
 
-            case lastName = "last_name"
-
             case firstName = "first_name"
+
+            case lastName = "last_name"
 
             case countryCode = "country_code"
         }
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(countryCode: String? = nil, firstName: String, lastName: String, mobile: Int) {
             self.mobile = mobile
 
-            self.lastName = lastName
-
             self.firstName = firstName
+
+            self.lastName = lastName
 
             self.countryCode = countryCode
         }
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             mobile = try container.decode(Int.self, forKey: .mobile)
 
-            lastName = try container.decode(String.self, forKey: .lastName)
-
             firstName = try container.decode(String.self, forKey: .firstName)
+
+            lastName = try container.decode(String.self, forKey: .lastName)
 
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
             try? container.encodeIfPresent(firstName, forKey: .firstName)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
         }
