@@ -11,7 +11,7 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PlatformCartMetaRequest: Codable {
         public var panNo: String?
 
-        public var checkoutMode: String?
+        public var giftDetails: ArticleGiftDetailSchema?
 
         public var gstin: String?
 
@@ -19,12 +19,12 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var pickUpCustomerDetails: [String: Any]?
 
-        public var giftDetails: ArticleGiftDetailSchema?
+        public var checkoutMode: String?
 
         public enum CodingKeys: String, CodingKey {
             case panNo = "pan_no"
 
-            case checkoutMode = "checkout_mode"
+            case giftDetails = "gift_details"
 
             case gstin
 
@@ -32,13 +32,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case pickUpCustomerDetails = "pick_up_customer_details"
 
-            case giftDetails = "gift_details"
+            case checkoutMode = "checkout_mode"
         }
 
         public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: ArticleGiftDetailSchema? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
             self.panNo = panNo
 
-            self.checkoutMode = checkoutMode
+            self.giftDetails = giftDetails
 
             self.gstin = gstin
 
@@ -46,7 +46,7 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.pickUpCustomerDetails = pickUpCustomerDetails
 
-            self.giftDetails = giftDetails
+            self.checkoutMode = checkoutMode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+                giftDetails = try container.decode(ArticleGiftDetailSchema.self, forKey: .giftDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                giftDetails = try container.decode(ArticleGiftDetailSchema.self, forKey: .giftDetails)
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,7 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(panNo, forKey: .panNo)
 
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 
@@ -114,7 +114,7 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
-            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
         }
     }
 }

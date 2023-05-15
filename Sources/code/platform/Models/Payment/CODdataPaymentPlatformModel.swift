@@ -13,22 +13,22 @@ public extension PlatformClient.Payment {
 
         public var isActive: Bool
 
-        public var limit: Int
+        public var usages: Int
 
         public var remainingLimit: Int
 
-        public var usages: Int
+        public var limit: Int
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
             case isActive = "is_active"
 
-            case limit
+            case usages
 
             case remainingLimit = "remaining_limit"
 
-            case usages
+            case limit
         }
 
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Payment {
 
             self.isActive = isActive
 
-            self.limit = limit
+            self.usages = usages
 
             self.remainingLimit = remainingLimit
 
-            self.usages = usages
+            self.limit = limit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,11 +50,11 @@ public extension PlatformClient.Payment {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            limit = try container.decode(Int.self, forKey: .limit)
+            usages = try container.decode(Int.self, forKey: .usages)
 
             remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
 
-            usages = try container.decode(Int.self, forKey: .usages)
+            limit = try container.decode(Int.self, forKey: .limit)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(limit, forKey: .limit)
+            try? container.encodeIfPresent(usages, forKey: .usages)
 
             try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
 
-            try? container.encodeIfPresent(usages, forKey: .usages)
+            try? container.encodeIfPresent(limit, forKey: .limit)
         }
     }
 }
@@ -84,22 +84,22 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var isActive: Bool
 
-        public var limit: Int
+        public var usages: Int
 
         public var remainingLimit: Int
 
-        public var usages: Int
+        public var limit: Int
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
             case isActive = "is_active"
 
-            case limit
+            case usages
 
             case remainingLimit = "remaining_limit"
 
-            case usages
+            case limit
         }
 
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
@@ -107,11 +107,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.isActive = isActive
 
-            self.limit = limit
+            self.usages = usages
 
             self.remainingLimit = remainingLimit
 
-            self.usages = usages
+            self.limit = limit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -121,11 +121,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            limit = try container.decode(Int.self, forKey: .limit)
+            usages = try container.decode(Int.self, forKey: .usages)
 
             remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
 
-            usages = try container.decode(Int.self, forKey: .usages)
+            limit = try container.decode(Int.self, forKey: .limit)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(limit, forKey: .limit)
+            try? container.encodeIfPresent(usages, forKey: .usages)
 
             try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
 
-            try? container.encodeIfPresent(usages, forKey: .usages)
+            try? container.encodeIfPresent(limit, forKey: .limit)
         }
     }
 }

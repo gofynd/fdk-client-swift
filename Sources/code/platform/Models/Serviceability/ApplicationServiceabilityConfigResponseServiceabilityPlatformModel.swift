@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class ApplicationServiceabilityConfigResponse: Codable {
         public var error: ServiceabilityrErrorResponse?
 
-        public var data: ApplicationServiceabilityConfig?
-
         public var success: Bool
+
+        public var data: ApplicationServiceabilityConfig?
 
         public enum CodingKeys: String, CodingKey {
             case error
 
-            case data
-
             case success
+
+            case data
         }
 
         public init(data: ApplicationServiceabilityConfig? = nil, error: ServiceabilityrErrorResponse? = nil, success: Bool) {
             self.error = error
 
-            self.data = data
-
             self.success = success
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,8 @@ public extension PlatformClient.Serviceability {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 data = try container.decode(ApplicationServiceabilityConfig.self, forKey: .data)
 
@@ -49,8 +51,6 @@ public extension PlatformClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ApplicationServiceabilityConfigResponse: Codable {
         public var error: ServiceabilityrErrorResponse?
 
-        public var data: ApplicationServiceabilityConfig?
-
         public var success: Bool
+
+        public var data: ApplicationServiceabilityConfig?
 
         public enum CodingKeys: String, CodingKey {
             case error
 
-            case data
-
             case success
+
+            case data
         }
 
         public init(data: ApplicationServiceabilityConfig? = nil, error: ServiceabilityrErrorResponse? = nil, success: Bool) {
             self.error = error
 
-            self.data = data
-
             self.success = success
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,6 +105,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 data = try container.decode(ApplicationServiceabilityConfig.self, forKey: .data)
 
@@ -112,8 +114,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

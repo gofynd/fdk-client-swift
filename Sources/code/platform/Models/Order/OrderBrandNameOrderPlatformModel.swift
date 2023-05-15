@@ -11,20 +11,18 @@ public extension PlatformClient.Order {
     class OrderBrandName: Codable {
         public var modifiedOn: String?
 
-        public var logo: String
-
         public var id: Int
 
         public var createdOn: String
 
         public var brandName: String
 
+        public var logo: String
+
         public var company: String
 
         public enum CodingKeys: String, CodingKey {
             case modifiedOn = "modified_on"
-
-            case logo
 
             case id
 
@@ -32,19 +30,21 @@ public extension PlatformClient.Order {
 
             case brandName = "brand_name"
 
+            case logo
+
             case company
         }
 
         public init(brandName: String, company: String, createdOn: String, id: Int, logo: String, modifiedOn: String? = nil) {
             self.modifiedOn = modifiedOn
 
-            self.logo = logo
-
             self.id = id
 
             self.createdOn = createdOn
 
             self.brandName = brandName
+
+            self.logo = logo
 
             self.company = company
         }
@@ -60,13 +60,13 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            logo = try container.decode(String.self, forKey: .logo)
-
             id = try container.decode(Int.self, forKey: .id)
 
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
             brandName = try container.decode(String.self, forKey: .brandName)
+
+            logo = try container.decode(String.self, forKey: .logo)
 
             company = try container.decode(String.self, forKey: .company)
         }
@@ -76,13 +76,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encode(company, forKey: .company)
         }
@@ -98,20 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderBrandName: Codable {
         public var modifiedOn: String?
 
-        public var logo: String
-
         public var id: Int
 
         public var createdOn: String
 
         public var brandName: String
 
+        public var logo: String
+
         public var company: String
 
         public enum CodingKeys: String, CodingKey {
             case modifiedOn = "modified_on"
-
-            case logo
 
             case id
 
@@ -119,19 +117,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case brandName = "brand_name"
 
+            case logo
+
             case company
         }
 
         public init(brandName: String, company: String, createdOn: String, id: Int, logo: String, modifiedOn: String? = nil) {
             self.modifiedOn = modifiedOn
 
-            self.logo = logo
-
             self.id = id
 
             self.createdOn = createdOn
 
             self.brandName = brandName
+
+            self.logo = logo
 
             self.company = company
         }
@@ -147,13 +147,13 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            logo = try container.decode(String.self, forKey: .logo)
-
             id = try container.decode(Int.self, forKey: .id)
 
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
             brandName = try container.decode(String.self, forKey: .brandName)
+
+            logo = try container.decode(String.self, forKey: .logo)
 
             company = try container.decode(String.self, forKey: .company)
         }
@@ -163,13 +163,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encode(company, forKey: .company)
         }

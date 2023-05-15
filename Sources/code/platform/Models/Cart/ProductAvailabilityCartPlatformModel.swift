@@ -15,9 +15,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var availableSizes: [ProductAvailabilitySize]?
 
-        public var otherStoreQuantity: Int?
-
         public var outOfStock: Bool?
+
+        public var otherStoreQuantity: Int?
 
         public var deliverable: Bool?
 
@@ -28,9 +28,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case availableSizes = "available_sizes"
 
-            case otherStoreQuantity = "other_store_quantity"
-
             case outOfStock = "out_of_stock"
+
+            case otherStoreQuantity = "other_store_quantity"
 
             case deliverable
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.availableSizes = availableSizes
 
-            self.otherStoreQuantity = otherStoreQuantity
-
             self.outOfStock = outOfStock
+
+            self.otherStoreQuantity = otherStoreQuantity
 
             self.deliverable = deliverable
         }
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
+                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
+                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
-            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
-
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
+
+            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
         }

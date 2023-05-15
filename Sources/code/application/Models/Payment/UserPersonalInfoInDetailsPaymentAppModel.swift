@@ -7,131 +7,129 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class UserPersonalInfoInDetails: Codable {
-        public var mothersName: String?
+        public var voterId: String?
 
-        public var emailVerified: Bool
+        public var drivingLicense: String?
 
         public var dob: String
 
-        public var pan: String?
-
-        public var passport: String?
+        public var fathersName: String?
 
         public var mobileVerified: Bool
 
         public var middleName: String?
 
-        public var fathersName: String?
+        public var addressAsPerId: KYCAddress
+
+        public var passport: String?
+
+        public var emailVerified: Bool
 
         public var firstName: String
 
-        public var gender: String?
+        public var mothersName: String?
 
-        public var addressAsPerId: KYCAddress
-
-        public var phone: String
+        public var pan: String?
 
         public var lastName: String?
 
-        public var voterId: String?
+        public var gender: String?
+
+        public var phone: String
 
         public var email: String?
 
-        public var drivingLicense: String?
-
         public enum CodingKeys: String, CodingKey {
-            case mothersName = "mothers_name"
+            case voterId = "voter_id"
 
-            case emailVerified = "email_verified"
+            case drivingLicense = "driving_license"
 
             case dob
 
-            case pan
-
-            case passport
+            case fathersName = "fathers_name"
 
             case mobileVerified = "mobile_verified"
 
             case middleName = "middle_name"
 
-            case fathersName = "fathers_name"
+            case addressAsPerId = "address_as_per_id"
+
+            case passport
+
+            case emailVerified = "email_verified"
 
             case firstName = "first_name"
 
-            case gender
+            case mothersName = "mothers_name"
 
-            case addressAsPerId = "address_as_per_id"
-
-            case phone
+            case pan
 
             case lastName = "last_name"
 
-            case voterId = "voter_id"
+            case gender
+
+            case phone
 
             case email
-
-            case drivingLicense = "driving_license"
         }
 
         public init(addressAsPerId: KYCAddress, dob: String, drivingLicense: String? = nil, email: String? = nil, emailVerified: Bool, fathersName: String? = nil, firstName: String, gender: String? = nil, lastName: String? = nil, middleName: String? = nil, mobileVerified: Bool, mothersName: String? = nil, pan: String? = nil, passport: String? = nil, phone: String, voterId: String? = nil) {
-            self.mothersName = mothersName
+            self.voterId = voterId
 
-            self.emailVerified = emailVerified
+            self.drivingLicense = drivingLicense
 
             self.dob = dob
 
-            self.pan = pan
-
-            self.passport = passport
+            self.fathersName = fathersName
 
             self.mobileVerified = mobileVerified
 
             self.middleName = middleName
 
-            self.fathersName = fathersName
+            self.addressAsPerId = addressAsPerId
+
+            self.passport = passport
+
+            self.emailVerified = emailVerified
 
             self.firstName = firstName
 
-            self.gender = gender
+            self.mothersName = mothersName
 
-            self.addressAsPerId = addressAsPerId
-
-            self.phone = phone
+            self.pan = pan
 
             self.lastName = lastName
 
-            self.voterId = voterId
+            self.gender = gender
+
+            self.phone = phone
 
             self.email = email
-
-            self.drivingLicense = drivingLicense
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                mothersName = try container.decode(String.self, forKey: .mothersName)
+                voterId = try container.decode(String.self, forKey: .voterId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            emailVerified = try container.decode(Bool.self, forKey: .emailVerified)
+            do {
+                drivingLicense = try container.decode(String.self, forKey: .drivingLicense)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             dob = try container.decode(String.self, forKey: .dob)
 
             do {
-                pan = try container.decode(String.self, forKey: .pan)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                passport = try container.decode(String.self, forKey: .passport)
+                fathersName = try container.decode(String.self, forKey: .fathersName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,27 +146,35 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            addressAsPerId = try container.decode(KYCAddress.self, forKey: .addressAsPerId)
+
             do {
-                fathersName = try container.decode(String.self, forKey: .fathersName)
+                passport = try container.decode(String.self, forKey: .passport)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            emailVerified = try container.decode(Bool.self, forKey: .emailVerified)
 
             firstName = try container.decode(String.self, forKey: .firstName)
 
             do {
-                gender = try container.decode(String.self, forKey: .gender)
+                mothersName = try container.decode(String.self, forKey: .mothersName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            addressAsPerId = try container.decode(KYCAddress.self, forKey: .addressAsPerId)
+            do {
+                pan = try container.decode(String.self, forKey: .pan)
 
-            phone = try container.decode(String.self, forKey: .phone)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 lastName = try container.decode(String.self, forKey: .lastName)
@@ -179,23 +185,17 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                voterId = try container.decode(String.self, forKey: .voterId)
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            phone = try container.decode(String.self, forKey: .phone)
 
             do {
                 email = try container.decode(String.self, forKey: .email)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                drivingLicense = try container.decode(String.self, forKey: .drivingLicense)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -206,37 +206,37 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(mothersName, forKey: .mothersName)
+            try? container.encode(voterId, forKey: .voterId)
 
-            try? container.encodeIfPresent(emailVerified, forKey: .emailVerified)
+            try? container.encode(drivingLicense, forKey: .drivingLicense)
 
             try? container.encode(dob, forKey: .dob)
 
-            try? container.encode(pan, forKey: .pan)
-
-            try? container.encode(passport, forKey: .passport)
+            try? container.encode(fathersName, forKey: .fathersName)
 
             try? container.encodeIfPresent(mobileVerified, forKey: .mobileVerified)
 
             try? container.encode(middleName, forKey: .middleName)
 
-            try? container.encode(fathersName, forKey: .fathersName)
+            try? container.encodeIfPresent(addressAsPerId, forKey: .addressAsPerId)
+
+            try? container.encode(passport, forKey: .passport)
+
+            try? container.encodeIfPresent(emailVerified, forKey: .emailVerified)
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
-            try? container.encode(gender, forKey: .gender)
+            try? container.encode(mothersName, forKey: .mothersName)
 
-            try? container.encodeIfPresent(addressAsPerId, forKey: .addressAsPerId)
-
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encode(pan, forKey: .pan)
 
             try? container.encode(lastName, forKey: .lastName)
 
-            try? container.encode(voterId, forKey: .voterId)
+            try? container.encode(gender, forKey: .gender)
+
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
             try? container.encode(email, forKey: .email)
-
-            try? container.encode(drivingLicense, forKey: .drivingLicense)
         }
     }
 }
