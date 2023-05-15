@@ -13,22 +13,22 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var id: String?
 
-        public var billingAddressId: String?
+        public var userId: String?
 
         public var checkoutMode: String?
 
-        public var userId: String?
+        public var billingAddressId: String?
 
         public enum CodingKeys: String, CodingKey {
             case cartId = "cart_id"
 
             case id
 
-            case billingAddressId = "billing_address_id"
+            case userId = "user_id"
 
             case checkoutMode = "checkout_mode"
 
-            case userId = "user_id"
+            case billingAddressId = "billing_address_id"
         }
 
         public init(billingAddressId: String? = nil, cartId: String? = nil, checkoutMode: String? = nil, id: String? = nil, userId: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.id = id
 
-            self.billingAddressId = billingAddressId
+            self.userId = userId
 
             self.checkoutMode = checkoutMode
 
-            self.userId = userId
+            self.billingAddressId = billingAddressId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,11 +94,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
         }
     }
 }

@@ -4,11 +4,11 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: BagReturnableCancelableStatus
+         Model: BagReturnableCancelableStatus1
          Used By: Order
      */
 
-    class BagReturnableCancelableStatus: Codable {
+    class BagReturnableCancelableStatus1: Codable {
         public var enableTracking: Bool
 
         public var isActive: Bool
@@ -75,11 +75,11 @@ public extension PlatformClient.Order {
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: BagReturnableCancelableStatus
+         Model: BagReturnableCancelableStatus1
          Used By: Order
      */
 
-    class BagReturnableCancelableStatus: Codable {
+    class BagReturnableCancelableStatus1: Codable {
         public var enableTracking: Bool
 
         public var isActive: Bool

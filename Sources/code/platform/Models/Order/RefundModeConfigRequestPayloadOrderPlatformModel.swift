@@ -9,46 +9,42 @@ public extension PlatformClient.Order {
      */
 
     class RefundModeConfigRequestPayload: Codable {
-        public var orderingChannel: String
-
-        public var fyndOrderId: String
-
         public var customerMobileNumber: String?
+
+        public var orderingChannel: String
 
         public var sellerId: String
 
         public var affiliateId: String
 
+        public var fyndOrderId: String
+
         public enum CodingKeys: String, CodingKey {
-            case orderingChannel = "ordering_channel"
-
-            case fyndOrderId = "fynd_order_id"
-
             case customerMobileNumber = "customer_mobile_number"
+
+            case orderingChannel = "ordering_channel"
 
             case sellerId = "seller_id"
 
             case affiliateId = "affiliate_id"
+
+            case fyndOrderId = "fynd_order_id"
         }
 
         public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, orderingChannel: String, sellerId: String) {
-            self.orderingChannel = orderingChannel
-
-            self.fyndOrderId = fyndOrderId
-
             self.customerMobileNumber = customerMobileNumber
+
+            self.orderingChannel = orderingChannel
 
             self.sellerId = sellerId
 
             self.affiliateId = affiliateId
+
+            self.fyndOrderId = fyndOrderId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
-
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
 
             do {
                 customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
@@ -58,23 +54,27 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+
             sellerId = try container.decode(String.self, forKey: .sellerId)
 
             affiliateId = try container.decode(String.self, forKey: .affiliateId)
+
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
-
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
-
             try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
+
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
         }
     }
 }
@@ -86,46 +86,42 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class RefundModeConfigRequestPayload: Codable {
-        public var orderingChannel: String
-
-        public var fyndOrderId: String
-
         public var customerMobileNumber: String?
+
+        public var orderingChannel: String
 
         public var sellerId: String
 
         public var affiliateId: String
 
+        public var fyndOrderId: String
+
         public enum CodingKeys: String, CodingKey {
-            case orderingChannel = "ordering_channel"
-
-            case fyndOrderId = "fynd_order_id"
-
             case customerMobileNumber = "customer_mobile_number"
+
+            case orderingChannel = "ordering_channel"
 
             case sellerId = "seller_id"
 
             case affiliateId = "affiliate_id"
+
+            case fyndOrderId = "fynd_order_id"
         }
 
         public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, orderingChannel: String, sellerId: String) {
-            self.orderingChannel = orderingChannel
-
-            self.fyndOrderId = fyndOrderId
-
             self.customerMobileNumber = customerMobileNumber
+
+            self.orderingChannel = orderingChannel
 
             self.sellerId = sellerId
 
             self.affiliateId = affiliateId
+
+            self.fyndOrderId = fyndOrderId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
-
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
 
             do {
                 customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
@@ -135,23 +131,27 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+
             sellerId = try container.decode(String.self, forKey: .sellerId)
 
             affiliateId = try container.decode(String.self, forKey: .affiliateId)
+
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
-
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
-
             try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
+
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
         }
     }
 }

@@ -9,46 +9,46 @@ public extension PlatformClient.Serviceability {
      */
 
     class EntityRegionView_Items: Codable {
-        public var uid: String
-
         public var name: String
 
         public var subType: String
 
-        public enum CodingKeys: String, CodingKey {
-            case uid
+        public var uid: String
 
+        public enum CodingKeys: String, CodingKey {
             case name
 
             case subType = "sub_type"
+
+            case uid
         }
 
         public init(name: String, subType: String, uid: String) {
-            self.uid = uid
-
             self.name = name
 
             self.subType = subType
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            uid = try container.decode(String.self, forKey: .uid)
-
             name = try container.decode(String.self, forKey: .name)
 
             subType = try container.decode(String.self, forKey: .subType)
+
+            uid = try container.decode(String.self, forKey: .uid)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
@@ -60,46 +60,46 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class EntityRegionView_Items: Codable {
-        public var uid: String
-
         public var name: String
 
         public var subType: String
 
-        public enum CodingKeys: String, CodingKey {
-            case uid
+        public var uid: String
 
+        public enum CodingKeys: String, CodingKey {
             case name
 
             case subType = "sub_type"
+
+            case uid
         }
 
         public init(name: String, subType: String, uid: String) {
-            self.uid = uid
-
             self.name = name
 
             self.subType = subType
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            uid = try container.decode(String.self, forKey: .uid)
-
             name = try container.decode(String.self, forKey: .name)
 
             subType = try container.decode(String.self, forKey: .subType)
+
+            uid = try container.decode(String.self, forKey: .uid)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
