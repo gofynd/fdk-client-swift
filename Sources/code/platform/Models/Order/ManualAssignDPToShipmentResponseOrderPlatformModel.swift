@@ -9,26 +9,24 @@ public extension PlatformClient.Order {
      */
 
     class ManualAssignDPToShipmentResponse: Codable {
-        public var success: String
-
         public var errors: [String]?
 
-        public enum CodingKeys: String, CodingKey {
-            case success
+        public var success: String
 
+        public enum CodingKeys: String, CodingKey {
             case errors
+
+            case success
         }
 
         public init(errors: [String]? = nil, success: String) {
-            self.success = success
-
             self.errors = errors
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            success = try container.decode(String.self, forKey: .success)
 
             do {
                 errors = try container.decode([String].self, forKey: .errors)
@@ -37,14 +35,16 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            success = try container.decode(String.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(errors, forKey: .errors)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -56,26 +56,24 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ManualAssignDPToShipmentResponse: Codable {
-        public var success: String
-
         public var errors: [String]?
 
-        public enum CodingKeys: String, CodingKey {
-            case success
+        public var success: String
 
+        public enum CodingKeys: String, CodingKey {
             case errors
+
+            case success
         }
 
         public init(errors: [String]? = nil, success: String) {
-            self.success = success
-
             self.errors = errors
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            success = try container.decode(String.self, forKey: .success)
 
             do {
                 errors = try container.decode([String].self, forKey: .errors)
@@ -84,14 +82,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            success = try container.decode(String.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(errors, forKey: .errors)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

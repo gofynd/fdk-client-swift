@@ -11,11 +11,11 @@ public extension ApplicationClient.Order {
 
         public var itemId: Int?
 
+        public var itemSize: String?
+
         public var articleAssignment: BagsForReorderArticleAssignment?
 
         public var storeId: Int?
-
-        public var itemSize: String?
 
         public var sellerId: Int?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.Order {
 
             case itemId = "item_id"
 
+            case itemSize = "item_size"
+
             case articleAssignment = "article_assignment"
 
             case storeId = "store_id"
-
-            case itemSize = "item_size"
 
             case sellerId = "seller_id"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.Order {
 
             self.itemId = itemId
 
+            self.itemSize = itemSize
+
             self.articleAssignment = articleAssignment
 
             self.storeId = storeId
-
-            self.itemSize = itemSize
 
             self.sellerId = sellerId
         }
@@ -67,6 +67,14 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
+                itemSize = try container.decode(String.self, forKey: .itemSize)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 articleAssignment = try container.decode(BagsForReorderArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension ApplicationClient.Order {
 
             do {
                 storeId = try container.decode(Int.self, forKey: .storeId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemSize = try container.decode(String.self, forKey: .itemSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
+            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
+
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encodeIfPresent(itemSize, forKey: .itemSize)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
         }

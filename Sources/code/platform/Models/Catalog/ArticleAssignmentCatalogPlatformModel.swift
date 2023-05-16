@@ -9,27 +9,27 @@ public extension PlatformClient.Catalog {
      */
 
     class ArticleAssignment: Codable {
-        public var level: String?
-
         public var strategy: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case level
+        public var level: String?
 
+        public enum CodingKeys: String, CodingKey {
             case strategy
+
+            case level
         }
 
         public init(level: String? = nil, strategy: String? = nil) {
-            self.level = level
-
             self.strategy = strategy
+
+            self.level = level
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                strategy = try container.decode(String.self, forKey: .strategy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                strategy = try container.decode(String.self, forKey: .strategy)
+                level = try container.decode(String.self, forKey: .level)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(level, forKey: .level)
-
             try? container.encodeIfPresent(strategy, forKey: .strategy)
+
+            try? container.encodeIfPresent(level, forKey: .level)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ArticleAssignment: Codable {
-        public var level: String?
-
         public var strategy: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case level
+        public var level: String?
 
+        public enum CodingKeys: String, CodingKey {
             case strategy
+
+            case level
         }
 
         public init(level: String? = nil, strategy: String? = nil) {
-            self.level = level
-
             self.strategy = strategy
+
+            self.level = level
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                level = try container.decode(String.self, forKey: .level)
+                strategy = try container.decode(String.self, forKey: .strategy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                strategy = try container.decode(String.self, forKey: .strategy)
+                level = try container.decode(String.self, forKey: .level)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(level, forKey: .level)
-
             try? container.encodeIfPresent(strategy, forKey: .strategy)
+
+            try? container.encodeIfPresent(level, forKey: .level)
         }
     }
 }
