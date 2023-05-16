@@ -7,84 +7,92 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class AppliedPromotion: Codable {
+        public var promotionName: String?
+
         public var articleQuantity: Int?
 
         public var mrpPromotion: Bool?
 
         public var offerText: String?
 
-        public var amount: Double?
-
-        public var appliedFreeArticles: [AppliedFreeArticlesSchema]?
-
-        public var ownership: Ownership?
-
-        public var promoId: String?
+        public var discountRules: [DiscountRulesAppSchema]?
 
         public var buyRules: [BuyRulesSchema]?
 
-        public var promotionGroup: String?
+        public var appliedFreeArticles: [AppliedFreeArticlesSchema]?
 
-        public var promotionName: String?
-
-        public var discountRules: [DiscountRulesAppSchema]?
+        public var promoId: String?
 
         public var promotionType: String?
 
+        public var ownership: Ownership?
+
+        public var amount: Double?
+
+        public var promotionGroup: String?
+
         public enum CodingKeys: String, CodingKey {
+            case promotionName = "promotion_name"
+
             case articleQuantity = "article_quantity"
 
             case mrpPromotion = "mrp_promotion"
 
             case offerText = "offer_text"
 
-            case amount
-
-            case appliedFreeArticles = "applied_free_articles"
-
-            case ownership
-
-            case promoId = "promo_id"
+            case discountRules = "discount_rules"
 
             case buyRules = "buy_rules"
 
-            case promotionGroup = "promotion_group"
+            case appliedFreeArticles = "applied_free_articles"
 
-            case promotionName = "promotion_name"
-
-            case discountRules = "discount_rules"
+            case promoId = "promo_id"
 
             case promotionType = "promotion_type"
+
+            case ownership
+
+            case amount
+
+            case promotionGroup = "promotion_group"
         }
 
         public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticlesSchema]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRulesSchema]? = nil, discountRules: [DiscountRulesAppSchema]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+            self.promotionName = promotionName
+
             self.articleQuantity = articleQuantity
 
             self.mrpPromotion = mrpPromotion
 
             self.offerText = offerText
 
-            self.amount = amount
-
-            self.appliedFreeArticles = appliedFreeArticles
-
-            self.ownership = ownership
-
-            self.promoId = promoId
+            self.discountRules = discountRules
 
             self.buyRules = buyRules
 
-            self.promotionGroup = promotionGroup
+            self.appliedFreeArticles = appliedFreeArticles
 
-            self.promotionName = promotionName
-
-            self.discountRules = discountRules
+            self.promoId = promoId
 
             self.promotionType = promotionType
+
+            self.ownership = ownership
+
+            self.amount = amount
+
+            self.promotionGroup = promotionGroup
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                promotionName = try container.decode(String.self, forKey: .promotionName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
@@ -111,31 +119,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                appliedFreeArticles = try container.decode([AppliedFreeArticlesSchema].self, forKey: .appliedFreeArticles)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                ownership = try container.decode(Ownership.self, forKey: .ownership)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promoId = try container.decode(String.self, forKey: .promoId)
+                discountRules = try container.decode([DiscountRulesAppSchema].self, forKey: .discountRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,7 +135,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+                appliedFreeArticles = try container.decode([AppliedFreeArticlesSchema].self, forKey: .appliedFreeArticles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,15 +143,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                promotionName = try container.decode(String.self, forKey: .promotionName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discountRules = try container.decode([DiscountRulesAppSchema].self, forKey: .discountRules)
+                promoId = try container.decode(String.self, forKey: .promoId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -181,10 +157,36 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                ownership = try container.decode(Ownership.self, forKey: .ownership)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amount = try container.decode(Double.self, forKey: .amount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
 
             try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 
@@ -192,23 +194,21 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
-            try? container.encodeIfPresent(appliedFreeArticles, forKey: .appliedFreeArticles)
-
-            try? container.encodeIfPresent(ownership, forKey: .ownership)
-
-            try? container.encodeIfPresent(promoId, forKey: .promoId)
+            try? container.encodeIfPresent(discountRules, forKey: .discountRules)
 
             try? container.encodeIfPresent(buyRules, forKey: .buyRules)
 
-            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
+            try? container.encodeIfPresent(appliedFreeArticles, forKey: .appliedFreeArticles)
 
-            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
-
-            try? container.encodeIfPresent(discountRules, forKey: .discountRules)
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+
+            try? container.encodeIfPresent(ownership, forKey: .ownership)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
         }
     }
 }

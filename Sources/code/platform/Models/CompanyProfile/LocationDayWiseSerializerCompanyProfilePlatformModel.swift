@@ -11,30 +11,30 @@ public extension PlatformClient.CompanyProfile {
     class LocationDayWiseSerializer: Codable {
         public var closing: LocationTimingSerializer?
 
-        public var weekday: String
-
         public var open: Bool
 
         public var opening: LocationTimingSerializer?
 
+        public var weekday: String
+
         public enum CodingKeys: String, CodingKey {
             case closing
-
-            case weekday
 
             case open
 
             case opening
+
+            case weekday
         }
 
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
             self.closing = closing
 
-            self.weekday = weekday
-
             self.open = open
 
             self.opening = opening
+
+            self.weekday = weekday
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,8 +48,6 @@ public extension PlatformClient.CompanyProfile {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            weekday = try container.decode(String.self, forKey: .weekday)
-
             open = try container.decode(Bool.self, forKey: .open)
 
             do {
@@ -59,6 +57,8 @@ public extension PlatformClient.CompanyProfile {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            weekday = try container.decode(String.self, forKey: .weekday)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,11 +66,11 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(closing, forKey: .closing)
 
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
-
             try? container.encodeIfPresent(open, forKey: .open)
 
             try? container.encodeIfPresent(opening, forKey: .opening)
+
+            try? container.encodeIfPresent(weekday, forKey: .weekday)
         }
     }
 }
