@@ -49,9 +49,9 @@ public extension ApplicationClient {
 
             ulrs["getFollowedListing"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/")
 
-            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
-
             ulrs["unfollowById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
+
+            ulrs["followById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/")
 
             ulrs["getFollowerCountById"] = config.domain.appendAsPath("/service/application/catalog/v1.0/follow/{collection_type}/{collection_id}/count/")
 
@@ -1019,6 +1019,7 @@ public extension ApplicationClient {
             pageNo: Int?,
             pageSize: Int?,
             tag: [String]?,
+            q: String?,
 
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1034,6 +1035,10 @@ public extension ApplicationClient {
 
             if let value = tag {
                 xQuery["tag"] = value
+            }
+
+            if let value = q {
+                xQuery["q"] = value
             }
 
             let fullUrl = relativeUrls["getCollections"] ?? ""
@@ -1074,7 +1079,8 @@ public extension ApplicationClient {
          **/
         public func getCollectionsPaginator(
             pageSize: Int?,
-            tag: [String]?
+            tag: [String]?,
+            q: String?
 
         ) -> Paginator<GetCollectionListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1085,7 +1091,8 @@ public extension ApplicationClient {
 
                     pageSize: paginator.pageSize,
 
-                    tag: tag
+                    tag: tag,
+                    q: q
                 ) { response, error in
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
@@ -1347,16 +1354,16 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Follow an entity (product/brand/collection)
-         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
+         * Summary: Unfollow an entity (product/brand/collection)
+         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
          **/
-        public func followById(
+        public func unfollowById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["followById"] ?? ""
+            var fullUrl = relativeUrls["unfollowById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1364,7 +1371,7 @@ public extension ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],
@@ -1393,16 +1400,16 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Unfollow an entity (product/brand/collection)
-         * Description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+         * Summary: Follow an entity (product/brand/collection)
+         * Description: Follow a particular entity such as product, brand, collection specified by its ID.
          **/
-        public func unfollowById(
+        public func followById(
             collectionType: String,
             collectionId: String,
 
             onResponse: @escaping (_ response: FollowPostResponse?, _ error: FDKError?) -> Void
         ) {
-            var fullUrl = relativeUrls["unfollowById"] ?? ""
+            var fullUrl = relativeUrls["followById"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "collection_type" + "}", with: "\(collectionType)")
 
@@ -1410,7 +1417,7 @@ public extension ApplicationClient {
 
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: fullUrl,
                 query: nil,
                 extraHeaders: [],

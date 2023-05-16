@@ -2,46 +2,46 @@
 
 import Foundation
 
-public extension PlatformClient.Serviceability {
+public extension PlatformClient.Order {
     /*
-         Model: TimmingResponse
-         Used By: Serviceability
+         Model: ShipmentListingBrand
+         Used By: Order
      */
 
-    class TimmingResponse: Codable {
-        public var opening: OpeningClosing?
+    class ShipmentListingBrand: Codable {
+        public var logoBase64: String?
 
-        public var open: Bool?
+        public var logo: String?
 
-        public var weekday: String?
+        public var name: String?
 
-        public var closing: OpeningClosing?
+        public var createdOn: String?
 
         public enum CodingKeys: String, CodingKey {
-            case opening
+            case logoBase64 = "logo_base64"
 
-            case open
+            case logo
 
-            case weekday
+            case name
 
-            case closing
+            case createdOn = "created_on"
         }
 
-        public init(closing: OpeningClosing? = nil, open: Bool? = nil, opening: OpeningClosing? = nil, weekday: String? = nil) {
-            self.opening = opening
+        public init(createdOn: String? = nil, logo: String? = nil, logoBase64: String? = nil, name: String? = nil) {
+            self.logoBase64 = logoBase64
 
-            self.open = open
+            self.logo = logo
 
-            self.weekday = weekday
+            self.name = name
 
-            self.closing = closing
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                opening = try container.decode(OpeningClosing.self, forKey: .opening)
+                logoBase64 = try container.decode(String.self, forKey: .logoBase64)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                open = try container.decode(Bool.self, forKey: .open)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                weekday = try container.decode(String.self, forKey: .weekday)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                closing = try container.decode(OpeningClosing.self, forKey: .closing)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,57 +76,57 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(opening, forKey: .opening)
+            try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
 
-            try? container.encodeIfPresent(open, forKey: .open)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(closing, forKey: .closing)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Serviceability {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: TimmingResponse
-         Used By: Serviceability
+         Model: ShipmentListingBrand
+         Used By: Order
      */
 
-    class TimmingResponse: Codable {
-        public var opening: OpeningClosing?
+    class ShipmentListingBrand: Codable {
+        public var logoBase64: String?
 
-        public var open: Bool?
+        public var logo: String?
 
-        public var weekday: String?
+        public var name: String?
 
-        public var closing: OpeningClosing?
+        public var createdOn: String?
 
         public enum CodingKeys: String, CodingKey {
-            case opening
+            case logoBase64 = "logo_base64"
 
-            case open
+            case logo
 
-            case weekday
+            case name
 
-            case closing
+            case createdOn = "created_on"
         }
 
-        public init(closing: OpeningClosing? = nil, open: Bool? = nil, opening: OpeningClosing? = nil, weekday: String? = nil) {
-            self.opening = opening
+        public init(createdOn: String? = nil, logo: String? = nil, logoBase64: String? = nil, name: String? = nil) {
+            self.logoBase64 = logoBase64
 
-            self.open = open
+            self.logo = logo
 
-            self.weekday = weekday
+            self.name = name
 
-            self.closing = closing
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                opening = try container.decode(OpeningClosing.self, forKey: .opening)
+                logoBase64 = try container.decode(String.self, forKey: .logoBase64)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                open = try container.decode(Bool.self, forKey: .open)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                weekday = try container.decode(String.self, forKey: .weekday)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                closing = try container.decode(OpeningClosing.self, forKey: .closing)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(opening, forKey: .opening)
+            try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
 
-            try? container.encodeIfPresent(open, forKey: .open)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(closing, forKey: .closing)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }

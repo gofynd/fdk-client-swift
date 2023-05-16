@@ -2,34 +2,34 @@
 
 import Foundation
 
-public extension PlatformClient.Serviceability {
+public extension PlatformClient.Order {
     /*
-         Model: OpeningClosing
-         Used By: Serviceability
+         Model: BulkActionTemplate
+         Used By: Order
      */
 
-    class OpeningClosing: Codable {
-        public var hour: Int?
+    class BulkActionTemplate: Codable {
+        public var text: String?
 
-        public var minute: Int?
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
-            case hour
+            case text
 
-            case minute
+            case value
         }
 
-        public init(hour: Int? = nil, minute: Int? = nil) {
-            self.hour = hour
+        public init(text: String? = nil, value: String? = nil) {
+            self.text = text
 
-            self.minute = minute
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                hour = try container.decode(Int.self, forKey: .hour)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                minute = try container.decode(Int.self, forKey: .minute)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hour, forKey: .hour)
+            try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(minute, forKey: .minute)
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Serviceability {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: OpeningClosing
-         Used By: Serviceability
+         Model: BulkActionTemplate
+         Used By: Order
      */
 
-    class OpeningClosing: Codable {
-        public var hour: Int?
+    class BulkActionTemplate: Codable {
+        public var text: String?
 
-        public var minute: Int?
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
-            case hour
+            case text
 
-            case minute
+            case value
         }
 
-        public init(hour: Int? = nil, minute: Int? = nil) {
-            self.hour = hour
+        public init(text: String? = nil, value: String? = nil) {
+            self.text = text
 
-            self.minute = minute
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                hour = try container.decode(Int.self, forKey: .hour)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                minute = try container.decode(Int.self, forKey: .minute)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hour, forKey: .hour)
+            try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(minute, forKey: .minute)
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

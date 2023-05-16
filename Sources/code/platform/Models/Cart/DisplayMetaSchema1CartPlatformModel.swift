@@ -11,30 +11,30 @@ public extension PlatformClient.ApplicationClient.Cart {
     class DisplayMetaSchema1: Codable {
         public var description: String?
 
-        public var offerLabel: String?
-
         public var name: String?
 
         public var offerText: String?
 
+        public var offerLabel: String?
+
         public enum CodingKeys: String, CodingKey {
             case description
-
-            case offerLabel = "offer_label"
 
             case name
 
             case offerText = "offer_text"
+
+            case offerLabel = "offer_label"
         }
 
         public init(description: String? = nil, name: String? = nil, offerLabel: String? = nil, offerText: String? = nil) {
             self.description = description
 
-            self.offerLabel = offerLabel
-
             self.name = name
 
             self.offerText = offerText
+
+            self.offerLabel = offerLabel
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,14 +42,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                offerLabel = try container.decode(String.self, forKey: .offerLabel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,6 +63,14 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                offerLabel = try container.decode(String.self, forKey: .offerLabel)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(offerLabel, forKey: .offerLabel)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
+
+            try? container.encodeIfPresent(offerLabel, forKey: .offerLabel)
         }
     }
 }

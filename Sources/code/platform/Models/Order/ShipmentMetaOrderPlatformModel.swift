@@ -9,395 +9,231 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentMeta: Codable {
-        public var dpOptions: [String: Any]?
-
-        public var dueDate: String?
-
-        public var assignDpFromSb: Bool?
-
-        public var b2BBuyerDetails: BuyerDetails?
-
-        public var returnAffiliateOrderId: String?
-
-        public var returnAffiliateShipmentId: String?
-
-        public var b2CBuyerDetails: [String: Any]?
-
-        public var orderType: String?
-
-        public var storeInvoiceUpdatedDate: String?
-
-        public var returnDetails: [String: Any]?
-
-        public var forwardAffiliateOrderId: String?
-
-        public var returnAwbNumber: String?
-
-        public var debugInfo: DebugInfo?
-
-        public var timestamp: ShipmentTimeStamp?
-
-        public var dpSortKey: String?
-
-        public var returnStoreNode: Int?
-
-        public var externalLink: [String: Any]?
-
-        public var weight: Int
-
-        public var autoTriggerDpAssignmentAcf: Bool
-
-        public var shipmentWeight: Double?
-
-        public var awbNumber: String?
-
-        public var boxType: String?
-
-        public var lockData: LockData?
+        public var einvoiceInfo: EinvoiceInfo?
 
         public var formatted: Formatted?
 
-        public var ewaybillInfo: [String: Any]?
-
-        public var packagingName: String?
-
         public var forwardAffiliateShipmentId: String?
 
-        public var dpName: String?
+        public var orderType: String?
 
-        public var einvoiceInfo: EinvoiceInfo?
+        public var returnAwbNumber: String?
 
-        public var marketplaceStoreId: String?
+        public var returnStoreNode: Int?
 
-        public var poNumber: String?
+        public var ewaybillInfo: [String: Any]?
 
-        public var shipmentVolumetricWeight: Double?
+        public var dpSortKey: String?
 
         public var sameStoreAvailable: Bool
 
+        public var debugInfo: DebugInfo?
+
+        public var forwardAffiliateOrderId: String?
+
+        public var boxType: String?
+
+        public var autoTriggerDpAssignmentAcf: Bool
+
+        public var lockData: LockData?
+
+        public var awbNumber: String?
+
+        public var dueDate: String?
+
+        public var packagingName: String?
+
+        public var dpName: String?
+
+        public var returnDetails: [String: Any]?
+
+        public var externalLink: [String: Any]?
+
+        public var shipmentVolumetricWeight: Double?
+
+        public var b2BBuyerDetails: BuyerDetails?
+
         public var dpId: String?
 
-        public var fulfilmentPriorityText: String?
+        public var marketplaceStoreId: String?
+
+        public var dpOptions: [String: Any]?
+
+        public var storeInvoiceUpdatedDate: String?
+
+        public var returnAffiliateShipmentId: String?
+
+        public var assignDpFromSb: Bool?
+
+        public var b2CBuyerDetails: [String: Any]?
 
         public var bagWeight: [String: Any]?
 
+        public var returnAffiliateOrderId: String?
+
+        public var shipmentWeight: Double?
+
+        public var weight: Int
+
+        public var timestamp: ShipmentTimeStamp?
+
+        public var fulfilmentPriorityText: String?
+
+        public var poNumber: String?
+
         public enum CodingKeys: String, CodingKey {
-            case dpOptions = "dp_options"
-
-            case dueDate = "due_date"
-
-            case assignDpFromSb = "assign_dp_from_sb"
-
-            case b2BBuyerDetails = "b2b_buyer_details"
-
-            case returnAffiliateOrderId = "return_affiliate_order_id"
-
-            case returnAffiliateShipmentId = "return_affiliate_shipment_id"
-
-            case b2CBuyerDetails = "b2c_buyer_details"
-
-            case orderType = "order_type"
-
-            case storeInvoiceUpdatedDate = "store_invoice_updated_date"
-
-            case returnDetails = "return_details"
-
-            case forwardAffiliateOrderId = "forward_affiliate_order_id"
-
-            case returnAwbNumber = "return_awb_number"
-
-            case debugInfo = "debug_info"
-
-            case timestamp
-
-            case dpSortKey = "dp_sort_key"
-
-            case returnStoreNode = "return_store_node"
-
-            case externalLink = "external"
-
-            case weight
-
-            case autoTriggerDpAssignmentAcf = "auto_trigger_dp_assignment_acf"
-
-            case shipmentWeight = "shipment_weight"
-
-            case awbNumber = "awb_number"
-
-            case boxType = "box_type"
-
-            case lockData = "lock_data"
+            case einvoiceInfo = "einvoice_info"
 
             case formatted
 
-            case ewaybillInfo = "ewaybill_info"
-
-            case packagingName = "packaging_name"
-
             case forwardAffiliateShipmentId = "forward_affiliate_shipment_id"
 
-            case dpName = "dp_name"
+            case orderType = "order_type"
 
-            case einvoiceInfo = "einvoice_info"
+            case returnAwbNumber = "return_awb_number"
 
-            case marketplaceStoreId = "marketplace_store_id"
+            case returnStoreNode = "return_store_node"
 
-            case poNumber = "po_number"
+            case ewaybillInfo = "ewaybill_info"
 
-            case shipmentVolumetricWeight = "shipment_volumetric_weight"
+            case dpSortKey = "dp_sort_key"
 
             case sameStoreAvailable = "same_store_available"
 
+            case debugInfo = "debug_info"
+
+            case forwardAffiliateOrderId = "forward_affiliate_order_id"
+
+            case boxType = "box_type"
+
+            case autoTriggerDpAssignmentAcf = "auto_trigger_dp_assignment_acf"
+
+            case lockData = "lock_data"
+
+            case awbNumber = "awb_number"
+
+            case dueDate = "due_date"
+
+            case packagingName = "packaging_name"
+
+            case dpName = "dp_name"
+
+            case returnDetails = "return_details"
+
+            case externalLink = "external"
+
+            case shipmentVolumetricWeight = "shipment_volumetric_weight"
+
+            case b2BBuyerDetails = "b2b_buyer_details"
+
             case dpId = "dp_id"
+
+            case marketplaceStoreId = "marketplace_store_id"
+
+            case dpOptions = "dp_options"
+
+            case storeInvoiceUpdatedDate = "store_invoice_updated_date"
+
+            case returnAffiliateShipmentId = "return_affiliate_shipment_id"
+
+            case assignDpFromSb = "assign_dp_from_sb"
+
+            case b2CBuyerDetails = "b2c_buyer_details"
+
+            case bagWeight = "bag_weight"
+
+            case returnAffiliateOrderId = "return_affiliate_order_id"
+
+            case shipmentWeight = "shipment_weight"
+
+            case weight
+
+            case timestamp
 
             case fulfilmentPriorityText = "fulfilment_priority_text"
 
-            case bagWeight = "bag_weight"
+            case poNumber = "po_number"
         }
 
         public init(assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool, awbNumber: String? = nil, b2BBuyerDetails: BuyerDetails? = nil, b2CBuyerDetails: [String: Any]? = nil, bagWeight: [String: Any]? = nil, boxType: String? = nil, debugInfo: DebugInfo? = nil, dpId: String? = nil, dpName: String? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, dueDate: String? = nil, einvoiceInfo: EinvoiceInfo? = nil, ewaybillInfo: [String: Any]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, forwardAffiliateOrderId: String? = nil, forwardAffiliateShipmentId: String? = nil, fulfilmentPriorityText: String? = nil, lockData: LockData? = nil, marketplaceStoreId: String? = nil, orderType: String? = nil, packagingName: String? = nil, poNumber: String? = nil, returnAffiliateOrderId: String? = nil, returnAffiliateShipmentId: String? = nil, returnAwbNumber: String? = nil, returnDetails: [String: Any]? = nil, returnStoreNode: Int? = nil, sameStoreAvailable: Bool, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, storeInvoiceUpdatedDate: String? = nil, timestamp: ShipmentTimeStamp? = nil, weight: Int) {
-            self.dpOptions = dpOptions
-
-            self.dueDate = dueDate
-
-            self.assignDpFromSb = assignDpFromSb
-
-            self.b2BBuyerDetails = b2BBuyerDetails
-
-            self.returnAffiliateOrderId = returnAffiliateOrderId
-
-            self.returnAffiliateShipmentId = returnAffiliateShipmentId
-
-            self.b2CBuyerDetails = b2CBuyerDetails
-
-            self.orderType = orderType
-
-            self.storeInvoiceUpdatedDate = storeInvoiceUpdatedDate
-
-            self.returnDetails = returnDetails
-
-            self.forwardAffiliateOrderId = forwardAffiliateOrderId
-
-            self.returnAwbNumber = returnAwbNumber
-
-            self.debugInfo = debugInfo
-
-            self.timestamp = timestamp
-
-            self.dpSortKey = dpSortKey
-
-            self.returnStoreNode = returnStoreNode
-
-            self.externalLink = externalLink
-
-            self.weight = weight
-
-            self.autoTriggerDpAssignmentAcf = autoTriggerDpAssignmentAcf
-
-            self.shipmentWeight = shipmentWeight
-
-            self.awbNumber = awbNumber
-
-            self.boxType = boxType
-
-            self.lockData = lockData
+            self.einvoiceInfo = einvoiceInfo
 
             self.formatted = formatted
 
-            self.ewaybillInfo = ewaybillInfo
-
-            self.packagingName = packagingName
-
             self.forwardAffiliateShipmentId = forwardAffiliateShipmentId
 
-            self.dpName = dpName
+            self.orderType = orderType
 
-            self.einvoiceInfo = einvoiceInfo
+            self.returnAwbNumber = returnAwbNumber
 
-            self.marketplaceStoreId = marketplaceStoreId
+            self.returnStoreNode = returnStoreNode
 
-            self.poNumber = poNumber
+            self.ewaybillInfo = ewaybillInfo
 
-            self.shipmentVolumetricWeight = shipmentVolumetricWeight
+            self.dpSortKey = dpSortKey
 
             self.sameStoreAvailable = sameStoreAvailable
 
+            self.debugInfo = debugInfo
+
+            self.forwardAffiliateOrderId = forwardAffiliateOrderId
+
+            self.boxType = boxType
+
+            self.autoTriggerDpAssignmentAcf = autoTriggerDpAssignmentAcf
+
+            self.lockData = lockData
+
+            self.awbNumber = awbNumber
+
+            self.dueDate = dueDate
+
+            self.packagingName = packagingName
+
+            self.dpName = dpName
+
+            self.returnDetails = returnDetails
+
+            self.externalLink = externalLink
+
+            self.shipmentVolumetricWeight = shipmentVolumetricWeight
+
+            self.b2BBuyerDetails = b2BBuyerDetails
+
             self.dpId = dpId
+
+            self.marketplaceStoreId = marketplaceStoreId
+
+            self.dpOptions = dpOptions
+
+            self.storeInvoiceUpdatedDate = storeInvoiceUpdatedDate
+
+            self.returnAffiliateShipmentId = returnAffiliateShipmentId
+
+            self.assignDpFromSb = assignDpFromSb
+
+            self.b2CBuyerDetails = b2CBuyerDetails
+
+            self.bagWeight = bagWeight
+
+            self.returnAffiliateOrderId = returnAffiliateOrderId
+
+            self.shipmentWeight = shipmentWeight
+
+            self.weight = weight
+
+            self.timestamp = timestamp
 
             self.fulfilmentPriorityText = fulfilmentPriorityText
 
-            self.bagWeight = bagWeight
+            self.poNumber = poNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dueDate = try container.decode(String.self, forKey: .dueDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                assignDpFromSb = try container.decode(Bool.self, forKey: .assignDpFromSb)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                b2BBuyerDetails = try container.decode(BuyerDetails.self, forKey: .b2BBuyerDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnAffiliateOrderId = try container.decode(String.self, forKey: .returnAffiliateOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnAffiliateShipmentId = try container.decode(String.self, forKey: .returnAffiliateShipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                b2CBuyerDetails = try container.decode([String: Any].self, forKey: .b2CBuyerDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderType = try container.decode(String.self, forKey: .orderType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                storeInvoiceUpdatedDate = try container.decode(String.self, forKey: .storeInvoiceUpdatedDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnDetails = try container.decode([String: Any].self, forKey: .returnDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                forwardAffiliateOrderId = try container.decode(String.self, forKey: .forwardAffiliateOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnAwbNumber = try container.decode(String.self, forKey: .returnAwbNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                debugInfo = try container.decode(DebugInfo.self, forKey: .debugInfo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                timestamp = try container.decode(ShipmentTimeStamp.self, forKey: .timestamp)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dpSortKey = try container.decode(String.self, forKey: .dpSortKey)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnStoreNode = try container.decode(Int.self, forKey: .returnStoreNode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                externalLink = try container.decode([String: Any].self, forKey: .externalLink)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            weight = try container.decode(Int.self, forKey: .weight)
-
-            autoTriggerDpAssignmentAcf = try container.decode(Bool.self, forKey: .autoTriggerDpAssignmentAcf)
-
-            do {
-                shipmentWeight = try container.decode(Double.self, forKey: .shipmentWeight)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                awbNumber = try container.decode(String.self, forKey: .awbNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                boxType = try container.decode(String.self, forKey: .boxType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                lockData = try container.decode(LockData.self, forKey: .lockData)
+                einvoiceInfo = try container.decode(EinvoiceInfo.self, forKey: .einvoiceInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -413,7 +249,99 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                forwardAffiliateShipmentId = try container.decode(String.self, forKey: .forwardAffiliateShipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderType = try container.decode(String.self, forKey: .orderType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnAwbNumber = try container.decode(String.self, forKey: .returnAwbNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnStoreNode = try container.decode(Int.self, forKey: .returnStoreNode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 ewaybillInfo = try container.decode([String: Any].self, forKey: .ewaybillInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dpSortKey = try container.decode(String.self, forKey: .dpSortKey)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            sameStoreAvailable = try container.decode(Bool.self, forKey: .sameStoreAvailable)
+
+            do {
+                debugInfo = try container.decode(DebugInfo.self, forKey: .debugInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                forwardAffiliateOrderId = try container.decode(String.self, forKey: .forwardAffiliateOrderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                boxType = try container.decode(String.self, forKey: .boxType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            autoTriggerDpAssignmentAcf = try container.decode(Bool.self, forKey: .autoTriggerDpAssignmentAcf)
+
+            do {
+                lockData = try container.decode(LockData.self, forKey: .lockData)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                awbNumber = try container.decode(String.self, forKey: .awbNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dueDate = try container.decode(String.self, forKey: .dueDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -429,14 +357,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                forwardAffiliateShipmentId = try container.decode(String.self, forKey: .forwardAffiliateShipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 dpName = try container.decode(String.self, forKey: .dpName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -445,7 +365,39 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                einvoiceInfo = try container.decode(EinvoiceInfo.self, forKey: .einvoiceInfo)
+                returnDetails = try container.decode([String: Any].self, forKey: .returnDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                externalLink = try container.decode([String: Any].self, forKey: .externalLink)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentVolumetricWeight = try container.decode(Double.self, forKey: .shipmentVolumetricWeight)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                b2BBuyerDetails = try container.decode(BuyerDetails.self, forKey: .b2BBuyerDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dpId = try container.decode(String.self, forKey: .dpId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -461,7 +413,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                poNumber = try container.decode(String.self, forKey: .poNumber)
+                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -469,17 +421,65 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                shipmentVolumetricWeight = try container.decode(Double.self, forKey: .shipmentVolumetricWeight)
+                storeInvoiceUpdatedDate = try container.decode(String.self, forKey: .storeInvoiceUpdatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sameStoreAvailable = try container.decode(Bool.self, forKey: .sameStoreAvailable)
+            do {
+                returnAffiliateShipmentId = try container.decode(String.self, forKey: .returnAffiliateShipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                dpId = try container.decode(String.self, forKey: .dpId)
+                assignDpFromSb = try container.decode(Bool.self, forKey: .assignDpFromSb)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                b2CBuyerDetails = try container.decode([String: Any].self, forKey: .b2CBuyerDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                bagWeight = try container.decode([String: Any].self, forKey: .bagWeight)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnAffiliateOrderId = try container.decode(String.self, forKey: .returnAffiliateOrderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentWeight = try container.decode(Double.self, forKey: .shipmentWeight)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            weight = try container.decode(Int.self, forKey: .weight)
+
+            do {
+                timestamp = try container.decode(ShipmentTimeStamp.self, forKey: .timestamp)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -495,7 +495,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                bagWeight = try container.decode([String: Any].self, forKey: .bagWeight)
+                poNumber = try container.decode(String.self, forKey: .poNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -506,77 +506,77 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
-
-            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
-
-            try? container.encodeIfPresent(assignDpFromSb, forKey: .assignDpFromSb)
-
-            try? container.encodeIfPresent(b2BBuyerDetails, forKey: .b2BBuyerDetails)
-
-            try? container.encodeIfPresent(returnAffiliateOrderId, forKey: .returnAffiliateOrderId)
-
-            try? container.encodeIfPresent(returnAffiliateShipmentId, forKey: .returnAffiliateShipmentId)
-
-            try? container.encode(b2CBuyerDetails, forKey: .b2CBuyerDetails)
-
-            try? container.encode(orderType, forKey: .orderType)
-
-            try? container.encodeIfPresent(storeInvoiceUpdatedDate, forKey: .storeInvoiceUpdatedDate)
-
-            try? container.encodeIfPresent(returnDetails, forKey: .returnDetails)
-
-            try? container.encodeIfPresent(forwardAffiliateOrderId, forKey: .forwardAffiliateOrderId)
-
-            try? container.encodeIfPresent(returnAwbNumber, forKey: .returnAwbNumber)
-
-            try? container.encodeIfPresent(debugInfo, forKey: .debugInfo)
-
-            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
-
-            try? container.encodeIfPresent(dpSortKey, forKey: .dpSortKey)
-
-            try? container.encodeIfPresent(returnStoreNode, forKey: .returnStoreNode)
-
-            try? container.encodeIfPresent(externalLink, forKey: .externalLink)
-
-            try? container.encodeIfPresent(weight, forKey: .weight)
-
-            try? container.encodeIfPresent(autoTriggerDpAssignmentAcf, forKey: .autoTriggerDpAssignmentAcf)
-
-            try? container.encodeIfPresent(shipmentWeight, forKey: .shipmentWeight)
-
-            try? container.encodeIfPresent(awbNumber, forKey: .awbNumber)
-
-            try? container.encode(boxType, forKey: .boxType)
-
-            try? container.encodeIfPresent(lockData, forKey: .lockData)
+            try? container.encodeIfPresent(einvoiceInfo, forKey: .einvoiceInfo)
 
             try? container.encodeIfPresent(formatted, forKey: .formatted)
 
-            try? container.encode(ewaybillInfo, forKey: .ewaybillInfo)
-
-            try? container.encodeIfPresent(packagingName, forKey: .packagingName)
-
             try? container.encodeIfPresent(forwardAffiliateShipmentId, forKey: .forwardAffiliateShipmentId)
 
-            try? container.encodeIfPresent(dpName, forKey: .dpName)
+            try? container.encode(orderType, forKey: .orderType)
 
-            try? container.encodeIfPresent(einvoiceInfo, forKey: .einvoiceInfo)
+            try? container.encodeIfPresent(returnAwbNumber, forKey: .returnAwbNumber)
 
-            try? container.encodeIfPresent(marketplaceStoreId, forKey: .marketplaceStoreId)
+            try? container.encodeIfPresent(returnStoreNode, forKey: .returnStoreNode)
 
-            try? container.encodeIfPresent(poNumber, forKey: .poNumber)
+            try? container.encode(ewaybillInfo, forKey: .ewaybillInfo)
 
-            try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
+            try? container.encodeIfPresent(dpSortKey, forKey: .dpSortKey)
 
             try? container.encodeIfPresent(sameStoreAvailable, forKey: .sameStoreAvailable)
 
+            try? container.encodeIfPresent(debugInfo, forKey: .debugInfo)
+
+            try? container.encodeIfPresent(forwardAffiliateOrderId, forKey: .forwardAffiliateOrderId)
+
+            try? container.encode(boxType, forKey: .boxType)
+
+            try? container.encodeIfPresent(autoTriggerDpAssignmentAcf, forKey: .autoTriggerDpAssignmentAcf)
+
+            try? container.encodeIfPresent(lockData, forKey: .lockData)
+
+            try? container.encodeIfPresent(awbNumber, forKey: .awbNumber)
+
+            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
+
+            try? container.encodeIfPresent(packagingName, forKey: .packagingName)
+
+            try? container.encodeIfPresent(dpName, forKey: .dpName)
+
+            try? container.encodeIfPresent(returnDetails, forKey: .returnDetails)
+
+            try? container.encodeIfPresent(externalLink, forKey: .externalLink)
+
+            try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
+
+            try? container.encodeIfPresent(b2BBuyerDetails, forKey: .b2BBuyerDetails)
+
             try? container.encode(dpId, forKey: .dpId)
+
+            try? container.encodeIfPresent(marketplaceStoreId, forKey: .marketplaceStoreId)
+
+            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
+
+            try? container.encodeIfPresent(storeInvoiceUpdatedDate, forKey: .storeInvoiceUpdatedDate)
+
+            try? container.encodeIfPresent(returnAffiliateShipmentId, forKey: .returnAffiliateShipmentId)
+
+            try? container.encodeIfPresent(assignDpFromSb, forKey: .assignDpFromSb)
+
+            try? container.encode(b2CBuyerDetails, forKey: .b2CBuyerDetails)
+
+            try? container.encodeIfPresent(bagWeight, forKey: .bagWeight)
+
+            try? container.encodeIfPresent(returnAffiliateOrderId, forKey: .returnAffiliateOrderId)
+
+            try? container.encodeIfPresent(shipmentWeight, forKey: .shipmentWeight)
+
+            try? container.encodeIfPresent(weight, forKey: .weight)
+
+            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
 
             try? container.encode(fulfilmentPriorityText, forKey: .fulfilmentPriorityText)
 
-            try? container.encodeIfPresent(bagWeight, forKey: .bagWeight)
+            try? container.encodeIfPresent(poNumber, forKey: .poNumber)
         }
     }
 }
@@ -588,395 +588,231 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentMeta: Codable {
-        public var dpOptions: [String: Any]?
-
-        public var dueDate: String?
-
-        public var assignDpFromSb: Bool?
-
-        public var b2BBuyerDetails: BuyerDetails?
-
-        public var returnAffiliateOrderId: String?
-
-        public var returnAffiliateShipmentId: String?
-
-        public var b2CBuyerDetails: [String: Any]?
-
-        public var orderType: String?
-
-        public var storeInvoiceUpdatedDate: String?
-
-        public var returnDetails: [String: Any]?
-
-        public var forwardAffiliateOrderId: String?
-
-        public var returnAwbNumber: String?
-
-        public var debugInfo: DebugInfo?
-
-        public var timestamp: ShipmentTimeStamp?
-
-        public var dpSortKey: String?
-
-        public var returnStoreNode: Int?
-
-        public var externalLink: [String: Any]?
-
-        public var weight: Int
-
-        public var autoTriggerDpAssignmentAcf: Bool
-
-        public var shipmentWeight: Double?
-
-        public var awbNumber: String?
-
-        public var boxType: String?
-
-        public var lockData: LockData?
+        public var einvoiceInfo: EinvoiceInfo?
 
         public var formatted: Formatted?
 
-        public var ewaybillInfo: [String: Any]?
-
-        public var packagingName: String?
-
         public var forwardAffiliateShipmentId: String?
 
-        public var dpName: String?
+        public var orderType: String?
 
-        public var einvoiceInfo: EinvoiceInfo?
+        public var returnAwbNumber: String?
 
-        public var marketplaceStoreId: String?
+        public var returnStoreNode: Int?
 
-        public var poNumber: String?
+        public var ewaybillInfo: [String: Any]?
 
-        public var shipmentVolumetricWeight: Double?
+        public var dpSortKey: String?
 
         public var sameStoreAvailable: Bool
 
+        public var debugInfo: DebugInfo?
+
+        public var forwardAffiliateOrderId: String?
+
+        public var boxType: String?
+
+        public var autoTriggerDpAssignmentAcf: Bool
+
+        public var lockData: LockData?
+
+        public var awbNumber: String?
+
+        public var dueDate: String?
+
+        public var packagingName: String?
+
+        public var dpName: String?
+
+        public var returnDetails: [String: Any]?
+
+        public var externalLink: [String: Any]?
+
+        public var shipmentVolumetricWeight: Double?
+
+        public var b2BBuyerDetails: BuyerDetails?
+
         public var dpId: String?
 
-        public var fulfilmentPriorityText: String?
+        public var marketplaceStoreId: String?
+
+        public var dpOptions: [String: Any]?
+
+        public var storeInvoiceUpdatedDate: String?
+
+        public var returnAffiliateShipmentId: String?
+
+        public var assignDpFromSb: Bool?
+
+        public var b2CBuyerDetails: [String: Any]?
 
         public var bagWeight: [String: Any]?
 
+        public var returnAffiliateOrderId: String?
+
+        public var shipmentWeight: Double?
+
+        public var weight: Int
+
+        public var timestamp: ShipmentTimeStamp?
+
+        public var fulfilmentPriorityText: String?
+
+        public var poNumber: String?
+
         public enum CodingKeys: String, CodingKey {
-            case dpOptions = "dp_options"
-
-            case dueDate = "due_date"
-
-            case assignDpFromSb = "assign_dp_from_sb"
-
-            case b2BBuyerDetails = "b2b_buyer_details"
-
-            case returnAffiliateOrderId = "return_affiliate_order_id"
-
-            case returnAffiliateShipmentId = "return_affiliate_shipment_id"
-
-            case b2CBuyerDetails = "b2c_buyer_details"
-
-            case orderType = "order_type"
-
-            case storeInvoiceUpdatedDate = "store_invoice_updated_date"
-
-            case returnDetails = "return_details"
-
-            case forwardAffiliateOrderId = "forward_affiliate_order_id"
-
-            case returnAwbNumber = "return_awb_number"
-
-            case debugInfo = "debug_info"
-
-            case timestamp
-
-            case dpSortKey = "dp_sort_key"
-
-            case returnStoreNode = "return_store_node"
-
-            case externalLink = "external"
-
-            case weight
-
-            case autoTriggerDpAssignmentAcf = "auto_trigger_dp_assignment_acf"
-
-            case shipmentWeight = "shipment_weight"
-
-            case awbNumber = "awb_number"
-
-            case boxType = "box_type"
-
-            case lockData = "lock_data"
+            case einvoiceInfo = "einvoice_info"
 
             case formatted
 
-            case ewaybillInfo = "ewaybill_info"
-
-            case packagingName = "packaging_name"
-
             case forwardAffiliateShipmentId = "forward_affiliate_shipment_id"
 
-            case dpName = "dp_name"
+            case orderType = "order_type"
 
-            case einvoiceInfo = "einvoice_info"
+            case returnAwbNumber = "return_awb_number"
 
-            case marketplaceStoreId = "marketplace_store_id"
+            case returnStoreNode = "return_store_node"
 
-            case poNumber = "po_number"
+            case ewaybillInfo = "ewaybill_info"
 
-            case shipmentVolumetricWeight = "shipment_volumetric_weight"
+            case dpSortKey = "dp_sort_key"
 
             case sameStoreAvailable = "same_store_available"
 
+            case debugInfo = "debug_info"
+
+            case forwardAffiliateOrderId = "forward_affiliate_order_id"
+
+            case boxType = "box_type"
+
+            case autoTriggerDpAssignmentAcf = "auto_trigger_dp_assignment_acf"
+
+            case lockData = "lock_data"
+
+            case awbNumber = "awb_number"
+
+            case dueDate = "due_date"
+
+            case packagingName = "packaging_name"
+
+            case dpName = "dp_name"
+
+            case returnDetails = "return_details"
+
+            case externalLink = "external"
+
+            case shipmentVolumetricWeight = "shipment_volumetric_weight"
+
+            case b2BBuyerDetails = "b2b_buyer_details"
+
             case dpId = "dp_id"
+
+            case marketplaceStoreId = "marketplace_store_id"
+
+            case dpOptions = "dp_options"
+
+            case storeInvoiceUpdatedDate = "store_invoice_updated_date"
+
+            case returnAffiliateShipmentId = "return_affiliate_shipment_id"
+
+            case assignDpFromSb = "assign_dp_from_sb"
+
+            case b2CBuyerDetails = "b2c_buyer_details"
+
+            case bagWeight = "bag_weight"
+
+            case returnAffiliateOrderId = "return_affiliate_order_id"
+
+            case shipmentWeight = "shipment_weight"
+
+            case weight
+
+            case timestamp
 
             case fulfilmentPriorityText = "fulfilment_priority_text"
 
-            case bagWeight = "bag_weight"
+            case poNumber = "po_number"
         }
 
         public init(assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool, awbNumber: String? = nil, b2BBuyerDetails: BuyerDetails? = nil, b2CBuyerDetails: [String: Any]? = nil, bagWeight: [String: Any]? = nil, boxType: String? = nil, debugInfo: DebugInfo? = nil, dpId: String? = nil, dpName: String? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, dueDate: String? = nil, einvoiceInfo: EinvoiceInfo? = nil, ewaybillInfo: [String: Any]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, forwardAffiliateOrderId: String? = nil, forwardAffiliateShipmentId: String? = nil, fulfilmentPriorityText: String? = nil, lockData: LockData? = nil, marketplaceStoreId: String? = nil, orderType: String? = nil, packagingName: String? = nil, poNumber: String? = nil, returnAffiliateOrderId: String? = nil, returnAffiliateShipmentId: String? = nil, returnAwbNumber: String? = nil, returnDetails: [String: Any]? = nil, returnStoreNode: Int? = nil, sameStoreAvailable: Bool, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, storeInvoiceUpdatedDate: String? = nil, timestamp: ShipmentTimeStamp? = nil, weight: Int) {
-            self.dpOptions = dpOptions
-
-            self.dueDate = dueDate
-
-            self.assignDpFromSb = assignDpFromSb
-
-            self.b2BBuyerDetails = b2BBuyerDetails
-
-            self.returnAffiliateOrderId = returnAffiliateOrderId
-
-            self.returnAffiliateShipmentId = returnAffiliateShipmentId
-
-            self.b2CBuyerDetails = b2CBuyerDetails
-
-            self.orderType = orderType
-
-            self.storeInvoiceUpdatedDate = storeInvoiceUpdatedDate
-
-            self.returnDetails = returnDetails
-
-            self.forwardAffiliateOrderId = forwardAffiliateOrderId
-
-            self.returnAwbNumber = returnAwbNumber
-
-            self.debugInfo = debugInfo
-
-            self.timestamp = timestamp
-
-            self.dpSortKey = dpSortKey
-
-            self.returnStoreNode = returnStoreNode
-
-            self.externalLink = externalLink
-
-            self.weight = weight
-
-            self.autoTriggerDpAssignmentAcf = autoTriggerDpAssignmentAcf
-
-            self.shipmentWeight = shipmentWeight
-
-            self.awbNumber = awbNumber
-
-            self.boxType = boxType
-
-            self.lockData = lockData
+            self.einvoiceInfo = einvoiceInfo
 
             self.formatted = formatted
 
-            self.ewaybillInfo = ewaybillInfo
-
-            self.packagingName = packagingName
-
             self.forwardAffiliateShipmentId = forwardAffiliateShipmentId
 
-            self.dpName = dpName
+            self.orderType = orderType
 
-            self.einvoiceInfo = einvoiceInfo
+            self.returnAwbNumber = returnAwbNumber
 
-            self.marketplaceStoreId = marketplaceStoreId
+            self.returnStoreNode = returnStoreNode
 
-            self.poNumber = poNumber
+            self.ewaybillInfo = ewaybillInfo
 
-            self.shipmentVolumetricWeight = shipmentVolumetricWeight
+            self.dpSortKey = dpSortKey
 
             self.sameStoreAvailable = sameStoreAvailable
 
+            self.debugInfo = debugInfo
+
+            self.forwardAffiliateOrderId = forwardAffiliateOrderId
+
+            self.boxType = boxType
+
+            self.autoTriggerDpAssignmentAcf = autoTriggerDpAssignmentAcf
+
+            self.lockData = lockData
+
+            self.awbNumber = awbNumber
+
+            self.dueDate = dueDate
+
+            self.packagingName = packagingName
+
+            self.dpName = dpName
+
+            self.returnDetails = returnDetails
+
+            self.externalLink = externalLink
+
+            self.shipmentVolumetricWeight = shipmentVolumetricWeight
+
+            self.b2BBuyerDetails = b2BBuyerDetails
+
             self.dpId = dpId
+
+            self.marketplaceStoreId = marketplaceStoreId
+
+            self.dpOptions = dpOptions
+
+            self.storeInvoiceUpdatedDate = storeInvoiceUpdatedDate
+
+            self.returnAffiliateShipmentId = returnAffiliateShipmentId
+
+            self.assignDpFromSb = assignDpFromSb
+
+            self.b2CBuyerDetails = b2CBuyerDetails
+
+            self.bagWeight = bagWeight
+
+            self.returnAffiliateOrderId = returnAffiliateOrderId
+
+            self.shipmentWeight = shipmentWeight
+
+            self.weight = weight
+
+            self.timestamp = timestamp
 
             self.fulfilmentPriorityText = fulfilmentPriorityText
 
-            self.bagWeight = bagWeight
+            self.poNumber = poNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dueDate = try container.decode(String.self, forKey: .dueDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                assignDpFromSb = try container.decode(Bool.self, forKey: .assignDpFromSb)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                b2BBuyerDetails = try container.decode(BuyerDetails.self, forKey: .b2BBuyerDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnAffiliateOrderId = try container.decode(String.self, forKey: .returnAffiliateOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnAffiliateShipmentId = try container.decode(String.self, forKey: .returnAffiliateShipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                b2CBuyerDetails = try container.decode([String: Any].self, forKey: .b2CBuyerDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderType = try container.decode(String.self, forKey: .orderType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                storeInvoiceUpdatedDate = try container.decode(String.self, forKey: .storeInvoiceUpdatedDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnDetails = try container.decode([String: Any].self, forKey: .returnDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                forwardAffiliateOrderId = try container.decode(String.self, forKey: .forwardAffiliateOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnAwbNumber = try container.decode(String.self, forKey: .returnAwbNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                debugInfo = try container.decode(DebugInfo.self, forKey: .debugInfo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                timestamp = try container.decode(ShipmentTimeStamp.self, forKey: .timestamp)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dpSortKey = try container.decode(String.self, forKey: .dpSortKey)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                returnStoreNode = try container.decode(Int.self, forKey: .returnStoreNode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                externalLink = try container.decode([String: Any].self, forKey: .externalLink)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            weight = try container.decode(Int.self, forKey: .weight)
-
-            autoTriggerDpAssignmentAcf = try container.decode(Bool.self, forKey: .autoTriggerDpAssignmentAcf)
-
-            do {
-                shipmentWeight = try container.decode(Double.self, forKey: .shipmentWeight)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                awbNumber = try container.decode(String.self, forKey: .awbNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                boxType = try container.decode(String.self, forKey: .boxType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                lockData = try container.decode(LockData.self, forKey: .lockData)
+                einvoiceInfo = try container.decode(EinvoiceInfo.self, forKey: .einvoiceInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -992,7 +828,99 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                forwardAffiliateShipmentId = try container.decode(String.self, forKey: .forwardAffiliateShipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderType = try container.decode(String.self, forKey: .orderType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnAwbNumber = try container.decode(String.self, forKey: .returnAwbNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnStoreNode = try container.decode(Int.self, forKey: .returnStoreNode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 ewaybillInfo = try container.decode([String: Any].self, forKey: .ewaybillInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dpSortKey = try container.decode(String.self, forKey: .dpSortKey)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            sameStoreAvailable = try container.decode(Bool.self, forKey: .sameStoreAvailable)
+
+            do {
+                debugInfo = try container.decode(DebugInfo.self, forKey: .debugInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                forwardAffiliateOrderId = try container.decode(String.self, forKey: .forwardAffiliateOrderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                boxType = try container.decode(String.self, forKey: .boxType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            autoTriggerDpAssignmentAcf = try container.decode(Bool.self, forKey: .autoTriggerDpAssignmentAcf)
+
+            do {
+                lockData = try container.decode(LockData.self, forKey: .lockData)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                awbNumber = try container.decode(String.self, forKey: .awbNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dueDate = try container.decode(String.self, forKey: .dueDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1008,14 +936,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                forwardAffiliateShipmentId = try container.decode(String.self, forKey: .forwardAffiliateShipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 dpName = try container.decode(String.self, forKey: .dpName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -1024,7 +944,39 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                einvoiceInfo = try container.decode(EinvoiceInfo.self, forKey: .einvoiceInfo)
+                returnDetails = try container.decode([String: Any].self, forKey: .returnDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                externalLink = try container.decode([String: Any].self, forKey: .externalLink)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentVolumetricWeight = try container.decode(Double.self, forKey: .shipmentVolumetricWeight)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                b2BBuyerDetails = try container.decode(BuyerDetails.self, forKey: .b2BBuyerDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dpId = try container.decode(String.self, forKey: .dpId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1040,7 +992,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                poNumber = try container.decode(String.self, forKey: .poNumber)
+                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1048,17 +1000,65 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                shipmentVolumetricWeight = try container.decode(Double.self, forKey: .shipmentVolumetricWeight)
+                storeInvoiceUpdatedDate = try container.decode(String.self, forKey: .storeInvoiceUpdatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sameStoreAvailable = try container.decode(Bool.self, forKey: .sameStoreAvailable)
+            do {
+                returnAffiliateShipmentId = try container.decode(String.self, forKey: .returnAffiliateShipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                dpId = try container.decode(String.self, forKey: .dpId)
+                assignDpFromSb = try container.decode(Bool.self, forKey: .assignDpFromSb)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                b2CBuyerDetails = try container.decode([String: Any].self, forKey: .b2CBuyerDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                bagWeight = try container.decode([String: Any].self, forKey: .bagWeight)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                returnAffiliateOrderId = try container.decode(String.self, forKey: .returnAffiliateOrderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentWeight = try container.decode(Double.self, forKey: .shipmentWeight)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            weight = try container.decode(Int.self, forKey: .weight)
+
+            do {
+                timestamp = try container.decode(ShipmentTimeStamp.self, forKey: .timestamp)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1074,7 +1074,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                bagWeight = try container.decode([String: Any].self, forKey: .bagWeight)
+                poNumber = try container.decode(String.self, forKey: .poNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1085,77 +1085,77 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
-
-            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
-
-            try? container.encodeIfPresent(assignDpFromSb, forKey: .assignDpFromSb)
-
-            try? container.encodeIfPresent(b2BBuyerDetails, forKey: .b2BBuyerDetails)
-
-            try? container.encodeIfPresent(returnAffiliateOrderId, forKey: .returnAffiliateOrderId)
-
-            try? container.encodeIfPresent(returnAffiliateShipmentId, forKey: .returnAffiliateShipmentId)
-
-            try? container.encode(b2CBuyerDetails, forKey: .b2CBuyerDetails)
-
-            try? container.encode(orderType, forKey: .orderType)
-
-            try? container.encodeIfPresent(storeInvoiceUpdatedDate, forKey: .storeInvoiceUpdatedDate)
-
-            try? container.encodeIfPresent(returnDetails, forKey: .returnDetails)
-
-            try? container.encodeIfPresent(forwardAffiliateOrderId, forKey: .forwardAffiliateOrderId)
-
-            try? container.encodeIfPresent(returnAwbNumber, forKey: .returnAwbNumber)
-
-            try? container.encodeIfPresent(debugInfo, forKey: .debugInfo)
-
-            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
-
-            try? container.encodeIfPresent(dpSortKey, forKey: .dpSortKey)
-
-            try? container.encodeIfPresent(returnStoreNode, forKey: .returnStoreNode)
-
-            try? container.encodeIfPresent(externalLink, forKey: .externalLink)
-
-            try? container.encodeIfPresent(weight, forKey: .weight)
-
-            try? container.encodeIfPresent(autoTriggerDpAssignmentAcf, forKey: .autoTriggerDpAssignmentAcf)
-
-            try? container.encodeIfPresent(shipmentWeight, forKey: .shipmentWeight)
-
-            try? container.encodeIfPresent(awbNumber, forKey: .awbNumber)
-
-            try? container.encode(boxType, forKey: .boxType)
-
-            try? container.encodeIfPresent(lockData, forKey: .lockData)
+            try? container.encodeIfPresent(einvoiceInfo, forKey: .einvoiceInfo)
 
             try? container.encodeIfPresent(formatted, forKey: .formatted)
 
-            try? container.encode(ewaybillInfo, forKey: .ewaybillInfo)
-
-            try? container.encodeIfPresent(packagingName, forKey: .packagingName)
-
             try? container.encodeIfPresent(forwardAffiliateShipmentId, forKey: .forwardAffiliateShipmentId)
 
-            try? container.encodeIfPresent(dpName, forKey: .dpName)
+            try? container.encode(orderType, forKey: .orderType)
 
-            try? container.encodeIfPresent(einvoiceInfo, forKey: .einvoiceInfo)
+            try? container.encodeIfPresent(returnAwbNumber, forKey: .returnAwbNumber)
 
-            try? container.encodeIfPresent(marketplaceStoreId, forKey: .marketplaceStoreId)
+            try? container.encodeIfPresent(returnStoreNode, forKey: .returnStoreNode)
 
-            try? container.encodeIfPresent(poNumber, forKey: .poNumber)
+            try? container.encode(ewaybillInfo, forKey: .ewaybillInfo)
 
-            try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
+            try? container.encodeIfPresent(dpSortKey, forKey: .dpSortKey)
 
             try? container.encodeIfPresent(sameStoreAvailable, forKey: .sameStoreAvailable)
 
+            try? container.encodeIfPresent(debugInfo, forKey: .debugInfo)
+
+            try? container.encodeIfPresent(forwardAffiliateOrderId, forKey: .forwardAffiliateOrderId)
+
+            try? container.encode(boxType, forKey: .boxType)
+
+            try? container.encodeIfPresent(autoTriggerDpAssignmentAcf, forKey: .autoTriggerDpAssignmentAcf)
+
+            try? container.encodeIfPresent(lockData, forKey: .lockData)
+
+            try? container.encodeIfPresent(awbNumber, forKey: .awbNumber)
+
+            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
+
+            try? container.encodeIfPresent(packagingName, forKey: .packagingName)
+
+            try? container.encodeIfPresent(dpName, forKey: .dpName)
+
+            try? container.encodeIfPresent(returnDetails, forKey: .returnDetails)
+
+            try? container.encodeIfPresent(externalLink, forKey: .externalLink)
+
+            try? container.encodeIfPresent(shipmentVolumetricWeight, forKey: .shipmentVolumetricWeight)
+
+            try? container.encodeIfPresent(b2BBuyerDetails, forKey: .b2BBuyerDetails)
+
             try? container.encode(dpId, forKey: .dpId)
+
+            try? container.encodeIfPresent(marketplaceStoreId, forKey: .marketplaceStoreId)
+
+            try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
+
+            try? container.encodeIfPresent(storeInvoiceUpdatedDate, forKey: .storeInvoiceUpdatedDate)
+
+            try? container.encodeIfPresent(returnAffiliateShipmentId, forKey: .returnAffiliateShipmentId)
+
+            try? container.encodeIfPresent(assignDpFromSb, forKey: .assignDpFromSb)
+
+            try? container.encode(b2CBuyerDetails, forKey: .b2CBuyerDetails)
+
+            try? container.encodeIfPresent(bagWeight, forKey: .bagWeight)
+
+            try? container.encodeIfPresent(returnAffiliateOrderId, forKey: .returnAffiliateOrderId)
+
+            try? container.encodeIfPresent(shipmentWeight, forKey: .shipmentWeight)
+
+            try? container.encodeIfPresent(weight, forKey: .weight)
+
+            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
 
             try? container.encode(fulfilmentPriorityText, forKey: .fulfilmentPriorityText)
 
-            try? container.encodeIfPresent(bagWeight, forKey: .bagWeight)
+            try? container.encodeIfPresent(poNumber, forKey: .poNumber)
         }
     }
 }

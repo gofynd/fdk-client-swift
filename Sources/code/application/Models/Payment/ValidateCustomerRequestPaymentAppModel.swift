@@ -7,6 +7,10 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class ValidateCustomerRequest: Codable {
+        public var payload: String?
+
+        public var transactionAmountInPaise: Int
+
         public var phoneNumber: String
 
         public var merchantParams: [String: Any]?
@@ -17,13 +21,13 @@ public extension ApplicationClient.Payment {
 
         public var deliveryAddress: [String: Any]?
 
-        public var payload: String?
-
-        public var transactionAmountInPaise: Int
-
         public var orderItems: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
+            case payload
+
+            case transactionAmountInPaise = "transaction_amount_in_paise"
+
             case phoneNumber = "phone_number"
 
             case merchantParams = "merchant_params"
@@ -34,14 +38,14 @@ public extension ApplicationClient.Payment {
 
             case deliveryAddress = "delivery_address"
 
-            case payload
-
-            case transactionAmountInPaise = "transaction_amount_in_paise"
-
             case orderItems = "order_items"
         }
 
         public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
+            self.payload = payload
+
+            self.transactionAmountInPaise = transactionAmountInPaise
+
             self.phoneNumber = phoneNumber
 
             self.merchantParams = merchantParams
@@ -52,15 +56,21 @@ public extension ApplicationClient.Payment {
 
             self.deliveryAddress = deliveryAddress
 
-            self.payload = payload
-
-            self.transactionAmountInPaise = transactionAmountInPaise
-
             self.orderItems = orderItems
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                payload = try container.decode(String.self, forKey: .payload)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
 
             phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
 
@@ -91,16 +101,6 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                payload = try container.decode(String.self, forKey: .payload)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
-
-            do {
                 orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -112,6 +112,10 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encode(payload, forKey: .payload)
+
+            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
+
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
@@ -121,10 +125,6 @@ public extension ApplicationClient.Payment {
             try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
             try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
-
-            try? container.encode(payload, forKey: .payload)
-
-            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
             try? container.encodeIfPresent(orderItems, forKey: .orderItems)
         }
