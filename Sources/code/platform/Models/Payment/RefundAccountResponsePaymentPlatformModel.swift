@@ -13,18 +13,18 @@ public extension PlatformClient.Payment {
 
         public var data: [String: Any]?
 
-        public var isVerifiedFlag: Bool?
-
         public var success: Bool
+
+        public var isVerifiedFlag: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case data
 
-            case isVerifiedFlag = "is_verified_flag"
-
             case success
+
+            case isVerifiedFlag = "is_verified_flag"
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Payment {
 
             self.data = data
 
-            self.isVerifiedFlag = isVerifiedFlag
-
             self.success = success
+
+            self.isVerifiedFlag = isVerifiedFlag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,6 +50,8 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
 
@@ -57,8 +59,6 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,9 +68,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
         }
     }
 }
@@ -86,18 +86,18 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var data: [String: Any]?
 
-        public var isVerifiedFlag: Bool?
-
         public var success: Bool
+
+        public var isVerifiedFlag: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case data
 
-            case isVerifiedFlag = "is_verified_flag"
-
             case success
+
+            case isVerifiedFlag = "is_verified_flag"
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.data = data
 
-            self.isVerifiedFlag = isVerifiedFlag
-
             self.success = success
+
+            self.isVerifiedFlag = isVerifiedFlag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,6 +123,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
                 isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
 
@@ -130,8 +132,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
         }
     }
 }

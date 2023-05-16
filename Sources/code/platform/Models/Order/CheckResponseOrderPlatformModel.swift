@@ -11,11 +11,15 @@ public extension PlatformClient.Order {
     class CheckResponse: Codable {
         public var status: String?
 
+        public var shipmentId: String?
+
         public var lockStatus: String?
 
         public var isShipmentLocked: Bool?
 
         public var isBagLocked: Bool?
+
+        public var affiliateId: String?
 
         public var affiliateShipmentId: String?
 
@@ -23,12 +27,10 @@ public extension PlatformClient.Order {
 
         public var originalFilter: OriginalFilter?
 
-        public var affiliateId: String?
-
-        public var shipmentId: String?
-
         public enum CodingKeys: String, CodingKey {
             case status
+
+            case shipmentId = "shipment_id"
 
             case lockStatus = "lock_status"
 
@@ -36,19 +38,19 @@ public extension PlatformClient.Order {
 
             case isBagLocked = "is_bag_locked"
 
+            case affiliateId = "affiliate_id"
+
             case affiliateShipmentId = "affiliate_shipment_id"
 
             case bags
 
             case originalFilter = "original_filter"
-
-            case affiliateId = "affiliate_id"
-
-            case shipmentId = "shipment_id"
         }
 
         public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, bags: [Bags]? = nil, isBagLocked: Bool? = nil, isShipmentLocked: Bool? = nil, lockStatus: String? = nil, originalFilter: OriginalFilter? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.status = status
+
+            self.shipmentId = shipmentId
 
             self.lockStatus = lockStatus
 
@@ -56,15 +58,13 @@ public extension PlatformClient.Order {
 
             self.isBagLocked = isBagLocked
 
+            self.affiliateId = affiliateId
+
             self.affiliateShipmentId = affiliateShipmentId
 
             self.bags = bags
 
             self.originalFilter = originalFilter
-
-            self.affiliateId = affiliateId
-
-            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -72,6 +72,14 @@ public extension PlatformClient.Order {
 
             do {
                 status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,6 +111,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -125,22 +141,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -148,21 +148,21 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
             try? container.encode(lockStatus, forKey: .lockStatus)
 
             try? container.encodeIfPresent(isShipmentLocked, forKey: .isShipmentLocked)
 
             try? container.encodeIfPresent(isBagLocked, forKey: .isBagLocked)
 
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
 
             try? container.encodeIfPresent(bags, forKey: .bags)
 
             try? container.encodeIfPresent(originalFilter, forKey: .originalFilter)
-
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }
@@ -176,11 +176,15 @@ public extension PlatformClient.ApplicationClient.Order {
     class CheckResponse: Codable {
         public var status: String?
 
+        public var shipmentId: String?
+
         public var lockStatus: String?
 
         public var isShipmentLocked: Bool?
 
         public var isBagLocked: Bool?
+
+        public var affiliateId: String?
 
         public var affiliateShipmentId: String?
 
@@ -188,12 +192,10 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var originalFilter: OriginalFilter?
 
-        public var affiliateId: String?
-
-        public var shipmentId: String?
-
         public enum CodingKeys: String, CodingKey {
             case status
+
+            case shipmentId = "shipment_id"
 
             case lockStatus = "lock_status"
 
@@ -201,19 +203,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case isBagLocked = "is_bag_locked"
 
+            case affiliateId = "affiliate_id"
+
             case affiliateShipmentId = "affiliate_shipment_id"
 
             case bags
 
             case originalFilter = "original_filter"
-
-            case affiliateId = "affiliate_id"
-
-            case shipmentId = "shipment_id"
         }
 
         public init(affiliateId: String? = nil, affiliateShipmentId: String? = nil, bags: [Bags]? = nil, isBagLocked: Bool? = nil, isShipmentLocked: Bool? = nil, lockStatus: String? = nil, originalFilter: OriginalFilter? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.status = status
+
+            self.shipmentId = shipmentId
 
             self.lockStatus = lockStatus
 
@@ -221,15 +223,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.isBagLocked = isBagLocked
 
+            self.affiliateId = affiliateId
+
             self.affiliateShipmentId = affiliateShipmentId
 
             self.bags = bags
 
             self.originalFilter = originalFilter
-
-            self.affiliateId = affiliateId
-
-            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -237,6 +237,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -268,6 +276,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -290,22 +306,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -313,21 +313,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
             try? container.encode(lockStatus, forKey: .lockStatus)
 
             try? container.encodeIfPresent(isShipmentLocked, forKey: .isShipmentLocked)
 
             try? container.encodeIfPresent(isBagLocked, forKey: .isBagLocked)
 
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
 
             try? container.encodeIfPresent(bags, forKey: .bags)
 
             try? container.encodeIfPresent(originalFilter, forKey: .originalFilter)
-
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }

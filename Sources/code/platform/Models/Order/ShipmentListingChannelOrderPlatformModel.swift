@@ -2,46 +2,46 @@
 
 import Foundation
 
-public extension PlatformClient.Serviceability {
+public extension PlatformClient.Order {
     /*
-         Model: DocumentsResponse
-         Used By: Serviceability
+         Model: ShipmentListingChannel
+         Used By: Order
      */
 
-    class DocumentsResponse: Codable {
-        public var legalName: String?
+    class ShipmentListingChannel: Codable {
+        public var name: String?
 
-        public var type: String?
+        public var channelShipmentId: String?
 
-        public var verified: Bool?
+        public var isAffiliate: Bool?
 
-        public var value: String?
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
-            case legalName = "legal_name"
+            case name
 
-            case type
+            case channelShipmentId = "channel_shipment_id"
 
-            case verified
+            case isAffiliate = "is_affiliate"
 
-            case value
+            case logo
         }
 
-        public init(legalName: String? = nil, type: String? = nil, value: String? = nil, verified: Bool? = nil) {
-            self.legalName = legalName
+        public init(channelShipmentId: String? = nil, isAffiliate: Bool? = nil, logo: String? = nil, name: String? = nil) {
+            self.name = name
 
-            self.type = type
+            self.channelShipmentId = channelShipmentId
 
-            self.verified = verified
+            self.isAffiliate = isAffiliate
 
-            self.value = value
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                legalName = try container.decode(String.self, forKey: .legalName)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                isAffiliate = try container.decode(Bool.self, forKey: .isAffiliate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,57 +76,57 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
+            try? container.encodeIfPresent(isAffiliate, forKey: .isAffiliate)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Serviceability {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: DocumentsResponse
-         Used By: Serviceability
+         Model: ShipmentListingChannel
+         Used By: Order
      */
 
-    class DocumentsResponse: Codable {
-        public var legalName: String?
+    class ShipmentListingChannel: Codable {
+        public var name: String?
 
-        public var type: String?
+        public var channelShipmentId: String?
 
-        public var verified: Bool?
+        public var isAffiliate: Bool?
 
-        public var value: String?
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
-            case legalName = "legal_name"
+            case name
 
-            case type
+            case channelShipmentId = "channel_shipment_id"
 
-            case verified
+            case isAffiliate = "is_affiliate"
 
-            case value
+            case logo
         }
 
-        public init(legalName: String? = nil, type: String? = nil, value: String? = nil, verified: Bool? = nil) {
-            self.legalName = legalName
+        public init(channelShipmentId: String? = nil, isAffiliate: Bool? = nil, logo: String? = nil, name: String? = nil) {
+            self.name = name
 
-            self.type = type
+            self.channelShipmentId = channelShipmentId
 
-            self.verified = verified
+            self.isAffiliate = isAffiliate
 
-            self.value = value
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                legalName = try container.decode(String.self, forKey: .legalName)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                isAffiliate = try container.decode(Bool.self, forKey: .isAffiliate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
+            try? container.encodeIfPresent(isAffiliate, forKey: .isAffiliate)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

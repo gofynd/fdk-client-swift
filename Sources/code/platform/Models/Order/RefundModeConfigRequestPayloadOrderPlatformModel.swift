@@ -9,22 +9,22 @@ public extension PlatformClient.Order {
      */
 
     class RefundModeConfigRequestPayload: Codable {
-        public var fyndOrderId: String
-
         public var orderingChannel: String
 
         public var sellerId: String
+
+        public var fyndOrderId: String
 
         public var affiliateId: String
 
         public var customerMobileNumber: String?
 
         public enum CodingKeys: String, CodingKey {
-            case fyndOrderId = "fynd_order_id"
-
             case orderingChannel = "ordering_channel"
 
             case sellerId = "seller_id"
+
+            case fyndOrderId = "fynd_order_id"
 
             case affiliateId = "affiliate_id"
 
@@ -32,11 +32,11 @@ public extension PlatformClient.Order {
         }
 
         public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, orderingChannel: String, sellerId: String) {
-            self.fyndOrderId = fyndOrderId
-
             self.orderingChannel = orderingChannel
 
             self.sellerId = sellerId
+
+            self.fyndOrderId = fyndOrderId
 
             self.affiliateId = affiliateId
 
@@ -46,11 +46,11 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
-
             orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
 
             sellerId = try container.decode(String.self, forKey: .sellerId)
+
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
 
             affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
@@ -66,11 +66,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
-
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
@@ -86,22 +86,22 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class RefundModeConfigRequestPayload: Codable {
-        public var fyndOrderId: String
-
         public var orderingChannel: String
 
         public var sellerId: String
+
+        public var fyndOrderId: String
 
         public var affiliateId: String
 
         public var customerMobileNumber: String?
 
         public enum CodingKeys: String, CodingKey {
-            case fyndOrderId = "fynd_order_id"
-
             case orderingChannel = "ordering_channel"
 
             case sellerId = "seller_id"
+
+            case fyndOrderId = "fynd_order_id"
 
             case affiliateId = "affiliate_id"
 
@@ -109,11 +109,11 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, orderingChannel: String, sellerId: String) {
-            self.fyndOrderId = fyndOrderId
-
             self.orderingChannel = orderingChannel
 
             self.sellerId = sellerId
+
+            self.fyndOrderId = fyndOrderId
 
             self.affiliateId = affiliateId
 
@@ -123,11 +123,11 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
-
             orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
 
             sellerId = try container.decode(String.self, forKey: .sellerId)
+
+            fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
 
             affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
@@ -143,11 +143,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
-
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 

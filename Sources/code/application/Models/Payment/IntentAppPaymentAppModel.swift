@@ -11,18 +11,18 @@ public extension ApplicationClient.Payment {
 
         public var code: String?
 
-        public var packageName: String?
-
         public var logos: PaymentModeLogo?
+
+        public var packageName: String?
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
             case code
 
-            case packageName = "package_name"
-
             case logos
+
+            case packageName = "package_name"
         }
 
         public init(code: String? = nil, displayName: String? = nil, logos: PaymentModeLogo? = nil, packageName: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Payment {
 
             self.code = code
 
-            self.packageName = packageName
-
             self.logos = logos
+
+            self.packageName = packageName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                packageName = try container.decode(String.self, forKey: .packageName)
+                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                logos = try container.decode(PaymentModeLogo.self, forKey: .logos)
+                packageName = try container.decode(String.self, forKey: .packageName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(code, forKey: .code)
 
-            try? container.encode(packageName, forKey: .packageName)
-
             try? container.encode(logos, forKey: .logos)
+
+            try? container.encode(packageName, forKey: .packageName)
         }
     }
 }

@@ -11,9 +11,9 @@ public extension PlatformClient.Catalog {
     class CollectionSchedule: Codable {
         public var end: String?
 
-        public var start: String?
-
         public var nextSchedule: [NextSchedule]?
+
+        public var start: String?
 
         public var cron: String?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case end
 
-            case start
-
             case nextSchedule = "next_schedule"
+
+            case start
 
             case cron
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Catalog {
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
             self.end = end
 
-            self.start = start
-
             self.nextSchedule = nextSchedule
+
+            self.start = start
 
             self.cron = cron
 
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encode(end, forKey: .end)
 
-            try? container.encodeIfPresent(start, forKey: .start)
-
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encode(cron, forKey: .cron)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionSchedule: Codable {
         public var end: String?
 
-        public var start: String?
-
         public var nextSchedule: [NextSchedule]?
+
+        public var start: String?
 
         public var cron: String?
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case end
 
-            case start
-
             case nextSchedule = "next_schedule"
+
+            case start
 
             case cron
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [NextSchedule]? = nil, start: String? = nil) {
             self.end = end
 
-            self.start = start
-
             self.nextSchedule = nextSchedule
+
+            self.start = start
 
             self.cron = cron
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                nextSchedule = try container.decode([NextSchedule].self, forKey: .nextSchedule)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,9 +193,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encode(end, forKey: .end)
 
-            try? container.encodeIfPresent(start, forKey: .start)
-
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encode(cron, forKey: .cron)
 
