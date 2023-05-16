@@ -9,21 +9,17 @@ public extension PlatformClient.Order {
      */
 
     class HistoryDict: Codable {
-        public var meta: [String: Any]?
-
         public var message: String
-
-        public var createdat: String
-
-        public var assignedAgent: String?
-
-        public var ticketUrl: String?
-
-        public var type: String
 
         public var l3Detail: String?
 
+        public var ticketUrl: String?
+
         public var displayMessage: String?
+
+        public var type: String
+
+        public var createdat: String
 
         public var user: String
 
@@ -31,26 +27,26 @@ public extension PlatformClient.Order {
 
         public var l2Detail: String?
 
-        public var bagId: Int?
-
         public var ticketId: String?
 
+        public var bagId: Int?
+
+        public var assignedAgent: String?
+
+        public var meta: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
-            case meta
-
             case message
-
-            case createdat
-
-            case assignedAgent = "assigned_agent"
-
-            case ticketUrl = "ticket_url"
-
-            case type
 
             case l3Detail = "l3_detail"
 
+            case ticketUrl = "ticket_url"
+
             case displayMessage = "display_message"
+
+            case type
+
+            case createdat
 
             case user
 
@@ -58,27 +54,27 @@ public extension PlatformClient.Order {
 
             case l2Detail = "l2_detail"
 
+            case ticketId = "ticket_id"
+
             case bagId = "bag_id"
 
-            case ticketId = "ticket_id"
+            case assignedAgent = "assigned_agent"
+
+            case meta
         }
 
         public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: [String: Any]? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String) {
-            self.meta = meta
-
             self.message = message
-
-            self.createdat = createdat
-
-            self.assignedAgent = assignedAgent
-
-            self.ticketUrl = ticketUrl
-
-            self.type = type
 
             self.l3Detail = l3Detail
 
+            self.ticketUrl = ticketUrl
+
             self.displayMessage = displayMessage
+
+            self.type = type
+
+            self.createdat = createdat
 
             self.user = user
 
@@ -86,28 +82,22 @@ public extension PlatformClient.Order {
 
             self.l2Detail = l2Detail
 
+            self.ticketId = ticketId
+
             self.bagId = bagId
 
-            self.ticketId = ticketId
+            self.assignedAgent = assignedAgent
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             message = try container.decode(String.self, forKey: .message)
 
-            createdat = try container.decode(String.self, forKey: .createdat)
-
             do {
-                assignedAgent = try container.decode(String.self, forKey: .assignedAgent)
+                l3Detail = try container.decode(String.self, forKey: .l3Detail)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,16 +112,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
-            do {
-                l3Detail = try container.decode(String.self, forKey: .l3Detail)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             do {
                 displayMessage = try container.decode(String.self, forKey: .displayMessage)
 
@@ -139,6 +119,10 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
+
+            createdat = try container.decode(String.self, forKey: .createdat)
 
             user = try container.decode(String.self, forKey: .user)
 
@@ -159,6 +143,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                ticketId = try container.decode(String.self, forKey: .ticketId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 bagId = try container.decode(Int.self, forKey: .bagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -167,7 +159,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                ticketId = try container.decode(String.self, forKey: .ticketId)
+                assignedAgent = try container.decode(String.self, forKey: .assignedAgent)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,21 +178,17 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(createdat, forKey: .createdat)
-
-            try? container.encodeIfPresent(assignedAgent, forKey: .assignedAgent)
-
-            try? container.encodeIfPresent(ticketUrl, forKey: .ticketUrl)
-
-            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(l3Detail, forKey: .l3Detail)
 
+            try? container.encodeIfPresent(ticketUrl, forKey: .ticketUrl)
+
             try? container.encodeIfPresent(displayMessage, forKey: .displayMessage)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(createdat, forKey: .createdat)
 
             try? container.encodeIfPresent(user, forKey: .user)
 
@@ -200,9 +196,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(l2Detail, forKey: .l2Detail)
 
+            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
+
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
+            try? container.encodeIfPresent(assignedAgent, forKey: .assignedAgent)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
@@ -214,21 +214,17 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class HistoryDict: Codable {
-        public var meta: [String: Any]?
-
         public var message: String
-
-        public var createdat: String
-
-        public var assignedAgent: String?
-
-        public var ticketUrl: String?
-
-        public var type: String
 
         public var l3Detail: String?
 
+        public var ticketUrl: String?
+
         public var displayMessage: String?
+
+        public var type: String
+
+        public var createdat: String
 
         public var user: String
 
@@ -236,26 +232,26 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var l2Detail: String?
 
-        public var bagId: Int?
-
         public var ticketId: String?
 
+        public var bagId: Int?
+
+        public var assignedAgent: String?
+
+        public var meta: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
-            case meta
-
             case message
-
-            case createdat
-
-            case assignedAgent = "assigned_agent"
-
-            case ticketUrl = "ticket_url"
-
-            case type
 
             case l3Detail = "l3_detail"
 
+            case ticketUrl = "ticket_url"
+
             case displayMessage = "display_message"
+
+            case type
+
+            case createdat
 
             case user
 
@@ -263,27 +259,27 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case l2Detail = "l2_detail"
 
+            case ticketId = "ticket_id"
+
             case bagId = "bag_id"
 
-            case ticketId = "ticket_id"
+            case assignedAgent = "assigned_agent"
+
+            case meta
         }
 
         public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: [String: Any]? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String) {
-            self.meta = meta
-
             self.message = message
-
-            self.createdat = createdat
-
-            self.assignedAgent = assignedAgent
-
-            self.ticketUrl = ticketUrl
-
-            self.type = type
 
             self.l3Detail = l3Detail
 
+            self.ticketUrl = ticketUrl
+
             self.displayMessage = displayMessage
+
+            self.type = type
+
+            self.createdat = createdat
 
             self.user = user
 
@@ -291,28 +287,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.l2Detail = l2Detail
 
+            self.ticketId = ticketId
+
             self.bagId = bagId
 
-            self.ticketId = ticketId
+            self.assignedAgent = assignedAgent
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             message = try container.decode(String.self, forKey: .message)
 
-            createdat = try container.decode(String.self, forKey: .createdat)
-
             do {
-                assignedAgent = try container.decode(String.self, forKey: .assignedAgent)
+                l3Detail = try container.decode(String.self, forKey: .l3Detail)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -327,16 +317,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
-            do {
-                l3Detail = try container.decode(String.self, forKey: .l3Detail)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             do {
                 displayMessage = try container.decode(String.self, forKey: .displayMessage)
 
@@ -344,6 +324,10 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
+
+            createdat = try container.decode(String.self, forKey: .createdat)
 
             user = try container.decode(String.self, forKey: .user)
 
@@ -364,6 +348,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                ticketId = try container.decode(String.self, forKey: .ticketId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 bagId = try container.decode(Int.self, forKey: .bagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -372,7 +364,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                ticketId = try container.decode(String.self, forKey: .ticketId)
+                assignedAgent = try container.decode(String.self, forKey: .assignedAgent)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -383,21 +383,17 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(createdat, forKey: .createdat)
-
-            try? container.encodeIfPresent(assignedAgent, forKey: .assignedAgent)
-
-            try? container.encodeIfPresent(ticketUrl, forKey: .ticketUrl)
-
-            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(l3Detail, forKey: .l3Detail)
 
+            try? container.encodeIfPresent(ticketUrl, forKey: .ticketUrl)
+
             try? container.encodeIfPresent(displayMessage, forKey: .displayMessage)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(createdat, forKey: .createdat)
 
             try? container.encodeIfPresent(user, forKey: .user)
 
@@ -405,9 +401,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(l2Detail, forKey: .l2Detail)
 
+            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
+
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
+            try? container.encodeIfPresent(assignedAgent, forKey: .assignedAgent)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
