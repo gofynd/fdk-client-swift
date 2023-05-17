@@ -2,58 +2,58 @@
 
 import Foundation
 
-public extension PlatformClient.Analytics {
+public extension PlatformClient.Order {
     /*
-         Model: MkpLogsResp
-         Used By: Analytics
+         Model: HistoryReason
+         Used By: Order
      */
 
-    class MkpLogsResp: Codable {
-        public var startTimeIso: String?
+    class HistoryReason: Codable {
+        public var code: Int?
 
-        public var endTimeIso: String?
+        public var state: String?
 
-        public var eventType: String?
+        public var text: String?
 
-        public var traceId: String?
+        public var quantity: Int?
 
-        public var count: String?
+        public var dislayName: String?
 
-        public var status: String?
+        public var category: String?
 
         public enum CodingKeys: String, CodingKey {
-            case startTimeIso = "start_time_iso"
+            case code
 
-            case endTimeIso = "end_time_iso"
+            case state
 
-            case eventType = "event_type"
+            case text
 
-            case traceId = "trace_id"
+            case quantity
 
-            case count
+            case dislayName = "dislay_name"
 
-            case status
+            case category
         }
 
-        public init(count: String? = nil, endTimeIso: String? = nil, eventType: String? = nil, startTimeIso: String? = nil, status: String? = nil, traceId: String? = nil) {
-            self.startTimeIso = startTimeIso
+        public init(category: String? = nil, code: Int? = nil, dislayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
+            self.code = code
 
-            self.endTimeIso = endTimeIso
+            self.state = state
 
-            self.eventType = eventType
+            self.text = text
 
-            self.traceId = traceId
+            self.quantity = quantity
 
-            self.count = count
+            self.dislayName = dislayName
 
-            self.status = status
+            self.category = category
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                startTimeIso = try container.decode(String.self, forKey: .startTimeIso)
+                code = try container.decode(Int.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.Analytics {
             } catch {}
 
             do {
-                endTimeIso = try container.decode(String.self, forKey: .endTimeIso)
+                state = try container.decode(String.self, forKey: .state)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension PlatformClient.Analytics {
             } catch {}
 
             do {
-                eventType = try container.decode(String.self, forKey: .eventType)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Analytics {
             } catch {}
 
             do {
-                traceId = try container.decode(String.self, forKey: .traceId)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Analytics {
             } catch {}
 
             do {
-                count = try container.decode(String.self, forKey: .count)
+                dislayName = try container.decode(String.self, forKey: .dislayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Analytics {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                category = try container.decode(String.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,73 +104,73 @@ public extension PlatformClient.Analytics {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(startTimeIso, forKey: .startTimeIso)
+            try? container.encode(code, forKey: .code)
 
-            try? container.encodeIfPresent(endTimeIso, forKey: .endTimeIso)
+            try? container.encode(state, forKey: .state)
 
-            try? container.encodeIfPresent(eventType, forKey: .eventType)
+            try? container.encode(text, forKey: .text)
 
-            try? container.encodeIfPresent(traceId, forKey: .traceId)
+            try? container.encode(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(count, forKey: .count)
+            try? container.encode(dislayName, forKey: .dislayName)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(category, forKey: .category)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Analytics {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: MkpLogsResp
-         Used By: Analytics
+         Model: HistoryReason
+         Used By: Order
      */
 
-    class MkpLogsResp: Codable {
-        public var startTimeIso: String?
+    class HistoryReason: Codable {
+        public var code: Int?
 
-        public var endTimeIso: String?
+        public var state: String?
 
-        public var eventType: String?
+        public var text: String?
 
-        public var traceId: String?
+        public var quantity: Int?
 
-        public var count: String?
+        public var dislayName: String?
 
-        public var status: String?
+        public var category: String?
 
         public enum CodingKeys: String, CodingKey {
-            case startTimeIso = "start_time_iso"
+            case code
 
-            case endTimeIso = "end_time_iso"
+            case state
 
-            case eventType = "event_type"
+            case text
 
-            case traceId = "trace_id"
+            case quantity
 
-            case count
+            case dislayName = "dislay_name"
 
-            case status
+            case category
         }
 
-        public init(count: String? = nil, endTimeIso: String? = nil, eventType: String? = nil, startTimeIso: String? = nil, status: String? = nil, traceId: String? = nil) {
-            self.startTimeIso = startTimeIso
+        public init(category: String? = nil, code: Int? = nil, dislayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
+            self.code = code
 
-            self.endTimeIso = endTimeIso
+            self.state = state
 
-            self.eventType = eventType
+            self.text = text
 
-            self.traceId = traceId
+            self.quantity = quantity
 
-            self.count = count
+            self.dislayName = dislayName
 
-            self.status = status
+            self.category = category
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                startTimeIso = try container.decode(String.self, forKey: .startTimeIso)
+                code = try container.decode(Int.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             } catch {}
 
             do {
-                endTimeIso = try container.decode(String.self, forKey: .endTimeIso)
+                state = try container.decode(String.self, forKey: .state)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             } catch {}
 
             do {
-                eventType = try container.decode(String.self, forKey: .eventType)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             } catch {}
 
             do {
-                traceId = try container.decode(String.self, forKey: .traceId)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             } catch {}
 
             do {
-                count = try container.decode(String.self, forKey: .count)
+                dislayName = try container.decode(String.self, forKey: .dislayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                category = try container.decode(String.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,17 +221,17 @@ public extension PlatformClient.ApplicationClient.Analytics {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(startTimeIso, forKey: .startTimeIso)
+            try? container.encode(code, forKey: .code)
 
-            try? container.encodeIfPresent(endTimeIso, forKey: .endTimeIso)
+            try? container.encode(state, forKey: .state)
 
-            try? container.encodeIfPresent(eventType, forKey: .eventType)
+            try? container.encode(text, forKey: .text)
 
-            try? container.encodeIfPresent(traceId, forKey: .traceId)
+            try? container.encode(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(count, forKey: .count)
+            try? container.encode(dislayName, forKey: .dislayName)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(category, forKey: .category)
         }
     }
 }

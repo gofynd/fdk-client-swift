@@ -13,18 +13,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var paymentGateway: String?
 
-        public var paymentIdentifier: String?
-
         public var type: String?
+
+        public var paymentIdentifier: String?
 
         public enum CodingKeys: String, CodingKey {
             case merchantCode = "merchant_code"
 
             case paymentGateway = "payment_gateway"
 
-            case paymentIdentifier = "payment_identifier"
-
             case type
+
+            case paymentIdentifier = "payment_identifier"
         }
 
         public init(merchantCode: String? = nil, paymentGateway: String? = nil, paymentIdentifier: String? = nil, type: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.paymentGateway = paymentGateway
 
-            self.paymentIdentifier = paymentIdentifier
-
             self.type = type
+
+            self.paymentIdentifier = paymentIdentifier
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
         }
     }
 }

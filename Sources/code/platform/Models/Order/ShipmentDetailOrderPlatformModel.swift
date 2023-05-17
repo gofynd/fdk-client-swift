@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var shipmentId: String?
 
-        public var meta: Meta1
-
         public var id: Int
+
+        public var meta: Meta1
 
         public var remarks: String?
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
 
             case shipmentId = "shipment_id"
 
-            case meta
-
             case id
+
+            case meta
 
             case remarks
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Order {
 
             self.shipmentId = shipmentId
 
-            self.meta = meta
-
             self.id = id
+
+            self.meta = meta
 
             self.remarks = remarks
         }
@@ -76,9 +76,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            meta = try container.decode(Meta1.self, forKey: .meta)
-
             id = try container.decode(Int.self, forKey: .id)
+
+            meta = try container.decode(Meta1.self, forKey: .meta)
 
             do {
                 remarks = try container.decode(String.self, forKey: .remarks)
@@ -98,9 +98,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(remarks, forKey: .remarks)
         }
@@ -120,9 +120,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var shipmentId: String?
 
-        public var meta: Meta1
-
         public var id: Int
+
+        public var meta: Meta1
 
         public var remarks: String?
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case shipmentId = "shipment_id"
 
-            case meta
-
             case id
+
+            case meta
 
             case remarks
         }
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.shipmentId = shipmentId
 
-            self.meta = meta
-
             self.id = id
+
+            self.meta = meta
 
             self.remarks = remarks
         }
@@ -181,9 +181,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            meta = try container.decode(Meta1.self, forKey: .meta)
-
             id = try container.decode(Int.self, forKey: .id)
+
+            meta = try container.decode(Meta1.self, forKey: .meta)
 
             do {
                 remarks = try container.decode(String.self, forKey: .remarks)
@@ -203,9 +203,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(remarks, forKey: .remarks)
         }

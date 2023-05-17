@@ -11,22 +11,22 @@ public extension ApplicationClient.Cart {
 
         public var mode: String
 
-        public var payment: String?
-
         public var paymentMeta: PaymentMetaSchema
 
         public var name: String?
+
+        public var payment: String?
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
             case mode
 
-            case payment
-
             case paymentMeta = "payment_meta"
 
             case name
+
+            case payment
         }
 
         public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentMeta: PaymentMetaSchema) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Cart {
 
             self.mode = mode
 
-            self.payment = payment
-
             self.paymentMeta = paymentMeta
 
             self.name = name
+
+            self.payment = payment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,18 +54,18 @@ public extension ApplicationClient.Cart {
 
             mode = try container.decode(String.self, forKey: .mode)
 
+            paymentMeta = try container.decode(PaymentMetaSchema.self, forKey: .paymentMeta)
+
             do {
-                payment = try container.decode(String.self, forKey: .payment)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            paymentMeta = try container.decode(PaymentMetaSchema.self, forKey: .paymentMeta)
-
             do {
-                name = try container.decode(String.self, forKey: .name)
+                payment = try container.decode(String.self, forKey: .payment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,11 +80,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(payment, forKey: .payment)
-
             try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(payment, forKey: .payment)
         }
     }
 }

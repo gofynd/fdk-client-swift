@@ -9,30 +9,30 @@ public extension ApplicationClient.Cart {
     class CartBreakupSchema: Codable {
         public var display: [DisplayBreakupSchema]?
 
-        public var coupon: CouponBreakupSchema?
+        public var loyaltyPoints: LoyaltyPoints?
 
         public var raw: RawBreakupSchema?
 
-        public var loyaltyPoints: LoyaltyPoints?
+        public var coupon: CouponBreakupSchema?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case coupon
+            case loyaltyPoints = "loyalty_points"
 
             case raw
 
-            case loyaltyPoints = "loyalty_points"
+            case coupon
         }
 
         public init(coupon: CouponBreakupSchema? = nil, display: [DisplayBreakupSchema]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakupSchema? = nil) {
             self.display = display
 
-            self.coupon = coupon
+            self.loyaltyPoints = loyaltyPoints
 
             self.raw = raw
 
-            self.loyaltyPoints = loyaltyPoints
+            self.coupon = coupon
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                coupon = try container.decode(CouponBreakupSchema.self, forKey: .coupon)
+                loyaltyPoints = try container.decode(LoyaltyPoints.self, forKey: .loyaltyPoints)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                loyaltyPoints = try container.decode(LoyaltyPoints.self, forKey: .loyaltyPoints)
+                coupon = try container.decode(CouponBreakupSchema.self, forKey: .coupon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
 
             try? container.encodeIfPresent(raw, forKey: .raw)
 
-            try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
         }
     }
 }
