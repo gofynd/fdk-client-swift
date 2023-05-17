@@ -7768,10 +7768,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | alt | String? |  yes  |  |
- | meta | [Meta](#Meta)? |  yes  |  |
  | url | String? |  yes  |  |
  | type | String? |  yes  |  |
+ | alt | String? |  yes  |  |
+ | meta | [Meta](#Meta)? |  yes  |  |
 
 ---
 
@@ -7782,9 +7782,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | params | [String: Any]? |  yes  |  |
- | query | [String: Any]? |  yes  |  |
  | type | String? |  yes  |  |
+ | query | [String: Any]? |  yes  |  |
+ | params | [String: Any]? |  yes  |  |
 
 ---
 
@@ -7795,8 +7795,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
  | page | [ProductListingActionPage](#ProductListingActionPage)? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
@@ -7807,36 +7807,50 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media)? |  yes  |  |
- | description | String? |  yes  |  |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | description | String? |  yes  |  |
+ | logo | [Media](#Media)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [ApplicationItemMOQ](#ApplicationItemMOQ)
+ #### [ProductCategoryMap](#ProductCategoryMap)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | minimum | Int? |  yes  | The minimum quantity required for purchase. |
- | maximum | Int? |  yes  | The maximum quantity allowed for purchase. |
- | incrementUnit | Int? |  yes  | The minimum quantity increment in which the item can be purchased. |
+ | l3 | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | l1 | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | l2 | [ProductBrand](#ProductBrand)? |  yes  |  |
 
 ---
 
 
  
  
- #### [NetQuantity](#NetQuantity)
+ #### [Price](#Price)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | Double? |  yes  | The value of the net quantity of the product. |
- | unit | String? |  yes  | The unit of measurement used for the net quantity of the product. |
+ | currencySymbol | String? |  yes  |  |
+ | min | Double? |  yes  |  |
+ | max | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductListingPrice](#ProductListingPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | [Price](#Price)? |  yes  |  |
+ | effective | [Price](#Price)? |  yes  |  |
 
 ---
 
@@ -7856,25 +7870,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [CustomMetaFields](#CustomMetaFields)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String |  no  | A key to store a custom field. |
- | value | String |  no  | A value to store in the custom field. |
-
----
-
-
- 
- 
  #### [ProductDetailAttribute](#ProductDetailAttribute)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
  | key | String? |  yes  |  |
  | value | String? |  yes  |  |
- | type | String? |  yes  |  |
 
 ---
 
@@ -7893,51 +7895,49 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
+ #### [CustomMetaFields](#CustomMetaFields)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | String |  no  | A key to store a custom field. |
+ | value | String |  no  | A value to store in the custom field. |
+
+---
+
+
+ 
+ 
+ #### [NetQuantity](#NetQuantity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | Double? |  yes  | The value of the net quantity of the product. |
+ | unit | String? |  yes  | The unit of measurement used for the net quantity of the product. |
+
+---
+
+
+ 
+ 
  #### [ApplicationItemSEO](#ApplicationItemSEO)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  | The SEO description of the item |
  | title | String? |  yes  | The SEO title of the item |
+ | description | String? |  yes  | The SEO description of the item |
 
 ---
 
 
  
  
- #### [ProductCategoryMap](#ProductCategoryMap)
+ #### [ApplicationItemMOQ](#ApplicationItemMOQ)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | l3 | [ProductBrand](#ProductBrand)? |  yes  |  |
- | l2 | [ProductBrand](#ProductBrand)? |  yes  |  |
- | l1 | [ProductBrand](#ProductBrand)? |  yes  |  |
-
----
-
-
- 
- 
- #### [Price](#Price)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | max | Double? |  yes  |  |
- | min | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductListingPrice](#ProductListingPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | effective | [Price](#Price)? |  yes  |  |
- | marked | [Price](#Price)? |  yes  |  |
+ | maximum | Int? |  yes  | The maximum quantity allowed for purchase. |
+ | minimum | Int? |  yes  | The minimum quantity required for purchase. |
+ | incrementUnit | Int? |  yes  | The minimum quantity increment in which the item can be purchased. |
 
 ---
 
@@ -7948,42 +7948,42 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
- | color | String? |  yes  |  |
- | productGroupTag | [String]? |  yes  |  |
- | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | isDependent | Bool? |  yes  |  |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
- | shortDescription | String? |  yes  |  |
- | discount | String? |  yes  |  |
- | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | description | String? |  yes  |  |
- | ratingCount | Int? |  yes  |  |
- | netQuantity | [NetQuantity](#NetQuantity)? |  yes  |  |
- | productOnlineDate | String? |  yes  |  |
- | type | String? |  yes  |  |
- | slug | String |  no  |  |
- | customOrder | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | similars | [String]? |  yes  |  |
- | tryouts | [String]? |  yes  |  |
  | medias | [[Media](#Media)]? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | highlights | [String]? |  yes  |  |
- | itemType | String? |  yes  |  |
- | customMeta | [[CustomMetaFields](#CustomMetaFields)]? |  yes  |  |
- | name | String? |  yes  |  |
- | groupedAttributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
- | imageNature | String? |  yes  |  |
- | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  |  |
- | rating | Double? |  yes  |  |
- | hasVariant | Bool? |  yes  |  |
+ | productGroupTag | [String]? |  yes  |  |
+ | description | String? |  yes  |  |
  | categoryMap | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
+ | type | String? |  yes  |  |
+ | ratingCount | Int? |  yes  |  |
+ | color | String? |  yes  |  |
+ | imageNature | String? |  yes  |  |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | hasVariant | Bool? |  yes  |  |
+ | rating | Double? |  yes  |  |
+ | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
- | uid | Int? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | customOrder | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
+ | isDependent | Bool? |  yes  |  |
+ | productOnlineDate | String? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | groupedAttributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
+ | highlights | [String]? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | similars | [String]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | customMeta | [[CustomMetaFields](#CustomMetaFields)]? |  yes  |  |
  | teaserTag | String? |  yes  |  |
+ | netQuantity | [NetQuantity](#NetQuantity)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | slug | String |  no  |  |
+ | itemType | String? |  yes  |  |
+ | tryouts | [String]? |  yes  |  |
+ | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  |  |
 
 ---
 
@@ -8001,15 +8001,76 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
+ #### [ColumnHeader](#ColumnHeader)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String? |  yes  |  |
+ | convertable | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ColumnHeaders](#ColumnHeaders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col4 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
+ | col5 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
+ | col2 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
+ | col3 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
+ | col6 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
+ | col1 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChartValues](#SizeChartValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | col4 | String? |  yes  |  |
+ | col5 | String? |  yes  |  |
+ | col2 | String? |  yes  |  |
+ | col3 | String? |  yes  |  |
+ | col6 | String? |  yes  |  |
+ | col1 | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SizeChart](#SizeChart)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | unit | String? |  yes  |  |
+ | headers | [ColumnHeaders](#ColumnHeaders)? |  yes  |  |
+ | image | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | sizes | [[SizeChartValues](#SizeChartValues)]? |  yes  |  |
+ | sizeTip | String? |  yes  |  |
+ | title | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [Dimension](#Dimension)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | height | Double |  no  | The height of the product |
- | length | Double |  no  | The length of the product |
- | width | Double |  no  | The width of the product |
- | unit | String |  no  | The unit of dimension |
  | isDefault | Bool |  no  | Whether the dimension is the default one or not |
+ | unit | String |  no  | The unit of dimension |
+ | width | Double |  no  | The width of the product |
+ | length | Double |  no  | The length of the product |
 
 ---
 
@@ -8033,74 +8094,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | sellerIdentifiers | [String]? |  yes  |  |
+ | isAvailable | Bool? |  yes  |  |
+ | quantity | Int? |  yes  |  |
  | value | String? |  yes  |  |
  | dimension | [Dimension](#Dimension)? |  yes  |  |
- | isAvailable | Bool? |  yes  |  |
  | weight | [Weight](#Weight)? |  yes  |  |
- | sellerIdentifiers | [String]? |  yes  |  |
  | display | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [SizeChartValues](#SizeChartValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col5 | String? |  yes  |  |
- | col2 | String? |  yes  |  |
- | col4 | String? |  yes  |  |
- | col1 | String? |  yes  |  |
- | col6 | String? |  yes  |  |
- | col3 | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ColumnHeader](#ColumnHeader)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
- | convertable | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [ColumnHeaders](#ColumnHeaders)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | col5 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
- | col2 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
- | col4 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
- | col1 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
- | col6 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
- | col3 | [ColumnHeader](#ColumnHeader)? |  yes  |  |
-
----
-
-
- 
- 
- #### [SizeChart](#SizeChart)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | unit | String? |  yes  |  |
- | sizeTip | String? |  yes  |  |
- | description | String? |  yes  |  |
- | sizes | [[SizeChartValues](#SizeChartValues)]? |  yes  |  |
- | title | String? |  yes  |  |
- | image | String? |  yes  |  |
- | headers | [ColumnHeaders](#ColumnHeaders)? |  yes  |  |
 
 ---
 
@@ -8122,13 +8122,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discount | String? |  yes  |  |
- | sellable | Bool? |  yes  |  |
- | sizes | [[ProductSize](#ProductSize)]? |  yes  |  |
- | sizeChart | [SizeChart](#SizeChart)? |  yes  |  |
- | stores | [ProductSizeStores](#ProductSizeStores)? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | sizeChart | [SizeChart](#SizeChart)? |  yes  |  |
  | multiSize | Bool? |  yes  |  |
+ | sizes | [[ProductSize](#ProductSize)]? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | stores | [ProductSizeStores](#ProductSizeStores)? |  yes  |  |
+ | sellable | Bool? |  yes  |  |
 
 ---
 
@@ -8139,9 +8139,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | logo | String? |  yes  |  |
  | description | String? |  yes  |  |
  | key | String? |  yes  |  |
- | logo | String? |  yes  |  |
  | display | String? |  yes  |  |
 
 ---
@@ -8177,10 +8177,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | attributesMetadata | [[AttributeMetadata](#AttributeMetadata)]? |  yes  |  |
- | subtitle | String? |  yes  |  |
- | items | [[ProductDetail](#ProductDetail)]? |  yes  |  |
  | title | String? |  yes  |  |
+ | subtitle | String? |  yes  |  |
+ | attributesMetadata | [[AttributeMetadata](#AttributeMetadata)]? |  yes  |  |
+ | items | [[ProductDetail](#ProductDetail)]? |  yes  |  |
 
 ---
 
@@ -8202,16 +8202,16 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | color | String? |  yes  |  |
- | medias | [[Media](#Media)]? |  yes  |  |
- | value | String? |  yes  |  |
- | isAvailable | Bool? |  yes  |  |
- | name | String? |  yes  |  |
- | colorName | String? |  yes  |  |
- | customMeta | [[CustomMetaFields](#CustomMetaFields)]? |  yes  |  |
  | slug | String? |  yes  |  |
- | uid | Int? |  yes  |  |
+ | medias | [[Media](#Media)]? |  yes  |  |
+ | colorName | String? |  yes  |  |
+ | isAvailable | Bool? |  yes  |  |
+ | customMeta | [[CustomMetaFields](#CustomMetaFields)]? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | value | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | color | String? |  yes  |  |
 
 ---
 
@@ -8222,9 +8222,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | header | String? |  yes  |  |
  | displayType | String? |  yes  |  |
  | key | String? |  yes  |  |
- | header | String? |  yes  |  |
  | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)]? |  yes  |  |
 
 ---
@@ -8237,6 +8237,19 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | variants | [[ProductVariantResponse](#ProductVariantResponse)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductStockPrice](#ProductStockPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | String? |  yes  |  |
+ | marked | Double? |  yes  |  |
+ | effective | Double? |  yes  |  |
 
 ---
 
@@ -8272,23 +8285,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | city | String? |  yes  |  |
  | name | String? |  yes  |  |
  | code | String? |  yes  |  |
  | id | Int? |  yes  |  |
- | city | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductStockPrice](#ProductStockPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency | String? |  yes  |  |
- | effective | Double? |  yes  |  |
- | marked | Double? |  yes  |  |
 
 ---
 
@@ -8300,14 +8300,14 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | identifier | [String: Any]? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | seller | [Seller](#Seller)? |  yes  |  |
- | company | [CompanyDetail](#CompanyDetail)? |  yes  |  |
- | store | [StoreDetail](#StoreDetail)? |  yes  |  |
- | size | String? |  yes  |  |
  | price | [ProductStockPrice](#ProductStockPrice)? |  yes  |  |
+ | size | String? |  yes  |  |
  | uid | String? |  yes  |  |
  | quantity | Int? |  yes  |  |
+ | seller | [Seller](#Seller)? |  yes  |  |
+ | itemId | Int? |  yes  |  |
+ | company | [CompanyDetail](#CompanyDetail)? |  yes  |  |
+ | store | [StoreDetail](#StoreDetail)? |  yes  |  |
 
 ---
 
@@ -8329,13 +8329,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | hasPrevious | Bool? |  yes  |  |
+ | size | Int? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | type | String |  no  |  |
  | hasNext | Bool? |  yes  |  |
  | nextId | String? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
- | current | Int? |  yes  |  |
- | size | Int? |  yes  |  |
- | type | String |  no  |  |
- | itemTotal | Int? |  yes  |  |
 
 ---
 
@@ -8346,8 +8346,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductStockStatusItem](#ProductStockStatusItem)]? |  yes  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[ProductStockStatusItem](#ProductStockStatusItem)]? |  yes  |  |
 
 ---
 
@@ -8371,11 +8371,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | displayType | String? |  yes  |  |
- | header | String? |  yes  |  |
+ | key | String? |  yes  |  |
  | items | [[ProductVariantItemResponse](#ProductVariantItemResponse)]? |  yes  |  |
  | total | Int? |  yes  |  |
- | key | String? |  yes  |  |
+ | header | String? |  yes  |  |
+ | displayType | String? |  yes  |  |
 
 ---
 
@@ -8386,68 +8386,46 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
- | color | String? |  yes  |  |
- | productGroupTag | [String]? |  yes  |  |
- | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
- | itemCode | String? |  yes  |  |
- | isDependent | Bool? |  yes  |  |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
- | shortDescription | String? |  yes  |  |
- | discount | String? |  yes  |  |
- | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | description | String? |  yes  |  |
- | ratingCount | Int? |  yes  |  |
- | netQuantity | [NetQuantity](#NetQuantity)? |  yes  |  |
- | productOnlineDate | String? |  yes  |  |
- | type | String? |  yes  |  |
- | slug | String |  no  |  |
- | customOrder | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | similars | [String]? |  yes  |  |
- | tryouts | [String]? |  yes  |  |
  | medias | [[Media](#Media)]? |  yes  |  |
+ | productGroupTag | [String]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | categoryMap | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
+ | type | String? |  yes  |  |
+ | ratingCount | Int? |  yes  |  |
+ | color | String? |  yes  |  |
+ | imageNature | String? |  yes  |  |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | hasVariant | Bool? |  yes  |  |
+ | rating | Double? |  yes  |  |
+ | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
+ | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | variants | [[ProductVariantListingResponse](#ProductVariantListingResponse)]? |  yes  |  |
  | tags | [String]? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | customOrder | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
+ | identifiers | [String]? |  yes  |  |
+ | isDependent | Bool? |  yes  |  |
+ | productOnlineDate | String? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | groupedAttributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
  | highlights | [String]? |  yes  |  |
  | sellable | Bool? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | similars | [String]? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | customMeta | [[CustomMetaFields](#CustomMetaFields)]? |  yes  |  |
+ | teaserTag | String? |  yes  |  |
+ | netQuantity | [NetQuantity](#NetQuantity)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | slug | String |  no  |  |
  | itemType | String? |  yes  |  |
  | sizes | [String]? |  yes  |  |
- | customMeta | [[CustomMetaFields](#CustomMetaFields)]? |  yes  |  |
- | name | String? |  yes  |  |
- | groupedAttributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
- | variants | [[ProductVariantListingResponse](#ProductVariantListingResponse)]? |  yes  |  |
- | imageNature | String? |  yes  |  |
- | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  |  |
- | rating | Double? |  yes  |  |
- | identifiers | [String]? |  yes  |  |
- | hasVariant | Bool? |  yes  |  |
- | categoryMap | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
- | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
- | uid | Int? |  yes  |  |
- | teaserTag | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductFiltersValue](#ProductFiltersValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | count | Int? |  yes  |  |
- | max | Int? |  yes  |  |
- | display | String |  no  |  |
- | value | String? |  yes  |  |
- | selectedMin | Int? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | displayFormat | String? |  yes  |  |
- | queryFormat | String? |  yes  |  |
- | min | Int? |  yes  |  |
- | selectedMax | Int? |  yes  |  |
- | isSelected | Bool |  no  |  |
+ | tryouts | [String]? |  yes  |  |
+ | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  |  |
 
 ---
 
@@ -8458,9 +8436,31 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | logo | String? |  yes  |  |
  | name | String |  no  |  |
  | kind | String? |  yes  |  |
- | logo | String? |  yes  |  |
+ | display | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductFiltersValue](#ProductFiltersValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | queryFormat | String? |  yes  |  |
+ | min | Int? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | count | Int? |  yes  |  |
+ | selectedMin | Int? |  yes  |  |
+ | max | Int? |  yes  |  |
+ | isSelected | Bool |  no  |  |
+ | currencySymbol | String? |  yes  |  |
+ | selectedMax | Int? |  yes  |  |
+ | displayFormat | String? |  yes  |  |
+ | value | String? |  yes  |  |
  | display | String |  no  |  |
 
 ---
@@ -8472,8 +8472,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | values | [[ProductFiltersValue](#ProductFiltersValue)] |  no  |  |
  | key | [ProductFiltersKey](#ProductFiltersKey) |  no  |  |
+ | values | [[ProductFiltersValue](#ProductFiltersValue)] |  no  |  |
 
 ---
 
@@ -8484,9 +8484,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
  | sortOn | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
- | page | [Page](#Page) |  no  |  |
  | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
 
 ---
@@ -8498,8 +8498,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | landscape | [Media](#Media)? |  yes  |  |
  | portrait | [Media](#Media)? |  yes  |  |
+ | landscape | [Media](#Media)? |  yes  |  |
 
 ---
 
@@ -8510,15 +8510,15 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discount | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | description | String? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | departments | [String]? |  yes  |  |
- | description | String? |  yes  |  |
- | name | String? |  yes  |  |
- | slug | String? |  yes  |  |
  | uid | Int? |  yes  |  |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | departments | [String]? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -8529,8 +8529,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[BrandItem](#BrandItem)]? |  yes  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[BrandItem](#BrandItem)]? |  yes  |  |
 
 ---
 
@@ -8541,36 +8541,12 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | customJson | [String: Any]? |  yes  |  |
+ | description | String? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | description | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [DepartmentIdentifier](#DepartmentIdentifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | slug | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CategoryBanner](#CategoryBanner)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | landscape | [Media](#Media) |  no  |  |
- | portrait | [Media](#Media) |  no  |  |
 
 ---
 
@@ -8581,13 +8557,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | name | String? |  yes  |  |
- | childs | [[String: Any]]? |  yes  |  |
  | slug | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | childs | [[String: Any]]? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -8598,13 +8574,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | name | String? |  yes  |  |
- | childs | [[ThirdLevelChild](#ThirdLevelChild)]? |  yes  |  |
  | slug | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | childs | [[ThirdLevelChild](#ThirdLevelChild)]? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -8615,13 +8591,25 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | name | String? |  yes  |  |
- | childs | [[SecondLevelChild](#SecondLevelChild)]? |  yes  |  |
  | slug | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
+ | childs | [[SecondLevelChild](#SecondLevelChild)]? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryBanner](#CategoryBanner)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | portrait | [Media](#Media) |  no  |  |
+ | landscape | [Media](#Media) |  no  |  |
 
 ---
 
@@ -8632,12 +8620,12 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | banners | [CategoryBanner](#CategoryBanner) |  no  |  |
- | name | String |  no  |  |
- | childs | [[Child](#Child)]? |  yes  |  |
  | slug | String |  no  |  |
- | uid | Int |  no  |  |
  | action | [ProductListingAction](#ProductListingAction) |  no  |  |
+ | childs | [[Child](#Child)]? |  yes  |  |
+ | banners | [CategoryBanner](#CategoryBanner) |  no  |  |
+ | uid | Int |  no  |  |
+ | name | String |  no  |  |
 
 ---
 
@@ -8648,8 +8636,20 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CategoryItems](#CategoryItems)]? |  yes  |  |
  | department | String |  no  |  |
+ | items | [[CategoryItems](#CategoryItems)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DepartmentIdentifier](#DepartmentIdentifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
@@ -8660,8 +8660,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | departments | [[DepartmentIdentifier](#DepartmentIdentifier)]? |  yes  |  |
  | data | [[DepartmentCategoryTree](#DepartmentCategoryTree)]? |  yes  |  |
+ | departments | [[DepartmentIdentifier](#DepartmentIdentifier)]? |  yes  |  |
 
 ---
 
@@ -8672,11 +8672,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | customJson | [String: Any]? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
  | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
- | name | String? |  yes  |  |
  | uid | Int? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -8687,9 +8687,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
  | message | String? |  yes  |  |
  | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
- | page | [Page](#Page) |  no  |  |
 
 ---
 
@@ -8700,11 +8700,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logo | [Media](#Media)? |  yes  |  |
- | name | String? |  yes  |  |
  | slug | String? |  yes  |  |
- | uid | Int? |  yes  |  |
  | priorityOrder | Int? |  yes  |  |
+ | logo | [Media](#Media)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -8726,11 +8726,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | customJson | [String: Any]? |  yes  |  |
  | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
  | type | String? |  yes  |  |
  | display | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
 
 ---
 
@@ -8752,8 +8752,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | op | String |  no  |  |
  | value | [[String: Any]] |  no  |  |
+ | op | String |  no  |  |
  | attribute | String |  no  |  |
 
 ---
@@ -8765,28 +8765,28 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | priority | Int? |  yes  |  |
- | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
- | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
- | badge | [String: Any]? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | description | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | slug | String? |  yes  |  |
  | type | String? |  yes  |  |
- | appId | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
  | allowSort | Bool? |  yes  |  |
  | schedule | [String: Any]? |  yes  |  |
- | name | String? |  yes  |  |
+ | action | [ProductListingAction](#ProductListingAction)? |  yes  |  |
  | cron | [String: Any]? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
+ | priority | Int? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | uid | String? |  yes  |  |
  | tag | [String]? |  yes  |  |
+ | badge | [String: Any]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | sortOn | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
  | allowFacets | Bool? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
- | sortOn | String? |  yes  |  |
- | uid | String? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | appId | String? |  yes  |  |
 
 ---
 
@@ -8797,9 +8797,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | display | String? |  yes  |  |
  | name | String? |  yes  |  |
  | isSelected | Bool? |  yes  |  |
- | display | String? |  yes  |  |
 
 ---
 
@@ -8810,9 +8810,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | display | String? |  yes  |  |
  | name | String? |  yes  |  |
  | isSelected | Bool? |  yes  |  |
- | display | String? |  yes  |  |
 
 ---
 
@@ -8848,26 +8848,26 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | visibleFacetsKeys | [String]? |  yes  |  |
- | priority | Int? |  yes  |  |
- | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
- | badge | [String: Any]? |  yes  |  |
- | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | description | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | slug | String? |  yes  |  |
  | type | String? |  yes  |  |
- | appId | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
+ | visibleFacetsKeys | [String]? |  yes  |  |
  | allowSort | Bool? |  yes  |  |
  | schedule | [String: Any]? |  yes  |  |
- | name | String? |  yes  |  |
  | cron | [String: Any]? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
+ | priority | Int? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
  | tag | [String]? |  yes  |  |
+ | badge | [String: Any]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | sortOn | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
  | allowFacets | Bool? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
- | sortOn | String? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | appId | String? |  yes  |  |
 
 ---
 
@@ -8878,8 +8878,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[ProductListingDetail](#ProductListingDetail)] |  no  |  |
 
 ---
 
@@ -8890,8 +8890,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String |  no  |  |
  | message | String |  no  |  |
+ | id | String |  no  |  |
 
 ---
 
@@ -8913,9 +8913,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | products | [Int]? |  yes  |  |
- | collections | [Int]? |  yes  |  |
  | brands | [Int]? |  yes  |  |
+ | collections | [Int]? |  yes  |  |
+ | products | [Int]? |  yes  |  |
 
 ---
 
@@ -8937,8 +8937,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coordinates | [Double]? |  yes  |  |
  | type | String? |  yes  |  |
+ | coordinates | [Double]? |  yes  |  |
 
 ---
 
@@ -8949,16 +8949,16 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | country | String? |  yes  |  |
  | state | String? |  yes  |  |
  | latLong | [LatLong](#LatLong)? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | name | String? |  yes  |  |
- | storeEmail | String? |  yes  |  |
  | address | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | pincode | Int? |  yes  |  |
+ | storeCode | String? |  yes  |  |
  | city | String? |  yes  |  |
- | country | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | storeEmail | String? |  yes  |  |
 
 ---
 
@@ -8969,8 +8969,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[Store](#Store)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+ | items | [[Store](#Store)] |  no  |  |
 
 ---
 
@@ -8983,35 +8983,6 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | ---------- | ---- | -------- | ----------- |
  | countryCode | Int |  no  |  |
  | number | String |  no  |  |
-
----
-
-
- 
- 
- #### [StoreDepartments](#StoreDepartments)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | [String: Any]? |  yes  |  |
- | name | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | priorityOrder | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [CompanyStore](#CompanyStore)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | businessType | String? |  yes  |  |
- | companyType | String? |  yes  |  |
 
 ---
 
@@ -9031,19 +9002,48 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
+ #### [CompanyStore](#CompanyStore)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | companyType | String? |  yes  |  |
+ | businessType | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [StoreAddressSerializer](#StoreAddressSerializer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address1 | String? |  yes  |  |
- | landmark | String? |  yes  |  |
  | latitude | Double? |  yes  |  |
- | state | String? |  yes  |  |
- | address2 | String? |  yes  |  |
- | longitude | Double? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | city | String? |  yes  |  |
  | country | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+ | longitude | Double? |  yes  |  |
+ | city | String? |  yes  |  |
+ | address1 | String? |  yes  |  |
+ | address2 | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [StoreDepartments](#StoreDepartments)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | String? |  yes  |  |
+ | priorityOrder | Int? |  yes  |  |
+ | logo | [String: Any]? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -9054,14 +9054,14 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | company | [CompanyStore](#CompanyStore)? |  yes  |  |
- | name | String? |  yes  |  |
  | manager | [StoreManagerSerializer](#StoreManagerSerializer)? |  yes  |  |
+ | company | [CompanyStore](#CompanyStore)? |  yes  |  |
+ | storeCode | String? |  yes  |  |
  | address | [StoreAddressSerializer](#StoreAddressSerializer)? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -9072,9 +9072,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [[String: Any]]? |  yes  |  |
- | items | [[AppStore](#AppStore)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+ | items | [[AppStore](#AppStore)]? |  yes  |  |
+ | filters | [[String: Any]]? |  yes  |  |
 
 ---
 
@@ -9098,9 +9098,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | opening | [Time](#Time)? |  yes  |  |
- | weekday | String? |  yes  |  |
  | closing | [Time](#Time)? |  yes  |  |
  | open | Bool? |  yes  |  |
+ | weekday | String? |  yes  |  |
 
 ---
 
@@ -9111,95 +9111,16 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
- | storeCode | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | manager | [StoreManagerSerializer](#StoreManagerSerializer)? |  yes  |  |
  | company | [CompanyStore](#CompanyStore)? |  yes  |  |
  | timing | [[StoreTiming](#StoreTiming)]? |  yes  |  |
- | name | String? |  yes  |  |
- | manager | [StoreManagerSerializer](#StoreManagerSerializer)? |  yes  |  |
+ | storeCode | String? |  yes  |  |
  | address | [StoreAddressSerializer](#StoreAddressSerializer)? |  yes  |  |
  | uid | Int? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductDetails](#ProductDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | outOfStock | Bool? |  yes  | Whether or not the product is out of stock |
- | itemCode | String? |  yes  | The item code of the product |
- | hsnCode | Int? |  yes  | The HSN code of the product |
- | brandUid | Int? |  yes  | The unique ID of the product's brand |
- | identifier | [String: Any]? |  yes  | A dictionary of product identifiers |
- | shortDescription | String? |  yes  | The short description of the product |
- | templateTag | String? |  yes  | The template tag of the product |
- | attributes | [String: Any]? |  yes  | A dictionary of product attributes |
- | description | String? |  yes  | The long description of the product |
- | ratingCount | Int? |  yes  | The number of ratings the product has received |
- | slug | String? |  yes  | The slug of the product |
- | images | [String]? |  yes  | A list of image URLs for the product |
- | countryOfOrigin | String? |  yes  | The country of origin for the product |
- | media | [[String: Any]]? |  yes  | A list of media objects for the product |
- | highlights | [String]? |  yes  | A list of highlights for the product |
- | isSet | Bool? |  yes  | Whether or not the product is a set of items |
- | name | String? |  yes  | The name of the product |
- | groupedAttributes | [String: Any]? |  yes  | A dictionary of grouped product attributes |
- | imageNature | String? |  yes  | The nature of the product's images |
- | rating | Double? |  yes  | The rating of the product |
- | hasVariant | Bool? |  yes  | Whether or not the product has a variant |
-
----
-
-
- 
- 
- #### [Size](#Size)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isAvailable | Bool? |  yes  | Whether or not this size is available |
- | quantity | Int? |  yes  | The quantity of this size available |
- | value | String? |  yes  | The value of the size |
- | display | String? |  yes  | The display string for the size |
-
----
-
-
- 
- 
- #### [ProductGroupPrice](#ProductGroupPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency | String? |  yes  | The currency code for the prices. |
- | maxEffective | Double? |  yes  | The maximum effective price of the product group. |
- | maxMarked | Double? |  yes  | The maximum marked price of the product group. |
- | minEffective | Double? |  yes  | The minimum effective price of the product group. |
- | minMarked | Double? |  yes  | The minimum marked price of the product group. |
-
----
-
-
- 
- 
- #### [ProductInGroup](#ProductInGroup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | allowRemove | Bool? |  yes  | A flag indicating whether the product can be removed from the cart. |
- | productDetails | [ProductDetails](#ProductDetails)? |  yes  | The details of the product. |
- | autoSelect | Bool? |  yes  | A flag indicating whether the product should be automatically selected. |
- | productUid | Int |  no  | The unique ID of the product in the group. |
- | sizes | [[Size](#Size)]? |  yes  | The available sizes for the product. |
- | autoAddToCart | Bool? |  yes  | A flag indicating whether the product should be automatically added to the cart. |
- | maxQuantity | Int |  no  | The maximum quantity of the product that can be added to the cart. |
- | price | [ProductGroupPrice](#ProductGroupPrice)? |  yes  | The price details for the product group. |
- | minQuantity | Int? |  yes  | The minimum quantity of the product that can be added to the cart. |
+ | contactNumbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
+ | departments | [[StoreDepartments](#StoreDepartments)]? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -9210,10 +9131,89 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | superUser | Bool? |  yes  | A flag indicating whether the user is a super user. |
  | userId | String |  no  | The user ID of the user. |
  | contact | String? |  yes  | The contact details of the user. |
+ | superUser | Bool? |  yes  | A flag indicating whether the user is a super user. |
  | username | String |  no  | The username of the user. |
+
+---
+
+
+ 
+ 
+ #### [ProductGroupPrice](#ProductGroupPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | minMarked | Double? |  yes  | The minimum marked price of the product group. |
+ | currency | String? |  yes  | The currency code for the prices. |
+ | minEffective | Double? |  yes  | The minimum effective price of the product group. |
+ | maxEffective | Double? |  yes  | The maximum effective price of the product group. |
+ | maxMarked | Double? |  yes  | The maximum marked price of the product group. |
+
+---
+
+
+ 
+ 
+ #### [ProductDetails](#ProductDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | [String: Any]? |  yes  | A dictionary of product identifiers |
+ | images | [String]? |  yes  | A list of image URLs for the product |
+ | templateTag | String? |  yes  | The template tag of the product |
+ | description | String? |  yes  | The long description of the product |
+ | hsnCode | Int? |  yes  | The HSN code of the product |
+ | ratingCount | Int? |  yes  | The number of ratings the product has received |
+ | imageNature | String? |  yes  | The nature of the product's images |
+ | hasVariant | Bool? |  yes  | Whether or not the product has a variant |
+ | rating | Double? |  yes  | The rating of the product |
+ | attributes | [String: Any]? |  yes  | A dictionary of product attributes |
+ | groupedAttributes | [String: Any]? |  yes  | A dictionary of grouped product attributes |
+ | highlights | [String]? |  yes  | A list of highlights for the product |
+ | isSet | Bool? |  yes  | Whether or not the product is a set of items |
+ | media | [[String: Any]]? |  yes  | A list of media objects for the product |
+ | itemCode | String? |  yes  | The item code of the product |
+ | outOfStock | Bool? |  yes  | Whether or not the product is out of stock |
+ | name | String? |  yes  | The name of the product |
+ | countryOfOrigin | String? |  yes  | The country of origin for the product |
+ | shortDescription | String? |  yes  | The short description of the product |
+ | slug | String? |  yes  | The slug of the product |
+ | brandUid | Int? |  yes  | The unique ID of the product's brand |
+
+---
+
+
+ 
+ 
+ #### [Size](#Size)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String? |  yes  | The value of the size |
+ | quantity | Int? |  yes  | The quantity of this size available |
+ | display | String? |  yes  | The display string for the size |
+ | isAvailable | Bool? |  yes  | Whether or not this size is available |
+
+---
+
+
+ 
+ 
+ #### [ProductInGroup](#ProductInGroup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | autoSelect | Bool? |  yes  | A flag indicating whether the product should be automatically selected. |
+ | allowRemove | Bool? |  yes  | A flag indicating whether the product can be removed from the cart. |
+ | minQuantity | Int? |  yes  | The minimum quantity of the product that can be added to the cart. |
+ | price | [ProductGroupPrice](#ProductGroupPrice)? |  yes  | The price details for the product group. |
+ | maxQuantity | Int |  no  | The maximum quantity of the product that can be added to the cart. |
+ | productDetails | [ProductDetails](#ProductDetails)? |  yes  | The details of the product. |
+ | productUid | Int |  no  | The unique ID of the product in the group. |
+ | sizes | [[Size](#Size)]? |  yes  | The available sizes for the product. |
+ | autoAddToCart | Bool? |  yes  | A flag indicating whether the product should be automatically added to the cart. |
 
 ---
 
@@ -9224,23 +9224,23 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | products | [[ProductInGroup](#ProductInGroup)] |  no  | A list of products in the grouping. |
- | verifiedBy | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
- | logo | String? |  yes  | The URL for the logo of the product grouping. |
- | pageVisibility | [String]? |  yes  | A list of page visibilities of the product grouping. |
- | id | [String: Any]? |  yes  |  |
- | createdBy | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
- | modifiedBy | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
- | verifiedOn | String? |  yes  | Timestamp of when the document was verified, if applicable |
- | name | String |  no  | The name of the product grouping. |
- | modifiedOn | String |  no  | Timestamp of the last modification of the document |
- | companyId | Int? |  yes  | The ID of the company that owns the product grouping. |
  | slug | String? |  yes  | The unique identifier for the product grouping. |
- | meta | [String: Any]? |  yes  | A dictionary containing metadata information. |
- | createdOn | String |  no  | Timestamp of the creation of the document |
- | isActive | Bool? |  yes  | Whether the product grouping is active. |
- | choice | String? |  yes  | The choice of the product grouping. |
  | sameStoreAssignment | Bool? |  yes  | Whether the products are assigned to the same store. |
+ | meta | [String: Any]? |  yes  | A dictionary containing metadata information. |
+ | verifiedOn | String? |  yes  | Timestamp of when the document was verified, if applicable |
+ | createdOn | String |  no  | Timestamp of the creation of the document |
+ | createdBy | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
+ | verifiedBy | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
+ | companyId | Int? |  yes  | The ID of the company that owns the product grouping. |
+ | logo | String? |  yes  | The URL for the logo of the product grouping. |
+ | id | [String: Any]? |  yes  |  |
+ | choice | String? |  yes  | The choice of the product grouping. |
+ | products | [[ProductInGroup](#ProductInGroup)] |  no  | A list of products in the grouping. |
+ | pageVisibility | [String]? |  yes  | A list of page visibilities of the product grouping. |
+ | modifiedOn | String |  no  | Timestamp of the last modification of the document |
+ | modifiedBy | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
+ | name | String |  no  | The name of the product grouping. |
+ | isActive | Bool? |  yes  | Whether the product grouping is active. |
 
 ---
 
@@ -9258,12 +9258,51 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
+ #### [StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tat | Int? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | distance | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ArticleAssignmentV3](#ArticleAssignmentV3)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | strategy | String? |  yes  |  |
  | level | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DetailsSchemaV3](#DetailsSchemaV3)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | key | String? |  yes  |  |
+ | value | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | details | [[DetailsSchemaV3](#DetailsSchemaV3)]? |  yes  |  |
+ | title | String? |  yes  |  |
 
 ---
 
@@ -9283,26 +9322,26 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)
+ #### [ProductStockPriceV3](#ProductStockPriceV3)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | distance | Int? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | tat | Int? |  yes  |  |
- | quantity | Int? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | marked | Double? |  yes  |  |
+ | effective | Double? |  yes  |  |
 
 ---
 
 
  
  
- #### [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)
+ #### [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | returnable | Bool? |  yes  |  |
- | time | Int? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | price | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
  | unit | String? |  yes  |  |
 
 ---
@@ -9310,38 +9349,12 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [DetailsSchemaV3](#DetailsSchemaV3)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String? |  yes  |  |
- | value | String? |  yes  |  |
- | type | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)
+ #### [SellerGroupAttributes](#SellerGroupAttributes)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | details | [[DetailsSchemaV3](#DetailsSchemaV3)]? |  yes  |  |
  | title | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductStockPriceV3](#ProductStockPriceV3)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency | String? |  yes  |  |
- | effective | Double? |  yes  |  |
- | marked | Double? |  yes  |  |
 
 ---
 
@@ -9375,8 +9388,21 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sizeDistribution | [ProductSetDistributionV3](#ProductSetDistributionV3)? |  yes  |  |
  | quantity | Int? |  yes  |  |
+ | sizeDistribution | [ProductSetDistributionV3](#ProductSetDistributionV3)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | returnable | Bool? |  yes  |  |
+ | time | Int? |  yes  |  |
+ | unit | String? |  yes  |  |
 
 ---
 
@@ -9396,57 +9422,31 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
- #### [SellerGroupAttributes](#SellerGroupAttributes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | details | [[DetailsSchemaV3](#DetailsSchemaV3)]? |  yes  |  |
- | title | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | price | Double? |  yes  |  |
- | unit | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articleAssignment | [ArticleAssignmentV3](#ArticleAssignmentV3)? |  yes  |  |
- | seller | [SellerV3](#SellerV3)? |  yes  |  |
  | strategyWiseListing | [[StrategyWiseListingSchemaV3](#StrategyWiseListingSchemaV3)]? |  yes  |  |
- | returnConfig | [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)? |  yes  |  |
- | discount | String? |  yes  |  |
+ | articleAssignment | [ArticleAssignmentV3](#ArticleAssignmentV3)? |  yes  |  |
  | marketplaceAttributes | [[MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)]? |  yes  |  |
- | pricePerPiece | [ProductStockPriceV3](#ProductStockPriceV3)? |  yes  |  |
- | set | [ProductSetV3](#ProductSetV3)? |  yes  |  |
- | isCod | Bool? |  yes  |  |
- | specialBadge | String? |  yes  |  |
- | isGift | Bool? |  yes  |  |
- | itemType | String? |  yes  |  |
- | store | [StoreV3](#StoreV3)? |  yes  |  |
- | groupedAttributes | [[SellerGroupAttributes](#SellerGroupAttributes)]? |  yes  |  |
- | pricePerUnit | [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)? |  yes  |  |
  | articleId | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
+ | seller | [SellerV3](#SellerV3)? |  yes  |  |
  | price | [ProductStockPriceV3](#ProductStockPriceV3)? |  yes  |  |
- | sellerCount | Int? |  yes  |  |
+ | pricePerUnit | [ProductStockUnitPriceV3](#ProductStockUnitPriceV3)? |  yes  |  |
+ | isCod | Bool? |  yes  |  |
  | pincode | Int? |  yes  |  |
+ | groupedAttributes | [[SellerGroupAttributes](#SellerGroupAttributes)]? |  yes  |  |
+ | isGift | Bool? |  yes  |  |
+ | specialBadge | String? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | pricePerPiece | [ProductStockPriceV3](#ProductStockPriceV3)? |  yes  |  |
  | longLat | [Double]? |  yes  |  |
+ | set | [ProductSetV3](#ProductSetV3)? |  yes  |  |
+ | returnConfig | [ReturnConfigSchemaV3](#ReturnConfigSchemaV3)? |  yes  |  |
+ | itemType | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | sellerCount | Int? |  yes  |  |
+ | store | [StoreV3](#StoreV3)? |  yes  |  |
 
 ---
 
@@ -9457,8 +9457,8 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
  | value | String? |  yes  |  |
+ | name | String? |  yes  |  |
  | isSelected | Bool? |  yes  |  |
 
 ---
@@ -9470,9 +9470,9 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page) |  no  |  |
  | sortOn | [[ProductSizeSellerFilterSchemaV3](#ProductSizeSellerFilterSchemaV3)]? |  yes  |  |
  | items | [[ProductSizePriceResponseV3](#ProductSizePriceResponseV3)]? |  yes  |  |
- | page | [Page](#Page) |  no  |  |
 
 ---
 

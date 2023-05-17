@@ -4,31 +4,25 @@ import Foundation
 
 public extension PlatformClient.Payment {
     /*
-         Model: EdcDeviceListResponse
+         Model: GetOauthUrlResponse
          Used By: Payment
      */
 
-    class EdcDeviceListResponse: Codable {
+    class GetOauthUrlResponse: Codable {
         public var success: Bool
 
-        public var items: [EdcDevice]
-
-        public var page: Page
+        public var url: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case items
-
-            case page
+            case url
         }
 
-        public init(items: [EdcDevice], page: Page, success: Bool) {
+        public init(success: Bool, url: String) {
             self.success = success
 
-            self.items = items
-
-            self.page = page
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +30,7 @@ public extension PlatformClient.Payment {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            items = try container.decode([EdcDevice].self, forKey: .items)
-
-            page = try container.decode(Page.self, forKey: .page)
+            url = try container.decode(String.self, forKey: .url)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,40 +38,32 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Payment {
     /*
-         Model: EdcDeviceListResponse
+         Model: GetOauthUrlResponse
          Used By: Payment
      */
 
-    class EdcDeviceListResponse: Codable {
+    class GetOauthUrlResponse: Codable {
         public var success: Bool
 
-        public var items: [EdcDevice]
-
-        public var page: Page
+        public var url: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case items
-
-            case page
+            case url
         }
 
-        public init(items: [EdcDevice], page: Page, success: Bool) {
+        public init(success: Bool, url: String) {
             self.success = success
 
-            self.items = items
-
-            self.page = page
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +71,7 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            items = try container.decode([EdcDevice].self, forKey: .items)
-
-            page = try container.decode(Page.self, forKey: .page)
+            url = try container.decode(String.self, forKey: .url)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +79,7 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }

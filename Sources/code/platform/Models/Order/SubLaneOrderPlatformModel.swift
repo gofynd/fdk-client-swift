@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var text: String?
 
-        public var actions: [[String: Any]]?
-
         public var index: Int?
+
+        public var actions: [[String: Any]]?
 
         public var totalItems: Int?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case text
 
-            case actions
-
             case index
+
+            case actions
 
             case totalItems = "total_items"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.text = text
 
-            self.actions = actions
-
             self.index = index
+
+            self.actions = actions
 
             self.totalItems = totalItems
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                actions = try container.decode([[String: Any]].self, forKey: .actions)
+                index = try container.decode(Int.self, forKey: .index)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                index = try container.decode(Int.self, forKey: .index)
+                actions = try container.decode([[String: Any]].self, forKey: .actions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(actions, forKey: .actions)
-
             try? container.encodeIfPresent(index, forKey: .index)
+
+            try? container.encodeIfPresent(actions, forKey: .actions)
 
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var text: String?
 
-        public var actions: [[String: Any]]?
-
         public var index: Int?
+
+        public var actions: [[String: Any]]?
 
         public var totalItems: Int?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case text
 
-            case actions
-
             case index
+
+            case actions
 
             case totalItems = "total_items"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.text = text
 
-            self.actions = actions
-
             self.index = index
+
+            self.actions = actions
 
             self.totalItems = totalItems
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                actions = try container.decode([[String: Any]].self, forKey: .actions)
+                index = try container.decode(Int.self, forKey: .index)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                index = try container.decode(Int.self, forKey: .index)
+                actions = try container.decode([[String: Any]].self, forKey: .actions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(actions, forKey: .actions)
-
             try? container.encodeIfPresent(index, forKey: .index)
+
+            try? container.encodeIfPresent(actions, forKey: .actions)
 
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
         }

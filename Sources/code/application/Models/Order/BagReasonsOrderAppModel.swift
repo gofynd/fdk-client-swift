@@ -11,26 +11,26 @@ public extension ApplicationClient.Order {
 
         public var meta: BagReasonMeta?
 
-        public var qcType: [String]?
+        public var questionSet: [QuestionSet]?
 
         public var id: Int?
 
-        public var reasons: [BagReasons]?
+        public var qcType: [String]?
 
-        public var questionSet: [QuestionSet]?
+        public var reasons: [BagReasons]?
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
             case meta
 
-            case qcType = "qc_type"
+            case questionSet = "question_set"
 
             case id
 
-            case reasons
+            case qcType = "qc_type"
 
-            case questionSet = "question_set"
+            case reasons
         }
 
         public init(displayName: String? = nil, id: Int? = nil, meta: BagReasonMeta? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil, reasons: [BagReasons]? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient.Order {
 
             self.meta = meta
 
-            self.qcType = qcType
+            self.questionSet = questionSet
 
             self.id = id
 
-            self.reasons = reasons
+            self.qcType = qcType
 
-            self.questionSet = questionSet
+            self.reasons = reasons
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,7 +67,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                qcType = try container.decode([String].self, forKey: .qcType)
+                questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                reasons = try container.decode([BagReasons].self, forKey: .reasons)
+                qcType = try container.decode([String].self, forKey: .qcType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
+                reasons = try container.decode([BagReasons].self, forKey: .reasons)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(qcType, forKey: .qcType)
+            try? container.encodeIfPresent(questionSet, forKey: .questionSet)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(reasons, forKey: .reasons)
+            try? container.encodeIfPresent(qcType, forKey: .qcType)
 
-            try? container.encodeIfPresent(questionSet, forKey: .questionSet)
+            try? container.encodeIfPresent(reasons, forKey: .reasons)
         }
     }
 }

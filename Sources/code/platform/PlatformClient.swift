@@ -5125,6 +5125,45 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: Get blog by slug
+             * Description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
+             **/
+            public func getBlogBySlug(
+                slug: String,
+
+                onResponse: @escaping (_ response: BlogSchema?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/content/v2.0/company/\(companyId)/application/\(applicationId)/blogs/\(slug)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(BlogSchema.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Create a page
              * Description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
              **/
@@ -5280,7 +5319,7 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Get pages by component Id
+             * Summary: Get page by slug
              * Description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
              **/
             public func getPageBySlug(
@@ -8890,6 +8929,57 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(PaymentStatusBulkHandlerResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: API to Get the url to call for oauth
+             * Description: Use this API to Get the url to call for oauth.
+             **/
+            public func oauthGetUrl(
+                aggregator: String,
+                successRedirectUrl: String?,
+                failureRedirectUrl: String?,
+
+                onResponse: @escaping (_ response: GetOauthUrlResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                if let value = successRedirectUrl {
+                    xQuery["success_redirect_url"] = value
+                }
+
+                if let value = failureRedirectUrl {
+                    xQuery["failure_redirect_url"] = value
+                }
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/onboard/\(aggregator)/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetOauthUrlResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {

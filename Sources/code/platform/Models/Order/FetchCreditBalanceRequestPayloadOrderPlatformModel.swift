@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class FetchCreditBalanceRequestPayload: Codable {
         public var sellerId: String
 
-        public var affiliateId: String
-
         public var customerMobileNumber: String
+
+        public var affiliateId: String
 
         public enum CodingKeys: String, CodingKey {
             case sellerId = "seller_id"
 
-            case affiliateId = "affiliate_id"
-
             case customerMobileNumber = "customer_mobile_number"
+
+            case affiliateId = "affiliate_id"
         }
 
         public init(affiliateId: String, customerMobileNumber: String, sellerId: String) {
             self.sellerId = sellerId
 
-            self.affiliateId = affiliateId
-
             self.customerMobileNumber = customerMobileNumber
+
+            self.affiliateId = affiliateId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             sellerId = try container.decode(String.self, forKey: .sellerId)
 
-            affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
             customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
+
+            affiliateId = try container.decode(String.self, forKey: .affiliateId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class FetchCreditBalanceRequestPayload: Codable {
         public var sellerId: String
 
-        public var affiliateId: String
-
         public var customerMobileNumber: String
+
+        public var affiliateId: String
 
         public enum CodingKeys: String, CodingKey {
             case sellerId = "seller_id"
 
-            case affiliateId = "affiliate_id"
-
             case customerMobileNumber = "customer_mobile_number"
+
+            case affiliateId = "affiliate_id"
         }
 
         public init(affiliateId: String, customerMobileNumber: String, sellerId: String) {
             self.sellerId = sellerId
 
-            self.affiliateId = affiliateId
-
             self.customerMobileNumber = customerMobileNumber
+
+            self.affiliateId = affiliateId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             sellerId = try container.decode(String.self, forKey: .sellerId)
 
-            affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
             customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
+
+            affiliateId = try container.decode(String.self, forKey: .affiliateId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }
     }
 }

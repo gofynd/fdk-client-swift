@@ -9,39 +9,39 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CartBreakupSchema: Codable {
-        public var display: [DisplayBreakupSchema]?
+        public var coupon: CouponBreakupSchema?
 
         public var raw: RawBreakupSchema?
 
         public var loyaltyPoints: LoyaltyPoints?
 
-        public var coupon: CouponBreakupSchema?
+        public var display: [DisplayBreakupSchema]?
 
         public enum CodingKeys: String, CodingKey {
-            case display
+            case coupon
 
             case raw
 
             case loyaltyPoints = "loyalty_points"
 
-            case coupon
+            case display
         }
 
         public init(coupon: CouponBreakupSchema? = nil, display: [DisplayBreakupSchema]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakupSchema? = nil) {
-            self.display = display
+            self.coupon = coupon
 
             self.raw = raw
 
             self.loyaltyPoints = loyaltyPoints
 
-            self.coupon = coupon
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode([DisplayBreakupSchema].self, forKey: .display)
+                coupon = try container.decode(CouponBreakupSchema.self, forKey: .coupon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                coupon = try container.decode(CouponBreakupSchema.self, forKey: .coupon)
+                display = try container.decode([DisplayBreakupSchema].self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,13 +76,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
 
             try? container.encodeIfPresent(raw, forKey: .raw)
 
             try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
 
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

@@ -9,18 +9,18 @@ public extension ApplicationClient.Order {
     class UserInfo: Codable {
         public var name: String?
 
-        public var email: String?
-
         public var mobile: String?
+
+        public var email: String?
 
         public var gender: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case email
-
             case mobile
+
+            case email
 
             case gender
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Order {
         public init(email: String? = nil, gender: String? = nil, mobile: String? = nil, name: String? = nil) {
             self.name = name
 
-            self.email = email
-
             self.mobile = mobile
+
+            self.email = email
 
             self.gender = gender
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                mobile = try container.decode(String.self, forKey: .mobile)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                mobile = try container.decode(String.self, forKey: .mobile)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(gender, forKey: .gender)
         }

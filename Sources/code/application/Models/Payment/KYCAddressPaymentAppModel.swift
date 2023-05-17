@@ -7,6 +7,8 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class KYCAddress: Codable {
+        public var addressline1: String
+
         public var state: String
 
         public var ownershipType: String?
@@ -19,9 +21,9 @@ public extension ApplicationClient.Payment {
 
         public var addressline2: String?
 
-        public var addressline1: String
-
         public enum CodingKeys: String, CodingKey {
+            case addressline1
+
             case state
 
             case ownershipType = "ownership_type"
@@ -33,11 +35,11 @@ public extension ApplicationClient.Payment {
             case landMark = "land_mark"
 
             case addressline2
-
-            case addressline1
         }
 
         public init(addressline1: String, addressline2: String? = nil, city: String, landMark: String? = nil, ownershipType: String? = nil, pincode: String, state: String) {
+            self.addressline1 = addressline1
+
             self.state = state
 
             self.ownershipType = ownershipType
@@ -49,12 +51,12 @@ public extension ApplicationClient.Payment {
             self.landMark = landMark
 
             self.addressline2 = addressline2
-
-            self.addressline1 = addressline1
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            addressline1 = try container.decode(String.self, forKey: .addressline1)
 
             state = try container.decode(String.self, forKey: .state)
 
@@ -85,12 +87,12 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            addressline1 = try container.decode(String.self, forKey: .addressline1)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(addressline1, forKey: .addressline1)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
@@ -103,8 +105,6 @@ public extension ApplicationClient.Payment {
             try? container.encode(landMark, forKey: .landMark)
 
             try? container.encode(addressline2, forKey: .addressline2)
-
-            try? container.encodeIfPresent(addressline1, forKey: .addressline1)
         }
     }
 }

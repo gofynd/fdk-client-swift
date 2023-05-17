@@ -11,9 +11,9 @@ public extension ApplicationClient.Order {
 
         public var itemSize: String?
 
-        public var storeId: Int?
-
         public var sellerId: Int?
+
+        public var storeId: Int?
 
         public var articleAssignment: BagsForReorderArticleAssignment?
 
@@ -24,9 +24,9 @@ public extension ApplicationClient.Order {
 
             case itemSize = "item_size"
 
-            case storeId = "store_id"
-
             case sellerId = "seller_id"
+
+            case storeId = "store_id"
 
             case articleAssignment = "article_assignment"
 
@@ -38,9 +38,9 @@ public extension ApplicationClient.Order {
 
             self.itemSize = itemSize
 
-            self.storeId = storeId
-
             self.sellerId = sellerId
+
+            self.storeId = storeId
 
             self.articleAssignment = articleAssignment
 
@@ -67,7 +67,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
+                sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                sellerId = try container.decode(Int.self, forKey: .sellerId)
+                storeId = try container.decode(Int.self, forKey: .storeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(itemSize, forKey: .itemSize)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 

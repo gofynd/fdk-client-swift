@@ -13,22 +13,22 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var id: String?
 
+        public var billingAddressId: String?
+
         public var cartId: String?
 
         public var userId: String?
-
-        public var billingAddressId: String?
 
         public enum CodingKeys: String, CodingKey {
             case checkoutMode = "checkout_mode"
 
             case id
 
+            case billingAddressId = "billing_address_id"
+
             case cartId = "cart_id"
 
             case userId = "user_id"
-
-            case billingAddressId = "billing_address_id"
         }
 
         public init(billingAddressId: String? = nil, cartId: String? = nil, checkoutMode: String? = nil, id: String? = nil, userId: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.id = id
 
+            self.billingAddressId = billingAddressId
+
             self.cartId = cartId
 
             self.userId = userId
-
-            self.billingAddressId = billingAddressId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,6 +63,14 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
+                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 cartId = try container.decode(String.self, forKey: .cartId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -77,14 +85,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,11 +94,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
+            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
+
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
-
-            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
         }
     }
 }

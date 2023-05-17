@@ -17,9 +17,9 @@ public extension PlatformClient.Order {
 
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
-        public var storeLookup: String?
-
         public var bagEndState: String?
+
+        public var storeLookup: String?
 
         public enum CodingKeys: String, CodingKey {
             case affiliate
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
 
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
 
-            case storeLookup = "store_lookup"
-
             case bagEndState = "bag_end_state"
+
+            case storeLookup = "store_lookup"
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
@@ -44,9 +44,9 @@ public extension PlatformClient.Order {
 
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
 
-            self.storeLookup = storeLookup
-
             self.bagEndState = bagEndState
+
+            self.storeLookup = storeLookup
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ public extension PlatformClient.Order {
             affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
 
             do {
-                storeLookup = try container.decode(String.self, forKey: .storeLookup)
+                bagEndState = try container.decode(String.self, forKey: .bagEndState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                bagEndState = try container.decode(String.self, forKey: .bagEndState)
+                storeLookup = try container.decode(String.self, forKey: .storeLookup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,9 +100,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
 
-            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
-
             try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
+
+            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
         }
     }
 }
@@ -122,9 +122,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
-        public var storeLookup: String?
-
         public var bagEndState: String?
+
+        public var storeLookup: String?
 
         public enum CodingKeys: String, CodingKey {
             case affiliate
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
 
-            case storeLookup = "store_lookup"
-
             case bagEndState = "bag_end_state"
+
+            case storeLookup = "store_lookup"
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
@@ -149,9 +149,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
 
-            self.storeLookup = storeLookup
-
             self.bagEndState = bagEndState
+
+            self.storeLookup = storeLookup
         }
 
         required public init(from decoder: Decoder) throws {
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Order {
             affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
 
             do {
-                storeLookup = try container.decode(String.self, forKey: .storeLookup)
+                bagEndState = try container.decode(String.self, forKey: .bagEndState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                bagEndState = try container.decode(String.self, forKey: .bagEndState)
+                storeLookup = try container.decode(String.self, forKey: .storeLookup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -205,9 +205,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
 
-            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
-
             try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
+
+            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
         }
     }
 }
