@@ -9,22 +9,22 @@ public extension ApplicationClient.Order {
     class CustomerDetailsResponse: Codable {
         public var orderId: String?
 
-        public var phone: String?
-
         public var name: String?
 
         public var shipmentId: String?
+
+        public var phone: String?
 
         public var country: String?
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
 
-            case phone
-
             case name
 
             case shipmentId = "shipment_id"
+
+            case phone
 
             case country
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Order {
         public init(country: String? = nil, name: String? = nil, orderId: String? = nil, phone: String? = nil, shipmentId: String? = nil) {
             self.orderId = orderId
 
-            self.phone = phone
-
             self.name = name
 
             self.shipmentId = shipmentId
+
+            self.phone = phone
 
             self.country = country
         }
@@ -46,14 +46,6 @@ public extension ApplicationClient.Order {
 
             do {
                 orderId = try container.decode(String.self, forKey: .orderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                phone = try container.decode(String.self, forKey: .phone)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,6 +69,14 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
+                phone = try container.decode(String.self, forKey: .phone)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 country = try container.decode(String.self, forKey: .country)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -90,11 +90,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
             try? container.encodeIfPresent(country, forKey: .country)
         }

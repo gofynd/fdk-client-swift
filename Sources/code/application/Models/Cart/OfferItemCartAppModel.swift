@@ -13,13 +13,13 @@ public extension ApplicationClient.Cart {
 
         public var best: Bool?
 
-        public var quantity: Int?
-
-        public var type: String?
+        public var total: Double?
 
         public var margin: Int?
 
-        public var total: Double?
+        public var type: String?
+
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case price
@@ -28,13 +28,13 @@ public extension ApplicationClient.Cart {
 
             case best
 
-            case quantity
-
-            case type
+            case total
 
             case margin
 
-            case total
+            case type
+
+            case quantity
         }
 
         public init(autoApplied: Bool? = nil, best: Bool? = nil, margin: Int? = nil, price: OfferPrice? = nil, quantity: Int? = nil, total: Double? = nil, type: String? = nil) {
@@ -44,13 +44,13 @@ public extension ApplicationClient.Cart {
 
             self.best = best
 
-            self.quantity = quantity
-
-            self.type = type
+            self.total = total
 
             self.margin = margin
 
-            self.total = total
+            self.type = type
+
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -81,15 +81,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
+                total = try container.decode(Double.self, forKey: .total)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +97,15 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                total = try container.decode(Double.self, forKey: .total)
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,13 +122,13 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(best, forKey: .best)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(total, forKey: .total)
 
             try? container.encodeIfPresent(margin, forKey: .margin)
 
-            try? container.encodeIfPresent(total, forKey: .total)
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }

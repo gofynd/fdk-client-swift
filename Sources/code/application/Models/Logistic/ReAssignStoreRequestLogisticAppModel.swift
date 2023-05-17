@@ -13,9 +13,9 @@ public extension ApplicationClient.Logistic {
 
         public var ignoredLocations: [String]
 
-        public var toPincode: String
-
         public var identifier: String
+
+        public var toPincode: String
 
         public enum CodingKeys: String, CodingKey {
             case articles
@@ -24,9 +24,9 @@ public extension ApplicationClient.Logistic {
 
             case ignoredLocations = "ignored_locations"
 
-            case toPincode = "to_pincode"
-
             case identifier
+
+            case toPincode = "to_pincode"
         }
 
         public init(articles: [[String: Any]], configuration: [String: Any], identifier: String, ignoredLocations: [String], toPincode: String) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.Logistic {
 
             self.ignoredLocations = ignoredLocations
 
-            self.toPincode = toPincode
-
             self.identifier = identifier
+
+            self.toPincode = toPincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient.Logistic {
 
             ignoredLocations = try container.decode([String].self, forKey: .ignoredLocations)
 
-            toPincode = try container.decode(String.self, forKey: .toPincode)
-
             identifier = try container.decode(String.self, forKey: .identifier)
+
+            toPincode = try container.decode(String.self, forKey: .toPincode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,9 +64,9 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(ignoredLocations, forKey: .ignoredLocations)
 
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
         }
     }
 }

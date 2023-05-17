@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class OrderPriority: Codable {
         public var fulfilmentPriority: Int?
 
-        public var affiliatePriorityCode: String?
-
         public var fulfilmentPriorityText: String?
+
+        public var affiliatePriorityCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case fulfilmentPriority = "fulfilment_priority"
 
-            case affiliatePriorityCode = "affiliate_priority_code"
-
             case fulfilmentPriorityText = "fulfilment_priority_text"
+
+            case affiliatePriorityCode = "affiliate_priority_code"
         }
 
         public init(affiliatePriorityCode: String? = nil, fulfilmentPriority: Int? = nil, fulfilmentPriorityText: String? = nil) {
             self.fulfilmentPriority = fulfilmentPriority
 
-            self.affiliatePriorityCode = affiliatePriorityCode
-
             self.fulfilmentPriorityText = fulfilmentPriorityText
+
+            self.affiliatePriorityCode = affiliatePriorityCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                affiliatePriorityCode = try container.decode(String.self, forKey: .affiliatePriorityCode)
+                fulfilmentPriorityText = try container.decode(String.self, forKey: .fulfilmentPriorityText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                fulfilmentPriorityText = try container.decode(String.self, forKey: .fulfilmentPriorityText)
+                affiliatePriorityCode = try container.decode(String.self, forKey: .affiliatePriorityCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
 
-            try? container.encode(affiliatePriorityCode, forKey: .affiliatePriorityCode)
-
             try? container.encodeIfPresent(fulfilmentPriorityText, forKey: .fulfilmentPriorityText)
+
+            try? container.encode(affiliatePriorityCode, forKey: .affiliatePriorityCode)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderPriority: Codable {
         public var fulfilmentPriority: Int?
 
-        public var affiliatePriorityCode: String?
-
         public var fulfilmentPriorityText: String?
+
+        public var affiliatePriorityCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case fulfilmentPriority = "fulfilment_priority"
 
-            case affiliatePriorityCode = "affiliate_priority_code"
-
             case fulfilmentPriorityText = "fulfilment_priority_text"
+
+            case affiliatePriorityCode = "affiliate_priority_code"
         }
 
         public init(affiliatePriorityCode: String? = nil, fulfilmentPriority: Int? = nil, fulfilmentPriorityText: String? = nil) {
             self.fulfilmentPriority = fulfilmentPriority
 
-            self.affiliatePriorityCode = affiliatePriorityCode
-
             self.fulfilmentPriorityText = fulfilmentPriorityText
+
+            self.affiliatePriorityCode = affiliatePriorityCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                affiliatePriorityCode = try container.decode(String.self, forKey: .affiliatePriorityCode)
+                fulfilmentPriorityText = try container.decode(String.self, forKey: .fulfilmentPriorityText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                fulfilmentPriorityText = try container.decode(String.self, forKey: .fulfilmentPriorityText)
+                affiliatePriorityCode = try container.decode(String.self, forKey: .affiliatePriorityCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
 
-            try? container.encode(affiliatePriorityCode, forKey: .affiliatePriorityCode)
-
             try? container.encodeIfPresent(fulfilmentPriorityText, forKey: .fulfilmentPriorityText)
+
+            try? container.encode(affiliatePriorityCode, forKey: .affiliatePriorityCode)
         }
     }
 }

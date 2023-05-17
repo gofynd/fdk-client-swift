@@ -9,36 +9,36 @@ public extension ApplicationClient.Cart {
     class PromotionOffer: Codable {
         public var validTill: String?
 
-        public var id: String?
+        public var description: String?
 
         public var promotionGroup: String?
 
         public var offerText: String?
 
-        public var description: String?
+        public var id: String?
 
         public enum CodingKeys: String, CodingKey {
             case validTill = "valid_till"
 
-            case id
+            case description
 
             case promotionGroup = "promotion_group"
 
             case offerText = "offer_text"
 
-            case description
+            case id
         }
 
         public init(description: String? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
             self.validTill = validTill
 
-            self.id = id
+            self.description = description
 
             self.promotionGroup = promotionGroup
 
             self.offerText = offerText
 
-            self.description = description
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,7 +53,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(validTill, forKey: .validTill)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

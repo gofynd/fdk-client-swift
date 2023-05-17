@@ -11,18 +11,18 @@ public extension PlatformClient.Payment {
     class MultiTenderPaymentMethod: Codable {
         public var meta: MultiTenderPaymentMeta?
 
-        public var mode: String
-
         public var amount: Double
+
+        public var mode: String
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case mode
-
             case amount
+
+            case mode
 
             case name
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Payment {
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
             self.meta = meta
 
-            self.mode = mode
-
             self.amount = amount
+
+            self.mode = mode
 
             self.name = name
         }
@@ -48,9 +48,9 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mode = try container.decode(String.self, forKey: .mode)
-
             amount = try container.decode(Double.self, forKey: .amount)
+
+            mode = try container.decode(String.self, forKey: .mode)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -66,9 +66,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -84,18 +84,18 @@ public extension PlatformClient.ApplicationClient.Payment {
     class MultiTenderPaymentMethod: Codable {
         public var meta: MultiTenderPaymentMeta?
 
-        public var mode: String
-
         public var amount: Double
+
+        public var mode: String
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case mode
-
             case amount
+
+            case mode
 
             case name
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
             self.meta = meta
 
-            self.mode = mode
-
             self.amount = amount
+
+            self.mode = mode
 
             self.name = name
         }
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mode = try container.decode(String.self, forKey: .mode)
-
             amount = try container.decode(Double.self, forKey: .amount)
+
+            mode = try container.decode(String.self, forKey: .mode)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

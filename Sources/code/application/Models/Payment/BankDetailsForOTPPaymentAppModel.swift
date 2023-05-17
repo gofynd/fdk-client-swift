@@ -13,9 +13,9 @@ public extension ApplicationClient.Payment {
 
         public var accountHolder: String
 
-        public var accountNo: String
-
         public var ifscCode: String
+
+        public var accountNo: String
 
         public enum CodingKeys: String, CodingKey {
             case bankName = "bank_name"
@@ -24,9 +24,9 @@ public extension ApplicationClient.Payment {
 
             case accountHolder = "account_holder"
 
-            case accountNo = "account_no"
-
             case ifscCode = "ifsc_code"
+
+            case accountNo = "account_no"
         }
 
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.Payment {
 
             self.accountHolder = accountHolder
 
-            self.accountNo = accountNo
-
             self.ifscCode = ifscCode
+
+            self.accountNo = accountNo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient.Payment {
 
             accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
-            accountNo = try container.decode(String.self, forKey: .accountNo)
-
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
+
+            accountNo = try container.decode(String.self, forKey: .accountNo)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,9 +64,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
-
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
         }
     }
 }

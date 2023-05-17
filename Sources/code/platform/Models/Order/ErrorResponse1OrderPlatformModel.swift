@@ -11,20 +11,26 @@ public extension PlatformClient.Order {
     class ErrorResponse1: Codable {
         public var errorTrace: String?
 
-        public var status: Int
+        public var success: Bool
+
+        public var status: Int?
 
         public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case errorTrace = "error_trace"
 
+            case success
+
             case status
 
             case message
         }
 
-        public init(errorTrace: String? = nil, message: String, status: Int) {
+        public init(errorTrace: String? = nil, message: String, status: Int? = nil, success: Bool) {
             self.errorTrace = errorTrace
+
+            self.success = success
 
             self.status = status
 
@@ -42,7 +48,15 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            status = try container.decode(Int.self, forKey: .status)
+            success = try container.decode(Bool.self, forKey: .success)
+
+            do {
+                status = try container.decode(Int.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             message = try container.decode(String.self, forKey: .message)
         }
@@ -51,6 +65,8 @@ public extension PlatformClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
@@ -68,20 +84,26 @@ public extension PlatformClient.ApplicationClient.Order {
     class ErrorResponse1: Codable {
         public var errorTrace: String?
 
-        public var status: Int
+        public var success: Bool
+
+        public var status: Int?
 
         public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case errorTrace = "error_trace"
 
+            case success
+
             case status
 
             case message
         }
 
-        public init(errorTrace: String? = nil, message: String, status: Int) {
+        public init(errorTrace: String? = nil, message: String, status: Int? = nil, success: Bool) {
             self.errorTrace = errorTrace
+
+            self.success = success
 
             self.status = status
 
@@ -99,7 +121,15 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            status = try container.decode(Int.self, forKey: .status)
+            success = try container.decode(Bool.self, forKey: .success)
+
+            do {
+                status = try container.decode(Int.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             message = try container.decode(String.self, forKey: .message)
         }
@@ -108,6 +138,8 @@ public extension PlatformClient.ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
