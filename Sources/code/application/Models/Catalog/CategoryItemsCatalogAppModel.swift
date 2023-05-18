@@ -11,9 +11,9 @@ public extension ApplicationClient.Catalog {
 
         public var childs: [Child]?
 
-        public var action: ProductListingAction
-
         public var name: String
+
+        public var action: ProductListingAction
 
         public var slug: String
 
@@ -24,9 +24,9 @@ public extension ApplicationClient.Catalog {
 
             case childs
 
-            case action
-
             case name
+
+            case action
 
             case slug
 
@@ -38,9 +38,9 @@ public extension ApplicationClient.Catalog {
 
             self.childs = childs
 
-            self.action = action
-
             self.name = name
+
+            self.action = action
 
             self.slug = slug
 
@@ -60,9 +60,9 @@ public extension ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            action = try container.decode(ProductListingAction.self, forKey: .action)
-
             name = try container.decode(String.self, forKey: .name)
+
+            action = try container.decode(ProductListingAction.self, forKey: .action)
 
             slug = try container.decode(String.self, forKey: .slug)
 
@@ -76,9 +76,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 

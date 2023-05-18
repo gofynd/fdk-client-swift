@@ -11,22 +11,22 @@ public extension ApplicationClient.Order {
 
         public var name: String?
 
+        public var country: String?
+
         public var shipmentId: String?
 
         public var phone: String?
-
-        public var country: String?
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
 
             case name
 
+            case country
+
             case shipmentId = "shipment_id"
 
             case phone
-
-            case country
         }
 
         public init(country: String? = nil, name: String? = nil, orderId: String? = nil, phone: String? = nil, shipmentId: String? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Order {
 
             self.name = name
 
+            self.country = country
+
             self.shipmentId = shipmentId
 
             self.phone = phone
-
-            self.country = country
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,6 +61,14 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -75,14 +83,6 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                country = try container.decode(String.self, forKey: .country)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,11 +92,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
+            try? container.encodeIfPresent(country, forKey: .country)
+
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(country, forKey: .country)
         }
     }
 }

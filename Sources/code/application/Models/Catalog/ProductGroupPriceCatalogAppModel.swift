@@ -11,22 +11,22 @@ public extension ApplicationClient.Catalog {
 
         public var minEffective: Double?
 
-        public var currency: String?
+        public var maxMarked: Double?
 
         public var minMarked: Double?
 
-        public var maxMarked: Double?
+        public var currency: String?
 
         public enum CodingKeys: String, CodingKey {
             case maxEffective = "max_effective"
 
             case minEffective = "min_effective"
 
-            case currency
+            case maxMarked = "max_marked"
 
             case minMarked = "min_marked"
 
-            case maxMarked = "max_marked"
+            case currency
         }
 
         public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Catalog {
 
             self.minEffective = minEffective
 
-            self.currency = currency
+            self.maxMarked = maxMarked
 
             self.minMarked = minMarked
 
-            self.maxMarked = maxMarked
+            self.currency = currency
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                maxMarked = try container.decode(Double.self, forKey: .maxMarked)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(minEffective, forKey: .minEffective)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
 
             try? container.encodeIfPresent(minMarked, forKey: .minMarked)
 
-            try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
+            try? container.encodeIfPresent(currency, forKey: .currency)
         }
     }
 }

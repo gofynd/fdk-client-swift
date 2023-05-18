@@ -9,24 +9,24 @@ public extension ApplicationClient.Catalog {
     class GetCollectionListingResponse: Codable {
         public var items: [GetCollectionDetailNest]?
 
-        public var filters: CollectionListingFilter?
-
         public var page: Page
+
+        public var filters: CollectionListingFilter?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case filters
-
             case page
+
+            case filters
         }
 
         public init(filters: CollectionListingFilter? = nil, items: [GetCollectionDetailNest]? = nil, page: Page) {
             self.items = items
 
-            self.filters = filters
-
             self.page = page
+
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,8 @@ public extension ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            page = try container.decode(Page.self, forKey: .page)
+
             do {
                 filters = try container.decode(CollectionListingFilter.self, forKey: .filters)
 
@@ -47,8 +49,6 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            page = try container.decode(Page.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +56,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }

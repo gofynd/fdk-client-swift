@@ -9,30 +9,30 @@ public extension ApplicationClient.Payment {
     class AddBeneficiaryDetailsRequest: Codable {
         public var shipmentId: String
 
-        public var orderId: String
+        public var details: BeneficiaryModeDetails
+
+        public var otp: String?
 
         public var transferMode: String
 
         public var delights: Bool
 
-        public var otp: String?
-
-        public var details: BeneficiaryModeDetails
+        public var orderId: String
 
         public var requestId: String?
 
         public enum CodingKeys: String, CodingKey {
             case shipmentId = "shipment_id"
 
-            case orderId = "order_id"
+            case details
+
+            case otp
 
             case transferMode = "transfer_mode"
 
             case delights
 
-            case otp
-
-            case details
+            case orderId = "order_id"
 
             case requestId = "request_id"
         }
@@ -40,15 +40,15 @@ public extension ApplicationClient.Payment {
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
             self.shipmentId = shipmentId
 
-            self.orderId = orderId
+            self.details = details
+
+            self.otp = otp
 
             self.transferMode = transferMode
 
             self.delights = delights
 
-            self.otp = otp
-
-            self.details = details
+            self.orderId = orderId
 
             self.requestId = requestId
         }
@@ -58,11 +58,7 @@ public extension ApplicationClient.Payment {
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
-            orderId = try container.decode(String.self, forKey: .orderId)
-
-            transferMode = try container.decode(String.self, forKey: .transferMode)
-
-            delights = try container.decode(Bool.self, forKey: .delights)
+            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
 
             do {
                 otp = try container.decode(String.self, forKey: .otp)
@@ -72,7 +68,11 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
+            transferMode = try container.decode(String.self, forKey: .transferMode)
+
+            delights = try container.decode(Bool.self, forKey: .delights)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
 
             do {
                 requestId = try container.decode(String.self, forKey: .requestId)
@@ -88,15 +88,15 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(otp, forKey: .otp)
 
             try? container.encodeIfPresent(transferMode, forKey: .transferMode)
 
             try? container.encodeIfPresent(delights, forKey: .delights)
 
-            try? container.encodeIfPresent(otp, forKey: .otp)
-
-            try? container.encodeIfPresent(details, forKey: .details)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
         }
