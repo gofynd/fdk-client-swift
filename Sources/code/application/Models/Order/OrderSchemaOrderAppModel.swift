@@ -9,8 +9,6 @@ public extension ApplicationClient.Order {
     class OrderSchema: Codable {
         public var breakupValues: [BreakupValues]?
 
-        public var orderId: String?
-
         public var totalShipmentsInOrder: Int?
 
         public var orderCreatedTime: String?
@@ -21,10 +19,10 @@ public extension ApplicationClient.Order {
 
         public var userInfo: UserInfo?
 
+        public var orderId: String?
+
         public enum CodingKeys: String, CodingKey {
             case breakupValues = "breakup_values"
-
-            case orderId = "order_id"
 
             case totalShipmentsInOrder = "total_shipments_in_order"
 
@@ -35,12 +33,12 @@ public extension ApplicationClient.Order {
             case shipments
 
             case userInfo = "user_info"
+
+            case orderId = "order_id"
         }
 
         public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, orderCreatedTime: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             self.breakupValues = breakupValues
-
-            self.orderId = orderId
 
             self.totalShipmentsInOrder = totalShipmentsInOrder
 
@@ -51,6 +49,8 @@ public extension ApplicationClient.Order {
             self.shipments = shipments
 
             self.userInfo = userInfo
+
+            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,14 +58,6 @@ public extension ApplicationClient.Order {
 
             do {
                 breakupValues = try container.decode([BreakupValues].self, forKey: .breakupValues)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,14 +103,20 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                orderId = try container.decode(String.self, forKey: .orderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
 
@@ -129,6 +127,8 @@ public extension ApplicationClient.Order {
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
             try? container.encodeIfPresent(userInfo, forKey: .userInfo)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
     }
 }

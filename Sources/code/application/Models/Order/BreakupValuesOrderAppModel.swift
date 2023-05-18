@@ -9,36 +9,36 @@ public extension ApplicationClient.Order {
     class BreakupValues: Codable {
         public var display: String?
 
-        public var currencySymbol: String?
-
-        public var name: String?
+        public var currencyCode: String?
 
         public var value: Double?
 
-        public var currencyCode: String?
+        public var name: String?
+
+        public var currencySymbol: String?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case currencySymbol = "currency_symbol"
-
-            case name
+            case currencyCode = "currency_code"
 
             case value
 
-            case currencyCode = "currency_code"
+            case name
+
+            case currencySymbol = "currency_symbol"
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, name: String? = nil, value: Double? = nil) {
             self.display = display
 
-            self.currencySymbol = currencySymbol
-
-            self.name = name
+            self.currencyCode = currencyCode
 
             self.value = value
 
-            self.currencyCode = currencyCode
+            self.name = name
+
+            self.currencySymbol = currencySymbol
         }
 
         required public init(from decoder: Decoder) throws {
@@ -53,15 +53,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +69,15 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
         }
     }
 }
