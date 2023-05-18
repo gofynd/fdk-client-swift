@@ -1720,7 +1720,7 @@ public class PlatformClient {
              * Description: Use this API to retrieve an existing user from a list.
              **/
             public func searchUsers(
-                q: String?,
+                q: [String: Any]?,
 
                 onResponse: @escaping (_ response: UserSearchResponseSchema?, _ error: FDKError?) -> Void
             ) {

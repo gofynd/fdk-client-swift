@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class ShipmentsRequest: Codable {
         public var dataUpdates: DataUpdates?
 
-        public var products: [Products]?
-
         public var identifier: String
+
+        public var products: [Products]?
 
         public var reasons: ReasonsData?
 
         public enum CodingKeys: String, CodingKey {
             case dataUpdates = "data_updates"
 
-            case products
-
             case identifier
+
+            case products
 
             case reasons
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil) {
             self.dataUpdates = dataUpdates
 
-            self.products = products
-
             self.identifier = identifier
+
+            self.products = products
 
             self.reasons = reasons
         }
@@ -48,6 +48,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            identifier = try container.decode(String.self, forKey: .identifier)
+
             do {
                 products = try container.decode([Products].self, forKey: .products)
 
@@ -55,8 +57,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            identifier = try container.decode(String.self, forKey: .identifier)
 
             do {
                 reasons = try container.decode(ReasonsData.self, forKey: .reasons)
@@ -72,9 +72,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
 
-            try? container.encodeIfPresent(products, forKey: .products)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(products, forKey: .products)
 
             try? container.encodeIfPresent(reasons, forKey: .reasons)
         }
@@ -90,18 +90,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentsRequest: Codable {
         public var dataUpdates: DataUpdates?
 
-        public var products: [Products]?
-
         public var identifier: String
+
+        public var products: [Products]?
 
         public var reasons: ReasonsData?
 
         public enum CodingKeys: String, CodingKey {
             case dataUpdates = "data_updates"
 
-            case products
-
             case identifier
+
+            case products
 
             case reasons
         }
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(dataUpdates: DataUpdates? = nil, identifier: String, products: [Products]? = nil, reasons: ReasonsData? = nil) {
             self.dataUpdates = dataUpdates
 
-            self.products = products
-
             self.identifier = identifier
+
+            self.products = products
 
             self.reasons = reasons
         }
@@ -127,6 +127,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            identifier = try container.decode(String.self, forKey: .identifier)
+
             do {
                 products = try container.decode([Products].self, forKey: .products)
 
@@ -134,8 +136,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            identifier = try container.decode(String.self, forKey: .identifier)
 
             do {
                 reasons = try container.decode(ReasonsData.self, forKey: .reasons)
@@ -151,9 +151,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(dataUpdates, forKey: .dataUpdates)
 
-            try? container.encodeIfPresent(products, forKey: .products)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(products, forKey: .products)
 
             try? container.encodeIfPresent(reasons, forKey: .reasons)
         }
