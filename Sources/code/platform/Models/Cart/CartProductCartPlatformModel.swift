@@ -11,54 +11,54 @@ public extension PlatformClient.ApplicationClient.Cart {
     class CartProduct: Codable {
         public var images: [ProductImage]?
 
-        public var slug: String?
+        public var uid: Int?
+
+        public var action: ProductAction?
 
         public var brand: BaseInfo?
 
-        public var uid: Int?
+        public var name: String?
 
         public var categories: [CategoryInfo]?
 
         public var type: String?
 
-        public var name: String?
-
-        public var action: ProductAction?
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case images
 
-            case slug
+            case uid
+
+            case action
 
             case brand
 
-            case uid
+            case name
 
             case categories
 
             case type
 
-            case name
-
-            case action
+            case slug
         }
 
         public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, name: String? = nil, slug: String? = nil, type: String? = nil, uid: Int? = nil) {
             self.images = images
 
-            self.slug = slug
+            self.uid = uid
+
+            self.action = action
 
             self.brand = brand
 
-            self.uid = uid
+            self.name = name
 
             self.categories = categories
 
             self.type = type
 
-            self.name = name
-
-            self.action = action
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +73,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(ProductAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +97,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,15 +121,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                action = try container.decode(ProductAction.self, forKey: .action)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,19 +134,19 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(images, forKey: .images)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(brand, forKey: .brand)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(categories, forKey: .categories)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }
