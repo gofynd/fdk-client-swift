@@ -7,22 +7,22 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class PaymentMethod: Codable {
+        public var mode: String
+
         public var paymentMeta: PaymentMeta
 
         public var amount: Double?
-
-        public var mode: String
 
         public var payment: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
+            case mode
+
             case paymentMeta = "payment_meta"
 
             case amount
-
-            case mode
 
             case payment
 
@@ -30,11 +30,11 @@ public extension ApplicationClient.Cart {
         }
 
         public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentMeta: PaymentMeta) {
+            self.mode = mode
+
             self.paymentMeta = paymentMeta
 
             self.amount = amount
-
-            self.mode = mode
 
             self.payment = payment
 
@@ -43,6 +43,8 @@ public extension ApplicationClient.Cart {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            mode = try container.decode(String.self, forKey: .mode)
 
             paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
 
@@ -53,8 +55,6 @@ public extension ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mode = try container.decode(String.self, forKey: .mode)
 
             do {
                 payment = try container.decode(String.self, forKey: .payment)
@@ -76,11 +76,11 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(mode, forKey: .mode)
+
             try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
 
             try? container.encode(amount, forKey: .amount)
-
-            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(payment, forKey: .payment)
 

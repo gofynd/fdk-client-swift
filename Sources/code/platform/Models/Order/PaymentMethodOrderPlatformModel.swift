@@ -15,13 +15,13 @@ public extension PlatformClient.Order {
 
         public var meta: [String: Any]?
 
-        public var refundBy: String
-
-        public var mode: String
-
         public var collectBy: String
 
         public var transactionData: [String: Any]?
+
+        public var mode: String
+
+        public var refundBy: String
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -30,13 +30,13 @@ public extension PlatformClient.Order {
 
             case meta
 
-            case refundBy = "refund_by"
-
-            case mode
-
             case collectBy = "collect_by"
 
             case transactionData = "transaction_data"
+
+            case mode
+
+            case refundBy = "refund_by"
         }
 
         public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
@@ -46,13 +46,13 @@ public extension PlatformClient.Order {
 
             self.meta = meta
 
-            self.refundBy = refundBy
-
-            self.mode = mode
-
             self.collectBy = collectBy
 
             self.transactionData = transactionData
+
+            self.mode = mode
+
+            self.refundBy = refundBy
         }
 
         required public init(from decoder: Decoder) throws {
@@ -70,10 +70,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            refundBy = try container.decode(String.self, forKey: .refundBy)
-
-            mode = try container.decode(String.self, forKey: .mode)
-
             collectBy = try container.decode(String.self, forKey: .collectBy)
 
             do {
@@ -83,6 +79,10 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mode = try container.decode(String.self, forKey: .mode)
+
+            refundBy = try container.decode(String.self, forKey: .refundBy)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,13 +94,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
-
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
             try? container.encodeIfPresent(transactionData, forKey: .transactionData)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
         }
     }
 }
@@ -118,13 +118,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var meta: [String: Any]?
 
-        public var refundBy: String
-
-        public var mode: String
-
         public var collectBy: String
 
         public var transactionData: [String: Any]?
+
+        public var mode: String
+
+        public var refundBy: String
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -133,13 +133,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case meta
 
-            case refundBy = "refund_by"
-
-            case mode
-
             case collectBy = "collect_by"
 
             case transactionData = "transaction_data"
+
+            case mode
+
+            case refundBy = "refund_by"
         }
 
         public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
@@ -149,13 +149,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.meta = meta
 
-            self.refundBy = refundBy
-
-            self.mode = mode
-
             self.collectBy = collectBy
 
             self.transactionData = transactionData
+
+            self.mode = mode
+
+            self.refundBy = refundBy
         }
 
         required public init(from decoder: Decoder) throws {
@@ -173,10 +173,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            refundBy = try container.decode(String.self, forKey: .refundBy)
-
-            mode = try container.decode(String.self, forKey: .mode)
-
             collectBy = try container.decode(String.self, forKey: .collectBy)
 
             do {
@@ -186,6 +182,10 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mode = try container.decode(String.self, forKey: .mode)
+
+            refundBy = try container.decode(String.self, forKey: .refundBy)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -197,13 +197,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
-
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
             try? container.encodeIfPresent(transactionData, forKey: .transactionData)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
         }
     }
 }

@@ -1018,6 +1018,7 @@ public extension ApplicationClient {
         public func getCollections(
             pageNo: Int?,
             pageSize: Int?,
+            q: String?,
             tag: [String]?,
 
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
@@ -1030,6 +1031,10 @@ public extension ApplicationClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
+            }
+
+            if let value = q {
+                xQuery["q"] = value
             }
 
             if let value = tag {
@@ -1074,6 +1079,7 @@ public extension ApplicationClient {
          **/
         public func getCollectionsPaginator(
             pageSize: Int?,
+            q: String?,
             tag: [String]?
 
         ) -> Paginator<GetCollectionListingResponse> {
@@ -1085,6 +1091,7 @@ public extension ApplicationClient {
 
                     pageSize: paginator.pageSize,
 
+                    q: q,
                     tag: tag
                 ) { response, error in
                     if let response = response {

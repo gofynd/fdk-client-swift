@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var dpId: Int
 
-        public var qcRequired: String
-
         public var orderType: String
+
+        public var qcRequired: String
 
         public enum CodingKeys: String, CodingKey {
             case shipmentIds = "shipment_ids"
 
             case dpId = "dp_id"
 
-            case qcRequired = "qc_required"
-
             case orderType = "order_type"
+
+            case qcRequired = "qc_required"
         }
 
         public init(dpId: Int, orderType: String, qcRequired: String, shipmentIds: [String]? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.dpId = dpId
 
-            self.qcRequired = qcRequired
-
             self.orderType = orderType
+
+            self.qcRequired = qcRequired
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
 
             dpId = try container.decode(Int.self, forKey: .dpId)
 
-            qcRequired = try container.decode(String.self, forKey: .qcRequired)
-
             orderType = try container.decode(String.self, forKey: .orderType)
+
+            qcRequired = try container.decode(String.self, forKey: .qcRequired)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(dpId, forKey: .dpId)
 
-            try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
-
             try? container.encodeIfPresent(orderType, forKey: .orderType)
+
+            try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var dpId: Int
 
-        public var qcRequired: String
-
         public var orderType: String
+
+        public var qcRequired: String
 
         public enum CodingKeys: String, CodingKey {
             case shipmentIds = "shipment_ids"
 
             case dpId = "dp_id"
 
-            case qcRequired = "qc_required"
-
             case orderType = "order_type"
+
+            case qcRequired = "qc_required"
         }
 
         public init(dpId: Int, orderType: String, qcRequired: String, shipmentIds: [String]? = nil) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.dpId = dpId
 
-            self.qcRequired = qcRequired
-
             self.orderType = orderType
+
+            self.qcRequired = qcRequired
         }
 
         required public init(from decoder: Decoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             dpId = try container.decode(Int.self, forKey: .dpId)
 
-            qcRequired = try container.decode(String.self, forKey: .qcRequired)
-
             orderType = try container.decode(String.self, forKey: .orderType)
+
+            qcRequired = try container.decode(String.self, forKey: .qcRequired)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(dpId, forKey: .dpId)
 
-            try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
-
             try? container.encodeIfPresent(orderType, forKey: .orderType)
+
+            try? container.encodeIfPresent(qcRequired, forKey: .qcRequired)
         }
     }
 }
