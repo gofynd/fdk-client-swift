@@ -7,27 +7,27 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class ArticlePriceInfo: Codable {
-        public var base: BasePriceSchema?
+        public var converted: BasePrice?
 
-        public var converted: BasePriceSchema?
+        public var base: BasePrice?
 
         public enum CodingKeys: String, CodingKey {
-            case base
-
             case converted
+
+            case base
         }
 
-        public init(base: BasePriceSchema? = nil, converted: BasePriceSchema? = nil) {
-            self.base = base
-
+        public init(base: BasePrice? = nil, converted: BasePrice? = nil) {
             self.converted = converted
+
+            self.base = base
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                base = try container.decode(BasePriceSchema.self, forKey: .base)
+                converted = try container.decode(BasePrice.self, forKey: .converted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                converted = try container.decode(BasePriceSchema.self, forKey: .converted)
+                base = try container.decode(BasePrice.self, forKey: .base)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(base, forKey: .base)
-
             try? container.encodeIfPresent(converted, forKey: .converted)
+
+            try? container.encodeIfPresent(base, forKey: .base)
         }
     }
 }

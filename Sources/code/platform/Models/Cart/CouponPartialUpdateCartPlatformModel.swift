@@ -9,27 +9,27 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CouponPartialUpdate: Codable {
+        public var schedule: CouponSchedule?
+
         public var archive: Bool?
 
-        public var schedule: CouponScheduleSchema?
-
         public enum CodingKeys: String, CodingKey {
-            case archive
-
             case schedule
+
+            case archive
         }
 
-        public init(archive: Bool? = nil, schedule: CouponScheduleSchema? = nil) {
-            self.archive = archive
-
+        public init(archive: Bool? = nil, schedule: CouponSchedule? = nil) {
             self.schedule = schedule
+
+            self.archive = archive
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                archive = try container.decode(Bool.self, forKey: .archive)
+                schedule = try container.decode(CouponSchedule.self, forKey: .schedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                schedule = try container.decode(CouponScheduleSchema.self, forKey: .schedule)
+                archive = try container.decode(Bool.self, forKey: .archive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(archive, forKey: .archive)
-
             try? container.encodeIfPresent(schedule, forKey: .schedule)
+
+            try? container.encodeIfPresent(archive, forKey: .archive)
         }
     }
 }

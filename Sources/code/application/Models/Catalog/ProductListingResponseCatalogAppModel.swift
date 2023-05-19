@@ -9,18 +9,18 @@ public extension ApplicationClient.Catalog {
     class ProductListingResponse: Codable {
         public var items: [ProductListingDetail]?
 
-        public var sortOn: [ProductSortOn]?
-
         public var page: Page
+
+        public var sortOn: [ProductSortOn]?
 
         public var filters: [ProductFilters]?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case sortOn = "sort_on"
-
             case page
+
+            case sortOn = "sort_on"
 
             case filters
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Catalog {
         public init(filters: [ProductFilters]? = nil, items: [ProductListingDetail]? = nil, page: Page, sortOn: [ProductSortOn]? = nil) {
             self.items = items
 
-            self.sortOn = sortOn
-
             self.page = page
+
+            self.sortOn = sortOn
 
             self.filters = filters
         }
@@ -46,6 +46,8 @@ public extension ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            page = try container.decode(Page.self, forKey: .page)
+
             do {
                 sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
 
@@ -53,8 +55,6 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            page = try container.decode(Page.self, forKey: .page)
 
             do {
                 filters = try container.decode([ProductFilters].self, forKey: .filters)
@@ -70,9 +70,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(sortOn, forKey: .sortOn)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
         }

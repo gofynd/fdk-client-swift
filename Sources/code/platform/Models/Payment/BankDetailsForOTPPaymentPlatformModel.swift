@@ -13,9 +13,9 @@ public extension PlatformClient.Payment {
 
         public var accountHolder: String
 
-        public var ifscCode: String
-
         public var accountNo: String
+
+        public var ifscCode: String
 
         public var branchName: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Payment {
 
             case accountHolder = "account_holder"
 
-            case ifscCode = "ifsc_code"
-
             case accountNo = "account_no"
+
+            case ifscCode = "ifsc_code"
 
             case branchName = "branch_name"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             self.accountHolder = accountHolder
 
-            self.ifscCode = ifscCode
-
             self.accountNo = accountNo
+
+            self.ifscCode = ifscCode
 
             self.branchName = branchName
         }
@@ -50,9 +50,9 @@ public extension PlatformClient.Payment {
 
             accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
             accountNo = try container.decode(String.self, forKey: .accountNo)
+
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
             branchName = try container.decode(String.self, forKey: .branchName)
         }
@@ -64,9 +64,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
-            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+
+            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
         }
@@ -84,9 +84,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var accountHolder: String
 
-        public var ifscCode: String
-
         public var accountNo: String
+
+        public var ifscCode: String
 
         public var branchName: String
 
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case accountHolder = "account_holder"
 
-            case ifscCode = "ifsc_code"
-
             case accountNo = "account_no"
+
+            case ifscCode = "ifsc_code"
 
             case branchName = "branch_name"
         }
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.accountHolder = accountHolder
 
-            self.ifscCode = ifscCode
-
             self.accountNo = accountNo
+
+            self.ifscCode = ifscCode
 
             self.branchName = branchName
         }
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
-            ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
             accountNo = try container.decode(String.self, forKey: .accountNo)
+
+            ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
             branchName = try container.decode(String.self, forKey: .branchName)
         }
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
-            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
+
+            try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
             try? container.encodeIfPresent(branchName, forKey: .branchName)
         }

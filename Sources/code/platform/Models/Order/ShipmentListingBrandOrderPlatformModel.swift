@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class ShipmentListingBrand: Codable {
         public var name: String?
 
-        public var logo: String?
+        public var logoBase64: String?
 
         public var createdOn: String?
 
-        public var logoBase64: String?
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case logo
+            case logoBase64 = "logo_base64"
 
             case createdOn = "created_on"
 
-            case logoBase64 = "logo_base64"
+            case logo
         }
 
         public init(createdOn: String? = nil, logo: String? = nil, logoBase64: String? = nil, name: String? = nil) {
             self.name = name
 
-            self.logo = logo
+            self.logoBase64 = logoBase64
 
             self.createdOn = createdOn
 
-            self.logoBase64 = logoBase64
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                logoBase64 = try container.decode(String.self, forKey: .logoBase64)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                logoBase64 = try container.decode(String.self, forKey: .logoBase64)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentListingBrand: Codable {
         public var name: String?
 
-        public var logo: String?
+        public var logoBase64: String?
 
         public var createdOn: String?
 
-        public var logoBase64: String?
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case logo
+            case logoBase64 = "logo_base64"
 
             case createdOn = "created_on"
 
-            case logoBase64 = "logo_base64"
+            case logo
         }
 
         public init(createdOn: String? = nil, logo: String? = nil, logoBase64: String? = nil, name: String? = nil) {
             self.name = name
 
-            self.logo = logo
+            self.logoBase64 = logoBase64
 
             self.createdOn = createdOn
 
-            self.logoBase64 = logoBase64
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                logoBase64 = try container.decode(String.self, forKey: .logoBase64)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                logoBase64 = try container.decode(String.self, forKey: .logoBase64)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

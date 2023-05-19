@@ -9,19 +9,19 @@ public extension ApplicationClient.Payment {
     class AggregatorConfigDetail: Codable {
         public var merchantKey: String?
 
-        public var merchantId: String?
+        public var pin: String?
 
         public var secret: String
 
         public var verifyApi: String?
 
-        public var pin: String?
-
         public var api: String?
+
+        public var sdk: Bool?
 
         public var configType: String
 
-        public var sdk: Bool?
+        public var merchantId: String?
 
         public var userId: String?
 
@@ -30,19 +30,19 @@ public extension ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case merchantKey = "merchant_key"
 
-            case merchantId = "merchant_id"
+            case pin
 
             case secret
 
             case verifyApi = "verify_api"
 
-            case pin
-
             case api
+
+            case sdk
 
             case configType = "config_type"
 
-            case sdk
+            case merchantId = "merchant_id"
 
             case userId = "user_id"
 
@@ -52,19 +52,19 @@ public extension ApplicationClient.Payment {
         public init(api: String? = nil, configType: String, key: String, merchantId: String? = nil, merchantKey: String? = nil, pin: String? = nil, sdk: Bool? = nil, secret: String, userId: String? = nil, verifyApi: String? = nil) {
             self.merchantKey = merchantKey
 
-            self.merchantId = merchantId
+            self.pin = pin
 
             self.secret = secret
 
             self.verifyApi = verifyApi
 
-            self.pin = pin
-
             self.api = api
+
+            self.sdk = sdk
 
             self.configType = configType
 
-            self.sdk = sdk
+            self.merchantId = merchantId
 
             self.userId = userId
 
@@ -83,7 +83,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                merchantId = try container.decode(String.self, forKey: .merchantId)
+                pin = try container.decode(String.self, forKey: .pin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,7 +101,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                pin = try container.decode(String.self, forKey: .pin)
+                api = try container.decode(String.self, forKey: .api)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,7 +109,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                api = try container.decode(String.self, forKey: .api)
+                sdk = try container.decode(Bool.self, forKey: .sdk)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,7 +119,7 @@ public extension ApplicationClient.Payment {
             configType = try container.decode(String.self, forKey: .configType)
 
             do {
-                sdk = try container.decode(Bool.self, forKey: .sdk)
+                merchantId = try container.decode(String.self, forKey: .merchantId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,19 +142,19 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(merchantKey, forKey: .merchantKey)
 
-            try? container.encode(merchantId, forKey: .merchantId)
+            try? container.encode(pin, forKey: .pin)
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 
             try? container.encode(verifyApi, forKey: .verifyApi)
 
-            try? container.encode(pin, forKey: .pin)
-
             try? container.encode(api, forKey: .api)
+
+            try? container.encode(sdk, forKey: .sdk)
 
             try? container.encodeIfPresent(configType, forKey: .configType)
 
-            try? container.encode(sdk, forKey: .sdk)
+            try? container.encode(merchantId, forKey: .merchantId)
 
             try? container.encode(userId, forKey: .userId)
 

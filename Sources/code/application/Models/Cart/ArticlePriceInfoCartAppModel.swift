@@ -7,9 +7,9 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class ArticlePriceInfo: Codable {
-        public var converted: BasePriceSchema?
+        public var converted: BasePrice?
 
-        public var base: BasePriceSchema?
+        public var base: BasePrice?
 
         public enum CodingKeys: String, CodingKey {
             case converted
@@ -17,7 +17,7 @@ public extension ApplicationClient.Cart {
             case base
         }
 
-        public init(base: BasePriceSchema? = nil, converted: BasePriceSchema? = nil) {
+        public init(base: BasePrice? = nil, converted: BasePrice? = nil) {
             self.converted = converted
 
             self.base = base
@@ -27,7 +27,7 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                converted = try container.decode(BasePriceSchema.self, forKey: .converted)
+                converted = try container.decode(BasePrice.self, forKey: .converted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                base = try container.decode(BasePriceSchema.self, forKey: .base)
+                base = try container.decode(BasePrice.self, forKey: .base)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -620,7 +620,7 @@ public extension ApplicationClient {
             i: Bool?,
             b: Bool?,
             buyNow: Bool?,
-            body: RewardPointRequestSchema,
+            body: RewardPointRequest,
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
@@ -1073,7 +1073,7 @@ public extension ApplicationClient {
             aggregatorName: String?,
             merchantCode: String?,
 
-            onResponse: @escaping (_ response: PaymentCouponValidateSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -1123,7 +1123,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(PaymentCouponValidateSchema.self, from: data)
+                        let response = Utility.decode(PaymentCouponValidate.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1293,7 +1293,7 @@ public extension ApplicationClient {
         public func checkoutCart(
             id: String?,
             body: CartPosCheckoutDetailRequest,
-            onResponse: @escaping (_ response: CartCheckoutResponseSchema?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -1319,7 +1319,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CartCheckoutResponseSchema.self, from: data)
+                        let response = Utility.decode(CartCheckoutResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

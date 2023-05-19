@@ -7,13 +7,13 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class BulkPriceResponse: Codable {
-        public var data: [BulkPriceOfferSchema]?
+        public var data: [BulkPriceOffer]?
 
         public enum CodingKeys: String, CodingKey {
             case data
         }
 
-        public init(data: [BulkPriceOfferSchema]? = nil) {
+        public init(data: [BulkPriceOffer]? = nil) {
             self.data = data
         }
 
@@ -21,7 +21,7 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([BulkPriceOfferSchema].self, forKey: .data)
+                data = try container.decode([BulkPriceOffer].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

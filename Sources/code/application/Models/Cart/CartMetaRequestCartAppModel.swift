@@ -7,13 +7,13 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class CartMetaRequest: Codable {
-        public var giftDetails: ArticleGiftDetailSchema?
+        public var giftDetails: ArticleGiftDetail?
 
         public var comment: String?
 
-        public var checkoutMode: String?
-
         public var pickUpCustomerDetails: [String: Any]?
+
+        public var checkoutMode: String?
 
         public var gstin: String?
 
@@ -22,21 +22,21 @@ public extension ApplicationClient.Cart {
 
             case comment
 
-            case checkoutMode = "checkout_mode"
-
             case pickUpCustomerDetails = "pick_up_customer_details"
+
+            case checkoutMode = "checkout_mode"
 
             case gstin
         }
 
-        public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: ArticleGiftDetailSchema? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
+        public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: ArticleGiftDetail? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
             self.giftDetails = giftDetails
 
             self.comment = comment
 
-            self.checkoutMode = checkoutMode
-
             self.pickUpCustomerDetails = pickUpCustomerDetails
+
+            self.checkoutMode = checkoutMode
 
             self.gstin = gstin
         }
@@ -45,7 +45,7 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                giftDetails = try container.decode(ArticleGiftDetailSchema.self, forKey: .giftDetails)
+                giftDetails = try container.decode(ArticleGiftDetail.self, forKey: .giftDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(comment, forKey: .comment)
 
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
+
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
         }
