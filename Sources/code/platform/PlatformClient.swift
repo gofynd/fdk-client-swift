@@ -5425,36 +5425,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getCampaigns
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getCampaignsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<Campaigns> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Campaigns>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getCampaigns(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Create campaign
              * Description: Create campaign
              **/
@@ -5661,36 +5631,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getAudiences
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getAudiencesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<Audiences> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Audiences>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAudiences(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -5942,36 +5882,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getEmailProviders
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getEmailProvidersPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<EmailProviders> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EmailProviders>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getEmailProviders(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Create email provider
              * Description: Create email provider
              **/
@@ -6143,36 +6053,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getEmailTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getEmailTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<EmailTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EmailTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getEmailTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Create email template
              * Description: Create email template
              **/
@@ -6262,36 +6142,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getSystemEmailTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSystemEmailTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SystemEmailTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SystemEmailTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSystemEmailTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -6544,36 +6394,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getEventSubscriptions
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getEventSubscriptionsPaginator(
-                pageSize: Int?,
-                populate: String?
-
-            ) -> Paginator<EventSubscriptions> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EventSubscriptions>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getEventSubscriptions(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        populate: populate
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Get jobs
              * Description: Get jobs
              **/
@@ -6625,36 +6445,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getJobs
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getJobsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<Jobs> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Jobs>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getJobs(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -6752,36 +6542,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getJobLogs
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getJobLogsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<JobLogs> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<JobLogs>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getJobLogs(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Get communication logs
              * Description: Get communication logs
              **/
@@ -6838,38 +6598,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getCommunicationLogs
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getCommunicationLogsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?,
-                query: [String: Any]?
-
-            ) -> Paginator<Logs> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Logs>(pageSize: pageSize, type: "cursor")
-                paginator.onPage = {
-                    self.getCommunicationLogs(
-                        pageId: paginator.pageId,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort,
-                        query: query
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageId = response.page?.nextId
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7001,36 +6729,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getSmsProviders
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSmsProvidersPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SmsProviders> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SmsProviders>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSmsProviders(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7202,36 +6900,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getSmsTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSmsTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SmsTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SmsTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSmsTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7446,36 +7114,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getSystemSystemTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSystemSystemTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SystemSmsTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SystemSmsTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSystemSystemTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Get voice providers
              * Description: Get voice providers
              **/
@@ -7527,36 +7165,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getVoiceProviders
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getVoiceProvidersPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<VoiceProviders> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<VoiceProviders>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getVoiceProviders(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7689,36 +7297,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getVoiceTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getVoiceTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<VoiceTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<VoiceTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getVoiceTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7929,36 +7507,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getSystemVoiceTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSystemVoiceTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SystemVoiceTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SystemVoiceTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSystemVoiceTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
         }
 

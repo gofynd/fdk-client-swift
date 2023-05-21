@@ -11,36 +11,36 @@ public extension PlatformClient.Payment {
     class PaymentGatewayConfig: Codable {
         public var isActive: Bool?
 
-        public var secret: String
+        public var configType: String
 
         public var key: String
 
-        public var configType: String
-
         public var merchantSalt: String
+
+        public var secret: String
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case secret
+            case configType = "config_type"
 
             case key
 
-            case configType = "config_type"
-
             case merchantSalt = "merchant_salt"
+
+            case secret
         }
 
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.isActive = isActive
 
-            self.secret = secret
+            self.configType = configType
 
             self.key = key
 
-            self.configType = configType
-
             self.merchantSalt = merchantSalt
+
+            self.secret = secret
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,13 +54,13 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            secret = try container.decode(String.self, forKey: .secret)
+            configType = try container.decode(String.self, forKey: .configType)
 
             key = try container.decode(String.self, forKey: .key)
 
-            configType = try container.decode(String.self, forKey: .configType)
-
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
+
+            secret = try container.decode(String.self, forKey: .secret)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,13 +68,13 @@ public extension PlatformClient.Payment {
 
             try? container.encode(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(secret, forKey: .secret)
+            try? container.encodeIfPresent(configType, forKey: .configType)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(configType, forKey: .configType)
-
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
         }
     }
 }
@@ -88,36 +88,36 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentGatewayConfig: Codable {
         public var isActive: Bool?
 
-        public var secret: String
+        public var configType: String
 
         public var key: String
 
-        public var configType: String
-
         public var merchantSalt: String
+
+        public var secret: String
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case secret
+            case configType = "config_type"
 
             case key
 
-            case configType = "config_type"
-
             case merchantSalt = "merchant_salt"
+
+            case secret
         }
 
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.isActive = isActive
 
-            self.secret = secret
+            self.configType = configType
 
             self.key = key
 
-            self.configType = configType
-
             self.merchantSalt = merchantSalt
+
+            self.secret = secret
         }
 
         required public init(from decoder: Decoder) throws {
@@ -131,13 +131,13 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            secret = try container.decode(String.self, forKey: .secret)
+            configType = try container.decode(String.self, forKey: .configType)
 
             key = try container.decode(String.self, forKey: .key)
 
-            configType = try container.decode(String.self, forKey: .configType)
-
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
+
+            secret = try container.decode(String.self, forKey: .secret)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -145,13 +145,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(secret, forKey: .secret)
+            try? container.encodeIfPresent(configType, forKey: .configType)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(configType, forKey: .configType)
-
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
         }
     }
 }

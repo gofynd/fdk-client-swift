@@ -9,36 +9,36 @@ public extension PlatformClient.Order {
      */
 
     class AffiliateInventoryConfig: Codable {
-        public var inventory: AffiliateInventoryStoreConfig?
+        public var logistics: AffiliateInventoryLogisticsConfig?
 
         public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
 
-        public var logistics: AffiliateInventoryLogisticsConfig?
-
         public var order: AffiliateInventoryOrderConfig?
+
+        public var inventory: AffiliateInventoryStoreConfig?
 
         public var payment: AffiliateInventoryPaymentConfig?
 
         public enum CodingKeys: String, CodingKey {
-            case inventory
+            case logistics
 
             case articleAssignment = "article_assignment"
 
-            case logistics
-
             case order
+
+            case inventory
 
             case payment
         }
 
         public init(articleAssignment: AffiliateInventoryArticleAssignmentConfig? = nil, inventory: AffiliateInventoryStoreConfig? = nil, logistics: AffiliateInventoryLogisticsConfig? = nil, order: AffiliateInventoryOrderConfig? = nil, payment: AffiliateInventoryPaymentConfig? = nil) {
-            self.inventory = inventory
+            self.logistics = logistics
 
             self.articleAssignment = articleAssignment
 
-            self.logistics = logistics
-
             self.order = order
+
+            self.inventory = inventory
 
             self.payment = payment
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
+                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
+                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
+            try? container.encodeIfPresent(logistics, forKey: .logistics)
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
-            try? container.encodeIfPresent(logistics, forKey: .logistics)
-
             try? container.encodeIfPresent(order, forKey: .order)
+
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
 
             try? container.encodeIfPresent(payment, forKey: .payment)
         }
@@ -110,36 +110,36 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AffiliateInventoryConfig: Codable {
-        public var inventory: AffiliateInventoryStoreConfig?
+        public var logistics: AffiliateInventoryLogisticsConfig?
 
         public var articleAssignment: AffiliateInventoryArticleAssignmentConfig?
 
-        public var logistics: AffiliateInventoryLogisticsConfig?
-
         public var order: AffiliateInventoryOrderConfig?
+
+        public var inventory: AffiliateInventoryStoreConfig?
 
         public var payment: AffiliateInventoryPaymentConfig?
 
         public enum CodingKeys: String, CodingKey {
-            case inventory
+            case logistics
 
             case articleAssignment = "article_assignment"
 
-            case logistics
-
             case order
+
+            case inventory
 
             case payment
         }
 
         public init(articleAssignment: AffiliateInventoryArticleAssignmentConfig? = nil, inventory: AffiliateInventoryStoreConfig? = nil, logistics: AffiliateInventoryLogisticsConfig? = nil, order: AffiliateInventoryOrderConfig? = nil, payment: AffiliateInventoryPaymentConfig? = nil) {
-            self.inventory = inventory
+            self.logistics = logistics
 
             self.articleAssignment = articleAssignment
 
-            self.logistics = logistics
-
             self.order = order
+
+            self.inventory = inventory
 
             self.payment = payment
         }
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
+                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                logistics = try container.decode(AffiliateInventoryLogisticsConfig.self, forKey: .logistics)
+                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                order = try container.decode(AffiliateInventoryOrderConfig.self, forKey: .order)
+                inventory = try container.decode(AffiliateInventoryStoreConfig.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,13 +191,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
+            try? container.encodeIfPresent(logistics, forKey: .logistics)
 
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
-            try? container.encodeIfPresent(logistics, forKey: .logistics)
-
             try? container.encodeIfPresent(order, forKey: .order)
+
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
 
             try? container.encodeIfPresent(payment, forKey: .payment)
         }

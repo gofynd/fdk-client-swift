@@ -13,18 +13,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var offer: [String: Any]?
 
-        public var rawOffer: [String: Any]?
-
         public var itemCriteria: [String: Any]?
+
+        public var rawOffer: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case matchedBuyRules = "matched_buy_rules"
 
             case offer
 
-            case rawOffer = "raw_offer"
-
             case itemCriteria = "item_criteria"
+
+            case rawOffer = "raw_offer"
         }
 
         public init(itemCriteria: [String: Any]? = nil, matchedBuyRules: [String]? = nil, offer: [String: Any]? = nil, rawOffer: [String: Any]? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.offer = offer
 
-            self.rawOffer = rawOffer
-
             self.itemCriteria = itemCriteria
+
+            self.rawOffer = rawOffer
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                rawOffer = try container.decode([String: Any].self, forKey: .rawOffer)
+                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                itemCriteria = try container.decode([String: Any].self, forKey: .itemCriteria)
+                rawOffer = try container.decode([String: Any].self, forKey: .rawOffer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(offer, forKey: .offer)
 
-            try? container.encodeIfPresent(rawOffer, forKey: .rawOffer)
-
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
+
+            try? container.encodeIfPresent(rawOffer, forKey: .rawOffer)
         }
     }
 }

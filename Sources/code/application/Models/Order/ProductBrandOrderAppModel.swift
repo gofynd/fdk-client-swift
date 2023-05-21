@@ -7,27 +7,27 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class ProductBrand: Codable {
-        public var id: Int?
-
         public var brandName: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case id
+        public var id: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case brandName = "brand_name"
+
+            case id
         }
 
         public init(brandName: String? = nil, id: Int? = nil) {
-            self.id = id
-
             self.brandName = brandName
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                brandName = try container.decode(String.self, forKey: .brandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                brandName = try container.decode(String.self, forKey: .brandName)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

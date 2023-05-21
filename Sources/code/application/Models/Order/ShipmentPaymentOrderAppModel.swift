@@ -11,26 +11,26 @@ public extension ApplicationClient.Order {
 
         public var mode: String?
 
-        public var logo: String?
+        public var mop: String?
 
         public var paymentMode: String?
 
         public var displayName: String?
 
-        public var mop: String?
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
             case mode
 
-            case logo
+            case mop
 
             case paymentMode = "payment_mode"
 
             case displayName = "display_name"
 
-            case mop
+            case logo
         }
 
         public init(displayName: String? = nil, logo: String? = nil, mode: String? = nil, mop: String? = nil, paymentMode: String? = nil, status: String? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient.Order {
 
             self.mode = mode
 
-            self.logo = logo
+            self.mop = mop
 
             self.paymentMode = paymentMode
 
             self.displayName = displayName
 
-            self.mop = mop
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,7 +67,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                mop = try container.decode(String.self, forKey: .mop)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                mop = try container.decode(String.self, forKey: .mop)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(mop, forKey: .mop)
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(mop, forKey: .mop)
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }
