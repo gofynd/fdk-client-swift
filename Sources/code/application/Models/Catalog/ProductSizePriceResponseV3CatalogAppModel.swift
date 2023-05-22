@@ -7,213 +7,141 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ProductSizePriceResponseV3: Codable {
-        public var articleId: String?
-
-        public var pincode: Int?
-
-        public var discount: String?
-
-        public var price: ProductStockPriceV3?
-
-        public var articleAssignment: ArticleAssignmentV3?
-
-        public var pricePerPiece: ProductStockPriceV3?
-
-        public var set: ProductSetV3?
-
-        public var strategyWiseListing: [StrategyWiseListingSchemaV3]?
-
-        public var sellerCount: Int?
-
-        public var pricePerUnit: ProductStockUnitPriceV3?
+        public var longLat: [Double]?
 
         public var returnConfig: ReturnConfigSchemaV3?
 
-        public var seller: SellerV3?
-
         public var itemType: String?
 
-        public var marketplaceAttributes: [MarketPlaceSttributesSchemaV3]?
+        public var store: StoreV3?
 
-        public var longLat: [Double]?
+        public var set: ProductSetV3?
+
+        public var seller: SellerV3?
+
+        public var specialBadge: String?
+
+        public var pricePerUnit: ProductStockUnitPriceV3?
+
+        public var price: ProductStockPriceV3?
 
         public var isGift: Bool?
 
-        public var quantity: Int?
+        public var pincode: Int?
+
+        public var sellerCount: Int?
 
         public var groupedAttributes: [SellerGroupAttributes]?
 
         public var isCod: Bool?
 
-        public var store: StoreV3?
+        public var quantity: Int?
 
-        public var specialBadge: String?
+        public var pricePerPiece: ProductStockPriceV3?
+
+        public var articleId: String?
+
+        public var marketplaceAttributes: [MarketPlaceSttributesSchemaV3]?
+
+        public var articleAssignment: ArticleAssignmentV3?
+
+        public var strategyWiseListing: [StrategyWiseListingSchemaV3]?
+
+        public var discount: String?
 
         public enum CodingKeys: String, CodingKey {
-            case articleId = "article_id"
-
-            case pincode
-
-            case discount
-
-            case price
-
-            case articleAssignment = "article_assignment"
-
-            case pricePerPiece = "price_per_piece"
-
-            case set
-
-            case strategyWiseListing = "strategy_wise_listing"
-
-            case sellerCount = "seller_count"
-
-            case pricePerUnit = "price_per_unit"
+            case longLat = "long_lat"
 
             case returnConfig = "return_config"
 
-            case seller
-
             case itemType = "item_type"
 
-            case marketplaceAttributes = "marketplace_attributes"
+            case store
 
-            case longLat = "long_lat"
+            case set
+
+            case seller
+
+            case specialBadge = "special_badge"
+
+            case pricePerUnit = "price_per_unit"
+
+            case price
 
             case isGift = "is_gift"
 
-            case quantity
+            case pincode
+
+            case sellerCount = "seller_count"
 
             case groupedAttributes = "grouped_attributes"
 
             case isCod = "is_cod"
 
-            case store
+            case quantity
 
-            case specialBadge = "special_badge"
+            case pricePerPiece = "price_per_piece"
+
+            case articleId = "article_id"
+
+            case marketplaceAttributes = "marketplace_attributes"
+
+            case articleAssignment = "article_assignment"
+
+            case strategyWiseListing = "strategy_wise_listing"
+
+            case discount
         }
 
         public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, discount: String? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pincode: Int? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil) {
-            self.articleId = articleId
-
-            self.pincode = pincode
-
-            self.discount = discount
-
-            self.price = price
-
-            self.articleAssignment = articleAssignment
-
-            self.pricePerPiece = pricePerPiece
-
-            self.set = set
-
-            self.strategyWiseListing = strategyWiseListing
-
-            self.sellerCount = sellerCount
-
-            self.pricePerUnit = pricePerUnit
+            self.longLat = longLat
 
             self.returnConfig = returnConfig
 
-            self.seller = seller
-
             self.itemType = itemType
 
-            self.marketplaceAttributes = marketplaceAttributes
+            self.store = store
 
-            self.longLat = longLat
+            self.set = set
+
+            self.seller = seller
+
+            self.specialBadge = specialBadge
+
+            self.pricePerUnit = pricePerUnit
+
+            self.price = price
 
             self.isGift = isGift
 
-            self.quantity = quantity
+            self.pincode = pincode
+
+            self.sellerCount = sellerCount
 
             self.groupedAttributes = groupedAttributes
 
             self.isCod = isCod
 
-            self.store = store
+            self.quantity = quantity
 
-            self.specialBadge = specialBadge
+            self.pricePerPiece = pricePerPiece
+
+            self.articleId = articleId
+
+            self.marketplaceAttributes = marketplaceAttributes
+
+            self.articleAssignment = articleAssignment
+
+            self.strategyWiseListing = strategyWiseListing
+
+            self.discount = discount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discount = try container.decode(String.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                price = try container.decode(ProductStockPriceV3.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                articleAssignment = try container.decode(ArticleAssignmentV3.self, forKey: .articleAssignment)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pricePerPiece = try container.decode(ProductStockPriceV3.self, forKey: .pricePerPiece)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                set = try container.decode(ProductSetV3.self, forKey: .set)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                strategyWiseListing = try container.decode([StrategyWiseListingSchemaV3].self, forKey: .strategyWiseListing)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sellerCount = try container.decode(Int.self, forKey: .sellerCount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pricePerUnit = try container.decode(ProductStockUnitPriceV3.self, forKey: .pricePerUnit)
+                longLat = try container.decode([Double].self, forKey: .longLat)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,14 +157,6 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                seller = try container.decode(SellerV3.self, forKey: .seller)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 itemType = try container.decode(String.self, forKey: .itemType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -245,7 +165,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                marketplaceAttributes = try container.decode([MarketPlaceSttributesSchemaV3].self, forKey: .marketplaceAttributes)
+                store = try container.decode(StoreV3.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -253,7 +173,39 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                longLat = try container.decode([Double].self, forKey: .longLat)
+                set = try container.decode(ProductSetV3.self, forKey: .set)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                seller = try container.decode(SellerV3.self, forKey: .seller)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                specialBadge = try container.decode(String.self, forKey: .specialBadge)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pricePerUnit = try container.decode(ProductStockUnitPriceV3.self, forKey: .pricePerUnit)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(ProductStockPriceV3.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -269,7 +221,15 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                pincode = try container.decode(Int.self, forKey: .pincode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellerCount = try container.decode(Int.self, forKey: .sellerCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -293,7 +253,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                store = try container.decode(StoreV3.self, forKey: .store)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -301,7 +261,47 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                specialBadge = try container.decode(String.self, forKey: .specialBadge)
+                pricePerPiece = try container.decode(ProductStockPriceV3.self, forKey: .pricePerPiece)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                articleId = try container.decode(String.self, forKey: .articleId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                marketplaceAttributes = try container.decode([MarketPlaceSttributesSchemaV3].self, forKey: .marketplaceAttributes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                articleAssignment = try container.decode(ArticleAssignmentV3.self, forKey: .articleAssignment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                strategyWiseListing = try container.decode([StrategyWiseListingSchemaV3].self, forKey: .strategyWiseListing)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discount = try container.decode(String.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -312,47 +312,47 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
-
-            try? container.encodeIfPresent(pricePerPiece, forKey: .pricePerPiece)
-
-            try? container.encodeIfPresent(set, forKey: .set)
-
-            try? container.encodeIfPresent(strategyWiseListing, forKey: .strategyWiseListing)
-
-            try? container.encodeIfPresent(sellerCount, forKey: .sellerCount)
-
-            try? container.encodeIfPresent(pricePerUnit, forKey: .pricePerUnit)
+            try? container.encodeIfPresent(longLat, forKey: .longLat)
 
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
 
-            try? container.encodeIfPresent(seller, forKey: .seller)
-
             try? container.encodeIfPresent(itemType, forKey: .itemType)
 
-            try? container.encodeIfPresent(marketplaceAttributes, forKey: .marketplaceAttributes)
+            try? container.encodeIfPresent(store, forKey: .store)
 
-            try? container.encodeIfPresent(longLat, forKey: .longLat)
+            try? container.encodeIfPresent(set, forKey: .set)
+
+            try? container.encodeIfPresent(seller, forKey: .seller)
+
+            try? container.encodeIfPresent(specialBadge, forKey: .specialBadge)
+
+            try? container.encodeIfPresent(pricePerUnit, forKey: .pricePerUnit)
+
+            try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(isGift, forKey: .isGift)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(sellerCount, forKey: .sellerCount)
 
             try? container.encodeIfPresent(groupedAttributes, forKey: .groupedAttributes)
 
             try? container.encodeIfPresent(isCod, forKey: .isCod)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(specialBadge, forKey: .specialBadge)
+            try? container.encodeIfPresent(pricePerPiece, forKey: .pricePerPiece)
+
+            try? container.encodeIfPresent(articleId, forKey: .articleId)
+
+            try? container.encodeIfPresent(marketplaceAttributes, forKey: .marketplaceAttributes)
+
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+
+            try? container.encodeIfPresent(strategyWiseListing, forKey: .strategyWiseListing)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
         }
     }
 }

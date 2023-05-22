@@ -11,24 +11,28 @@ public extension PlatformClient.Order {
     class SmsDataPayload: Codable {
         public var customerName: String
 
+        public var shipmentId: Int
+
+        public var paymentMode: String
+
         public var message: String
 
         public var phoneNumber: Int
 
         public var countryCode: String
 
-        public var amountPaid: Int
-
-        public var paymentMode: String
-
-        public var shipmentId: Int
-
         public var brandName: String
+
+        public var amountPaid: Int
 
         public var orderId: String
 
         public enum CodingKeys: String, CodingKey {
             case customerName = "customer_name"
+
+            case shipmentId = "shipment_id"
+
+            case paymentMode = "payment_mode"
 
             case message
 
@@ -36,13 +40,9 @@ public extension PlatformClient.Order {
 
             case countryCode = "country_code"
 
-            case amountPaid = "amount_paid"
-
-            case paymentMode = "payment_mode"
-
-            case shipmentId = "shipment_id"
-
             case brandName = "brand_name"
+
+            case amountPaid = "amount_paid"
 
             case orderId = "order_id"
         }
@@ -50,19 +50,19 @@ public extension PlatformClient.Order {
         public init(amountPaid: Int, brandName: String, countryCode: String, customerName: String, message: String, orderId: String, paymentMode: String, phoneNumber: Int, shipmentId: Int) {
             self.customerName = customerName
 
+            self.shipmentId = shipmentId
+
+            self.paymentMode = paymentMode
+
             self.message = message
 
             self.phoneNumber = phoneNumber
 
             self.countryCode = countryCode
 
-            self.amountPaid = amountPaid
-
-            self.paymentMode = paymentMode
-
-            self.shipmentId = shipmentId
-
             self.brandName = brandName
+
+            self.amountPaid = amountPaid
 
             self.orderId = orderId
         }
@@ -72,19 +72,19 @@ public extension PlatformClient.Order {
 
             customerName = try container.decode(String.self, forKey: .customerName)
 
+            shipmentId = try container.decode(Int.self, forKey: .shipmentId)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
             message = try container.decode(String.self, forKey: .message)
 
             phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
             countryCode = try container.decode(String.self, forKey: .countryCode)
 
-            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
-
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            shipmentId = try container.decode(Int.self, forKey: .shipmentId)
-
             brandName = try container.decode(String.self, forKey: .brandName)
+
+            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
             orderId = try container.decode(String.self, forKey: .orderId)
         }
@@ -94,19 +94,19 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
@@ -122,24 +122,28 @@ public extension PlatformClient.ApplicationClient.Order {
     class SmsDataPayload: Codable {
         public var customerName: String
 
+        public var shipmentId: Int
+
+        public var paymentMode: String
+
         public var message: String
 
         public var phoneNumber: Int
 
         public var countryCode: String
 
-        public var amountPaid: Int
-
-        public var paymentMode: String
-
-        public var shipmentId: Int
-
         public var brandName: String
+
+        public var amountPaid: Int
 
         public var orderId: String
 
         public enum CodingKeys: String, CodingKey {
             case customerName = "customer_name"
+
+            case shipmentId = "shipment_id"
+
+            case paymentMode = "payment_mode"
 
             case message
 
@@ -147,13 +151,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case countryCode = "country_code"
 
-            case amountPaid = "amount_paid"
-
-            case paymentMode = "payment_mode"
-
-            case shipmentId = "shipment_id"
-
             case brandName = "brand_name"
+
+            case amountPaid = "amount_paid"
 
             case orderId = "order_id"
         }
@@ -161,19 +161,19 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(amountPaid: Int, brandName: String, countryCode: String, customerName: String, message: String, orderId: String, paymentMode: String, phoneNumber: Int, shipmentId: Int) {
             self.customerName = customerName
 
+            self.shipmentId = shipmentId
+
+            self.paymentMode = paymentMode
+
             self.message = message
 
             self.phoneNumber = phoneNumber
 
             self.countryCode = countryCode
 
-            self.amountPaid = amountPaid
-
-            self.paymentMode = paymentMode
-
-            self.shipmentId = shipmentId
-
             self.brandName = brandName
+
+            self.amountPaid = amountPaid
 
             self.orderId = orderId
         }
@@ -183,19 +183,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             customerName = try container.decode(String.self, forKey: .customerName)
 
+            shipmentId = try container.decode(Int.self, forKey: .shipmentId)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
             message = try container.decode(String.self, forKey: .message)
 
             phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
             countryCode = try container.decode(String.self, forKey: .countryCode)
 
-            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
-
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            shipmentId = try container.decode(Int.self, forKey: .shipmentId)
-
             brandName = try container.decode(String.self, forKey: .brandName)
+
+            amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
             orderId = try container.decode(String.self, forKey: .orderId)
         }
@@ -205,19 +205,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
             try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
