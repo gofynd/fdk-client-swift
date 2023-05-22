@@ -13,9 +13,9 @@ public extension ApplicationClient.PosCart {
 
         public var hasNext: Bool?
 
-        public var current: Int?
-
         public var total: Int?
+
+        public var current: Int?
 
         public enum CodingKeys: String, CodingKey {
             case hasPrevious = "has_previous"
@@ -24,9 +24,9 @@ public extension ApplicationClient.PosCart {
 
             case hasNext = "has_next"
 
-            case current
-
             case total
+
+            case current
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, total: Int? = nil, totalItemCount: Int? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.PosCart {
 
             self.hasNext = hasNext
 
-            self.current = current
-
             self.total = total
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                total = try container.decode(Int.self, forKey: .total)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                total = try container.decode(Int.self, forKey: .total)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
             try? container.encodeIfPresent(total, forKey: .total)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }

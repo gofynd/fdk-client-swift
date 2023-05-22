@@ -11,18 +11,20 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PromotionSchedule: Codable {
         public var start: String
 
+        public var published: Bool
+
         public var cron: String?
 
         public var duration: Int?
 
         public var end: String?
 
-        public var published: Bool
-
         public var nextSchedule: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case start
+
+            case published
 
             case cron
 
@@ -30,21 +32,19 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case end
 
-            case published
-
             case nextSchedule = "next_schedule"
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
             self.start = start
 
+            self.published = published
+
             self.cron = cron
 
             self.duration = duration
 
             self.end = end
-
-            self.published = published
 
             self.nextSchedule = nextSchedule
         }
@@ -53,6 +53,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             start = try container.decode(String.self, forKey: .start)
+
+            published = try container.decode(Bool.self, forKey: .published)
 
             do {
                 cron = try container.decode(String.self, forKey: .cron)
@@ -78,8 +80,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            published = try container.decode(Bool.self, forKey: .published)
-
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
 
@@ -94,13 +94,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(start, forKey: .start)
 
+            try? container.encodeIfPresent(published, forKey: .published)
+
             try? container.encode(cron, forKey: .cron)
 
             try? container.encode(duration, forKey: .duration)
 
             try? container.encode(end, forKey: .end)
-
-            try? container.encodeIfPresent(published, forKey: .published)
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
         }

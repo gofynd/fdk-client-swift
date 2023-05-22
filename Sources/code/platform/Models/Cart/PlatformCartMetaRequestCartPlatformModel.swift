@@ -11,9 +11,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PlatformCartMetaRequest: Codable {
         public var comment: String?
 
-        public var gstin: String?
-
         public var panNo: String?
+
+        public var gstin: String?
 
         public var giftDetails: [String: Any]?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case comment
 
-            case gstin
-
             case panNo = "pan_no"
+
+            case gstin
 
             case giftDetails = "gift_details"
 
@@ -38,9 +38,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: [String: Any]? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
             self.comment = comment
 
-            self.gstin = gstin
-
             self.panNo = panNo
+
+            self.gstin = gstin
 
             self.giftDetails = giftDetails
 
@@ -61,7 +61,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                panNo = try container.decode(String.self, forKey: .panNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                panNo = try container.decode(String.self, forKey: .panNo)
+                gstin = try container.decode(String.self, forKey: .gstin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(comment, forKey: .comment)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
-
             try? container.encodeIfPresent(panNo, forKey: .panNo)
+
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encode(giftDetails, forKey: .giftDetails)
 

@@ -11,30 +11,30 @@ public extension PlatformClient.Payment {
     class RefundAccountResponse: Codable {
         public var message: String
 
-        public var isVerifiedFlag: Bool?
+        public var success: Bool
 
         public var data: [String: Any]?
 
-        public var success: Bool
+        public var isVerifiedFlag: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case isVerifiedFlag = "is_verified_flag"
+            case success
 
             case data
 
-            case success
+            case isVerifiedFlag = "is_verified_flag"
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.message = message
 
-            self.isVerifiedFlag = isVerifiedFlag
+            self.success = success
 
             self.data = data
 
-            self.success = success
+            self.isVerifiedFlag = isVerifiedFlag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,13 +42,7 @@ public extension PlatformClient.Payment {
 
             message = try container.decode(String.self, forKey: .message)
 
-            do {
-                isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 data = try container.decode([String: Any].self, forKey: .data)
@@ -58,7 +52,13 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
+            do {
+                isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,11 +66,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
         }
     }
 }
@@ -84,30 +84,30 @@ public extension PlatformClient.ApplicationClient.Payment {
     class RefundAccountResponse: Codable {
         public var message: String
 
-        public var isVerifiedFlag: Bool?
+        public var success: Bool
 
         public var data: [String: Any]?
 
-        public var success: Bool
+        public var isVerifiedFlag: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case isVerifiedFlag = "is_verified_flag"
+            case success
 
             case data
 
-            case success
+            case isVerifiedFlag = "is_verified_flag"
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.message = message
 
-            self.isVerifiedFlag = isVerifiedFlag
+            self.success = success
 
             self.data = data
 
-            self.success = success
+            self.isVerifiedFlag = isVerifiedFlag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -115,13 +115,7 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             message = try container.decode(String.self, forKey: .message)
 
-            do {
-                isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 data = try container.decode([String: Any].self, forKey: .data)
@@ -131,7 +125,13 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
+            do {
+                isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -139,11 +139,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
         }
     }
 }
