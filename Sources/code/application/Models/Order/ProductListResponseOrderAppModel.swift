@@ -7,45 +7,53 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class ProductListResponse: Codable {
-        public var message: String?
-
-        public var success: Bool?
-
         public var filters: OrderFilters?
-
-        public var items: [Product]?
 
         public var page: OrderPage?
 
+        public var success: Bool?
+
+        public var message: String?
+
+        public var items: [Product]?
+
         public enum CodingKeys: String, CodingKey {
-            case message
+            case filters
+
+            case page
 
             case success
 
-            case filters
+            case message
 
             case items
-
-            case page
         }
 
         public init(filters: OrderFilters? = nil, items: [Product]? = nil, message: String? = nil, page: OrderPage? = nil, success: Bool? = nil) {
-            self.message = message
+            self.filters = filters
+
+            self.page = page
 
             self.success = success
 
-            self.filters = filters
+            self.message = message
 
             self.items = items
-
-            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                filters = try container.decode(OrderFilters.self, forKey: .filters)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                page = try container.decode(OrderPage.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                filters = try container.decode(OrderFilters.self, forKey: .filters)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,28 +83,20 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                page = try container.decode(OrderPage.self, forKey: .page)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

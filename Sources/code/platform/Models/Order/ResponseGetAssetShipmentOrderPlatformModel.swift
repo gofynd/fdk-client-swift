@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class ResponseGetAssetShipment: Codable {
         public var result: [AssetByShipment]
 
-        public var success: Bool
-
         public var presignedType: String
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case result
 
-            case success
-
             case presignedType = "presigned_type"
+
+            case success
         }
 
         public init(presignedType: String, result: [AssetByShipment], success: Bool) {
             self.result = result
 
-            self.success = success
-
             self.presignedType = presignedType
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             result = try container.decode([AssetByShipment].self, forKey: .result)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             presignedType = try container.decode(String.self, forKey: .presignedType)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(result, forKey: .result)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class ResponseGetAssetShipment: Codable {
         public var result: [AssetByShipment]
 
-        public var success: Bool
-
         public var presignedType: String
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case result
 
-            case success
-
             case presignedType = "presigned_type"
+
+            case success
         }
 
         public init(presignedType: String, result: [AssetByShipment], success: Bool) {
             self.result = result
 
-            self.success = success
-
             self.presignedType = presignedType
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             result = try container.decode([AssetByShipment].self, forKey: .result)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             presignedType = try container.decode(String.self, forKey: .presignedType)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(result, forKey: .result)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

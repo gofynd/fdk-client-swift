@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class GetCatalogConfigurationDetailsProduct: Codable {
         public var detail: [String: Any]?
 
-        public var variant: [String: Any]?
-
         public var compare: [String: Any]?
+
+        public var variant: [String: Any]?
 
         public var similar: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case detail
 
-            case variant
-
             case compare
+
+            case variant
 
             case similar
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
             self.detail = detail
 
-            self.variant = variant
-
             self.compare = compare
+
+            self.variant = variant
 
             self.similar = similar
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                variant = try container.decode([String: Any].self, forKey: .variant)
+                compare = try container.decode([String: Any].self, forKey: .compare)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                compare = try container.decode([String: Any].self, forKey: .compare)
+                variant = try container.decode([String: Any].self, forKey: .variant)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(detail, forKey: .detail)
 
-            try? container.encodeIfPresent(variant, forKey: .variant)
-
             try? container.encodeIfPresent(compare, forKey: .compare)
+
+            try? container.encodeIfPresent(variant, forKey: .variant)
 
             try? container.encodeIfPresent(similar, forKey: .similar)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetCatalogConfigurationDetailsProduct: Codable {
         public var detail: [String: Any]?
 
-        public var variant: [String: Any]?
-
         public var compare: [String: Any]?
+
+        public var variant: [String: Any]?
 
         public var similar: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case detail
 
-            case variant
-
             case compare
+
+            case variant
 
             case similar
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
             self.detail = detail
 
-            self.variant = variant
-
             self.compare = compare
+
+            self.variant = variant
 
             self.similar = similar
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                variant = try container.decode([String: Any].self, forKey: .variant)
+                compare = try container.decode([String: Any].self, forKey: .compare)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                compare = try container.decode([String: Any].self, forKey: .compare)
+                variant = try container.decode([String: Any].self, forKey: .variant)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(detail, forKey: .detail)
 
-            try? container.encodeIfPresent(variant, forKey: .variant)
-
             try? container.encodeIfPresent(compare, forKey: .compare)
+
+            try? container.encodeIfPresent(variant, forKey: .variant)
 
             try? container.encodeIfPresent(similar, forKey: .similar)
         }

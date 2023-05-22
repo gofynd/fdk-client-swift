@@ -9,36 +9,36 @@ public extension ApplicationClient.Logistic {
     class ReAssignStoreRequest: Codable {
         public var articles: [[String: Any]]
 
-        public var configuration: [String: Any]
-
-        public var toPincode: String
-
         public var identifier: String
 
         public var ignoredLocations: [String]
 
+        public var configuration: [String: Any]
+
+        public var toPincode: String
+
         public enum CodingKeys: String, CodingKey {
             case articles
-
-            case configuration
-
-            case toPincode = "to_pincode"
 
             case identifier
 
             case ignoredLocations = "ignored_locations"
+
+            case configuration
+
+            case toPincode = "to_pincode"
         }
 
         public init(articles: [[String: Any]], configuration: [String: Any], identifier: String, ignoredLocations: [String], toPincode: String) {
             self.articles = articles
 
-            self.configuration = configuration
-
-            self.toPincode = toPincode
-
             self.identifier = identifier
 
             self.ignoredLocations = ignoredLocations
+
+            self.configuration = configuration
+
+            self.toPincode = toPincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -46,13 +46,13 @@ public extension ApplicationClient.Logistic {
 
             articles = try container.decode([[String: Any]].self, forKey: .articles)
 
-            configuration = try container.decode([String: Any].self, forKey: .configuration)
-
-            toPincode = try container.decode(String.self, forKey: .toPincode)
-
             identifier = try container.decode(String.self, forKey: .identifier)
 
             ignoredLocations = try container.decode([String].self, forKey: .ignoredLocations)
+
+            configuration = try container.decode([String: Any].self, forKey: .configuration)
+
+            toPincode = try container.decode(String.self, forKey: .toPincode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,13 +60,13 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(configuration, forKey: .configuration)
-
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
-
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(ignoredLocations, forKey: .ignoredLocations)
+
+            try? container.encodeIfPresent(configuration, forKey: .configuration)
+
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
         }
     }
 }
