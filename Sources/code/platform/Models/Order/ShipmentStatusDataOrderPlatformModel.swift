@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var status: String?
 
-        public var bagList: [String]?
-
         public var shipmentId: String?
+
+        public var bagList: [String]?
 
         public var id: Int?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case status
 
-            case bagList = "bag_list"
-
             case shipmentId = "shipment_id"
+
+            case bagList = "bag_list"
 
             case id
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.status = status
 
-            self.bagList = bagList
-
             self.shipmentId = shipmentId
+
+            self.bagList = bagList
 
             self.id = id
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                bagList = try container.decode([String].self, forKey: .bagList)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                bagList = try container.decode([String].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(bagList, forKey: .bagList)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var status: String?
 
-        public var bagList: [String]?
-
         public var shipmentId: String?
+
+        public var bagList: [String]?
 
         public var id: Int?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case status
 
-            case bagList = "bag_list"
-
             case shipmentId = "shipment_id"
+
+            case bagList = "bag_list"
 
             case id
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.status = status
 
-            self.bagList = bagList
-
             self.shipmentId = shipmentId
+
+            self.bagList = bagList
 
             self.id = id
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                bagList = try container.decode([String].self, forKey: .bagList)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                bagList = try container.decode([String].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(bagList, forKey: .bagList)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }

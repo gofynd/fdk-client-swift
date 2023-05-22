@@ -11,11 +11,11 @@ public extension PlatformClient.Order {
     class HistoryDict: Codable {
         public var message: String
 
+        public var l3Detail: String?
+
+        public var ticketUrl: String?
+
         public var meta: HistoryMeta?
-
-        public var createdat: String
-
-        public var ticketId: String?
 
         public var type: String
 
@@ -23,26 +23,26 @@ public extension PlatformClient.Order {
 
         public var bagId: Int?
 
-        public var l2Detail: String?
+        public var createdat: String
 
-        public var ticketUrl: String?
-
-        public var l1Detail: String?
+        public var ticketId: String?
 
         public var user: String
 
-        public var l3Detail: String?
+        public var l2Detail: String?
+
+        public var l1Detail: String?
 
         public var displayMessage: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
+            case l3Detail = "l3_detail"
+
+            case ticketUrl = "ticket_url"
+
             case meta
-
-            case createdat
-
-            case ticketId = "ticket_id"
 
             case type
 
@@ -50,15 +50,15 @@ public extension PlatformClient.Order {
 
             case bagId = "bag_id"
 
-            case l2Detail = "l2_detail"
+            case createdat
 
-            case ticketUrl = "ticket_url"
-
-            case l1Detail = "l1_detail"
+            case ticketId = "ticket_id"
 
             case user
 
-            case l3Detail = "l3_detail"
+            case l2Detail = "l2_detail"
+
+            case l1Detail = "l1_detail"
 
             case displayMessage = "display_message"
         }
@@ -66,11 +66,11 @@ public extension PlatformClient.Order {
         public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String) {
             self.message = message
 
+            self.l3Detail = l3Detail
+
+            self.ticketUrl = ticketUrl
+
             self.meta = meta
-
-            self.createdat = createdat
-
-            self.ticketId = ticketId
 
             self.type = type
 
@@ -78,15 +78,15 @@ public extension PlatformClient.Order {
 
             self.bagId = bagId
 
-            self.l2Detail = l2Detail
+            self.createdat = createdat
 
-            self.ticketUrl = ticketUrl
-
-            self.l1Detail = l1Detail
+            self.ticketId = ticketId
 
             self.user = user
 
-            self.l3Detail = l3Detail
+            self.l2Detail = l2Detail
+
+            self.l1Detail = l1Detail
 
             self.displayMessage = displayMessage
         }
@@ -97,17 +97,23 @@ public extension PlatformClient.Order {
             message = try container.decode(String.self, forKey: .message)
 
             do {
-                meta = try container.decode(HistoryMeta.self, forKey: .meta)
+                l3Detail = try container.decode(String.self, forKey: .l3Detail)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdat = try container.decode(String.self, forKey: .createdat)
+            do {
+                ticketUrl = try container.decode(String.self, forKey: .ticketUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                ticketId = try container.decode(String.self, forKey: .ticketId)
+                meta = try container.decode(HistoryMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,24 +138,10 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                l2Detail = try container.decode(String.self, forKey: .l2Detail)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            createdat = try container.decode(String.self, forKey: .createdat)
 
             do {
-                ticketUrl = try container.decode(String.self, forKey: .ticketUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                l1Detail = try container.decode(String.self, forKey: .l1Detail)
+                ticketId = try container.decode(String.self, forKey: .ticketId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,7 +151,15 @@ public extension PlatformClient.Order {
             user = try container.decode(String.self, forKey: .user)
 
             do {
-                l3Detail = try container.decode(String.self, forKey: .l3Detail)
+                l2Detail = try container.decode(String.self, forKey: .l2Detail)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                l1Detail = try container.decode(String.self, forKey: .l1Detail)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,11 +180,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
+            try? container.encodeIfPresent(l3Detail, forKey: .l3Detail)
+
+            try? container.encodeIfPresent(ticketUrl, forKey: .ticketUrl)
+
             try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(createdat, forKey: .createdat)
-
-            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
@@ -192,15 +192,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(l2Detail, forKey: .l2Detail)
+            try? container.encodeIfPresent(createdat, forKey: .createdat)
 
-            try? container.encodeIfPresent(ticketUrl, forKey: .ticketUrl)
-
-            try? container.encodeIfPresent(l1Detail, forKey: .l1Detail)
+            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(l3Detail, forKey: .l3Detail)
+            try? container.encodeIfPresent(l2Detail, forKey: .l2Detail)
+
+            try? container.encodeIfPresent(l1Detail, forKey: .l1Detail)
 
             try? container.encode(displayMessage, forKey: .displayMessage)
         }
@@ -216,11 +216,11 @@ public extension PlatformClient.ApplicationClient.Order {
     class HistoryDict: Codable {
         public var message: String
 
+        public var l3Detail: String?
+
+        public var ticketUrl: String?
+
         public var meta: HistoryMeta?
-
-        public var createdat: String
-
-        public var ticketId: String?
 
         public var type: String
 
@@ -228,26 +228,26 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var bagId: Int?
 
-        public var l2Detail: String?
+        public var createdat: String
 
-        public var ticketUrl: String?
-
-        public var l1Detail: String?
+        public var ticketId: String?
 
         public var user: String
 
-        public var l3Detail: String?
+        public var l2Detail: String?
+
+        public var l1Detail: String?
 
         public var displayMessage: String?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
+            case l3Detail = "l3_detail"
+
+            case ticketUrl = "ticket_url"
+
             case meta
-
-            case createdat
-
-            case ticketId = "ticket_id"
 
             case type
 
@@ -255,15 +255,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case bagId = "bag_id"
 
-            case l2Detail = "l2_detail"
+            case createdat
 
-            case ticketUrl = "ticket_url"
-
-            case l1Detail = "l1_detail"
+            case ticketId = "ticket_id"
 
             case user
 
-            case l3Detail = "l3_detail"
+            case l2Detail = "l2_detail"
+
+            case l1Detail = "l1_detail"
 
             case displayMessage = "display_message"
         }
@@ -271,11 +271,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(assignedAgent: String? = nil, bagId: Int? = nil, createdat: String, displayMessage: String? = nil, l1Detail: String? = nil, l2Detail: String? = nil, l3Detail: String? = nil, message: String, meta: HistoryMeta? = nil, ticketId: String? = nil, ticketUrl: String? = nil, type: String, user: String) {
             self.message = message
 
+            self.l3Detail = l3Detail
+
+            self.ticketUrl = ticketUrl
+
             self.meta = meta
-
-            self.createdat = createdat
-
-            self.ticketId = ticketId
 
             self.type = type
 
@@ -283,15 +283,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.bagId = bagId
 
-            self.l2Detail = l2Detail
+            self.createdat = createdat
 
-            self.ticketUrl = ticketUrl
-
-            self.l1Detail = l1Detail
+            self.ticketId = ticketId
 
             self.user = user
 
-            self.l3Detail = l3Detail
+            self.l2Detail = l2Detail
+
+            self.l1Detail = l1Detail
 
             self.displayMessage = displayMessage
         }
@@ -302,17 +302,23 @@ public extension PlatformClient.ApplicationClient.Order {
             message = try container.decode(String.self, forKey: .message)
 
             do {
-                meta = try container.decode(HistoryMeta.self, forKey: .meta)
+                l3Detail = try container.decode(String.self, forKey: .l3Detail)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            createdat = try container.decode(String.self, forKey: .createdat)
+            do {
+                ticketUrl = try container.decode(String.self, forKey: .ticketUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                ticketId = try container.decode(String.self, forKey: .ticketId)
+                meta = try container.decode(HistoryMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -337,24 +343,10 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                l2Detail = try container.decode(String.self, forKey: .l2Detail)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            createdat = try container.decode(String.self, forKey: .createdat)
 
             do {
-                ticketUrl = try container.decode(String.self, forKey: .ticketUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                l1Detail = try container.decode(String.self, forKey: .l1Detail)
+                ticketId = try container.decode(String.self, forKey: .ticketId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -364,7 +356,15 @@ public extension PlatformClient.ApplicationClient.Order {
             user = try container.decode(String.self, forKey: .user)
 
             do {
-                l3Detail = try container.decode(String.self, forKey: .l3Detail)
+                l2Detail = try container.decode(String.self, forKey: .l2Detail)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                l1Detail = try container.decode(String.self, forKey: .l1Detail)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -385,11 +385,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
+            try? container.encodeIfPresent(l3Detail, forKey: .l3Detail)
+
+            try? container.encodeIfPresent(ticketUrl, forKey: .ticketUrl)
+
             try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(createdat, forKey: .createdat)
-
-            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
@@ -397,15 +397,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
-            try? container.encodeIfPresent(l2Detail, forKey: .l2Detail)
+            try? container.encodeIfPresent(createdat, forKey: .createdat)
 
-            try? container.encodeIfPresent(ticketUrl, forKey: .ticketUrl)
-
-            try? container.encodeIfPresent(l1Detail, forKey: .l1Detail)
+            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(l3Detail, forKey: .l3Detail)
+            try? container.encodeIfPresent(l2Detail, forKey: .l2Detail)
+
+            try? container.encodeIfPresent(l1Detail, forKey: .l1Detail)
 
             try? container.encode(displayMessage, forKey: .displayMessage)
         }

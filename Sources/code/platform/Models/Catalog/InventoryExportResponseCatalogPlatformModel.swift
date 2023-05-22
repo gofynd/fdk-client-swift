@@ -9,69 +9,69 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryExportResponse: Codable {
-        public var status: String?
+        public var notificationEmails: [String]?
 
         public var taskId: String
 
+        public var createdBy: String?
+
+        public var createdOn: String?
+
         public var modifiedOn: String?
 
-        public var notificationEmails: [String]?
+        public var sellerId: Int
+
+        public var status: String?
 
         public var type: String?
 
         public var filters: [String: Any]?
 
-        public var createdBy: String?
-
-        public var sellerId: Int
-
-        public var createdOn: String?
-
         public enum CodingKeys: String, CodingKey {
-            case status
+            case notificationEmails = "notification_emails"
 
             case taskId = "task_id"
 
+            case createdBy = "created_by"
+
+            case createdOn = "created_on"
+
             case modifiedOn = "modified_on"
 
-            case notificationEmails = "notification_emails"
+            case sellerId = "seller_id"
+
+            case status
 
             case type
 
             case filters
-
-            case createdBy = "created_by"
-
-            case sellerId = "seller_id"
-
-            case createdOn = "created_on"
         }
 
         public init(createdBy: String? = nil, createdOn: String? = nil, filters: [String: Any]? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, type: String? = nil) {
-            self.status = status
+            self.notificationEmails = notificationEmails
 
             self.taskId = taskId
 
+            self.createdBy = createdBy
+
+            self.createdOn = createdOn
+
             self.modifiedOn = modifiedOn
 
-            self.notificationEmails = notificationEmails
+            self.sellerId = sellerId
+
+            self.status = status
 
             self.type = type
 
             self.filters = filters
-
-            self.createdBy = createdBy
-
-            self.sellerId = sellerId
-
-            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension PlatformClient.Catalog {
             taskId = try container.decode(String.self, forKey: .taskId)
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                createdBy = try container.decode(String.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,25 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            sellerId = try container.decode(Int.self, forKey: .sellerId)
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,46 +129,28 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                createdBy = try container.decode(String.self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            sellerId = try container.decode(Int.self, forKey: .sellerId)
-
-            do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
             try? container.encodeIfPresent(taskId, forKey: .taskId)
 
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }
@@ -162,69 +162,69 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryExportResponse: Codable {
-        public var status: String?
+        public var notificationEmails: [String]?
 
         public var taskId: String
 
+        public var createdBy: String?
+
+        public var createdOn: String?
+
         public var modifiedOn: String?
 
-        public var notificationEmails: [String]?
+        public var sellerId: Int
+
+        public var status: String?
 
         public var type: String?
 
         public var filters: [String: Any]?
 
-        public var createdBy: String?
-
-        public var sellerId: Int
-
-        public var createdOn: String?
-
         public enum CodingKeys: String, CodingKey {
-            case status
+            case notificationEmails = "notification_emails"
 
             case taskId = "task_id"
 
+            case createdBy = "created_by"
+
+            case createdOn = "created_on"
+
             case modifiedOn = "modified_on"
 
-            case notificationEmails = "notification_emails"
+            case sellerId = "seller_id"
+
+            case status
 
             case type
 
             case filters
-
-            case createdBy = "created_by"
-
-            case sellerId = "seller_id"
-
-            case createdOn = "created_on"
         }
 
         public init(createdBy: String? = nil, createdOn: String? = nil, filters: [String: Any]? = nil, modifiedOn: String? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, type: String? = nil) {
-            self.status = status
+            self.notificationEmails = notificationEmails
 
             self.taskId = taskId
 
+            self.createdBy = createdBy
+
+            self.createdOn = createdOn
+
             self.modifiedOn = modifiedOn
 
-            self.notificationEmails = notificationEmails
+            self.sellerId = sellerId
+
+            self.status = status
 
             self.type = type
 
             self.filters = filters
-
-            self.createdBy = createdBy
-
-            self.sellerId = sellerId
-
-            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -234,7 +234,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             taskId = try container.decode(String.self, forKey: .taskId)
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                createdBy = try container.decode(String.self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -242,7 +242,25 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            sellerId = try container.decode(Int.self, forKey: .sellerId)
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -264,46 +282,28 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                createdBy = try container.decode(String.self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            sellerId = try container.decode(Int.self, forKey: .sellerId)
-
-            do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
             try? container.encodeIfPresent(taskId, forKey: .taskId)
 
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }

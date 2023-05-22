@@ -67,7 +67,5 @@ platformClient.catalog.getCompanyDetail { (response, error) in
 
 ### Documentation
 
-- [Public Front](documentation/public/README.md)
-- [Application Front](documentation/application/README.md)
-- [Platform Front](documentation/platform/README.md)
-
+* [Application Front](documentation/APPLICATION.md)
+* [Platform Front](documentation/PLATFORM.md)

@@ -299,6 +299,34 @@ public extension PlatformClient {
 
         /**
          *
+         * Summary: get paginator for getAvailableOptIns
+         * Description: fetch the next page by calling .next(...) function
+         **/
+        public func getAvailableOptInsPaginator(
+            pageSize: Int?
+
+        ) -> Paginator<GetIntegrationsOptInsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetIntegrationsOptInsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getAvailableOptIns(
+                    pageNo: paginator.pageNo,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
+
+        /**
+         *
          * Summary: Get company/store level integration opt-ins
          * Description: Get company/store level integration opt-ins
          **/
@@ -347,6 +375,38 @@ public extension PlatformClient {
                     }
                 }
             )
+        }
+
+        /**
+         *
+         * Summary: get paginator for getSelectedOptIns
+         * Description: fetch the next page by calling .next(...) function
+         **/
+        public func getSelectedOptInsPaginator(
+            level: String,
+            uid: Int,
+            pageSize: Int?
+
+        ) -> Paginator<GetIntegrationsOptInsResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<GetIntegrationsOptInsResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getSelectedOptIns(
+                    level: level,
+                    uid: uid,
+                    pageNo: paginator.pageNo,
+
+                    pageSize: paginator.pageSize
+
+                ) { response, error in
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
         }
 
         /**

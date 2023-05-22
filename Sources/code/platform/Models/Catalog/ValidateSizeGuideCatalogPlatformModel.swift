@@ -9,25 +9,21 @@ public extension PlatformClient.Catalog {
      */
 
     class ValidateSizeGuide: Codable {
-        public var id: String?
+        public var description: String?
 
-        public var companyId: Int?
+        public var brandId: Int?
 
-        public var guide: Guide?
+        public var title: String
 
-        public var name: String
+        public var createdOn: String?
+
+        public var image: String?
+
+        public var active: Bool?
 
         public var modifiedOn: String?
 
         public var tag: String?
-
-        public var image: String?
-
-        public var brandId: Int?
-
-        public var active: Bool?
-
-        public var title: String
 
         public var subtitle: String?
 
@@ -35,30 +31,30 @@ public extension PlatformClient.Catalog {
 
         public var createdBy: [String: Any]?
 
-        public var description: String?
+        public var guide: Guide?
 
-        public var createdOn: String?
+        public var companyId: Int?
+
+        public var id: String?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case description
 
-            case companyId = "company_id"
+            case brandId = "brand_id"
 
-            case guide
+            case title
 
-            case name
+            case createdOn = "created_on"
+
+            case image
+
+            case active
 
             case modifiedOn = "modified_on"
 
             case tag
-
-            case image
-
-            case brandId = "brand_id"
-
-            case active
-
-            case title
 
             case subtitle
 
@@ -66,31 +62,31 @@ public extension PlatformClient.Catalog {
 
             case createdBy = "created_by"
 
-            case description
+            case guide
 
-            case createdOn = "created_on"
+            case companyId = "company_id"
+
+            case id
+
+            case name
         }
 
         public init(active: Bool? = nil, brandId: Int? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, description: String? = nil, guide: Guide? = nil, id: String? = nil, image: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, subtitle: String? = nil, tag: String? = nil, title: String) {
-            self.id = id
+            self.description = description
 
-            self.companyId = companyId
+            self.brandId = brandId
 
-            self.guide = guide
+            self.title = title
 
-            self.name = name
+            self.createdOn = createdOn
+
+            self.image = image
+
+            self.active = active
 
             self.modifiedOn = modifiedOn
 
             self.tag = tag
-
-            self.image = image
-
-            self.brandId = brandId
-
-            self.active = active
-
-            self.title = title
 
             self.subtitle = subtitle
 
@@ -98,16 +94,20 @@ public extension PlatformClient.Catalog {
 
             self.createdBy = createdBy
 
-            self.description = description
+            self.guide = guide
 
-            self.createdOn = createdOn
+            self.companyId = companyId
+
+            self.id = id
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -115,7 +115,17 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                brandId = try container.decode(Int.self, forKey: .brandId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            title = try container.decode(String.self, forKey: .title)
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,14 +133,20 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                guide = try container.decode(Guide.self, forKey: .guide)
+                image = try container.decode(String.self, forKey: .image)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
+            do {
+                active = try container.decode(Bool.self, forKey: .active)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
@@ -147,32 +163,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                image = try container.decode(String.self, forKey: .image)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandId = try container.decode(Int.self, forKey: .brandId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                active = try container.decode(Bool.self, forKey: .active)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            title = try container.decode(String.self, forKey: .title)
 
             do {
                 subtitle = try container.decode(String.self, forKey: .subtitle)
@@ -199,7 +189,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                guide = try container.decode(Guide.self, forKey: .guide)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -207,36 +197,42 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
 
-            try? container.encodeIfPresent(guide, forKey: .guide)
+            try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(image, forKey: .image)
+
+            try? container.encodeIfPresent(active, forKey: .active)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(tag, forKey: .tag)
-
-            try? container.encodeIfPresent(image, forKey: .image)
-
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
-
-            try? container.encodeIfPresent(active, forKey: .active)
-
-            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
@@ -244,9 +240,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(guide, forKey: .guide)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -258,25 +258,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ValidateSizeGuide: Codable {
-        public var id: String?
+        public var description: String?
 
-        public var companyId: Int?
+        public var brandId: Int?
 
-        public var guide: Guide?
+        public var title: String
 
-        public var name: String
+        public var createdOn: String?
+
+        public var image: String?
+
+        public var active: Bool?
 
         public var modifiedOn: String?
 
         public var tag: String?
-
-        public var image: String?
-
-        public var brandId: Int?
-
-        public var active: Bool?
-
-        public var title: String
 
         public var subtitle: String?
 
@@ -284,30 +280,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var createdBy: [String: Any]?
 
-        public var description: String?
+        public var guide: Guide?
 
-        public var createdOn: String?
+        public var companyId: Int?
+
+        public var id: String?
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case description
 
-            case companyId = "company_id"
+            case brandId = "brand_id"
 
-            case guide
+            case title
 
-            case name
+            case createdOn = "created_on"
+
+            case image
+
+            case active
 
             case modifiedOn = "modified_on"
 
             case tag
-
-            case image
-
-            case brandId = "brand_id"
-
-            case active
-
-            case title
 
             case subtitle
 
@@ -315,31 +311,31 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case createdBy = "created_by"
 
-            case description
+            case guide
 
-            case createdOn = "created_on"
+            case companyId = "company_id"
+
+            case id
+
+            case name
         }
 
         public init(active: Bool? = nil, brandId: Int? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, description: String? = nil, guide: Guide? = nil, id: String? = nil, image: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, subtitle: String? = nil, tag: String? = nil, title: String) {
-            self.id = id
+            self.description = description
 
-            self.companyId = companyId
+            self.brandId = brandId
 
-            self.guide = guide
+            self.title = title
 
-            self.name = name
+            self.createdOn = createdOn
+
+            self.image = image
+
+            self.active = active
 
             self.modifiedOn = modifiedOn
 
             self.tag = tag
-
-            self.image = image
-
-            self.brandId = brandId
-
-            self.active = active
-
-            self.title = title
 
             self.subtitle = subtitle
 
@@ -347,16 +343,20 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.createdBy = createdBy
 
-            self.description = description
+            self.guide = guide
 
-            self.createdOn = createdOn
+            self.companyId = companyId
+
+            self.id = id
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -364,7 +364,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                brandId = try container.decode(Int.self, forKey: .brandId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            title = try container.decode(String.self, forKey: .title)
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -372,14 +382,20 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                guide = try container.decode(Guide.self, forKey: .guide)
+                image = try container.decode(String.self, forKey: .image)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
+            do {
+                active = try container.decode(Bool.self, forKey: .active)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
@@ -396,32 +412,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                image = try container.decode(String.self, forKey: .image)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandId = try container.decode(Int.self, forKey: .brandId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                active = try container.decode(Bool.self, forKey: .active)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            title = try container.decode(String.self, forKey: .title)
 
             do {
                 subtitle = try container.decode(String.self, forKey: .subtitle)
@@ -448,7 +438,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                guide = try container.decode(Guide.self, forKey: .guide)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -456,36 +446,42 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
 
-            try? container.encodeIfPresent(guide, forKey: .guide)
+            try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(image, forKey: .image)
+
+            try? container.encodeIfPresent(active, forKey: .active)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(tag, forKey: .tag)
-
-            try? container.encodeIfPresent(image, forKey: .image)
-
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
-
-            try? container.encodeIfPresent(active, forKey: .active)
-
-            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
@@ -493,9 +489,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(guide, forKey: .guide)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

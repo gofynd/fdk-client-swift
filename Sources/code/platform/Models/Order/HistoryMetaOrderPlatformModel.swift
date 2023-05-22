@@ -9,21 +9,27 @@ public extension PlatformClient.Order {
      */
 
     class HistoryMeta: Codable {
-        public var status1: String?
+        public var starttime: String?
 
-        public var caller: String?
+        public var storeId: Int?
 
-        public var activityType: String?
+        public var storeName: String?
+
+        public var billsec: String?
 
         public var activityComment: String?
 
-        public var callId: String?
+        public var duration: String?
+
+        public var message: String?
+
+        public var recipient: String?
+
+        public var status1: String?
+
+        public var activityType: String?
 
         public var reason: HistoryReason?
-
-        public var callerid: String?
-
-        public var recordpath: String?
 
         public var receiver: String?
 
@@ -31,46 +37,46 @@ public extension PlatformClient.Order {
 
         public var channelType: String?
 
-        public var billsec: String?
-
         public var status: String?
-
-        public var duration: String?
-
-        public var starttime: String?
-
-        public var message: String?
-
-        public var slug: String?
 
         public var shortLink: String?
 
-        public var storeCode: String?
-
         public var status2: String?
 
-        public var recipient: String?
+        public var callerid: String?
 
-        public var storeId: Int?
+        public var storeCode: String?
 
-        public var storeName: String?
+        public var recordpath: String?
+
+        public var slug: String?
+
+        public var callId: String?
+
+        public var caller: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status1
+            case starttime
 
-            case caller
+            case storeId = "store_id"
 
-            case activityType = "activity_type"
+            case storeName = "store_name"
+
+            case billsec
 
             case activityComment = "activity_comment"
 
-            case callId = "call_id"
+            case duration
+
+            case message
+
+            case recipient
+
+            case status1
+
+            case activityType = "activity_type"
 
             case reason
-
-            case callerid
-
-            case recordpath
 
             case receiver
 
@@ -78,47 +84,47 @@ public extension PlatformClient.Order {
 
             case channelType = "channel_type"
 
-            case billsec
-
             case status
-
-            case duration
-
-            case starttime
-
-            case message
-
-            case slug
 
             case shortLink = "short_link"
 
-            case storeCode = "store_code"
-
             case status2
 
-            case recipient
+            case callerid
 
-            case storeId = "store_id"
+            case storeCode = "store_code"
 
-            case storeName = "store_name"
+            case recordpath
+
+            case slug
+
+            case callId = "call_id"
+
+            case caller
         }
 
         public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil) {
-            self.status1 = status1
+            self.starttime = starttime
 
-            self.caller = caller
+            self.storeId = storeId
 
-            self.activityType = activityType
+            self.storeName = storeName
+
+            self.billsec = billsec
 
             self.activityComment = activityComment
 
-            self.callId = callId
+            self.duration = duration
+
+            self.message = message
+
+            self.recipient = recipient
+
+            self.status1 = status1
+
+            self.activityType = activityType
 
             self.reason = reason
-
-            self.callerid = callerid
-
-            self.recordpath = recordpath
 
             self.receiver = receiver
 
@@ -126,36 +132,30 @@ public extension PlatformClient.Order {
 
             self.channelType = channelType
 
-            self.billsec = billsec
-
             self.status = status
-
-            self.duration = duration
-
-            self.starttime = starttime
-
-            self.message = message
-
-            self.slug = slug
 
             self.shortLink = shortLink
 
-            self.storeCode = storeCode
-
             self.status2 = status2
 
-            self.recipient = recipient
+            self.callerid = callerid
 
-            self.storeId = storeId
+            self.storeCode = storeCode
 
-            self.storeName = storeName
+            self.recordpath = recordpath
+
+            self.slug = slug
+
+            self.callId = callId
+
+            self.caller = caller
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status1 = try container.decode(String.self, forKey: .status1)
+                starttime = try container.decode(String.self, forKey: .starttime)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,7 +163,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                caller = try container.decode(String.self, forKey: .caller)
+                storeId = try container.decode(Int.self, forKey: .storeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -171,7 +171,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                activityType = try container.decode(String.self, forKey: .activityType)
+                storeName = try container.decode(String.self, forKey: .storeName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                billsec = try container.decode(String.self, forKey: .billsec)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +195,39 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                callId = try container.decode(String.self, forKey: .callId)
+                duration = try container.decode(String.self, forKey: .duration)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                recipient = try container.decode(String.self, forKey: .recipient)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status1 = try container.decode(String.self, forKey: .status1)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                activityType = try container.decode(String.self, forKey: .activityType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -196,22 +236,6 @@ public extension PlatformClient.Order {
 
             do {
                 reason = try container.decode(HistoryReason.self, forKey: .reason)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                callerid = try container.decode(String.self, forKey: .callerid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                recordpath = try container.decode(String.self, forKey: .recordpath)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -243,47 +267,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                billsec = try container.decode(String.self, forKey: .billsec)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                duration = try container.decode(String.self, forKey: .duration)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                starttime = try container.decode(String.self, forKey: .starttime)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                message = try container.decode(String.self, forKey: .message)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -299,14 +283,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 status2 = try container.decode(String.self, forKey: .status2)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -315,7 +291,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                recipient = try container.decode(String.self, forKey: .recipient)
+                callerid = try container.decode(String.self, forKey: .callerid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -323,7 +299,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -331,7 +307,31 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                storeName = try container.decode(String.self, forKey: .storeName)
+                recordpath = try container.decode(String.self, forKey: .recordpath)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                callId = try container.decode(String.self, forKey: .callId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                caller = try container.decode(String.self, forKey: .caller)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -342,21 +342,27 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(status1, forKey: .status1)
+            try? container.encode(starttime, forKey: .starttime)
 
-            try? container.encode(caller, forKey: .caller)
+            try? container.encode(storeId, forKey: .storeId)
 
-            try? container.encode(activityType, forKey: .activityType)
+            try? container.encode(storeName, forKey: .storeName)
+
+            try? container.encode(billsec, forKey: .billsec)
 
             try? container.encode(activityComment, forKey: .activityComment)
 
-            try? container.encode(callId, forKey: .callId)
+            try? container.encode(duration, forKey: .duration)
+
+            try? container.encode(message, forKey: .message)
+
+            try? container.encode(recipient, forKey: .recipient)
+
+            try? container.encode(status1, forKey: .status1)
+
+            try? container.encode(activityType, forKey: .activityType)
 
             try? container.encodeIfPresent(reason, forKey: .reason)
-
-            try? container.encode(callerid, forKey: .callerid)
-
-            try? container.encode(recordpath, forKey: .recordpath)
 
             try? container.encode(receiver, forKey: .receiver)
 
@@ -364,29 +370,23 @@ public extension PlatformClient.Order {
 
             try? container.encode(channelType, forKey: .channelType)
 
-            try? container.encode(billsec, forKey: .billsec)
-
             try? container.encode(status, forKey: .status)
-
-            try? container.encode(duration, forKey: .duration)
-
-            try? container.encode(starttime, forKey: .starttime)
-
-            try? container.encode(message, forKey: .message)
-
-            try? container.encode(slug, forKey: .slug)
 
             try? container.encode(shortLink, forKey: .shortLink)
 
-            try? container.encode(storeCode, forKey: .storeCode)
-
             try? container.encode(status2, forKey: .status2)
 
-            try? container.encode(recipient, forKey: .recipient)
+            try? container.encode(callerid, forKey: .callerid)
 
-            try? container.encode(storeId, forKey: .storeId)
+            try? container.encode(storeCode, forKey: .storeCode)
 
-            try? container.encode(storeName, forKey: .storeName)
+            try? container.encode(recordpath, forKey: .recordpath)
+
+            try? container.encode(slug, forKey: .slug)
+
+            try? container.encode(callId, forKey: .callId)
+
+            try? container.encode(caller, forKey: .caller)
         }
     }
 }
@@ -398,21 +398,27 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class HistoryMeta: Codable {
-        public var status1: String?
+        public var starttime: String?
 
-        public var caller: String?
+        public var storeId: Int?
 
-        public var activityType: String?
+        public var storeName: String?
+
+        public var billsec: String?
 
         public var activityComment: String?
 
-        public var callId: String?
+        public var duration: String?
+
+        public var message: String?
+
+        public var recipient: String?
+
+        public var status1: String?
+
+        public var activityType: String?
 
         public var reason: HistoryReason?
-
-        public var callerid: String?
-
-        public var recordpath: String?
 
         public var receiver: String?
 
@@ -420,46 +426,46 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var channelType: String?
 
-        public var billsec: String?
-
         public var status: String?
-
-        public var duration: String?
-
-        public var starttime: String?
-
-        public var message: String?
-
-        public var slug: String?
 
         public var shortLink: String?
 
-        public var storeCode: String?
-
         public var status2: String?
 
-        public var recipient: String?
+        public var callerid: String?
 
-        public var storeId: Int?
+        public var storeCode: String?
 
-        public var storeName: String?
+        public var recordpath: String?
+
+        public var slug: String?
+
+        public var callId: String?
+
+        public var caller: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status1
+            case starttime
 
-            case caller
+            case storeId = "store_id"
 
-            case activityType = "activity_type"
+            case storeName = "store_name"
+
+            case billsec
 
             case activityComment = "activity_comment"
 
-            case callId = "call_id"
+            case duration
+
+            case message
+
+            case recipient
+
+            case status1
+
+            case activityType = "activity_type"
 
             case reason
-
-            case callerid
-
-            case recordpath
 
             case receiver
 
@@ -467,47 +473,47 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case channelType = "channel_type"
 
-            case billsec
-
             case status
-
-            case duration
-
-            case starttime
-
-            case message
-
-            case slug
 
             case shortLink = "short_link"
 
-            case storeCode = "store_code"
-
             case status2
 
-            case recipient
+            case callerid
 
-            case storeId = "store_id"
+            case storeCode = "store_code"
 
-            case storeName = "store_name"
+            case recordpath
+
+            case slug
+
+            case callId = "call_id"
+
+            case caller
         }
 
         public init(activityComment: String? = nil, activityType: String? = nil, billsec: String? = nil, caller: String? = nil, callerid: String? = nil, callId: String? = nil, channelType: String? = nil, duration: String? = nil, endtime: String? = nil, message: String? = nil, reason: HistoryReason? = nil, receiver: String? = nil, recipient: String? = nil, recordpath: String? = nil, shortLink: String? = nil, slug: String? = nil, starttime: String? = nil, status: String? = nil, status1: String? = nil, status2: String? = nil, storeCode: String? = nil, storeId: Int? = nil, storeName: String? = nil) {
-            self.status1 = status1
+            self.starttime = starttime
 
-            self.caller = caller
+            self.storeId = storeId
 
-            self.activityType = activityType
+            self.storeName = storeName
+
+            self.billsec = billsec
 
             self.activityComment = activityComment
 
-            self.callId = callId
+            self.duration = duration
+
+            self.message = message
+
+            self.recipient = recipient
+
+            self.status1 = status1
+
+            self.activityType = activityType
 
             self.reason = reason
-
-            self.callerid = callerid
-
-            self.recordpath = recordpath
 
             self.receiver = receiver
 
@@ -515,36 +521,30 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.channelType = channelType
 
-            self.billsec = billsec
-
             self.status = status
-
-            self.duration = duration
-
-            self.starttime = starttime
-
-            self.message = message
-
-            self.slug = slug
 
             self.shortLink = shortLink
 
-            self.storeCode = storeCode
-
             self.status2 = status2
 
-            self.recipient = recipient
+            self.callerid = callerid
 
-            self.storeId = storeId
+            self.storeCode = storeCode
 
-            self.storeName = storeName
+            self.recordpath = recordpath
+
+            self.slug = slug
+
+            self.callId = callId
+
+            self.caller = caller
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status1 = try container.decode(String.self, forKey: .status1)
+                starttime = try container.decode(String.self, forKey: .starttime)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -552,7 +552,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                caller = try container.decode(String.self, forKey: .caller)
+                storeId = try container.decode(Int.self, forKey: .storeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -560,7 +560,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                activityType = try container.decode(String.self, forKey: .activityType)
+                storeName = try container.decode(String.self, forKey: .storeName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                billsec = try container.decode(String.self, forKey: .billsec)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -576,7 +584,39 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                callId = try container.decode(String.self, forKey: .callId)
+                duration = try container.decode(String.self, forKey: .duration)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                recipient = try container.decode(String.self, forKey: .recipient)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status1 = try container.decode(String.self, forKey: .status1)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                activityType = try container.decode(String.self, forKey: .activityType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -585,22 +625,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 reason = try container.decode(HistoryReason.self, forKey: .reason)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                callerid = try container.decode(String.self, forKey: .callerid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                recordpath = try container.decode(String.self, forKey: .recordpath)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -632,47 +656,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                billsec = try container.decode(String.self, forKey: .billsec)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                duration = try container.decode(String.self, forKey: .duration)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                starttime = try container.decode(String.self, forKey: .starttime)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                message = try container.decode(String.self, forKey: .message)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -688,14 +672,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 status2 = try container.decode(String.self, forKey: .status2)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -704,7 +680,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                recipient = try container.decode(String.self, forKey: .recipient)
+                callerid = try container.decode(String.self, forKey: .callerid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -712,7 +688,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                storeId = try container.decode(Int.self, forKey: .storeId)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -720,7 +696,31 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                storeName = try container.decode(String.self, forKey: .storeName)
+                recordpath = try container.decode(String.self, forKey: .recordpath)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                callId = try container.decode(String.self, forKey: .callId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                caller = try container.decode(String.self, forKey: .caller)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -731,21 +731,27 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(status1, forKey: .status1)
+            try? container.encode(starttime, forKey: .starttime)
 
-            try? container.encode(caller, forKey: .caller)
+            try? container.encode(storeId, forKey: .storeId)
 
-            try? container.encode(activityType, forKey: .activityType)
+            try? container.encode(storeName, forKey: .storeName)
+
+            try? container.encode(billsec, forKey: .billsec)
 
             try? container.encode(activityComment, forKey: .activityComment)
 
-            try? container.encode(callId, forKey: .callId)
+            try? container.encode(duration, forKey: .duration)
+
+            try? container.encode(message, forKey: .message)
+
+            try? container.encode(recipient, forKey: .recipient)
+
+            try? container.encode(status1, forKey: .status1)
+
+            try? container.encode(activityType, forKey: .activityType)
 
             try? container.encodeIfPresent(reason, forKey: .reason)
-
-            try? container.encode(callerid, forKey: .callerid)
-
-            try? container.encode(recordpath, forKey: .recordpath)
 
             try? container.encode(receiver, forKey: .receiver)
 
@@ -753,29 +759,23 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(channelType, forKey: .channelType)
 
-            try? container.encode(billsec, forKey: .billsec)
-
             try? container.encode(status, forKey: .status)
-
-            try? container.encode(duration, forKey: .duration)
-
-            try? container.encode(starttime, forKey: .starttime)
-
-            try? container.encode(message, forKey: .message)
-
-            try? container.encode(slug, forKey: .slug)
 
             try? container.encode(shortLink, forKey: .shortLink)
 
-            try? container.encode(storeCode, forKey: .storeCode)
-
             try? container.encode(status2, forKey: .status2)
 
-            try? container.encode(recipient, forKey: .recipient)
+            try? container.encode(callerid, forKey: .callerid)
 
-            try? container.encode(storeId, forKey: .storeId)
+            try? container.encode(storeCode, forKey: .storeCode)
 
-            try? container.encode(storeName, forKey: .storeName)
+            try? container.encode(recordpath, forKey: .recordpath)
+
+            try? container.encode(slug, forKey: .slug)
+
+            try? container.encode(callId, forKey: .callId)
+
+            try? container.encode(caller, forKey: .caller)
         }
     }
 }
