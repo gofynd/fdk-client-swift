@@ -9,26 +9,26 @@ public extension ApplicationClient.Order {
     class ShipmentReason: Codable {
         public var reasonId: Int?
 
-        public var showTextArea: Bool?
+        public var feedbackType: String?
 
         public var priority: Int?
 
-        public var feedbackType: String?
-
         public var reasonText: String?
+
+        public var showTextArea: Bool?
 
         public var flow: String?
 
         public enum CodingKeys: String, CodingKey {
             case reasonId = "reason_id"
 
-            case showTextArea = "show_text_area"
+            case feedbackType = "feedback_type"
 
             case priority
 
-            case feedbackType = "feedback_type"
-
             case reasonText = "reason_text"
+
+            case showTextArea = "show_text_area"
 
             case flow
         }
@@ -36,13 +36,13 @@ public extension ApplicationClient.Order {
         public init(feedbackType: String? = nil, flow: String? = nil, priority: Int? = nil, reasonId: Int? = nil, reasonText: String? = nil, showTextArea: Bool? = nil) {
             self.reasonId = reasonId
 
-            self.showTextArea = showTextArea
+            self.feedbackType = feedbackType
 
             self.priority = priority
 
-            self.feedbackType = feedbackType
-
             self.reasonText = reasonText
+
+            self.showTextArea = showTextArea
 
             self.flow = flow
         }
@@ -59,7 +59,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
+                feedbackType = try container.decode(String.self, forKey: .feedbackType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                feedbackType = try container.decode(String.self, forKey: .feedbackType)
+                reasonText = try container.decode(String.self, forKey: .reasonText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                reasonText = try container.decode(String.self, forKey: .reasonText)
+                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,13 +104,13 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(reasonId, forKey: .reasonId)
 
-            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
+            try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
-
             try? container.encodeIfPresent(reasonText, forKey: .reasonText)
+
+            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
 
             try? container.encodeIfPresent(flow, forKey: .flow)
         }

@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var entityType: String
 
-        public var actionType: String
-
         public var entities: [Entities]
+
+        public var actionType: String
 
         public enum CodingKeys: String, CodingKey {
             case action
 
             case entityType = "entity_type"
 
-            case actionType = "action_type"
-
             case entities
+
+            case actionType = "action_type"
         }
 
         public init(action: String, actionType: String, entities: [Entities], entityType: String) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.entityType = entityType
 
-            self.actionType = actionType
-
             self.entities = entities
+
+            self.actionType = actionType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,9 +44,9 @@ public extension PlatformClient.Order {
 
             entityType = try container.decode(String.self, forKey: .entityType)
 
-            actionType = try container.decode(String.self, forKey: .actionType)
-
             entities = try container.decode([Entities].self, forKey: .entities)
+
+            actionType = try container.decode(String.self, forKey: .actionType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +56,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(actionType, forKey: .actionType)
-
             try? container.encodeIfPresent(entities, forKey: .entities)
+
+            try? container.encodeIfPresent(actionType, forKey: .actionType)
         }
     }
 }
@@ -74,18 +74,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var entityType: String
 
-        public var actionType: String
-
         public var entities: [Entities]
+
+        public var actionType: String
 
         public enum CodingKeys: String, CodingKey {
             case action
 
             case entityType = "entity_type"
 
-            case actionType = "action_type"
-
             case entities
+
+            case actionType = "action_type"
         }
 
         public init(action: String, actionType: String, entities: [Entities], entityType: String) {
@@ -93,9 +93,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.entityType = entityType
 
-            self.actionType = actionType
-
             self.entities = entities
+
+            self.actionType = actionType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             entityType = try container.decode(String.self, forKey: .entityType)
 
-            actionType = try container.decode(String.self, forKey: .actionType)
-
             entities = try container.decode([Entities].self, forKey: .entities)
+
+            actionType = try container.decode(String.self, forKey: .actionType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(actionType, forKey: .actionType)
-
             try? container.encodeIfPresent(entities, forKey: .entities)
+
+            try? container.encodeIfPresent(actionType, forKey: .actionType)
         }
     }
 }

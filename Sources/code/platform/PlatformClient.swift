@@ -27,15 +27,13 @@ public class PlatformClient {
 
     public let configuration: Configuration
 
-    public let analytics: Analytics
-
     public let discount: Discount
 
     public let webhook: Webhook
 
     public let auditTrail: AuditTrail
 
-    public let serviceability: Serviceability
+    public let logistics: Logistics
 
     public init(config: PlatformConfig) {
         self.config = config
@@ -62,15 +60,13 @@ public class PlatformClient {
 
         configuration = Configuration(config: config)
 
-        analytics = Analytics(config: config)
-
         discount = Discount(config: config)
 
         webhook = Webhook(config: config)
 
         auditTrail = AuditTrail(config: config)
 
-        serviceability = Serviceability(config: config)
+        logistics = Logistics(config: config)
     }
 
     public func applicationClient(id: String) -> ApplicationClient {
@@ -108,11 +104,9 @@ public class PlatformClient {
 
         public let rewards: Rewards
 
-        public let analytics: Analytics
-
         public let partner: Partner
 
-        public let serviceability: Serviceability
+        public let logistics: Logistics
 
         public init(applicationId: String, config: PlatformConfig) {
             self.config = config
@@ -145,11 +139,9 @@ public class PlatformClient {
 
             rewards = Rewards(config: config, applicationId: applicationId)
 
-            analytics = Analytics(config: config, applicationId: applicationId)
-
             partner = Partner(config: config, applicationId: applicationId)
 
-            serviceability = Serviceability(config: config, applicationId: applicationId)
+            logistics = Logistics(config: config, applicationId: applicationId)
         }
 
         public class Lead {
@@ -5441,36 +5433,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getCampaigns
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getCampaignsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<Campaigns> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Campaigns>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getCampaigns(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Create campaign
              * Description: Create campaign
              **/
@@ -5677,36 +5639,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getAudiences
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getAudiencesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<Audiences> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Audiences>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAudiences(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -5958,36 +5890,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getEmailProviders
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getEmailProvidersPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<EmailProviders> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EmailProviders>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getEmailProviders(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Create email provider
              * Description: Create email provider
              **/
@@ -6159,36 +6061,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getEmailTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getEmailTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<EmailTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EmailTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getEmailTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Create email template
              * Description: Create email template
              **/
@@ -6278,36 +6150,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getSystemEmailTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSystemEmailTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SystemEmailTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SystemEmailTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSystemEmailTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -6560,36 +6402,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getEventSubscriptions
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getEventSubscriptionsPaginator(
-                pageSize: Int?,
-                populate: String?
-
-            ) -> Paginator<EventSubscriptions> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<EventSubscriptions>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getEventSubscriptions(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        populate: populate
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Get jobs
              * Description: Get jobs
              **/
@@ -6641,36 +6453,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getJobs
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getJobsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<Jobs> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Jobs>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getJobs(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -6768,36 +6550,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getJobLogs
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getJobLogsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<JobLogs> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<JobLogs>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getJobLogs(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Get communication logs
              * Description: Get communication logs
              **/
@@ -6854,38 +6606,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getCommunicationLogs
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getCommunicationLogsPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?,
-                query: [String: Any]?
-
-            ) -> Paginator<Logs> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<Logs>(pageSize: pageSize, type: "cursor")
-                paginator.onPage = {
-                    self.getCommunicationLogs(
-                        pageId: paginator.pageId,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort,
-                        query: query
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageId = response.page?.nextId
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7017,36 +6737,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getSmsProviders
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSmsProvidersPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SmsProviders> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SmsProviders>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSmsProviders(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7218,36 +6908,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getSmsTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSmsTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SmsTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SmsTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSmsTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7462,36 +7122,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: get paginator for getSystemSystemTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSystemSystemTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SystemSmsTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SystemSmsTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSystemSystemTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
              * Summary: Get voice providers
              * Description: Get voice providers
              **/
@@ -7543,36 +7173,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getVoiceProviders
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getVoiceProvidersPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<VoiceProviders> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<VoiceProviders>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getVoiceProviders(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7705,36 +7305,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getVoiceTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getVoiceTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<VoiceTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<VoiceTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getVoiceTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**
@@ -7945,36 +7515,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getSystemVoiceTemplates
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getSystemVoiceTemplatesPaginator(
-                pageSize: Int?,
-                sort: [String: Any]?
-
-            ) -> Paginator<SystemVoiceTemplates> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<SystemVoiceTemplates>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getSystemVoiceTemplates(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        sort: sort
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
         }
 
@@ -9143,7 +8683,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/shipments/",
+                    url: "/service/platform/orders/v1.0/company/\(companyId)/application/\(applicationId)/shipments/",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -9186,7 +8726,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/order-details",
+                    url: "/service/platform/orders/v1.0/company/\(companyId)/application/\(applicationId)/order-details",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -9225,7 +8765,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/\(shipmentId)/track",
+                    url: "/service/platform/orders/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/\(shipmentId)/track",
                     query: nil,
                     body: nil,
                     headers: [],
@@ -16927,374 +16467,6 @@ public class PlatformClient {
             }
         }
 
-        public class Analytics {
-            var config: PlatformConfig
-            var companyId: String
-            var applicationId: String
-
-            init(config: PlatformConfig, applicationId: String) {
-                self.config = config
-                self.companyId = config.companyId
-                self.applicationId = applicationId
-            }
-
-            /**
-             *
-             * Summary: Get statistics groups
-             * Description: Get statistics groups
-             **/
-            public func getStatiscticsGroups(
-                onResponse: @escaping (_ response: StatsGroups?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/group",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(StatsGroups.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: Get statistics group components
-             * Description: Get statistics group components
-             **/
-            public func getStatiscticsGroupComponents(
-                groupName: String,
-
-                onResponse: @escaping (_ response: StatsGroupComponents?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/group/\(groupName)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(StatsGroupComponents.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: Get component statistics csv
-             * Description: Get component statistics csv
-             **/
-            public func getComponentStatsCSV(
-                componentName: String,
-
-                onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/component/\(componentName).csv",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/csv",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = data
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: Get component statistics pdf
-             * Description: Get component statistics pdf
-             **/
-            public func getComponentStatsPDF(
-                componentName: String,
-
-                onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/component/\(componentName).pdf",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/pdf",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = data
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: Get component statistics
-             * Description: Get component statistics
-             **/
-            public func getComponentStats(
-                componentName: String,
-
-                onResponse: @escaping (_ response: StatsRes?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/stats/component/\(componentName)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(StatsRes.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: Get abandon carts list
-             * Description: Get abandon carts list
-             **/
-            public func getAbandonCartList(
-                fromDate: String,
-                toDate: String,
-                pageNo: Int?,
-                pageSize: Int?,
-
-                onResponse: @escaping (_ response: AbandonCartsList?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:]
-
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/cart/from/\(fromDate)/to/\(toDate)/abandon-cart/",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(AbandonCartsList.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getAbandonCartList
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getAbandonCartListPaginator(
-                fromDate: String,
-                toDate: String,
-                pageSize: Int?
-
-            ) -> Paginator<AbandonCartsList> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<AbandonCartsList>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getAbandonCartList(
-                        fromDate: fromDate,
-                        toDate: toDate,
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize
-
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
-
-            /**
-             *
-             * Summary: Get abandon carts csv
-             * Description: Get abandon carts csv
-             **/
-            public func getAbandonCartsCSV(
-                fromDate: String,
-                toDate: String,
-
-                onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/cart/\(fromDate)/to/\(toDate)/abandon-cart.csv",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/csv",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = data
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: Get abandon carts details
-             * Description: Get abandon cart details
-             **/
-            public func getAbandonCartDetail(
-                cartId: String,
-
-                onResponse: @escaping (_ response: AbandonCartDetail?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/analytics/v1.0/company/\(companyId)/application/\(applicationId)/cart/abandonCart/\(cartId)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(AbandonCartDetail.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-        }
-
         public class Partner {
             var config: PlatformConfig
             var companyId: String
@@ -17386,7 +16558,7 @@ public class PlatformClient {
             }
         }
 
-        public class Serviceability {
+        public class Logistics {
             var config: PlatformConfig
             var companyId: String
             var applicationId: String

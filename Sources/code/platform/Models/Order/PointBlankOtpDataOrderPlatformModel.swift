@@ -9,36 +9,44 @@ public extension PlatformClient.Order {
      */
 
     class PointBlankOtpData: Codable {
+        public var resendTimer: Int?
+
         public var requestId: String?
 
         public var message: String?
 
         public var mobile: Int?
 
-        public var resendTimer: Int?
-
         public enum CodingKeys: String, CodingKey {
+            case resendTimer = "resend_timer"
+
             case requestId = "request_id"
 
             case message
 
             case mobile
-
-            case resendTimer = "resend_timer"
         }
 
         public init(message: String? = nil, mobile: Int? = nil, requestId: String? = nil, resendTimer: Int? = nil) {
+            self.resendTimer = resendTimer
+
             self.requestId = requestId
 
             self.message = message
 
             self.mobile = mobile
-
-            self.resendTimer = resendTimer
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 requestId = try container.decode(String.self, forKey: .requestId)
@@ -63,26 +71,18 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-
-            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
         }
     }
 }
@@ -94,36 +94,44 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PointBlankOtpData: Codable {
+        public var resendTimer: Int?
+
         public var requestId: String?
 
         public var message: String?
 
         public var mobile: Int?
 
-        public var resendTimer: Int?
-
         public enum CodingKeys: String, CodingKey {
+            case resendTimer = "resend_timer"
+
             case requestId = "request_id"
 
             case message
 
             case mobile
-
-            case resendTimer = "resend_timer"
         }
 
         public init(message: String? = nil, mobile: Int? = nil, requestId: String? = nil, resendTimer: Int? = nil) {
+            self.resendTimer = resendTimer
+
             self.requestId = requestId
 
             self.message = message
 
             self.mobile = mobile
-
-            self.resendTimer = resendTimer
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 requestId = try container.decode(String.self, forKey: .requestId)
@@ -148,26 +156,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                resendTimer = try container.decode(Int.self, forKey: .resendTimer)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-
-            try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
         }
     }
 }

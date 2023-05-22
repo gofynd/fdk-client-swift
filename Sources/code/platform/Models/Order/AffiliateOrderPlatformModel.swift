@@ -11,32 +11,30 @@ public extension PlatformClient.Order {
     class Affiliate: Codable {
         public var token: String
 
-        public var id: String
-
         public var config: AffiliateConfig?
+
+        public var id: String
 
         public enum CodingKeys: String, CodingKey {
             case token
 
-            case id
-
             case config
+
+            case id
         }
 
         public init(config: AffiliateConfig? = nil, id: String, token: String) {
             self.token = token
 
-            self.id = id
-
             self.config = config
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             token = try container.decode(String.self, forKey: .token)
-
-            id = try container.decode(String.self, forKey: .id)
 
             do {
                 config = try container.decode(AffiliateConfig.self, forKey: .config)
@@ -45,6 +43,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(String.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(token, forKey: .token)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(config, forKey: .config)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
@@ -68,32 +68,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class Affiliate: Codable {
         public var token: String
 
-        public var id: String
-
         public var config: AffiliateConfig?
+
+        public var id: String
 
         public enum CodingKeys: String, CodingKey {
             case token
 
-            case id
-
             case config
+
+            case id
         }
 
         public init(config: AffiliateConfig? = nil, id: String, token: String) {
             self.token = token
 
-            self.id = id
-
             self.config = config
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             token = try container.decode(String.self, forKey: .token)
-
-            id = try container.decode(String.self, forKey: .id)
 
             do {
                 config = try container.decode(AffiliateConfig.self, forKey: .config)
@@ -102,6 +100,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(String.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(token, forKey: .token)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(config, forKey: .config)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

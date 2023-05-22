@@ -13,62 +13,62 @@ public extension PlatformClient.Order {
 
         public var rawMeta: String?
 
-        public var size: String
-
         public var code: String?
 
-        public var sellerIdentifier: String
-
-        public var isSet: Bool?
-
-        public var dimensions: Dimensions?
-
-        public var childDetails: [String: Any]?
+        public var returnConfig: ReturnConfig?
 
         public var aSet: [String: Any]?
 
-        public var currency: [String: Any]?
+        public var weight: Weight?
+
+        public var dimensions: Dimensions?
 
         public var uid: String
 
-        public var weight: Weight?
+        public var id: String
+
+        public var childDetails: [String: Any]?
+
+        public var size: String
+
+        public var currency: [String: Any]?
+
+        public var sellerIdentifier: String
 
         public var identifiers: Identifier
 
-        public var id: String
-
-        public var returnConfig: ReturnConfig?
+        public var isSet: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case espModified = "esp_modified"
 
             case rawMeta = "raw_meta"
 
-            case size
-
             case code
 
-            case sellerIdentifier = "seller_identifier"
-
-            case isSet = "is_set"
-
-            case dimensions
-
-            case childDetails = "child_details"
+            case returnConfig = "return_config"
 
             case aSet = "a_set"
 
-            case currency
+            case weight
+
+            case dimensions
 
             case uid
 
-            case weight
+            case id = "_id"
+
+            case childDetails = "child_details"
+
+            case size
+
+            case currency
+
+            case sellerIdentifier = "seller_identifier"
 
             case identifiers
 
-            case id = "_id"
-
-            case returnConfig = "return_config"
+            case isSet = "is_set"
         }
 
         public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: Identifier, isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, uid: String, weight: Weight? = nil, id: String) {
@@ -76,31 +76,31 @@ public extension PlatformClient.Order {
 
             self.rawMeta = rawMeta
 
-            self.size = size
-
             self.code = code
 
-            self.sellerIdentifier = sellerIdentifier
-
-            self.isSet = isSet
-
-            self.dimensions = dimensions
-
-            self.childDetails = childDetails
+            self.returnConfig = returnConfig
 
             self.aSet = aSet
 
-            self.currency = currency
+            self.weight = weight
+
+            self.dimensions = dimensions
 
             self.uid = uid
 
-            self.weight = weight
+            self.id = id
+
+            self.childDetails = childDetails
+
+            self.size = size
+
+            self.currency = currency
+
+            self.sellerIdentifier = sellerIdentifier
 
             self.identifiers = identifiers
 
-            self.id = id
-
-            self.returnConfig = returnConfig
+            self.isSet = isSet
         }
 
         required public init(from decoder: Decoder) throws {
@@ -122,8 +122,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            size = try container.decode(String.self, forKey: .size)
-
             do {
                 code = try container.decode(String.self, forKey: .code)
 
@@ -132,26 +130,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dimensions = try container.decode(Dimensions.self, forKey: .dimensions)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                childDetails = try container.decode([String: Any].self, forKey: .childDetails)
+                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,7 +147,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                currency = try container.decode([String: Any].self, forKey: .currency)
+                weight = try container.decode(Weight.self, forKey: .weight)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dimensions = try container.decode(Dimensions.self, forKey: .dimensions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,20 +164,32 @@ public extension PlatformClient.Order {
 
             uid = try container.decode(String.self, forKey: .uid)
 
+            id = try container.decode(String.self, forKey: .id)
+
             do {
-                weight = try container.decode(Weight.self, forKey: .weight)
+                childDetails = try container.decode([String: Any].self, forKey: .childDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            identifiers = try container.decode(Identifier.self, forKey: .identifiers)
-
-            id = try container.decode(String.self, forKey: .id)
+            size = try container.decode(String.self, forKey: .size)
 
             do {
-                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
+                currency = try container.decode([String: Any].self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            identifiers = try container.decode(Identifier.self, forKey: .identifiers)
+
+            do {
+                isSet = try container.decode(Bool.self, forKey: .isSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -204,31 +204,31 @@ public extension PlatformClient.Order {
 
             try? container.encode(rawMeta, forKey: .rawMeta)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
-
-            try? container.encodeIfPresent(dimensions, forKey: .dimensions)
-
-            try? container.encode(childDetails, forKey: .childDetails)
+            try? container.encode(returnConfig, forKey: .returnConfig)
 
             try? container.encode(aSet, forKey: .aSet)
 
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(weight, forKey: .weight)
+
+            try? container.encodeIfPresent(dimensions, forKey: .dimensions)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(weight, forKey: .weight)
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encode(childDetails, forKey: .childDetails)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encode(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encode(returnConfig, forKey: .returnConfig)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
         }
     }
 }
@@ -244,62 +244,62 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var rawMeta: String?
 
-        public var size: String
-
         public var code: String?
 
-        public var sellerIdentifier: String
-
-        public var isSet: Bool?
-
-        public var dimensions: Dimensions?
-
-        public var childDetails: [String: Any]?
+        public var returnConfig: ReturnConfig?
 
         public var aSet: [String: Any]?
 
-        public var currency: [String: Any]?
+        public var weight: Weight?
+
+        public var dimensions: Dimensions?
 
         public var uid: String
 
-        public var weight: Weight?
+        public var id: String
+
+        public var childDetails: [String: Any]?
+
+        public var size: String
+
+        public var currency: [String: Any]?
+
+        public var sellerIdentifier: String
 
         public var identifiers: Identifier
 
-        public var id: String
-
-        public var returnConfig: ReturnConfig?
+        public var isSet: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case espModified = "esp_modified"
 
             case rawMeta = "raw_meta"
 
-            case size
-
             case code
 
-            case sellerIdentifier = "seller_identifier"
-
-            case isSet = "is_set"
-
-            case dimensions
-
-            case childDetails = "child_details"
+            case returnConfig = "return_config"
 
             case aSet = "a_set"
 
-            case currency
+            case weight
+
+            case dimensions
 
             case uid
 
-            case weight
+            case id = "_id"
+
+            case childDetails = "child_details"
+
+            case size
+
+            case currency
+
+            case sellerIdentifier = "seller_identifier"
 
             case identifiers
 
-            case id = "_id"
-
-            case returnConfig = "return_config"
+            case isSet = "is_set"
         }
 
         public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: Identifier, isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, uid: String, weight: Weight? = nil, id: String) {
@@ -307,31 +307,31 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.rawMeta = rawMeta
 
-            self.size = size
-
             self.code = code
 
-            self.sellerIdentifier = sellerIdentifier
-
-            self.isSet = isSet
-
-            self.dimensions = dimensions
-
-            self.childDetails = childDetails
+            self.returnConfig = returnConfig
 
             self.aSet = aSet
 
-            self.currency = currency
+            self.weight = weight
+
+            self.dimensions = dimensions
 
             self.uid = uid
 
-            self.weight = weight
+            self.id = id
+
+            self.childDetails = childDetails
+
+            self.size = size
+
+            self.currency = currency
+
+            self.sellerIdentifier = sellerIdentifier
 
             self.identifiers = identifiers
 
-            self.id = id
-
-            self.returnConfig = returnConfig
+            self.isSet = isSet
         }
 
         required public init(from decoder: Decoder) throws {
@@ -353,8 +353,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            size = try container.decode(String.self, forKey: .size)
-
             do {
                 code = try container.decode(String.self, forKey: .code)
 
@@ -363,26 +361,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
             do {
-                isSet = try container.decode(Bool.self, forKey: .isSet)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dimensions = try container.decode(Dimensions.self, forKey: .dimensions)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                childDetails = try container.decode([String: Any].self, forKey: .childDetails)
+                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -398,7 +378,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                currency = try container.decode([String: Any].self, forKey: .currency)
+                weight = try container.decode(Weight.self, forKey: .weight)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dimensions = try container.decode(Dimensions.self, forKey: .dimensions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -407,20 +395,32 @@ public extension PlatformClient.ApplicationClient.Order {
 
             uid = try container.decode(String.self, forKey: .uid)
 
+            id = try container.decode(String.self, forKey: .id)
+
             do {
-                weight = try container.decode(Weight.self, forKey: .weight)
+                childDetails = try container.decode([String: Any].self, forKey: .childDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            identifiers = try container.decode(Identifier.self, forKey: .identifiers)
-
-            id = try container.decode(String.self, forKey: .id)
+            size = try container.decode(String.self, forKey: .size)
 
             do {
-                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
+                currency = try container.decode([String: Any].self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            identifiers = try container.decode(Identifier.self, forKey: .identifiers)
+
+            do {
+                isSet = try container.decode(Bool.self, forKey: .isSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -435,31 +435,31 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(rawMeta, forKey: .rawMeta)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
-
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
-
-            try? container.encodeIfPresent(dimensions, forKey: .dimensions)
-
-            try? container.encode(childDetails, forKey: .childDetails)
+            try? container.encode(returnConfig, forKey: .returnConfig)
 
             try? container.encode(aSet, forKey: .aSet)
 
-            try? container.encode(currency, forKey: .currency)
+            try? container.encodeIfPresent(weight, forKey: .weight)
+
+            try? container.encodeIfPresent(dimensions, forKey: .dimensions)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(weight, forKey: .weight)
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encode(childDetails, forKey: .childDetails)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encode(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encode(returnConfig, forKey: .returnConfig)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
         }
     }
 }
