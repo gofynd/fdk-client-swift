@@ -9,48 +9,48 @@ public extension ApplicationClient.Payment {
     class CustomerOnboardingRequest: Codable {
         public var device: DeviceDetails?
 
-        public var marketplaceInfo: MarketplaceInfo?
-
-        public var mcc: String?
-
-        public var personalInfo: UserPersonalInfoInDetails
-
         public var aggregator: String
+
+        public var source: String
 
         public var businessInfo: BusinessDetails?
 
-        public var source: String
+        public var mcc: String?
+
+        public var marketplaceInfo: MarketplaceInfo?
+
+        public var personalInfo: UserPersonalInfoInDetails
 
         public enum CodingKeys: String, CodingKey {
             case device
 
-            case marketplaceInfo = "marketplace_info"
-
-            case mcc
-
-            case personalInfo = "personal_info"
-
             case aggregator
+
+            case source
 
             case businessInfo = "business_info"
 
-            case source
+            case mcc
+
+            case marketplaceInfo = "marketplace_info"
+
+            case personalInfo = "personal_info"
         }
 
         public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, mcc: String? = nil, personalInfo: UserPersonalInfoInDetails, source: String) {
             self.device = device
 
-            self.marketplaceInfo = marketplaceInfo
-
-            self.mcc = mcc
-
-            self.personalInfo = personalInfo
-
             self.aggregator = aggregator
+
+            self.source = source
 
             self.businessInfo = businessInfo
 
-            self.source = source
+            self.mcc = mcc
+
+            self.marketplaceInfo = marketplaceInfo
+
+            self.personalInfo = personalInfo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,8 +64,12 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            source = try container.decode(String.self, forKey: .source)
+
             do {
-                marketplaceInfo = try container.decode(MarketplaceInfo.self, forKey: .marketplaceInfo)
+                businessInfo = try container.decode(BusinessDetails.self, forKey: .businessInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,19 +84,15 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             do {
-                businessInfo = try container.decode(BusinessDetails.self, forKey: .businessInfo)
+                marketplaceInfo = try container.decode(MarketplaceInfo.self, forKey: .marketplaceInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            source = try container.decode(String.self, forKey: .source)
+            personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -100,17 +100,17 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(device, forKey: .device)
 
-            try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
-
-            try? container.encode(mcc, forKey: .mcc)
-
-            try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
-
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encode(mcc, forKey: .mcc)
+
+            try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
+
+            try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
         }
     }
 }

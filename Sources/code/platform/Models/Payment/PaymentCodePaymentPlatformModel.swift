@@ -11,18 +11,18 @@ public extension PlatformClient.Payment {
     class PaymentCode: Codable {
         public var codes: Code
 
-        public var name: String
-
         public var networks: String
+
+        public var name: String
 
         public var types: String
 
         public enum CodingKeys: String, CodingKey {
             case codes
 
-            case name
-
             case networks
+
+            case name
 
             case types
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Payment {
         public init(codes: Code, name: String, networks: String, types: String) {
             self.codes = codes
 
-            self.name = name
-
             self.networks = networks
+
+            self.name = name
 
             self.types = types
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Payment {
 
             codes = try container.decode(Code.self, forKey: .codes)
 
-            name = try container.decode(String.self, forKey: .name)
-
             networks = try container.decode(String.self, forKey: .networks)
+
+            name = try container.decode(String.self, forKey: .name)
 
             types = try container.decode(String.self, forKey: .types)
         }
@@ -54,9 +54,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(codes, forKey: .codes)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(networks, forKey: .networks)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(types, forKey: .types)
         }
@@ -72,18 +72,18 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentCode: Codable {
         public var codes: Code
 
-        public var name: String
-
         public var networks: String
+
+        public var name: String
 
         public var types: String
 
         public enum CodingKeys: String, CodingKey {
             case codes
 
-            case name
-
             case networks
+
+            case name
 
             case types
         }
@@ -91,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(codes: Code, name: String, networks: String, types: String) {
             self.codes = codes
 
-            self.name = name
-
             self.networks = networks
+
+            self.name = name
 
             self.types = types
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             codes = try container.decode(Code.self, forKey: .codes)
 
-            name = try container.decode(String.self, forKey: .name)
-
             networks = try container.decode(String.self, forKey: .networks)
+
+            name = try container.decode(String.self, forKey: .name)
 
             types = try container.decode(String.self, forKey: .types)
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(codes, forKey: .codes)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(networks, forKey: .networks)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(types, forKey: .types)
         }

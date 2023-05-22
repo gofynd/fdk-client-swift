@@ -9,8 +9,6 @@ public extension PlatformClient.Catalog {
      */
 
     class PriceMeta: Codable {
-        public var marked: Double
-
         public var updatedAt: String?
 
         public var transfer: Double
@@ -21,9 +19,9 @@ public extension PlatformClient.Catalog {
 
         public var currency: String
 
-        public enum CodingKeys: String, CodingKey {
-            case marked
+        public var marked: Double
 
+        public enum CodingKeys: String, CodingKey {
             case updatedAt = "updated_at"
 
             case transfer
@@ -33,11 +31,11 @@ public extension PlatformClient.Catalog {
             case effective
 
             case currency
+
+            case marked
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
-            self.marked = marked
-
             self.updatedAt = updatedAt
 
             self.transfer = transfer
@@ -47,12 +45,12 @@ public extension PlatformClient.Catalog {
             self.effective = effective
 
             self.currency = currency
+
+            self.marked = marked
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            marked = try container.decode(Double.self, forKey: .marked)
 
             do {
                 updatedAt = try container.decode(String.self, forKey: .updatedAt)
@@ -75,12 +73,12 @@ public extension PlatformClient.Catalog {
             effective = try container.decode(Double.self, forKey: .effective)
 
             currency = try container.decode(String.self, forKey: .currency)
+
+            marked = try container.decode(Double.self, forKey: .marked)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
@@ -91,6 +89,8 @@ public extension PlatformClient.Catalog {
             try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 }
@@ -102,8 +102,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class PriceMeta: Codable {
-        public var marked: Double
-
         public var updatedAt: String?
 
         public var transfer: Double
@@ -114,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var currency: String
 
-        public enum CodingKeys: String, CodingKey {
-            case marked
+        public var marked: Double
 
+        public enum CodingKeys: String, CodingKey {
             case updatedAt = "updated_at"
 
             case transfer
@@ -126,11 +124,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case effective
 
             case currency
+
+            case marked
         }
 
         public init(currency: String, effective: Double, marked: Double, tpNotes: [String: Any]? = nil, transfer: Double, updatedAt: String? = nil) {
-            self.marked = marked
-
             self.updatedAt = updatedAt
 
             self.transfer = transfer
@@ -140,12 +138,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.effective = effective
 
             self.currency = currency
+
+            self.marked = marked
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            marked = try container.decode(Double.self, forKey: .marked)
 
             do {
                 updatedAt = try container.decode(String.self, forKey: .updatedAt)
@@ -168,12 +166,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             effective = try container.decode(Double.self, forKey: .effective)
 
             currency = try container.decode(String.self, forKey: .currency)
+
+            marked = try container.decode(Double.self, forKey: .marked)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
@@ -184,6 +182,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 }

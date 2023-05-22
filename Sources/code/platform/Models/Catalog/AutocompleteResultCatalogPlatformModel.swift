@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class AutocompleteResult: Codable {
         public var customJson: [String: Any]?
 
-        public var display: String?
-
         public var logo: Media?
+
+        public var display: String?
 
         public var action: AutocompleteAction?
 
         public enum CodingKeys: String, CodingKey {
             case customJson = "_custom_json"
 
-            case display
-
             case logo
+
+            case display
 
             case action
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: Media? = nil, customJson: [String: Any]? = nil) {
             self.customJson = customJson
 
-            self.display = display
-
             self.logo = logo
+
+            self.display = display
 
             self.action = action
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AutocompleteResult: Codable {
         public var customJson: [String: Any]?
 
-        public var display: String?
-
         public var logo: Media?
+
+        public var display: String?
 
         public var action: AutocompleteAction?
 
         public enum CodingKeys: String, CodingKey {
             case customJson = "_custom_json"
 
-            case display
-
             case logo
+
+            case display
 
             case action
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: Media? = nil, customJson: [String: Any]? = nil) {
             self.customJson = customJson
 
-            self.display = display
-
             self.logo = logo
+
+            self.display = display
 
             self.action = action
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }
