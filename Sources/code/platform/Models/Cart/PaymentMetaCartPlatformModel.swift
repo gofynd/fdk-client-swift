@@ -13,18 +13,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var paymentGateway: String?
 
-        public var paymentIdentifier: String?
-
         public var merchantCode: String?
+
+        public var paymentIdentifier: String?
 
         public enum CodingKeys: String, CodingKey {
             case type
 
             case paymentGateway = "payment_gateway"
 
-            case paymentIdentifier = "payment_identifier"
-
             case merchantCode = "merchant_code"
+
+            case paymentIdentifier = "payment_identifier"
         }
 
         public init(merchantCode: String? = nil, paymentGateway: String? = nil, paymentIdentifier: String? = nil, type: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.paymentGateway = paymentGateway
 
-            self.paymentIdentifier = paymentIdentifier
-
             self.merchantCode = merchantCode
+
+            self.paymentIdentifier = paymentIdentifier
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                merchantCode = try container.decode(String.self, forKey: .merchantCode)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
-
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
         }
     }
 }

@@ -7,54 +7,54 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class PaymentInitializationRequest: Codable {
-        public var contact: String
-
         public var currency: String
 
-        public var merchantOrderId: String
+        public var timeout: Int?
 
         public var vpa: String?
 
-        public var aggregator: String
+        public var merchantOrderId: String
 
-        public var customerId: String
+        public var contact: String
 
-        public var method: String
+        public var amount: Int
 
         public var orderId: String
 
         public var email: String
 
-        public var timeout: Int?
+        public var customerId: String
 
-        public var amount: Int
+        public var aggregator: String
+
+        public var method: String
 
         public var deviceId: String?
 
         public var razorpayPaymentId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case contact
-
             case currency
 
-            case merchantOrderId = "merchant_order_id"
+            case timeout
 
             case vpa
 
-            case aggregator
+            case merchantOrderId = "merchant_order_id"
 
-            case customerId = "customer_id"
+            case contact
 
-            case method
+            case amount
 
             case orderId = "order_id"
 
             case email
 
-            case timeout
+            case customerId = "customer_id"
 
-            case amount
+            case aggregator
+
+            case method
 
             case deviceId = "device_id"
 
@@ -62,27 +62,27 @@ public extension ApplicationClient.Payment {
         }
 
         public init(aggregator: String, amount: Int, contact: String, currency: String, customerId: String, deviceId: String? = nil, email: String, merchantOrderId: String, method: String, orderId: String, razorpayPaymentId: String? = nil, timeout: Int? = nil, vpa: String? = nil) {
-            self.contact = contact
-
             self.currency = currency
 
-            self.merchantOrderId = merchantOrderId
+            self.timeout = timeout
 
             self.vpa = vpa
 
-            self.aggregator = aggregator
+            self.merchantOrderId = merchantOrderId
 
-            self.customerId = customerId
+            self.contact = contact
 
-            self.method = method
+            self.amount = amount
 
             self.orderId = orderId
 
             self.email = email
 
-            self.timeout = timeout
+            self.customerId = customerId
 
-            self.amount = amount
+            self.aggregator = aggregator
+
+            self.method = method
 
             self.deviceId = deviceId
 
@@ -92,29 +92,7 @@ public extension ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            contact = try container.decode(String.self, forKey: .contact)
-
             currency = try container.decode(String.self, forKey: .currency)
-
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
-
-            do {
-                vpa = try container.decode(String.self, forKey: .vpa)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            customerId = try container.decode(String.self, forKey: .customerId)
-
-            method = try container.decode(String.self, forKey: .method)
-
-            orderId = try container.decode(String.self, forKey: .orderId)
-
-            email = try container.decode(String.self, forKey: .email)
 
             do {
                 timeout = try container.decode(Int.self, forKey: .timeout)
@@ -124,7 +102,29 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                vpa = try container.decode(String.self, forKey: .vpa)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+
+            contact = try container.decode(String.self, forKey: .contact)
+
             amount = try container.decode(Int.self, forKey: .amount)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
+
+            email = try container.decode(String.self, forKey: .email)
+
+            customerId = try container.decode(String.self, forKey: .customerId)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            method = try container.decode(String.self, forKey: .method)
 
             do {
                 deviceId = try container.decode(String.self, forKey: .deviceId)
@@ -146,27 +146,27 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(contact, forKey: .contact)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encode(timeout, forKey: .timeout)
 
             try? container.encode(vpa, forKey: .vpa)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
 
-            try? container.encodeIfPresent(customerId, forKey: .customerId)
+            try? container.encodeIfPresent(contact, forKey: .contact)
 
-            try? container.encodeIfPresent(method, forKey: .method)
+            try? container.encode(amount, forKey: .amount)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encode(timeout, forKey: .timeout)
+            try? container.encodeIfPresent(customerId, forKey: .customerId)
 
-            try? container.encode(amount, forKey: .amount)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(method, forKey: .method)
 
             try? container.encode(deviceId, forKey: .deviceId)
 

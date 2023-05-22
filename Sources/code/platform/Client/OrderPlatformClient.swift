@@ -1445,8 +1445,8 @@ public extension PlatformClient {
             caller: String,
             receiver: String,
             bagId: String,
-            callingTo: String?,
             callerId: String?,
+            method: String?,
 
             onResponse: @escaping (_ response: Click2CallResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1458,12 +1458,12 @@ public extension PlatformClient {
 
             xQuery["bag_id"] = bagId
 
-            if let value = callingTo {
-                xQuery["calling_to"] = value
-            }
-
             if let value = callerId {
                 xQuery["caller_id"] = value
+            }
+
+            if let value = method {
+                xQuery["method"] = value
             }
 
             PlatformAPIClient.execute(
@@ -1690,7 +1690,7 @@ public extension PlatformClient {
          * Description:
          **/
         public func getShipmentHistory(
-            shipmentId: String?,
+            shipmentId: Int?,
             bagId: Int?,
 
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
@@ -1816,7 +1816,7 @@ public extension PlatformClient {
          * Description:
          **/
         public func updatePackagingDimensions(
-            body: CreateOrderPayload,
+            body: UpdatePackagingDimensionsPayload,
             onResponse: @escaping (_ response: CreateOrderResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
