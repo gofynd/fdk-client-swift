@@ -13,13 +13,13 @@ public extension PlatformClient.Order {
 
         public var gstTag: String?
 
+        public var brandCalculatedAmount: Double?
+
         public var valueOfGood: Double?
 
         public var gstFee: Double?
 
         public var gstTaxPercentage: Int?
-
-        public var brandCalculatedAmount: Double?
 
         public var gstinCode: String?
 
@@ -30,13 +30,13 @@ public extension PlatformClient.Order {
 
             case gstTag = "gst_tag"
 
+            case brandCalculatedAmount = "brand_calculated_amount"
+
             case valueOfGood = "value_of_good"
 
             case gstFee = "gst_fee"
 
             case gstTaxPercentage = "gst_tax_percentage"
-
-            case brandCalculatedAmount = "brand_calculated_amount"
 
             case gstinCode = "gstin_code"
 
@@ -48,13 +48,13 @@ public extension PlatformClient.Order {
 
             self.gstTag = gstTag
 
+            self.brandCalculatedAmount = brandCalculatedAmount
+
             self.valueOfGood = valueOfGood
 
             self.gstFee = gstFee
 
             self.gstTaxPercentage = gstTaxPercentage
-
-            self.brandCalculatedAmount = brandCalculatedAmount
 
             self.gstinCode = gstinCode
 
@@ -74,6 +74,14 @@ public extension PlatformClient.Order {
 
             do {
                 gstTag = try container.decode(String.self, forKey: .gstTag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,14 +113,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -136,13 +136,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(gstTag, forKey: .gstTag)
 
+            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
 
             try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
-
-            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 
@@ -162,13 +162,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var gstTag: String?
 
+        public var brandCalculatedAmount: Double?
+
         public var valueOfGood: Double?
 
         public var gstFee: Double?
 
         public var gstTaxPercentage: Int?
-
-        public var brandCalculatedAmount: Double?
 
         public var gstinCode: String?
 
@@ -179,13 +179,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case gstTag = "gst_tag"
 
+            case brandCalculatedAmount = "brand_calculated_amount"
+
             case valueOfGood = "value_of_good"
 
             case gstFee = "gst_fee"
 
             case gstTaxPercentage = "gst_tax_percentage"
-
-            case brandCalculatedAmount = "brand_calculated_amount"
 
             case gstinCode = "gstin_code"
 
@@ -197,13 +197,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.gstTag = gstTag
 
+            self.brandCalculatedAmount = brandCalculatedAmount
+
             self.valueOfGood = valueOfGood
 
             self.gstFee = gstFee
 
             self.gstTaxPercentage = gstTaxPercentage
-
-            self.brandCalculatedAmount = brandCalculatedAmount
 
             self.gstinCode = gstinCode
 
@@ -223,6 +223,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 gstTag = try container.decode(String.self, forKey: .gstTag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -254,14 +262,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                brandCalculatedAmount = try container.decode(Double.self, forKey: .brandCalculatedAmount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 gstinCode = try container.decode(String.self, forKey: .gstinCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -285,13 +285,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(gstTag, forKey: .gstTag)
 
+            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
+
             try? container.encodeIfPresent(valueOfGood, forKey: .valueOfGood)
 
             try? container.encodeIfPresent(gstFee, forKey: .gstFee)
 
             try? container.encodeIfPresent(gstTaxPercentage, forKey: .gstTaxPercentage)
-
-            try? container.encodeIfPresent(brandCalculatedAmount, forKey: .brandCalculatedAmount)
 
             try? container.encodeIfPresent(gstinCode, forKey: .gstinCode)
 

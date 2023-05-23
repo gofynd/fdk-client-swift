@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var bagList: [String]?
 
-        public var shipmentId: String?
+        public var createdAt: String?
 
         public var id: Int?
 
-        public var createdAt: String?
+        public var shipmentId: String?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
             case bagList = "bag_list"
 
-            case shipmentId = "shipment_id"
+            case createdAt = "created_at"
 
             case id
 
-            case createdAt = "created_at"
+            case shipmentId = "shipment_id"
         }
 
         public init(bagList: [String]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.bagList = bagList
 
-            self.shipmentId = shipmentId
+            self.createdAt = createdAt
 
             self.id = id
 
-            self.createdAt = createdAt
+            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                createdAt = try container.decode(String.self, forKey: .createdAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,11 +94,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encode(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }
@@ -114,22 +114,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var bagList: [String]?
 
-        public var shipmentId: String?
+        public var createdAt: String?
 
         public var id: Int?
 
-        public var createdAt: String?
+        public var shipmentId: String?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
             case bagList = "bag_list"
 
-            case shipmentId = "shipment_id"
+            case createdAt = "created_at"
 
             case id
 
-            case createdAt = "created_at"
+            case shipmentId = "shipment_id"
         }
 
         public init(bagList: [String]? = nil, createdAt: String? = nil, id: Int? = nil, shipmentId: String? = nil, status: String? = nil) {
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.bagList = bagList
 
-            self.shipmentId = shipmentId
+            self.createdAt = createdAt
 
             self.id = id
 
-            self.createdAt = createdAt
+            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                createdAt = try container.decode(String.self, forKey: .createdAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,11 +195,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encode(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }

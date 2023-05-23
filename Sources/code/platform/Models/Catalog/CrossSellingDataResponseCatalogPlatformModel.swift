@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: CrossSellingResponse
+         Model: CrossSellingDataResponse
          Used By: Catalog
      */
 
-    class CrossSellingResponse: Codable {
-        public var brandDistribution: CatalogInsightBrand?
+    class CrossSellingDataResponse: Codable {
+        public var articles: Int?
 
-        public var data: CrossSellingData?
+        public var products: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case brandDistribution = "brand_distribution"
+            case articles
 
-            case data
+            case products
         }
 
-        public init(brandDistribution: CatalogInsightBrand? = nil, data: CrossSellingData? = nil) {
-            self.brandDistribution = brandDistribution
+        public init(articles: Int? = nil, products: Int? = nil) {
+            self.articles = articles
 
-            self.data = data
+            self.products = products
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandDistribution = try container.decode(CatalogInsightBrand.self, forKey: .brandDistribution)
+                articles = try container.decode(Int.self, forKey: .articles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                data = try container.decode(CrossSellingData.self, forKey: .data)
+                products = try container.decode(Int.self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brandDistribution, forKey: .brandDistribution)
+            try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(products, forKey: .products)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: CrossSellingResponse
+         Model: CrossSellingDataResponse
          Used By: Catalog
      */
 
-    class CrossSellingResponse: Codable {
-        public var brandDistribution: CatalogInsightBrand?
+    class CrossSellingDataResponse: Codable {
+        public var articles: Int?
 
-        public var data: CrossSellingData?
+        public var products: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case brandDistribution = "brand_distribution"
+            case articles
 
-            case data
+            case products
         }
 
-        public init(brandDistribution: CatalogInsightBrand? = nil, data: CrossSellingData? = nil) {
-            self.brandDistribution = brandDistribution
+        public init(articles: Int? = nil, products: Int? = nil) {
+            self.articles = articles
 
-            self.data = data
+            self.products = products
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandDistribution = try container.decode(CatalogInsightBrand.self, forKey: .brandDistribution)
+                articles = try container.decode(Int.self, forKey: .articles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                data = try container.decode(CrossSellingData.self, forKey: .data)
+                products = try container.decode(Int.self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brandDistribution, forKey: .brandDistribution)
+            try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(products, forKey: .products)
         }
     }
 }

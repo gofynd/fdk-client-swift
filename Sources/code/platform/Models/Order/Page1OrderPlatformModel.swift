@@ -9,22 +9,22 @@ public extension PlatformClient.Order {
      */
 
     class Page1: Codable {
-        public var size: Int
-
         public var current: Int
 
         public var pageType: String
+
+        public var size: Int
 
         public var hasNext: Bool
 
         public var itemTotal: Int
 
         public enum CodingKeys: String, CodingKey {
-            case size
-
             case current
 
             case pageType = "page_type"
+
+            case size
 
             case hasNext = "has_next"
 
@@ -32,11 +32,11 @@ public extension PlatformClient.Order {
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
-            self.size = size
-
             self.current = current
 
             self.pageType = pageType
+
+            self.size = size
 
             self.hasNext = hasNext
 
@@ -46,11 +46,11 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            size = try container.decode(Int.self, forKey: .size)
-
             current = try container.decode(Int.self, forKey: .current)
 
             pageType = try container.decode(String.self, forKey: .pageType)
+
+            size = try container.decode(Int.self, forKey: .size)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
@@ -60,11 +60,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(pageType, forKey: .pageType)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
@@ -80,22 +80,22 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Page1: Codable {
-        public var size: Int
-
         public var current: Int
 
         public var pageType: String
+
+        public var size: Int
 
         public var hasNext: Bool
 
         public var itemTotal: Int
 
         public enum CodingKeys: String, CodingKey {
-            case size
-
             case current
 
             case pageType = "page_type"
+
+            case size
 
             case hasNext = "has_next"
 
@@ -103,11 +103,11 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
-            self.size = size
-
             self.current = current
 
             self.pageType = pageType
+
+            self.size = size
 
             self.hasNext = hasNext
 
@@ -117,11 +117,11 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            size = try container.decode(Int.self, forKey: .size)
-
             current = try container.decode(Int.self, forKey: .current)
 
             pageType = try container.decode(String.self, forKey: .pageType)
+
+            size = try container.decode(Int.self, forKey: .size)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(pageType, forKey: .pageType)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 

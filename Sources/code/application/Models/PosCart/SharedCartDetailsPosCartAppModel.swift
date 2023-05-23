@@ -9,9 +9,9 @@ public extension ApplicationClient.PosCart {
     class SharedCartDetails: Codable {
         public var user: [String: Any]?
 
-        public var meta: [String: Any]?
-
         public var source: [String: Any]?
+
+        public var meta: [String: Any]?
 
         public var createdOn: String?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.PosCart {
         public enum CodingKeys: String, CodingKey {
             case user
 
-            case meta
-
             case source
+
+            case meta
 
             case createdOn = "created_on"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.PosCart {
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
             self.user = user
 
-            self.meta = meta
-
             self.source = source
+
+            self.meta = meta
 
             self.createdOn = createdOn
 
@@ -53,7 +53,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                source = try container.decode([String: Any].self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                source = try container.decode([String: Any].self, forKey: .source)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(source, forKey: .source)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 

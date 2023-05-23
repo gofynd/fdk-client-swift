@@ -11,18 +11,18 @@ public extension ApplicationClient.Catalog {
 
         public var currencyCode: String?
 
-        public var min: Double?
-
         public var max: Double?
+
+        public var min: Double?
 
         public enum CodingKeys: String, CodingKey {
             case currencySymbol = "currency_symbol"
 
             case currencyCode = "currency_code"
 
-            case min
-
             case max
+
+            case min
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
 
             self.currencyCode = currencyCode
 
-            self.min = min
-
             self.max = max
+
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
             try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }

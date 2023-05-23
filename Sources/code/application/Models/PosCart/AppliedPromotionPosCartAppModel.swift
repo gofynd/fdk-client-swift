@@ -7,65 +7,57 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class AppliedPromotion: Codable {
-        public var promotionType: String?
-
-        public var promoId: String?
+        public var ownership: Ownership?
 
         public var mrpPromotion: Bool?
 
-        public var amount: Double?
-
-        public var articleQuantity: Int?
+        public var promoId: String?
 
         public var offerText: String?
 
-        public var ownership: Ownership?
+        public var promotionType: String?
+
+        public var articleQuantity: Int?
+
+        public var amount: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case promotionType = "promotion_type"
-
-            case promoId = "promo_id"
+            case ownership
 
             case mrpPromotion = "mrp_promotion"
 
-            case amount
-
-            case articleQuantity = "article_quantity"
+            case promoId = "promo_id"
 
             case offerText = "offer_text"
 
-            case ownership
+            case promotionType = "promotion_type"
+
+            case articleQuantity = "article_quantity"
+
+            case amount
         }
 
         public init(amount: Double? = nil, articleQuantity: Int? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionType: String? = nil, promoId: String? = nil) {
-            self.promotionType = promotionType
-
-            self.promoId = promoId
+            self.ownership = ownership
 
             self.mrpPromotion = mrpPromotion
 
-            self.amount = amount
-
-            self.articleQuantity = articleQuantity
+            self.promoId = promoId
 
             self.offerText = offerText
 
-            self.ownership = ownership
+            self.promotionType = promotionType
+
+            self.articleQuantity = articleQuantity
+
+            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                promotionType = try container.decode(String.self, forKey: .promotionType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promoId = try container.decode(String.self, forKey: .promoId)
+                ownership = try container.decode(Ownership.self, forKey: .ownership)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,15 +73,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
+                promoId = try container.decode(String.self, forKey: .promoId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +89,23 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                ownership = try container.decode(Ownership.self, forKey: .ownership)
+                promotionType = try container.decode(String.self, forKey: .promotionType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,19 +116,19 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
-
-            try? container.encodeIfPresent(promoId, forKey: .promoId)
+            try? container.encodeIfPresent(ownership, forKey: .ownership)
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
-            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
-            try? container.encodeIfPresent(ownership, forKey: .ownership)
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }
