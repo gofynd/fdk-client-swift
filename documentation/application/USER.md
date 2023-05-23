@@ -54,7 +54,7 @@ Login or Register using Facebook
 
 
 ```swift
-user.loginWithFacebook(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithFacebook(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -137,7 +137,7 @@ Login or Register using Google
 
 
 ```swift
-user.loginWithGoogle(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithGoogle(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -220,7 +220,7 @@ Login or Register using Google on Android
 
 
 ```swift
-user.loginWithGoogleAndroid(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithGoogleAndroid(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -303,7 +303,7 @@ Login or Register using Google on iOS
 
 
 ```swift
-user.loginWithGoogleIOS(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithGoogleIOS(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -386,7 +386,7 @@ Login or Register using Apple on iOS
 
 
 ```swift
-user.loginWithAppleIOS(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithAppleIOS(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -469,7 +469,7 @@ Login or Register with OTP
 
 
 ```swift
-user.loginWithOTP(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithOTP(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -540,7 +540,7 @@ Login or Register with password
 
 
 ```swift
-user.loginWithEmailAndPassword(body: body) { (response, error) in
+applicationClient.user.loginWithEmailAndPassword(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -649,7 +649,7 @@ Reset Password
 
 
 ```swift
-user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -706,7 +706,7 @@ Reset Password
 
 
 ```swift
-user.sendResetPasswordMobile(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendResetPasswordMobile(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -763,7 +763,7 @@ Forgot Password
 
 
 ```swift
-user.forgotPassword(body: body) { (response, error) in
+applicationClient.user.forgotPassword(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -872,7 +872,7 @@ Reset Password using token
 
 
 ```swift
-user.sendResetToken(body: body) { (response, error) in
+applicationClient.user.sendResetToken(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -928,7 +928,7 @@ Login or Register with token
 
 
 ```swift
-user.loginWithToken(body: body) { (response, error) in
+applicationClient.user.loginWithToken(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1037,7 +1037,7 @@ Registration using a form
 
 
 ```swift
-user.registerWithForm(platform: platform, body: body) { (response, error) in
+applicationClient.user.registerWithForm(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1103,7 +1103,7 @@ Verify email
 
 
 ```swift
-user.verifyEmail(body: body) { (response, error) in
+applicationClient.user.verifyEmail(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1159,7 +1159,7 @@ Verify mobile
 
 
 ```swift
-user.verifyMobile(body: body) { (response, error) in
+applicationClient.user.verifyMobile(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1215,7 +1215,7 @@ Check password
 
 
 ```swift
-user.hasPassword() { (response, error) in
+applicationClient.user.hasPassword() { (response, error) in
     // Use response
 }
 ```
@@ -1265,7 +1265,7 @@ Update user password
 
 
 ```swift
-user.updatePassword(body: body) { (response, error) in
+applicationClient.user.updatePassword(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1321,7 +1321,7 @@ verify otp and delete user
 
 
 ```swift
-user.deleteUser(body: body) { (response, error) in
+applicationClient.user.deleteUser(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1377,7 +1377,7 @@ Logs out currently logged in user
 
 
 ```swift
-user.logout() { (response, error) in
+applicationClient.user.logout() { (response, error) in
     // Use response
 }
 ```
@@ -1427,7 +1427,7 @@ Send OTP on mobile
 
 
 ```swift
-user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1490,7 +1490,7 @@ Verify OTP on mobile
 
 
 ```swift
-user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
+applicationClient.user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1601,7 +1601,7 @@ Send OTP on email
 
 
 ```swift
-user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1658,7 +1658,7 @@ Verify OTP on email
 
 
 ```swift
-user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
+applicationClient.user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1769,7 +1769,7 @@ Get logged in user
 
 
 ```swift
-user.getLoggedInUser() { (response, error) in
+applicationClient.user.getLoggedInUser() { (response, error) in
     // Use response
 }
 ```
@@ -1874,7 +1874,7 @@ Get list of sessions
 
 
 ```swift
-user.getListOfActiveSessions() { (response, error) in
+applicationClient.user.getListOfActiveSessions() { (response, error) in
     // Use response
 }
 ```
@@ -1929,7 +1929,7 @@ Get platform configurations
 
 
 ```swift
-user.getPlatformConfig(name: name) { (response, error) in
+applicationClient.user.getPlatformConfig(name: name) { (response, error) in
     // Use response
 }
 ```
@@ -2065,7 +2065,7 @@ Edit Profile Details
 
 
 ```swift
-user.updateProfile(platform: platform, body: body) { (response, error) in
+applicationClient.user.updateProfile(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2175,7 +2175,7 @@ Add mobile number to profile
 
 
 ```swift
-user.addMobileNumber(platform: platform, body: body) { (response, error) in
+applicationClient.user.addMobileNumber(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2286,7 +2286,7 @@ Delete mobile number from profile
 
 
 ```swift
-user.deleteMobileNumber(platform: platform, active: active, primary: primary, verified: verified, countryCode: countryCode, phone: phone) { (response, error) in
+applicationClient.user.deleteMobileNumber(platform: platform, active: active, primary: primary, verified: verified, countryCode: countryCode, phone: phone) { (response, error) in
     // Use response
 }
 ```
@@ -2401,7 +2401,7 @@ Set mobile as primary
 
 
 ```swift
-user.setMobileNumberAsPrimary(body: body) { (response, error) in
+applicationClient.user.setMobileNumberAsPrimary(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2510,7 +2510,7 @@ Send verification link to mobile
 
 
 ```swift
-user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2621,7 +2621,7 @@ Add email to profile
 
 
 ```swift
-user.addEmail(platform: platform, body: body) { (response, error) in
+applicationClient.user.addEmail(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2732,7 +2732,7 @@ Delete email from profile
 
 
 ```swift
-user.deleteEmail(platform: platform, active: active, primary: primary, verified: verified, email: email) { (response, error) in
+applicationClient.user.deleteEmail(platform: platform, active: active, primary: primary, verified: verified, email: email) { (response, error) in
     // Use response
 }
 ```
@@ -2846,7 +2846,7 @@ Set email as primary
 
 
 ```swift
-user.setEmailAsPrimary(body: body) { (response, error) in
+applicationClient.user.setEmailAsPrimary(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2955,7 +2955,7 @@ Send verification link to email
 
 
 ```swift
-user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4202,8 +4202,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | profilePicUrl | String? |  yes  |  |
  | username | String? |  yes  |  |
  | accountType | String? |  yes  |  |
- | debug | [Debug](#Debug)? |  yes  |  |
- | hasOldPasswordHash | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
@@ -4236,18 +4234,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verified | Bool? |  yes  |  |
  | email | String? |  yes  |  |
  | active | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Debug](#Debug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | String? |  yes  |  |
- | platform | String? |  yes  |  |
 
 ---
 

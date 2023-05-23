@@ -11,36 +11,36 @@ public extension PlatformClient.ApplicationClient.Cart {
     class ProductAvailability: Codable {
         public var deliverable: Bool?
 
-        public var sizes: [String]?
-
         public var outOfStock: Bool?
 
-        public var otherStoreQuantity: Int?
-
         public var isValid: Bool?
+
+        public var sizes: [String]?
+
+        public var otherStoreQuantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case deliverable
 
-            case sizes
-
             case outOfStock = "out_of_stock"
 
-            case otherStoreQuantity = "other_store_quantity"
-
             case isValid = "is_valid"
+
+            case sizes
+
+            case otherStoreQuantity = "other_store_quantity"
         }
 
         public init(deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
             self.deliverable = deliverable
 
-            self.sizes = sizes
-
             self.outOfStock = outOfStock
 
-            self.otherStoreQuantity = otherStoreQuantity
-
             self.isValid = isValid
+
+            self.sizes = sizes
+
+            self.otherStoreQuantity = otherStoreQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,14 +48,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 deliverable = try container.decode(Bool.self, forKey: .deliverable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sizes = try container.decode([String].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +71,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                sizes = try container.decode([String].self, forKey: .sizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,13 +92,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
-
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
 
-            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
-
             try? container.encodeIfPresent(isValid, forKey: .isValid)
+
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
+
+            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
         }
     }
 }

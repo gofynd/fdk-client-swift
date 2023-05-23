@@ -26,7 +26,7 @@ Create QR Code of an app
 
 
 ```swift
-share.getApplicationQRCode() { (response, error) in
+applicationClient.share.getApplicationQRCode() { (response, error) in
     // Use response
 }
 ```
@@ -79,7 +79,7 @@ Create QR Code of a product
 
 
 ```swift
-share.getProductQRCodeBySlug(slug: slug) { (response, error) in
+applicationClient.share.getProductQRCodeBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -137,7 +137,7 @@ Create QR Code of a collection
 
 
 ```swift
-share.getCollectionQRCodeBySlug(slug: slug) { (response, error) in
+applicationClient.share.getCollectionQRCodeBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -195,7 +195,7 @@ Create QR Code of a URL
 
 
 ```swift
-share.getUrlQRCode(url: url) { (response, error) in
+applicationClient.share.getUrlQRCode(url: url) { (response, error) in
     // Use response
 }
 ```
@@ -253,7 +253,7 @@ Create a short link
 
 
 ```swift
-share.createShortLink(body: body) { (response, error) in
+applicationClient.share.createShortLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -345,7 +345,7 @@ Get short link by hash
 
 
 ```swift
-share.getShortLinkByHash(hash: hash) { (response, error) in
+applicationClient.share.getShortLinkByHash(hash: hash) { (response, error) in
     // Use response
 }
 ```
@@ -438,7 +438,7 @@ Get original link by hash
 
 
 ```swift
-share.getOriginalShortLinkByHash(hash: hash) { (response, error) in
+applicationClient.share.getOriginalShortLinkByHash(hash: hash) { (response, error) in
     // Use response
 }
 ```

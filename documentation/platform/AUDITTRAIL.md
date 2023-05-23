@@ -23,7 +23,7 @@ Get paginated audit logs
 
 
 ```swift
-client.audittrail.getAuditLogs(qs: qs) { (response, error) in
+platformClient.audittrail.getAuditLogs(qs: qs) { (response, error) in
     // Use response
 }
 ```
@@ -124,7 +124,7 @@ Create logs for auditing later on
 
 
 ```swift
-client.audittrail.createAuditLog(body: body) { (response, error) in
+platformClient.audittrail.createAuditLog(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -189,7 +189,7 @@ Get audit log
 
 
 ```swift
-client.audittrail.getAuditLog(id: id) { (response, error) in
+platformClient.audittrail.getAuditLog(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -290,7 +290,7 @@ Get entity types
 
 
 ```swift
-client.audittrail.getEntityTypes() { (response, error) in
+platformClient.audittrail.getEntityTypes() { (response, error) in
     // Use response
 }
 ```

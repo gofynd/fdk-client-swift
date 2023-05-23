@@ -21,7 +21,7 @@ Get TAT of a product
 
 
 ```swift
-logistic.getTatProduct(body: body) { (response, error) in
+applicationClient.logistic.getTatProduct(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -75,7 +75,7 @@ Get city from PIN Code
 
 
 ```swift
-logistic.getPincodeCity(pincode: pincode) { (response, error) in
+applicationClient.logistic.getPincodeCity(pincode: pincode) { (response, error) in
     // Use response
 }
 ```

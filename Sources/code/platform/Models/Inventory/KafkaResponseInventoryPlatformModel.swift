@@ -1,33 +1,35 @@
 
 
 import Foundation
-public extension ApplicationClient.User {
-    /*
-         Model: Debug
-         Used By: User
-     */
-    class Debug: Codable {
-        public var source: String?
 
-        public var platform: String?
+public extension PlatformClient.Inventory {
+    /*
+         Model: KafkaResponse
+         Used By: Inventory
+     */
+
+    class KafkaResponse: Codable {
+        public var offset: Int?
+
+        public var partition: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case source
+            case offset
 
-            case platform
+            case partition
         }
 
-        public init(platform: String? = nil, source: String? = nil) {
-            self.source = source
+        public init(offset: Int? = nil, partition: Int? = nil) {
+            self.offset = offset
 
-            self.platform = platform
+            self.partition = partition
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                source = try container.decode(String.self, forKey: .source)
+                offset = try container.decode(Int.self, forKey: .offset)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +37,7 @@ public extension ApplicationClient.User {
             } catch {}
 
             do {
-                platform = try container.decode(String.self, forKey: .platform)
+                partition = try container.decode(Int.self, forKey: .partition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +48,9 @@ public extension ApplicationClient.User {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(offset, forKey: .offset)
 
-            try? container.encodeIfPresent(platform, forKey: .platform)
+            try? container.encodeIfPresent(partition, forKey: .partition)
         }
     }
 }
