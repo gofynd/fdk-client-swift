@@ -11,9 +11,9 @@ public extension ApplicationClient.Cart {
 
         public var valid: Bool?
 
-        public var displayMessageEn: String?
-
         public var title: String?
+
+        public var displayMessageEn: String?
 
         public var code: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
 
             case valid
 
-            case displayMessageEn = "display_message_en"
-
             case title
+
+            case displayMessageEn = "display_message_en"
 
             case code
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Cart {
 
             self.valid = valid
 
-            self.displayMessageEn = displayMessageEn
-
             self.title = title
+
+            self.displayMessageEn = displayMessageEn
 
             self.code = code
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(valid, forKey: .valid)
 
-            try? container.encode(displayMessageEn, forKey: .displayMessageEn)
-
             try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encode(displayMessageEn, forKey: .displayMessageEn)
 
             try? container.encode(code, forKey: .code)
         }

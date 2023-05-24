@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var rate: Double
 
-        public var threshold: Double
-
         public var cess: Double?
+
+        public var threshold: Double
 
         public enum CodingKeys: String, CodingKey {
             case effectiveDate = "effective_date"
 
             case rate
 
-            case threshold
-
             case cess
+
+            case threshold
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.rate = rate
 
-            self.threshold = threshold
-
             self.cess = cess
+
+            self.threshold = threshold
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,8 +44,6 @@ public extension PlatformClient.Catalog {
 
             rate = try container.decode(Double.self, forKey: .rate)
 
-            threshold = try container.decode(Double.self, forKey: .threshold)
-
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
 
@@ -53,6 +51,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
-
             try? container.encodeIfPresent(cess, forKey: .cess)
+
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var rate: Double
 
-        public var threshold: Double
-
         public var cess: Double?
+
+        public var threshold: Double
 
         public enum CodingKeys: String, CodingKey {
             case effectiveDate = "effective_date"
 
             case rate
 
-            case threshold
-
             case cess
+
+            case threshold
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.rate = rate
 
-            self.threshold = threshold
-
             self.cess = cess
+
+            self.threshold = threshold
         }
 
         required public init(from decoder: Decoder) throws {
@@ -111,8 +111,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             rate = try container.decode(Double.self, forKey: .rate)
 
-            threshold = try container.decode(Double.self, forKey: .threshold)
-
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
 
@@ -120,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            threshold = try container.decode(Double.self, forKey: .threshold)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(rate, forKey: .rate)
 
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
-
             try? container.encodeIfPresent(cess, forKey: .cess)
+
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
         }
     }
 }

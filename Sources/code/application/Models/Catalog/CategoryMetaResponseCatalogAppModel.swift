@@ -11,9 +11,9 @@ public extension ApplicationClient.Catalog {
 
         public var customJson: [String: Any]?
 
-        public var banners: ImageUrls?
-
         public var uid: Int?
+
+        public var banners: ImageUrls?
 
         public var logo: Media?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Catalog {
 
             case customJson = "_custom_json"
 
-            case banners
-
             case uid
+
+            case banners
 
             case logo
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Catalog {
 
             self.customJson = customJson
 
-            self.banners = banners
-
             self.uid = uid
+
+            self.banners = banners
 
             self.logo = logo
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

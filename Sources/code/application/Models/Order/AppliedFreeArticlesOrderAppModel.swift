@@ -7,18 +7,18 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class AppliedFreeArticles: Codable {
-        public var parentItemIdentifier: String?
-
         public var articleId: String?
+
+        public var parentItemIdentifier: String?
 
         public var quantity: Double?
 
         public var freeGiftItemDetails: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case parentItemIdentifier = "parent_item_identifier"
-
             case articleId = "article_id"
+
+            case parentItemIdentifier = "parent_item_identifier"
 
             case quantity
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Order {
         }
 
         public init(articleId: String? = nil, freeGiftItemDetails: [String: Any]? = nil, parentItemIdentifier: String? = nil, quantity: Double? = nil) {
-            self.parentItemIdentifier = parentItemIdentifier
-
             self.articleId = articleId
+
+            self.parentItemIdentifier = parentItemIdentifier
 
             self.quantity = quantity
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                parentItemIdentifier = try container.decode(String.self, forKey: .parentItemIdentifier)
+                articleId = try container.decode(String.self, forKey: .articleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                parentItemIdentifier = try container.decode(String.self, forKey: .parentItemIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(parentItemIdentifier, forKey: .parentItemIdentifier)
-
             try? container.encodeIfPresent(articleId, forKey: .articleId)
+
+            try? container.encodeIfPresent(parentItemIdentifier, forKey: .parentItemIdentifier)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 

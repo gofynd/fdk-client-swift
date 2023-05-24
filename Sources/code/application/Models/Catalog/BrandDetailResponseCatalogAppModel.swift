@@ -9,26 +9,26 @@ public extension ApplicationClient.Catalog {
     class BrandDetailResponse: Codable {
         public var name: String?
 
-        public var description: String?
-
         public var customJson: [String: Any]?
+
+        public var uid: Int?
 
         public var banners: ImageUrls?
 
-        public var uid: Int?
+        public var description: String?
 
         public var logo: Media?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case description
-
             case customJson = "_custom_json"
+
+            case uid
 
             case banners
 
-            case uid
+            case description
 
             case logo
         }
@@ -36,13 +36,13 @@ public extension ApplicationClient.Catalog {
         public init(banners: ImageUrls? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.name = name
 
-            self.description = description
-
             self.customJson = customJson
+
+            self.uid = uid
 
             self.banners = banners
 
-            self.uid = uid
+            self.description = description
 
             self.logo = logo
         }
@@ -59,7 +59,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,13 +104,13 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

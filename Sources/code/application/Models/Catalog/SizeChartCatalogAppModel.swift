@@ -9,30 +9,30 @@ public extension ApplicationClient.Catalog {
     class SizeChart: Codable {
         public var sizeTip: String?
 
-        public var description: String?
+        public var image: String?
+
+        public var headers: ColumnHeaders?
 
         public var title: String?
 
         public var sizes: [SizeChartValues]?
 
-        public var image: String?
-
-        public var headers: ColumnHeaders?
+        public var description: String?
 
         public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
             case sizeTip = "size_tip"
 
-            case description
+            case image
+
+            case headers
 
             case title
 
             case sizes
 
-            case image
-
-            case headers
+            case description
 
             case unit
         }
@@ -40,15 +40,15 @@ public extension ApplicationClient.Catalog {
         public init(description: String? = nil, headers: ColumnHeaders? = nil, image: String? = nil, sizes: [SizeChartValues]? = nil, sizeTip: String? = nil, title: String? = nil, unit: String? = nil) {
             self.sizeTip = sizeTip
 
-            self.description = description
+            self.image = image
+
+            self.headers = headers
 
             self.title = title
 
             self.sizes = sizes
 
-            self.image = image
-
-            self.headers = headers
+            self.description = description
 
             self.unit = unit
         }
@@ -58,30 +58,6 @@ public extension ApplicationClient.Catalog {
 
             do {
                 sizeTip = try container.decode(String.self, forKey: .sizeTip)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,6 +81,30 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sizes = try container.decode([SizeChartValues].self, forKey: .sizes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -118,15 +118,15 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(sizeTip, forKey: .sizeTip)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(image, forKey: .image)
+
+            try? container.encodeIfPresent(headers, forKey: .headers)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(image, forKey: .image)
-
-            try? container.encodeIfPresent(headers, forKey: .headers)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }

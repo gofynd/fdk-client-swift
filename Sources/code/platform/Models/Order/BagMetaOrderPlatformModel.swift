@@ -13,15 +13,15 @@ public extension PlatformClient.Order {
 
         public var customMessage: String?
 
-        public var b2BPoDetails: B2BPODetails?
-
         public var docketNumber: String?
 
         public var customJson: [String: Any]?
 
-        public var giftCard: GiftCard?
+        public var b2BPoDetails: B2BPODetails?
 
         public var partialCanRet: Bool?
+
+        public var giftCard: GiftCard?
 
         public var groupId: String?
 
@@ -30,15 +30,15 @@ public extension PlatformClient.Order {
 
             case customMessage = "custom_message"
 
-            case b2BPoDetails = "b2b_po_details"
-
             case docketNumber = "docket_number"
 
             case customJson = "custom_json"
 
-            case giftCard = "gift_card"
+            case b2BPoDetails = "b2b_po_details"
 
             case partialCanRet = "partial_can_ret"
+
+            case giftCard = "gift_card"
 
             case groupId = "group_id"
         }
@@ -48,15 +48,15 @@ public extension PlatformClient.Order {
 
             self.customMessage = customMessage
 
-            self.b2BPoDetails = b2BPoDetails
-
             self.docketNumber = docketNumber
 
             self.customJson = customJson
 
-            self.giftCard = giftCard
+            self.b2BPoDetails = b2BPoDetails
 
             self.partialCanRet = partialCanRet
+
+            self.giftCard = giftCard
 
             self.groupId = groupId
         }
@@ -81,14 +81,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                b2BPoDetails = try container.decode(B2BPODetails.self, forKey: .b2BPoDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 docketNumber = try container.decode(String.self, forKey: .docketNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -105,7 +97,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                giftCard = try container.decode(GiftCard.self, forKey: .giftCard)
+                b2BPoDetails = try container.decode(B2BPODetails.self, forKey: .b2BPoDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,6 +106,14 @@ public extension PlatformClient.Order {
 
             do {
                 partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                giftCard = try container.decode(GiftCard.self, forKey: .giftCard)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -136,15 +136,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(customMessage, forKey: .customMessage)
 
-            try? container.encodeIfPresent(b2BPoDetails, forKey: .b2BPoDetails)
-
             try? container.encodeIfPresent(docketNumber, forKey: .docketNumber)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(giftCard, forKey: .giftCard)
+            try? container.encodeIfPresent(b2BPoDetails, forKey: .b2BPoDetails)
 
             try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+
+            try? container.encodeIfPresent(giftCard, forKey: .giftCard)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
         }
@@ -162,15 +162,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var customMessage: String?
 
-        public var b2BPoDetails: B2BPODetails?
-
         public var docketNumber: String?
 
         public var customJson: [String: Any]?
 
-        public var giftCard: GiftCard?
+        public var b2BPoDetails: B2BPODetails?
 
         public var partialCanRet: Bool?
+
+        public var giftCard: GiftCard?
 
         public var groupId: String?
 
@@ -179,15 +179,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case customMessage = "custom_message"
 
-            case b2BPoDetails = "b2b_po_details"
-
             case docketNumber = "docket_number"
 
             case customJson = "custom_json"
 
-            case giftCard = "gift_card"
+            case b2BPoDetails = "b2b_po_details"
 
             case partialCanRet = "partial_can_ret"
+
+            case giftCard = "gift_card"
 
             case groupId = "group_id"
         }
@@ -197,15 +197,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.customMessage = customMessage
 
-            self.b2BPoDetails = b2BPoDetails
-
             self.docketNumber = docketNumber
 
             self.customJson = customJson
 
-            self.giftCard = giftCard
+            self.b2BPoDetails = b2BPoDetails
 
             self.partialCanRet = partialCanRet
+
+            self.giftCard = giftCard
 
             self.groupId = groupId
         }
@@ -230,14 +230,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                b2BPoDetails = try container.decode(B2BPODetails.self, forKey: .b2BPoDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 docketNumber = try container.decode(String.self, forKey: .docketNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -254,7 +246,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                giftCard = try container.decode(GiftCard.self, forKey: .giftCard)
+                b2BPoDetails = try container.decode(B2BPODetails.self, forKey: .b2BPoDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -263,6 +255,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                giftCard = try container.decode(GiftCard.self, forKey: .giftCard)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -285,15 +285,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(customMessage, forKey: .customMessage)
 
-            try? container.encodeIfPresent(b2BPoDetails, forKey: .b2BPoDetails)
-
             try? container.encodeIfPresent(docketNumber, forKey: .docketNumber)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(giftCard, forKey: .giftCard)
+            try? container.encodeIfPresent(b2BPoDetails, forKey: .b2BPoDetails)
 
             try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+
+            try? container.encodeIfPresent(giftCard, forKey: .giftCard)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
         }

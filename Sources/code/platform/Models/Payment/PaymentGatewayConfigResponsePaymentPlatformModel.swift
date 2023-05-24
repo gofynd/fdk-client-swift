@@ -11,26 +11,26 @@ public extension PlatformClient.Payment {
     class PaymentGatewayConfigResponse: Codable {
         public var success: Bool
 
-        public var created: Bool
-
         public var appId: String
 
-        public var aggregators: [[String: Any]]?
-
         public var displayFields: [String]
+
+        public var created: Bool
+
+        public var aggregators: [[String: Any]]?
 
         public var excludedFields: [String]
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case created
-
             case appId = "app_id"
 
-            case aggregators
-
             case displayFields = "display_fields"
+
+            case created
+
+            case aggregators
 
             case excludedFields = "excluded_fields"
         }
@@ -38,13 +38,13 @@ public extension PlatformClient.Payment {
         public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
             self.success = success
 
-            self.created = created
-
             self.appId = appId
 
-            self.aggregators = aggregators
-
             self.displayFields = displayFields
+
+            self.created = created
+
+            self.aggregators = aggregators
 
             self.excludedFields = excludedFields
         }
@@ -54,9 +54,11 @@ public extension PlatformClient.Payment {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            created = try container.decode(Bool.self, forKey: .created)
-
             appId = try container.decode(String.self, forKey: .appId)
+
+            displayFields = try container.decode([String].self, forKey: .displayFields)
+
+            created = try container.decode(Bool.self, forKey: .created)
 
             do {
                 aggregators = try container.decode([[String: Any]].self, forKey: .aggregators)
@@ -66,8 +68,6 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            displayFields = try container.decode([String].self, forKey: .displayFields)
-
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
         }
 
@@ -76,13 +76,13 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(created, forKey: .created)
-
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(aggregators, forKey: .aggregators)
-
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
+
+            try? container.encodeIfPresent(created, forKey: .created)
+
+            try? container.encodeIfPresent(aggregators, forKey: .aggregators)
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
         }
@@ -98,26 +98,26 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentGatewayConfigResponse: Codable {
         public var success: Bool
 
-        public var created: Bool
-
         public var appId: String
 
-        public var aggregators: [[String: Any]]?
-
         public var displayFields: [String]
+
+        public var created: Bool
+
+        public var aggregators: [[String: Any]]?
 
         public var excludedFields: [String]
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case created
-
             case appId = "app_id"
 
-            case aggregators
-
             case displayFields = "display_fields"
+
+            case created
+
+            case aggregators
 
             case excludedFields = "excluded_fields"
         }
@@ -125,13 +125,13 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(aggregators: [[String: Any]]? = nil, appId: String, created: Bool, displayFields: [String], excludedFields: [String], success: Bool) {
             self.success = success
 
-            self.created = created
-
             self.appId = appId
 
-            self.aggregators = aggregators
-
             self.displayFields = displayFields
+
+            self.created = created
+
+            self.aggregators = aggregators
 
             self.excludedFields = excludedFields
         }
@@ -141,9 +141,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            created = try container.decode(Bool.self, forKey: .created)
-
             appId = try container.decode(String.self, forKey: .appId)
+
+            displayFields = try container.decode([String].self, forKey: .displayFields)
+
+            created = try container.decode(Bool.self, forKey: .created)
 
             do {
                 aggregators = try container.decode([[String: Any]].self, forKey: .aggregators)
@@ -153,8 +155,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            displayFields = try container.decode([String].self, forKey: .displayFields)
-
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
         }
 
@@ -163,13 +163,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(created, forKey: .created)
-
             try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(aggregators, forKey: .aggregators)
-
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
+
+            try? container.encodeIfPresent(created, forKey: .created)
+
+            try? container.encodeIfPresent(aggregators, forKey: .aggregators)
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
         }

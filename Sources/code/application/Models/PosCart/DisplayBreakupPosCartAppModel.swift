@@ -7,10 +7,6 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class DisplayBreakup: Codable {
-        public var currencySymbol: String?
-
-        public var currencyCode: String?
-
         public var key: String?
 
         public var message: [String]?
@@ -19,11 +15,11 @@ public extension ApplicationClient.PosCart {
 
         public var display: String?
 
+        public var currencyCode: String?
+
+        public var currencySymbol: String?
+
         public enum CodingKeys: String, CodingKey {
-            case currencySymbol = "currency_symbol"
-
-            case currencyCode = "currency_code"
-
             case key
 
             case message
@@ -31,13 +27,13 @@ public extension ApplicationClient.PosCart {
             case value
 
             case display
+
+            case currencyCode = "currency_code"
+
+            case currencySymbol = "currency_symbol"
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, key: String? = nil, message: [String]? = nil, value: Double? = nil) {
-            self.currencySymbol = currencySymbol
-
-            self.currencyCode = currencyCode
-
             self.key = key
 
             self.message = message
@@ -45,26 +41,14 @@ public extension ApplicationClient.PosCart {
             self.value = value
 
             self.display = display
+
+            self.currencyCode = currencyCode
+
+            self.currencySymbol = currencySymbol
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 key = try container.decode(String.self, forKey: .key)
@@ -97,14 +81,26 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
@@ -113,6 +109,10 @@ public extension ApplicationClient.PosCart {
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class SendUserMobileOtpResponse: Codable {
         public var success: Bool?
 
-        public var data: PointBlankOtpData?
-
         public var message: String?
+
+        public var data: PointBlankOtpData?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case data
-
             case message
+
+            case data
         }
 
         public init(data: PointBlankOtpData? = nil, message: String? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.data = data
-
             self.message = message
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                data = try container.decode(PointBlankOtpData.self, forKey: .data)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                data = try container.decode(PointBlankOtpData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class SendUserMobileOtpResponse: Codable {
         public var success: Bool?
 
-        public var data: PointBlankOtpData?
-
         public var message: String?
+
+        public var data: PointBlankOtpData?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case data
-
             case message
+
+            case data
         }
 
         public init(data: PointBlankOtpData? = nil, message: String? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.data = data
-
             self.message = message
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                data = try container.decode(PointBlankOtpData.self, forKey: .data)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                data = try container.decode(PointBlankOtpData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
