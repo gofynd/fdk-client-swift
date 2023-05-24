@@ -9,22 +9,22 @@ public extension ApplicationClient.Catalog {
     class Dimension: Codable {
         public var width: Double
 
-        public var isDefault: Bool
+        public var unit: String
 
         public var height: Double
 
-        public var unit: String
+        public var isDefault: Bool
 
         public var length: Double
 
         public enum CodingKeys: String, CodingKey {
             case width
 
-            case isDefault = "is_default"
+            case unit
 
             case height
 
-            case unit
+            case isDefault = "is_default"
 
             case length
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Catalog {
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.width = width
 
-            self.isDefault = isDefault
+            self.unit = unit
 
             self.height = height
 
-            self.unit = unit
+            self.isDefault = isDefault
 
             self.length = length
         }
@@ -46,11 +46,11 @@ public extension ApplicationClient.Catalog {
 
             width = try container.decode(Double.self, forKey: .width)
 
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+            unit = try container.decode(String.self, forKey: .unit)
 
             height = try container.decode(Double.self, forKey: .height)
 
-            unit = try container.decode(String.self, forKey: .unit)
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             length = try container.decode(Double.self, forKey: .length)
         }
@@ -60,11 +60,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(height, forKey: .height)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
             try? container.encodeIfPresent(length, forKey: .length)
         }

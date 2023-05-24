@@ -17,9 +17,9 @@ public extension PlatformClient.Catalog {
 
         public var productUid: Int
 
-        public var minQuantity: Int
-
         public var allowRemove: Bool?
+
+        public var minQuantity: Int
 
         public enum CodingKeys: String, CodingKey {
             case maxQuantity = "max_quantity"
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
 
             case productUid = "product_uid"
 
-            case minQuantity = "min_quantity"
-
             case allowRemove = "allow_remove"
+
+            case minQuantity = "min_quantity"
         }
 
         public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int, minQuantity: Int, productUid: Int) {
@@ -44,9 +44,9 @@ public extension PlatformClient.Catalog {
 
             self.productUid = productUid
 
-            self.minQuantity = minQuantity
-
             self.allowRemove = allowRemove
+
+            self.minQuantity = minQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -72,8 +72,6 @@ public extension PlatformClient.Catalog {
 
             productUid = try container.decode(Int.self, forKey: .productUid)
 
-            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
-
             do {
                 allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
 
@@ -81,6 +79,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(productUid, forKey: .productUid)
 
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
+
+            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
         }
     }
 }
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var productUid: Int
 
-        public var minQuantity: Int
-
         public var allowRemove: Bool?
+
+        public var minQuantity: Int
 
         public enum CodingKeys: String, CodingKey {
             case maxQuantity = "max_quantity"
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case productUid = "product_uid"
 
-            case minQuantity = "min_quantity"
-
             case allowRemove = "allow_remove"
+
+            case minQuantity = "min_quantity"
         }
 
         public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int, minQuantity: Int, productUid: Int) {
@@ -143,9 +143,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.productUid = productUid
 
-            self.minQuantity = minQuantity
-
             self.allowRemove = allowRemove
+
+            self.minQuantity = minQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -171,8 +171,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             productUid = try container.decode(Int.self, forKey: .productUid)
 
-            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
-
             do {
                 allowRemove = try container.decode(Bool.self, forKey: .allowRemove)
 
@@ -180,6 +178,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -193,9 +193,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(productUid, forKey: .productUid)
 
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
+
+            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
         }
     }
 }

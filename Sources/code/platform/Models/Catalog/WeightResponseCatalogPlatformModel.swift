@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class WeightResponse: Codable {
         public var isDefault: Bool
 
-        public var unit: String
-
         public var shipping: Double
+
+        public var unit: String
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
-            case unit
-
             case shipping
+
+            case unit
         }
 
         public init(isDefault: Bool, shipping: Double, unit: String) {
             self.isDefault = isDefault
 
-            self.unit = unit
-
             self.shipping = shipping
+
+            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            unit = try container.decode(String.self, forKey: .unit)
-
             shipping = try container.decode(Double.self, forKey: .shipping)
+
+            unit = try container.decode(String.self, forKey: .unit)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(shipping, forKey: .shipping)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class WeightResponse: Codable {
         public var isDefault: Bool
 
-        public var unit: String
-
         public var shipping: Double
+
+        public var unit: String
 
         public enum CodingKeys: String, CodingKey {
             case isDefault = "is_default"
 
-            case unit
-
             case shipping
+
+            case unit
         }
 
         public init(isDefault: Bool, shipping: Double, unit: String) {
             self.isDefault = isDefault
 
-            self.unit = unit
-
             self.shipping = shipping
+
+            self.unit = unit
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            unit = try container.decode(String.self, forKey: .unit)
-
             shipping = try container.decode(Double.self, forKey: .shipping)
+
+            unit = try container.decode(String.self, forKey: .unit)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(shipping, forKey: .shipping)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
         }
     }
 }

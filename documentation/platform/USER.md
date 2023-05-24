@@ -159,7 +159,7 @@ platformClient.application("<APPLICATION_ID>").user.searchUsers(q: q) { (respons
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| q | [String: Any]? | no | The search query. Mobile number, email ID or user ID of a customer. |  
+| q | String? | no | The search query. Mobile number, email ID or user ID of a customer. |  
 
 
 

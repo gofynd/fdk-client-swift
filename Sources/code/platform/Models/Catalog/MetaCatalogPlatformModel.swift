@@ -9,33 +9,33 @@ public extension PlatformClient.Catalog {
      */
 
     class Meta: Codable {
-        public var values: [[String: Any]]?
+        public var headers: [String: Any]?
 
         public var unit: String?
 
-        public var headers: [String: Any]?
+        public var values: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case values
+            case headers
 
             case unit
 
-            case headers
+            case values
         }
 
         public init(headers: [String: Any]? = nil, unit: String? = nil, values: [[String: Any]]? = nil) {
-            self.values = values
+            self.headers = headers
 
             self.unit = unit
 
-            self.headers = headers
+            self.values = values
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                headers = try container.decode([String: Any].self, forKey: .headers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                headers = try container.decode([String: Any].self, forKey: .headers)
+                values = try container.decode([[String: Any]].self, forKey: .values)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(headers, forKey: .headers)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(headers, forKey: .headers)
+            try? container.encodeIfPresent(values, forKey: .values)
         }
     }
 }
@@ -78,33 +78,33 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Meta: Codable {
-        public var values: [[String: Any]]?
+        public var headers: [String: Any]?
 
         public var unit: String?
 
-        public var headers: [String: Any]?
+        public var values: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case values
+            case headers
 
             case unit
 
-            case headers
+            case values
         }
 
         public init(headers: [String: Any]? = nil, unit: String? = nil, values: [[String: Any]]? = nil) {
-            self.values = values
+            self.headers = headers
 
             self.unit = unit
 
-            self.headers = headers
+            self.values = values
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                values = try container.decode([[String: Any]].self, forKey: .values)
+                headers = try container.decode([String: Any].self, forKey: .headers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                headers = try container.decode([String: Any].self, forKey: .headers)
+                values = try container.decode([[String: Any]].self, forKey: .values)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(headers, forKey: .headers)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(headers, forKey: .headers)
+            try? container.encodeIfPresent(values, forKey: .values)
         }
     }
 }

@@ -7,78 +7,78 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class Coupon: Codable {
-        public var couponType: String?
-
-        public var isApplicable: Bool?
-
-        public var minimumCartValue: Double?
-
-        public var title: String?
-
-        public var description: String?
+        public var subTitle: String?
 
         public var couponCode: String?
 
         public var message: String?
 
-        public var isApplied: Bool?
+        public var couponValue: Double?
+
+        public var description: String?
 
         public var expiresOn: String?
 
-        public var couponValue: Double?
+        public var title: String?
 
-        public var subTitle: String?
+        public var couponType: String?
+
+        public var isApplicable: Bool?
+
+        public var isApplied: Bool?
+
+        public var minimumCartValue: Double?
 
         public var maxDiscountValue: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case couponType = "coupon_type"
-
-            case isApplicable = "is_applicable"
-
-            case minimumCartValue = "minimum_cart_value"
-
-            case title
-
-            case description
+            case subTitle = "sub_title"
 
             case couponCode = "coupon_code"
 
             case message
 
-            case isApplied = "is_applied"
+            case couponValue = "coupon_value"
+
+            case description
 
             case expiresOn = "expires_on"
 
-            case couponValue = "coupon_value"
+            case title
 
-            case subTitle = "sub_title"
+            case couponType = "coupon_type"
+
+            case isApplicable = "is_applicable"
+
+            case isApplied = "is_applied"
+
+            case minimumCartValue = "minimum_cart_value"
 
             case maxDiscountValue = "max_discount_value"
         }
 
         public init(couponCode: String? = nil, couponType: String? = nil, couponValue: Double? = nil, description: String? = nil, expiresOn: String? = nil, isApplicable: Bool? = nil, isApplied: Bool? = nil, maxDiscountValue: Double? = nil, message: String? = nil, minimumCartValue: Double? = nil, subTitle: String? = nil, title: String? = nil) {
-            self.couponType = couponType
-
-            self.isApplicable = isApplicable
-
-            self.minimumCartValue = minimumCartValue
-
-            self.title = title
-
-            self.description = description
+            self.subTitle = subTitle
 
             self.couponCode = couponCode
 
             self.message = message
 
-            self.isApplied = isApplied
+            self.couponValue = couponValue
+
+            self.description = description
 
             self.expiresOn = expiresOn
 
-            self.couponValue = couponValue
+            self.title = title
 
-            self.subTitle = subTitle
+            self.couponType = couponType
+
+            self.isApplicable = isApplicable
+
+            self.isApplied = isApplied
+
+            self.minimumCartValue = minimumCartValue
 
             self.maxDiscountValue = maxDiscountValue
         }
@@ -87,39 +87,7 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                couponType = try container.decode(String.self, forKey: .couponType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isApplicable = try container.decode(Bool.self, forKey: .isApplicable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                minimumCartValue = try container.decode(Double.self, forKey: .minimumCartValue)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
+                subTitle = try container.decode(String.self, forKey: .subTitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -143,7 +111,15 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+                couponValue = try container.decode(Double.self, forKey: .couponValue)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,7 +135,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                couponValue = try container.decode(Double.self, forKey: .couponValue)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,7 +143,31 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                subTitle = try container.decode(String.self, forKey: .subTitle)
+                couponType = try container.decode(String.self, forKey: .couponType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isApplicable = try container.decode(Bool.self, forKey: .isApplicable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                minimumCartValue = try container.decode(Double.self, forKey: .minimumCartValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,27 +186,27 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(couponType, forKey: .couponType)
-
-            try? container.encodeIfPresent(isApplicable, forKey: .isApplicable)
-
-            try? container.encodeIfPresent(minimumCartValue, forKey: .minimumCartValue)
-
-            try? container.encodeIfPresent(title, forKey: .title)
-
-            try? container.encode(description, forKey: .description)
+            try? container.encodeIfPresent(subTitle, forKey: .subTitle)
 
             try? container.encodeIfPresent(couponCode, forKey: .couponCode)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
+
+            try? container.encode(description, forKey: .description)
 
             try? container.encodeIfPresent(expiresOn, forKey: .expiresOn)
 
-            try? container.encodeIfPresent(couponValue, forKey: .couponValue)
+            try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(subTitle, forKey: .subTitle)
+            try? container.encode(couponType, forKey: .couponType)
+
+            try? container.encodeIfPresent(isApplicable, forKey: .isApplicable)
+
+            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+
+            try? container.encodeIfPresent(minimumCartValue, forKey: .minimumCartValue)
 
             try? container.encodeIfPresent(maxDiscountValue, forKey: .maxDiscountValue)
         }
