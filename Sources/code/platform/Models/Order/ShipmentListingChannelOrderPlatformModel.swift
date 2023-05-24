@@ -11,36 +11,36 @@ public extension PlatformClient.Order {
     class ShipmentListingChannel: Codable {
         public var logo: String?
 
-        public var orderingChannel: String
-
         public var isAffiliate: Bool?
 
-        public var channelShipmentId: String?
-
         public var name: String?
+
+        public var orderingChannel: String
+
+        public var channelShipmentId: String?
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case orderingChannel = "ordering_channel"
-
             case isAffiliate = "is_affiliate"
 
-            case channelShipmentId = "channel_shipment_id"
-
             case name
+
+            case orderingChannel = "ordering_channel"
+
+            case channelShipmentId = "channel_shipment_id"
         }
 
         public init(channelShipmentId: String? = nil, isAffiliate: Bool? = nil, logo: String? = nil, name: String? = nil, orderingChannel: String) {
             self.logo = logo
 
-            self.orderingChannel = orderingChannel
-
             self.isAffiliate = isAffiliate
 
-            self.channelShipmentId = channelShipmentId
-
             self.name = name
+
+            self.orderingChannel = orderingChannel
+
+            self.channelShipmentId = channelShipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,18 +54,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
-
             do {
                 isAffiliate = try container.decode(Bool.self, forKey: .isAffiliate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,6 +69,16 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+
+            do {
+                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -86,13 +86,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
-
             try? container.encodeIfPresent(isAffiliate, forKey: .isAffiliate)
 
-            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+
+            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
         }
     }
 }
@@ -106,36 +106,36 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentListingChannel: Codable {
         public var logo: String?
 
-        public var orderingChannel: String
-
         public var isAffiliate: Bool?
 
-        public var channelShipmentId: String?
-
         public var name: String?
+
+        public var orderingChannel: String
+
+        public var channelShipmentId: String?
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case orderingChannel = "ordering_channel"
-
             case isAffiliate = "is_affiliate"
 
-            case channelShipmentId = "channel_shipment_id"
-
             case name
+
+            case orderingChannel = "ordering_channel"
+
+            case channelShipmentId = "channel_shipment_id"
         }
 
         public init(channelShipmentId: String? = nil, isAffiliate: Bool? = nil, logo: String? = nil, name: String? = nil, orderingChannel: String) {
             self.logo = logo
 
-            self.orderingChannel = orderingChannel
-
             self.isAffiliate = isAffiliate
 
-            self.channelShipmentId = channelShipmentId
-
             self.name = name
+
+            self.orderingChannel = orderingChannel
+
+            self.channelShipmentId = channelShipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -149,18 +149,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
-
             do {
                 isAffiliate = try container.decode(Bool.self, forKey: .isAffiliate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -174,6 +164,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
+
+            do {
+                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -181,13 +181,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
-
             try? container.encodeIfPresent(isAffiliate, forKey: .isAffiliate)
 
-            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+
+            try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
         }
     }
 }

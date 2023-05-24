@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class Meta: Codable {
         public var dpOptions: [String: Any]?
 
-        public var lockData: [String: Any]?
-
         public var dimension: Dimensions?
+
+        public var lockData: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case dpOptions = "dp_options"
 
-            case lockData = "lock_data"
-
             case dimension
+
+            case lockData = "lock_data"
         }
 
         public init(dimension: Dimensions? = nil, dpOptions: [String: Any]? = nil, lockData: [String: Any]? = nil) {
             self.dpOptions = dpOptions
 
-            self.lockData = lockData
-
             self.dimension = dimension
+
+            self.lockData = lockData
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                lockData = try container.decode([String: Any].self, forKey: .lockData)
+                dimension = try container.decode(Dimensions.self, forKey: .dimension)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                dimension = try container.decode(Dimensions.self, forKey: .dimension)
+                lockData = try container.decode([String: Any].self, forKey: .lockData)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
 
-            try? container.encodeIfPresent(lockData, forKey: .lockData)
-
             try? container.encodeIfPresent(dimension, forKey: .dimension)
+
+            try? container.encodeIfPresent(lockData, forKey: .lockData)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class Meta: Codable {
         public var dpOptions: [String: Any]?
 
-        public var lockData: [String: Any]?
-
         public var dimension: Dimensions?
+
+        public var lockData: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case dpOptions = "dp_options"
 
-            case lockData = "lock_data"
-
             case dimension
+
+            case lockData = "lock_data"
         }
 
         public init(dimension: Dimensions? = nil, dpOptions: [String: Any]? = nil, lockData: [String: Any]? = nil) {
             self.dpOptions = dpOptions
 
-            self.lockData = lockData
-
             self.dimension = dimension
+
+            self.lockData = lockData
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                lockData = try container.decode([String: Any].self, forKey: .lockData)
+                dimension = try container.decode(Dimensions.self, forKey: .dimension)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                dimension = try container.decode(Dimensions.self, forKey: .dimension)
+                lockData = try container.decode([String: Any].self, forKey: .lockData)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(dpOptions, forKey: .dpOptions)
 
-            try? container.encodeIfPresent(lockData, forKey: .lockData)
-
             try? container.encodeIfPresent(dimension, forKey: .dimension)
+
+            try? container.encodeIfPresent(lockData, forKey: .lockData)
         }
     }
 }
