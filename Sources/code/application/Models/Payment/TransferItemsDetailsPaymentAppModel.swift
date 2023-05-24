@@ -9,22 +9,22 @@ public extension ApplicationClient.Payment {
     class TransferItemsDetails: Codable {
         public var logoLarge: String
 
-        public var displayName: String?
+        public var logoSmall: String
 
         public var name: String
 
-        public var logoSmall: String
+        public var displayName: String?
 
         public var id: Int
 
         public enum CodingKeys: String, CodingKey {
             case logoLarge = "logo_large"
 
-            case displayName = "display_name"
+            case logoSmall = "logo_small"
 
             case name
 
-            case logoSmall = "logo_small"
+            case displayName = "display_name"
 
             case id
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Payment {
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
             self.logoLarge = logoLarge
 
-            self.displayName = displayName
+            self.logoSmall = logoSmall
 
             self.name = name
 
-            self.logoSmall = logoSmall
+            self.displayName = displayName
 
             self.id = id
         }
@@ -46,6 +46,10 @@ public extension ApplicationClient.Payment {
 
             logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
+            logoSmall = try container.decode(String.self, forKey: .logoSmall)
+
+            name = try container.decode(String.self, forKey: .name)
+
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
 
@@ -53,10 +57,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
-
-            logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
             id = try container.decode(Int.self, forKey: .id)
         }
@@ -66,11 +66,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }

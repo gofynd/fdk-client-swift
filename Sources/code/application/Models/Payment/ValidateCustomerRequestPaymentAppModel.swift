@@ -7,8 +7,6 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class ValidateCustomerRequest: Codable {
-        public var billingAddress: [String: Any]?
-
         public var merchantParams: [String: Any]?
 
         public var payload: String?
@@ -17,6 +15,8 @@ public extension ApplicationClient.Payment {
 
         public var transactionAmountInPaise: Int
 
+        public var billingAddress: [String: Any]?
+
         public var aggregator: String
 
         public var deliveryAddress: [String: Any]?
@@ -24,8 +24,6 @@ public extension ApplicationClient.Payment {
         public var orderItems: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case billingAddress = "billing_address"
-
             case merchantParams = "merchant_params"
 
             case payload
@@ -33,6 +31,8 @@ public extension ApplicationClient.Payment {
             case phoneNumber = "phone_number"
 
             case transactionAmountInPaise = "transaction_amount_in_paise"
+
+            case billingAddress = "billing_address"
 
             case aggregator
 
@@ -42,8 +42,6 @@ public extension ApplicationClient.Payment {
         }
 
         public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
-            self.billingAddress = billingAddress
-
             self.merchantParams = merchantParams
 
             self.payload = payload
@@ -51,6 +49,8 @@ public extension ApplicationClient.Payment {
             self.phoneNumber = phoneNumber
 
             self.transactionAmountInPaise = transactionAmountInPaise
+
+            self.billingAddress = billingAddress
 
             self.aggregator = aggregator
 
@@ -61,14 +61,6 @@ public extension ApplicationClient.Payment {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
@@ -89,6 +81,14 @@ public extension ApplicationClient.Payment {
             phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
 
             transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+
+            do {
+                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
@@ -112,8 +112,6 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
-
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
             try? container.encode(payload, forKey: .payload)
@@ -121,6 +119,8 @@ public extension ApplicationClient.Payment {
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
+
+            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 

@@ -9,18 +9,18 @@ public extension ApplicationClient.Payment {
     class RefundAccountResponse: Codable {
         public var data: [String: Any]?
 
-        public var isVerifiedFlag: Bool?
-
         public var message: String
+
+        public var isVerifiedFlag: Bool?
 
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case isVerifiedFlag = "is_verified_flag"
-
             case message
+
+            case isVerifiedFlag = "is_verified_flag"
 
             case success
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Payment {
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
             self.data = data
 
-            self.isVerifiedFlag = isVerifiedFlag
-
             self.message = message
+
+            self.isVerifiedFlag = isVerifiedFlag
 
             self.success = success
         }
@@ -46,6 +46,8 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            message = try container.decode(String.self, forKey: .message)
+
             do {
                 isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
 
@@ -53,8 +55,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
 
             success = try container.decode(Bool.self, forKey: .success)
         }
@@ -64,9 +64,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

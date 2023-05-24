@@ -9,30 +9,32 @@ public extension PlatformClient.Order {
      */
 
     class Affiliate: Codable {
-        public var config: AffiliateConfig?
-
         public var token: String
+
+        public var config: AffiliateConfig?
 
         public var id: String
 
         public enum CodingKeys: String, CodingKey {
-            case config
-
             case token
+
+            case config
 
             case id
         }
 
         public init(config: AffiliateConfig? = nil, id: String, token: String) {
-            self.config = config
-
             self.token = token
+
+            self.config = config
 
             self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            token = try container.decode(String.self, forKey: .token)
 
             do {
                 config = try container.decode(AffiliateConfig.self, forKey: .config)
@@ -42,17 +44,15 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            token = try container.decode(String.self, forKey: .token)
-
             id = try container.decode(String.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(config, forKey: .config)
-
             try? container.encodeIfPresent(token, forKey: .token)
+
+            try? container.encodeIfPresent(config, forKey: .config)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }
@@ -66,30 +66,32 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Affiliate: Codable {
-        public var config: AffiliateConfig?
-
         public var token: String
+
+        public var config: AffiliateConfig?
 
         public var id: String
 
         public enum CodingKeys: String, CodingKey {
-            case config
-
             case token
+
+            case config
 
             case id
         }
 
         public init(config: AffiliateConfig? = nil, id: String, token: String) {
-            self.config = config
-
             self.token = token
+
+            self.config = config
 
             self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            token = try container.decode(String.self, forKey: .token)
 
             do {
                 config = try container.decode(AffiliateConfig.self, forKey: .config)
@@ -99,17 +101,15 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            token = try container.decode(String.self, forKey: .token)
-
             id = try container.decode(String.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(config, forKey: .config)
-
             try? container.encodeIfPresent(token, forKey: .token)
+
+            try? container.encodeIfPresent(config, forKey: .config)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }

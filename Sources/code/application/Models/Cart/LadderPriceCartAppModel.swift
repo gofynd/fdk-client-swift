@@ -11,9 +11,9 @@ public extension ApplicationClient.Cart {
 
         public var currencyCode: String?
 
-        public var effective: Int?
-
         public var marked: Int?
+
+        public var effective: Int?
 
         public var currencySymbol: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
 
             case currencyCode = "currency_code"
 
-            case effective
-
             case marked
+
+            case effective
 
             case currencySymbol = "currency_symbol"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Cart {
 
             self.currencyCode = currencyCode
 
-            self.effective = effective
-
             self.marked = marked
+
+            self.effective = effective
 
             self.currencySymbol = currencySymbol
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                effective = try container.decode(Int.self, forKey: .effective)
+                marked = try container.decode(Int.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                marked = try container.decode(Int.self, forKey: .marked)
+                effective = try container.decode(Int.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
         }

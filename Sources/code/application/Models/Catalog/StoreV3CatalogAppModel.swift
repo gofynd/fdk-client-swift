@@ -7,24 +7,24 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class StoreV3: Codable {
-        public var count: Int?
-
         public var name: String?
+
+        public var count: Int?
 
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case count
-
             case name
+
+            case count
 
             case uid
         }
 
         public init(count: Int? = nil, name: String? = nil, uid: Int? = nil) {
-            self.count = count
-
             self.name = name
+
+            self.count = count
 
             self.uid = uid
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(count, forKey: .count)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(count, forKey: .count)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
