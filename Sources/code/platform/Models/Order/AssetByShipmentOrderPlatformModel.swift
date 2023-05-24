@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class AssetByShipment: Codable {
         public var assets: [String: String]?
 
-        public var expiresIn: String
-
         public var shipmentId: String
+
+        public var expiresIn: String
 
         public enum CodingKeys: String, CodingKey {
             case assets
 
-            case expiresIn = "expires_in"
-
             case shipmentId = "shipment_id"
+
+            case expiresIn = "expires_in"
         }
 
         public init(assets: [String: String]? = nil, expiresIn: String, shipmentId: String) {
             self.assets = assets
 
-            self.expiresIn = expiresIn
-
             self.shipmentId = shipmentId
+
+            self.expiresIn = expiresIn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,9 +42,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            expiresIn = try container.decode(String.self, forKey: .expiresIn)
-
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            expiresIn = try container.decode(String.self, forKey: .expiresIn)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(assets, forKey: .assets)
 
-            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
         }
     }
 }
@@ -68,24 +68,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class AssetByShipment: Codable {
         public var assets: [String: String]?
 
-        public var expiresIn: String
-
         public var shipmentId: String
+
+        public var expiresIn: String
 
         public enum CodingKeys: String, CodingKey {
             case assets
 
-            case expiresIn = "expires_in"
-
             case shipmentId = "shipment_id"
+
+            case expiresIn = "expires_in"
         }
 
         public init(assets: [String: String]? = nil, expiresIn: String, shipmentId: String) {
             self.assets = assets
 
-            self.expiresIn = expiresIn
-
             self.shipmentId = shipmentId
+
+            self.expiresIn = expiresIn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            expiresIn = try container.decode(String.self, forKey: .expiresIn)
-
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            expiresIn = try container.decode(String.self, forKey: .expiresIn)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(assets, forKey: .assets)
 
-            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
         }
     }
 }

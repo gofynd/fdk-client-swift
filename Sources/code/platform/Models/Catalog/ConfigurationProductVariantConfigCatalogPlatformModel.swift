@@ -15,13 +15,13 @@ public extension PlatformClient.Catalog {
 
         public var size: ProductSize
 
-        public var logo: String?
-
         public var isActive: Bool
 
         public var priority: Int
 
         public var key: String
+
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case displayType = "display_type"
@@ -30,13 +30,13 @@ public extension PlatformClient.Catalog {
 
             case size
 
-            case logo
-
             case isActive = "is_active"
 
             case priority
 
             case key
+
+            case logo
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
@@ -46,13 +46,13 @@ public extension PlatformClient.Catalog {
 
             self.size = size
 
-            self.logo = logo
-
             self.isActive = isActive
 
             self.priority = priority
 
             self.key = key
+
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,6 +64,12 @@ public extension PlatformClient.Catalog {
 
             size = try container.decode(ProductSize.self, forKey: .size)
 
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -71,12 +77,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -88,13 +88,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }
@@ -112,13 +112,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var size: ProductSize
 
-        public var logo: String?
-
         public var isActive: Bool
 
         public var priority: Int
 
         public var key: String
+
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case displayType = "display_type"
@@ -127,13 +127,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case size
 
-            case logo
-
             case isActive = "is_active"
 
             case priority
 
             case key
+
+            case logo
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
@@ -143,13 +143,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.size = size
 
-            self.logo = logo
-
             self.isActive = isActive
 
             self.priority = priority
 
             self.key = key
+
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -161,6 +161,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             size = try container.decode(ProductSize.self, forKey: .size)
 
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -168,12 +174,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -185,13 +185,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

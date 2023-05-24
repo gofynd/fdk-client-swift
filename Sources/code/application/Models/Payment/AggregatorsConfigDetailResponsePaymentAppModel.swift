@@ -9,42 +9,42 @@ public extension ApplicationClient.Payment {
     class AggregatorsConfigDetailResponse: Codable {
         public var ccavenue: AggregatorConfigDetail?
 
-        public var env: String
-
-        public var success: Bool
-
-        public var rupifi: AggregatorConfigDetail?
+        public var juspay: AggregatorConfigDetail?
 
         public var stripe: AggregatorConfigDetail?
 
-        public var payumoney: AggregatorConfigDetail?
+        public var razorpay: AggregatorConfigDetail?
 
-        public var juspay: AggregatorConfigDetail?
+        public var success: Bool
 
         public var mswipe: AggregatorConfigDetail?
 
-        public var razorpay: AggregatorConfigDetail?
+        public var rupifi: AggregatorConfigDetail?
+
+        public var env: String
+
+        public var payumoney: AggregatorConfigDetail?
 
         public var simpl: AggregatorConfigDetail?
 
         public enum CodingKeys: String, CodingKey {
             case ccavenue
 
-            case env
-
-            case success
-
-            case rupifi
+            case juspay
 
             case stripe
 
-            case payumoney
+            case razorpay
 
-            case juspay
+            case success
 
             case mswipe
 
-            case razorpay
+            case rupifi
+
+            case env
+
+            case payumoney
 
             case simpl
         }
@@ -52,21 +52,21 @@ public extension ApplicationClient.Payment {
         public init(ccavenue: AggregatorConfigDetail? = nil, env: String, juspay: AggregatorConfigDetail? = nil, mswipe: AggregatorConfigDetail? = nil, payumoney: AggregatorConfigDetail? = nil, razorpay: AggregatorConfigDetail? = nil, rupifi: AggregatorConfigDetail? = nil, simpl: AggregatorConfigDetail? = nil, stripe: AggregatorConfigDetail? = nil, success: Bool) {
             self.ccavenue = ccavenue
 
-            self.env = env
-
-            self.success = success
-
-            self.rupifi = rupifi
+            self.juspay = juspay
 
             self.stripe = stripe
 
-            self.payumoney = payumoney
+            self.razorpay = razorpay
 
-            self.juspay = juspay
+            self.success = success
 
             self.mswipe = mswipe
 
-            self.razorpay = razorpay
+            self.rupifi = rupifi
+
+            self.env = env
+
+            self.payumoney = payumoney
 
             self.simpl = simpl
         }
@@ -82,12 +82,8 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            env = try container.decode(String.self, forKey: .env)
-
-            success = try container.decode(Bool.self, forKey: .success)
-
             do {
-                rupifi = try container.decode(AggregatorConfigDetail.self, forKey: .rupifi)
+                juspay = try container.decode(AggregatorConfigDetail.self, forKey: .juspay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,20 +99,14 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                payumoney = try container.decode(AggregatorConfigDetail.self, forKey: .payumoney)
+                razorpay = try container.decode(AggregatorConfigDetail.self, forKey: .razorpay)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                juspay = try container.decode(AggregatorConfigDetail.self, forKey: .juspay)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 mswipe = try container.decode(AggregatorConfigDetail.self, forKey: .mswipe)
@@ -127,7 +117,17 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                razorpay = try container.decode(AggregatorConfigDetail.self, forKey: .razorpay)
+                rupifi = try container.decode(AggregatorConfigDetail.self, forKey: .rupifi)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            env = try container.decode(String.self, forKey: .env)
+
+            do {
+                payumoney = try container.decode(AggregatorConfigDetail.self, forKey: .payumoney)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,21 +148,21 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(ccavenue, forKey: .ccavenue)
 
-            try? container.encodeIfPresent(env, forKey: .env)
-
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(rupifi, forKey: .rupifi)
+            try? container.encodeIfPresent(juspay, forKey: .juspay)
 
             try? container.encodeIfPresent(stripe, forKey: .stripe)
 
-            try? container.encodeIfPresent(payumoney, forKey: .payumoney)
+            try? container.encodeIfPresent(razorpay, forKey: .razorpay)
 
-            try? container.encodeIfPresent(juspay, forKey: .juspay)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(mswipe, forKey: .mswipe)
 
-            try? container.encodeIfPresent(razorpay, forKey: .razorpay)
+            try? container.encodeIfPresent(rupifi, forKey: .rupifi)
+
+            try? container.encodeIfPresent(env, forKey: .env)
+
+            try? container.encodeIfPresent(payumoney, forKey: .payumoney)
 
             try? container.encodeIfPresent(simpl, forKey: .simpl)
         }

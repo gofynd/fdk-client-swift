@@ -4,31 +4,25 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: DepartmentCreateErrorResponse
+         Model: DepartmentCreateError
          Used By: Catalog
      */
 
-    class DepartmentCreateErrorResponse: Codable {
-        public var error: String?
+    class DepartmentCreateError: Codable {
+        public var error: String
 
         public enum CodingKeys: String, CodingKey {
             case error
         }
 
-        public init(error: String? = nil) {
+        public init(error: String) {
             self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                error = try container.decode(String.self, forKey: .error)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            error = try container.decode(String.self, forKey: .error)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -41,31 +35,25 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: DepartmentCreateErrorResponse
+         Model: DepartmentCreateError
          Used By: Catalog
      */
 
-    class DepartmentCreateErrorResponse: Codable {
-        public var error: String?
+    class DepartmentCreateError: Codable {
+        public var error: String
 
         public enum CodingKeys: String, CodingKey {
             case error
         }
 
-        public init(error: String? = nil) {
+        public init(error: String) {
             self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                error = try container.decode(String.self, forKey: .error)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            error = try container.decode(String.self, forKey: .error)
         }
 
         public func encode(to encoder: Encoder) throws {

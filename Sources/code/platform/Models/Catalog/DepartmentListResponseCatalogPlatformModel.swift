@@ -4,14 +4,14 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-         Model: DepartmentsResponse
+         Model: DepartmentListResponse
          Used By: Catalog
      */
 
-    class DepartmentsResponse: Codable {
-        public var items: [GetDepartment]?
+    class DepartmentListResponse: Codable {
+        public var items: [DepartmentModel]?
 
-        public var page: Page?
+        public var page: DepartmentPageResponse?
 
         public enum CodingKeys: String, CodingKey {
             case items
@@ -19,7 +19,7 @@ public extension PlatformClient.Catalog {
             case page
         }
 
-        public init(items: [GetDepartment]? = nil, page: Page? = nil) {
+        public init(items: [DepartmentModel]? = nil, page: DepartmentPageResponse? = nil) {
             self.items = items
 
             self.page = page
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([GetDepartment].self, forKey: .items)
+                items = try container.decode([DepartmentModel].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                page = try container.decode(DepartmentPageResponse.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,14 +57,14 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: DepartmentsResponse
+         Model: DepartmentListResponse
          Used By: Catalog
      */
 
-    class DepartmentsResponse: Codable {
-        public var items: [GetDepartment]?
+    class DepartmentListResponse: Codable {
+        public var items: [DepartmentModel]?
 
-        public var page: Page?
+        public var page: DepartmentPageResponse?
 
         public enum CodingKeys: String, CodingKey {
             case items
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case page
         }
 
-        public init(items: [GetDepartment]? = nil, page: Page? = nil) {
+        public init(items: [DepartmentModel]? = nil, page: DepartmentPageResponse? = nil) {
             self.items = items
 
             self.page = page
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([GetDepartment].self, forKey: .items)
+                items = try container.decode([DepartmentModel].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                page = try container.decode(DepartmentPageResponse.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

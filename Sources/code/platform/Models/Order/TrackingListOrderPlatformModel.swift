@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var isPassed: Bool?
 
-        public var time: String?
-
         public var status: String
+
+        public var time: String?
 
         public var text: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case isPassed = "is_passed"
 
-            case time
-
             case status
+
+            case time
 
             case text
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.isPassed = isPassed
 
-            self.time = time
-
             self.status = status
+
+            self.time = time
 
             self.text = text
         }
@@ -62,6 +62,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode(String.self, forKey: .status)
+
             do {
                 time = try container.decode(String.self, forKey: .time)
 
@@ -69,8 +71,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
 
             text = try container.decode(String.self, forKey: .text)
         }
@@ -82,9 +82,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
-            try? container.encodeIfPresent(time, forKey: .time)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(time, forKey: .time)
 
             try? container.encodeIfPresent(text, forKey: .text)
         }
@@ -102,9 +102,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var isPassed: Bool?
 
-        public var time: String?
-
         public var status: String
+
+        public var time: String?
 
         public var text: String
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case isPassed = "is_passed"
 
-            case time
-
             case status
+
+            case time
 
             case text
         }
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.isPassed = isPassed
 
-            self.time = time
-
             self.status = status
+
+            self.time = time
 
             self.text = text
         }
@@ -151,6 +151,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode(String.self, forKey: .status)
+
             do {
                 time = try container.decode(String.self, forKey: .time)
 
@@ -158,8 +160,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
 
             text = try container.decode(String.self, forKey: .text)
         }
@@ -171,9 +171,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
-            try? container.encodeIfPresent(time, forKey: .time)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(time, forKey: .time)
 
             try? container.encodeIfPresent(text, forKey: .text)
         }
