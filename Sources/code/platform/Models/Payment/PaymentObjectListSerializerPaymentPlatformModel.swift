@@ -11,114 +11,114 @@ public extension PlatformClient.Payment {
     class PaymentObjectListSerializer: Codable {
         public var createdOn: String
 
-        public var currency: String
+        public var refundedBy: String
 
         public var id: String
 
-        public var currentStatus: String
-
-        public var paymentGateway: String
-
-        public var refundedBy: String
-
-        public var modifiedOn: String
-
-        public var amountInPaisa: String
-
-        public var companyId: String
-
-        public var userObject: [String: Any]
-
-        public var applicationId: String
-
-        public var refundObject: [String: Any]?
-
-        public var paymentId: String?
-
         public var aggregatorPaymentObject: [String: Any]?
-
-        public var paymentMode: String
-
-        public var allStatus: [String]
 
         public var collectedBy: String
 
+        public var applicationId: String
+
+        public var currentStatus: String
+
+        public var companyId: String
+
+        public var modifiedOn: String
+
+        public var paymentMode: String
+
+        public var paymentId: String?
+
         public var paymentModeIdentifier: String
+
+        public var refundObject: [String: Any]?
+
+        public var paymentGateway: String
+
+        public var currency: String
+
+        public var amountInPaisa: String
+
+        public var userObject: [String: Any]
+
+        public var allStatus: [String]
 
         public enum CodingKeys: String, CodingKey {
             case createdOn = "created_on"
 
-            case currency
+            case refundedBy = "refunded_by"
 
             case id
 
-            case currentStatus = "current_status"
-
-            case paymentGateway = "payment_gateway"
-
-            case refundedBy = "refunded_by"
-
-            case modifiedOn = "modified_on"
-
-            case amountInPaisa = "amount_in_paisa"
-
-            case companyId = "company_id"
-
-            case userObject = "user_object"
-
-            case applicationId = "application_id"
-
-            case refundObject = "refund_object"
-
-            case paymentId = "payment_id"
-
             case aggregatorPaymentObject = "aggregator_payment_object"
-
-            case paymentMode = "payment_mode"
-
-            case allStatus = "all_status"
 
             case collectedBy = "collected_by"
 
+            case applicationId = "application_id"
+
+            case currentStatus = "current_status"
+
+            case companyId = "company_id"
+
+            case modifiedOn = "modified_on"
+
+            case paymentMode = "payment_mode"
+
+            case paymentId = "payment_id"
+
             case paymentModeIdentifier = "payment_mode_identifier"
+
+            case refundObject = "refund_object"
+
+            case paymentGateway = "payment_gateway"
+
+            case currency
+
+            case amountInPaisa = "amount_in_paisa"
+
+            case userObject = "user_object"
+
+            case allStatus = "all_status"
         }
 
         public init(aggregatorPaymentObject: [String: Any]? = nil, allStatus: [String], amountInPaisa: String, applicationId: String, collectedBy: String, companyId: String, createdOn: String, currency: String, currentStatus: String, id: String, modifiedOn: String, paymentGateway: String, paymentId: String? = nil, paymentMode: String, paymentModeIdentifier: String, refundedBy: String, refundObject: [String: Any]? = nil, userObject: [String: Any]) {
             self.createdOn = createdOn
 
-            self.currency = currency
+            self.refundedBy = refundedBy
 
             self.id = id
 
-            self.currentStatus = currentStatus
-
-            self.paymentGateway = paymentGateway
-
-            self.refundedBy = refundedBy
-
-            self.modifiedOn = modifiedOn
-
-            self.amountInPaisa = amountInPaisa
-
-            self.companyId = companyId
-
-            self.userObject = userObject
-
-            self.applicationId = applicationId
-
-            self.refundObject = refundObject
-
-            self.paymentId = paymentId
-
             self.aggregatorPaymentObject = aggregatorPaymentObject
-
-            self.paymentMode = paymentMode
-
-            self.allStatus = allStatus
 
             self.collectedBy = collectedBy
 
+            self.applicationId = applicationId
+
+            self.currentStatus = currentStatus
+
+            self.companyId = companyId
+
+            self.modifiedOn = modifiedOn
+
+            self.paymentMode = paymentMode
+
+            self.paymentId = paymentId
+
             self.paymentModeIdentifier = paymentModeIdentifier
+
+            self.refundObject = refundObject
+
+            self.paymentGateway = paymentGateway
+
+            self.currency = currency
+
+            self.amountInPaisa = amountInPaisa
+
+            self.userObject = userObject
+
+            self.allStatus = allStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -126,41 +126,9 @@ public extension PlatformClient.Payment {
 
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
-            currency = try container.decode(String.self, forKey: .currency)
-
-            id = try container.decode(String.self, forKey: .id)
-
-            currentStatus = try container.decode(String.self, forKey: .currentStatus)
-
-            paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
-
             refundedBy = try container.decode(String.self, forKey: .refundedBy)
 
-            modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            amountInPaisa = try container.decode(String.self, forKey: .amountInPaisa)
-
-            companyId = try container.decode(String.self, forKey: .companyId)
-
-            userObject = try container.decode([String: Any].self, forKey: .userObject)
-
-            applicationId = try container.decode(String.self, forKey: .applicationId)
-
-            do {
-                refundObject = try container.decode([String: Any].self, forKey: .refundObject)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentId = try container.decode(String.self, forKey: .paymentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            id = try container.decode(String.self, forKey: .id)
 
             do {
                 aggregatorPaymentObject = try container.decode([String: Any].self, forKey: .aggregatorPaymentObject)
@@ -170,13 +138,45 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            allStatus = try container.decode([String].self, forKey: .allStatus)
-
             collectedBy = try container.decode(String.self, forKey: .collectedBy)
 
+            applicationId = try container.decode(String.self, forKey: .applicationId)
+
+            currentStatus = try container.decode(String.self, forKey: .currentStatus)
+
+            companyId = try container.decode(String.self, forKey: .companyId)
+
+            modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            do {
+                paymentId = try container.decode(String.self, forKey: .paymentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             paymentModeIdentifier = try container.decode(String.self, forKey: .paymentModeIdentifier)
+
+            do {
+                refundObject = try container.decode([String: Any].self, forKey: .refundObject)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+
+            currency = try container.decode(String.self, forKey: .currency)
+
+            amountInPaisa = try container.decode(String.self, forKey: .amountInPaisa)
+
+            userObject = try container.decode([String: Any].self, forKey: .userObject)
+
+            allStatus = try container.decode([String].self, forKey: .allStatus)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -184,39 +184,39 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(refundedBy, forKey: .refundedBy)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
-
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
-
-            try? container.encodeIfPresent(refundedBy, forKey: .refundedBy)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(amountInPaisa, forKey: .amountInPaisa)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(userObject, forKey: .userObject)
-
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-
-            try? container.encode(refundObject, forKey: .refundObject)
-
-            try? container.encode(paymentId, forKey: .paymentId)
-
             try? container.encode(aggregatorPaymentObject, forKey: .aggregatorPaymentObject)
-
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(allStatus, forKey: .allStatus)
 
             try? container.encodeIfPresent(collectedBy, forKey: .collectedBy)
 
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encode(paymentId, forKey: .paymentId)
+
             try? container.encodeIfPresent(paymentModeIdentifier, forKey: .paymentModeIdentifier)
+
+            try? container.encode(refundObject, forKey: .refundObject)
+
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(amountInPaisa, forKey: .amountInPaisa)
+
+            try? container.encodeIfPresent(userObject, forKey: .userObject)
+
+            try? container.encodeIfPresent(allStatus, forKey: .allStatus)
         }
     }
 }
@@ -230,114 +230,114 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentObjectListSerializer: Codable {
         public var createdOn: String
 
-        public var currency: String
+        public var refundedBy: String
 
         public var id: String
 
-        public var currentStatus: String
-
-        public var paymentGateway: String
-
-        public var refundedBy: String
-
-        public var modifiedOn: String
-
-        public var amountInPaisa: String
-
-        public var companyId: String
-
-        public var userObject: [String: Any]
-
-        public var applicationId: String
-
-        public var refundObject: [String: Any]?
-
-        public var paymentId: String?
-
         public var aggregatorPaymentObject: [String: Any]?
-
-        public var paymentMode: String
-
-        public var allStatus: [String]
 
         public var collectedBy: String
 
+        public var applicationId: String
+
+        public var currentStatus: String
+
+        public var companyId: String
+
+        public var modifiedOn: String
+
+        public var paymentMode: String
+
+        public var paymentId: String?
+
         public var paymentModeIdentifier: String
+
+        public var refundObject: [String: Any]?
+
+        public var paymentGateway: String
+
+        public var currency: String
+
+        public var amountInPaisa: String
+
+        public var userObject: [String: Any]
+
+        public var allStatus: [String]
 
         public enum CodingKeys: String, CodingKey {
             case createdOn = "created_on"
 
-            case currency
+            case refundedBy = "refunded_by"
 
             case id
 
-            case currentStatus = "current_status"
-
-            case paymentGateway = "payment_gateway"
-
-            case refundedBy = "refunded_by"
-
-            case modifiedOn = "modified_on"
-
-            case amountInPaisa = "amount_in_paisa"
-
-            case companyId = "company_id"
-
-            case userObject = "user_object"
-
-            case applicationId = "application_id"
-
-            case refundObject = "refund_object"
-
-            case paymentId = "payment_id"
-
             case aggregatorPaymentObject = "aggregator_payment_object"
-
-            case paymentMode = "payment_mode"
-
-            case allStatus = "all_status"
 
             case collectedBy = "collected_by"
 
+            case applicationId = "application_id"
+
+            case currentStatus = "current_status"
+
+            case companyId = "company_id"
+
+            case modifiedOn = "modified_on"
+
+            case paymentMode = "payment_mode"
+
+            case paymentId = "payment_id"
+
             case paymentModeIdentifier = "payment_mode_identifier"
+
+            case refundObject = "refund_object"
+
+            case paymentGateway = "payment_gateway"
+
+            case currency
+
+            case amountInPaisa = "amount_in_paisa"
+
+            case userObject = "user_object"
+
+            case allStatus = "all_status"
         }
 
         public init(aggregatorPaymentObject: [String: Any]? = nil, allStatus: [String], amountInPaisa: String, applicationId: String, collectedBy: String, companyId: String, createdOn: String, currency: String, currentStatus: String, id: String, modifiedOn: String, paymentGateway: String, paymentId: String? = nil, paymentMode: String, paymentModeIdentifier: String, refundedBy: String, refundObject: [String: Any]? = nil, userObject: [String: Any]) {
             self.createdOn = createdOn
 
-            self.currency = currency
+            self.refundedBy = refundedBy
 
             self.id = id
 
-            self.currentStatus = currentStatus
-
-            self.paymentGateway = paymentGateway
-
-            self.refundedBy = refundedBy
-
-            self.modifiedOn = modifiedOn
-
-            self.amountInPaisa = amountInPaisa
-
-            self.companyId = companyId
-
-            self.userObject = userObject
-
-            self.applicationId = applicationId
-
-            self.refundObject = refundObject
-
-            self.paymentId = paymentId
-
             self.aggregatorPaymentObject = aggregatorPaymentObject
-
-            self.paymentMode = paymentMode
-
-            self.allStatus = allStatus
 
             self.collectedBy = collectedBy
 
+            self.applicationId = applicationId
+
+            self.currentStatus = currentStatus
+
+            self.companyId = companyId
+
+            self.modifiedOn = modifiedOn
+
+            self.paymentMode = paymentMode
+
+            self.paymentId = paymentId
+
             self.paymentModeIdentifier = paymentModeIdentifier
+
+            self.refundObject = refundObject
+
+            self.paymentGateway = paymentGateway
+
+            self.currency = currency
+
+            self.amountInPaisa = amountInPaisa
+
+            self.userObject = userObject
+
+            self.allStatus = allStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -345,41 +345,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
-            currency = try container.decode(String.self, forKey: .currency)
-
-            id = try container.decode(String.self, forKey: .id)
-
-            currentStatus = try container.decode(String.self, forKey: .currentStatus)
-
-            paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
-
             refundedBy = try container.decode(String.self, forKey: .refundedBy)
 
-            modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            amountInPaisa = try container.decode(String.self, forKey: .amountInPaisa)
-
-            companyId = try container.decode(String.self, forKey: .companyId)
-
-            userObject = try container.decode([String: Any].self, forKey: .userObject)
-
-            applicationId = try container.decode(String.self, forKey: .applicationId)
-
-            do {
-                refundObject = try container.decode([String: Any].self, forKey: .refundObject)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentId = try container.decode(String.self, forKey: .paymentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            id = try container.decode(String.self, forKey: .id)
 
             do {
                 aggregatorPaymentObject = try container.decode([String: Any].self, forKey: .aggregatorPaymentObject)
@@ -389,13 +357,45 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            allStatus = try container.decode([String].self, forKey: .allStatus)
-
             collectedBy = try container.decode(String.self, forKey: .collectedBy)
 
+            applicationId = try container.decode(String.self, forKey: .applicationId)
+
+            currentStatus = try container.decode(String.self, forKey: .currentStatus)
+
+            companyId = try container.decode(String.self, forKey: .companyId)
+
+            modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            do {
+                paymentId = try container.decode(String.self, forKey: .paymentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             paymentModeIdentifier = try container.decode(String.self, forKey: .paymentModeIdentifier)
+
+            do {
+                refundObject = try container.decode([String: Any].self, forKey: .refundObject)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+
+            currency = try container.decode(String.self, forKey: .currency)
+
+            amountInPaisa = try container.decode(String.self, forKey: .amountInPaisa)
+
+            userObject = try container.decode([String: Any].self, forKey: .userObject)
+
+            allStatus = try container.decode([String].self, forKey: .allStatus)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -403,39 +403,39 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
+            try? container.encodeIfPresent(refundedBy, forKey: .refundedBy)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
-
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
-
-            try? container.encodeIfPresent(refundedBy, forKey: .refundedBy)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(amountInPaisa, forKey: .amountInPaisa)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(userObject, forKey: .userObject)
-
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
-
-            try? container.encode(refundObject, forKey: .refundObject)
-
-            try? container.encode(paymentId, forKey: .paymentId)
-
             try? container.encode(aggregatorPaymentObject, forKey: .aggregatorPaymentObject)
-
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(allStatus, forKey: .allStatus)
 
             try? container.encodeIfPresent(collectedBy, forKey: .collectedBy)
 
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encode(paymentId, forKey: .paymentId)
+
             try? container.encodeIfPresent(paymentModeIdentifier, forKey: .paymentModeIdentifier)
+
+            try? container.encode(refundObject, forKey: .refundObject)
+
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(amountInPaisa, forKey: .amountInPaisa)
+
+            try? container.encodeIfPresent(userObject, forKey: .userObject)
+
+            try? container.encodeIfPresent(allStatus, forKey: .allStatus)
         }
     }
 }

@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var staffId: Int?
 
-        public var lastName: String?
-
         public var firstName: String?
+
+        public var lastName: String?
 
         public enum CodingKeys: String, CodingKey {
             case employeeCode = "employee_code"
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case staffId = "staff_id"
 
-            case lastName = "last_name"
-
             case firstName = "first_name"
+
+            case lastName = "last_name"
         }
 
         public init(employeeCode: String? = nil, firstName: String? = nil, lastName: String? = nil, staffId: Int? = nil, user: String? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.staffId = staffId
 
-            self.lastName = lastName
-
             self.firstName = firstName
+
+            self.lastName = lastName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                lastName = try container.decode(String.self, forKey: .lastName)
+                firstName = try container.decode(String.self, forKey: .firstName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                firstName = try container.decode(String.self, forKey: .firstName)
+                lastName = try container.decode(String.self, forKey: .lastName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(staffId, forKey: .staffId)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
             try? container.encodeIfPresent(firstName, forKey: .firstName)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
         }
     }
 }
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var staffId: Int?
 
-        public var lastName: String?
-
         public var firstName: String?
+
+        public var lastName: String?
 
         public enum CodingKeys: String, CodingKey {
             case employeeCode = "employee_code"
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case staffId = "staff_id"
 
-            case lastName = "last_name"
-
             case firstName = "first_name"
+
+            case lastName = "last_name"
         }
 
         public init(employeeCode: String? = nil, firstName: String? = nil, lastName: String? = nil, staffId: Int? = nil, user: String? = nil) {
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.staffId = staffId
 
-            self.lastName = lastName
-
             self.firstName = firstName
+
+            self.lastName = lastName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                lastName = try container.decode(String.self, forKey: .lastName)
+                firstName = try container.decode(String.self, forKey: .firstName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                firstName = try container.decode(String.self, forKey: .firstName)
+                lastName = try container.decode(String.self, forKey: .lastName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,9 +197,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(staffId, forKey: .staffId)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
             try? container.encodeIfPresent(firstName, forKey: .firstName)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
         }
     }
 }

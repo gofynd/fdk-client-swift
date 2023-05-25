@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var quantity: InventoryExportQuantityFilter?
 
-        public var stores: [String]?
-
         public var toDate: String?
+
+        public var stores: [String]?
 
         public var fromDate: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case quantity
 
-            case stores
-
             case toDate = "to_date"
+
+            case stores
 
             case fromDate = "from_date"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.quantity = quantity
 
-            self.stores = stores
-
             self.toDate = toDate
+
+            self.stores = stores
 
             self.fromDate = fromDate
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                stores = try container.decode([String].self, forKey: .stores)
+                toDate = try container.decode(String.self, forKey: .toDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                toDate = try container.decode(String.self, forKey: .toDate)
+                stores = try container.decode([String].self, forKey: .stores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(stores, forKey: .stores)
-
             try? container.encodeIfPresent(toDate, forKey: .toDate)
+
+            try? container.encodeIfPresent(stores, forKey: .stores)
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var quantity: InventoryExportQuantityFilter?
 
-        public var stores: [String]?
-
         public var toDate: String?
+
+        public var stores: [String]?
 
         public var fromDate: String?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case quantity
 
-            case stores
-
             case toDate = "to_date"
+
+            case stores
 
             case fromDate = "from_date"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.quantity = quantity
 
-            self.stores = stores
-
             self.toDate = toDate
+
+            self.stores = stores
 
             self.fromDate = fromDate
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                stores = try container.decode([String].self, forKey: .stores)
+                toDate = try container.decode(String.self, forKey: .toDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                toDate = try container.decode(String.self, forKey: .toDate)
+                stores = try container.decode([String].self, forKey: .stores)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(stores, forKey: .stores)
-
             try? container.encodeIfPresent(toDate, forKey: .toDate)
+
+            try? container.encodeIfPresent(stores, forKey: .stores)
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
         }

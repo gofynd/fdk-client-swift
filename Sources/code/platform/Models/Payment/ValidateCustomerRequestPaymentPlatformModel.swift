@@ -11,15 +11,15 @@ public extension PlatformClient.Payment {
     class ValidateCustomerRequest: Codable {
         public var deliveryAddress: [String: Any]?
 
-        public var payload: String?
+        public var transactionAmountInPaise: Int
 
-        public var aggregator: String
+        public var payload: String?
 
         public var orderItems: [[String: Any]]?
 
         public var merchantParams: [String: Any]?
 
-        public var transactionAmountInPaise: Int
+        public var aggregator: String
 
         public var phoneNumber: String
 
@@ -28,15 +28,15 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case deliveryAddress = "delivery_address"
 
-            case payload
+            case transactionAmountInPaise = "transaction_amount_in_paise"
 
-            case aggregator
+            case payload
 
             case orderItems = "order_items"
 
             case merchantParams = "merchant_params"
 
-            case transactionAmountInPaise = "transaction_amount_in_paise"
+            case aggregator
 
             case phoneNumber = "phone_number"
 
@@ -46,15 +46,15 @@ public extension PlatformClient.Payment {
         public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
             self.deliveryAddress = deliveryAddress
 
-            self.payload = payload
+            self.transactionAmountInPaise = transactionAmountInPaise
 
-            self.aggregator = aggregator
+            self.payload = payload
 
             self.orderItems = orderItems
 
             self.merchantParams = merchantParams
 
-            self.transactionAmountInPaise = transactionAmountInPaise
+            self.aggregator = aggregator
 
             self.phoneNumber = phoneNumber
 
@@ -72,6 +72,8 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+
             do {
                 payload = try container.decode(String.self, forKey: .payload)
 
@@ -79,8 +81,6 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             do {
                 orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
@@ -98,7 +98,7 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
 
@@ -116,15 +116,15 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
 
-            try? container.encode(payload, forKey: .payload)
+            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encode(payload, forKey: .payload)
 
             try? container.encodeIfPresent(orderItems, forKey: .orderItems)
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
-            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
@@ -142,15 +142,15 @@ public extension PlatformClient.ApplicationClient.Payment {
     class ValidateCustomerRequest: Codable {
         public var deliveryAddress: [String: Any]?
 
-        public var payload: String?
+        public var transactionAmountInPaise: Int
 
-        public var aggregator: String
+        public var payload: String?
 
         public var orderItems: [[String: Any]]?
 
         public var merchantParams: [String: Any]?
 
-        public var transactionAmountInPaise: Int
+        public var aggregator: String
 
         public var phoneNumber: String
 
@@ -159,15 +159,15 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case deliveryAddress = "delivery_address"
 
-            case payload
+            case transactionAmountInPaise = "transaction_amount_in_paise"
 
-            case aggregator
+            case payload
 
             case orderItems = "order_items"
 
             case merchantParams = "merchant_params"
 
-            case transactionAmountInPaise = "transaction_amount_in_paise"
+            case aggregator
 
             case phoneNumber = "phone_number"
 
@@ -177,15 +177,15 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
             self.deliveryAddress = deliveryAddress
 
-            self.payload = payload
+            self.transactionAmountInPaise = transactionAmountInPaise
 
-            self.aggregator = aggregator
+            self.payload = payload
 
             self.orderItems = orderItems
 
             self.merchantParams = merchantParams
 
-            self.transactionAmountInPaise = transactionAmountInPaise
+            self.aggregator = aggregator
 
             self.phoneNumber = phoneNumber
 
@@ -203,6 +203,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+
             do {
                 payload = try container.decode(String.self, forKey: .payload)
 
@@ -210,8 +212,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             do {
                 orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
@@ -229,7 +229,7 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
 
@@ -247,15 +247,15 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
 
-            try? container.encode(payload, forKey: .payload)
+            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encode(payload, forKey: .payload)
 
             try? container.encodeIfPresent(orderItems, forKey: .orderItems)
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
-            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 

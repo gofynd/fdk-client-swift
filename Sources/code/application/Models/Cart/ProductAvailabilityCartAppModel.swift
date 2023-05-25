@@ -11,11 +11,11 @@ public extension ApplicationClient.Cart {
 
         public var outOfStock: Bool?
 
-        public var isValid: Bool?
+        public var otherStoreQuantity: Int?
 
         public var sizes: [String]?
 
-        public var otherStoreQuantity: Int?
+        public var isValid: Bool?
 
         public var availableSizes: [ProductAvailabilitySize]?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.Cart {
 
             case outOfStock = "out_of_stock"
 
-            case isValid = "is_valid"
+            case otherStoreQuantity = "other_store_quantity"
 
             case sizes
 
-            case otherStoreQuantity = "other_store_quantity"
+            case isValid = "is_valid"
 
             case availableSizes = "available_sizes"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.Cart {
 
             self.outOfStock = outOfStock
 
-            self.isValid = isValid
+            self.otherStoreQuantity = otherStoreQuantity
 
             self.sizes = sizes
 
-            self.otherStoreQuantity = otherStoreQuantity
+            self.isValid = isValid
 
             self.availableSizes = availableSizes
         }
@@ -67,7 +67,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
 
-            try? container.encodeIfPresent(isValid, forKey: .isValid)
+            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
+            try? container.encodeIfPresent(isValid, forKey: .isValid)
 
             try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
         }
