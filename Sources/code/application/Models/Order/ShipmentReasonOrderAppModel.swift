@@ -9,42 +9,42 @@ public extension ApplicationClient.Order {
     class ShipmentReason: Codable {
         public var priority: Int?
 
-        public var showTextArea: Bool?
-
         public var flow: String?
-
-        public var reasonText: String?
 
         public var feedbackType: String?
 
         public var reasonId: Int?
 
+        public var showTextArea: Bool?
+
+        public var reasonText: String?
+
         public enum CodingKeys: String, CodingKey {
             case priority
 
-            case showTextArea = "show_text_area"
-
             case flow
-
-            case reasonText = "reason_text"
 
             case feedbackType = "feedback_type"
 
             case reasonId = "reason_id"
+
+            case showTextArea = "show_text_area"
+
+            case reasonText = "reason_text"
         }
 
         public init(feedbackType: String? = nil, flow: String? = nil, priority: Int? = nil, reasonId: Int? = nil, reasonText: String? = nil, showTextArea: Bool? = nil) {
             self.priority = priority
 
-            self.showTextArea = showTextArea
-
             self.flow = flow
-
-            self.reasonText = reasonText
 
             self.feedbackType = feedbackType
 
             self.reasonId = reasonId
+
+            self.showTextArea = showTextArea
+
+            self.reasonText = reasonText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,23 +59,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 flow = try container.decode(String.self, forKey: .flow)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                reasonText = try container.decode(String.self, forKey: .reasonText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,6 +81,22 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                reasonText = try container.decode(String.self, forKey: .reasonText)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -104,15 +104,15 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
-
             try? container.encodeIfPresent(flow, forKey: .flow)
-
-            try? container.encodeIfPresent(reasonText, forKey: .reasonText)
 
             try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
 
             try? container.encodeIfPresent(reasonId, forKey: .reasonId)
+
+            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
+
+            try? container.encodeIfPresent(reasonText, forKey: .reasonText)
         }
     }
 }

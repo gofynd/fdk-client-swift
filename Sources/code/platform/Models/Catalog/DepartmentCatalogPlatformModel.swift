@@ -9,9 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class Department: Codable {
-        public var priorityOrder: Int?
-
         public var name: String?
+
+        public var priorityOrder: Int?
 
         public var slug: String?
 
@@ -20,9 +20,9 @@ public extension PlatformClient.Catalog {
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case priorityOrder = "priority_order"
-
             case name
+
+            case priorityOrder = "priority_order"
 
             case slug
 
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(logo: Media? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.priorityOrder = priorityOrder
-
             self.name = name
+
+            self.priorityOrder = priorityOrder
 
             self.slug = slug
 
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Department: Codable {
-        public var priorityOrder: Int?
-
         public var name: String?
+
+        public var priorityOrder: Int?
 
         public var slug: String?
 
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case priorityOrder = "priority_order"
-
             case name
+
+            case priorityOrder = "priority_order"
 
             case slug
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(logo: Media? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.priorityOrder = priorityOrder
-
             self.name = name
+
+            self.priorityOrder = priorityOrder
 
             self.slug = slug
 
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,9 +191,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 

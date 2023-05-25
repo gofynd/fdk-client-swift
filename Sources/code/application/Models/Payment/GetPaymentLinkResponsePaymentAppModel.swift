@@ -11,17 +11,17 @@ public extension ApplicationClient.Payment {
 
         public var message: String
 
-        public var statusCode: Int
-
-        public var success: Bool
+        public var externalOrderId: String?
 
         public var paymentLinkUrl: String?
 
-        public var externalOrderId: String?
+        public var statusCode: Int
+
+        public var merchantName: String?
 
         public var pollingTimeout: Int?
 
-        public var merchantName: String?
+        public var success: Bool
 
         public var amount: Double?
 
@@ -30,17 +30,17 @@ public extension ApplicationClient.Payment {
 
             case message
 
-            case statusCode = "status_code"
-
-            case success
+            case externalOrderId = "external_order_id"
 
             case paymentLinkUrl = "payment_link_url"
 
-            case externalOrderId = "external_order_id"
+            case statusCode = "status_code"
+
+            case merchantName = "merchant_name"
 
             case pollingTimeout = "polling_timeout"
 
-            case merchantName = "merchant_name"
+            case success
 
             case amount
         }
@@ -50,17 +50,17 @@ public extension ApplicationClient.Payment {
 
             self.message = message
 
-            self.statusCode = statusCode
-
-            self.success = success
+            self.externalOrderId = externalOrderId
 
             self.paymentLinkUrl = paymentLinkUrl
 
-            self.externalOrderId = externalOrderId
+            self.statusCode = statusCode
+
+            self.merchantName = merchantName
 
             self.pollingTimeout = pollingTimeout
 
-            self.merchantName = merchantName
+            self.success = success
 
             self.amount = amount
         }
@@ -78,9 +78,13 @@ public extension ApplicationClient.Payment {
 
             message = try container.decode(String.self, forKey: .message)
 
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
+            do {
+                externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 paymentLinkUrl = try container.decode(String.self, forKey: .paymentLinkUrl)
@@ -90,8 +94,10 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
+
             do {
-                externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
+                merchantName = try container.decode(String.self, forKey: .merchantName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +112,7 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                merchantName = try container.decode(String.self, forKey: .merchantName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 amount = try container.decode(Double.self, forKey: .amount)
@@ -130,17 +130,17 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
-
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encode(externalOrderId, forKey: .externalOrderId)
 
             try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
 
-            try? container.encode(externalOrderId, forKey: .externalOrderId)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+
+            try? container.encode(merchantName, forKey: .merchantName)
 
             try? container.encode(pollingTimeout, forKey: .pollingTimeout)
 
-            try? container.encode(merchantName, forKey: .merchantName)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encode(amount, forKey: .amount)
         }
