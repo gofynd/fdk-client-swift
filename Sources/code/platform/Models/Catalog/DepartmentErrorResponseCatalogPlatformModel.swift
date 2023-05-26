@@ -9,36 +9,36 @@ public extension PlatformClient.Catalog {
      */
 
     class DepartmentErrorResponse: Codable {
-        public var status: Int?
-
         public var meta: [String: Any]?
+
+        public var errors: [String: Any]?
 
         public var code: String?
 
-        public var errors: [String: Any]?
+        public var status: Int?
 
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case meta
+
+            case errors
 
             case code
 
-            case errors
+            case status
 
             case message
         }
 
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.status = status
-
             self.meta = meta
+
+            self.errors = errors
 
             self.code = code
 
-            self.errors = errors
+            self.status = status
 
             self.message = message
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                errors = try container.decode([String: Any].self, forKey: .errors)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                errors = try container.decode([String: Any].self, forKey: .errors)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(errors, forKey: .errors)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(errors, forKey: .errors)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }
@@ -110,36 +110,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class DepartmentErrorResponse: Codable {
-        public var status: Int?
-
         public var meta: [String: Any]?
+
+        public var errors: [String: Any]?
 
         public var code: String?
 
-        public var errors: [String: Any]?
+        public var status: Int?
 
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case meta
+
+            case errors
 
             case code
 
-            case errors
+            case status
 
             case message
         }
 
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.status = status
-
             self.meta = meta
+
+            self.errors = errors
 
             self.code = code
 
-            self.errors = errors
+            self.status = status
 
             self.message = message
         }
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                errors = try container.decode([String: Any].self, forKey: .errors)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                errors = try container.decode([String: Any].self, forKey: .errors)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,13 +191,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(errors, forKey: .errors)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(errors, forKey: .errors)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(message, forKey: .message)
         }

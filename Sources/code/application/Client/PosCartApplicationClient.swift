@@ -84,7 +84,6 @@ public extension ApplicationClient {
             assignCardId: Int?,
             areaCode: String?,
             buyNow: Bool?,
-            emptyCart: Bool?,
 
             onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -112,10 +111,6 @@ public extension ApplicationClient {
 
             if let value = buyNow {
                 xQuery["buy_now"] = value
-            }
-
-            if let value = emptyCart {
-                xQuery["empty_cart"] = value
             }
 
             let fullUrl = relativeUrls["getCart"] ?? ""

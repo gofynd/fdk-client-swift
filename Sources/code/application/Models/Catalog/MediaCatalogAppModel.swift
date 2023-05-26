@@ -11,18 +11,18 @@ public extension ApplicationClient.Catalog {
 
         public var url: String?
 
-        public var type: String?
-
         public var alt: String?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
             case url
 
-            case type
-
             case alt
+
+            case type
         }
 
         public init(alt: String? = nil, meta: Meta? = nil, type: String? = nil, url: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
 
             self.url = url
 
-            self.type = type
-
             self.alt = alt
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                alt = try container.decode(String.self, forKey: .alt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                alt = try container.decode(String.self, forKey: .alt)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(alt, forKey: .alt)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

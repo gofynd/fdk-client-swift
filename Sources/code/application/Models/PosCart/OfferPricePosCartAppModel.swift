@@ -13,9 +13,9 @@ public extension ApplicationClient.PosCart {
 
         public var currencySymbol: String?
 
-        public var bulkEffective: Double?
-
         public var effective: Int?
+
+        public var bulkEffective: Double?
 
         public enum CodingKeys: String, CodingKey {
             case marked
@@ -24,9 +24,9 @@ public extension ApplicationClient.PosCart {
 
             case currencySymbol = "currency_symbol"
 
-            case bulkEffective = "bulk_effective"
-
             case effective
+
+            case bulkEffective = "bulk_effective"
         }
 
         public init(bulkEffective: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.PosCart {
 
             self.currencySymbol = currencySymbol
 
-            self.bulkEffective = bulkEffective
-
             self.effective = effective
+
+            self.bulkEffective = bulkEffective
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                bulkEffective = try container.decode(Double.self, forKey: .bulkEffective)
+                effective = try container.decode(Int.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                effective = try container.decode(Int.self, forKey: .effective)
+                bulkEffective = try container.decode(Double.self, forKey: .bulkEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
-
             try? container.encodeIfPresent(effective, forKey: .effective)
+
+            try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
         }
     }
 }

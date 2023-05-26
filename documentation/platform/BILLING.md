@@ -10,6 +10,8 @@ Handle platform subscription
 * [createSubscriptionCharge](#createsubscriptioncharge)
 * [getSubscriptionCharge](#getsubscriptioncharge)
 * [cancelSubscriptionCharge](#cancelsubscriptioncharge)
+* [createOneTimeCharge](#createonetimecharge)
+* [getChargeDetails](#getchargedetails)
 * [getInvoices](#getinvoices)
 * [getInvoiceById](#getinvoicebyid)
 * [getCustomerDetail](#getcustomerdetail)
@@ -31,7 +33,7 @@ Check coupon validity
 
 
 ```swift
-client.billing.checkCouponValidity(plan: plan, couponCode: couponCode) { (response, error) in
+platformClient.billing.checkCouponValidity(plan: plan, couponCode: couponCode) { (response, error) in
     // Use response
 }
 ```
@@ -87,7 +89,7 @@ Create subscription charge
 
 
 ```swift
-client.billing.createSubscriptionCharge(extensionId: extensionId, body: body) { (response, error) in
+platformClient.billing.createSubscriptionCharge(extensionId: extensionId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -142,7 +144,7 @@ Get subscription charge details
 
 
 ```swift
-client.billing.getSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
+platformClient.billing.getSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
     // Use response
 }
 ```
@@ -198,7 +200,7 @@ Cancel subscription charge
 
 
 ```swift
-client.billing.cancelSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
+platformClient.billing.cancelSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
     // Use response
 }
 ```
@@ -247,6 +249,117 @@ Success
 ---
 
 
+#### createOneTimeCharge
+Create one time subscription charge
+
+
+
+
+```swift
+platformClient.billing.createOneTimeCharge(extensionId: extensionId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| extensionId | String | yes | Extension _id |  
+| body | CreateOneTimeCharge | yes | Request body |
+
+
+Register one time subscription charge for a seller of your extension.
+
+*Returned Response:*
+
+
+
+
+[CreateOneTimeChargeResponse](#CreateOneTimeChargeResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getChargeDetails
+Get subscription charge details
+
+
+
+
+```swift
+platformClient.billing.getChargeDetails(extensionId: extensionId, chargeId: chargeId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| extensionId | String | yes | Extension _id |   
+| chargeId | String | yes | Standalone charge _id |  
+
+
+
+Get created subscription charge details
+
+*Returned Response:*
+
+
+
+
+[OneTimeChargeEntity](#OneTimeChargeEntity)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getInvoices
 Get invoices
 
@@ -254,7 +367,7 @@ Get invoices
 
 
 ```swift
-client.billing.getInvoices() { (response, error) in
+platformClient.billing.getInvoices() { (response, error) in
     // Use response
 }
 ```
@@ -544,7 +657,7 @@ Get invoice by id
 
 
 ```swift
-client.billing.getInvoiceById(invoiceId: invoiceId) { (response, error) in
+platformClient.billing.getInvoiceById(invoiceId: invoiceId) { (response, error) in
     // Use response
 }
 ```
@@ -832,7 +945,7 @@ Get subscription customer detail
 
 
 ```swift
-client.billing.getCustomerDetail() { (response, error) in
+platformClient.billing.getCustomerDetail() { (response, error) in
     // Use response
 }
 ```
@@ -914,7 +1027,7 @@ Upsert subscription customer detail
 
 
 ```swift
-client.billing.upsertCustomerDetail(body: body) { (response, error) in
+platformClient.billing.upsertCustomerDetail(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1000,7 +1113,7 @@ Get current subscription detail
 
 
 ```swift
-client.billing.getSubscription() { (response, error) in
+platformClient.billing.getSubscription() { (response, error) in
     // Use response
 }
 ```
@@ -1036,6 +1149,7 @@ Success
 {
   "value": {
     "is_enabled": true,
+    "mandate_amount": 150000,
     "subscription": {
       "current_period": {
         "start": "2020-12-17T13:45:36.722Z",
@@ -1121,7 +1235,7 @@ Get subscription subscription limits
 
 
 ```swift
-client.billing.getFeatureLimitConfig() { (response, error) in
+platformClient.billing.getFeatureLimitConfig() { (response, error) in
     // Use response
 }
 ```
@@ -1207,7 +1321,7 @@ Activate subscription
 
 
 ```swift
-client.billing.activateSubscriptionPlan(body: body) { (response, error) in
+platformClient.billing.activateSubscriptionPlan(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1317,7 +1431,7 @@ Cancel subscription
 
 
 ```swift
-client.billing.cancelSubscriptionPlan(body: body) { (response, error) in
+platformClient.billing.cancelSubscriptionPlan(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1670,6 +1784,37 @@ Success
 
  
  
+ #### [OneTimeChargeItem](#OneTimeChargeItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | term | String? |  yes  |  |
+ | pricingType | String |  no  |  |
+ | price | [EntityChargePrice](#EntityChargePrice) |  no  |  |
+ | cappedAmount | Double? |  yes  |  |
+ | isTest | Bool? |  yes  |  |
+ | metadata | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateOneTimeCharge](#CreateOneTimeCharge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | charge | [OneTimeChargeItem](#OneTimeChargeItem) |  no  |  |
+ | isTest | Bool? |  yes  |  |
+ | returnUrl | String |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CurrentPeriod](#CurrentPeriod)
 
  | Properties | Type | Nullable | Description |
@@ -1688,7 +1833,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
- | term | String? |  yes  |  |
+ | term | String? |  yes  | Brief description for a charge |
  | pricingType | String? |  yes  |  |
  | price | [EntityChargePrice](#EntityChargePrice)? |  yes  |  |
  | recurring | [EntityChargeRecurring](#EntityChargeRecurring)? |  yes  |  |
@@ -1720,6 +1865,42 @@ Success
  | trialPeriod | [SubscriptionTrialPeriod](#SubscriptionTrialPeriod)? |  yes  |  |
  | metadata | [String: Any]? |  yes  |  |
  | lineItems | [[SubscriptionCharge](#SubscriptionCharge)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OneTimeChargeEntity](#OneTimeChargeEntity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | status | String? |  yes  |  |
+ | activatedOn | String? |  yes  |  |
+ | cancelledOn | String? |  yes  |  |
+ | metadata | [String: Any]? |  yes  |  |
+ | returnUrl | String? |  yes  |  |
+ | isTest | Bool? |  yes  |  |
+ | pricingType | String? |  yes  |  |
+ | subscriberId | String? |  yes  |  |
+ | entityType | String? |  yes  |  |
+ | entityId | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | price | [EntityChargePrice](#EntityChargePrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateOneTimeChargeResponse](#CreateOneTimeChargeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charge | [OneTimeChargeEntity](#OneTimeChargeEntity)? |  yes  |  |
+ | confirmUrl | String? |  yes  |  |
 
 ---
 
@@ -2213,6 +2394,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | mandateAmount | Double? |  yes  |  |
  | isEnabled | Bool? |  yes  |  |
  | subscription | [Subscription](#Subscription)? |  yes  |  |
 

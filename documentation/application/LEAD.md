@@ -26,7 +26,7 @@ Get Ticket with the specific id
 
 
 ```swift
-lead.getTicket(id: id) { (response, error) in
+applicationClient.lead.getTicket(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -280,7 +280,7 @@ Create history for specific Ticket
 
 
 ```swift
-lead.createHistory(id: id, body: body) { (response, error) in
+applicationClient.lead.createHistory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -377,7 +377,7 @@ Create Ticket
 
 
 ```swift
-lead.createTicket(body: body) { (response, error) in
+applicationClient.lead.createTicket(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -630,7 +630,7 @@ Get specific Custom Form using it's slug
 
 
 ```swift
-lead.getCustomForm(slug: slug) { (response, error) in
+applicationClient.lead.getCustomForm(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -737,7 +737,7 @@ Submit Response for a specific Custom Form using it's slug
 
 
 ```swift
-lead.submitCustomForm(slug: slug, body: body) { (response, error) in
+applicationClient.lead.submitCustomForm(slug: slug, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -993,7 +993,7 @@ Get participants of a specific Video Room using it's unique name
 
 
 ```swift
-lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) in
+applicationClient.lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -1058,7 +1058,7 @@ Get Token to join a specific Video Room using it's unqiue name
 
 
 ```swift
-lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
+applicationClient.lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -1642,6 +1642,7 @@ Success
  | supportCommunication | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support communication array list details |
  | showSupportDris | Bool? |  yes  | Denotes if support DRIS info should be shown |
  | integration | [String: Any]? |  yes  | Contains integrations basic information |
+ | type | String? |  yes  | The enity/platform for which the config is stored |
 
 ---
 

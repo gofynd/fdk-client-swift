@@ -7,11 +7,11 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class ShipmentResponse: Codable {
+        public var dpOptions: [String: Any]?
+
         public var boxType: String?
 
-        public var shipmentType: String?
-
-        public var dpOptions: [String: Any]?
+        public var dpId: String?
 
         public var shipments: Int?
 
@@ -21,18 +21,18 @@ public extension ApplicationClient.PosCart {
 
         public var promise: ShipmentPromise?
 
-        public var fulfillmentId: Int?
-
         public var fulfillmentType: String?
 
-        public var dpId: String?
+        public var fulfillmentId: Int?
+
+        public var shipmentType: String?
 
         public enum CodingKeys: String, CodingKey {
+            case dpOptions = "dp_options"
+
             case boxType = "box_type"
 
-            case shipmentType = "shipment_type"
-
-            case dpOptions = "dp_options"
+            case dpId = "dp_id"
 
             case shipments
 
@@ -42,19 +42,19 @@ public extension ApplicationClient.PosCart {
 
             case promise
 
-            case fulfillmentId = "fulfillment_id"
-
             case fulfillmentType = "fulfillment_type"
 
-            case dpId = "dp_id"
+            case fulfillmentId = "fulfillment_id"
+
+            case shipmentType = "shipment_type"
         }
 
         public init(boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int? = nil, fulfillmentType: String? = nil, items: [CartProductInfo]? = nil, orderType: String? = nil, promise: ShipmentPromise? = nil, shipments: Int? = nil, shipmentType: String? = nil) {
+            self.dpOptions = dpOptions
+
             self.boxType = boxType
 
-            self.shipmentType = shipmentType
-
-            self.dpOptions = dpOptions
+            self.dpId = dpId
 
             self.shipments = shipments
 
@@ -64,15 +64,23 @@ public extension ApplicationClient.PosCart {
 
             self.promise = promise
 
-            self.fulfillmentId = fulfillmentId
-
             self.fulfillmentType = fulfillmentType
 
-            self.dpId = dpId
+            self.fulfillmentId = fulfillmentId
+
+            self.shipmentType = shipmentType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 boxType = try container.decode(String.self, forKey: .boxType)
@@ -83,15 +91,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                shipmentType = try container.decode(String.self, forKey: .shipmentType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
+                dpId = try container.decode(String.self, forKey: .dpId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,14 +131,6 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 fulfillmentType = try container.decode(String.self, forKey: .fulfillmentType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -147,7 +139,15 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                dpId = try container.decode(String.self, forKey: .dpId)
+                fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentType = try container.decode(String.self, forKey: .shipmentType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,11 +158,11 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encode(dpOptions, forKey: .dpOptions)
+
             try? container.encode(boxType, forKey: .boxType)
 
-            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
-
-            try? container.encode(dpOptions, forKey: .dpOptions)
+            try? container.encode(dpId, forKey: .dpId)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
@@ -172,11 +172,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(promise, forKey: .promise)
 
-            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
-
             try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
 
-            try? container.encode(dpId, forKey: .dpId)
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
+
+            try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
         }
     }
 }

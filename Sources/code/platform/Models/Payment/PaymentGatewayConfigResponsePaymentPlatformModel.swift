@@ -13,9 +13,9 @@ public extension PlatformClient.Payment {
 
         public var created: Bool
 
-        public var appId: String
-
         public var displayFields: [String]
+
+        public var appId: String
 
         public var success: Bool
 
@@ -26,9 +26,9 @@ public extension PlatformClient.Payment {
 
             case created
 
-            case appId = "app_id"
-
             case displayFields = "display_fields"
+
+            case appId = "app_id"
 
             case success
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Payment {
 
             self.created = created
 
-            self.appId = appId
-
             self.displayFields = displayFields
+
+            self.appId = appId
 
             self.success = success
 
@@ -62,9 +62,9 @@ public extension PlatformClient.Payment {
 
             created = try container.decode(Bool.self, forKey: .created)
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             displayFields = try container.decode([String].self, forKey: .displayFields)
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             success = try container.decode(Bool.self, forKey: .success)
 
@@ -78,9 +78,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(created, forKey: .created)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
@@ -100,9 +100,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var created: Bool
 
-        public var appId: String
-
         public var displayFields: [String]
+
+        public var appId: String
 
         public var success: Bool
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case created
 
-            case appId = "app_id"
-
             case displayFields = "display_fields"
+
+            case appId = "app_id"
 
             case success
 
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.created = created
 
-            self.appId = appId
-
             self.displayFields = displayFields
+
+            self.appId = appId
 
             self.success = success
 
@@ -149,9 +149,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             created = try container.decode(Bool.self, forKey: .created)
 
-            appId = try container.decode(String.self, forKey: .appId)
-
             displayFields = try container.decode([String].self, forKey: .displayFields)
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             success = try container.decode(Bool.self, forKey: .success)
 
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(created, forKey: .created)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(success, forKey: .success)
 

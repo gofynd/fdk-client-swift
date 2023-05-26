@@ -21,7 +21,7 @@ Create proxy URL for the external URL
 
 
 ```swift
-client.application("<APPLICATION_ID>").partner.addProxyPath(extensionId: extensionId, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").partner.addProxyPath(extensionId: extensionId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -85,7 +85,7 @@ Remove proxy URL for the external URL
 
 
 ```swift
-client.application("<APPLICATION_ID>").partner.removeProxyPath(extensionId: extensionId, attachedPath: attachedPath) { (response, error) in
+platformClient.application("<APPLICATION_ID>").partner.removeProxyPath(extensionId: extensionId, attachedPath: attachedPath) { (response, error) in
     // Use response
 }
 ```

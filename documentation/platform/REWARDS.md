@@ -15,7 +15,7 @@ Earn and redeem reward points
 * [getOfferByName](#getofferbyname)
 * [updateOfferByName](#updateofferbyname)
 * [updateUserStatus](#updateuserstatus)
-* [user](#user)
+* [getUserDetails](#getuserdetails)
 * [getUserPointsHistory](#getuserpointshistory)
 * [getRewardsConfiguration](#getrewardsconfiguration)
 * [setRewardsConfiguration](#setrewardsconfiguration)
@@ -32,7 +32,7 @@ List of giveaways of the current application.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.showGiveaways(pageId: pageId, pageSize: pageSize) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.showGiveaways(pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -88,7 +88,7 @@ List of giveaways of the current application.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.saveGiveAway(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.saveGiveAway(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -142,7 +142,7 @@ Get giveaway by ID.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getGiveawayById(id: id) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getGiveawayById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -197,7 +197,7 @@ Updates the giveaway by it's ID.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.updateGiveAway(id: id, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.updateGiveAway(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -252,7 +252,7 @@ Get the Giveaway audience status
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus(audienceId: audienceId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus(id: id, audienceId: audienceId) { (response, error) in
     // Use response
 }
 ```
@@ -263,6 +263,7 @@ client.application("<APPLICATION_ID>").rewards.getGiveawayAudienceStatus(audienc
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
+| id | String | yes | Giveaway ID |   
 | audienceId | String | yes | audience id |  
 
 
@@ -307,7 +308,7 @@ List of offers of the current application.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.showOffers() { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.showOffers() { (response, error) in
     // Use response
 }
 ```
@@ -357,7 +358,7 @@ Get offer by name
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getOfferByName(name: name, cookie: cookie) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getOfferByName(name: name) { (response, error) in
     // Use response
 }
 ```
@@ -368,8 +369,7 @@ client.application("<APPLICATION_ID>").rewards.getOfferByName(name: name, cookie
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| name | String | yes | The name given to the offer. |   
-| cookie | String | yes | User's session cookie. This cookie is set in browser cookie when logged-in to fynd's authentication system i.e. `Grimlock` or by using grimlock-backend SDK for backend implementation. |  
+| name | String | yes | The name given to the offer. |  
 
 
 
@@ -413,7 +413,7 @@ Update offer by name
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.updateOfferByName(name: name, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.updateOfferByName(name: name, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -468,7 +468,7 @@ Update user status
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.updateUserStatus(userId: userId, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.updateUserStatus(userId: userId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -516,14 +516,14 @@ Success
 ---
 
 
-#### user
+#### getUserDetails
 Get user reward details
 
 
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.user(userId: userId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getUserDetails(userId: userId) { (response, error) in
     // Use response
 }
 ```
@@ -578,7 +578,7 @@ Get all transactions of reward points
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getUserPointsHistory(userId: userId, pageId: pageId, pageSize: pageSize) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory(userId: userId, pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -635,7 +635,7 @@ Get all valid android paths
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getRewardsConfiguration() { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getRewardsConfiguration() { (response, error) in
     // Use response
 }
 ```
@@ -685,7 +685,7 @@ Updates the collection with given android paths.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.setRewardsConfiguration(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.setRewardsConfiguration(body: body) { (response, error) in
     // Use response
 }
 ```

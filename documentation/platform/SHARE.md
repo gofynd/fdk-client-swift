@@ -10,6 +10,7 @@ Short link and QR Code
 * [getShortLinks](#getshortlinks)
 * [getShortLinkByHash](#getshortlinkbyhash)
 * [updateShortLinkById](#updateshortlinkbyid)
+* [getShortLinkClickStats](#getshortlinkclickstats)
 
 
 
@@ -23,7 +24,7 @@ Create short link
 
 
 ```swift
-client.application("<APPLICATION_ID>").share.createShortLink(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").share.createShortLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -115,7 +116,7 @@ Get short links
 
 
 ```swift
-client.application("<APPLICATION_ID>").share.getShortLinks(pageNo: pageNo, pageSize: pageSize, createdBy: createdBy, active: active, q: q) { (response, error) in
+platformClient.application("<APPLICATION_ID>").share.getShortLinks(pageNo: pageNo, pageSize: pageSize, createdBy: createdBy, active: active, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -223,7 +224,7 @@ Get short link by hash
 
 
 ```swift
-client.application("<APPLICATION_ID>").share.getShortLinkByHash(hash: hash) { (response, error) in
+platformClient.application("<APPLICATION_ID>").share.getShortLinkByHash(hash: hash) { (response, error) in
     // Use response
 }
 ```
@@ -316,7 +317,7 @@ Update short link by id
 
 
 ```swift
-client.application("<APPLICATION_ID>").share.updateShortLinkById(id: id, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").share.updateShortLinkById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -402,8 +403,86 @@ Success
 ---
 
 
+#### getShortLinkClickStats
+Get click statistics for a short link
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").share.getShortLinkClickStats(surlId: surlId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| surlId | String | yes | Short link ID for which click statistics are to be retrieved. |  
+
+
+
+Retrieve click statistics for a given short link ID.
+
+*Returned Response:*
+
+
+
+
+[ClickStatsResponse](#ClickStatsResponse)
+
+Successful retrieval of click statistics.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
+
+ 
+ 
+ #### [ClickStatsResponse](#ClickStatsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | clickStats | [[ClickStatsItem](#ClickStatsItem)] |  no  | An array of click statistics for the short link. |
+
+---
+
+
+ 
+ 
+ #### [ClickStatsItem](#ClickStatsItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | String? |  yes  | The display name of the click statistic. |
+ | total | Int? |  yes  | The total number of clicks for the statistic. |
+
+---
+
 
  
  
