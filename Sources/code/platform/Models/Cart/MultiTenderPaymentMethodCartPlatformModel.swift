@@ -9,18 +9,18 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class MultiTenderPaymentMethod: Codable {
-        public var amount: Double
-
         public var name: String?
+
+        public var amount: Double
 
         public var meta: MultiTenderPaymentMeta?
 
         public var mode: String
 
         public enum CodingKeys: String, CodingKey {
-            case amount
-
             case name
+
+            case amount
 
             case meta
 
@@ -28,9 +28,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
-            self.amount = amount
-
             self.name = name
+
+            self.amount = amount
 
             self.meta = meta
 
@@ -40,8 +40,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            amount = try container.decode(Double.self, forKey: .amount)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -49,6 +47,8 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            amount = try container.decode(Double.self, forKey: .amount)
 
             do {
                 meta = try container.decode(MultiTenderPaymentMeta.self, forKey: .meta)
@@ -64,9 +64,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 

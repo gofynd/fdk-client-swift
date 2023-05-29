@@ -9,9 +9,9 @@ public extension ApplicationClient.Payment {
     class TransferItemsDetails: Codable {
         public var name: String
 
-        public var displayName: String?
-
         public var logoSmall: String
+
+        public var displayName: String?
 
         public var logoLarge: String
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case displayName = "display_name"
-
             case logoSmall = "logo_small"
+
+            case displayName = "display_name"
 
             case logoLarge = "logo_large"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Payment {
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
             self.name = name
 
-            self.displayName = displayName
-
             self.logoSmall = logoSmall
+
+            self.displayName = displayName
 
             self.logoLarge = logoLarge
 
@@ -46,6 +46,8 @@ public extension ApplicationClient.Payment {
 
             name = try container.decode(String.self, forKey: .name)
 
+            logoSmall = try container.decode(String.self, forKey: .logoSmall)
+
             do {
                 displayName = try container.decode(String.self, forKey: .displayName)
 
@@ -53,8 +55,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
             logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
@@ -66,9 +66,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
             try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 

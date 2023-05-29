@@ -9,39 +9,39 @@ public extension PlatformClient.Order {
      */
 
     class GeneratePosOrderReceiptResponse: Codable {
-        public var invoiceReceipt: String?
+        public var paymentReceipt: String?
 
-        public var orderId: String?
+        public var invoiceReceipt: String?
 
         public var success: Bool?
 
-        public var paymentReceipt: String?
+        public var orderId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case invoiceReceipt = "invoice_receipt"
+            case paymentReceipt = "payment_receipt"
 
-            case orderId = "order_id"
+            case invoiceReceipt = "invoice_receipt"
 
             case success
 
-            case paymentReceipt = "payment_receipt"
+            case orderId = "order_id"
         }
 
         public init(invoiceReceipt: String? = nil, orderId: String? = nil, paymentReceipt: String? = nil, success: Bool? = nil) {
-            self.invoiceReceipt = invoiceReceipt
+            self.paymentReceipt = paymentReceipt
 
-            self.orderId = orderId
+            self.invoiceReceipt = invoiceReceipt
 
             self.success = success
 
-            self.paymentReceipt = paymentReceipt
+            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                invoiceReceipt = try container.decode(String.self, forKey: .invoiceReceipt)
+                paymentReceipt = try container.decode(String.self, forKey: .paymentReceipt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                invoiceReceipt = try container.decode(String.self, forKey: .invoiceReceipt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                paymentReceipt = try container.decode(String.self, forKey: .paymentReceipt)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,13 +76,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoiceReceipt, forKey: .invoiceReceipt)
+            try? container.encodeIfPresent(paymentReceipt, forKey: .paymentReceipt)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(invoiceReceipt, forKey: .invoiceReceipt)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(paymentReceipt, forKey: .paymentReceipt)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
     }
 }
@@ -94,39 +94,39 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class GeneratePosOrderReceiptResponse: Codable {
-        public var invoiceReceipt: String?
+        public var paymentReceipt: String?
 
-        public var orderId: String?
+        public var invoiceReceipt: String?
 
         public var success: Bool?
 
-        public var paymentReceipt: String?
+        public var orderId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case invoiceReceipt = "invoice_receipt"
+            case paymentReceipt = "payment_receipt"
 
-            case orderId = "order_id"
+            case invoiceReceipt = "invoice_receipt"
 
             case success
 
-            case paymentReceipt = "payment_receipt"
+            case orderId = "order_id"
         }
 
         public init(invoiceReceipt: String? = nil, orderId: String? = nil, paymentReceipt: String? = nil, success: Bool? = nil) {
-            self.invoiceReceipt = invoiceReceipt
+            self.paymentReceipt = paymentReceipt
 
-            self.orderId = orderId
+            self.invoiceReceipt = invoiceReceipt
 
             self.success = success
 
-            self.paymentReceipt = paymentReceipt
+            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                invoiceReceipt = try container.decode(String.self, forKey: .invoiceReceipt)
+                paymentReceipt = try container.decode(String.self, forKey: .paymentReceipt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                invoiceReceipt = try container.decode(String.self, forKey: .invoiceReceipt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                paymentReceipt = try container.decode(String.self, forKey: .paymentReceipt)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoiceReceipt, forKey: .invoiceReceipt)
+            try? container.encodeIfPresent(paymentReceipt, forKey: .paymentReceipt)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(invoiceReceipt, forKey: .invoiceReceipt)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(paymentReceipt, forKey: .paymentReceipt)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
     }
 }
