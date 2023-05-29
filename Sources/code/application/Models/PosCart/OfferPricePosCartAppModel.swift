@@ -13,9 +13,9 @@ public extension ApplicationClient.PosCart {
 
         public var marked: Int?
 
-        public var currencyCode: String?
-
         public var effective: Int?
+
+        public var currencyCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case bulkEffective = "bulk_effective"
@@ -24,9 +24,9 @@ public extension ApplicationClient.PosCart {
 
             case marked
 
-            case currencyCode = "currency_code"
-
             case effective
+
+            case currencyCode = "currency_code"
         }
 
         public init(bulkEffective: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.PosCart {
 
             self.marked = marked
 
-            self.currencyCode = currencyCode
-
             self.effective = effective
+
+            self.currencyCode = currencyCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                effective = try container.decode(Int.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                effective = try container.decode(Int.self, forKey: .effective)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
             try? container.encodeIfPresent(effective, forKey: .effective)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }
     }
 }

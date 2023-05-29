@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var sellable: Quantity?
 
-        public var orderCommitted: Quantity?
-
         public var notAvailable: Quantity?
+
+        public var orderCommitted: Quantity?
 
         public enum CodingKeys: String, CodingKey {
             case damaged
 
             case sellable
 
-            case orderCommitted = "order_committed"
-
             case notAvailable = "not_available"
+
+            case orderCommitted = "order_committed"
         }
 
         public init(damaged: Quantity? = nil, notAvailable: Quantity? = nil, orderCommitted: Quantity? = nil, sellable: Quantity? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.sellable = sellable
 
-            self.orderCommitted = orderCommitted
-
             self.notAvailable = notAvailable
+
+            self.orderCommitted = orderCommitted
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                orderCommitted = try container.decode(Quantity.self, forKey: .orderCommitted)
+                notAvailable = try container.decode(Quantity.self, forKey: .notAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                notAvailable = try container.decode(Quantity.self, forKey: .notAvailable)
+                orderCommitted = try container.decode(Quantity.self, forKey: .orderCommitted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(sellable, forKey: .sellable)
 
-            try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
-
             try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
+
+            try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var sellable: Quantity?
 
-        public var orderCommitted: Quantity?
-
         public var notAvailable: Quantity?
+
+        public var orderCommitted: Quantity?
 
         public enum CodingKeys: String, CodingKey {
             case damaged
 
             case sellable
 
-            case orderCommitted = "order_committed"
-
             case notAvailable = "not_available"
+
+            case orderCommitted = "order_committed"
         }
 
         public init(damaged: Quantity? = nil, notAvailable: Quantity? = nil, orderCommitted: Quantity? = nil, sellable: Quantity? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.sellable = sellable
 
-            self.orderCommitted = orderCommitted
-
             self.notAvailable = notAvailable
+
+            self.orderCommitted = orderCommitted
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                orderCommitted = try container.decode(Quantity.self, forKey: .orderCommitted)
+                notAvailable = try container.decode(Quantity.self, forKey: .notAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                notAvailable = try container.decode(Quantity.self, forKey: .notAvailable)
+                orderCommitted = try container.decode(Quantity.self, forKey: .orderCommitted)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(sellable, forKey: .sellable)
 
-            try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
-
             try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
+
+            try? container.encodeIfPresent(orderCommitted, forKey: .orderCommitted)
         }
     }
 }

@@ -11,36 +11,36 @@ public extension PlatformClient.Order {
     class ShipmentStatus: Codable {
         public var hexCode: String
 
-        public var actualStatus: String
+        public var status: String
 
         public var title: String
 
         public var opsStatus: String
 
-        public var status: String
+        public var actualStatus: String
 
         public enum CodingKeys: String, CodingKey {
             case hexCode = "hex_code"
 
-            case actualStatus = "actual_status"
+            case status
 
             case title
 
             case opsStatus = "ops_status"
 
-            case status
+            case actualStatus = "actual_status"
         }
 
         public init(actualStatus: String, hexCode: String, opsStatus: String, status: String, title: String) {
             self.hexCode = hexCode
 
-            self.actualStatus = actualStatus
+            self.status = status
 
             self.title = title
 
             self.opsStatus = opsStatus
 
-            self.status = status
+            self.actualStatus = actualStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,13 +48,13 @@ public extension PlatformClient.Order {
 
             hexCode = try container.decode(String.self, forKey: .hexCode)
 
-            actualStatus = try container.decode(String.self, forKey: .actualStatus)
+            status = try container.decode(String.self, forKey: .status)
 
             title = try container.decode(String.self, forKey: .title)
 
             opsStatus = try container.decode(String.self, forKey: .opsStatus)
 
-            status = try container.decode(String.self, forKey: .status)
+            actualStatus = try container.decode(String.self, forKey: .actualStatus)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,13 +62,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
 
-            try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(opsStatus, forKey: .opsStatus)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
         }
     }
 }
@@ -82,36 +82,36 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentStatus: Codable {
         public var hexCode: String
 
-        public var actualStatus: String
+        public var status: String
 
         public var title: String
 
         public var opsStatus: String
 
-        public var status: String
+        public var actualStatus: String
 
         public enum CodingKeys: String, CodingKey {
             case hexCode = "hex_code"
 
-            case actualStatus = "actual_status"
+            case status
 
             case title
 
             case opsStatus = "ops_status"
 
-            case status
+            case actualStatus = "actual_status"
         }
 
         public init(actualStatus: String, hexCode: String, opsStatus: String, status: String, title: String) {
             self.hexCode = hexCode
 
-            self.actualStatus = actualStatus
+            self.status = status
 
             self.title = title
 
             self.opsStatus = opsStatus
 
-            self.status = status
+            self.actualStatus = actualStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -119,13 +119,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             hexCode = try container.decode(String.self, forKey: .hexCode)
 
-            actualStatus = try container.decode(String.self, forKey: .actualStatus)
+            status = try container.decode(String.self, forKey: .status)
 
             title = try container.decode(String.self, forKey: .title)
 
             opsStatus = try container.decode(String.self, forKey: .opsStatus)
 
-            status = try container.decode(String.self, forKey: .status)
+            actualStatus = try container.decode(String.self, forKey: .actualStatus)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -133,13 +133,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
 
-            try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(opsStatus, forKey: .opsStatus)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
         }
     }
 }

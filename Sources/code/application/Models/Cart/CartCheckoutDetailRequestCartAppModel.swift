@@ -9,102 +9,108 @@ public extension ApplicationClient.Cart {
     class CartCheckoutDetailRequest: Codable {
         public var addressId: String?
 
-        public var merchantCode: String?
-
-        public var customMeta: [CartCheckoutCustomMeta]?
-
-        public var billingAddressId: String?
-
         public var meta: [String: Any]?
 
-        public var callbackUrl: String?
-
-        public var paymentMode: String
-
-        public var billingAddress: [String: Any]?
+        public var orderType: String?
 
         public var orderingStore: Int?
 
+        public var deliveryAddress: [String: Any]?
+
         public var paymentIdentifier: String?
+
+        public var merchantCode: String?
+
+        public var aggregator: String?
 
         public var paymentAutoConfirm: Bool?
 
         public var extraMeta: [String: Any]?
 
-        public var deliveryAddress: [String: Any]?
+        public var paymentMode: String
+
+        public var callbackUrl: String?
+
+        public var customMeta: [CartCheckoutCustomMeta]?
 
         public var staff: StaffCheckout?
 
-        public var paymentParams: [String: Any]?
+        public var billingAddressId: String?
 
-        public var aggregator: String?
+        public var billingAddress: [String: Any]?
+
+        public var paymentParams: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case addressId = "address_id"
 
-            case merchantCode = "merchant_code"
-
-            case customMeta = "custom_meta"
-
-            case billingAddressId = "billing_address_id"
-
             case meta
 
-            case callbackUrl = "callback_url"
-
-            case paymentMode = "payment_mode"
-
-            case billingAddress = "billing_address"
+            case orderType = "order_type"
 
             case orderingStore = "ordering_store"
 
+            case deliveryAddress = "delivery_address"
+
             case paymentIdentifier = "payment_identifier"
+
+            case merchantCode = "merchant_code"
+
+            case aggregator
 
             case paymentAutoConfirm = "payment_auto_confirm"
 
             case extraMeta = "extra_meta"
 
-            case deliveryAddress = "delivery_address"
+            case paymentMode = "payment_mode"
+
+            case callbackUrl = "callback_url"
+
+            case customMeta = "custom_meta"
 
             case staff
 
-            case paymentParams = "payment_params"
+            case billingAddressId = "billing_address_id"
 
-            case aggregator
+            case billingAddress = "billing_address"
+
+            case paymentParams = "payment_params"
         }
 
-        public init(addressId: String? = nil, aggregator: String? = nil, billingAddress: [String: Any]? = nil, billingAddressId: String? = nil, callbackUrl: String? = nil, customMeta: [CartCheckoutCustomMeta]? = nil, deliveryAddress: [String: Any]? = nil, extraMeta: [String: Any]? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, orderingStore: Int? = nil, paymentAutoConfirm: Bool? = nil, paymentIdentifier: String? = nil, paymentMode: String, paymentParams: [String: Any]? = nil, staff: StaffCheckout? = nil) {
+        public init(addressId: String? = nil, aggregator: String? = nil, billingAddress: [String: Any]? = nil, billingAddressId: String? = nil, callbackUrl: String? = nil, customMeta: [CartCheckoutCustomMeta]? = nil, deliveryAddress: [String: Any]? = nil, extraMeta: [String: Any]? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, orderingStore: Int? = nil, orderType: String? = nil, paymentAutoConfirm: Bool? = nil, paymentIdentifier: String? = nil, paymentMode: String, paymentParams: [String: Any]? = nil, staff: StaffCheckout? = nil) {
             self.addressId = addressId
-
-            self.merchantCode = merchantCode
-
-            self.customMeta = customMeta
-
-            self.billingAddressId = billingAddressId
 
             self.meta = meta
 
-            self.callbackUrl = callbackUrl
-
-            self.paymentMode = paymentMode
-
-            self.billingAddress = billingAddress
+            self.orderType = orderType
 
             self.orderingStore = orderingStore
 
+            self.deliveryAddress = deliveryAddress
+
             self.paymentIdentifier = paymentIdentifier
+
+            self.merchantCode = merchantCode
+
+            self.aggregator = aggregator
 
             self.paymentAutoConfirm = paymentAutoConfirm
 
             self.extraMeta = extraMeta
 
-            self.deliveryAddress = deliveryAddress
+            self.paymentMode = paymentMode
+
+            self.callbackUrl = callbackUrl
+
+            self.customMeta = customMeta
 
             self.staff = staff
 
-            self.paymentParams = paymentParams
+            self.billingAddressId = billingAddressId
 
-            self.aggregator = aggregator
+            self.billingAddress = billingAddress
+
+            self.paymentParams = paymentParams
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,30 +118,6 @@ public extension ApplicationClient.Cart {
 
             do {
                 addressId = try container.decode(String.self, forKey: .addressId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                merchantCode = try container.decode(String.self, forKey: .merchantCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customMeta = try container.decode([CartCheckoutCustomMeta].self, forKey: .customMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -151,17 +133,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            do {
-                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
+                orderType = try container.decode(String.self, forKey: .orderType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -177,7 +149,31 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
+                deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                merchantCode = try container.decode(String.self, forKey: .merchantCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                aggregator = try container.decode(String.self, forKey: .aggregator)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -200,8 +196,18 @@ public extension ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
             do {
-                deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customMeta = try container.decode([CartCheckoutCustomMeta].self, forKey: .customMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -217,7 +223,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentParams = try container.decode([String: Any].self, forKey: .paymentParams)
+                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,7 +231,15 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                aggregator = try container.decode(String.self, forKey: .aggregator)
+                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                paymentParams = try container.decode([String: Any].self, forKey: .paymentParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -238,35 +252,37 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(addressId, forKey: .addressId)
 
-            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
-
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
-
-            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
-
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
 
             try? container.encode(orderingStore, forKey: .orderingStore)
 
+            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
+
             try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+
+            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(paymentAutoConfirm, forKey: .paymentAutoConfirm)
 
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
-            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encode(callbackUrl, forKey: .callbackUrl)
+
+            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
 
             try? container.encodeIfPresent(staff, forKey: .staff)
 
-            try? container.encode(paymentParams, forKey: .paymentParams)
+            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+
+            try? container.encode(paymentParams, forKey: .paymentParams)
         }
     }
 }

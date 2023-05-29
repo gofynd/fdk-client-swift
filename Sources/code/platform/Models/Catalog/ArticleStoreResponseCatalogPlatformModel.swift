@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var storeType: String?
 
-        public var name: String?
-
         public var storeCode: String?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
             case storeType = "store_type"
 
-            case name
-
             case storeCode = "store_code"
+
+            case name
         }
 
         public init(name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.storeType = storeType
 
-            self.name = name
-
             self.storeCode = storeCode
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(storeType, forKey: .storeType)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var storeType: String?
 
-        public var name: String?
-
         public var storeCode: String?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
             case storeType = "store_type"
 
-            case name
-
             case storeCode = "store_code"
+
+            case name
         }
 
         public init(name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.storeType = storeType
 
-            self.name = name
-
             self.storeCode = storeCode
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(storeType, forKey: .storeType)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

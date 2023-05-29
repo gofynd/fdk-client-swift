@@ -11,38 +11,36 @@ public extension PlatformClient.Order {
     class Tax: Codable {
         public var amount: [String: Any]
 
-        public var name: String
-
         public var breakup: [[String: Any]]?
 
         public var rate: Double
 
+        public var name: String
+
         public enum CodingKeys: String, CodingKey {
             case amount
-
-            case name
 
             case breakup
 
             case rate
+
+            case name
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
             self.amount = amount
 
-            self.name = name
-
             self.breakup = breakup
 
             self.rate = rate
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             amount = try container.decode([String: Any].self, forKey: .amount)
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
@@ -53,6 +51,8 @@ public extension PlatformClient.Order {
             } catch {}
 
             rate = try container.decode(Double.self, forKey: .rate)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,11 +60,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(breakup, forKey: .breakup)
 
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -78,38 +78,36 @@ public extension PlatformClient.ApplicationClient.Order {
     class Tax: Codable {
         public var amount: [String: Any]
 
-        public var name: String
-
         public var breakup: [[String: Any]]?
 
         public var rate: Double
 
+        public var name: String
+
         public enum CodingKeys: String, CodingKey {
             case amount
-
-            case name
 
             case breakup
 
             case rate
+
+            case name
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
             self.amount = amount
 
-            self.name = name
-
             self.breakup = breakup
 
             self.rate = rate
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             amount = try container.decode([String: Any].self, forKey: .amount)
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
@@ -120,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             rate = try container.decode(Double.self, forKey: .rate)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(breakup, forKey: .breakup)
 
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
