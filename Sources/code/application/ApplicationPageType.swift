@@ -1,5 +1,6 @@
 import Foundation
-public extension ApplicationClient {
+
+public extension ApplicationClient.Content {
     enum PageType: String, Codable, CaseIterable {
         case aboutUs = "about-us"
         case addresses
@@ -22,11 +23,10 @@ public extension ApplicationClient {
         case page
         case policy
         case product
-        case productReviews = "product-reviews"
-        case addProductReview = "add-product-review"
         case productRequest = "product-request"
         case products
         case profile
+        case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
         case profileEmails = "profile-emails"
@@ -45,6 +45,8 @@ public extension ApplicationClient {
         case cartReview = "cart-review"
         case login
         case register
+        case shippingPolicy = "shipping-policy"
+        case returnPolicy = "return-policy"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -118,7 +120,7 @@ public extension ApplicationClient {
             case .external:
                 return "/external/"
             case .faq:
-                return "/faq/:category"
+                return "/faq"
             case .freshchat:
                 return "/freshchat"
             case .home:
@@ -133,16 +135,14 @@ public extension ApplicationClient {
                 return "/privacy-policy"
             case .product:
                 return "/product/:slug"
-            case .productReviews:
-                return "/product/:slug/reviews"
-            case .addProductReview:
-                return "/product/:slug/add-review"
             case .productRequest:
                 return "/product-request/"
             case .products:
                 return "/products/"
             case .profile:
                 return "/profile"
+            case .profileOrderShipment:
+                return "/profile/orders/shipment/:shipmentid"
             case .profileBasic:
                 return "/profile/details"
             case .profileCompany:
@@ -179,6 +179,10 @@ public extension ApplicationClient {
                 return "/auth/login"
             case .register:
                 return "/auth/register"
+            case .shippingPolicy:
+                return "/shipping-policy"
+            case .returnPolicy:
+                return "/return-policy"
             }
         }
 
@@ -226,16 +230,14 @@ public extension ApplicationClient {
                 return "Privacy Policy"
             case .product:
                 return "Product"
-            case .productReviews:
-                return "Product Reviews"
-            case .addProductReview:
-                return "Add Product review"
             case .productRequest:
                 return "Product Request"
             case .products:
                 return "Products"
             case .profile:
                 return "Profile"
+            case .profileOrderShipment:
+                return "profile orders shipment"
             case .profileBasic:
                 return "Basic Profile"
             case .profileCompany:
@@ -272,6 +274,10 @@ public extension ApplicationClient {
                 return "Login"
             case .register:
                 return "Register"
+            case .shippingPolicy:
+                return "Shipping policy"
+            case .returnPolicy:
+                return "Return policy"
             }
         }
 
@@ -304,7 +310,7 @@ public extension ApplicationClient {
             case .external:
                 return []
             case .faq:
-                return [(name: "category", required: false)]
+                return []
             case .freshchat:
                 return []
             case .home:
@@ -319,16 +325,14 @@ public extension ApplicationClient {
                 return []
             case .product:
                 return [(name: "slug", required: true)]
-            case .productReviews:
-                return [(name: "slug", required: true)]
-            case .addProductReview:
-                return [(name: "slug", required: true)]
             case .productRequest:
                 return []
             case .products:
                 return []
             case .profile:
                 return []
+            case .profileOrderShipment:
+                return [(name: "shipmentid", required: true)]
             case .profileBasic:
                 return []
             case .profileCompany:
@@ -364,6 +368,10 @@ public extension ApplicationClient {
             case .login:
                 return []
             case .register:
+                return []
+            case .shippingPolicy:
+                return []
+            case .returnPolicy:
                 return []
             }
         }
@@ -412,15 +420,13 @@ public extension ApplicationClient {
                 return []
             case .product:
                 return []
-            case .productReviews:
-                return []
-            case .addProductReview:
-                return []
             case .productRequest:
                 return []
             case .products:
                 return []
             case .profile:
+                return []
+            case .profileOrderShipment:
                 return []
             case .profileBasic:
                 return []
@@ -457,6 +463,10 @@ public extension ApplicationClient {
             case .login:
                 return []
             case .register:
+                return []
+            case .shippingPolicy:
+                return []
+            case .returnPolicy:
                 return []
             }
         }

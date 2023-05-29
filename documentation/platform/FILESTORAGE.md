@@ -29,7 +29,7 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 
 ```swift
-client.filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
+platformClient.filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -102,7 +102,7 @@ This will complete the upload process. After successfully uploading file, you ca
 
 
 ```swift
-client.filestorage.completeUpload(namespace: namespace, body: body) { (response, error) in
+platformClient.filestorage.completeUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -175,7 +175,7 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 
 ```swift
-client.application("<APPLICATION_ID>").filestorage.appStartUpload(namespace: namespace, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").filestorage.appStartUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -248,7 +248,7 @@ This will complete the upload process. After successfully uploading file, you ca
 
 
 ```swift
-client.application("<APPLICATION_ID>").filestorage.appCompleteUpload(namespace: namespace, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").filestorage.appCompleteUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -321,7 +321,7 @@ Gives signed urls to access private files
 
 
 ```swift
-client.filestorage.getSignUrls(body: body) { (response, error) in
+platformClient.filestorage.getSignUrls(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -375,7 +375,7 @@ Copy Files
 
 
 ```swift
-client.filestorage.copyFiles(sync: sync, body: body) { (response, error) in
+platformClient.filestorage.copyFiles(sync: sync, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -457,7 +457,7 @@ Copy Files
 
 
 ```swift
-client.application("<APPLICATION_ID>").filestorage.appCopyFiles(sync: sync, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").filestorage.appCopyFiles(sync: sync, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -539,7 +539,7 @@ Browse Files
 
 
 ```swift
-client.filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
+platformClient.filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -595,7 +595,7 @@ Browse Files
 
 
 ```swift
-client.application("<APPLICATION_ID>").filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
+platformClient.application("<APPLICATION_ID>").filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -651,7 +651,7 @@ Proxy
 
 
 ```swift
-client.filestorage.proxy(url: url) { (response, error) in
+platformClient.filestorage.proxy(url: url) { (response, error) in
     // Use response
 }
 ```
@@ -720,6 +720,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | url | String |  no  |  |
+ | absoluteUrl | String? |  yes  |  |
+ | relativeUrl | String? |  yes  |  |
 
 ---
 

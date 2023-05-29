@@ -14,6 +14,7 @@ Authentication Service
 * [loginWithOTP](#loginwithotp)
 * [loginWithEmailAndPassword](#loginwithemailandpassword)
 * [sendResetPasswordEmail](#sendresetpasswordemail)
+* [sendResetPasswordMobile](#sendresetpasswordmobile)
 * [forgotPassword](#forgotpassword)
 * [sendResetToken](#sendresettoken)
 * [loginWithToken](#loginwithtoken)
@@ -22,6 +23,7 @@ Authentication Service
 * [verifyMobile](#verifymobile)
 * [hasPassword](#haspassword)
 * [updatePassword](#updatepassword)
+* [deleteUser](#deleteuser)
 * [logout](#logout)
 * [sendOTPOnMobile](#sendotponmobile)
 * [verifyMobileOTP](#verifymobileotp)
@@ -52,7 +54,7 @@ Login or Register using Facebook
 
 
 ```swift
-user.loginWithFacebook(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithFacebook(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -135,7 +137,7 @@ Login or Register using Google
 
 
 ```swift
-user.loginWithGoogle(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithGoogle(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -218,7 +220,7 @@ Login or Register using Google on Android
 
 
 ```swift
-user.loginWithGoogleAndroid(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithGoogleAndroid(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -301,7 +303,7 @@ Login or Register using Google on iOS
 
 
 ```swift
-user.loginWithGoogleIOS(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithGoogleIOS(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -384,7 +386,7 @@ Login or Register using Apple on iOS
 
 
 ```swift
-user.loginWithAppleIOS(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithAppleIOS(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -467,7 +469,7 @@ Login or Register with OTP
 
 
 ```swift
-user.loginWithOTP(platform: platform, body: body) { (response, error) in
+applicationClient.user.loginWithOTP(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -538,7 +540,7 @@ Login or Register with password
 
 
 ```swift
-user.loginWithEmailAndPassword(body: body) { (response, error) in
+applicationClient.user.loginWithEmailAndPassword(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -647,7 +649,7 @@ Reset Password
 
 
 ```swift
-user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendResetPasswordEmail(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -697,6 +699,63 @@ Success. Check the example shown below or refer `ResetPasswordSuccess` for more 
 ---
 
 
+#### sendResetPasswordMobile
+Reset Password
+
+
+
+
+```swift
+applicationClient.user.sendResetPasswordMobile(platform: platform, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| platform | String? | no | ID of the application |  
+| body | SendResetPasswordMobileRequestSchema | yes | Request body |
+
+
+Use this API to reset a password using the link sent on mobile.
+
+*Returned Response:*
+
+
+
+
+[ResetPasswordSuccess](#ResetPasswordSuccess)
+
+Success. Check the example shown below or refer `ResetPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "status": "sent"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### forgotPassword
 Forgot Password
 
@@ -704,7 +763,7 @@ Forgot Password
 
 
 ```swift
-user.forgotPassword(body: body) { (response, error) in
+applicationClient.user.forgotPassword(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -813,7 +872,7 @@ Reset Password using token
 
 
 ```swift
-user.sendResetToken(body: body) { (response, error) in
+applicationClient.user.sendResetToken(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -869,7 +928,7 @@ Login or Register with token
 
 
 ```swift
-user.loginWithToken(body: body) { (response, error) in
+applicationClient.user.loginWithToken(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -978,7 +1037,7 @@ Registration using a form
 
 
 ```swift
-user.registerWithForm(platform: platform, body: body) { (response, error) in
+applicationClient.user.registerWithForm(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1044,7 +1103,7 @@ Verify email
 
 
 ```swift
-user.verifyEmail(body: body) { (response, error) in
+applicationClient.user.verifyEmail(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1100,7 +1159,7 @@ Verify mobile
 
 
 ```swift
-user.verifyMobile(body: body) { (response, error) in
+applicationClient.user.verifyMobile(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1156,7 +1215,7 @@ Check password
 
 
 ```swift
-user.hasPassword() { (response, error) in
+applicationClient.user.hasPassword() { (response, error) in
     // Use response
 }
 ```
@@ -1206,7 +1265,7 @@ Update user password
 
 
 ```swift
-user.updatePassword(body: body) { (response, error) in
+applicationClient.user.updatePassword(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1255,6 +1314,62 @@ Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
 ---
 
 
+#### deleteUser
+verify otp and delete user
+
+
+
+
+```swift
+applicationClient.user.deleteUser(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | DeleteApplicationUserRequestSchema | yes | Request body |
+
+
+verify otp and delete user
+
+*Returned Response:*
+
+
+
+
+[DeleteUserSuccess](#DeleteUserSuccess)
+
+Success. Returns a success message. Refer `DeleteUserSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### logout
 Logs out currently logged in user
 
@@ -1262,7 +1377,7 @@ Logs out currently logged in user
 
 
 ```swift
-user.logout() { (response, error) in
+applicationClient.user.logout() { (response, error) in
     // Use response
 }
 ```
@@ -1312,7 +1427,7 @@ Send OTP on mobile
 
 
 ```swift
-user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendOTPOnMobile(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1375,7 +1490,7 @@ Verify OTP on mobile
 
 
 ```swift
-user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
+applicationClient.user.verifyMobileOTP(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1486,7 +1601,7 @@ Send OTP on email
 
 
 ```swift
-user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendOTPOnEmail(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1543,7 +1658,7 @@ Verify OTP on email
 
 
 ```swift
-user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
+applicationClient.user.verifyEmailOTP(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1654,7 +1769,7 @@ Get logged in user
 
 
 ```swift
-user.getLoggedInUser() { (response, error) in
+applicationClient.user.getLoggedInUser() { (response, error) in
     // Use response
 }
 ```
@@ -1759,7 +1874,7 @@ Get list of sessions
 
 
 ```swift
-user.getListOfActiveSessions() { (response, error) in
+applicationClient.user.getListOfActiveSessions() { (response, error) in
     // Use response
 }
 ```
@@ -1814,7 +1929,7 @@ Get platform configurations
 
 
 ```swift
-user.getPlatformConfig(name: name) { (response, error) in
+applicationClient.user.getPlatformConfig(name: name) { (response, error) in
     // Use response
 }
 ```
@@ -1908,6 +2023,22 @@ Success. Returns a JSON object containing the all the platform configurations. R
       "appId": "548529975557631"
     }
   },
+  "delete_account_reasons": [
+    {
+      "reason_text": "test",
+      "reason_id": "123",
+      "show_text_area": true
+    }
+  ],
+  "delete_account_day": 7,
+  "delete_account_consent": {
+    "consent_text": ""
+  },
+  "session_config": {
+    "duration": "30",
+    "type": "Days",
+    "is_rolling": false
+  },
   "_id": "5e04a5e5220bc15839ad9bc0",
   "created_at": "2019-12-26T12:21:57.878Z",
   "updated_at": "2020-08-13T14:31:09.878Z",
@@ -1934,7 +2065,7 @@ Edit Profile Details
 
 
 ```swift
-user.updateProfile(platform: platform, body: body) { (response, error) in
+applicationClient.user.updateProfile(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2044,7 +2175,7 @@ Add mobile number to profile
 
 
 ```swift
-user.addMobileNumber(platform: platform, body: body) { (response, error) in
+applicationClient.user.addMobileNumber(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2155,7 +2286,7 @@ Delete mobile number from profile
 
 
 ```swift
-user.deleteMobileNumber(platform: platform, active: active, primary: primary, verified: verified, countryCode: countryCode, phone: phone) { (response, error) in
+applicationClient.user.deleteMobileNumber(platform: platform, active: active, primary: primary, verified: verified, countryCode: countryCode, phone: phone) { (response, error) in
     // Use response
 }
 ```
@@ -2270,7 +2401,7 @@ Set mobile as primary
 
 
 ```swift
-user.setMobileNumberAsPrimary(body: body) { (response, error) in
+applicationClient.user.setMobileNumberAsPrimary(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2379,7 +2510,7 @@ Send verification link to mobile
 
 
 ```swift
-user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendVerificationLinkToMobile(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2490,7 +2621,7 @@ Add email to profile
 
 
 ```swift
-user.addEmail(platform: platform, body: body) { (response, error) in
+applicationClient.user.addEmail(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2601,7 +2732,7 @@ Delete email from profile
 
 
 ```swift
-user.deleteEmail(platform: platform, active: active, primary: primary, verified: verified, email: email) { (response, error) in
+applicationClient.user.deleteEmail(platform: platform, active: active, primary: primary, verified: verified, email: email) { (response, error) in
     // Use response
 }
 ```
@@ -2715,7 +2846,7 @@ Set email as primary
 
 
 ```swift
-user.setEmailAsPrimary(body: body) { (response, error) in
+applicationClient.user.setEmailAsPrimary(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2824,7 +2955,7 @@ Send verification link to email
 
 
 ```swift
-user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, error) in
+applicationClient.user.sendVerificationLinkToEmail(platform: platform, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2895,6 +3026,34 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | userId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userId | String? |  yes  |  |
+ | reason | String? |  yes  |  |
+ | reasonId | String? |  yes  |  |
+ | requestId | String? |  yes  |  |
+ | otp | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userId | String? |  yes  |  |
+ | reason | String? |  yes  |  |
+ | reasonId | String? |  yes  |  |
 
 ---
 
@@ -3105,6 +3264,19 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | countryCode | String? |  yes  |  |
+ | mobile | String? |  yes  |  |
+ | captchaCode | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [PasswordLoginRequestSchema](#PasswordLoginRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -3125,6 +3297,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | countryCode | String? |  yes  |  |
  | captchaCode | String? |  yes  |  |
  | mobile | String? |  yes  |  |
+ | androidHash | String? |  yes  |  |
 
 ---
 
@@ -3334,6 +3507,28 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  
  
  #### [ArchiveUserSuccess](#ArchiveUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteUserSuccess](#DeleteUserSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UnDeleteUserSuccess](#UnDeleteUserSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -3748,6 +3943,10 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | register | Bool? |  yes  |  |
  | mobileImage | String? |  yes  |  |
  | desktopImage | String? |  yes  |  |
+ | deleteAccountDay | Int? |  yes  |  |
+ | deleteAccountReasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
+ | deleteAccountConsent | [String: Any]? |  yes  |  |
+ | sessionConfig | [String: Any]? |  yes  |  |
 
 ---
 
@@ -3901,6 +4100,30 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  
  
+ #### [DeleteAccountReasons](#DeleteAccountReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reasonText | String? |  yes  |  |
+ | reasonId | String? |  yes  |  |
+ | showTextArea | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeleteAccountConsent](#DeleteAccountConsent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | consentText | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [Facebook](#Facebook)
 
  | Properties | Type | Nullable | Description |
@@ -3928,6 +4151,19 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | appId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionExpiry](#SessionExpiry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | Int? |  yes  |  |
+ | type | String? |  yes  |  |
+ | isRolling | Bool? |  yes  |  |
 
 ---
 
@@ -3966,8 +4202,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | profilePicUrl | String? |  yes  |  |
  | username | String? |  yes  |  |
  | accountType | String? |  yes  |  |
- | debug | [Debug](#Debug)? |  yes  |  |
- | hasOldPasswordHash | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
@@ -4000,18 +4234,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verified | Bool? |  yes  |  |
  | email | String? |  yes  |  |
  | active | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Debug](#Debug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | String? |  yes  |  |
- | platform | String? |  yes  |  |
 
 ---
 

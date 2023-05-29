@@ -22,7 +22,7 @@ Get communication consent
 
 
 ```swift
-communication.getCommunicationConsent() { (response, error) in
+applicationClient.communication.getCommunicationConsent() { (response, error) in
     // Use response
 }
 ```
@@ -99,7 +99,7 @@ Upsert communication consent
 
 
 ```swift
-communication.upsertCommunicationConsent(body: body) { (response, error) in
+applicationClient.communication.upsertCommunicationConsent(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -178,7 +178,7 @@ Upsert push token of a user
 
 
 ```swift
-communication.upsertAppPushtoken(body: body) { (response, error) in
+applicationClient.communication.upsertAppPushtoken(body: body) { (response, error) in
     // Use response
 }
 ```
