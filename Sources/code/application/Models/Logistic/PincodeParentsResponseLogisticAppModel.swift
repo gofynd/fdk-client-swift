@@ -9,18 +9,18 @@ public extension ApplicationClient.Logistic {
     class PincodeParentsResponse: Codable {
         public var displayName: String?
 
-        public var name: String?
-
         public var subType: String?
+
+        public var name: String?
 
         public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
-            case name
-
             case subType = "sub_type"
+
+            case name
 
             case uid
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Logistic {
         public init(displayName: String? = nil, name: String? = nil, subType: String? = nil, uid: String? = nil) {
             self.displayName = displayName
 
-            self.name = name
-
             self.subType = subType
+
+            self.name = name
 
             self.uid = uid
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                subType = try container.decode(String.self, forKey: .subType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                subType = try container.decode(String.self, forKey: .subType)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }

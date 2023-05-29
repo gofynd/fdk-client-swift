@@ -7,9 +7,9 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class CreatePaymentLinkRequest: Codable {
-        public var meta: CreatePaymentLinkMeta
-
         public var externalOrderId: String
+
+        public var meta: CreatePaymentLinkMeta
 
         public var description: String?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Payment {
         public var amount: Double
 
         public enum CodingKeys: String, CodingKey {
-            case meta
-
             case externalOrderId = "external_order_id"
+
+            case meta
 
             case description
 
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
         }
 
         public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
-            self.meta = meta
-
             self.externalOrderId = externalOrderId
+
+            self.meta = meta
 
             self.description = description
 
@@ -50,9 +50,9 @@ public extension ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
-
             externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
+
+            meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
 
             do {
                 description = try container.decode(String.self, forKey: .description)
@@ -72,9 +72,9 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encode(description, forKey: .description)
 

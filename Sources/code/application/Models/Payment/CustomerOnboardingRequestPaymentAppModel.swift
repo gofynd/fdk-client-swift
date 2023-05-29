@@ -9,13 +9,13 @@ public extension ApplicationClient.Payment {
     class CustomerOnboardingRequest: Codable {
         public var device: DeviceDetails?
 
-        public var aggregator: String
-
         public var businessInfo: BusinessDetails?
 
-        public var source: String
-
         public var mcc: String?
+
+        public var aggregator: String
+
+        public var source: String
 
         public var personalInfo: UserPersonalInfoInDetails
 
@@ -24,13 +24,13 @@ public extension ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case device
 
-            case aggregator
-
             case businessInfo = "business_info"
 
-            case source
-
             case mcc
+
+            case aggregator
+
+            case source
 
             case personalInfo = "personal_info"
 
@@ -40,13 +40,13 @@ public extension ApplicationClient.Payment {
         public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, mcc: String? = nil, personalInfo: UserPersonalInfoInDetails, source: String) {
             self.device = device
 
-            self.aggregator = aggregator
-
             self.businessInfo = businessInfo
 
-            self.source = source
-
             self.mcc = mcc
+
+            self.aggregator = aggregator
+
+            self.source = source
 
             self.personalInfo = personalInfo
 
@@ -64,8 +64,6 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             do {
                 businessInfo = try container.decode(BusinessDetails.self, forKey: .businessInfo)
 
@@ -74,8 +72,6 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            source = try container.decode(String.self, forKey: .source)
-
             do {
                 mcc = try container.decode(String.self, forKey: .mcc)
 
@@ -83,6 +79,10 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            source = try container.decode(String.self, forKey: .source)
 
             personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
 
@@ -100,13 +100,13 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(device, forKey: .device)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
 
-            try? container.encodeIfPresent(source, forKey: .source)
-
             try? container.encode(mcc, forKey: .mcc)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(source, forKey: .source)
 
             try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
 
