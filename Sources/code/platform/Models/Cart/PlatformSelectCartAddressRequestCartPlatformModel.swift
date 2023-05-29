@@ -15,9 +15,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var userId: String?
 
-        public var billingAddressId: String?
-
         public var checkoutMode: String?
+
+        public var billingAddressId: String?
 
         public enum CodingKeys: String, CodingKey {
             case cartId = "cart_id"
@@ -26,9 +26,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case userId = "user_id"
 
-            case billingAddressId = "billing_address_id"
-
             case checkoutMode = "checkout_mode"
+
+            case billingAddressId = "billing_address_id"
         }
 
         public init(billingAddressId: String? = nil, cartId: String? = nil, checkoutMode: String? = nil, id: String? = nil, userId: String? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.userId = userId
 
-            self.billingAddressId = billingAddressId
-
             self.checkoutMode = checkoutMode
+
+            self.billingAddressId = billingAddressId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+                billingAddressId = try container.decode(String.self, forKey: .billingAddressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
-
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+
+            try? container.encodeIfPresent(billingAddressId, forKey: .billingAddressId)
         }
     }
 }

@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var value: String
 
-        public var text: String
-
         public var totalItems: Int?
+
+        public var text: String
 
         public enum CodingKeys: String, CodingKey {
             case options
 
             case value
 
-            case text
-
             case totalItems = "total_items"
+
+            case text
         }
 
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.value = value
 
-            self.text = text
-
             self.totalItems = totalItems
+
+            self.text = text
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,8 +50,6 @@ public extension PlatformClient.Order {
 
             value = try container.decode(String.self, forKey: .value)
 
-            text = try container.decode(String.self, forKey: .text)
-
             do {
                 totalItems = try container.decode(Int.self, forKey: .totalItems)
 
@@ -59,6 +57,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            text = try container.decode(String.self, forKey: .text)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,9 +68,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(text, forKey: .text)
-
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
+
+            try? container.encodeIfPresent(text, forKey: .text)
         }
     }
 }
@@ -86,18 +86,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var value: String
 
-        public var text: String
-
         public var totalItems: Int?
+
+        public var text: String
 
         public enum CodingKeys: String, CodingKey {
             case options
 
             case value
 
-            case text
-
             case totalItems = "total_items"
+
+            case text
         }
 
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.value = value
 
-            self.text = text
-
             self.totalItems = totalItems
+
+            self.text = text
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,8 +123,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             value = try container.decode(String.self, forKey: .value)
 
-            text = try container.decode(String.self, forKey: .text)
-
             do {
                 totalItems = try container.decode(Int.self, forKey: .totalItems)
 
@@ -132,6 +130,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            text = try container.decode(String.self, forKey: .text)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(text, forKey: .text)
-
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
+
+            try? container.encodeIfPresent(text, forKey: .text)
         }
     }
 }

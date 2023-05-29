@@ -9,60 +9,64 @@ public extension PlatformClient.Order {
      */
 
     class BuyerDetails: Codable {
-        public var state: String
-
         public var pincode: Int
 
         public var name: String
+
+        public var gstin: String
+
+        public var address: String
+
+        public var state: String
 
         public var ajioSiteId: String?
 
         public var city: String
 
-        public var address: String
-
-        public var gstin: String
-
         public enum CodingKeys: String, CodingKey {
-            case state
-
             case pincode
 
             case name
 
-            case ajioSiteId = "ajio_site_id"
-
-            case city
+            case gstin
 
             case address
 
-            case gstin
+            case state
+
+            case ajioSiteId = "ajio_site_id"
+
+            case city
         }
 
         public init(address: String, ajioSiteId: String? = nil, city: String, gstin: String, name: String, pincode: Int, state: String) {
-            self.state = state
-
             self.pincode = pincode
 
             self.name = name
 
-            self.ajioSiteId = ajioSiteId
-
-            self.city = city
+            self.gstin = gstin
 
             self.address = address
 
-            self.gstin = gstin
+            self.state = state
+
+            self.ajioSiteId = ajioSiteId
+
+            self.city = city
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            state = try container.decode(String.self, forKey: .state)
-
             pincode = try container.decode(Int.self, forKey: .pincode)
 
             name = try container.decode(String.self, forKey: .name)
+
+            gstin = try container.decode(String.self, forKey: .gstin)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            state = try container.decode(String.self, forKey: .state)
 
             do {
                 ajioSiteId = try container.decode(String.self, forKey: .ajioSiteId)
@@ -73,28 +77,24 @@ public extension PlatformClient.Order {
             } catch {}
 
             city = try container.decode(String.self, forKey: .city)
-
-            address = try container.decode(String.self, forKey: .address)
-
-            gstin = try container.decode(String.self, forKey: .gstin)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
-
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encode(address, forKey: .address)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
+
+            try? container.encodeIfPresent(city, forKey: .city)
         }
     }
 }
@@ -106,60 +106,64 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class BuyerDetails: Codable {
-        public var state: String
-
         public var pincode: Int
 
         public var name: String
+
+        public var gstin: String
+
+        public var address: String
+
+        public var state: String
 
         public var ajioSiteId: String?
 
         public var city: String
 
-        public var address: String
-
-        public var gstin: String
-
         public enum CodingKeys: String, CodingKey {
-            case state
-
             case pincode
 
             case name
 
-            case ajioSiteId = "ajio_site_id"
-
-            case city
+            case gstin
 
             case address
 
-            case gstin
+            case state
+
+            case ajioSiteId = "ajio_site_id"
+
+            case city
         }
 
         public init(address: String, ajioSiteId: String? = nil, city: String, gstin: String, name: String, pincode: Int, state: String) {
-            self.state = state
-
             self.pincode = pincode
 
             self.name = name
 
-            self.ajioSiteId = ajioSiteId
-
-            self.city = city
+            self.gstin = gstin
 
             self.address = address
 
-            self.gstin = gstin
+            self.state = state
+
+            self.ajioSiteId = ajioSiteId
+
+            self.city = city
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            state = try container.decode(String.self, forKey: .state)
-
             pincode = try container.decode(Int.self, forKey: .pincode)
 
             name = try container.decode(String.self, forKey: .name)
+
+            gstin = try container.decode(String.self, forKey: .gstin)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            state = try container.decode(String.self, forKey: .state)
 
             do {
                 ajioSiteId = try container.decode(String.self, forKey: .ajioSiteId)
@@ -170,28 +174,24 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             city = try container.decode(String.self, forKey: .city)
-
-            address = try container.decode(String.self, forKey: .address)
-
-            gstin = try container.decode(String.self, forKey: .gstin)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
-
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encode(address, forKey: .address)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
+
+            try? container.encodeIfPresent(city, forKey: .city)
         }
     }
 }

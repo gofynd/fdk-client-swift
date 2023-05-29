@@ -9,18 +9,18 @@ public extension ApplicationClient.PosCart {
     class AppliedFreeArticles: Codable {
         public var quantity: Int?
 
-        public var freeGiftItemDetails: FreeGiftItem?
-
         public var parentItemIdentifier: String?
+
+        public var freeGiftItemDetails: FreeGiftItem?
 
         public var articleId: String?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
 
-            case freeGiftItemDetails = "free_gift_item_details"
-
             case parentItemIdentifier = "parent_item_identifier"
+
+            case freeGiftItemDetails = "free_gift_item_details"
 
             case articleId = "article_id"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.PosCart {
         public init(articleId: String? = nil, freeGiftItemDetails: FreeGiftItem? = nil, parentItemIdentifier: String? = nil, quantity: Int? = nil) {
             self.quantity = quantity
 
-            self.freeGiftItemDetails = freeGiftItemDetails
-
             self.parentItemIdentifier = parentItemIdentifier
+
+            self.freeGiftItemDetails = freeGiftItemDetails
 
             self.articleId = articleId
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                freeGiftItemDetails = try container.decode(FreeGiftItem.self, forKey: .freeGiftItemDetails)
+                parentItemIdentifier = try container.decode(String.self, forKey: .parentItemIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                parentItemIdentifier = try container.decode(String.self, forKey: .parentItemIdentifier)
+                freeGiftItemDetails = try container.decode(FreeGiftItem.self, forKey: .freeGiftItemDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(freeGiftItemDetails, forKey: .freeGiftItemDetails)
-
             try? container.encodeIfPresent(parentItemIdentifier, forKey: .parentItemIdentifier)
+
+            try? container.encodeIfPresent(freeGiftItemDetails, forKey: .freeGiftItemDetails)
 
             try? container.encodeIfPresent(articleId, forKey: .articleId)
         }

@@ -11,24 +11,24 @@ public extension PlatformClient.Payment {
     class SubscriptionConfigResponse: Codable {
         public var aggregator: String
 
-        public var success: Bool
-
         public var config: [String: Any]
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
-            case success
-
             case config
+
+            case success
         }
 
         public init(aggregator: String, config: [String: Any], success: Bool) {
             self.aggregator = aggregator
 
-            self.success = success
-
             self.config = config
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             config = try container.decode([String: Any].self, forKey: .config)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(config, forKey: .config)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Payment {
     class SubscriptionConfigResponse: Codable {
         public var aggregator: String
 
-        public var success: Bool
-
         public var config: [String: Any]
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
-            case success
-
             case config
+
+            case success
         }
 
         public init(aggregator: String, config: [String: Any], success: Bool) {
             self.aggregator = aggregator
 
-            self.success = success
-
             self.config = config
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             config = try container.decode([String: Any].self, forKey: .config)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(config, forKey: .config)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

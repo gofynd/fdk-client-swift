@@ -9,33 +9,33 @@ public extension PlatformClient.Catalog {
      */
 
     class InvoiceCredSerializer: Codable {
-        public var password: String?
+        public var enabled: Bool?
 
         public var username: String?
 
-        public var enabled: Bool?
+        public var password: String?
 
         public enum CodingKeys: String, CodingKey {
-            case password
+            case enabled
 
             case username
 
-            case enabled
+            case password
         }
 
         public init(enabled: Bool? = nil, password: String? = nil, username: String? = nil) {
-            self.password = password
+            self.enabled = enabled
 
             self.username = username
 
-            self.enabled = enabled
+            self.password = password
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                password = try container.decode(String.self, forKey: .password)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                password = try container.decode(String.self, forKey: .password)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(password, forKey: .password)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(password, forKey: .password)
         }
     }
 }
@@ -78,33 +78,33 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InvoiceCredSerializer: Codable {
-        public var password: String?
+        public var enabled: Bool?
 
         public var username: String?
 
-        public var enabled: Bool?
+        public var password: String?
 
         public enum CodingKeys: String, CodingKey {
-            case password
+            case enabled
 
             case username
 
-            case enabled
+            case password
         }
 
         public init(enabled: Bool? = nil, password: String? = nil, username: String? = nil) {
-            self.password = password
+            self.enabled = enabled
 
             self.username = username
 
-            self.enabled = enabled
+            self.password = password
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                password = try container.decode(String.self, forKey: .password)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                password = try container.decode(String.self, forKey: .password)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(password, forKey: .password)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(password, forKey: .password)
         }
     }
 }

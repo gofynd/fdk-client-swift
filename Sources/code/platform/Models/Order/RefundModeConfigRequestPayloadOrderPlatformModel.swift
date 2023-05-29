@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var affiliateId: String
 
-        public var orderingChannel: String
-
         public var fyndOrderId: String
+
+        public var orderingChannel: String
 
         public enum CodingKeys: String, CodingKey {
             case customerMobileNumber = "customer_mobile_number"
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case affiliateId = "affiliate_id"
 
-            case orderingChannel = "ordering_channel"
-
             case fyndOrderId = "fynd_order_id"
+
+            case orderingChannel = "ordering_channel"
         }
 
         public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, orderingChannel: String, sellerId: String) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.affiliateId = affiliateId
 
-            self.orderingChannel = orderingChannel
-
             self.fyndOrderId = fyndOrderId
+
+            self.orderingChannel = orderingChannel
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.Order {
 
             affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
-            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
-
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,9 +72,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
         }
     }
 }
@@ -92,9 +92,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var affiliateId: String
 
-        public var orderingChannel: String
-
         public var fyndOrderId: String
+
+        public var orderingChannel: String
 
         public enum CodingKeys: String, CodingKey {
             case customerMobileNumber = "customer_mobile_number"
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case affiliateId = "affiliate_id"
 
-            case orderingChannel = "ordering_channel"
-
             case fyndOrderId = "fynd_order_id"
+
+            case orderingChannel = "ordering_channel"
         }
 
         public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, orderingChannel: String, sellerId: String) {
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.affiliateId = affiliateId
 
-            self.orderingChannel = orderingChannel
-
             self.fyndOrderId = fyndOrderId
+
+            self.orderingChannel = orderingChannel
         }
 
         required public init(from decoder: Decoder) throws {
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
-            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
-
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            orderingChannel = try container.decode(String.self, forKey: .orderingChannel)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -149,9 +149,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
         }
     }
 }

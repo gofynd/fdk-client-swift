@@ -11,72 +11,72 @@ public extension PlatformClient.Order {
     class OrderUser: Codable {
         public var address1: String?
 
-        public var firstName: String
-
         public var mobile: Int
-
-        public var pincode: String
-
-        public var phone: Int
 
         public var lastName: String
 
-        public var state: String
-
-        public var city: String
+        public var pincode: String
 
         public var email: String
 
-        public var country: String
+        public var phone: Int
+
+        public var state: String
 
         public var address2: String?
+
+        public var city: String
+
+        public var firstName: String
+
+        public var country: String
 
         public enum CodingKeys: String, CodingKey {
             case address1
 
-            case firstName = "first_name"
-
             case mobile
-
-            case pincode
-
-            case phone
 
             case lastName = "last_name"
 
-            case state
-
-            case city
+            case pincode
 
             case email
 
-            case country
+            case phone
+
+            case state
 
             case address2
+
+            case city
+
+            case firstName = "first_name"
+
+            case country
         }
 
         public init(address1: String? = nil, address2: String? = nil, city: String, country: String, email: String, firstName: String, lastName: String, mobile: Int, phone: Int, pincode: String, state: String) {
             self.address1 = address1
 
-            self.firstName = firstName
-
             self.mobile = mobile
-
-            self.pincode = pincode
-
-            self.phone = phone
 
             self.lastName = lastName
 
-            self.state = state
-
-            self.city = city
+            self.pincode = pincode
 
             self.email = email
 
-            self.country = country
+            self.phone = phone
+
+            self.state = state
 
             self.address2 = address2
+
+            self.city = city
+
+            self.firstName = firstName
+
+            self.country = country
         }
 
         required public init(from decoder: Decoder) throws {
@@ -90,23 +90,17 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            firstName = try container.decode(String.self, forKey: .firstName)
-
             mobile = try container.decode(Int.self, forKey: .mobile)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            phone = try container.decode(Int.self, forKey: .phone)
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            state = try container.decode(String.self, forKey: .state)
-
-            city = try container.decode(String.self, forKey: .city)
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             email = try container.decode(String.self, forKey: .email)
 
-            country = try container.decode(String.self, forKey: .country)
+            phone = try container.decode(Int.self, forKey: .phone)
+
+            state = try container.decode(String.self, forKey: .state)
 
             do {
                 address2 = try container.decode(String.self, forKey: .address2)
@@ -115,6 +109,12 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            city = try container.decode(String.self, forKey: .city)
+
+            firstName = try container.decode(String.self, forKey: .firstName)
+
+            country = try container.decode(String.self, forKey: .country)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -122,25 +122,25 @@ public extension PlatformClient.Order {
 
             try? container.encode(address1, forKey: .address1)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(phone, forKey: .phone)
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(phone, forKey: .phone)
+
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encode(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+
+            try? container.encodeIfPresent(country, forKey: .country)
         }
     }
 }
@@ -154,72 +154,72 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderUser: Codable {
         public var address1: String?
 
-        public var firstName: String
-
         public var mobile: Int
-
-        public var pincode: String
-
-        public var phone: Int
 
         public var lastName: String
 
-        public var state: String
-
-        public var city: String
+        public var pincode: String
 
         public var email: String
 
-        public var country: String
+        public var phone: Int
+
+        public var state: String
 
         public var address2: String?
+
+        public var city: String
+
+        public var firstName: String
+
+        public var country: String
 
         public enum CodingKeys: String, CodingKey {
             case address1
 
-            case firstName = "first_name"
-
             case mobile
-
-            case pincode
-
-            case phone
 
             case lastName = "last_name"
 
-            case state
-
-            case city
+            case pincode
 
             case email
 
-            case country
+            case phone
+
+            case state
 
             case address2
+
+            case city
+
+            case firstName = "first_name"
+
+            case country
         }
 
         public init(address1: String? = nil, address2: String? = nil, city: String, country: String, email: String, firstName: String, lastName: String, mobile: Int, phone: Int, pincode: String, state: String) {
             self.address1 = address1
 
-            self.firstName = firstName
-
             self.mobile = mobile
-
-            self.pincode = pincode
-
-            self.phone = phone
 
             self.lastName = lastName
 
-            self.state = state
-
-            self.city = city
+            self.pincode = pincode
 
             self.email = email
 
-            self.country = country
+            self.phone = phone
+
+            self.state = state
 
             self.address2 = address2
+
+            self.city = city
+
+            self.firstName = firstName
+
+            self.country = country
         }
 
         required public init(from decoder: Decoder) throws {
@@ -233,23 +233,17 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            firstName = try container.decode(String.self, forKey: .firstName)
-
             mobile = try container.decode(Int.self, forKey: .mobile)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            phone = try container.decode(Int.self, forKey: .phone)
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            state = try container.decode(String.self, forKey: .state)
-
-            city = try container.decode(String.self, forKey: .city)
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             email = try container.decode(String.self, forKey: .email)
 
-            country = try container.decode(String.self, forKey: .country)
+            phone = try container.decode(Int.self, forKey: .phone)
+
+            state = try container.decode(String.self, forKey: .state)
 
             do {
                 address2 = try container.decode(String.self, forKey: .address2)
@@ -258,6 +252,12 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            city = try container.decode(String.self, forKey: .city)
+
+            firstName = try container.decode(String.self, forKey: .firstName)
+
+            country = try container.decode(String.self, forKey: .country)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -265,25 +265,25 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(address1, forKey: .address1)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(phone, forKey: .phone)
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(phone, forKey: .phone)
+
+            try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encode(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+
+            try? container.encodeIfPresent(country, forKey: .country)
         }
     }
 }

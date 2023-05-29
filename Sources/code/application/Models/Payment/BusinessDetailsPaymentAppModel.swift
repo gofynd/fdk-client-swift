@@ -7,13 +7,9 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class BusinessDetails: Codable {
+        public var name: String?
+
         public var businessType: String?
-
-        public var gstin: String?
-
-        public var pan: String?
-
-        public var vintage: String?
 
         public var shopAndEstablishment: [String: Any]?
 
@@ -21,22 +17,22 @@ public extension ApplicationClient.Payment {
 
         public var address: KYCAddress?
 
+        public var entityType: String?
+
+        public var pan: String?
+
         public var fda: String?
 
         public var businessOwnershipType: String?
 
-        public var entityType: String?
+        public var vintage: String?
 
-        public var name: String?
+        public var gstin: String?
 
         public enum CodingKeys: String, CodingKey {
+            case name
+
             case businessType = "business_type"
-
-            case gstin
-
-            case pan
-
-            case vintage
 
             case shopAndEstablishment = "shop_and_establishment"
 
@@ -44,23 +40,23 @@ public extension ApplicationClient.Payment {
 
             case address
 
+            case entityType = "entity_type"
+
+            case pan
+
             case fda
 
             case businessOwnershipType = "business_ownership_type"
 
-            case entityType = "entity_type"
+            case vintage
 
-            case name
+            case gstin
         }
 
         public init(address: KYCAddress? = nil, businessOwnershipType: String? = nil, businessType: String? = nil, entityType: String? = nil, fda: String? = nil, fssai: String? = nil, gstin: String? = nil, name: String? = nil, pan: String? = nil, shopAndEstablishment: [String: Any]? = nil, vintage: String? = nil) {
+            self.name = name
+
             self.businessType = businessType
-
-            self.gstin = gstin
-
-            self.pan = pan
-
-            self.vintage = vintage
 
             self.shopAndEstablishment = shopAndEstablishment
 
@@ -68,44 +64,32 @@ public extension ApplicationClient.Payment {
 
             self.address = address
 
+            self.entityType = entityType
+
+            self.pan = pan
+
             self.fda = fda
 
             self.businessOwnershipType = businessOwnershipType
 
-            self.entityType = entityType
+            self.vintage = vintage
 
-            self.name = name
+            self.gstin = gstin
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 businessType = try container.decode(String.self, forKey: .businessType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gstin = try container.decode(String.self, forKey: .gstin)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                pan = try container.decode(String.self, forKey: .pan)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                vintage = try container.decode(String.self, forKey: .vintage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,6 +121,22 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
+                entityType = try container.decode(String.self, forKey: .entityType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pan = try container.decode(String.self, forKey: .pan)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 fda = try container.decode(String.self, forKey: .fda)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -153,7 +153,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                entityType = try container.decode(String.self, forKey: .entityType)
+                vintage = try container.decode(String.self, forKey: .vintage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,7 +161,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                gstin = try container.decode(String.self, forKey: .gstin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,13 +172,9 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encode(name, forKey: .name)
+
             try? container.encode(businessType, forKey: .businessType)
-
-            try? container.encode(gstin, forKey: .gstin)
-
-            try? container.encode(pan, forKey: .pan)
-
-            try? container.encode(vintage, forKey: .vintage)
 
             try? container.encodeIfPresent(shopAndEstablishment, forKey: .shopAndEstablishment)
 
@@ -186,13 +182,17 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(address, forKey: .address)
 
+            try? container.encode(entityType, forKey: .entityType)
+
+            try? container.encode(pan, forKey: .pan)
+
             try? container.encode(fda, forKey: .fda)
 
             try? container.encode(businessOwnershipType, forKey: .businessOwnershipType)
 
-            try? container.encode(entityType, forKey: .entityType)
+            try? container.encode(vintage, forKey: .vintage)
 
-            try? container.encode(name, forKey: .name)
+            try? container.encode(gstin, forKey: .gstin)
         }
     }
 }

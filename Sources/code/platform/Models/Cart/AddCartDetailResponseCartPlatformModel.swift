@@ -13,18 +13,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var cart: CartDetailResponse?
 
-        public var success: Bool?
-
         public var message: String?
+
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case partial
 
             case cart
 
-            case success
-
             case message
+
+            case success
         }
 
         public init(cart: CartDetailResponse? = nil, message: String? = nil, partial: Bool? = nil, success: Bool? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.cart = cart
 
-            self.success = success
-
             self.message = message
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(cart, forKey: .cart)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

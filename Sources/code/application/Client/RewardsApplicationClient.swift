@@ -35,7 +35,7 @@ public extension ApplicationClient {
         /**
          *
          * Summary: Get offer by name
-         * Description: Use this API to get the offer details and configuration by entering the name of the offer.
+         * Description: Use this API to get fetch the specific offer details and configuration by the name of the offer.
          **/
         public func getOfferByName(
             name: String,
@@ -118,7 +118,7 @@ public extension ApplicationClient {
         /**
          *
          * Summary: Get all transactions of reward points
-         * Description: Use this API to get a list of points transactions.
+         * Description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
          **/
         public func getUserPointsHistory(
             pageId: String?,
@@ -197,8 +197,8 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get referral details of a user
-         * Description: Use this API to retrieve total available points of a user for current application
+         * Summary: Get total available points of a user
+         * Description: Use this API to retrieve total available points of a user for current application.
          **/
         public func getUserPoints(
             onResponse: @escaping (_ response: PointsResponse?, _ error: FDKError?) -> Void
@@ -237,7 +237,7 @@ public extension ApplicationClient {
         /**
          *
          * Summary: Get referral details of a user
-         * Description: Use this API to retrieve the referral details a user has configured in the application.
+         * Description: Use this API to retrieve the referral details like referral code of a user.
          **/
         public func getUserReferralDetails(
             onResponse: @escaping (_ response: ReferralDetailsResponse?, _ error: FDKError?) -> Void
@@ -276,7 +276,7 @@ public extension ApplicationClient {
         /**
          *
          * Summary: Calculates the discount on order-amount
-         * Description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+         * Description: Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer.
          **/
         public func getOrderDiscount(
             body: OrderDiscountRequest,
@@ -315,7 +315,7 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Redeems a referral code and credits reward points to users
+         * Summary: Redeems a referral code and credits reward points to referee and the referrer as per the configuration
          * Description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
          **/
         public func redeemReferralCode(

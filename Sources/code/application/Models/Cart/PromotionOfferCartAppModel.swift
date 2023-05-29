@@ -9,13 +9,13 @@ public extension ApplicationClient.Cart {
     class PromotionOffer: Codable {
         public var id: String?
 
-        public var discountRules: [[String: Any]]?
+        public var buyRules: [String: Any]?
 
-        public var validTill: String?
+        public var discountRules: [[String: Any]]?
 
         public var offerText: String?
 
-        public var buyRules: [String: Any]?
+        public var validTill: String?
 
         public var freeGiftItems: [FreeGiftItems]?
 
@@ -26,13 +26,13 @@ public extension ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case id
 
-            case discountRules = "discount_rules"
+            case buyRules = "buy_rules"
 
-            case validTill = "valid_till"
+            case discountRules = "discount_rules"
 
             case offerText = "offer_text"
 
-            case buyRules = "buy_rules"
+            case validTill = "valid_till"
 
             case freeGiftItems = "free_gift_items"
 
@@ -44,13 +44,13 @@ public extension ApplicationClient.Cart {
         public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
             self.id = id
 
-            self.discountRules = discountRules
+            self.buyRules = buyRules
 
-            self.validTill = validTill
+            self.discountRules = discountRules
 
             self.offerText = offerText
 
-            self.buyRules = buyRules
+            self.validTill = validTill
 
             self.freeGiftItems = freeGiftItems
 
@@ -71,7 +71,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                discountRules = try container.decode([[String: Any]].self, forKey: .discountRules)
+                buyRules = try container.decode([String: Any].self, forKey: .buyRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                validTill = try container.decode(String.self, forKey: .validTill)
+                discountRules = try container.decode([[String: Any]].self, forKey: .discountRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,7 +95,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                buyRules = try container.decode([String: Any].self, forKey: .buyRules)
+                validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,13 +132,13 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(discountRules, forKey: .discountRules)
+            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
 
-            try? container.encodeIfPresent(validTill, forKey: .validTill)
+            try? container.encodeIfPresent(discountRules, forKey: .discountRules)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
-            try? container.encodeIfPresent(buyRules, forKey: .buyRules)
+            try? container.encodeIfPresent(validTill, forKey: .validTill)
 
             try? container.encodeIfPresent(freeGiftItems, forKey: .freeGiftItems)
 

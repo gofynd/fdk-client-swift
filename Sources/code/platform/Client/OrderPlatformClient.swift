@@ -1690,7 +1690,7 @@ public extension PlatformClient {
          * Description:
          **/
         public func getShipmentHistory(
-            shipmentId: Int?,
+            shipmentId: String?,
             bagId: Int?,
 
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void

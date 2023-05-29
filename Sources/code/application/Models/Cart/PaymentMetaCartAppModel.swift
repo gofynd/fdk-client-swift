@@ -11,18 +11,18 @@ public extension ApplicationClient.Cart {
 
         public var paymentGateway: String?
 
-        public var merchantCode: String?
-
         public var type: String?
+
+        public var merchantCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case paymentIdentifier = "payment_identifier"
 
             case paymentGateway = "payment_gateway"
 
-            case merchantCode = "merchant_code"
-
             case type
+
+            case merchantCode = "merchant_code"
         }
 
         public init(merchantCode: String? = nil, paymentGateway: String? = nil, paymentIdentifier: String? = nil, type: String? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Cart {
 
             self.paymentGateway = paymentGateway
 
-            self.merchantCode = merchantCode
-
             self.type = type
+
+            self.merchantCode = merchantCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                merchantCode = try container.decode(String.self, forKey: .merchantCode)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
-            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
         }
     }
 }
