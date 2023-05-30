@@ -9,18 +9,18 @@ public extension PlatformClient.Catalog {
      */
 
     class AutocompleteResult: Codable {
-        public var action: AutocompleteAction?
-
         public var display: String?
+
+        public var action: AutocompleteAction?
 
         public var logo: Media?
 
         public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case action
-
             case display
+
+            case action
 
             case logo
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: Media? = nil, customJson: [String: Any]? = nil) {
-            self.action = action
-
             self.display = display
+
+            self.action = action
 
             self.logo = logo
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                action = try container.decode(AutocompleteAction.self, forKey: .action)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                action = try container.decode(AutocompleteAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class AutocompleteResult: Codable {
-        public var action: AutocompleteAction?
-
         public var display: String?
+
+        public var action: AutocompleteAction?
 
         public var logo: Media?
 
         public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case action
-
             case display
+
+            case action
 
             case logo
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: Media? = nil, customJson: [String: Any]? = nil) {
-            self.action = action
-
             self.display = display
+
+            self.action = action
 
             self.logo = logo
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                action = try container.decode(AutocompleteAction.self, forKey: .action)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                action = try container.decode(AutocompleteAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 

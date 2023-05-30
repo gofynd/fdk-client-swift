@@ -9,7 +9,7 @@ public extension PlatformClient.Catalog {
      */
 
     class OptInPostRequest: Codable {
-        public var brandIds: [Int]?
+        public var companyId: Int?
 
         public var storeIds: [Int]?
 
@@ -17,12 +17,12 @@ public extension PlatformClient.Catalog {
 
         public var optLevel: String
 
-        public var companyId: Int?
-
         public var enabled: Bool?
 
+        public var brandIds: [Int]?
+
         public enum CodingKeys: String, CodingKey {
-            case brandIds = "brand_ids"
+            case companyId = "company_id"
 
             case storeIds = "store_ids"
 
@@ -30,13 +30,13 @@ public extension PlatformClient.Catalog {
 
             case optLevel = "opt_level"
 
-            case companyId = "company_id"
-
             case enabled
+
+            case brandIds = "brand_ids"
         }
 
         public init(brandIds: [Int]? = nil, companyId: Int? = nil, enabled: Bool? = nil, optLevel: String, platform: String? = nil, storeIds: [Int]? = nil) {
-            self.brandIds = brandIds
+            self.companyId = companyId
 
             self.storeIds = storeIds
 
@@ -44,16 +44,16 @@ public extension PlatformClient.Catalog {
 
             self.optLevel = optLevel
 
-            self.companyId = companyId
-
             self.enabled = enabled
+
+            self.brandIds = brandIds
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandIds = try container.decode([Int].self, forKey: .brandIds)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Catalog {
             optLevel = try container.decode(String.self, forKey: .optLevel)
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,7 +87,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                brandIds = try container.decode([Int].self, forKey: .brandIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
@@ -106,9 +106,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(optLevel, forKey: .optLevel)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
+
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
         }
     }
 }
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class OptInPostRequest: Codable {
-        public var brandIds: [Int]?
+        public var companyId: Int?
 
         public var storeIds: [Int]?
 
@@ -128,12 +128,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var optLevel: String
 
-        public var companyId: Int?
-
         public var enabled: Bool?
 
+        public var brandIds: [Int]?
+
         public enum CodingKeys: String, CodingKey {
-            case brandIds = "brand_ids"
+            case companyId = "company_id"
 
             case storeIds = "store_ids"
 
@@ -141,13 +141,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case optLevel = "opt_level"
 
-            case companyId = "company_id"
-
             case enabled
+
+            case brandIds = "brand_ids"
         }
 
         public init(brandIds: [Int]? = nil, companyId: Int? = nil, enabled: Bool? = nil, optLevel: String, platform: String? = nil, storeIds: [Int]? = nil) {
-            self.brandIds = brandIds
+            self.companyId = companyId
 
             self.storeIds = storeIds
 
@@ -155,16 +155,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.optLevel = optLevel
 
-            self.companyId = companyId
-
             self.enabled = enabled
+
+            self.brandIds = brandIds
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandIds = try container.decode([Int].self, forKey: .brandIds)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -190,7 +190,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             optLevel = try container.decode(String.self, forKey: .optLevel)
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -198,7 +198,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                brandIds = try container.decode([Int].self, forKey: .brandIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -209,7 +209,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
 
@@ -217,9 +217,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(optLevel, forKey: .optLevel)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(enabled, forKey: .enabled)
+
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
         }
     }
 }

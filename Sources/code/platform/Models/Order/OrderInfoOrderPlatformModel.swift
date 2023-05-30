@@ -11,96 +11,96 @@ public extension PlatformClient.Order {
     class OrderInfo: Codable {
         public var discount: Double
 
+        public var payment: [String: Any]?
+
+        public var coupon: String?
+
         public var codCharges: Double
+
+        public var paymentMode: String
+
+        public var shippingAddress: OrderUser
+
+        public var user: UserData
+
+        public var bags: [AffiliateBag]
+
+        public var items: [String: Any]
 
         public var affiliateOrderId: String?
 
         public var shipment: ShipmentData?
 
-        public var paymentMode: String
-
-        public var user: UserData
-
-        public var items: [String: Any]
-
-        public var coupon: String?
-
         public var orderValue: Double
 
         public var billingAddress: OrderUser
 
-        public var shippingAddress: OrderUser
-
-        public var orderPriority: OrderPriority?
-
-        public var bags: [AffiliateBag]
-
         public var deliveryCharges: Double
 
-        public var payment: [String: Any]?
+        public var orderPriority: OrderPriority?
 
         public enum CodingKeys: String, CodingKey {
             case discount
 
+            case payment
+
+            case coupon
+
             case codCharges = "cod_charges"
+
+            case paymentMode = "payment_mode"
+
+            case shippingAddress = "shipping_address"
+
+            case user
+
+            case bags
+
+            case items
 
             case affiliateOrderId = "affiliate_order_id"
 
             case shipment
 
-            case paymentMode = "payment_mode"
-
-            case user
-
-            case items
-
-            case coupon
-
             case orderValue = "order_value"
 
             case billingAddress = "billing_address"
 
-            case shippingAddress = "shipping_address"
-
-            case orderPriority = "order_priority"
-
-            case bags
-
             case deliveryCharges = "delivery_charges"
 
-            case payment
+            case orderPriority = "order_priority"
         }
 
         public init(affiliateOrderId: String? = nil, bags: [AffiliateBag], billingAddress: OrderUser, codCharges: Double, coupon: String? = nil, deliveryCharges: Double, discount: Double, items: [String: Any], orderPriority: OrderPriority? = nil, orderValue: Double, payment: [String: Any]? = nil, paymentMode: String, shipment: ShipmentData? = nil, shippingAddress: OrderUser, user: UserData) {
             self.discount = discount
 
+            self.payment = payment
+
+            self.coupon = coupon
+
             self.codCharges = codCharges
+
+            self.paymentMode = paymentMode
+
+            self.shippingAddress = shippingAddress
+
+            self.user = user
+
+            self.bags = bags
+
+            self.items = items
 
             self.affiliateOrderId = affiliateOrderId
 
             self.shipment = shipment
 
-            self.paymentMode = paymentMode
-
-            self.user = user
-
-            self.items = items
-
-            self.coupon = coupon
-
             self.orderValue = orderValue
 
             self.billingAddress = billingAddress
 
-            self.shippingAddress = shippingAddress
-
-            self.orderPriority = orderPriority
-
-            self.bags = bags
-
             self.deliveryCharges = deliveryCharges
 
-            self.payment = payment
+            self.orderPriority = orderPriority
         }
 
         required public init(from decoder: Decoder) throws {
@@ -108,7 +108,33 @@ public extension PlatformClient.Order {
 
             discount = try container.decode(Double.self, forKey: .discount)
 
+            do {
+                payment = try container.decode([String: Any].self, forKey: .payment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                coupon = try container.decode(String.self, forKey: .coupon)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             codCharges = try container.decode(Double.self, forKey: .codCharges)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            shippingAddress = try container.decode(OrderUser.self, forKey: .shippingAddress)
+
+            user = try container.decode(UserData.self, forKey: .user)
+
+            bags = try container.decode([AffiliateBag].self, forKey: .bags)
+
+            items = try container.decode([String: Any].self, forKey: .items)
 
             do {
                 affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
@@ -126,40 +152,14 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            user = try container.decode(UserData.self, forKey: .user)
-
-            items = try container.decode([String: Any].self, forKey: .items)
-
-            do {
-                coupon = try container.decode(String.self, forKey: .coupon)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             orderValue = try container.decode(Double.self, forKey: .orderValue)
 
             billingAddress = try container.decode(OrderUser.self, forKey: .billingAddress)
 
-            shippingAddress = try container.decode(OrderUser.self, forKey: .shippingAddress)
-
-            do {
-                orderPriority = try container.decode(OrderPriority.self, forKey: .orderPriority)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            bags = try container.decode([AffiliateBag].self, forKey: .bags)
-
             deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
 
             do {
-                payment = try container.decode([String: Any].self, forKey: .payment)
+                orderPriority = try container.decode(OrderPriority.self, forKey: .orderPriority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,33 +172,33 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
+            try? container.encodeIfPresent(payment, forKey: .payment)
+
+            try? container.encode(coupon, forKey: .coupon)
+
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
+
+            try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(bags, forKey: .bags)
+
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
             try? container.encodeIfPresent(shipment, forKey: .shipment)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(user, forKey: .user)
-
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encode(coupon, forKey: .coupon)
-
             try? container.encodeIfPresent(orderValue, forKey: .orderValue)
 
             try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
-            try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
-
-            try? container.encodeIfPresent(orderPriority, forKey: .orderPriority)
-
-            try? container.encodeIfPresent(bags, forKey: .bags)
-
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
 
-            try? container.encodeIfPresent(payment, forKey: .payment)
+            try? container.encodeIfPresent(orderPriority, forKey: .orderPriority)
         }
     }
 }
@@ -212,96 +212,96 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderInfo: Codable {
         public var discount: Double
 
+        public var payment: [String: Any]?
+
+        public var coupon: String?
+
         public var codCharges: Double
+
+        public var paymentMode: String
+
+        public var shippingAddress: OrderUser
+
+        public var user: UserData
+
+        public var bags: [AffiliateBag]
+
+        public var items: [String: Any]
 
         public var affiliateOrderId: String?
 
         public var shipment: ShipmentData?
 
-        public var paymentMode: String
-
-        public var user: UserData
-
-        public var items: [String: Any]
-
-        public var coupon: String?
-
         public var orderValue: Double
 
         public var billingAddress: OrderUser
 
-        public var shippingAddress: OrderUser
-
-        public var orderPriority: OrderPriority?
-
-        public var bags: [AffiliateBag]
-
         public var deliveryCharges: Double
 
-        public var payment: [String: Any]?
+        public var orderPriority: OrderPriority?
 
         public enum CodingKeys: String, CodingKey {
             case discount
 
+            case payment
+
+            case coupon
+
             case codCharges = "cod_charges"
+
+            case paymentMode = "payment_mode"
+
+            case shippingAddress = "shipping_address"
+
+            case user
+
+            case bags
+
+            case items
 
             case affiliateOrderId = "affiliate_order_id"
 
             case shipment
 
-            case paymentMode = "payment_mode"
-
-            case user
-
-            case items
-
-            case coupon
-
             case orderValue = "order_value"
 
             case billingAddress = "billing_address"
 
-            case shippingAddress = "shipping_address"
-
-            case orderPriority = "order_priority"
-
-            case bags
-
             case deliveryCharges = "delivery_charges"
 
-            case payment
+            case orderPriority = "order_priority"
         }
 
         public init(affiliateOrderId: String? = nil, bags: [AffiliateBag], billingAddress: OrderUser, codCharges: Double, coupon: String? = nil, deliveryCharges: Double, discount: Double, items: [String: Any], orderPriority: OrderPriority? = nil, orderValue: Double, payment: [String: Any]? = nil, paymentMode: String, shipment: ShipmentData? = nil, shippingAddress: OrderUser, user: UserData) {
             self.discount = discount
 
+            self.payment = payment
+
+            self.coupon = coupon
+
             self.codCharges = codCharges
+
+            self.paymentMode = paymentMode
+
+            self.shippingAddress = shippingAddress
+
+            self.user = user
+
+            self.bags = bags
+
+            self.items = items
 
             self.affiliateOrderId = affiliateOrderId
 
             self.shipment = shipment
 
-            self.paymentMode = paymentMode
-
-            self.user = user
-
-            self.items = items
-
-            self.coupon = coupon
-
             self.orderValue = orderValue
 
             self.billingAddress = billingAddress
 
-            self.shippingAddress = shippingAddress
-
-            self.orderPriority = orderPriority
-
-            self.bags = bags
-
             self.deliveryCharges = deliveryCharges
 
-            self.payment = payment
+            self.orderPriority = orderPriority
         }
 
         required public init(from decoder: Decoder) throws {
@@ -309,7 +309,33 @@ public extension PlatformClient.ApplicationClient.Order {
 
             discount = try container.decode(Double.self, forKey: .discount)
 
+            do {
+                payment = try container.decode([String: Any].self, forKey: .payment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                coupon = try container.decode(String.self, forKey: .coupon)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             codCharges = try container.decode(Double.self, forKey: .codCharges)
+
+            paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            shippingAddress = try container.decode(OrderUser.self, forKey: .shippingAddress)
+
+            user = try container.decode(UserData.self, forKey: .user)
+
+            bags = try container.decode([AffiliateBag].self, forKey: .bags)
+
+            items = try container.decode([String: Any].self, forKey: .items)
 
             do {
                 affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
@@ -327,40 +353,14 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            user = try container.decode(UserData.self, forKey: .user)
-
-            items = try container.decode([String: Any].self, forKey: .items)
-
-            do {
-                coupon = try container.decode(String.self, forKey: .coupon)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             orderValue = try container.decode(Double.self, forKey: .orderValue)
 
             billingAddress = try container.decode(OrderUser.self, forKey: .billingAddress)
 
-            shippingAddress = try container.decode(OrderUser.self, forKey: .shippingAddress)
-
-            do {
-                orderPriority = try container.decode(OrderPriority.self, forKey: .orderPriority)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            bags = try container.decode([AffiliateBag].self, forKey: .bags)
-
             deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
 
             do {
-                payment = try container.decode([String: Any].self, forKey: .payment)
+                orderPriority = try container.decode(OrderPriority.self, forKey: .orderPriority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -373,33 +373,33 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
+            try? container.encodeIfPresent(payment, forKey: .payment)
+
+            try? container.encode(coupon, forKey: .coupon)
+
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
+
+            try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(bags, forKey: .bags)
+
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
 
             try? container.encodeIfPresent(shipment, forKey: .shipment)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(user, forKey: .user)
-
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encode(coupon, forKey: .coupon)
-
             try? container.encodeIfPresent(orderValue, forKey: .orderValue)
 
             try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
-            try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
-
-            try? container.encodeIfPresent(orderPriority, forKey: .orderPriority)
-
-            try? container.encodeIfPresent(bags, forKey: .bags)
-
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
 
-            try? container.encodeIfPresent(payment, forKey: .payment)
+            try? container.encodeIfPresent(orderPriority, forKey: .orderPriority)
         }
     }
 }

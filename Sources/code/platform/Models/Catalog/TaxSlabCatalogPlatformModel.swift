@@ -9,38 +9,38 @@ public extension PlatformClient.Catalog {
      */
 
     class TaxSlab: Codable {
-        public var threshold: Double
+        public var rate: Double
 
         public var cess: Double?
 
+        public var threshold: Double
+
         public var effectiveDate: String
 
-        public var rate: Double
-
         public enum CodingKeys: String, CodingKey {
-            case threshold
+            case rate
 
             case cess
 
-            case effectiveDate = "effective_date"
+            case threshold
 
-            case rate
+            case effectiveDate = "effective_date"
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
-            self.threshold = threshold
+            self.rate = rate
 
             self.cess = cess
 
-            self.effectiveDate = effectiveDate
+            self.threshold = threshold
 
-            self.rate = rate
+            self.effectiveDate = effectiveDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            threshold = try container.decode(Double.self, forKey: .threshold)
+            rate = try container.decode(Double.self, forKey: .rate)
 
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
@@ -50,21 +50,21 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
+            threshold = try container.decode(Double.self, forKey: .threshold)
 
-            rate = try container.decode(Double.self, forKey: .rate)
+            effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
+            try? container.encodeIfPresent(rate, forKey: .rate)
 
             try? container.encodeIfPresent(cess, forKey: .cess)
 
-            try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
 
-            try? container.encodeIfPresent(rate, forKey: .rate)
+            try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
         }
     }
 }
@@ -76,38 +76,38 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class TaxSlab: Codable {
-        public var threshold: Double
+        public var rate: Double
 
         public var cess: Double?
 
+        public var threshold: Double
+
         public var effectiveDate: String
 
-        public var rate: Double
-
         public enum CodingKeys: String, CodingKey {
-            case threshold
+            case rate
 
             case cess
 
-            case effectiveDate = "effective_date"
+            case threshold
 
-            case rate
+            case effectiveDate = "effective_date"
         }
 
         public init(cess: Double? = nil, effectiveDate: String, rate: Double, threshold: Double) {
-            self.threshold = threshold
+            self.rate = rate
 
             self.cess = cess
 
-            self.effectiveDate = effectiveDate
+            self.threshold = threshold
 
-            self.rate = rate
+            self.effectiveDate = effectiveDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            threshold = try container.decode(Double.self, forKey: .threshold)
+            rate = try container.decode(Double.self, forKey: .rate)
 
             do {
                 cess = try container.decode(Double.self, forKey: .cess)
@@ -117,21 +117,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
+            threshold = try container.decode(Double.self, forKey: .threshold)
 
-            rate = try container.decode(Double.self, forKey: .rate)
+            effectiveDate = try container.decode(String.self, forKey: .effectiveDate)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(threshold, forKey: .threshold)
+            try? container.encodeIfPresent(rate, forKey: .rate)
 
             try? container.encodeIfPresent(cess, forKey: .cess)
 
-            try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
+            try? container.encodeIfPresent(threshold, forKey: .threshold)
 
-            try? container.encodeIfPresent(rate, forKey: .rate)
+            try? container.encodeIfPresent(effectiveDate, forKey: .effectiveDate)
         }
     }
 }
