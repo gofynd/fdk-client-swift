@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: BulkActionResponse
+         Model: ReplacementDetails
          Used By: Order
      */
 
-    class BulkActionResponse: Codable {
-        public var message: String?
+    class ReplacementDetails: Codable {
+        public var originalAffiliateOrderId: String?
 
-        public var status: Bool?
+        public var replacementType: String?
 
         public enum CodingKeys: String, CodingKey {
-            case message
+            case originalAffiliateOrderId = "original_affiliate_order_id"
 
-            case status
+            case replacementType = "replacement_type"
         }
 
-        public init(message: String? = nil, status: Bool? = nil) {
-            self.message = message
+        public init(originalAffiliateOrderId: String? = nil, replacementType: String? = nil) {
+            self.originalAffiliateOrderId = originalAffiliateOrderId
 
-            self.status = status
+            self.replacementType = replacementType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                originalAffiliateOrderId = try container.decode(String.self, forKey: .originalAffiliateOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Bool.self, forKey: .status)
+                replacementType = try container.decode(String.self, forKey: .replacementType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(originalAffiliateOrderId, forKey: .originalAffiliateOrderId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(replacementType, forKey: .replacementType)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: BulkActionResponse
+         Model: ReplacementDetails
          Used By: Order
      */
 
-    class BulkActionResponse: Codable {
-        public var message: String?
+    class ReplacementDetails: Codable {
+        public var originalAffiliateOrderId: String?
 
-        public var status: Bool?
+        public var replacementType: String?
 
         public enum CodingKeys: String, CodingKey {
-            case message
+            case originalAffiliateOrderId = "original_affiliate_order_id"
 
-            case status
+            case replacementType = "replacement_type"
         }
 
-        public init(message: String? = nil, status: Bool? = nil) {
-            self.message = message
+        public init(originalAffiliateOrderId: String? = nil, replacementType: String? = nil) {
+            self.originalAffiliateOrderId = originalAffiliateOrderId
 
-            self.status = status
+            self.replacementType = replacementType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                originalAffiliateOrderId = try container.decode(String.self, forKey: .originalAffiliateOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Bool.self, forKey: .status)
+                replacementType = try container.decode(String.self, forKey: .replacementType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(originalAffiliateOrderId, forKey: .originalAffiliateOrderId)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(replacementType, forKey: .replacementType)
         }
     }
 }

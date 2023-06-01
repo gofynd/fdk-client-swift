@@ -13,9 +13,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var subtitle: String?
 
-        public var auto: DisplayMetaDict?
-
         public var remove: DisplayMetaDict?
+
+        public var auto: DisplayMetaDict?
 
         public var title: String?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case subtitle
 
-            case auto
-
             case remove
+
+            case auto
 
             case title
 
@@ -40,9 +40,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.subtitle = subtitle
 
-            self.auto = auto
-
             self.remove = remove
+
+            self.auto = auto
 
             self.title = title
 
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                auto = try container.decode(DisplayMetaDict.self, forKey: .auto)
+                remove = try container.decode(DisplayMetaDict.self, forKey: .remove)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                remove = try container.decode(DisplayMetaDict.self, forKey: .remove)
+                auto = try container.decode(DisplayMetaDict.self, forKey: .auto)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(auto, forKey: .auto)
-
             try? container.encodeIfPresent(remove, forKey: .remove)
+
+            try? container.encodeIfPresent(auto, forKey: .auto)
 
             try? container.encodeIfPresent(title, forKey: .title)
 

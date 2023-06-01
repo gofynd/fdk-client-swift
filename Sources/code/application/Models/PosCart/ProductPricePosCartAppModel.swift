@@ -11,9 +11,9 @@ public extension ApplicationClient.PosCart {
 
         public var currencyCode: String?
 
-        public var selling: Double?
-
         public var marked: Double?
+
+        public var selling: Double?
 
         public var effective: Double?
 
@@ -24,9 +24,9 @@ public extension ApplicationClient.PosCart {
 
             case currencyCode = "currency_code"
 
-            case selling
-
             case marked
+
+            case selling
 
             case effective
 
@@ -38,9 +38,9 @@ public extension ApplicationClient.PosCart {
 
             self.currencyCode = currencyCode
 
-            self.selling = selling
-
             self.marked = marked
+
+            self.selling = selling
 
             self.effective = effective
 
@@ -67,7 +67,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                selling = try container.decode(Double.self, forKey: .selling)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                selling = try container.decode(Double.self, forKey: .selling)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,9 +106,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(selling, forKey: .selling)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(selling, forKey: .selling)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 

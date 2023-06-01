@@ -13,9 +13,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var currencySymbol: String?
 
-        public var value: Double?
-
         public var display: String?
+
+        public var value: Double?
 
         public var message: [String]?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case currencySymbol = "currency_symbol"
 
-            case value
-
             case display
+
+            case value
 
             case message
 
@@ -40,9 +40,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.currencySymbol = currencySymbol
 
-            self.value = value
-
             self.display = display
+
+            self.value = value
 
             self.message = message
 
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(message, forKey: .message)
 

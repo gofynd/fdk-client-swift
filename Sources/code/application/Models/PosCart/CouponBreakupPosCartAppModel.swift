@@ -11,26 +11,26 @@ public extension ApplicationClient.PosCart {
 
         public var value: Double?
 
-        public var code: String?
+        public var type: String?
 
-        public var isApplied: Bool?
+        public var code: String?
 
         public var uid: String?
 
-        public var type: String?
+        public var isApplied: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case value
 
-            case code
+            case type
 
-            case isApplied = "is_applied"
+            case code
 
             case uid
 
-            case type
+            case isApplied = "is_applied"
         }
 
         public init(code: String? = nil, isApplied: Bool? = nil, message: String? = nil, type: String? = nil, uid: String? = nil, value: Double? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient.PosCart {
 
             self.value = value
 
-            self.code = code
+            self.type = type
 
-            self.isApplied = isApplied
+            self.code = code
 
             self.uid = uid
 
-            self.type = type
+            self.isApplied = isApplied
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,7 +67,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                isApplied = try container.decode(Bool.self, forKey: .isApplied)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                isApplied = try container.decode(Bool.self, forKey: .isApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+            try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(isApplied, forKey: .isApplied)
         }
     }
 }

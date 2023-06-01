@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: Options
+         Model: BulkActionTemplate
          Used By: Order
      */
 
-    class Options: Codable {
-        public var value: Int?
-
+    class BulkActionTemplate: Codable {
         public var text: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case value
+        public var value: String?
 
+        public enum CodingKeys: String, CodingKey {
             case text
+
+            case value
         }
 
-        public init(text: String? = nil, value: Int? = nil) {
-            self.value = value
-
+        public init(text: String? = nil, value: String? = nil) {
             self.text = text
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: Options
+         Model: BulkActionTemplate
          Used By: Order
      */
 
-    class Options: Codable {
-        public var value: Int?
-
+    class BulkActionTemplate: Codable {
         public var text: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case value
+        public var value: String?
 
+        public enum CodingKeys: String, CodingKey {
             case text
+
+            case value
         }
 
-        public init(text: String? = nil, value: Int? = nil) {
-            self.value = value
-
+        public init(text: String? = nil, value: String? = nil) {
             self.text = text
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
