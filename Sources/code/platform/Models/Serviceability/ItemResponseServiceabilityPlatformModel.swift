@@ -9,183 +9,183 @@ public extension PlatformClient.Serviceability {
      */
 
     class ItemResponse: Codable {
-        public var uid: Int?
+        public var name: String?
 
-        public var contactNumbers: [ContactNumberResponse]?
+        public var cls: String?
 
-        public var notificationEmails: [String]?
-
-        public var documents: [DocumentsResponse]?
-
-        public var manager: ManagerResponse?
-
-        public var modifiedBy: ModifiedByResponse?
-
-        public var logistics: LogisticsResponse?
+        public var storeType: String?
 
         public var createdBy: CreatedByResponse?
 
         public var stage: String?
 
-        public var modifiedOn: String?
-
-        public var gstCredentials: GstCredentialsResponse?
-
-        public var integrationType: IntegrationTypeResponse?
+        public var timing: [TimmingResponse]?
 
         public var warnings: WarningsResponse?
 
-        public var verifiedOn: String?
-
         public var createdOn: String?
 
-        public var storeType: String?
+        public var modifiedBy: ModifiedByResponse?
 
-        public var customJson: [String: Any]?
-
-        public var company: Int?
-
-        public var code: String?
-
-        public var address: AddressResponse?
-
-        public var timing: [TimmingResponse]?
-
-        public var companyId: Int?
-
-        public var cls: String?
-
-        public var name: String?
+        public var contactNumbers: [ContactNumberResponse]?
 
         public var displayName: String?
 
-        public var productReturnConfig: ProductReturnConfigResponse?
+        public var code: String?
 
-        public var subType: String?
+        public var customJson: [String: Any]?
+
+        public var uid: Int?
+
+        public var company: Int?
 
         public var verifiedBy: ModifiedByResponse?
 
+        public var modifiedOn: String?
+
+        public var logistics: LogisticsResponse?
+
+        public var integrationType: IntegrationTypeResponse?
+
+        public var productReturnConfig: ProductReturnConfigResponse?
+
+        public var manager: ManagerResponse?
+
+        public var verifiedOn: String?
+
+        public var address: AddressResponse?
+
+        public var gstCredentials: GstCredentialsResponse?
+
+        public var companyId: Int?
+
+        public var notificationEmails: [String]?
+
+        public var subType: String?
+
+        public var documents: [DocumentsResponse]?
+
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case name
 
-            case contactNumbers = "contact_numbers"
+            case cls = "_cls"
 
-            case notificationEmails = "notification_emails"
-
-            case documents
-
-            case manager
-
-            case modifiedBy = "modified_by"
-
-            case logistics
+            case storeType = "store_type"
 
             case createdBy = "created_by"
 
             case stage
 
-            case modifiedOn = "modified_on"
-
-            case gstCredentials = "gst_credentials"
-
-            case integrationType = "integration_type"
+            case timing
 
             case warnings
 
-            case verifiedOn = "verified_on"
-
             case createdOn = "created_on"
 
-            case storeType = "store_type"
+            case modifiedBy = "modified_by"
 
-            case customJson = "_custom_json"
-
-            case company
-
-            case code
-
-            case address
-
-            case timing
-
-            case companyId = "company_id"
-
-            case cls = "_cls"
-
-            case name
+            case contactNumbers = "contact_numbers"
 
             case displayName = "display_name"
 
+            case code
+
+            case customJson = "_custom_json"
+
+            case uid
+
+            case company
+
+            case verifiedBy = "verified_by"
+
+            case modifiedOn = "modified_on"
+
+            case logistics
+
+            case integrationType = "integration_type"
+
             case productReturnConfig = "product_return_config"
+
+            case manager
+
+            case verifiedOn = "verified_on"
+
+            case address
+
+            case gstCredentials = "gst_credentials"
+
+            case companyId = "company_id"
+
+            case notificationEmails = "notification_emails"
 
             case subType = "sub_type"
 
-            case verifiedBy = "verified_by"
+            case documents
         }
 
         public init(address: AddressResponse? = nil, code: String? = nil, company: Int? = nil, companyId: Int? = nil, contactNumbers: [ContactNumberResponse]? = nil, createdBy: CreatedByResponse? = nil, createdOn: String? = nil, displayName: String? = nil, documents: [DocumentsResponse]? = nil, gstCredentials: GstCredentialsResponse? = nil, integrationType: IntegrationTypeResponse? = nil, logistics: LogisticsResponse? = nil, manager: ManagerResponse? = nil, modifiedBy: ModifiedByResponse? = nil, modifiedOn: String? = nil, name: String? = nil, notificationEmails: [String]? = nil, productReturnConfig: ProductReturnConfigResponse? = nil, stage: String? = nil, storeType: String? = nil, subType: String? = nil, timing: [TimmingResponse]? = nil, uid: Int? = nil, verifiedBy: ModifiedByResponse? = nil, verifiedOn: String? = nil, warnings: WarningsResponse? = nil, cls: String? = nil, customJson: [String: Any]? = nil) {
-            self.uid = uid
+            self.name = name
 
-            self.contactNumbers = contactNumbers
+            self.cls = cls
 
-            self.notificationEmails = notificationEmails
-
-            self.documents = documents
-
-            self.manager = manager
-
-            self.modifiedBy = modifiedBy
-
-            self.logistics = logistics
+            self.storeType = storeType
 
             self.createdBy = createdBy
 
             self.stage = stage
 
-            self.modifiedOn = modifiedOn
-
-            self.gstCredentials = gstCredentials
-
-            self.integrationType = integrationType
+            self.timing = timing
 
             self.warnings = warnings
 
-            self.verifiedOn = verifiedOn
-
             self.createdOn = createdOn
 
-            self.storeType = storeType
+            self.modifiedBy = modifiedBy
 
-            self.customJson = customJson
-
-            self.company = company
-
-            self.code = code
-
-            self.address = address
-
-            self.timing = timing
-
-            self.companyId = companyId
-
-            self.cls = cls
-
-            self.name = name
+            self.contactNumbers = contactNumbers
 
             self.displayName = displayName
 
+            self.code = code
+
+            self.customJson = customJson
+
+            self.uid = uid
+
+            self.company = company
+
+            self.verifiedBy = verifiedBy
+
+            self.modifiedOn = modifiedOn
+
+            self.logistics = logistics
+
+            self.integrationType = integrationType
+
             self.productReturnConfig = productReturnConfig
+
+            self.manager = manager
+
+            self.verifiedOn = verifiedOn
+
+            self.address = address
+
+            self.gstCredentials = gstCredentials
+
+            self.companyId = companyId
+
+            self.notificationEmails = notificationEmails
 
             self.subType = subType
 
-            self.verifiedBy = verifiedBy
+            self.documents = documents
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,7 +193,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                contactNumbers = try container.decode([ContactNumberResponse].self, forKey: .contactNumbers)
+                cls = try container.decode(String.self, forKey: .cls)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -201,39 +201,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                documents = try container.decode([DocumentsResponse].self, forKey: .documents)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                manager = try container.decode(ManagerResponse.self, forKey: .manager)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedBy = try container.decode(ModifiedByResponse.self, forKey: .modifiedBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logistics = try container.decode(LogisticsResponse.self, forKey: .logistics)
+                storeType = try container.decode(String.self, forKey: .storeType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -257,23 +225,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gstCredentials = try container.decode(GstCredentialsResponse.self, forKey: .gstCredentials)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                integrationType = try container.decode(IntegrationTypeResponse.self, forKey: .integrationType)
+                timing = try container.decode([TimmingResponse].self, forKey: .timing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -289,14 +241,6 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -305,7 +249,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                storeType = try container.decode(String.self, forKey: .storeType)
+                modifiedBy = try container.decode(ModifiedByResponse.self, forKey: .modifiedBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -313,63 +257,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                company = try container.decode(Int.self, forKey: .company)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode(AddressResponse.self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                timing = try container.decode([TimmingResponse].self, forKey: .timing)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cls = try container.decode(String.self, forKey: .cls)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
+                contactNumbers = try container.decode([ContactNumberResponse].self, forKey: .contactNumbers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -385,7 +273,119 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                company = try container.decode(Int.self, forKey: .company)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                verifiedBy = try container.decode(ModifiedByResponse.self, forKey: .verifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logistics = try container.decode(LogisticsResponse.self, forKey: .logistics)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                integrationType = try container.decode(IntegrationTypeResponse.self, forKey: .integrationType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 productReturnConfig = try container.decode(ProductReturnConfigResponse.self, forKey: .productReturnConfig)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                manager = try container.decode(ManagerResponse.self, forKey: .manager)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address = try container.decode(AddressResponse.self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                gstCredentials = try container.decode(GstCredentialsResponse.self, forKey: .gstCredentials)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -401,7 +401,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                verifiedBy = try container.decode(ModifiedByResponse.self, forKey: .verifiedBy)
+                documents = try container.decode([DocumentsResponse].self, forKey: .documents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -412,61 +412,61 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
+            try? container.encodeIfPresent(cls, forKey: .cls)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-
-            try? container.encodeIfPresent(documents, forKey: .documents)
-
-            try? container.encodeIfPresent(manager, forKey: .manager)
-
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-
-            try? container.encodeIfPresent(logistics, forKey: .logistics)
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(stage, forKey: .stage)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
-
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
+            try? container.encodeIfPresent(timing, forKey: .timing)
 
             try? container.encodeIfPresent(warnings, forKey: .warnings)
 
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
-
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(company, forKey: .company)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(timing, forKey: .timing)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(cls, forKey: .cls)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(logistics, forKey: .logistics)
+
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
+
             try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
+
+            try? container.encodeIfPresent(manager, forKey: .manager)
+
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
             try? container.encodeIfPresent(subType, forKey: .subType)
 
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            try? container.encodeIfPresent(documents, forKey: .documents)
         }
     }
 }
@@ -478,183 +478,183 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class ItemResponse: Codable {
-        public var uid: Int?
+        public var name: String?
 
-        public var contactNumbers: [ContactNumberResponse]?
+        public var cls: String?
 
-        public var notificationEmails: [String]?
-
-        public var documents: [DocumentsResponse]?
-
-        public var manager: ManagerResponse?
-
-        public var modifiedBy: ModifiedByResponse?
-
-        public var logistics: LogisticsResponse?
+        public var storeType: String?
 
         public var createdBy: CreatedByResponse?
 
         public var stage: String?
 
-        public var modifiedOn: String?
-
-        public var gstCredentials: GstCredentialsResponse?
-
-        public var integrationType: IntegrationTypeResponse?
+        public var timing: [TimmingResponse]?
 
         public var warnings: WarningsResponse?
 
-        public var verifiedOn: String?
-
         public var createdOn: String?
 
-        public var storeType: String?
+        public var modifiedBy: ModifiedByResponse?
 
-        public var customJson: [String: Any]?
-
-        public var company: Int?
-
-        public var code: String?
-
-        public var address: AddressResponse?
-
-        public var timing: [TimmingResponse]?
-
-        public var companyId: Int?
-
-        public var cls: String?
-
-        public var name: String?
+        public var contactNumbers: [ContactNumberResponse]?
 
         public var displayName: String?
 
-        public var productReturnConfig: ProductReturnConfigResponse?
+        public var code: String?
 
-        public var subType: String?
+        public var customJson: [String: Any]?
+
+        public var uid: Int?
+
+        public var company: Int?
 
         public var verifiedBy: ModifiedByResponse?
 
+        public var modifiedOn: String?
+
+        public var logistics: LogisticsResponse?
+
+        public var integrationType: IntegrationTypeResponse?
+
+        public var productReturnConfig: ProductReturnConfigResponse?
+
+        public var manager: ManagerResponse?
+
+        public var verifiedOn: String?
+
+        public var address: AddressResponse?
+
+        public var gstCredentials: GstCredentialsResponse?
+
+        public var companyId: Int?
+
+        public var notificationEmails: [String]?
+
+        public var subType: String?
+
+        public var documents: [DocumentsResponse]?
+
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case name
 
-            case contactNumbers = "contact_numbers"
+            case cls = "_cls"
 
-            case notificationEmails = "notification_emails"
-
-            case documents
-
-            case manager
-
-            case modifiedBy = "modified_by"
-
-            case logistics
+            case storeType = "store_type"
 
             case createdBy = "created_by"
 
             case stage
 
-            case modifiedOn = "modified_on"
-
-            case gstCredentials = "gst_credentials"
-
-            case integrationType = "integration_type"
+            case timing
 
             case warnings
 
-            case verifiedOn = "verified_on"
-
             case createdOn = "created_on"
 
-            case storeType = "store_type"
+            case modifiedBy = "modified_by"
 
-            case customJson = "_custom_json"
-
-            case company
-
-            case code
-
-            case address
-
-            case timing
-
-            case companyId = "company_id"
-
-            case cls = "_cls"
-
-            case name
+            case contactNumbers = "contact_numbers"
 
             case displayName = "display_name"
 
+            case code
+
+            case customJson = "_custom_json"
+
+            case uid
+
+            case company
+
+            case verifiedBy = "verified_by"
+
+            case modifiedOn = "modified_on"
+
+            case logistics
+
+            case integrationType = "integration_type"
+
             case productReturnConfig = "product_return_config"
+
+            case manager
+
+            case verifiedOn = "verified_on"
+
+            case address
+
+            case gstCredentials = "gst_credentials"
+
+            case companyId = "company_id"
+
+            case notificationEmails = "notification_emails"
 
             case subType = "sub_type"
 
-            case verifiedBy = "verified_by"
+            case documents
         }
 
         public init(address: AddressResponse? = nil, code: String? = nil, company: Int? = nil, companyId: Int? = nil, contactNumbers: [ContactNumberResponse]? = nil, createdBy: CreatedByResponse? = nil, createdOn: String? = nil, displayName: String? = nil, documents: [DocumentsResponse]? = nil, gstCredentials: GstCredentialsResponse? = nil, integrationType: IntegrationTypeResponse? = nil, logistics: LogisticsResponse? = nil, manager: ManagerResponse? = nil, modifiedBy: ModifiedByResponse? = nil, modifiedOn: String? = nil, name: String? = nil, notificationEmails: [String]? = nil, productReturnConfig: ProductReturnConfigResponse? = nil, stage: String? = nil, storeType: String? = nil, subType: String? = nil, timing: [TimmingResponse]? = nil, uid: Int? = nil, verifiedBy: ModifiedByResponse? = nil, verifiedOn: String? = nil, warnings: WarningsResponse? = nil, cls: String? = nil, customJson: [String: Any]? = nil) {
-            self.uid = uid
+            self.name = name
 
-            self.contactNumbers = contactNumbers
+            self.cls = cls
 
-            self.notificationEmails = notificationEmails
-
-            self.documents = documents
-
-            self.manager = manager
-
-            self.modifiedBy = modifiedBy
-
-            self.logistics = logistics
+            self.storeType = storeType
 
             self.createdBy = createdBy
 
             self.stage = stage
 
-            self.modifiedOn = modifiedOn
-
-            self.gstCredentials = gstCredentials
-
-            self.integrationType = integrationType
+            self.timing = timing
 
             self.warnings = warnings
 
-            self.verifiedOn = verifiedOn
-
             self.createdOn = createdOn
 
-            self.storeType = storeType
+            self.modifiedBy = modifiedBy
 
-            self.customJson = customJson
-
-            self.company = company
-
-            self.code = code
-
-            self.address = address
-
-            self.timing = timing
-
-            self.companyId = companyId
-
-            self.cls = cls
-
-            self.name = name
+            self.contactNumbers = contactNumbers
 
             self.displayName = displayName
 
+            self.code = code
+
+            self.customJson = customJson
+
+            self.uid = uid
+
+            self.company = company
+
+            self.verifiedBy = verifiedBy
+
+            self.modifiedOn = modifiedOn
+
+            self.logistics = logistics
+
+            self.integrationType = integrationType
+
             self.productReturnConfig = productReturnConfig
+
+            self.manager = manager
+
+            self.verifiedOn = verifiedOn
+
+            self.address = address
+
+            self.gstCredentials = gstCredentials
+
+            self.companyId = companyId
+
+            self.notificationEmails = notificationEmails
 
             self.subType = subType
 
-            self.verifiedBy = verifiedBy
+            self.documents = documents
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -662,7 +662,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                contactNumbers = try container.decode([ContactNumberResponse].self, forKey: .contactNumbers)
+                cls = try container.decode(String.self, forKey: .cls)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -670,39 +670,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                documents = try container.decode([DocumentsResponse].self, forKey: .documents)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                manager = try container.decode(ManagerResponse.self, forKey: .manager)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedBy = try container.decode(ModifiedByResponse.self, forKey: .modifiedBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logistics = try container.decode(LogisticsResponse.self, forKey: .logistics)
+                storeType = try container.decode(String.self, forKey: .storeType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -726,23 +694,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gstCredentials = try container.decode(GstCredentialsResponse.self, forKey: .gstCredentials)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                integrationType = try container.decode(IntegrationTypeResponse.self, forKey: .integrationType)
+                timing = try container.decode([TimmingResponse].self, forKey: .timing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -758,14 +710,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -774,7 +718,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                storeType = try container.decode(String.self, forKey: .storeType)
+                modifiedBy = try container.decode(ModifiedByResponse.self, forKey: .modifiedBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -782,63 +726,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                company = try container.decode(Int.self, forKey: .company)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode(AddressResponse.self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                timing = try container.decode([TimmingResponse].self, forKey: .timing)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cls = try container.decode(String.self, forKey: .cls)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
+                contactNumbers = try container.decode([ContactNumberResponse].self, forKey: .contactNumbers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -854,7 +742,119 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                company = try container.decode(Int.self, forKey: .company)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                verifiedBy = try container.decode(ModifiedByResponse.self, forKey: .verifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logistics = try container.decode(LogisticsResponse.self, forKey: .logistics)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                integrationType = try container.decode(IntegrationTypeResponse.self, forKey: .integrationType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 productReturnConfig = try container.decode(ProductReturnConfigResponse.self, forKey: .productReturnConfig)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                manager = try container.decode(ManagerResponse.self, forKey: .manager)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address = try container.decode(AddressResponse.self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                gstCredentials = try container.decode(GstCredentialsResponse.self, forKey: .gstCredentials)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -870,7 +870,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                verifiedBy = try container.decode(ModifiedByResponse.self, forKey: .verifiedBy)
+                documents = try container.decode([DocumentsResponse].self, forKey: .documents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -881,61 +881,61 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
+            try? container.encodeIfPresent(cls, forKey: .cls)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-
-            try? container.encodeIfPresent(documents, forKey: .documents)
-
-            try? container.encodeIfPresent(manager, forKey: .manager)
-
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-
-            try? container.encodeIfPresent(logistics, forKey: .logistics)
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(stage, forKey: .stage)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
-
-            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
+            try? container.encodeIfPresent(timing, forKey: .timing)
 
             try? container.encodeIfPresent(warnings, forKey: .warnings)
 
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
-
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(company, forKey: .company)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(timing, forKey: .timing)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(cls, forKey: .cls)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(logistics, forKey: .logistics)
+
+            try? container.encodeIfPresent(integrationType, forKey: .integrationType)
+
             try? container.encodeIfPresent(productReturnConfig, forKey: .productReturnConfig)
+
+            try? container.encodeIfPresent(manager, forKey: .manager)
+
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(gstCredentials, forKey: .gstCredentials)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
             try? container.encodeIfPresent(subType, forKey: .subType)
 
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            try? container.encodeIfPresent(documents, forKey: .documents)
         }
     }
 }

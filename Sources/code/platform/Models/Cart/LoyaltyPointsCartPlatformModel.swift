@@ -11,30 +11,30 @@ public extension PlatformClient.ApplicationClient.Cart {
     class LoyaltyPoints: Codable {
         public var total: Double?
 
-        public var applicable: Double?
-
         public var description: String?
 
         public var isApplied: Bool?
 
+        public var applicable: Double?
+
         public enum CodingKeys: String, CodingKey {
             case total
-
-            case applicable
 
             case description
 
             case isApplied = "is_applied"
+
+            case applicable
         }
 
         public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, total: Double? = nil) {
             self.total = total
 
-            self.applicable = applicable
-
             self.description = description
 
             self.isApplied = isApplied
+
+            self.applicable = applicable
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,14 +42,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 total = try container.decode(Double.self, forKey: .total)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                applicable = try container.decode(Double.self, forKey: .applicable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,6 +63,14 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                applicable = try container.decode(Double.self, forKey: .applicable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(applicable, forKey: .applicable)
-
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
+
+            try? container.encodeIfPresent(applicable, forKey: .applicable)
         }
     }
 }

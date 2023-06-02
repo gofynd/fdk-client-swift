@@ -62,6 +62,7 @@ public extension PlatformClient {
             currentPage: String?,
             pageNo: Double?,
             filterBy: String?,
+            query: String?,
 
             onResponse: @escaping (_ response: ExtensionList?, _ error: FDKError?) -> Void
         ) {
@@ -85,6 +86,10 @@ public extension PlatformClient {
 
             if let value = filterBy {
                 xQuery["filter_by"] = value
+            }
+
+            if let value = query {
+                xQuery["query"] = value
             }
 
             PlatformAPIClient.execute(

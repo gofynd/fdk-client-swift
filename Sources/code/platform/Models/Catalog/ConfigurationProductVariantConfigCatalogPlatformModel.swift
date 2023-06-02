@@ -13,13 +13,13 @@ public extension PlatformClient.Catalog {
 
         public var key: String
 
-        public var name: String
+        public var size: ProductSize
 
-        public var logo: String?
+        public var name: String
 
         public var displayType: String
 
-        public var size: ProductSize
+        public var logo: String?
 
         public var isActive: Bool
 
@@ -28,13 +28,13 @@ public extension PlatformClient.Catalog {
 
             case key
 
-            case name
+            case size
 
-            case logo
+            case name
 
             case displayType = "display_type"
 
-            case size
+            case logo
 
             case isActive = "is_active"
         }
@@ -44,13 +44,13 @@ public extension PlatformClient.Catalog {
 
             self.key = key
 
-            self.name = name
+            self.size = size
 
-            self.logo = logo
+            self.name = name
 
             self.displayType = displayType
 
-            self.size = size
+            self.logo = logo
 
             self.isActive = isActive
         }
@@ -62,7 +62,11 @@ public extension PlatformClient.Catalog {
 
             key = try container.decode(String.self, forKey: .key)
 
+            size = try container.decode(ProductSize.self, forKey: .size)
+
             name = try container.decode(String.self, forKey: .name)
+
+            displayType = try container.decode(String.self, forKey: .displayType)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -71,10 +75,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            displayType = try container.decode(String.self, forKey: .displayType)
-
-            size = try container.decode(ProductSize.self, forKey: .size)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
         }
@@ -86,13 +86,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
@@ -110,13 +110,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var key: String
 
-        public var name: String
+        public var size: ProductSize
 
-        public var logo: String?
+        public var name: String
 
         public var displayType: String
 
-        public var size: ProductSize
+        public var logo: String?
 
         public var isActive: Bool
 
@@ -125,13 +125,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case key
 
-            case name
+            case size
 
-            case logo
+            case name
 
             case displayType = "display_type"
 
-            case size
+            case logo
 
             case isActive = "is_active"
         }
@@ -141,13 +141,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.key = key
 
-            self.name = name
+            self.size = size
 
-            self.logo = logo
+            self.name = name
 
             self.displayType = displayType
 
-            self.size = size
+            self.logo = logo
 
             self.isActive = isActive
         }
@@ -159,7 +159,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             key = try container.decode(String.self, forKey: .key)
 
+            size = try container.decode(ProductSize.self, forKey: .size)
+
             name = try container.decode(String.self, forKey: .name)
+
+            displayType = try container.decode(String.self, forKey: .displayType)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -168,10 +172,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            displayType = try container.decode(String.self, forKey: .displayType)
-
-            size = try container.decode(ProductSize.self, forKey: .size)
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
         }
@@ -183,13 +183,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(displayType, forKey: .displayType)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
         }

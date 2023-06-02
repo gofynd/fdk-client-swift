@@ -93,7 +93,7 @@ Get the list of all the extensions
 
 
 ```swift
-platformClient.partner.getExtensionsForCompany(pageSize: pageSize, tag: tag, currentPage: currentPage, pageNo: pageNo, filterBy: filterBy) { (response, error) in
+platformClient.partner.getExtensionsForCompany(pageSize: pageSize, tag: tag, currentPage: currentPage, pageNo: pageNo, filterBy: filterBy, query: query) { (response, error) in
     // Use response
 }
 ```
@@ -108,7 +108,8 @@ platformClient.partner.getExtensionsForCompany(pageSize: pageSize, tag: tag, cur
 | tag | String? | no | tag |   
 | currentPage | String? | no | tag |   
 | pageNo | Double? | no | Current page number |   
-| filterBy | String? | no | Filter by |  
+| filterBy | String? | no | Filter by |   
+| query | String? | no | query |  
 
 
 

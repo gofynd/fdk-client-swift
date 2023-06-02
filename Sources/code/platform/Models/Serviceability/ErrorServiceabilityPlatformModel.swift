@@ -62,11 +62,11 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encode(value, forKey: .value)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
         }
     }
 }
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encode(value, forKey: .value)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
         }
     }
 }

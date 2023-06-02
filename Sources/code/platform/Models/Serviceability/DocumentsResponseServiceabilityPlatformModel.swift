@@ -9,18 +9,18 @@ public extension PlatformClient.Serviceability {
      */
 
     class DocumentsResponse: Codable {
-        public var verified: Bool?
-
         public var value: String?
+
+        public var verified: Bool?
 
         public var type: String?
 
         public var legalName: String?
 
         public enum CodingKeys: String, CodingKey {
-            case verified
-
             case value
+
+            case verified
 
             case type
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Serviceability {
         }
 
         public init(legalName: String? = nil, type: String? = nil, value: String? = nil, verified: Bool? = nil) {
-            self.verified = verified
-
             self.value = value
+
+            self.verified = verified
 
             self.type = type
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class DocumentsResponse: Codable {
-        public var verified: Bool?
-
         public var value: String?
+
+        public var verified: Bool?
 
         public var type: String?
 
         public var legalName: String?
 
         public enum CodingKeys: String, CodingKey {
-            case verified
-
             case value
+
+            case verified
 
             case type
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         }
 
         public init(legalName: String? = nil, type: String? = nil, value: String? = nil, verified: Bool? = nil) {
-            self.verified = verified
-
             self.value = value
+
+            self.verified = verified
 
             self.type = type
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

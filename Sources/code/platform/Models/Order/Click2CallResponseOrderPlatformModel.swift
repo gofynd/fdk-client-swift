@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class Click2CallResponse: Codable {
-        public var success: Bool
+        public var status: Bool
 
         public var callId: String
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case status
 
             case callId = "call_id"
         }
 
-        public init(callId: String, success: Bool) {
-            self.success = success
+        public init(callId: String, status: Bool) {
+            self.status = status
 
             self.callId = callId
         }
@@ -28,7 +28,7 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            status = try container.decode(Bool.self, forKey: .status)
 
             callId = try container.decode(String.self, forKey: .callId)
         }
@@ -36,7 +36,7 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(callId, forKey: .callId)
         }
@@ -50,18 +50,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Click2CallResponse: Codable {
-        public var success: Bool
+        public var status: Bool
 
         public var callId: String
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case status
 
             case callId = "call_id"
         }
 
-        public init(callId: String, success: Bool) {
-            self.success = success
+        public init(callId: String, status: Bool) {
+            self.status = status
 
             self.callId = callId
         }
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            status = try container.decode(Bool.self, forKey: .status)
 
             callId = try container.decode(String.self, forKey: .callId)
         }
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(callId, forKey: .callId)
         }

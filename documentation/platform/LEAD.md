@@ -4438,6 +4438,7 @@ Success
  | supportCommunication | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support communication array list details |
  | showSupportDris | Bool? |  yes  | Denotes if support DRIS info should be shown |
  | integration | [String: Any]? |  yes  | Contains integrations basic information |
+ | type | String? |  yes  | The enity/platform for which the config is stored |
 
 ---
 

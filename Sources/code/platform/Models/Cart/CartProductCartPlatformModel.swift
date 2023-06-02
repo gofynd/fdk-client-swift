@@ -11,15 +11,11 @@ public extension PlatformClient.ApplicationClient.Cart {
     class CartProduct: Codable {
         public var slug: String?
 
-        public var brand: BaseInfo?
+        public var tags: [String]?
 
         public var itemCode: String?
 
-        public var images: [ProductImage]?
-
-        public var tags: [String]?
-
-        public var netQuantity: NetQuantity?
+        public var type: String?
 
         public var action: ProductAction?
 
@@ -27,26 +23,26 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var uid: Int?
 
-        public var teaserTag: Tags?
-
         public var name: String?
 
-        public var type: String?
+        public var brand: BaseInfo?
+
+        public var teaserTag: Tags?
+
+        public var images: [ProductImage]?
 
         public var categories: [CategoryInfo]?
+
+        public var netQuantity: NetQuantity?
 
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case brand
+            case tags
 
             case itemCode = "item_code"
 
-            case images
-
-            case tags
-
-            case netQuantity = "net_quantity"
+            case type
 
             case action
 
@@ -54,27 +50,27 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case uid
 
-            case teaserTag = "teaser_tag"
-
             case name
 
-            case type
+            case brand
+
+            case teaserTag = "teaser_tag"
+
+            case images
 
             case categories
+
+            case netQuantity = "net_quantity"
         }
 
         public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, itemCode: String? = nil, name: String? = nil, netQuantity: NetQuantity? = nil, slug: String? = nil, tags: [String]? = nil, teaserTag: Tags? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             self.slug = slug
 
-            self.brand = brand
+            self.tags = tags
 
             self.itemCode = itemCode
 
-            self.images = images
-
-            self.tags = tags
-
-            self.netQuantity = netQuantity
+            self.type = type
 
             self.action = action
 
@@ -82,13 +78,17 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.uid = uid
 
-            self.teaserTag = teaserTag
-
             self.name = name
 
-            self.type = type
+            self.brand = brand
+
+            self.teaserTag = teaserTag
+
+            self.images = images
 
             self.categories = categories
+
+            self.netQuantity = netQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -96,30 +96,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brand = try container.decode(BaseInfo.self, forKey: .brand)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                itemCode = try container.decode(String.self, forKey: .itemCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                images = try container.decode([ProductImage].self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,7 +111,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                netQuantity = try container.decode(NetQuantity.self, forKey: .netQuantity)
+                itemCode = try container.decode(String.self, forKey: .itemCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,14 +151,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                teaserTag = try container.decode(Tags.self, forKey: .teaserTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -183,7 +159,23 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                brand = try container.decode(BaseInfo.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                teaserTag = try container.decode(Tags.self, forKey: .teaserTag)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                images = try container.decode([ProductImage].self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,6 +189,14 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                netQuantity = try container.decode(NetQuantity.self, forKey: .netQuantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -204,15 +204,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(tags, forKey: .tags)
 
             try? container.encode(itemCode, forKey: .itemCode)
 
-            try? container.encodeIfPresent(images, forKey: .images)
-
-            try? container.encodeIfPresent(tags, forKey: .tags)
-
-            try? container.encodeIfPresent(netQuantity, forKey: .netQuantity)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
@@ -220,13 +216,17 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
+
+            try? container.encodeIfPresent(images, forKey: .images)
 
             try? container.encodeIfPresent(categories, forKey: .categories)
+
+            try? container.encodeIfPresent(netQuantity, forKey: .netQuantity)
         }
     }
 }

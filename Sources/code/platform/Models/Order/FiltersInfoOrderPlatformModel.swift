@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class FiltersInfo: Codable {
-        public var placeholderText: String?
+        public var options: [FilterInfoOption]?
 
-        public var value: String
+        public var placeholderText: String?
 
         public var required: Bool?
 
@@ -19,12 +19,12 @@ public extension PlatformClient.Order {
 
         public var type: String
 
-        public var options: [FilterInfoOption]?
+        public var value: String
 
         public enum CodingKeys: String, CodingKey {
-            case placeholderText = "placeholder_text"
+            case options
 
-            case value
+            case placeholderText = "placeholder_text"
 
             case required
 
@@ -32,13 +32,13 @@ public extension PlatformClient.Order {
 
             case type
 
-            case options
+            case value
         }
 
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
-            self.placeholderText = placeholderText
+            self.options = options
 
-            self.value = value
+            self.placeholderText = placeholderText
 
             self.required = required
 
@@ -46,11 +46,19 @@ public extension PlatformClient.Order {
 
             self.type = type
 
-            self.options = options
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                options = try container.decode([FilterInfoOption].self, forKey: .options)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 placeholderText = try container.decode(String.self, forKey: .placeholderText)
@@ -59,8 +67,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            value = try container.decode(String.self, forKey: .value)
 
             do {
                 required = try container.decode(Bool.self, forKey: .required)
@@ -74,21 +80,15 @@ public extension PlatformClient.Order {
 
             type = try container.decode(String.self, forKey: .type)
 
-            do {
-                options = try container.decode([FilterInfoOption].self, forKey: .options)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+            try? container.encode(options, forKey: .options)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
             try? container.encodeIfPresent(required, forKey: .required)
 
@@ -96,7 +96,7 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encode(options, forKey: .options)
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
@@ -108,9 +108,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class FiltersInfo: Codable {
-        public var placeholderText: String?
+        public var options: [FilterInfoOption]?
 
-        public var value: String
+        public var placeholderText: String?
 
         public var required: Bool?
 
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var type: String
 
-        public var options: [FilterInfoOption]?
+        public var value: String
 
         public enum CodingKeys: String, CodingKey {
-            case placeholderText = "placeholder_text"
+            case options
 
-            case value
+            case placeholderText = "placeholder_text"
 
             case required
 
@@ -131,13 +131,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case type
 
-            case options
+            case value
         }
 
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
-            self.placeholderText = placeholderText
+            self.options = options
 
-            self.value = value
+            self.placeholderText = placeholderText
 
             self.required = required
 
@@ -145,11 +145,19 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.type = type
 
-            self.options = options
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                options = try container.decode([FilterInfoOption].self, forKey: .options)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 placeholderText = try container.decode(String.self, forKey: .placeholderText)
@@ -158,8 +166,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            value = try container.decode(String.self, forKey: .value)
 
             do {
                 required = try container.decode(Bool.self, forKey: .required)
@@ -173,21 +179,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             type = try container.decode(String.self, forKey: .type)
 
-            do {
-                options = try container.decode([FilterInfoOption].self, forKey: .options)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+            try? container.encode(options, forKey: .options)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
             try? container.encodeIfPresent(required, forKey: .required)
 
@@ -195,7 +195,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encode(options, forKey: .options)
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

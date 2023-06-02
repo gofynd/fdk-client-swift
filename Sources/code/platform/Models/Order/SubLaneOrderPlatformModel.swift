@@ -9,36 +9,36 @@ public extension PlatformClient.Order {
      */
 
     class SubLane: Codable {
-        public var actions: [[String: Any]]?
-
         public var totalItems: Int?
+
+        public var text: String?
 
         public var value: String?
 
-        public var text: String?
+        public var actions: [[String: Any]]?
 
         public var index: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case actions
-
             case totalItems = "total_items"
+
+            case text
 
             case value
 
-            case text
+            case actions
 
             case index
         }
 
         public init(actions: [[String: Any]]? = nil, index: Int? = nil, text: String? = nil, totalItems: Int? = nil, value: String? = nil) {
-            self.actions = actions
-
             self.totalItems = totalItems
+
+            self.text = text
 
             self.value = value
 
-            self.text = text
+            self.actions = actions
 
             self.index = index
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                actions = try container.decode([[String: Any]].self, forKey: .actions)
+                totalItems = try container.decode(Int.self, forKey: .totalItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                totalItems = try container.decode(Int.self, forKey: .totalItems)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
+                actions = try container.decode([[String: Any]].self, forKey: .actions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(actions, forKey: .actions)
-
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(actions, forKey: .actions)
 
             try? container.encodeIfPresent(index, forKey: .index)
         }
@@ -110,36 +110,36 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class SubLane: Codable {
-        public var actions: [[String: Any]]?
-
         public var totalItems: Int?
+
+        public var text: String?
 
         public var value: String?
 
-        public var text: String?
+        public var actions: [[String: Any]]?
 
         public var index: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case actions
-
             case totalItems = "total_items"
+
+            case text
 
             case value
 
-            case text
+            case actions
 
             case index
         }
 
         public init(actions: [[String: Any]]? = nil, index: Int? = nil, text: String? = nil, totalItems: Int? = nil, value: String? = nil) {
-            self.actions = actions
-
             self.totalItems = totalItems
+
+            self.text = text
 
             self.value = value
 
-            self.text = text
+            self.actions = actions
 
             self.index = index
         }
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                actions = try container.decode([[String: Any]].self, forKey: .actions)
+                totalItems = try container.decode(Int.self, forKey: .totalItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                totalItems = try container.decode(Int.self, forKey: .totalItems)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
+                actions = try container.decode([[String: Any]].self, forKey: .actions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,13 +191,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(actions, forKey: .actions)
-
             try? container.encodeIfPresent(totalItems, forKey: .totalItems)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(actions, forKey: .actions)
 
             try? container.encodeIfPresent(index, forKey: .index)
         }

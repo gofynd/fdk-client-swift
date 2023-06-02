@@ -9,13 +9,13 @@ public extension PlatformClient.Catalog {
      */
 
     class AppConfigurationDetail: Codable {
-        public var appId: String
+        public var slug: String
 
         public var templateSlugs: [String]?
 
-        public var slug: String
-
         public var priority: Int
+
+        public var appId: String
 
         public var name: String?
 
@@ -28,13 +28,13 @@ public extension PlatformClient.Catalog {
         public var attributes: [AttributeDetailsGroup]?
 
         public enum CodingKeys: String, CodingKey {
-            case appId = "app_id"
+            case slug
 
             case templateSlugs = "template_slugs"
 
-            case slug
-
             case priority
+
+            case appId = "app_id"
 
             case name
 
@@ -48,13 +48,13 @@ public extension PlatformClient.Catalog {
         }
 
         public init(appId: String, attributes: [AttributeDetailsGroup]? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
-            self.appId = appId
+            self.slug = slug
 
             self.templateSlugs = templateSlugs
 
-            self.slug = slug
-
             self.priority = priority
+
+            self.appId = appId
 
             self.name = name
 
@@ -70,7 +70,7 @@ public extension PlatformClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            appId = try container.decode(String.self, forKey: .appId)
+            slug = try container.decode(String.self, forKey: .slug)
 
             do {
                 templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            slug = try container.decode(String.self, forKey: .slug)
-
             priority = try container.decode(Int.self, forKey: .priority)
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -116,13 +116,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -144,13 +144,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class AppConfigurationDetail: Codable {
-        public var appId: String
+        public var slug: String
 
         public var templateSlugs: [String]?
 
-        public var slug: String
-
         public var priority: Int
+
+        public var appId: String
 
         public var name: String?
 
@@ -163,13 +163,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var attributes: [AttributeDetailsGroup]?
 
         public enum CodingKeys: String, CodingKey {
-            case appId = "app_id"
+            case slug
 
             case templateSlugs = "template_slugs"
 
-            case slug
-
             case priority
+
+            case appId = "app_id"
 
             case name
 
@@ -183,13 +183,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(appId: String, attributes: [AttributeDetailsGroup]? = nil, isActive: Bool, isDefault: Bool, logo: String? = nil, name: String? = nil, priority: Int, slug: String, templateSlugs: [String]? = nil) {
-            self.appId = appId
+            self.slug = slug
 
             self.templateSlugs = templateSlugs
 
-            self.slug = slug
-
             self.priority = priority
+
+            self.appId = appId
 
             self.name = name
 
@@ -205,7 +205,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            appId = try container.decode(String.self, forKey: .appId)
+            slug = try container.decode(String.self, forKey: .slug)
 
             do {
                 templateSlugs = try container.decode([String].self, forKey: .templateSlugs)
@@ -215,9 +215,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            slug = try container.decode(String.self, forKey: .slug)
-
             priority = try container.decode(Int.self, forKey: .priority)
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -251,13 +251,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(templateSlugs, forKey: .templateSlugs)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(name, forKey: .name)
 

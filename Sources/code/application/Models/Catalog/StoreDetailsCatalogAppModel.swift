@@ -7,13 +7,13 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class StoreDetails: Codable {
-        public var uid: Int?
+        public var customJson: [String: Any]?
+
+        public var departments: [StoreDepartments]?
 
         public var name: String?
 
-        public var manager: StoreManagerSerializer?
-
-        public var timing: [StoreTiming]?
+        public var uid: Int?
 
         public var storeCode: String?
 
@@ -21,20 +21,20 @@ public extension ApplicationClient.Catalog {
 
         public var company: CompanyStore?
 
-        public var departments: [StoreDepartments]?
-
         public var contactNumbers: [SellerPhoneNumber]?
 
-        public var customJson: [String: Any]?
+        public var timing: [StoreTiming]?
+
+        public var manager: StoreManagerSerializer?
 
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case customJson = "_custom_json"
+
+            case departments
 
             case name
 
-            case manager
-
-            case timing
+            case uid
 
             case storeCode = "store_code"
 
@@ -42,21 +42,21 @@ public extension ApplicationClient.Catalog {
 
             case company
 
-            case departments
-
             case contactNumbers = "contact_numbers"
 
-            case customJson = "_custom_json"
+            case timing
+
+            case manager
         }
 
         public init(address: StoreAddressSerializer? = nil, company: CompanyStore? = nil, contactNumbers: [SellerPhoneNumber]? = nil, departments: [StoreDepartments]? = nil, manager: StoreManagerSerializer? = nil, name: String? = nil, storeCode: String? = nil, timing: [StoreTiming]? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.uid = uid
+            self.customJson = customJson
+
+            self.departments = departments
 
             self.name = name
 
-            self.manager = manager
-
-            self.timing = timing
+            self.uid = uid
 
             self.storeCode = storeCode
 
@@ -64,18 +64,26 @@ public extension ApplicationClient.Catalog {
 
             self.company = company
 
-            self.departments = departments
-
             self.contactNumbers = contactNumbers
 
-            self.customJson = customJson
+            self.timing = timing
+
+            self.manager = manager
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                departments = try container.decode([StoreDepartments].self, forKey: .departments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,15 +99,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                manager = try container.decode(StoreManagerSerializer.self, forKey: .manager)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                timing = try container.decode([StoreTiming].self, forKey: .timing)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,14 +131,6 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                departments = try container.decode([StoreDepartments].self, forKey: .departments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 contactNumbers = try container.decode([SellerPhoneNumber].self, forKey: .contactNumbers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -147,7 +139,15 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                timing = try container.decode([StoreTiming].self, forKey: .timing)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                manager = try container.decode(StoreManagerSerializer.self, forKey: .manager)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,13 +158,13 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(departments, forKey: .departments)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(manager, forKey: .manager)
-
-            try? container.encodeIfPresent(timing, forKey: .timing)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
 
@@ -172,11 +172,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(company, forKey: .company)
 
-            try? container.encodeIfPresent(departments, forKey: .departments)
-
             try? container.encodeIfPresent(contactNumbers, forKey: .contactNumbers)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(timing, forKey: .timing)
+
+            try? container.encodeIfPresent(manager, forKey: .manager)
         }
     }
 }
