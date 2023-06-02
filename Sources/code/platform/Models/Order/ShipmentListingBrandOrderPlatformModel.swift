@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentListingBrand: Codable {
-        public var logo: String?
-
         public var name: String?
+
+        public var logo: String?
 
         public var logoBase64: String?
 
         public var createdOn: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
-
             case name
+
+            case logo
 
             case logoBase64 = "logo_base64"
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(createdOn: String? = nil, logo: String? = nil, logoBase64: String? = nil, name: String? = nil) {
-            self.logo = logo
-
             self.name = name
+
+            self.logo = logo
 
             self.logoBase64 = logoBase64
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentListingBrand: Codable {
-        public var logo: String?
-
         public var name: String?
+
+        public var logo: String?
 
         public var logoBase64: String?
 
         public var createdOn: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
-
             case name
+
+            case logo
 
             case logoBase64 = "logo_base64"
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(createdOn: String? = nil, logo: String? = nil, logoBase64: String? = nil, name: String? = nil) {
-            self.logo = logo
-
             self.name = name
+
+            self.logo = logo
 
             self.logoBase64 = logoBase64
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
 

@@ -9,9 +9,9 @@ public extension PlatformClient.Finance {
      */
 
     class GenerateReportPlatform: Codable {
-        public var startDate: String?
-
         public var meta: GenerateReportMeta?
+
+        public var startDate: String?
 
         public var reportId: String?
 
@@ -20,9 +20,9 @@ public extension PlatformClient.Finance {
         public var filters: GenerateReportFilters?
 
         public enum CodingKeys: String, CodingKey {
-            case startDate = "start_date"
-
             case meta
+
+            case startDate = "start_date"
 
             case reportId = "report_id"
 
@@ -32,9 +32,9 @@ public extension PlatformClient.Finance {
         }
 
         public init(endDate: String? = nil, filters: GenerateReportFilters? = nil, meta: GenerateReportMeta? = nil, reportId: String? = nil, startDate: String? = nil) {
-            self.startDate = startDate
-
             self.meta = meta
+
+            self.startDate = startDate
 
             self.reportId = reportId
 
@@ -47,7 +47,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                startDate = try container.decode(String.self, forKey: .startDate)
+                meta = try container.decode(GenerateReportMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                meta = try container.decode(GenerateReportMeta.self, forKey: .meta)
+                startDate = try container.decode(String.self, forKey: .startDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
 
             try? container.encodeIfPresent(reportId, forKey: .reportId)
 

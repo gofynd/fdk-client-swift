@@ -7,36 +7,36 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class Department: Codable {
-        public var logo: Media?
+        public var name: String?
 
         public var priorityOrder: Int?
 
-        public var name: String?
-
         public var uid: Int?
+
+        public var logo: Media?
 
         public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
-            case logo
+            case name
 
             case priorityOrder = "priority_order"
 
-            case name
-
             case uid
+
+            case logo
 
             case slug
         }
 
         public init(logo: Media? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.logo = logo
+            self.name = name
 
             self.priorityOrder = priorityOrder
 
-            self.name = name
-
             self.uid = uid
+
+            self.logo = logo
 
             self.slug = slug
         }
@@ -45,7 +45,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,13 +88,13 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }

@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var companyCin: String?
 
-        public var address: [String: Any]?
-
         public var companyContact: ContactDetails?
+
+        public var address: [String: Any]?
 
         public var companyGst: String?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case companyCin = "company_cin"
 
-            case address
-
             case companyContact = "company_contact"
+
+            case address
 
             case companyGst = "company_gst"
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Order {
 
             self.companyCin = companyCin
 
-            self.address = address
-
             self.companyContact = companyContact
+
+            self.address = address
 
             self.companyGst = companyGst
 
@@ -69,7 +69,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                address = try container.decode([String: Any].self, forKey: .address)
+                companyContact = try container.decode(ContactDetails.self, forKey: .companyContact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                companyContact = try container.decode(ContactDetails.self, forKey: .companyContact)
+                address = try container.decode([String: Any].self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(companyCin, forKey: .companyCin)
 
-            try? container.encodeIfPresent(address, forKey: .address)
-
             try? container.encodeIfPresent(companyContact, forKey: .companyContact)
+
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(companyGst, forKey: .companyGst)
 
@@ -130,9 +130,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var companyCin: String?
 
-        public var address: [String: Any]?
-
         public var companyContact: ContactDetails?
+
+        public var address: [String: Any]?
 
         public var companyGst: String?
 
@@ -143,9 +143,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case companyCin = "company_cin"
 
-            case address
-
             case companyContact = "company_contact"
+
+            case address
 
             case companyGst = "company_gst"
 
@@ -157,9 +157,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.companyCin = companyCin
 
-            self.address = address
-
             self.companyContact = companyContact
+
+            self.address = address
 
             self.companyGst = companyGst
 
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                address = try container.decode([String: Any].self, forKey: .address)
+                companyContact = try container.decode(ContactDetails.self, forKey: .companyContact)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                companyContact = try container.decode(ContactDetails.self, forKey: .companyContact)
+                address = try container.decode([String: Any].self, forKey: .address)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,9 +225,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(companyCin, forKey: .companyCin)
 
-            try? container.encodeIfPresent(address, forKey: .address)
-
             try? container.encodeIfPresent(companyContact, forKey: .companyContact)
+
+            try? container.encodeIfPresent(address, forKey: .address)
 
             try? container.encodeIfPresent(companyGst, forKey: .companyGst)
 

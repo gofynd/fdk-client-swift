@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class StoreAssignResponse: Codable {
         public var success: Bool?
 
-        public var items: [StoreAssign]?
-
         public var error: StoreAssignError?
+
+        public var items: [StoreAssign]?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case items
-
             case error
+
+            case items
         }
 
         public init(error: StoreAssignError? = nil, items: [StoreAssign]? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.items = items
-
             self.error = error
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([StoreAssign].self, forKey: .items)
+                error = try container.decode(StoreAssignError.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                error = try container.decode(StoreAssignError.self, forKey: .error)
+                items = try container.decode([StoreAssign].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class StoreAssignResponse: Codable {
         public var success: Bool?
 
-        public var items: [StoreAssign]?
-
         public var error: StoreAssignError?
+
+        public var items: [StoreAssign]?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case items
-
             case error
+
+            case items
         }
 
         public init(error: StoreAssignError? = nil, items: [StoreAssign]? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.items = items
-
             self.error = error
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([StoreAssign].self, forKey: .items)
+                error = try container.decode(StoreAssignError.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                error = try container.decode(StoreAssignError.self, forKey: .error)
+                items = try container.decode([StoreAssign].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

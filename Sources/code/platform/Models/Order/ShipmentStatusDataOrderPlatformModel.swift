@@ -15,13 +15,13 @@ public extension PlatformClient.Order {
 
         public var displayName: String?
 
-        public var shipmentId: String?
-
-        public var meta: [String: Any]?
-
         public var id: Int?
 
+        public var shipmentId: String?
+
         public var createdAt: String?
+
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case status
@@ -30,13 +30,13 @@ public extension PlatformClient.Order {
 
             case displayName = "display_name"
 
-            case shipmentId = "shipment_id"
-
-            case meta
-
             case id
 
+            case shipmentId = "shipment_id"
+
             case createdAt = "created_at"
+
+            case meta
         }
 
         public init(bagList: [String]? = nil, createdAt: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String? = nil) {
@@ -46,13 +46,13 @@ public extension PlatformClient.Order {
 
             self.displayName = displayName
 
-            self.shipmentId = shipmentId
-
-            self.meta = meta
-
             self.id = id
 
+            self.shipmentId = shipmentId
+
             self.createdAt = createdAt
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,22 +83,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -107,7 +91,23 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 createdAt = try container.decode(String.self, forKey: .createdAt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -124,13 +124,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(id, forKey: .id)
 
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
             try? container.encode(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
@@ -148,13 +148,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var displayName: String?
 
-        public var shipmentId: String?
-
-        public var meta: [String: Any]?
-
         public var id: Int?
 
+        public var shipmentId: String?
+
         public var createdAt: String?
+
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case status
@@ -163,13 +163,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case displayName = "display_name"
 
-            case shipmentId = "shipment_id"
-
-            case meta
-
             case id
 
+            case shipmentId = "shipment_id"
+
             case createdAt = "created_at"
+
+            case meta
         }
 
         public init(bagList: [String]? = nil, createdAt: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String? = nil) {
@@ -179,13 +179,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.displayName = displayName
 
-            self.shipmentId = shipmentId
-
-            self.meta = meta
-
             self.id = id
 
+            self.shipmentId = shipmentId
+
             self.createdAt = createdAt
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -216,22 +216,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -240,7 +224,23 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 createdAt = try container.decode(String.self, forKey: .createdAt)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -257,13 +257,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(id, forKey: .id)
 
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
             try? container.encode(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

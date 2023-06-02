@@ -7,33 +7,33 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class StoreInfo: Codable {
-        public var storeCode: String?
+        public var uid: Int?
 
         public var name: String?
 
-        public var uid: Int?
+        public var storeCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case storeCode = "store_code"
+            case uid
 
             case name
 
-            case uid
+            case storeCode = "store_code"
         }
 
         public init(name: String? = nil, storeCode: String? = nil, uid: Int? = nil) {
-            self.storeCode = storeCode
+            self.uid = uid
 
             self.name = name
 
-            self.uid = uid
+            self.storeCode = storeCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
         }
     }
 }

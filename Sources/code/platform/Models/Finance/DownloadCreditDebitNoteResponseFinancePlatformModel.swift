@@ -9,7 +9,7 @@ public extension PlatformClient.Finance {
      */
 
     class DownloadCreditDebitNoteResponse: Codable {
-        public var data: [[String: Any]]?
+        public var data: [DownloadCreditDebitNoteResponseData]?
 
         public var success: Bool?
 
@@ -19,7 +19,7 @@ public extension PlatformClient.Finance {
             case success
         }
 
-        public init(data: [[String: Any]]? = nil, success: Bool? = nil) {
+        public init(data: [DownloadCreditDebitNoteResponseData]? = nil, success: Bool? = nil) {
             self.data = data
 
             self.success = success
@@ -29,7 +29,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                data = try container.decode([DownloadCreditDebitNoteResponseData].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
