@@ -9,42 +9,38 @@ public extension PlatformClient.Order {
      */
 
     class Tax: Codable {
-        public var amount: [String: Any]
-
         public var name: String
-
-        public var rate: Double
 
         public var breakup: [[String: Any]]?
 
-        public enum CodingKeys: String, CodingKey {
-            case amount
+        public var amount: [String: Any]
 
+        public var rate: Double
+
+        public enum CodingKeys: String, CodingKey {
             case name
 
-            case rate
-
             case breakup
+
+            case amount
+
+            case rate
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
-            self.amount = amount
-
             self.name = name
 
-            self.rate = rate
-
             self.breakup = breakup
+
+            self.amount = amount
+
+            self.rate = rate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            amount = try container.decode([String: Any].self, forKey: .amount)
-
             name = try container.decode(String.self, forKey: .name)
-
-            rate = try container.decode(Double.self, forKey: .rate)
 
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
@@ -53,18 +49,22 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            amount = try container.decode([String: Any].self, forKey: .amount)
+
+            rate = try container.decode(Double.self, forKey: .rate)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(rate, forKey: .rate)
-
             try? container.encodeIfPresent(breakup, forKey: .breakup)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(rate, forKey: .rate)
         }
     }
 }
@@ -76,42 +76,38 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Tax: Codable {
-        public var amount: [String: Any]
-
         public var name: String
-
-        public var rate: Double
 
         public var breakup: [[String: Any]]?
 
-        public enum CodingKeys: String, CodingKey {
-            case amount
+        public var amount: [String: Any]
 
+        public var rate: Double
+
+        public enum CodingKeys: String, CodingKey {
             case name
 
-            case rate
-
             case breakup
+
+            case amount
+
+            case rate
         }
 
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
-            self.amount = amount
-
             self.name = name
 
-            self.rate = rate
-
             self.breakup = breakup
+
+            self.amount = amount
+
+            self.rate = rate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            amount = try container.decode([String: Any].self, forKey: .amount)
-
             name = try container.decode(String.self, forKey: .name)
-
-            rate = try container.decode(Double.self, forKey: .rate)
 
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
@@ -120,18 +116,22 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            amount = try container.decode([String: Any].self, forKey: .amount)
+
+            rate = try container.decode(Double.self, forKey: .rate)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(rate, forKey: .rate)
-
             try? container.encodeIfPresent(breakup, forKey: .breakup)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(rate, forKey: .rate)
         }
     }
 }

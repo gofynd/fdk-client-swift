@@ -11,42 +11,42 @@ public extension PlatformClient.Order {
     class FilterInfoOption: Codable {
         public var value: [String: Any]?
 
-        public var showUi: Bool?
-
         public var text: String
 
         public var name: String?
 
-        public var placeholderText: String?
-
         public var minSearchSize: Int?
+
+        public var showUi: Bool?
+
+        public var placeholderText: String?
 
         public enum CodingKeys: String, CodingKey {
             case value
-
-            case showUi = "show_ui"
 
             case text
 
             case name
 
-            case placeholderText = "placeholder_text"
-
             case minSearchSize = "min_search_size"
+
+            case showUi = "show_ui"
+
+            case placeholderText = "placeholder_text"
         }
 
         public init(minSearchSize: Int? = nil, name: String? = nil, placeholderText: String? = nil, showUi: Bool? = nil, text: String, value: [String: Any]? = nil) {
             self.value = value
 
-            self.showUi = showUi
-
             self.text = text
 
             self.name = name
 
-            self.placeholderText = placeholderText
-
             self.minSearchSize = minSearchSize
+
+            self.showUi = showUi
+
+            self.placeholderText = placeholderText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,14 +54,6 @@ public extension PlatformClient.Order {
 
             do {
                 value = try container.decode([String: Any].self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                showUi = try container.decode(Bool.self, forKey: .showUi)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                placeholderText = try container.decode(String.self, forKey: .placeholderText)
+                minSearchSize = try container.decode(Int.self, forKey: .minSearchSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,7 +79,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                minSearchSize = try container.decode(Int.self, forKey: .minSearchSize)
+                showUi = try container.decode(Bool.self, forKey: .showUi)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                placeholderText = try container.decode(String.self, forKey: .placeholderText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,15 +100,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(showUi, forKey: .showUi)
-
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
-
             try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
+
+            try? container.encodeIfPresent(showUi, forKey: .showUi)
+
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
         }
     }
 }
@@ -122,42 +122,42 @@ public extension PlatformClient.ApplicationClient.Order {
     class FilterInfoOption: Codable {
         public var value: [String: Any]?
 
-        public var showUi: Bool?
-
         public var text: String
 
         public var name: String?
 
-        public var placeholderText: String?
-
         public var minSearchSize: Int?
+
+        public var showUi: Bool?
+
+        public var placeholderText: String?
 
         public enum CodingKeys: String, CodingKey {
             case value
-
-            case showUi = "show_ui"
 
             case text
 
             case name
 
-            case placeholderText = "placeholder_text"
-
             case minSearchSize = "min_search_size"
+
+            case showUi = "show_ui"
+
+            case placeholderText = "placeholder_text"
         }
 
         public init(minSearchSize: Int? = nil, name: String? = nil, placeholderText: String? = nil, showUi: Bool? = nil, text: String, value: [String: Any]? = nil) {
             self.value = value
 
-            self.showUi = showUi
-
             self.text = text
 
             self.name = name
 
-            self.placeholderText = placeholderText
-
             self.minSearchSize = minSearchSize
+
+            self.showUi = showUi
+
+            self.placeholderText = placeholderText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -165,14 +165,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 value = try container.decode([String: Any].self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                showUi = try container.decode(Bool.self, forKey: .showUi)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -190,7 +182,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                placeholderText = try container.decode(String.self, forKey: .placeholderText)
+                minSearchSize = try container.decode(Int.self, forKey: .minSearchSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -198,7 +190,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                minSearchSize = try container.decode(Int.self, forKey: .minSearchSize)
+                showUi = try container.decode(Bool.self, forKey: .showUi)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                placeholderText = try container.decode(String.self, forKey: .placeholderText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,15 +211,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(showUi, forKey: .showUi)
-
             try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
-
             try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
+
+            try? container.encodeIfPresent(showUi, forKey: .showUi)
+
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
         }
     }
 }

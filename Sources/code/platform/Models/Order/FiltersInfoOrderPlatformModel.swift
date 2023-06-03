@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class FiltersInfo: Codable {
         public var value: String
 
-        public var options: [FilterInfoOption]?
-
         public var text: String
+
+        public var options: [FilterInfoOption]?
 
         public var type: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case options
-
             case text
+
+            case options
 
             case type
 
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
             self.value = value
 
-            self.options = options
-
             self.text = text
+
+            self.options = options
 
             self.type = type
 
@@ -54,6 +54,8 @@ public extension PlatformClient.Order {
 
             value = try container.decode(String.self, forKey: .value)
 
+            text = try container.decode(String.self, forKey: .text)
+
             do {
                 options = try container.decode([FilterInfoOption].self, forKey: .options)
 
@@ -61,8 +63,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            text = try container.decode(String.self, forKey: .text)
 
             type = try container.decode(String.self, forKey: .type)
 
@@ -88,9 +88,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encode(options, forKey: .options)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encode(options, forKey: .options)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class FiltersInfo: Codable {
         public var value: String
 
-        public var options: [FilterInfoOption]?
-
         public var text: String
+
+        public var options: [FilterInfoOption]?
 
         public var type: String
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case options
-
             case text
+
+            case options
 
             case type
 
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
             self.value = value
 
-            self.options = options
-
             self.text = text
+
+            self.options = options
 
             self.type = type
 
@@ -153,6 +153,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             value = try container.decode(String.self, forKey: .value)
 
+            text = try container.decode(String.self, forKey: .text)
+
             do {
                 options = try container.decode([FilterInfoOption].self, forKey: .options)
 
@@ -160,8 +162,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            text = try container.decode(String.self, forKey: .text)
 
             type = try container.decode(String.self, forKey: .type)
 
@@ -187,9 +187,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encode(options, forKey: .options)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encode(options, forKey: .options)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

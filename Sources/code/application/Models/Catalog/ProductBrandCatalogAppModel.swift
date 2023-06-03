@@ -11,22 +11,22 @@ public extension ApplicationClient.Catalog {
 
         public var action: ProductListingAction?
 
-        public var uid: Int?
+        public var description: String?
 
         public var logo: Media?
 
-        public var description: String?
+        public var uid: Int?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case action
 
-            case uid
+            case description
 
             case logo
 
-            case description
+            case uid
         }
 
         public init(action: ProductListingAction? = nil, description: String? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Catalog {
 
             self.action = action
 
-            self.uid = uid
+            self.description = description
 
             self.logo = logo
 
-            self.description = description
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

@@ -2382,7 +2382,7 @@ Success
  | subscriberId | String? |  yes  |  |
  | planId | String? |  yes  |  |
  | productSuiteId | String? |  yes  |  |
- | planData | [Plan](#Plan)? |  yes  |  |
+ | planData | [String: Any]? |  yes  |  |
  | currentStatus | String? |  yes  |  |
  | collectionMethod | String? |  yes  |  |
  | createdAt | String? |  yes  |  |

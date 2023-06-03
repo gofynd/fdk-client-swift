@@ -9,22 +9,22 @@ public extension PlatformClient.Catalog {
      */
 
     class ProductSortOn: Codable {
-        public var name: String?
+        public var display: String?
 
         public var isSelected: Bool?
 
-        public var display: String?
+        public var name: String?
 
         public var logo: String?
 
         public var value: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
+            case display
 
             case isSelected = "is_selected"
 
-            case display
+            case name
 
             case logo
 
@@ -32,11 +32,11 @@ public extension PlatformClient.Catalog {
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, logo: String? = nil, name: String? = nil, value: String? = nil) {
-            self.name = name
+            self.display = display
 
             self.isSelected = isSelected
 
-            self.display = display
+            self.name = name
 
             self.logo = logo
 
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
@@ -110,22 +110,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProductSortOn: Codable {
-        public var name: String?
+        public var display: String?
 
         public var isSelected: Bool?
 
-        public var display: String?
+        public var name: String?
 
         public var logo: String?
 
         public var value: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
+            case display
 
             case isSelected = "is_selected"
 
-            case display
+            case name
 
             case logo
 
@@ -133,11 +133,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, logo: String? = nil, name: String? = nil, value: String? = nil) {
-            self.name = name
+            self.display = display
 
             self.isSelected = isSelected
 
-            self.display = display
+            self.name = name
 
             self.logo = logo
 
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,11 +191,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
