@@ -9,24 +9,24 @@ public extension PlatformClient.Order {
      */
 
     class PlatformBreakupValues: Codable {
-        public var value: String?
-
         public var display: String?
+
+        public var value: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case value
-
             case display
+
+            case value
 
             case name
         }
 
         public init(display: String? = nil, name: String? = nil, value: String? = nil) {
-            self.value = value
-
             self.display = display
+
+            self.value = value
 
             self.name = name
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PlatformBreakupValues: Codable {
-        public var value: String?
-
         public var display: String?
+
+        public var value: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case value
-
             case display
+
+            case value
 
             case name
         }
 
         public init(display: String? = nil, name: String? = nil, value: String? = nil) {
-            self.value = value
-
             self.display = display
+
+            self.value = value
 
             self.name = name
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

@@ -7,9 +7,9 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ApplicationItemSEO: Codable {
-        public var description: [String: Any]?
+        public var description: String?
 
-        public var title: [String: Any]?
+        public var title: String?
 
         public enum CodingKeys: String, CodingKey {
             case description
@@ -17,7 +17,7 @@ public extension ApplicationClient.Catalog {
             case title
         }
 
-        public init(description: [String: Any]? = nil, title: [String: Any]? = nil) {
+        public init(description: String? = nil, title: String? = nil) {
             self.description = description
 
             self.title = title
@@ -27,7 +27,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                description = try container.decode([String: Any].self, forKey: .description)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                title = try container.decode([String: Any].self, forKey: .title)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

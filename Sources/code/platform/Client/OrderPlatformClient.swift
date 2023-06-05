@@ -22,17 +22,13 @@ public extension PlatformClient {
             timeToDispatch: String?,
             searchType: String?,
             searchValue: String?,
-            searchId: String?,
             fromDate: String?,
             toDate: String?,
             dpIds: String?,
-            orderingCompanyId: String?,
             stores: String?,
-            salesChannels: String?,
-            requestByExt: String?,
+            salesChannel: String?,
             pageNo: Int?,
             pageSize: Int?,
-            isPrioritySort: Bool?,
             fetchActiveShipment: Bool?,
             excludeLockedShipments: Bool?,
             paymentMethods: String?,
@@ -41,6 +37,7 @@ public extension PlatformClient {
             customMeta: String?,
             orderingChannel: String?,
             companyAffiliateTag: String?,
+            platformUserId: String?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -70,10 +67,6 @@ public extension PlatformClient {
                 xQuery["search_value"] = value
             }
 
-            if let value = searchId {
-                xQuery["search_id"] = value
-            }
-
             if let value = fromDate {
                 xQuery["from_date"] = value
             }
@@ -86,20 +79,12 @@ public extension PlatformClient {
                 xQuery["dp_ids"] = value
             }
 
-            if let value = orderingCompanyId {
-                xQuery["ordering_company_id"] = value
-            }
-
             if let value = stores {
                 xQuery["stores"] = value
             }
 
-            if let value = salesChannels {
-                xQuery["sales_channels"] = value
-            }
-
-            if let value = requestByExt {
-                xQuery["request_by_ext"] = value
+            if let value = salesChannel {
+                xQuery["sales_channel"] = value
             }
 
             if let value = pageNo {
@@ -108,10 +93,6 @@ public extension PlatformClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
-            }
-
-            if let value = isPrioritySort {
-                xQuery["is_priority_sort"] = value
             }
 
             if let value = fetchActiveShipment {
@@ -144,6 +125,10 @@ public extension PlatformClient {
 
             if let value = companyAffiliateTag {
                 xQuery["company_affiliate_tag"] = value
+            }
+
+            if let value = platformUserId {
+                xQuery["platform_user_id"] = value
             }
 
             PlatformAPIClient.execute(
@@ -462,6 +447,7 @@ public extension PlatformClient {
             pageSize: Int?,
             isPrioritySort: Bool?,
             customMeta: String?,
+            platformUserId: String?,
 
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -525,6 +511,10 @@ public extension PlatformClient {
 
             if let value = customMeta {
                 xQuery["custom_meta"] = value
+            }
+
+            if let value = platformUserId {
+                xQuery["platform_user_id"] = value
             }
 
             PlatformAPIClient.execute(
@@ -1671,28 +1661,16 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func getShipmentHistory(
-            shipmentId: String?,
-            bagId: Int?,
-
+        public func postShipmentHistory(
+            body: PostShipmentHistory,
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = shipmentId {
-                xQuery["shipment_id"] = value
-            }
-
-            if let value = bagId {
-                xQuery["bag_id"] = value
-            }
-
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "post",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/history",
-                query: xQuery,
-                body: nil,
+                query: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -1721,16 +1699,28 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func postShipmentHistory(
-            body: PostShipmentHistory,
+        public func getShipmentHistory(
+            shipmentId: String?,
+            bagId: Int?,
+
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
+
+            if let value = bagId {
+                xQuery["bag_id"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "get",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/history",
-                query: nil,
-                body: body.dictionary,
+                query: xQuery,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -1871,43 +1861,6 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description: getChannelConfig
-         **/
-        public func getChannelConfig(
-            onResponse: @escaping (_ response: CreateChannelConfigData?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(CreateChannelConfigData.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
          * Description: createChannelConfig
          **/
         public func createChannelConfig(
@@ -1931,6 +1884,43 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(CreateChannelConfigResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary:
+         * Description: getChannelConfig
+         **/
+        public func getChannelConfig(
+            onResponse: @escaping (_ response: CreateChannelConfigData?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CreateChannelConfigData.self, from: data)
 
                         onResponse(response, nil)
                     } else {

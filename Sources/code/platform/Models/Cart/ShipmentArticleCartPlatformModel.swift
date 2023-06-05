@@ -9,24 +9,24 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class ShipmentArticle: Codable {
-        public var articleId: String?
-
         public var quantity: String?
+
+        public var articleId: String?
 
         public var meta: String?
 
         public enum CodingKeys: String, CodingKey {
-            case articleId = "article_id"
-
             case quantity
+
+            case articleId = "article_id"
 
             case meta
         }
 
         public init(articleId: String? = nil, meta: String? = nil, quantity: String? = nil) {
-            self.articleId = articleId
-
             self.quantity = quantity
+
+            self.articleId = articleId
 
             self.meta = meta
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                quantity = try container.decode(String.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                quantity = try container.decode(String.self, forKey: .quantity)
+                articleId = try container.decode(String.self, forKey: .articleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(articleId, forKey: .articleId)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
         }

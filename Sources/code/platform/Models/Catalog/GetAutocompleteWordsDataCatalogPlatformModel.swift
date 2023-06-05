@@ -11,26 +11,26 @@ public extension PlatformClient.Catalog {
     class GetAutocompleteWordsData: Codable {
         public var uid: String?
 
-        public var customJson: [String: Any]?
-
-        public var words: [String]?
+        public var results: [AutocompleteResult]?
 
         public var isActive: Bool?
 
-        public var results: [AutocompleteResult]?
+        public var customJson: [String: Any]?
+
+        public var words: [String]?
 
         public var appId: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case customJson = "_custom_json"
-
-            case words
+            case results
 
             case isActive = "is_active"
 
-            case results
+            case customJson = "_custom_json"
+
+            case words
 
             case appId = "app_id"
         }
@@ -38,13 +38,13 @@ public extension PlatformClient.Catalog {
         public init(appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.uid = uid
 
-            self.customJson = customJson
-
-            self.words = words
+            self.results = results
 
             self.isActive = isActive
 
-            self.results = results
+            self.customJson = customJson
+
+            self.words = words
 
             self.appId = appId
         }
@@ -54,6 +54,22 @@ public extension PlatformClient.Catalog {
 
             do {
                 uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                results = try container.decode([AutocompleteResult].self, forKey: .results)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,22 +93,6 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                results = try container.decode([AutocompleteResult].self, forKey: .results)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -106,13 +106,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(words, forKey: .words)
+            try? container.encodeIfPresent(results, forKey: .results)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(results, forKey: .results)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
         }
@@ -128,26 +128,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetAutocompleteWordsData: Codable {
         public var uid: String?
 
-        public var customJson: [String: Any]?
-
-        public var words: [String]?
+        public var results: [AutocompleteResult]?
 
         public var isActive: Bool?
 
-        public var results: [AutocompleteResult]?
+        public var customJson: [String: Any]?
+
+        public var words: [String]?
 
         public var appId: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case customJson = "_custom_json"
-
-            case words
+            case results
 
             case isActive = "is_active"
 
-            case results
+            case customJson = "_custom_json"
+
+            case words
 
             case appId = "app_id"
         }
@@ -155,13 +155,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(appId: String? = nil, isActive: Bool? = nil, results: [AutocompleteResult]? = nil, uid: String? = nil, words: [String]? = nil, customJson: [String: Any]? = nil) {
             self.uid = uid
 
-            self.customJson = customJson
-
-            self.words = words
+            self.results = results
 
             self.isActive = isActive
 
-            self.results = results
+            self.customJson = customJson
+
+            self.words = words
 
             self.appId = appId
         }
@@ -171,6 +171,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                results = try container.decode([AutocompleteResult].self, forKey: .results)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,22 +210,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                results = try container.decode([AutocompleteResult].self, forKey: .results)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -223,13 +223,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(words, forKey: .words)
+            try? container.encodeIfPresent(results, forKey: .results)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(results, forKey: .results)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
         }
