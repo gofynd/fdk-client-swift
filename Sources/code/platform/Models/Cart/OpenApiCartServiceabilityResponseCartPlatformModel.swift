@@ -11,9 +11,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class OpenApiCartServiceabilityResponse: Codable {
         public var deliveryPromise: ShipmentPromise?
 
-        public var breakupValues: CartBreakup?
-
         public var isValid: Bool?
+
+        public var breakupValues: CartBreakup?
 
         public var message: String?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case deliveryPromise = "delivery_promise"
 
-            case breakupValues = "breakup_values"
-
             case isValid = "is_valid"
+
+            case breakupValues = "breakup_values"
 
             case message
 
@@ -34,9 +34,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(breakupValues: CartBreakup? = nil, deliveryPromise: ShipmentPromise? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
             self.deliveryPromise = deliveryPromise
 
-            self.breakupValues = breakupValues
-
             self.isValid = isValid
+
+            self.breakupValues = breakupValues
 
             self.message = message
 
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
+                isValid = try container.decode(Bool.self, forKey: .isValid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                isValid = try container.decode(Bool.self, forKey: .isValid)
+                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
 
-            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-
             try? container.encodeIfPresent(isValid, forKey: .isValid)
+
+            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
 
             try? container.encodeIfPresent(message, forKey: .message)
 

@@ -9,24 +9,24 @@ public extension PlatformClient.Finance {
      */
 
     class InvoicePdfResponse: Codable {
-        public var data: [String]?
-
         public var error: [String]?
+
+        public var data: [String]?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case data
-
             case error
+
+            case data
 
             case success
         }
 
         public init(data: [String]? = nil, error: [String]? = nil, success: Bool? = nil) {
-            self.data = data
-
             self.error = error
+
+            self.data = data
 
             self.success = success
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode([String].self, forKey: .data)
+                error = try container.decode([String].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                error = try container.decode([String].self, forKey: .error)
+                data = try container.decode([String].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

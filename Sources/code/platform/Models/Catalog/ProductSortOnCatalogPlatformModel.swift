@@ -11,36 +11,36 @@ public extension PlatformClient.Catalog {
     class ProductSortOn: Codable {
         public var display: String?
 
-        public var isSelected: Bool?
-
-        public var name: String?
-
         public var logo: String?
 
+        public var isSelected: Bool?
+
         public var value: String?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case isSelected = "is_selected"
-
-            case name
-
             case logo
 
+            case isSelected = "is_selected"
+
             case value
+
+            case name
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, logo: String? = nil, name: String? = nil, value: String? = nil) {
             self.display = display
 
-            self.isSelected = isSelected
-
-            self.name = name
-
             self.logo = logo
 
+            self.isSelected = isSelected
+
             self.value = value
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,22 +48,6 @@ public extension PlatformClient.Catalog {
 
             do {
                 display = try container.decode(String.self, forKey: .display)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +63,23 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,13 +92,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
+            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -112,36 +112,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductSortOn: Codable {
         public var display: String?
 
-        public var isSelected: Bool?
-
-        public var name: String?
-
         public var logo: String?
 
+        public var isSelected: Bool?
+
         public var value: String?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case isSelected = "is_selected"
-
-            case name
-
             case logo
 
+            case isSelected = "is_selected"
+
             case value
+
+            case name
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, logo: String? = nil, name: String? = nil, value: String? = nil) {
             self.display = display
 
-            self.isSelected = isSelected
-
-            self.name = name
-
             self.logo = logo
 
+            self.isSelected = isSelected
+
             self.value = value
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -149,22 +149,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 display = try container.decode(String.self, forKey: .display)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +164,23 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,13 +193,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
+            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

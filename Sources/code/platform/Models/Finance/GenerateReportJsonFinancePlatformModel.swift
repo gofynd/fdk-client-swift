@@ -9,48 +9,56 @@ public extension PlatformClient.Finance {
      */
 
     class GenerateReportJson: Codable {
-        public var headers: [String]?
-
-        public var itemCount: Int?
-
-        public var page: Page?
-
-        public var startDate: String?
-
         public var items: [[String]]?
+
+        public var headers: [String]?
 
         public var endDate: String?
 
+        public var startDate: String?
+
+        public var page: Page?
+
+        public var itemCount: Int?
+
         public enum CodingKeys: String, CodingKey {
+            case items
+
             case headers
 
-            case itemCount = "item_count"
-
-            case page
+            case endDate = "end_date"
 
             case startDate = "start_date"
 
-            case items
+            case page
 
-            case endDate = "end_date"
+            case itemCount = "item_count"
         }
 
         public init(endDate: String? = nil, headers: [String]? = nil, items: [[String]]? = nil, itemCount: Int? = nil, page: Page? = nil, startDate: String? = nil) {
+            self.items = items
+
             self.headers = headers
 
-            self.itemCount = itemCount
-
-            self.page = page
+            self.endDate = endDate
 
             self.startDate = startDate
 
-            self.items = items
+            self.page = page
 
-            self.endDate = endDate
+            self.itemCount = itemCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                items = try container.decode([[String]].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 headers = try container.decode([String].self, forKey: .headers)
@@ -61,15 +69,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                itemCount = try container.decode(Int.self, forKey: .itemCount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                page = try container.decode(Page.self, forKey: .page)
+                endDate = try container.decode(String.self, forKey: .endDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                items = try container.decode([[String]].self, forKey: .items)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                endDate = try container.decode(String.self, forKey: .endDate)
+                itemCount = try container.decode(Int.self, forKey: .itemCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,17 +104,17 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(items, forKey: .items)
+
             try? container.encodeIfPresent(headers, forKey: .headers)
 
-            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
-
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
 
             try? container.encodeIfPresent(startDate, forKey: .startDate)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
         }
     }
 }

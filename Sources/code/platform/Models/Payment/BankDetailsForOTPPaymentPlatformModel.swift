@@ -15,9 +15,9 @@ public extension PlatformClient.Payment {
 
         public var ifscCode: String
 
-        public var bankName: String
-
         public var branchName: String
+
+        public var bankName: String
 
         public enum CodingKeys: String, CodingKey {
             case accountNo = "account_no"
@@ -26,9 +26,9 @@ public extension PlatformClient.Payment {
 
             case ifscCode = "ifsc_code"
 
-            case bankName = "bank_name"
-
             case branchName = "branch_name"
+
+            case bankName = "bank_name"
         }
 
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Payment {
 
             self.ifscCode = ifscCode
 
-            self.bankName = bankName
-
             self.branchName = branchName
+
+            self.bankName = bankName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Payment {
 
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
-            bankName = try container.decode(String.self, forKey: .bankName)
-
             branchName = try container.decode(String.self, forKey: .branchName)
+
+            bankName = try container.decode(String.self, forKey: .bankName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +66,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
-
             try? container.encodeIfPresent(branchName, forKey: .branchName)
+
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
         }
     }
 }
@@ -86,9 +86,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var ifscCode: String
 
-        public var bankName: String
-
         public var branchName: String
+
+        public var bankName: String
 
         public enum CodingKeys: String, CodingKey {
             case accountNo = "account_no"
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case ifscCode = "ifsc_code"
 
-            case bankName = "bank_name"
-
             case branchName = "branch_name"
+
+            case bankName = "bank_name"
         }
 
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.ifscCode = ifscCode
 
-            self.bankName = bankName
-
             self.branchName = branchName
+
+            self.bankName = bankName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
 
-            bankName = try container.decode(String.self, forKey: .bankName)
-
             branchName = try container.decode(String.self, forKey: .branchName)
+
+            bankName = try container.decode(String.self, forKey: .bankName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
 
-            try? container.encodeIfPresent(bankName, forKey: .bankName)
-
             try? container.encodeIfPresent(branchName, forKey: .branchName)
+
+            try? container.encodeIfPresent(bankName, forKey: .bankName)
         }
     }
 }

@@ -9,30 +9,30 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class DisplayMeta1: Codable {
-        public var offerLabel: String?
+        public var offerText: String?
 
         public var description: String?
 
-        public var offerText: String?
+        public var offerLabel: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case offerLabel = "offer_label"
+            case offerText = "offer_text"
 
             case description
 
-            case offerText = "offer_text"
+            case offerLabel = "offer_label"
 
             case name
         }
 
         public init(description: String? = nil, name: String? = nil, offerLabel: String? = nil, offerText: String? = nil) {
-            self.offerLabel = offerLabel
+            self.offerText = offerText
 
             self.description = description
 
-            self.offerText = offerText
+            self.offerLabel = offerLabel
 
             self.name = name
         }
@@ -41,7 +41,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                offerLabel = try container.decode(String.self, forKey: .offerLabel)
+                offerText = try container.decode(String.self, forKey: .offerText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                offerText = try container.decode(String.self, forKey: .offerText)
+                offerLabel = try container.decode(String.self, forKey: .offerLabel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(offerLabel, forKey: .offerLabel)
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(offerText, forKey: .offerText)
+            try? container.encodeIfPresent(offerLabel, forKey: .offerLabel)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

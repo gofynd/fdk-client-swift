@@ -457,6 +457,7 @@ public extension PlatformClient {
             fromDate: String?,
             toDate: String?,
             dpIds: String?,
+            salesChannel: String?,
             pageNo: Int?,
             pageSize: Int?,
             isPrioritySort: Bool?,
@@ -504,6 +505,10 @@ public extension PlatformClient {
 
             if let value = dpIds {
                 xQuery["dp_ids"] = value
+            }
+
+            if let value = salesChannel {
+                xQuery["sales_channel"] = value
             }
 
             if let value = pageNo {

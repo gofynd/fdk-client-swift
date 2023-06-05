@@ -11,18 +11,18 @@ public extension ApplicationClient.Payment {
 
         public var error: [String: Any]?
 
-        public var data: [String: Any]?
-
         public var message: String
+
+        public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case error
 
-            case data
-
             case message
+
+            case data
         }
 
         public init(data: [String: Any]? = nil, error: [String: Any]? = nil, message: String, success: Bool) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Payment {
 
             self.error = error
 
-            self.data = data
-
             self.message = message
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,6 +48,8 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            message = try container.decode(String.self, forKey: .message)
+
             do {
                 data = try container.decode([String: Any].self, forKey: .data)
 
@@ -55,8 +57,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +66,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(error, forKey: .error)
 
-            try? container.encode(data, forKey: .data)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encode(data, forKey: .data)
         }
     }
 }

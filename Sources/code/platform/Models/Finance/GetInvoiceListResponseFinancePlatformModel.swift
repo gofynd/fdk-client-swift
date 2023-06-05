@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class GetInvoiceListResponse: Codable {
         public var paymentStatusList: [[String: Any]]?
 
-        public var success: Bool?
-
         public var invoiceTypeList: [[String: Any]]?
+
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case paymentStatusList = "payment_status_list"
 
-            case success
-
             case invoiceTypeList = "invoice_type_list"
+
+            case success
         }
 
         public init(invoiceTypeList: [[String: Any]]? = nil, paymentStatusList: [[String: Any]]? = nil, success: Bool? = nil) {
             self.paymentStatusList = paymentStatusList
 
-            self.success = success
-
             self.invoiceTypeList = invoiceTypeList
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                invoiceTypeList = try container.decode([[String: Any]].self, forKey: .invoiceTypeList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                invoiceTypeList = try container.decode([[String: Any]].self, forKey: .invoiceTypeList)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(paymentStatusList, forKey: .paymentStatusList)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(invoiceTypeList, forKey: .invoiceTypeList)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
