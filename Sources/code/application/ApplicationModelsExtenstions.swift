@@ -3,9 +3,9 @@ import Foundation
     import FoundationNetworking
 #endif
 
-public extension ApplicationClient.ActionPage {
-    static func convertURLToAction(urlString: String) -> ApplicationClient.ActionPage? {
-        ApplicationClient.ActionPage(urlString: urlString)
+public extension ApplicationClient.Content.ActionPage {
+    static func convertURLToAction(urlString: String) -> ApplicationClient.Content.ActionPage? {
+        ApplicationClient.Content.ActionPage(urlString: urlString)
     }
 
     convenience init?(urlString: String) {
@@ -17,7 +17,7 @@ public extension ApplicationClient.ActionPage {
             urlComp = URLComponents(string: "https://\(urlString)")
         }
         guard let urlComponents = urlComp else { return nil }
-        guard let type = ApplicationClient.PageType(path: urlComponents.percentEncodedPath) else { return nil }
+        guard let type = ApplicationClient.Content.PageType(path: urlComponents.percentEncodedPath) else { return nil }
         for item in urlComponents.queryItems ?? [] {
             if let queryValue = item.value {
                 if var list = query[item.name] {
