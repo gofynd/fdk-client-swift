@@ -27,8 +27,6 @@ public extension PlatformClient.Billing {
 
         public var modifiedAt: String?
 
-        public var creditBalance: Double?
-
         public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
@@ -50,12 +48,10 @@ public extension PlatformClient.Billing {
 
             case modifiedAt = "modified_at"
 
-            case creditBalance = "credit_balance"
-
             case data
         }
 
-        public init(billingAddress: SubscriptionBillingAddress? = nil, createdAt: String? = nil, creditBalance: Double? = nil, data: [String: Any]? = nil, email: String? = nil, modifiedAt: String? = nil, name: String? = nil, phone: Phone? = nil, type: String? = nil, uniqueId: String? = nil, id: String? = nil) {
+        public init(billingAddress: SubscriptionBillingAddress? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: String? = nil, modifiedAt: String? = nil, name: String? = nil, phone: Phone? = nil, type: String? = nil, uniqueId: String? = nil, id: String? = nil) {
             self.phone = phone
 
             self.billingAddress = billingAddress
@@ -73,8 +69,6 @@ public extension PlatformClient.Billing {
             self.createdAt = createdAt
 
             self.modifiedAt = modifiedAt
-
-            self.creditBalance = creditBalance
 
             self.data = data
         }
@@ -155,14 +149,6 @@ public extension PlatformClient.Billing {
             } catch {}
 
             do {
-                creditBalance = try container.decode(Double.self, forKey: .creditBalance)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -191,8 +177,6 @@ public extension PlatformClient.Billing {
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
-
-            try? container.encodeIfPresent(creditBalance, forKey: .creditBalance)
 
             try? container.encodeIfPresent(data, forKey: .data)
         }

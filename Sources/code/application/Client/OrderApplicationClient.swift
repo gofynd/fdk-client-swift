@@ -167,7 +167,7 @@ public extension ApplicationClient {
         public func getPosOrderById(
             orderId: String,
 
-            onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["getPosOrderById"] ?? ""
 
@@ -189,7 +189,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(OrderList.self, from: data)
+                        let response = Utility.decode(OrderById.self, from: data)
 
                         onResponse(response, nil)
                     } else {

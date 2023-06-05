@@ -9,7 +9,7 @@ public extension PlatformClient.Order {
      */
 
     class SendUserMobileOTP: Codable {
-        public var mobile: Int
+        public var mobile: String
 
         public var countryCode: String?
 
@@ -19,7 +19,7 @@ public extension PlatformClient.Order {
             case countryCode = "country_code"
         }
 
-        public init(countryCode: String? = nil, mobile: Int) {
+        public init(countryCode: String? = nil, mobile: String) {
             self.mobile = mobile
 
             self.countryCode = countryCode
@@ -28,7 +28,7 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            mobile = try container.decode(Int.self, forKey: .mobile)
+            mobile = try container.decode(String.self, forKey: .mobile)
 
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
@@ -56,7 +56,7 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class SendUserMobileOTP: Codable {
-        public var mobile: Int
+        public var mobile: String
 
         public var countryCode: String?
 
@@ -66,7 +66,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case countryCode = "country_code"
         }
 
-        public init(countryCode: String? = nil, mobile: Int) {
+        public init(countryCode: String? = nil, mobile: String) {
             self.mobile = mobile
 
             self.countryCode = countryCode
@@ -75,7 +75,7 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            mobile = try container.decode(Int.self, forKey: .mobile)
+            mobile = try container.decode(String.self, forKey: .mobile)
 
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)

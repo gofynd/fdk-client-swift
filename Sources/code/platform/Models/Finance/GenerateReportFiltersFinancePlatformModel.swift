@@ -9,24 +9,24 @@ public extension PlatformClient.Finance {
      */
 
     class GenerateReportFilters: Codable {
-        public var brand: [String]?
-
         public var company: [String]?
+
+        public var brand: [String]?
 
         public var channel: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case brand
-
             case company
+
+            case brand
 
             case channel
         }
 
         public init(brand: [String]? = nil, channel: [String]? = nil, company: [String]? = nil) {
-            self.brand = brand
-
             self.company = company
+
+            self.brand = brand
 
             self.channel = channel
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brand = try container.decode([String].self, forKey: .brand)
+                company = try container.decode([String].self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                company = try container.decode([String].self, forKey: .company)
+                brand = try container.decode([String].self, forKey: .brand)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
             try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
 
             try? container.encodeIfPresent(channel, forKey: .channel)
         }

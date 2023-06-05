@@ -13,22 +13,22 @@ public extension PlatformClient.Payment {
 
         public var success: String
 
-        public var status: Int
-
         public var count: Int?
 
         public var data: [PaymentStatusObject]?
+
+        public var status: Int
 
         public enum CodingKeys: String, CodingKey {
             case error
 
             case success
 
-            case status
-
             case count
 
             case data
+
+            case status
         }
 
         public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Payment {
 
             self.success = success
 
-            self.status = status
-
             self.count = count
 
             self.data = data
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,8 +55,6 @@ public extension PlatformClient.Payment {
             } catch {}
 
             success = try container.decode(String.self, forKey: .success)
-
-            status = try container.decode(Int.self, forKey: .status)
 
             do {
                 count = try container.decode(Int.self, forKey: .count)
@@ -73,6 +71,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -82,11 +82,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(count, forKey: .count)
 
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
@@ -102,22 +102,22 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var success: String
 
-        public var status: Int
-
         public var count: Int?
 
         public var data: [PaymentStatusObject]?
+
+        public var status: Int
 
         public enum CodingKeys: String, CodingKey {
             case error
 
             case success
 
-            case status
-
             case count
 
             case data
+
+            case status
         }
 
         public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
@@ -125,11 +125,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.success = success
 
-            self.status = status
-
             self.count = count
 
             self.data = data
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -144,8 +144,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             success = try container.decode(String.self, forKey: .success)
-
-            status = try container.decode(Int.self, forKey: .status)
 
             do {
                 count = try container.decode(Int.self, forKey: .count)
@@ -162,6 +160,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -171,11 +171,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(count, forKey: .count)
 
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

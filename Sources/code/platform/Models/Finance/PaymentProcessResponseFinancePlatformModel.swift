@@ -9,36 +9,36 @@ public extension PlatformClient.Finance {
      */
 
     class PaymentProcessResponse: Codable {
-        public var transactionId: String?
+        public var redirectUrl: String?
 
         public var message: String?
 
         public var meta: [String: Any]?
 
-        public var redirectUrl: String?
+        public var transactionId: String?
 
         public var code: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case transactionId = "transaction_id"
+            case redirectUrl = "redirect_url"
 
             case message
 
             case meta
 
-            case redirectUrl = "redirect_url"
+            case transactionId = "transaction_id"
 
             case code
         }
 
         public init(code: Int? = nil, message: String? = nil, meta: [String: Any]? = nil, redirectUrl: String? = nil, transactionId: String? = nil) {
-            self.transactionId = transactionId
+            self.redirectUrl = redirectUrl
 
             self.message = message
 
             self.meta = meta
 
-            self.redirectUrl = redirectUrl
+            self.transactionId = transactionId
 
             self.code = code
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                transactionId = try container.decode(String.self, forKey: .transactionId)
+                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+                transactionId = try container.decode(String.self, forKey: .transactionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
+            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
 
             try? container.encodeIfPresent(code, forKey: .code)
         }
