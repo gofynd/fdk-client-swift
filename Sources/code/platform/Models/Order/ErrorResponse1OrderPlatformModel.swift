@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var errorTrace: String?
 
-        public var status: Int?
-
         public var message: String?
+
+        public var status: Int?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case errorTrace = "error_trace"
 
-            case status
-
             case message
+
+            case status
         }
 
         public init(errorTrace: String? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.errorTrace = errorTrace
 
-            self.status = status
-
             self.message = message
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var errorTrace: String?
 
-        public var status: Int?
-
         public var message: String?
+
+        public var status: Int?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case errorTrace = "error_trace"
 
-            case status
-
             case message
+
+            case status
         }
 
         public init(errorTrace: String? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.errorTrace = errorTrace
 
-            self.status = status
-
             self.message = message
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
