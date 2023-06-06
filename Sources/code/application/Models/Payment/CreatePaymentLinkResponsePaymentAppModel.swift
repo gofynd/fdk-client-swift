@@ -11,26 +11,26 @@ public extension ApplicationClient.Payment {
 
         public var message: String
 
-        public var success: Bool
+        public var paymentLinkUrl: String?
 
         public var statusCode: Int
 
-        public var paymentLinkId: String?
+        public var success: Bool
 
-        public var paymentLinkUrl: String?
+        public var paymentLinkId: String?
 
         public enum CodingKeys: String, CodingKey {
             case pollingTimeout = "polling_timeout"
 
             case message
 
-            case success
+            case paymentLinkUrl = "payment_link_url"
 
             case statusCode = "status_code"
 
-            case paymentLinkId = "payment_link_id"
+            case success
 
-            case paymentLinkUrl = "payment_link_url"
+            case paymentLinkId = "payment_link_id"
         }
 
         public init(message: String, paymentLinkId: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
@@ -38,13 +38,13 @@ public extension ApplicationClient.Payment {
 
             self.message = message
 
-            self.success = success
+            self.paymentLinkUrl = paymentLinkUrl
 
             self.statusCode = statusCode
 
-            self.paymentLinkId = paymentLinkId
+            self.success = success
 
-            self.paymentLinkUrl = paymentLinkUrl
+            self.paymentLinkId = paymentLinkId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,20 +60,20 @@ public extension ApplicationClient.Payment {
 
             message = try container.decode(String.self, forKey: .message)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
-
             do {
-                paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
+                paymentLinkUrl = try container.decode(String.self, forKey: .paymentLinkUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
+
+            success = try container.decode(Bool.self, forKey: .success)
+
             do {
-                paymentLinkUrl = try container.decode(String.self, forKey: .paymentLinkUrl)
+                paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,13 +88,13 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+            try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
+            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
         }
     }
 }

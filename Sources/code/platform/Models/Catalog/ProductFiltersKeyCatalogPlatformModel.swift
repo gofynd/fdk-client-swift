@@ -11,36 +11,36 @@ public extension PlatformClient.Catalog {
     class ProductFiltersKey: Codable {
         public var display: String
 
+        public var kind: String?
+
+        public var logo: String?
+
         public var operators: [String]?
 
         public var name: String
 
-        public var logo: String?
-
-        public var kind: String?
-
         public enum CodingKeys: String, CodingKey {
             case display
+
+            case kind
+
+            case logo
 
             case operators
 
             case name
-
-            case logo
-
-            case kind
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
             self.display = display
 
-            self.operators = operators
-
-            self.name = name
+            self.kind = kind
 
             self.logo = logo
 
-            self.kind = kind
+            self.operators = operators
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,14 +49,12 @@ public extension PlatformClient.Catalog {
             display = try container.decode(String.self, forKey: .display)
 
             do {
-                operators = try container.decode([String].self, forKey: .operators)
+                kind = try container.decode(String.self, forKey: .kind)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -67,12 +65,14 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                kind = try container.decode(String.self, forKey: .kind)
+                operators = try container.decode([String].self, forKey: .operators)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -80,13 +80,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(kind, forKey: .kind)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(kind, forKey: .kind)
+            try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -100,36 +100,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductFiltersKey: Codable {
         public var display: String
 
+        public var kind: String?
+
+        public var logo: String?
+
         public var operators: [String]?
 
         public var name: String
 
-        public var logo: String?
-
-        public var kind: String?
-
         public enum CodingKeys: String, CodingKey {
             case display
+
+            case kind
+
+            case logo
 
             case operators
 
             case name
-
-            case logo
-
-            case kind
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
             self.display = display
 
-            self.operators = operators
-
-            self.name = name
+            self.kind = kind
 
             self.logo = logo
 
-            self.kind = kind
+            self.operators = operators
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -138,14 +138,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             display = try container.decode(String.self, forKey: .display)
 
             do {
-                operators = try container.decode([String].self, forKey: .operators)
+                kind = try container.decode(String.self, forKey: .kind)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -156,12 +154,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                kind = try container.decode(String.self, forKey: .kind)
+                operators = try container.decode([String].self, forKey: .operators)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -169,13 +169,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(kind, forKey: .kind)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(kind, forKey: .kind)
+            try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

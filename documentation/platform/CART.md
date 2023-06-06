@@ -4383,28 +4383,84 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | Int? |  yes  | Page requested |
- | itemTotal | Int? |  yes  | Total coupon count in system |
- | nextId | String? |  yes  | Cursor id for next set of records. |
- | hasPrevious | Bool? |  yes  | True if more records are present for previous pages. Sent for cursor pagination |
  | current | Int? |  yes  | Current page no |
- | type | String |  no  |  |
- | lastId | String? |  yes  | Last objects id |
+ | hasPrevious | Bool? |  yes  | True if more records are present for previous pages. Sent for cursor pagination |
+ | page | Int? |  yes  | Page requested |
+ | nextId | String? |  yes  | Cursor id for next set of records. |
  | size | Int? |  yes  | Current request page size |
+ | itemTotal | Int? |  yes  | Total coupon count in system |
+ | type | String |  no  |  |
  | hasNext | Bool? |  yes  | True if more records are present for next pages |
+ | lastId | String? |  yes  | Last objects id |
 
 ---
 
 
  
  
- #### [Validation](#Validation)
+ #### [CouponSchedule](#CouponSchedule)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | appId | [String]? |  yes  |  |
- | userRegisteredAfter | String? |  yes  |  |
- | anonymous | Bool? |  yes  |  |
+ | nextSchedule | [[String: Any]]? |  yes  |  |
+ | end | String? |  yes  |  |
+ | duration | Int? |  yes  |  |
+ | start | String? |  yes  |  |
+ | cron | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponAction](#CouponAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | txnMode | String? |  yes  |  |
+ | actionDate | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Identifier](#Identifier)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | categoryId | [Int]? |  yes  |  |
+ | articleId | [String]? |  yes  |  |
+ | storeId | [Int]? |  yes  |  |
+ | userId | [String]? |  yes  |  |
+ | brandId | [Int]? |  yes  |  |
+ | companyId | [Int]? |  yes  |  |
+ | itemId | [Int]? |  yes  |  |
+ | collectionId | [String]? |  yes  |  |
+ | excludeBrandId | [Int]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponDateMeta](#CouponDateMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | createdOn | String? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Validity](#Validity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | Int? |  yes  |  |
 
 ---
 
@@ -4415,8 +4471,8 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
  | subtitle | String? |  yes  |  |
+ | title | String? |  yes  |  |
 
 ---
 
@@ -4427,12 +4483,62 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | remove | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
  | subtitle | String? |  yes  |  |
- | description | String? |  yes  |  |
  | title | String? |  yes  |  |
+ | description | String? |  yes  |  |
  | auto | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
  | apply | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
- | remove | [DisplayMetaDict](#DisplayMetaDict)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [State](#State)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isArchived | Bool? |  yes  |  |
+ | isDisplay | Bool? |  yes  |  |
+ | isPublic | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Validation](#Validation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userRegisteredAfter | String? |  yes  |  |
+ | anonymous | Bool? |  yes  |  |
+ | appId | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponAuthor](#CouponAuthor)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | modifiedBy | String? |  yes  |  |
+ | createdBy | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Ownership](#Ownership)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payableBy | String |  no  |  |
+ | payableCategory | String |  no  |  |
 
 ---
 
@@ -4455,21 +4561,21 @@ Valid response with existing promotion code count
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | types | [String]? |  yes  |  |
+ | uses | [PaymentAllowValue](#PaymentAllowValue)? |  yes  |  |
  | networks | [String]? |  yes  |  |
  | codes | [String]? |  yes  |  |
- | uses | [PaymentAllowValue](#PaymentAllowValue)? |  yes  |  |
 
 ---
 
 
  
  
- #### [PriceRange](#PriceRange)
+ #### [PostOrder](#PostOrder)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | Int? |  yes  |  |
- | max | Int? |  yes  |  |
+ | cancellationAllowed | Bool? |  yes  |  |
+ | returnAllowed | Bool? |  yes  |  |
 
 ---
 
@@ -4480,8 +4586,8 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app | Int? |  yes  |  |
  | user | Int? |  yes  |  |
+ | app | Int? |  yes  |  |
  | total | Int? |  yes  |  |
 
 ---
@@ -4512,12 +4618,12 @@ Valid response with existing promotion code count
 
  
  
- #### [PostOrder](#PostOrder)
+ #### [PriceRange](#PriceRange)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancellationAllowed | Bool? |  yes  |  |
- | returnAllowed | Bool? |  yes  |  |
+ | max | Int? |  yes  |  |
+ | min | Int? |  yes  |  |
 
 ---
 
@@ -4529,13 +4635,13 @@ Valid response with existing promotion code count
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | payments | [String: [PaymentModes](#PaymentModes)]? |  yes  |  |
- | priceRange | [PriceRange](#PriceRange)? |  yes  |  |
- | uses | [UsesRestriction](#UsesRestriction)? |  yes  |  |
+ | postOrder | [PostOrder](#PostOrder)? |  yes  |  |
  | orderingStores | [Int]? |  yes  |  |
+ | uses | [UsesRestriction](#UsesRestriction)? |  yes  |  |
+ | userGroups | [Int]? |  yes  |  |
  | couponAllowed | Bool? |  yes  |  |
  | bulkBundle | [BulkBundleRestriction](#BulkBundleRestriction)? |  yes  |  |
- | userGroups | [Int]? |  yes  |  |
- | postOrder | [PostOrder](#PostOrder)? |  yes  |  |
+ | priceRange | [PriceRange](#PriceRange)? |  yes  |  |
  | platforms | [String]? |  yes  |  |
 
 ---
@@ -4543,27 +4649,18 @@ Valid response with existing promotion code count
 
  
  
- #### [CouponAction](#CouponAction)
+ #### [RuleDefinition](#RuleDefinition)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | actionDate | String? |  yes  |  |
- | txnMode | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CouponSchedule](#CouponSchedule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | start | String? |  yes  |  |
- | cron | String? |  yes  |  |
- | duration | Int? |  yes  |  |
- | end | String? |  yes  |  |
- | nextSchedule | [[String: Any]]? |  yes  |  |
+ | applicableOn | String |  no  |  |
+ | valueType | String |  no  |  |
+ | isExact | Bool? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | calculateOn | String |  no  |  |
+ | type | String |  no  |  |
+ | scope | [String]? |  yes  |  |
+ | autoApply | Bool? |  yes  |  |
 
 ---
 
@@ -4576,106 +4673,9 @@ Valid response with existing promotion code count
  | ---------- | ---- | -------- | ----------- |
  | discountQty | Double? |  yes  |  |
  | value | Double? |  yes  |  |
+ | max | Double? |  yes  |  |
  | min | Double? |  yes  |  |
  | key | Double? |  yes  |  |
- | max | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [Ownership](#Ownership)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payableBy | String |  no  |  |
- | payableCategory | String |  no  |  |
-
----
-
-
- 
- 
- #### [RuleDefinition](#RuleDefinition)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | calculateOn | String |  no  |  |
- | type | String |  no  |  |
- | isExact | Bool? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | autoApply | Bool? |  yes  |  |
- | valueType | String |  no  |  |
- | scope | [String]? |  yes  |  |
- | applicableOn | String |  no  |  |
-
----
-
-
- 
- 
- #### [Identifier](#Identifier)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brandId | [Int]? |  yes  |  |
- | itemId | [Int]? |  yes  |  |
- | excludeBrandId | [Int]? |  yes  |  |
- | articleId | [String]? |  yes  |  |
- | userId | [String]? |  yes  |  |
- | companyId | [Int]? |  yes  |  |
- | collectionId | [String]? |  yes  |  |
- | storeId | [Int]? |  yes  |  |
- | categoryId | [Int]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CouponDateMeta](#CouponDateMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | createdOn | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CouponAuthor](#CouponAuthor)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | createdBy | String? |  yes  |  |
- | modifiedBy | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [State](#State)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isDisplay | Bool? |  yes  |  |
- | isPublic | Bool? |  yes  |  |
- | isArchived | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Validity](#Validity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | Int? |  yes  |  |
 
 ---
 
@@ -4686,22 +4686,22 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | validation | [Validation](#Validation)? |  yes  |  |
- | displayMeta | [DisplayMeta](#DisplayMeta) |  no  |  |
- | restrictions | [Restrictions](#Restrictions)? |  yes  |  |
- | action | [CouponAction](#CouponAction)? |  yes  |  |
  | schedule | [CouponSchedule](#CouponSchedule)? |  yes  |  |
- | rule | [[Rule](#Rule)] |  no  |  |
- | ownership | [Ownership](#Ownership) |  no  |  |
- | ruleDefinition | [RuleDefinition](#RuleDefinition) |  no  |  |
+ | action | [CouponAction](#CouponAction)? |  yes  |  |
  | identifiers | [Identifier](#Identifier) |  no  |  |
  | dateMeta | [CouponDateMeta](#CouponDateMeta)? |  yes  |  |
- | author | [CouponAuthor](#CouponAuthor)? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | state | [State](#State)? |  yes  |  |
  | validity | [Validity](#Validity) |  no  |  |
+ | displayMeta | [DisplayMeta](#DisplayMeta) |  no  |  |
+ | state | [State](#State)? |  yes  |  |
+ | tags | [String]? |  yes  |  |
  | code | String |  no  |  |
+ | validation | [Validation](#Validation)? |  yes  |  |
+ | author | [CouponAuthor](#CouponAuthor)? |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  no  |  |
+ | restrictions | [Restrictions](#Restrictions)? |  yes  |  |
  | typeSlug | String |  no  |  |
+ | ruleDefinition | [RuleDefinition](#RuleDefinition) |  no  |  |
+ | rule | [[Rule](#Rule)] |  no  |  |
 
 ---
 
@@ -4724,8 +4724,8 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -4736,8 +4736,8 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -4748,22 +4748,22 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | validation | [Validation](#Validation)? |  yes  |  |
- | displayMeta | [DisplayMeta](#DisplayMeta) |  no  |  |
- | restrictions | [Restrictions](#Restrictions)? |  yes  |  |
- | action | [CouponAction](#CouponAction)? |  yes  |  |
  | schedule | [CouponSchedule](#CouponSchedule)? |  yes  |  |
- | rule | [[Rule](#Rule)] |  no  |  |
- | ownership | [Ownership](#Ownership) |  no  |  |
- | ruleDefinition | [RuleDefinition](#RuleDefinition) |  no  |  |
+ | action | [CouponAction](#CouponAction)? |  yes  |  |
  | identifiers | [Identifier](#Identifier) |  no  |  |
  | dateMeta | [CouponDateMeta](#CouponDateMeta)? |  yes  |  |
- | author | [CouponAuthor](#CouponAuthor)? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | state | [State](#State)? |  yes  |  |
  | validity | [Validity](#Validity) |  no  |  |
+ | displayMeta | [DisplayMeta](#DisplayMeta) |  no  |  |
+ | state | [State](#State)? |  yes  |  |
+ | tags | [String]? |  yes  |  |
  | code | String |  no  |  |
+ | validation | [Validation](#Validation)? |  yes  |  |
+ | author | [CouponAuthor](#CouponAuthor)? |  yes  |  |
+ | ownership | [Ownership](#Ownership) |  no  |  |
+ | restrictions | [Restrictions](#Restrictions)? |  yes  |  |
  | typeSlug | String |  no  |  |
+ | ruleDefinition | [RuleDefinition](#RuleDefinition) |  no  |  |
+ | rule | [[Rule](#Rule)] |  no  |  |
 
 ---
 
@@ -4786,12 +4786,12 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | start | String |  no  |  |
- | cron | String? |  yes  |  |
- | duration | Int? |  yes  |  |
+ | nextSchedule | [[String: Any]]? |  yes  |  |
  | published | Bool |  no  |  |
  | end | String? |  yes  |  |
- | nextSchedule | [[String: Any]]? |  yes  |  |
+ | duration | Int? |  yes  |  |
+ | start | String |  no  |  |
+ | cron | String? |  yes  |  |
 
 ---
 
@@ -4810,31 +4810,6 @@ Valid response with existing promotion code count
 
  
  
- #### [DisplayMeta1](#DisplayMeta1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | String? |  yes  |  |
- | offerText | String? |  yes  |  |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PromotionAction](#PromotionAction)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | actionDate | String |  no  |  |
- | actionType | String |  no  |  |
-
----
-
-
- 
- 
  #### [Ownership1](#Ownership1)
 
  | Properties | Type | Nullable | Description |
@@ -4847,41 +4822,24 @@ Valid response with existing promotion code count
 
  
  
- #### [CompareObject](#CompareObject)
+ #### [Visibility](#Visibility)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | greaterThan | Double? |  yes  |  |
- | lessThanEquals | Double? |  yes  |  |
- | equals | Double? |  yes  |  |
- | greaterThanEquals | Double? |  yes  |  |
- | lessThan | Double? |  yes  |  |
+ | pdp | Bool |  no  |  |
+ | couponList | Bool |  no  |  |
 
 ---
 
 
  
  
- #### [ItemCriteria](#ItemCriteria)
+ #### [PromotionAction](#PromotionAction)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allItems | Bool? |  yes  |  |
- | itemSize | [String]? |  yes  |  |
- | itemBrand | [Int]? |  yes  |  |
- | itemCompany | [Int]? |  yes  |  |
- | itemId | [Int]? |  yes  |  |
- | cartTotal | [CompareObject](#CompareObject)? |  yes  |  |
- | itemCategory | [Int]? |  yes  |  |
- | itemExcludeCategory | [Int]? |  yes  |  |
- | itemExcludeCompany | [Int]? |  yes  |  |
- | itemExcludeBrand | [Int]? |  yes  |  |
- | buyRules | [String]? |  yes  |  |
- | itemExcludeStore | [Int]? |  yes  |  |
- | itemSku | [String]? |  yes  |  |
- | cartQuantity | [CompareObject](#CompareObject)? |  yes  |  |
- | itemStore | [Int]? |  yes  |  |
- | itemExcludeSku | [String]? |  yes  |  |
+ | actionType | String |  no  |  |
+ | actionDate | String |  no  |  |
 
 ---
 
@@ -4912,12 +4870,12 @@ Valid response with existing promotion code count
 
  
  
- #### [UserRegistered](#UserRegistered)
+ #### [PostOrder1](#PostOrder1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | start | String? |  yes  |  |
- | end | String? |  yes  |  |
+ | cancellationAllowed | Bool? |  yes  |  |
+ | returnAllowed | Bool? |  yes  |  |
 
 ---
 
@@ -4948,12 +4906,12 @@ Valid response with existing promotion code count
 
  
  
- #### [PostOrder1](#PostOrder1)
+ #### [UserRegistered](#UserRegistered)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cancellationAllowed | Bool? |  yes  |  |
- | returnAllowed | Bool? |  yes  |  |
+ | end | String? |  yes  |  |
+ | start | String? |  yes  |  |
 
 ---
 
@@ -4965,14 +4923,55 @@ Valid response with existing promotion code count
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | payments | [[PromotionPaymentModes](#PromotionPaymentModes)]? |  yes  |  |
- | userRegistered | [UserRegistered](#UserRegistered)? |  yes  |  |
- | uses | [UsesRestriction1](#UsesRestriction1) |  no  |  |
- | orderQuantity | Int? |  yes  |  |
- | anonymousUsers | Bool? |  yes  |  |
- | userGroups | [Int]? |  yes  |  |
- | userId | [String]? |  yes  |  |
  | postOrder | [PostOrder1](#PostOrder1)? |  yes  |  |
+ | uses | [UsesRestriction1](#UsesRestriction1) |  no  |  |
+ | userId | [String]? |  yes  |  |
+ | userRegistered | [UserRegistered](#UserRegistered)? |  yes  |  |
+ | orderQuantity | Int? |  yes  |  |
+ | userGroups | [Int]? |  yes  |  |
  | platforms | [String]? |  yes  |  |
+ | anonymousUsers | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CompareObject](#CompareObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | greaterThanEquals | Double? |  yes  |  |
+ | greaterThan | Double? |  yes  |  |
+ | equals | Double? |  yes  |  |
+ | lessThanEquals | Double? |  yes  |  |
+ | lessThan | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ItemCriteria](#ItemCriteria)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemCategory | [Int]? |  yes  |  |
+ | itemBrand | [Int]? |  yes  |  |
+ | itemStore | [Int]? |  yes  |  |
+ | itemCompany | [Int]? |  yes  |  |
+ | cartQuantity | [CompareObject](#CompareObject)? |  yes  |  |
+ | buyRules | [String]? |  yes  |  |
+ | itemExcludeSku | [String]? |  yes  |  |
+ | itemExcludeStore | [Int]? |  yes  |  |
+ | allItems | Bool? |  yes  |  |
+ | itemExcludeCategory | [Int]? |  yes  |  |
+ | itemExcludeBrand | [Int]? |  yes  |  |
+ | cartTotal | [CompareObject](#CompareObject)? |  yes  |  |
+ | itemSize | [String]? |  yes  |  |
+ | itemSku | [String]? |  yes  |  |
+ | itemId | [Int]? |  yes  |  |
+ | itemExcludeCompany | [Int]? |  yes  |  |
 
 ---
 
@@ -4983,13 +4982,13 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | discountAmount | Double? |  yes  |  |
  | discountPercentage | Double? |  yes  |  |
  | discountPrice | Double? |  yes  |  |
- | maxOfferQuantity | Int? |  yes  |  |
- | maxDiscountAmount | Double? |  yes  |  |
- | minOfferQuantity | Int? |  yes  |  |
  | code | String? |  yes  |  |
+ | discountAmount | Double? |  yes  |  |
+ | maxDiscountAmount | Double? |  yes  |  |
+ | maxOfferQuantity | Int? |  yes  |  |
+ | minOfferQuantity | Int? |  yes  |  |
 
 ---
 
@@ -5000,10 +4999,23 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | offer | [DiscountOffer](#DiscountOffer) |  no  |  |
  | discountType | String |  no  |  |
  | buyCondition | String |  no  |  |
  | itemCriteria | [ItemCriteria](#ItemCriteria) |  no  |  |
+ | offer | [DiscountOffer](#DiscountOffer) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayMeta1](#DisplayMeta1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | offerText | String? |  yes  |  |
+ | description | String? |  yes  |  |
 
 ---
 
@@ -5014,20 +5026,8 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | createdBy | String? |  yes  |  |
  | modifiedBy | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Visibility](#Visibility)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | couponList | Bool |  no  |  |
- | pdp | Bool |  no  |  |
+ | createdBy | String? |  yes  |  |
 
 ---
 
@@ -5038,27 +5038,27 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customJson | [String: Any]? |  yes  |  |
  | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
- | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
- | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
- | ownership | [Ownership1](#Ownership1) |  no  |  |
- | promotionType | String |  no  |  |
- | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
  | mode | String |  no  |  |
- | code | String? |  yes  |  |
- | stackable | Bool? |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
  | currency | String? |  yes  |  |
- | applyAllDiscount | Bool? |  yes  |  |
  | applyExclusive | String? |  yes  |  |
- | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
- | promoGroup | String |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
- | applyPriority | Int? |  yes  |  |
+ | code | String? |  yes  |  |
+ | ownership | [Ownership1](#Ownership1) |  no  |  |
  | visiblility | [Visibility](#Visibility)? |  yes  |  |
  | applicationId | String |  no  |  |
+ | applyAllDiscount | Bool? |  yes  |  |
+ | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
+ | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
+ | promotionType | String |  no  |  |
+ | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
+ | applyPriority | Int? |  yes  |  |
+ | stackable | Bool? |  yes  |  |
+ | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
+ | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | promoGroup | String |  no  |  |
 
 ---
 
@@ -5081,27 +5081,27 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customJson | [String: Any]? |  yes  |  |
  | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
- | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
- | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
- | ownership | [Ownership1](#Ownership1) |  no  |  |
- | promotionType | String |  no  |  |
- | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
  | mode | String |  no  |  |
- | code | String? |  yes  |  |
- | stackable | Bool? |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
  | currency | String? |  yes  |  |
- | applyAllDiscount | Bool? |  yes  |  |
  | applyExclusive | String? |  yes  |  |
- | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
- | promoGroup | String |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
- | applyPriority | Int? |  yes  |  |
+ | code | String? |  yes  |  |
+ | ownership | [Ownership1](#Ownership1) |  no  |  |
  | visiblility | [Visibility](#Visibility)? |  yes  |  |
  | applicationId | String |  no  |  |
+ | applyAllDiscount | Bool? |  yes  |  |
+ | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
+ | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
+ | promotionType | String |  no  |  |
+ | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
+ | applyPriority | Int? |  yes  |  |
+ | stackable | Bool? |  yes  |  |
+ | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
+ | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | promoGroup | String |  no  |  |
 
 ---
 
@@ -5112,27 +5112,27 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customJson | [String: Any]? |  yes  |  |
  | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
- | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
- | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
- | ownership | [Ownership1](#Ownership1) |  no  |  |
- | promotionType | String |  no  |  |
- | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
  | mode | String |  no  |  |
- | code | String? |  yes  |  |
- | stackable | Bool? |  yes  |  |
- | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
  | currency | String? |  yes  |  |
- | applyAllDiscount | Bool? |  yes  |  |
  | applyExclusive | String? |  yes  |  |
- | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
- | promoGroup | String |  no  |  |
- | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
- | applyPriority | Int? |  yes  |  |
+ | code | String? |  yes  |  |
+ | ownership | [Ownership1](#Ownership1) |  no  |  |
  | visiblility | [Visibility](#Visibility)? |  yes  |  |
  | applicationId | String |  no  |  |
+ | applyAllDiscount | Bool? |  yes  |  |
+ | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
+ | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
+ | promotionType | String |  no  |  |
+ | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
+ | applyPriority | Int? |  yes  |  |
+ | stackable | Bool? |  yes  |  |
+ | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
+ | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
+ | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | promoGroup | String |  no  |  |
 
 ---
 
@@ -5167,8 +5167,8 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
  | charges | [[Charges](#Charges)]? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
 
 ---
 
@@ -5179,14 +5179,14 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | giftPricing | Double? |  yes  |  |
  | giftDisplayText | String? |  yes  |  |
  | bulkCoupons | Bool? |  yes  |  |
- | deliveryCharges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | giftPricing | Double? |  yes  |  |
- | revenueEngineCoupon | Bool? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | minCartValue | Int? |  yes  |  |
  | maxCartItems | Int? |  yes  |  |
+ | deliveryCharges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
+ | revenueEngineCoupon | Bool? |  yes  |  |
+ | minCartValue | Int? |  yes  |  |
 
 ---
 
@@ -5197,14 +5197,14 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | giftPricing | Double? |  yes  |  |
  | giftDisplayText | String? |  yes  |  |
  | bulkCoupons | Bool? |  yes  |  |
- | deliveryCharges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | giftPricing | Double? |  yes  |  |
- | revenueEngineCoupon | Bool? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | minCartValue | Int? |  yes  |  |
  | maxCartItems | Int? |  yes  |  |
+ | deliveryCharges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
+ | revenueEngineCoupon | Bool? |  yes  |  |
+ | minCartValue | Int? |  yes  |  |
 
 ---
 
@@ -5215,9 +5215,9 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  |  |
- | size | String |  no  |  |
  | productId | String |  no  |  |
+ | size | String |  no  |  |
+ | quantity | Int? |  yes  |  |
 
 ---
 
@@ -5239,42 +5239,12 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | Double? |  yes  |  |
- | uid | String? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
  | message | String? |  yes  |  |
- | type | String? |  yes  |  |
- | code | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | uid | String? |  yes  |  |
  | value | Double? |  yes  |  |
- | display | String? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | key | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | message | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
+ | code | String? |  yes  |  |
+ | type | String? |  yes  |  |
  | isApplied | Bool? |  yes  |  |
- | applicable | Double? |  yes  |  |
- | total | Double? |  yes  |  |
- | description | String? |  yes  |  |
 
 ---
 
@@ -5285,17 +5255,47 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | vog | Double? |  yes  |  |
- | discount | Double? |  yes  |  |
- | gstCharges | Double? |  yes  |  |
+ | youSaved | Double? |  yes  |  |
  | fyndCash | Double? |  yes  |  |
- | codCharge | Double? |  yes  |  |
- | subtotal | Double? |  yes  |  |
  | convenienceFee | Double? |  yes  |  |
+ | codCharge | Double? |  yes  |  |
  | deliveryCharge | Double? |  yes  |  |
+ | total | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | subtotal | Double? |  yes  |  |
+ | gstCharges | Double? |  yes  |  |
  | coupon | Double? |  yes  |  |
  | mrpTotal | Double? |  yes  |  |
- | youSaved | Double? |  yes  |  |
+ | vog | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currencySymbol | String? |  yes  |  |
+ | message | [String]? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | value | Double? |  yes  |  |
+ | display | String? |  yes  |  |
+ | key | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | String? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | applicable | Double? |  yes  |  |
  | total | Double? |  yes  |  |
 
 ---
@@ -5308,9 +5308,9 @@ Valid response with existing promotion code count
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
+ | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
  | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
  | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
- | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
 
 ---
 
@@ -5333,13 +5333,13 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
  | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
- | offerText | String? |  yes  | Offer text of current promotion |
- | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
+ | promoId | String? |  yes  | Promotion id |
  | ownership | [Ownership2](#Ownership2)? |  yes  | Ownership of promotion |
  | promotionType | String? |  yes  | Promotion type of current promotion |
- | promoId | String? |  yes  | Promotion id |
+ | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
+ | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
+ | offerText | String? |  yes  | Offer text of current promotion |
 
 ---
 
@@ -5351,8 +5351,8 @@ Valid response with existing promotion code count
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | value | String? |  yes  |  |
- | isAvailable | Bool? |  yes  |  |
  | display | String? |  yes  |  |
+ | isAvailable | Bool? |  yes  |  |
 
 ---
 
@@ -5363,110 +5363,12 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | outOfStock | Bool? |  yes  |  |
+ | otherStoreQuantity | Int? |  yes  |  |
  | isValid | Bool? |  yes  |  |
  | availableSizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)]? |  yes  |  |
  | sizes | [String]? |  yes  |  |
- | outOfStock | Bool? |  yes  |  |
- | otherStoreQuantity | Int? |  yes  |  |
  | deliverable | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | selling | Double? |  yes  |  |
- | addOn | Double? |  yes  |  |
- | marked | Double? |  yes  |  |
- | effective | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [ProductPrice](#ProductPrice)? |  yes  |  |
- | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [BasePrice](#BasePrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencyCode | String? |  yes  |  |
- | marked | Double? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | effective | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [BasePrice](#BasePrice)? |  yes  |  |
- | converted | [BasePrice](#BasePrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [BaseInfo](#BaseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductArticle](#ProductArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | uid | String? |  yes  |  |
- | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | productGroupTags | [String]? |  yes  |  |
- | quantity | Int? |  yes  |  |
- | type | String? |  yes  |  |
- | store | [BaseInfo](#BaseInfo)? |  yes  |  |
- | size | String? |  yes  |  |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
 
 ---
 
@@ -5484,12 +5386,39 @@ Valid response with existing promotion code count
 
  
  
- #### [PromiseTimestamp](#PromiseTimestamp)
+ #### [ProductPrice](#ProductPrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | Double? |  yes  |  |
- | max | Double? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | marked | Double? |  yes  |  |
+ | effective | Double? |  yes  |  |
+ | addOn | Double? |  yes  |  |
+ | selling | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductPriceInfo](#ProductPriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
+ | base | [ProductPrice](#ProductPrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -5500,8 +5429,20 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | String? |  yes  |  |
  | max | String? |  yes  |  |
+ | min | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromiseTimestamp](#PromiseTimestamp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | Double? |  yes  |  |
+ | min | Double? |  yes  |  |
 
 ---
 
@@ -5512,33 +5453,67 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
  | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
 
 ---
 
 
  
  
- #### [ProductImage](#ProductImage)
+ #### [BasePrice](#BasePrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspectRatio | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
- | url | String? |  yes  |  |
+ | effective | Double? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | marked | Double? |  yes  |  |
 
 ---
 
 
  
  
- #### [CategoryInfo](#CategoryInfo)
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  | Product Category Id |
+ | converted | [BasePrice](#BasePrice)? |  yes  |  |
+ | base | [BasePrice](#BasePrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BaseInfo](#BaseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductArticle](#ProductArticle)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
+ | productGroupTags | [String]? |  yes  |  |
+ | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | size | String? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | type | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -5560,9 +5535,34 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | url | String? |  yes  |  |
  | type | String? |  yes  |  |
  | query | [ActionQuery](#ActionQuery)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  | Product Category Id |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | url | String? |  yes  |  |
+ | secureUrl | String? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
 
 ---
 
@@ -5573,14 +5573,14 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
- | images | [[ProductImage](#ProductImage)]? |  yes  |  |
- | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
- | type | String? |  yes  |  |
- | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | name | String? |  yes  |  |
+ | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
+ | images | [[ProductImage](#ProductImage)]? |  yes  |  |
+ | type | String? |  yes  |  |
+ | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
 
 ---
 
@@ -5593,22 +5593,22 @@ Valid response with existing promotion code count
  | ---------- | ---- | -------- | ----------- |
  | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
- | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | article | [ProductArticle](#ProductArticle)? |  yes  |  |
- | discount | String? |  yes  |  |
- | bulkOffer | [String: Any]? |  yes  |  |
- | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
- | couponMessage | String? |  yes  |  |
- | key | String? |  yes  |  |
- | moq | [String: Any]? |  yes  |  |
  | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | quantity | Int? |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | message | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | moq | [String: Any]? |  yes  |  |
  | isSet | Bool? |  yes  |  |
- | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | couponMessage | String? |  yes  |  |
+ | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | article | [ProductArticle](#ProductArticle)? |  yes  |  |
+ | bulkOffer | [String: Any]? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | key | String? |  yes  |  |
+ | product | [CartProduct](#CartProduct)? |  yes  |  |
 
 ---
 
@@ -5619,10 +5619,10 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | isValid | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
  | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | message | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
 
 ---
 
@@ -5633,9 +5633,9 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
  | errors | [String: Any]? |  yes  | Contains field name which has error as key and error message as value |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -5646,23 +5646,23 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | areaCode | String |  no  |  |
- | meta | [String: Any]? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | phone | Int? |  yes  |  |
- | area | String? |  yes  |  |
- | areaCodeSlug | String? |  yes  |  |
- | country | String? |  yes  |  |
- | name | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | countryPhoneCode | String? |  yes  |  |
- | city | String? |  yes  |  |
  | landmark | String? |  yes  |  |
- | countryIsoCode | String? |  yes  |  |
- | state | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
+ | city | String? |  yes  |  |
  | email | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | phone | Int? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | country | String? |  yes  |  |
  | address | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | areaCode | String |  no  |  |
+ | areaCodeSlug | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | countryIsoCode | String? |  yes  |  |
+ | countryPhoneCode | String? |  yes  |  |
+ | area | String? |  yes  |  |
 
 ---
 
@@ -5685,11 +5685,11 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | message | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | isValid | Bool? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
 
 ---
 
@@ -5700,11 +5700,11 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | extraMeta | [String: Any]? |  yes  |  |
  | currentStatus | String? |  yes  |  |
- | orderId | String? |  yes  |  |
- | paymentId | String? |  yes  |  |
  | paymentGateway | String? |  yes  |  |
+ | paymentId | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -5715,10 +5715,10 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  | Payment mode name |
+ | amount | Double |  no  | Payment amount |
  | meta | [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)? |  yes  |  |
  | mode | String |  no  |  |
- | amount | Double |  no  | Payment amount |
- | name | String? |  yes  | Payment mode name |
 
 ---
 
@@ -5741,8 +5741,8 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | values | [String] |  no  |  |
  | key | String |  no  |  |
+ | values | [String] |  no  |  |
 
 ---
 
@@ -5753,23 +5753,23 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | size | String |  no  |  |
- | meta | [CartItemMeta](#CartItemMeta)? |  yes  |  |
- | paymentMethods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  no  |  |
- | discount | Double |  no  |  |
- | productId | Int |  no  |  |
- | deliveryCharges | Double |  no  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)]? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | priceMarked | Double |  no  |  |
- | loyaltyDiscount | Double? |  yes  |  |
- | couponEffectiveDiscount | Double |  no  |  |
- | cashbackApplied | Double |  no  |  |
- | quantity | Int? |  yes  |  |
- | codCharges | Double |  no  |  |
- | priceEffective | Double |  no  |  |
  | amountPaid | Double |  no  |  |
  | employeeDiscount | Double? |  yes  |  |
+ | priceEffective | Double |  no  |  |
+ | paymentMethods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  no  |  |
+ | priceMarked | Double |  no  |  |
+ | quantity | Int? |  yes  |  |
+ | couponEffectiveDiscount | Double |  no  |  |
+ | discount | Double |  no  |  |
+ | cashbackApplied | Double |  no  |  |
+ | codCharges | Double |  no  |  |
+ | size | String |  no  |  |
+ | deliveryCharges | Double |  no  |  |
+ | loyaltyDiscount | Double? |  yes  |  |
+ | meta | [CartItemMeta](#CartItemMeta)? |  yes  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)]? |  yes  |  |
+ | productId | Int |  no  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -5780,26 +5780,26 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentMethods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  no  |  |
- | affiliateOrderId | String? |  yes  |  |
- | billingAddress | [ShippingAddress](#ShippingAddress) |  no  |  |
- | couponCode | String |  no  |  |
- | cartValue | Double |  no  |  |
- | loyaltyDiscount | Double? |  yes  |  |
- | orderId | String? |  yes  |  |
- | cashbackApplied | Double |  no  |  |
  | cartItems | [[OpenApiOrderItem](#OpenApiOrderItem)] |  no  |  |
- | coupon | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | paymentMode | String? |  yes  |  |
- | couponValue | Double |  no  |  |
- | deliveryCharges | Double |  no  |  |
- | files | [[OpenApiFiles](#OpenApiFiles)]? |  yes  |  |
  | currencyCode | String? |  yes  |  |
- | shippingAddress | [ShippingAddress](#ShippingAddress)? |  yes  |  |
- | codCharges | Double |  no  |  |
  | gstin | String? |  yes  |  |
+ | affiliateOrderId | String? |  yes  |  |
+ | loyaltyDiscount | Double? |  yes  |  |
+ | paymentMode | String? |  yes  |  |
+ | files | [[OpenApiFiles](#OpenApiFiles)]? |  yes  |  |
+ | billingAddress | [ShippingAddress](#ShippingAddress) |  no  |  |
+ | shippingAddress | [ShippingAddress](#ShippingAddress)? |  yes  |  |
+ | paymentMethods | [[MultiTenderPaymentMethod](#MultiTenderPaymentMethod)] |  no  |  |
+ | couponCode | String |  no  |  |
+ | comment | String? |  yes  |  |
+ | cashbackApplied | Double |  no  |  |
+ | coupon | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
  | employeeDiscount | [String: Any]? |  yes  |  |
+ | deliveryCharges | Double |  no  |  |
+ | codCharges | Double |  no  |  |
+ | couponValue | Double |  no  |  |
+ | cartValue | Double |  no  |  |
 
 ---
 
@@ -5810,10 +5810,10 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
- | orderRefId | String? |  yes  | Order id sent in request |
- | orderId | String |  no  | Fynd order id |
  | message | String? |  yes  |  |
+ | orderRefId | String? |  yes  | Order id sent in request |
+ | success | Bool? |  yes  |  |
+ | orderId | String |  no  | Fynd order id |
 
 ---
 
@@ -5824,39 +5824,39 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payments | [String: Any]? |  yes  |  |
- | pickUpCustomerDetails | [String: Any]? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | cartValue | Double? |  yes  |  |
- | isArchive | Bool? |  yes  |  |
- | gstin | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | lastModified | String |  no  |  |
+ | userId | String |  no  |  |
+ | discount | Double? |  yes  |  |
  | cashback | [String: Any] |  no  |  |
+ | paymentMode | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | payments | [String: Any]? |  yes  |  |
+ | isDefault | Bool |  no  |  |
+ | articles | [[String: Any]] |  no  |  |
+ | pickUpCustomerDetails | [String: Any]? |  yes  |  |
+ | expireAt | String |  no  |  |
+ | fcIndexMap | [Int]? |  yes  |  |
+ | fyndCredits | [String: Any]? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | appId | String? |  yes  |  |
+ | lastModified | String |  no  |  |
+ | shipments | [[String: Any]]? |  yes  |  |
  | bulkCouponDiscount | Double? |  yes  |  |
  | uid | Int |  no  |  |
- | mergeQty | Bool? |  yes  |  |
- | fcIndexMap | [Int]? |  yes  |  |
- | expireAt | String |  no  |  |
+ | isArchive | Bool? |  yes  |  |
+ | gstin | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
- | paymentMethods | [[String: Any]]? |  yes  |  |
- | discount | Double? |  yes  |  |
- | orderId | String? |  yes  |  |
- | shipments | [[String: Any]]? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | coupon | [String: Any]? |  yes  |  |
- | paymentMode | String? |  yes  |  |
  | id | String |  no  |  |
- | buyNow | Bool? |  yes  |  |
- | appId | String? |  yes  |  |
- | deliveryCharges | [String: Any]? |  yes  |  |
- | isDefault | Bool |  no  |  |
- | userId | String |  no  |  |
- | fyndCredits | [String: Any]? |  yes  |  |
- | codCharges | [String: Any]? |  yes  |  |
- | createdOn | String |  no  |  |
  | promotion | [String: Any]? |  yes  |  |
- | articles | [[String: Any]] |  no  |  |
+ | createdOn | String |  no  |  |
+ | paymentMethods | [[String: Any]]? |  yes  |  |
+ | mergeQty | Bool? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | deliveryCharges | [String: Any]? |  yes  |  |
+ | coupon | [String: Any]? |  yes  |  |
+ | codCharges | [String: Any]? |  yes  |  |
+ | cartValue | Double? |  yes  |  |
 
 ---
 
@@ -5867,11 +5867,11 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
- | items | [[AbandonedCart](#AbandonedCart)]? |  yes  |  |
- | success | Bool? |  yes  | the request success is defined |
- | result | [String: Any]? |  yes  |  |
  | message | String? |  yes  | message of the response |
+ | page | [Page](#Page)? |  yes  |  |
+ | result | [String: Any]? |  yes  |  |
+ | success | Bool? |  yes  | the request success is defined |
+ | items | [[AbandonedCart](#AbandonedCart)]? |  yes  |  |
 
 ---
 
@@ -5894,9 +5894,9 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
  | paymentIdentifier | String? |  yes  |  |
  | defaultOptions | String? |  yes  |  |
+ | enabled | Bool? |  yes  |  |
 
 ---
 
@@ -5907,23 +5907,23 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | id | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | appliedPromoDetails | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | gstin | String? |  yes  |  |
  | message | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | comment | String? |  yes  |  |
  | couponText | String? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
  | isValid | Bool? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | appliedPromoDetails | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
 
 ---
 
@@ -5934,19 +5934,19 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemSize | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | display | String? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | sellerId | Int? |  yes  |  |
- | pos | Bool? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
+ | storeId | Int? |  yes  |  |
  | articleId | String? |  yes  |  |
  | productGroupTags | [String]? |  yes  |  |
  | quantity | Int? |  yes  |  |
- | storeId | Int? |  yes  |  |
+ | itemSize | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
  | articleAssignment | [String: Any]? |  yes  |  |
+ | sellerId | Int? |  yes  |  |
+ | display | String? |  yes  |  |
  | parentItemIdentifiers | [[String: String]]? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | pos | Bool? |  yes  |  |
+ | itemId | Int? |  yes  |  |
 
 ---
 
@@ -5968,10 +5968,10 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
- | message | String? |  yes  |  |
  | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | message | String? |  yes  |  |
  | partial | Bool? |  yes  | When adding multiple items check if all added. True if only few are added. |
+ | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
 
 ---
 
@@ -5982,15 +5982,15 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | articleId | String? |  yes  |  |
+ | itemIndex | Int? |  yes  |  |
+ | quantity | Int? |  yes  |  |
  | itemSize | String? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | itemIndex | Int? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | articleId | String? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | quantity | Int? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | itemId | Int? |  yes  |  |
 
 ---
 
@@ -6013,9 +6013,9 @@ Valid response with existing promotion code count
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
- | message | String? |  yes  |  |
  | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | message | String? |  yes  |  |
+ | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
 
 ---
 

@@ -9,42 +9,42 @@ public extension ApplicationClient.Cart {
     class LadderPriceOffer: Codable {
         public var promotionGroup: String?
 
-        public var validTill: String?
-
-        public var id: String?
-
-        public var offerPrices: [LadderOfferItem]?
+        public var offerText: String?
 
         public var description: String?
 
-        public var offerText: String?
+        public var id: String?
+
+        public var validTill: String?
+
+        public var offerPrices: [LadderOfferItem]?
 
         public enum CodingKeys: String, CodingKey {
             case promotionGroup = "promotion_group"
 
-            case validTill = "valid_till"
-
-            case id
-
-            case offerPrices = "offer_prices"
+            case offerText = "offer_text"
 
             case description
 
-            case offerText = "offer_text"
+            case id
+
+            case validTill = "valid_till"
+
+            case offerPrices = "offer_prices"
         }
 
         public init(description: String? = nil, id: String? = nil, offerPrices: [LadderOfferItem]? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
             self.promotionGroup = promotionGroup
 
-            self.validTill = validTill
-
-            self.id = id
-
-            self.offerPrices = offerPrices
+            self.offerText = offerText
 
             self.description = description
 
-            self.offerText = offerText
+            self.id = id
+
+            self.validTill = validTill
+
+            self.offerPrices = offerPrices
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,23 +59,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                validTill = try container.decode(String.self, forKey: .validTill)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                id = try container.decode(String.self, forKey: .id)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                offerPrices = try container.decode([LadderOfferItem].self, forKey: .offerPrices)
+                offerText = try container.decode(String.self, forKey: .offerText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +75,23 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                offerText = try container.decode(String.self, forKey: .offerText)
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                validTill = try container.decode(String.self, forKey: .validTill)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                offerPrices = try container.decode([LadderOfferItem].self, forKey: .offerPrices)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,15 +104,15 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
 
-            try? container.encodeIfPresent(validTill, forKey: .validTill)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(offerPrices, forKey: .offerPrices)
+            try? container.encodeIfPresent(offerText, forKey: .offerText)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(offerText, forKey: .offerText)
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(validTill, forKey: .validTill)
+
+            try? container.encodeIfPresent(offerPrices, forKey: .offerPrices)
         }
     }
 }

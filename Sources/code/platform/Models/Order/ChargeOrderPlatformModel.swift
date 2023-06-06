@@ -11,22 +11,22 @@ public extension PlatformClient.Order {
     class Charge: Codable {
         public var code: String?
 
+        public var amount: [String: Any]
+
         public var tax: Tax?
 
         public var name: String
-
-        public var amount: [String: Any]
 
         public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case code
 
+            case amount
+
             case tax
 
             case name
-
-            case amount
 
             case type
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Order {
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
             self.code = code
 
+            self.amount = amount
+
             self.tax = tax
 
             self.name = name
-
-            self.amount = amount
 
             self.type = type
         }
@@ -54,6 +54,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            amount = try container.decode([String: Any].self, forKey: .amount)
+
             do {
                 tax = try container.decode(Tax.self, forKey: .tax)
 
@@ -64,8 +66,6 @@ public extension PlatformClient.Order {
 
             name = try container.decode(String.self, forKey: .name)
 
-            amount = try container.decode([String: Any].self, forKey: .amount)
-
             type = try container.decode(String.self, forKey: .type)
         }
 
@@ -74,11 +74,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
             try? container.encodeIfPresent(tax, forKey: .tax)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }
@@ -94,22 +94,22 @@ public extension PlatformClient.ApplicationClient.Order {
     class Charge: Codable {
         public var code: String?
 
+        public var amount: [String: Any]
+
         public var tax: Tax?
 
         public var name: String
-
-        public var amount: [String: Any]
 
         public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case code
 
+            case amount
+
             case tax
 
             case name
-
-            case amount
 
             case type
         }
@@ -117,11 +117,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
             self.code = code
 
+            self.amount = amount
+
             self.tax = tax
 
             self.name = name
-
-            self.amount = amount
 
             self.type = type
         }
@@ -137,6 +137,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            amount = try container.decode([String: Any].self, forKey: .amount)
+
             do {
                 tax = try container.decode(Tax.self, forKey: .tax)
 
@@ -147,8 +149,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             name = try container.decode(String.self, forKey: .name)
 
-            amount = try container.decode([String: Any].self, forKey: .amount)
-
             type = try container.decode(String.self, forKey: .type)
         }
 
@@ -157,11 +157,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
             try? container.encodeIfPresent(tax, forKey: .tax)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }

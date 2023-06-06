@@ -7,77 +7,69 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class CountryEntityResponse: Codable {
-        public var type: String?
-
-        public var logistics: LogisticsResponse?
+        public var parentId: String?
 
         public var name: String?
 
-        public var isActive: Bool?
-
-        public var parentId: String?
-
-        public var uid: String?
+        public var type: String?
 
         public var displayName: String?
 
-        public var subType: String?
+        public var isActive: Bool?
+
+        public var logistics: LogisticsResponse?
 
         public var meta: CountryMetaResponse?
 
-        public enum CodingKeys: String, CodingKey {
-            case type
+        public var uid: String?
 
-            case logistics
+        public var subType: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case parentId = "parent_id"
 
             case name
 
-            case isActive = "is_active"
-
-            case parentId = "parent_id"
-
-            case uid
+            case type
 
             case displayName = "display_name"
 
-            case subType = "sub_type"
+            case isActive = "is_active"
+
+            case logistics
 
             case meta
+
+            case uid
+
+            case subType = "sub_type"
         }
 
         public init(displayName: String? = nil, isActive: Bool? = nil, logistics: LogisticsResponse? = nil, meta: CountryMetaResponse? = nil, name: String? = nil, parentId: String? = nil, subType: String? = nil, type: String? = nil, uid: String? = nil) {
-            self.type = type
-
-            self.logistics = logistics
+            self.parentId = parentId
 
             self.name = name
 
-            self.isActive = isActive
-
-            self.parentId = parentId
-
-            self.uid = uid
+            self.type = type
 
             self.displayName = displayName
 
-            self.subType = subType
+            self.isActive = isActive
+
+            self.logistics = logistics
 
             self.meta = meta
+
+            self.uid = uid
+
+            self.subType = subType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logistics = try container.decode(LogisticsResponse.self, forKey: .logistics)
+                parentId = try container.decode(String.self, forKey: .parentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,23 +85,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                parentId = try container.decode(String.self, forKey: .parentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(String.self, forKey: .uid)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,7 +101,15 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                subType = try container.decode(String.self, forKey: .subType)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logistics = try container.decode(LogisticsResponse.self, forKey: .logistics)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,28 +123,44 @@ public extension ApplicationClient.Logistic {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                subType = try container.decode(String.self, forKey: .subType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(logistics, forKey: .logistics)
+            try? container.encodeIfPresent(parentId, forKey: .parentId)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(parentId, forKey: .parentId)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(subType, forKey: .subType)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(logistics, forKey: .logistics)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(subType, forKey: .subType)
         }
     }
 }

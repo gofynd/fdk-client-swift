@@ -15,7 +15,7 @@ public extension PlatformClient.Catalog {
 
         public var name: String?
 
-        public var logo: Media1?
+        public var logo: Media2?
 
         public enum CodingKeys: String, CodingKey {
             case uid
@@ -27,7 +27,7 @@ public extension PlatformClient.Catalog {
             case logo
         }
 
-        public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(action: Action? = nil, logo: Media2? = nil, name: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
             self.action = action
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media1.self, forKey: .logo)
+                logo = try container.decode(Media2.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var name: String?
 
-        public var logo: Media1?
+        public var logo: Media2?
 
         public enum CodingKeys: String, CodingKey {
             case uid
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case logo
         }
 
-        public init(action: Action? = nil, logo: Media1? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(action: Action? = nil, logo: Media2? = nil, name: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
             self.action = action
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media1.self, forKey: .logo)
+                logo = try container.decode(Media2.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
