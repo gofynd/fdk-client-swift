@@ -13,26 +13,26 @@ public extension PlatformClient.Catalog {
 
         public var allowRemove: Bool?
 
-        public var minQuantity: Int
-
-        public var maxQuantity: Int
-
         public var autoSelect: Bool?
 
         public var productUid: Int
+
+        public var maxQuantity: Int
+
+        public var minQuantity: Int
 
         public enum CodingKeys: String, CodingKey {
             case autoAddToCart = "auto_add_to_cart"
 
             case allowRemove = "allow_remove"
 
-            case minQuantity = "min_quantity"
-
-            case maxQuantity = "max_quantity"
-
             case autoSelect = "auto_select"
 
             case productUid = "product_uid"
+
+            case maxQuantity = "max_quantity"
+
+            case minQuantity = "min_quantity"
         }
 
         public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int, minQuantity: Int, productUid: Int) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Catalog {
 
             self.allowRemove = allowRemove
 
-            self.minQuantity = minQuantity
-
-            self.maxQuantity = maxQuantity
-
             self.autoSelect = autoSelect
 
             self.productUid = productUid
+
+            self.maxQuantity = maxQuantity
+
+            self.minQuantity = minQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -68,10 +68,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
-
-            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
-
             do {
                 autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
 
@@ -81,6 +77,10 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             productUid = try container.decode(Int.self, forKey: .productUid)
+
+            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+
+            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -90,13 +90,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
 
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
-
             try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
 
             try? container.encodeIfPresent(productUid, forKey: .productUid)
+
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+
+            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
         }
     }
 }
@@ -112,26 +112,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var allowRemove: Bool?
 
-        public var minQuantity: Int
-
-        public var maxQuantity: Int
-
         public var autoSelect: Bool?
 
         public var productUid: Int
+
+        public var maxQuantity: Int
+
+        public var minQuantity: Int
 
         public enum CodingKeys: String, CodingKey {
             case autoAddToCart = "auto_add_to_cart"
 
             case allowRemove = "allow_remove"
 
-            case minQuantity = "min_quantity"
-
-            case maxQuantity = "max_quantity"
-
             case autoSelect = "auto_select"
 
             case productUid = "product_uid"
+
+            case maxQuantity = "max_quantity"
+
+            case minQuantity = "min_quantity"
         }
 
         public init(allowRemove: Bool? = nil, autoAddToCart: Bool? = nil, autoSelect: Bool? = nil, maxQuantity: Int, minQuantity: Int, productUid: Int) {
@@ -139,13 +139,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.allowRemove = allowRemove
 
-            self.minQuantity = minQuantity
-
-            self.maxQuantity = maxQuantity
-
             self.autoSelect = autoSelect
 
             self.productUid = productUid
+
+            self.maxQuantity = maxQuantity
+
+            self.minQuantity = minQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -167,10 +167,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
-
-            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
-
             do {
                 autoSelect = try container.decode(Bool.self, forKey: .autoSelect)
 
@@ -180,6 +176,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             productUid = try container.decode(Int.self, forKey: .productUid)
+
+            maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+
+            minQuantity = try container.decode(Int.self, forKey: .minQuantity)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -189,13 +189,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(allowRemove, forKey: .allowRemove)
 
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
-
             try? container.encodeIfPresent(autoSelect, forKey: .autoSelect)
 
             try? container.encodeIfPresent(productUid, forKey: .productUid)
+
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+
+            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
         }
     }
 }

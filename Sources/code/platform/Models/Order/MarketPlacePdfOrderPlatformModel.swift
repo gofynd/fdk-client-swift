@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoice, forKey: .invoice)
+            try? container.encode(invoice, forKey: .invoice)
 
-            try? container.encodeIfPresent(label, forKey: .label)
+            try? container.encode(label, forKey: .label)
         }
     }
 }
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoice, forKey: .invoice)
+            try? container.encode(invoice, forKey: .invoice)
 
-            try? container.encodeIfPresent(label, forKey: .label)
+            try? container.encode(label, forKey: .label)
         }
     }
 }

@@ -9,58 +9,48 @@ public extension PlatformClient.Order {
      */
 
     class FiltersInfo: Codable {
-        public var required: Bool?
-
-        public var type: String
-
         public var placeholderText: String?
-
-        public var value: String
-
-        public var text: String
 
         public var options: [FilterInfoOption]?
 
+        public var text: String
+
+        public var type: String
+
+        public var required: Bool?
+
+        public var value: String
+
         public enum CodingKeys: String, CodingKey {
-            case required
-
-            case type
-
             case placeholderText = "placeholder_text"
 
-            case value
+            case options
 
             case text
 
-            case options
+            case type
+
+            case required
+
+            case value
         }
 
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
-            self.required = required
-
-            self.type = type
-
             self.placeholderText = placeholderText
 
-            self.value = value
+            self.options = options
 
             self.text = text
 
-            self.options = options
+            self.type = type
+
+            self.required = required
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                required = try container.decode(Bool.self, forKey: .required)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            type = try container.decode(String.self, forKey: .type)
 
             do {
                 placeholderText = try container.decode(String.self, forKey: .placeholderText)
@@ -70,10 +60,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            value = try container.decode(String.self, forKey: .value)
-
-            text = try container.decode(String.self, forKey: .text)
-
             do {
                 options = try container.decode([FilterInfoOption].self, forKey: .options)
 
@@ -81,22 +67,36 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            text = try container.decode(String.self, forKey: .text)
+
+            type = try container.decode(String.self, forKey: .type)
+
+            do {
+                required = try container.decode(Bool.self, forKey: .required)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(required, forKey: .required)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encode(options, forKey: .options)
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encode(options, forKey: .options)
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(required, forKey: .required)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
@@ -108,58 +108,48 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class FiltersInfo: Codable {
-        public var required: Bool?
-
-        public var type: String
-
         public var placeholderText: String?
-
-        public var value: String
-
-        public var text: String
 
         public var options: [FilterInfoOption]?
 
+        public var text: String
+
+        public var type: String
+
+        public var required: Bool?
+
+        public var value: String
+
         public enum CodingKeys: String, CodingKey {
-            case required
-
-            case type
-
             case placeholderText = "placeholder_text"
 
-            case value
+            case options
 
             case text
 
-            case options
+            case type
+
+            case required
+
+            case value
         }
 
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
-            self.required = required
-
-            self.type = type
-
             self.placeholderText = placeholderText
 
-            self.value = value
+            self.options = options
 
             self.text = text
 
-            self.options = options
+            self.type = type
+
+            self.required = required
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                required = try container.decode(Bool.self, forKey: .required)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            type = try container.decode(String.self, forKey: .type)
 
             do {
                 placeholderText = try container.decode(String.self, forKey: .placeholderText)
@@ -169,10 +159,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            value = try container.decode(String.self, forKey: .value)
-
-            text = try container.decode(String.self, forKey: .text)
-
             do {
                 options = try container.decode([FilterInfoOption].self, forKey: .options)
 
@@ -180,22 +166,36 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            text = try container.decode(String.self, forKey: .text)
+
+            type = try container.decode(String.self, forKey: .type)
+
+            do {
+                required = try container.decode(Bool.self, forKey: .required)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(required, forKey: .required)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encode(options, forKey: .options)
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encode(options, forKey: .options)
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(required, forKey: .required)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

@@ -9,80 +9,72 @@ public extension PlatformClient.Finance {
      */
 
     class PaymentProcessPayload: Codable {
-        public var amount: String?
-
         public var currency: String?
 
-        public var modeOfPayment: String?
-
-        public var sellerId: String?
-
-        public var sourceReference: String?
-
-        public var transactionType: String?
+        public var amount: String?
 
         public var invoiceNumber: String?
 
         public var meta: [String: Any]?
 
-        public var totalAmount: String?
-
         public var platform: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case amount
+        public var transactionType: String?
 
+        public var modeOfPayment: String?
+
+        public var sourceReference: String?
+
+        public var sellerId: String?
+
+        public var totalAmount: String?
+
+        public enum CodingKeys: String, CodingKey {
             case currency
 
-            case modeOfPayment = "mode_of_payment"
-
-            case sellerId = "seller_id"
-
-            case sourceReference = "source_reference"
-
-            case transactionType = "transaction_type"
+            case amount
 
             case invoiceNumber = "invoice_number"
 
             case meta
 
-            case totalAmount = "total_amount"
-
             case platform
+
+            case transactionType = "transaction_type"
+
+            case modeOfPayment = "mode_of_payment"
+
+            case sourceReference = "source_reference"
+
+            case sellerId = "seller_id"
+
+            case totalAmount = "total_amount"
         }
 
         public init(amount: String? = nil, currency: String? = nil, invoiceNumber: String? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, platform: String? = nil, sellerId: String? = nil, sourceReference: String? = nil, totalAmount: String? = nil, transactionType: String? = nil) {
-            self.amount = amount
-
             self.currency = currency
 
-            self.modeOfPayment = modeOfPayment
-
-            self.sellerId = sellerId
-
-            self.sourceReference = sourceReference
-
-            self.transactionType = transactionType
+            self.amount = amount
 
             self.invoiceNumber = invoiceNumber
 
             self.meta = meta
 
-            self.totalAmount = totalAmount
-
             self.platform = platform
+
+            self.transactionType = transactionType
+
+            self.modeOfPayment = modeOfPayment
+
+            self.sourceReference = sourceReference
+
+            self.sellerId = sellerId
+
+            self.totalAmount = totalAmount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                amount = try container.decode(String.self, forKey: .amount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 currency = try container.decode(String.self, forKey: .currency)
@@ -93,31 +85,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sellerId = try container.decode(String.self, forKey: .sellerId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                sourceReference = try container.decode(String.self, forKey: .sourceReference)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                transactionType = try container.decode(String.self, forKey: .transactionType)
+                amount = try container.decode(String.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,7 +109,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                totalAmount = try container.decode(String.self, forKey: .totalAmount)
+                platform = try container.decode(String.self, forKey: .platform)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,7 +117,39 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                platform = try container.decode(String.self, forKey: .platform)
+                transactionType = try container.decode(String.self, forKey: .transactionType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sourceReference = try container.decode(String.self, forKey: .sourceReference)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellerId = try container.decode(String.self, forKey: .sellerId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                totalAmount = try container.decode(String.self, forKey: .totalAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,25 +160,25 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
-
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
-            try? container.encodeIfPresent(sourceReference, forKey: .sourceReference)
-
-            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
-
             try? container.encodeIfPresent(platform, forKey: .platform)
+
+            try? container.encodeIfPresent(transactionType, forKey: .transactionType)
+
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
+
+            try? container.encodeIfPresent(sourceReference, forKey: .sourceReference)
+
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
         }
     }
 }

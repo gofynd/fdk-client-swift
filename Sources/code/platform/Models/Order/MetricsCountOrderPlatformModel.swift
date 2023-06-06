@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class MetricsCount: Codable {
         public var text: String
 
-        public var value: Int
+        public var key: String
 
         public var options: [Options]?
 
-        public var key: String
+        public var value: Int
 
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case value
+            case key
 
             case options
 
-            case key
+            case value
         }
 
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.text = text
 
-            self.value = value
+            self.key = key
 
             self.options = options
 
-            self.key = key
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,7 +42,7 @@ public extension PlatformClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
-            value = try container.decode(Int.self, forKey: .value)
+            key = try container.decode(String.self, forKey: .key)
 
             do {
                 options = try container.decode([Options].self, forKey: .options)
@@ -52,7 +52,7 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
+            value = try container.decode(Int.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,11 +60,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(options, forKey: .options)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
@@ -78,30 +78,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class MetricsCount: Codable {
         public var text: String
 
-        public var value: Int
+        public var key: String
 
         public var options: [Options]?
 
-        public var key: String
+        public var value: Int
 
         public enum CodingKeys: String, CodingKey {
             case text
 
-            case value
+            case key
 
             case options
 
-            case key
+            case value
         }
 
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.text = text
 
-            self.value = value
+            self.key = key
 
             self.options = options
 
-            self.key = key
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -109,7 +109,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
-            value = try container.decode(Int.self, forKey: .value)
+            key = try container.decode(String.self, forKey: .key)
 
             do {
                 options = try container.decode([Options].self, forKey: .options)
@@ -119,7 +119,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
+            value = try container.decode(Int.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(options, forKey: .options)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

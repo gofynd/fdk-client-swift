@@ -11,9 +11,9 @@ public extension ApplicationClient.Order {
 
         public var currencyCode: String?
 
-        public var value: Double?
-
         public var name: String?
+
+        public var value: Double?
 
         public var display: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Order {
 
             case currencyCode = "currency_code"
 
-            case value
-
             case name
+
+            case value
 
             case display
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Order {
 
             self.currencyCode = currencyCode
 
-            self.value = value
-
             self.name = name
+
+            self.value = value
 
             self.display = display
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(display, forKey: .display)
         }
