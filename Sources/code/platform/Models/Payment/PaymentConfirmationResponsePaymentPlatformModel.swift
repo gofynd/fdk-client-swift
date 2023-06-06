@@ -11,24 +11,24 @@ public extension PlatformClient.Payment {
     class PaymentConfirmationResponse: Codable {
         public var orderId: String
 
-        public var message: String
-
         public var success: Bool
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
 
-            case message
-
             case success
+
+            case message
         }
 
         public init(message: String, orderId: String, success: Bool) {
             self.orderId = orderId
 
-            self.message = message
-
             self.success = success
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            message = try container.decode(String.self, forKey: .message)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentConfirmationResponse: Codable {
         public var orderId: String
 
-        public var message: String
-
         public var success: Bool
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
 
-            case message
-
             case success
+
+            case message
         }
 
         public init(message: String, orderId: String, success: Bool) {
             self.orderId = orderId
 
-            self.message = message
-
             self.success = success
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            message = try container.decode(String.self, forKey: .message)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

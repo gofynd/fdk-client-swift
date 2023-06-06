@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class ShipmentDetails: Codable {
         public var lockStatus: Bool?
 
-        public var lockMessage: String?
-
         public var actionToStatus: [String: Any]?
+
+        public var lockMessage: String?
 
         public enum CodingKeys: String, CodingKey {
             case lockStatus = "lock_status"
 
-            case lockMessage = "lock_message"
-
             case actionToStatus = "action_to_status"
+
+            case lockMessage = "lock_message"
         }
 
         public init(actionToStatus: [String: Any]? = nil, lockMessage: String? = nil, lockStatus: Bool? = nil) {
             self.lockStatus = lockStatus
 
-            self.lockMessage = lockMessage
-
             self.actionToStatus = actionToStatus
+
+            self.lockMessage = lockMessage
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
+                lockMessage = try container.decode(String.self, forKey: .lockMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
 
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
-
             try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
+
+            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentDetails: Codable {
         public var lockStatus: Bool?
 
-        public var lockMessage: String?
-
         public var actionToStatus: [String: Any]?
+
+        public var lockMessage: String?
 
         public enum CodingKeys: String, CodingKey {
             case lockStatus = "lock_status"
 
-            case lockMessage = "lock_message"
-
             case actionToStatus = "action_to_status"
+
+            case lockMessage = "lock_message"
         }
 
         public init(actionToStatus: [String: Any]? = nil, lockMessage: String? = nil, lockStatus: Bool? = nil) {
             self.lockStatus = lockStatus
 
-            self.lockMessage = lockMessage
-
             self.actionToStatus = actionToStatus
+
+            self.lockMessage = lockMessage
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
+                lockMessage = try container.decode(String.self, forKey: .lockMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
 
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
-
             try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
+
+            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class Media: Codable {
         public var url: String
 
-        public var aspectRatio: String?
-
         public var type: String?
+
+        public var aspectRatio: String?
 
         public enum CodingKeys: String, CodingKey {
             case url
 
-            case aspectRatio = "aspect_ratio"
-
             case type
+
+            case aspectRatio = "aspect_ratio"
         }
 
         public init(aspectRatio: String? = nil, type: String? = nil, url: String) {
             self.url = url
 
-            self.aspectRatio = aspectRatio
-
             self.type = type
+
+            self.aspectRatio = aspectRatio
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             url = try container.decode(String.self, forKey: .url)
 
             do {
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +45,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,9 +58,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Media: Codable {
         public var url: String
 
-        public var aspectRatio: String?
-
         public var type: String?
+
+        public var aspectRatio: String?
 
         public enum CodingKeys: String, CodingKey {
             case url
 
-            case aspectRatio = "aspect_ratio"
-
             case type
+
+            case aspectRatio = "aspect_ratio"
         }
 
         public init(aspectRatio: String? = nil, type: String? = nil, url: String) {
             self.url = url
 
-            self.aspectRatio = aspectRatio
-
             self.type = type
+
+            self.aspectRatio = aspectRatio
         }
 
         required public init(from decoder: Decoder) throws {
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             url = try container.decode(String.self, forKey: .url)
 
             do {
-                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
         }
     }
 }

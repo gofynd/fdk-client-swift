@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var size: Int
 
-        public var hasNext: Bool
-
         public var current: Int
+
+        public var hasNext: Bool
 
         public var pageType: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case size
 
-            case hasNext = "has_next"
-
             case current
+
+            case hasNext = "has_next"
 
             case pageType = "page_type"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.size = size
 
-            self.hasNext = hasNext
-
             self.current = current
+
+            self.hasNext = hasNext
 
             self.pageType = pageType
         }
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
 
             size = try container.decode(Int.self, forKey: .size)
 
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
-
             current = try container.decode(Int.self, forKey: .current)
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             pageType = try container.decode(String.self, forKey: .pageType)
         }
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
-
             try? container.encodeIfPresent(current, forKey: .current)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(pageType, forKey: .pageType)
         }
@@ -84,9 +84,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var size: Int
 
-        public var hasNext: Bool
-
         public var current: Int
+
+        public var hasNext: Bool
 
         public var pageType: String
 
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case size
 
-            case hasNext = "has_next"
-
             case current
+
+            case hasNext = "has_next"
 
             case pageType = "page_type"
         }
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.size = size
 
-            self.hasNext = hasNext
-
             self.current = current
+
+            self.hasNext = hasNext
 
             self.pageType = pageType
         }
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             size = try container.decode(Int.self, forKey: .size)
 
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
-
             current = try container.decode(Int.self, forKey: .current)
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             pageType = try container.decode(String.self, forKey: .pageType)
         }
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
-
             try? container.encodeIfPresent(current, forKey: .current)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(pageType, forKey: .pageType)
         }

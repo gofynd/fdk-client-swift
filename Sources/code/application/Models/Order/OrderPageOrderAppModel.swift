@@ -7,7 +7,7 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class OrderPage: Codable {
-        public var itemTotal: Int?
+        public var current: Int?
 
         public var type: String?
 
@@ -15,10 +15,10 @@ public extension ApplicationClient.Order {
 
         public var size: Int?
 
-        public var current: Int?
+        public var itemTotal: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case itemTotal = "item_total"
+            case current
 
             case type
 
@@ -26,11 +26,11 @@ public extension ApplicationClient.Order {
 
             case size
 
-            case current
+            case itemTotal = "item_total"
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
-            self.itemTotal = itemTotal
+            self.current = current
 
             self.type = type
 
@@ -38,14 +38,14 @@ public extension ApplicationClient.Order {
 
             self.size = size
 
-            self.current = current
+            self.itemTotal = itemTotal
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
@@ -96,7 +96,7 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
         }
     }
 }

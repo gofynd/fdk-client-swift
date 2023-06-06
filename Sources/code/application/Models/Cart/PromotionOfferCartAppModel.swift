@@ -9,54 +9,54 @@ public extension ApplicationClient.Cart {
     class PromotionOffer: Codable {
         public var freeGiftItems: [FreeGiftItems]?
 
-        public var validTill: String?
+        public var promotionGroup: String?
 
         public var buyRules: [String: Any]?
 
-        public var discountRules: [[String: Any]]?
+        public var validTill: String?
 
-        public var promotionGroup: String?
+        public var id: String?
 
         public var description: String?
 
         public var offerText: String?
 
-        public var id: String?
+        public var discountRules: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case freeGiftItems = "free_gift_items"
 
-            case validTill = "valid_till"
+            case promotionGroup = "promotion_group"
 
             case buyRules = "buy_rules"
 
-            case discountRules = "discount_rules"
+            case validTill = "valid_till"
 
-            case promotionGroup = "promotion_group"
+            case id
 
             case description
 
             case offerText = "offer_text"
 
-            case id
+            case discountRules = "discount_rules"
         }
 
         public init(buyRules: [String: Any]? = nil, description: String? = nil, discountRules: [[String: Any]]? = nil, freeGiftItems: [FreeGiftItems]? = nil, id: String? = nil, offerText: String? = nil, promotionGroup: String? = nil, validTill: String? = nil) {
             self.freeGiftItems = freeGiftItems
 
-            self.validTill = validTill
+            self.promotionGroup = promotionGroup
 
             self.buyRules = buyRules
 
-            self.discountRules = discountRules
+            self.validTill = validTill
 
-            self.promotionGroup = promotionGroup
+            self.id = id
 
             self.description = description
 
             self.offerText = offerText
 
-            self.id = id
+            self.discountRules = discountRules
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                validTill = try container.decode(String.self, forKey: .validTill)
+                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,7 +87,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                discountRules = try container.decode([[String: Any]].self, forKey: .discountRules)
+                validTill = try container.decode(String.self, forKey: .validTill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -95,7 +95,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                promotionGroup = try container.decode(String.self, forKey: .promotionGroup)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,7 +119,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                discountRules = try container.decode([[String: Any]].self, forKey: .discountRules)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,19 +132,19 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(freeGiftItems, forKey: .freeGiftItems)
 
-            try? container.encodeIfPresent(validTill, forKey: .validTill)
+            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
 
             try? container.encodeIfPresent(buyRules, forKey: .buyRules)
 
-            try? container.encodeIfPresent(discountRules, forKey: .discountRules)
+            try? container.encodeIfPresent(validTill, forKey: .validTill)
 
-            try? container.encodeIfPresent(promotionGroup, forKey: .promotionGroup)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(offerText, forKey: .offerText)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(discountRules, forKey: .discountRules)
         }
     }
 }

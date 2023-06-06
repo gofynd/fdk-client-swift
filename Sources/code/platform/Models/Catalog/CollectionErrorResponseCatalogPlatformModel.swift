@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class CollectionErrorResponse: Codable {
         public var errors: [String: Any]?
 
-        public var message: String
-
         public var code: Int
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case errors
 
-            case message
-
             case code
+
+            case message
         }
 
         public init(code: Int, errors: [String: Any]? = nil, message: String) {
             self.errors = errors
 
-            self.message = message
-
             self.code = code
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,9 +42,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            message = try container.decode(String.self, forKey: .message)
-
             code = try container.decode(Int.self, forKey: .code)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encode(errors, forKey: .errors)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -68,24 +68,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionErrorResponse: Codable {
         public var errors: [String: Any]?
 
-        public var message: String
-
         public var code: Int
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case errors
 
-            case message
-
             case code
+
+            case message
         }
 
         public init(code: Int, errors: [String: Any]? = nil, message: String) {
             self.errors = errors
 
-            self.message = message
-
             self.code = code
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            message = try container.decode(String.self, forKey: .message)
-
             code = try container.decode(Int.self, forKey: .code)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encode(errors, forKey: .errors)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

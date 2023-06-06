@@ -9,27 +9,27 @@ public extension PlatformClient.Catalog {
      */
 
     class LocationIntegrationType: Codable {
-        public var inventory: String?
-
         public var order: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case inventory
+        public var inventory: String?
 
+        public enum CodingKeys: String, CodingKey {
             case order
+
+            case inventory
         }
 
         public init(inventory: String? = nil, order: String? = nil) {
-            self.inventory = inventory
-
             self.order = order
+
+            self.inventory = inventory
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(String.self, forKey: .inventory)
+                order = try container.decode(String.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                order = try container.decode(String.self, forKey: .order)
+                inventory = try container.decode(String.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
-
             try? container.encodeIfPresent(order, forKey: .order)
+
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class LocationIntegrationType: Codable {
-        public var inventory: String?
-
         public var order: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case inventory
+        public var inventory: String?
 
+        public enum CodingKeys: String, CodingKey {
             case order
+
+            case inventory
         }
 
         public init(inventory: String? = nil, order: String? = nil) {
-            self.inventory = inventory
-
             self.order = order
+
+            self.inventory = inventory
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(String.self, forKey: .inventory)
+                order = try container.decode(String.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                order = try container.decode(String.self, forKey: .order)
+                inventory = try container.decode(String.self, forKey: .inventory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
-
             try? container.encodeIfPresent(order, forKey: .order)
+
+            try? container.encodeIfPresent(inventory, forKey: .inventory)
         }
     }
 }

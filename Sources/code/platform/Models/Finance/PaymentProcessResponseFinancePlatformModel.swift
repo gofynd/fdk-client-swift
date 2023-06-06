@@ -13,9 +13,9 @@ public extension PlatformClient.Finance {
 
         public var code: Int?
 
-        public var message: String?
-
         public var redirectUrl: String?
+
+        public var message: String?
 
         public var transactionId: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Finance {
 
             case code
 
-            case message
-
             case redirectUrl = "redirect_url"
+
+            case message
 
             case transactionId = "transaction_id"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Finance {
 
             self.code = code
 
-            self.message = message
-
             self.redirectUrl = redirectUrl
+
+            self.message = message
 
             self.transactionId = transactionId
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(transactionId, forKey: .transactionId)
         }

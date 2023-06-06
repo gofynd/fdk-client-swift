@@ -11,48 +11,48 @@ public extension PlatformClient.Catalog {
     class DepartmentPageResponse: Codable {
         public var nextId: String?
 
-        public var size: Int?
+        public var hasNext: Bool
 
         public var hasPrevious: Bool
 
         public var type: String?
 
-        public var current: Int?
+        public var size: Int?
 
         public var itemTotal: Int
 
-        public var hasNext: Bool
+        public var current: Int?
 
         public enum CodingKeys: String, CodingKey {
             case nextId = "next_id"
 
-            case size
+            case hasNext = "has_next"
 
             case hasPrevious = "has_previous"
 
             case type
 
-            case current
+            case size
 
             case itemTotal = "item_total"
 
-            case hasNext = "has_next"
+            case current
         }
 
         public init(current: Int? = nil, hasNext: Bool, hasPrevious: Bool, itemTotal: Int, nextId: String? = nil, size: Int? = nil, type: String? = nil) {
             self.nextId = nextId
 
-            self.size = size
+            self.hasNext = hasNext
 
             self.hasPrevious = hasPrevious
 
             self.type = type
 
-            self.current = current
+            self.size = size
 
             self.itemTotal = itemTotal
 
-            self.hasNext = hasNext
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,6 +60,18 @@ public extension PlatformClient.Catalog {
 
             do {
                 nextId = try container.decode(String.self, forKey: .nextId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,15 +86,7 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             do {
                 current = try container.decode(Int.self, forKey: .current)
@@ -91,10 +95,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -102,17 +102,17 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(nextId, forKey: .nextId)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }
@@ -126,48 +126,48 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class DepartmentPageResponse: Codable {
         public var nextId: String?
 
-        public var size: Int?
+        public var hasNext: Bool
 
         public var hasPrevious: Bool
 
         public var type: String?
 
-        public var current: Int?
+        public var size: Int?
 
         public var itemTotal: Int
 
-        public var hasNext: Bool
+        public var current: Int?
 
         public enum CodingKeys: String, CodingKey {
             case nextId = "next_id"
 
-            case size
+            case hasNext = "has_next"
 
             case hasPrevious = "has_previous"
 
             case type
 
-            case current
+            case size
 
             case itemTotal = "item_total"
 
-            case hasNext = "has_next"
+            case current
         }
 
         public init(current: Int? = nil, hasNext: Bool, hasPrevious: Bool, itemTotal: Int, nextId: String? = nil, size: Int? = nil, type: String? = nil) {
             self.nextId = nextId
 
-            self.size = size
+            self.hasNext = hasNext
 
             self.hasPrevious = hasPrevious
 
             self.type = type
 
-            self.current = current
+            self.size = size
 
             self.itemTotal = itemTotal
 
-            self.hasNext = hasNext
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -175,6 +175,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 nextId = try container.decode(String.self, forKey: .nextId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -189,15 +201,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             do {
                 current = try container.decode(Int.self, forKey: .current)
@@ -206,10 +210,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -217,17 +217,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(nextId, forKey: .nextId)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }

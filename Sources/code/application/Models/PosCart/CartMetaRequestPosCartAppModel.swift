@@ -11,9 +11,9 @@ public extension ApplicationClient.PosCart {
 
         public var gstin: String?
 
-        public var giftDetails: ArticleGiftDetail?
-
         public var pickUpCustomerDetails: [String: Any]?
+
+        public var giftDetails: ArticleGiftDetail?
 
         public var checkoutMode: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.PosCart {
 
             case gstin
 
-            case giftDetails = "gift_details"
-
             case pickUpCustomerDetails = "pick_up_customer_details"
+
+            case giftDetails = "gift_details"
 
             case checkoutMode = "checkout_mode"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.PosCart {
 
             self.gstin = gstin
 
-            self.giftDetails = giftDetails
-
             self.pickUpCustomerDetails = pickUpCustomerDetails
+
+            self.giftDetails = giftDetails
 
             self.checkoutMode = checkoutMode
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                giftDetails = try container.decode(ArticleGiftDetail.self, forKey: .giftDetails)
+                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+                giftDetails = try container.decode(ArticleGiftDetail.self, forKey: .giftDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 
-            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
-
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
+
+            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
         }
