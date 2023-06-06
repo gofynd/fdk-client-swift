@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class AssetByShipment: Codable {
         public var presignedUrls: [String: String]?
 
-        public var expiresIn: String
-
         public var presignedType: String
+
+        public var expiresIn: String
 
         public var success: Bool
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case presignedUrls = "presigned_urls"
 
-            case expiresIn = "expires_in"
-
             case presignedType = "presigned_type"
+
+            case expiresIn = "expires_in"
 
             case success
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Order {
         public init(expiresIn: String, presignedType: String, presignedUrls: [String: String]? = nil, shipmentId: String, success: Bool) {
             self.presignedUrls = presignedUrls
 
-            self.expiresIn = expiresIn
-
             self.presignedType = presignedType
+
+            self.expiresIn = expiresIn
 
             self.success = success
 
@@ -54,9 +54,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            expiresIn = try container.decode(String.self, forKey: .expiresIn)
-
             presignedType = try container.decode(String.self, forKey: .presignedType)
+
+            expiresIn = try container.decode(String.self, forKey: .expiresIn)
 
             success = try container.decode(Bool.self, forKey: .success)
 
@@ -68,9 +68,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(presignedUrls, forKey: .presignedUrls)
 
-            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
-
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
@@ -88,9 +88,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class AssetByShipment: Codable {
         public var presignedUrls: [String: String]?
 
-        public var expiresIn: String
-
         public var presignedType: String
+
+        public var expiresIn: String
 
         public var success: Bool
 
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case presignedUrls = "presigned_urls"
 
-            case expiresIn = "expires_in"
-
             case presignedType = "presigned_type"
+
+            case expiresIn = "expires_in"
 
             case success
 
@@ -111,9 +111,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(expiresIn: String, presignedType: String, presignedUrls: [String: String]? = nil, shipmentId: String, success: Bool) {
             self.presignedUrls = presignedUrls
 
-            self.expiresIn = expiresIn
-
             self.presignedType = presignedType
+
+            self.expiresIn = expiresIn
 
             self.success = success
 
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            expiresIn = try container.decode(String.self, forKey: .expiresIn)
-
             presignedType = try container.decode(String.self, forKey: .presignedType)
+
+            expiresIn = try container.decode(String.self, forKey: .expiresIn)
 
             success = try container.decode(Bool.self, forKey: .success)
 
@@ -145,9 +145,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(presignedUrls, forKey: .presignedUrls)
 
-            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
-
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
