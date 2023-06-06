@@ -13,22 +13,22 @@ public extension PlatformClient.Finance {
 
         public var code: Int?
 
-        public var meta: [String: Any]?
+        public var message: String?
 
         public var transactionId: String?
 
-        public var message: String?
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case redirectUrl = "redirect_url"
 
             case code
 
-            case meta
+            case message
 
             case transactionId = "transaction_id"
 
-            case message
+            case meta
         }
 
         public init(code: Int? = nil, message: String? = nil, meta: [String: Any]? = nil, redirectUrl: String? = nil, transactionId: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Finance {
 
             self.code = code
 
-            self.meta = meta
+            self.message = message
 
             self.transactionId = transactionId
 
-            self.message = message
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,11 +94,11 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(transactionId, forKey: .transactionId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

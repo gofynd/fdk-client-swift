@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class OrderBagArticle: Codable {
         public var returnConfig: ReturnConfig1?
 
-        public var identifiers: [String: Any]?
+        public var size: String?
 
         public var uid: String?
 
-        public var size: String?
+        public var identifiers: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case returnConfig = "return_config"
 
-            case identifiers
+            case size
 
             case uid
 
-            case size
+            case identifiers
         }
 
         public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, size: String? = nil, uid: String? = nil) {
             self.returnConfig = returnConfig
 
-            self.identifiers = identifiers
+            self.size = size
 
             self.uid = uid
 
-            self.size = size
+            self.identifiers = identifiers
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                identifiers = try container.decode([String: Any].self, forKey: .identifiers)
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                identifiers = try container.decode([String: Any].self, forKey: .identifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
 
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderBagArticle: Codable {
         public var returnConfig: ReturnConfig1?
 
-        public var identifiers: [String: Any]?
+        public var size: String?
 
         public var uid: String?
 
-        public var size: String?
+        public var identifiers: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case returnConfig = "return_config"
 
-            case identifiers
+            case size
 
             case uid
 
-            case size
+            case identifiers
         }
 
         public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, size: String? = nil, uid: String? = nil) {
             self.returnConfig = returnConfig
 
-            self.identifiers = identifiers
+            self.size = size
 
             self.uid = uid
 
-            self.size = size
+            self.identifiers = identifiers
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                identifiers = try container.decode([String: Any].self, forKey: .identifiers)
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                identifiers = try container.decode([String: Any].self, forKey: .identifiers)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
 
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
         }
     }
 }

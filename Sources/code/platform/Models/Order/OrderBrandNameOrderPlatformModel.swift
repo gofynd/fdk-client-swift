@@ -13,26 +13,26 @@ public extension PlatformClient.Order {
 
         public var company: Int
 
-        public var id: Int
-
-        public var createdOn: String?
+        public var modifiedOn: String?
 
         public var logo: String?
 
-        public var modifiedOn: String?
+        public var createdOn: String?
+
+        public var id: Int
 
         public enum CodingKeys: String, CodingKey {
             case brandName = "brand_name"
 
             case company
 
-            case id
-
-            case createdOn = "created_on"
+            case modifiedOn = "modified_on"
 
             case logo
 
-            case modifiedOn = "modified_on"
+            case createdOn = "created_on"
+
+            case id
         }
 
         public init(brandName: String? = nil, company: Int, createdOn: String? = nil, id: Int, logo: String? = nil, modifiedOn: String? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Order {
 
             self.company = company
 
-            self.id = id
-
-            self.createdOn = createdOn
+            self.modifiedOn = modifiedOn
 
             self.logo = logo
 
-            self.modifiedOn = modifiedOn
+            self.createdOn = createdOn
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,10 +62,8 @@ public extension PlatformClient.Order {
 
             company = try container.decode(Int.self, forKey: .company)
 
-            id = try container.decode(Int.self, forKey: .id)
-
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,12 +79,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(Int.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -96,13 +96,13 @@ public extension PlatformClient.Order {
 
             try? container.encode(company, forKey: .company)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
@@ -118,26 +118,26 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var company: Int
 
-        public var id: Int
-
-        public var createdOn: String?
+        public var modifiedOn: String?
 
         public var logo: String?
 
-        public var modifiedOn: String?
+        public var createdOn: String?
+
+        public var id: Int
 
         public enum CodingKeys: String, CodingKey {
             case brandName = "brand_name"
 
             case company
 
-            case id
-
-            case createdOn = "created_on"
+            case modifiedOn = "modified_on"
 
             case logo
 
-            case modifiedOn = "modified_on"
+            case createdOn = "created_on"
+
+            case id
         }
 
         public init(brandName: String? = nil, company: Int, createdOn: String? = nil, id: Int, logo: String? = nil, modifiedOn: String? = nil) {
@@ -145,13 +145,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.company = company
 
-            self.id = id
-
-            self.createdOn = createdOn
+            self.modifiedOn = modifiedOn
 
             self.logo = logo
 
-            self.modifiedOn = modifiedOn
+            self.createdOn = createdOn
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -167,10 +167,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             company = try container.decode(Int.self, forKey: .company)
 
-            id = try container.decode(Int.self, forKey: .id)
-
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,12 +184,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(Int.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -201,13 +201,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(company, forKey: .company)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }
