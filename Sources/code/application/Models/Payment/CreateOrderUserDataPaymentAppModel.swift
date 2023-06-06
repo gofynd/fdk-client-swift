@@ -9,66 +9,66 @@ public extension ApplicationClient.Payment {
     class CreateOrderUserData: Codable {
         public var aggregator: String?
 
-        public var callbackUrl: String?
-
-        public var orderId: String?
-
-        public var customerId: String?
-
-        public var email: String?
+        public var amount: Double?
 
         public var currency: String?
 
-        public var method: String?
+        public var customerId: String?
 
-        public var amount: Double?
+        public var merchantOrderId: String?
+
+        public var orderId: String?
 
         public var contact: String?
 
-        public var merchantOrderId: String?
+        public var method: String?
+
+        public var email: String?
+
+        public var callbackUrl: String?
 
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
-            case callbackUrl = "callback_url"
-
-            case orderId = "order_id"
-
-            case customerId = "customer_id"
-
-            case email
+            case amount
 
             case currency
 
-            case method
+            case customerId = "customer_id"
 
-            case amount
+            case merchantOrderId = "merchant_order_id"
+
+            case orderId = "order_id"
 
             case contact
 
-            case merchantOrderId = "merchant_order_id"
+            case method
+
+            case email
+
+            case callbackUrl = "callback_url"
         }
 
         public init(aggregator: String? = nil, amount: Double? = nil, callbackUrl: String? = nil, contact: String? = nil, currency: String? = nil, customerId: String? = nil, email: String? = nil, merchantOrderId: String? = nil, method: String? = nil, orderId: String? = nil) {
             self.aggregator = aggregator
 
-            self.callbackUrl = callbackUrl
-
-            self.orderId = orderId
-
-            self.customerId = customerId
-
-            self.email = email
+            self.amount = amount
 
             self.currency = currency
 
-            self.method = method
+            self.customerId = customerId
 
-            self.amount = amount
+            self.merchantOrderId = merchantOrderId
+
+            self.orderId = orderId
 
             self.contact = contact
 
-            self.merchantOrderId = merchantOrderId
+            self.method = method
+
+            self.email = email
+
+            self.callbackUrl = callbackUrl
         }
 
         required public init(from decoder: Decoder) throws {
@@ -76,54 +76,6 @@ public extension ApplicationClient.Payment {
 
             do {
                 aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderId = try container.decode(String.self, forKey: .orderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customerId = try container.decode(String.self, forKey: .customerId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                email = try container.decode(String.self, forKey: .email)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                method = try container.decode(String.self, forKey: .method)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,7 +91,15 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                contact = try container.decode(String.self, forKey: .contact)
+                currency = try container.decode(String.self, forKey: .currency)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customerId = try container.decode(String.self, forKey: .customerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,6 +113,46 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                orderId = try container.decode(String.self, forKey: .orderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                contact = try container.decode(String.self, forKey: .contact)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                method = try container.decode(String.self, forKey: .method)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                email = try container.decode(String.self, forKey: .email)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -160,23 +160,23 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(aggregator, forKey: .aggregator)
 
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
-
-            try? container.encode(orderId, forKey: .orderId)
-
-            try? container.encode(customerId, forKey: .customerId)
-
-            try? container.encode(email, forKey: .email)
+            try? container.encode(amount, forKey: .amount)
 
             try? container.encode(currency, forKey: .currency)
 
-            try? container.encode(method, forKey: .method)
+            try? container.encode(customerId, forKey: .customerId)
 
-            try? container.encode(amount, forKey: .amount)
+            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
+
+            try? container.encode(orderId, forKey: .orderId)
 
             try? container.encode(contact, forKey: .contact)
 
-            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encode(method, forKey: .method)
+
+            try? container.encode(email, forKey: .email)
+
+            try? container.encode(callbackUrl, forKey: .callbackUrl)
         }
     }
 }

@@ -9,34 +9,30 @@ public extension PlatformClient.Catalog {
      */
 
     class BaseErrorResponse: Codable {
+        public var errors: [String: Any]?
+
         public var message: String
 
         public var code: Int
 
-        public var errors: [String: Any]?
-
         public enum CodingKeys: String, CodingKey {
+            case errors
+
             case message
 
             case code
-
-            case errors
         }
 
         public init(code: Int, errors: [String: Any]? = nil, message: String) {
+            self.errors = errors
+
             self.message = message
 
             self.code = code
-
-            self.errors = errors
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            message = try container.decode(String.self, forKey: .message)
-
-            code = try container.decode(Int.self, forKey: .code)
 
             do {
                 errors = try container.decode([String: Any].self, forKey: .errors)
@@ -45,16 +41,20 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            message = try container.decode(String.self, forKey: .message)
+
+            code = try container.decode(Int.self, forKey: .code)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encode(errors, forKey: .errors)
+
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encode(errors, forKey: .errors)
         }
     }
 }
@@ -66,34 +66,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class BaseErrorResponse: Codable {
+        public var errors: [String: Any]?
+
         public var message: String
 
         public var code: Int
 
-        public var errors: [String: Any]?
-
         public enum CodingKeys: String, CodingKey {
+            case errors
+
             case message
 
             case code
-
-            case errors
         }
 
         public init(code: Int, errors: [String: Any]? = nil, message: String) {
+            self.errors = errors
+
             self.message = message
 
             self.code = code
-
-            self.errors = errors
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            message = try container.decode(String.self, forKey: .message)
-
-            code = try container.decode(Int.self, forKey: .code)
 
             do {
                 errors = try container.decode([String: Any].self, forKey: .errors)
@@ -102,16 +98,20 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            message = try container.decode(String.self, forKey: .message)
+
+            code = try container.decode(Int.self, forKey: .code)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encode(errors, forKey: .errors)
+
             try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encode(errors, forKey: .errors)
         }
     }
 }

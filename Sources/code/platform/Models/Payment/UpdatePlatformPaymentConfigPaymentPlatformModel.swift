@@ -13,9 +13,9 @@ public extension PlatformClient.Payment {
 
         public var methods: [String: Any]
 
-        public var anonymousCod: Bool?
-
         public var codCharges: Int?
+
+        public var anonymousCod: Bool?
 
         public var codAmountLimit: Int?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Payment {
 
             case methods
 
-            case anonymousCod = "anonymous_cod"
-
             case codCharges = "cod_charges"
+
+            case anonymousCod = "anonymous_cod"
 
             case codAmountLimit = "cod_amount_limit"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             self.methods = methods
 
-            self.anonymousCod = anonymousCod
-
             self.codCharges = codCharges
+
+            self.anonymousCod = anonymousCod
 
             self.codAmountLimit = codAmountLimit
         }
@@ -57,7 +57,7 @@ public extension PlatformClient.Payment {
             methods = try container.decode([String: Any].self, forKey: .methods)
 
             do {
-                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
+                codCharges = try container.decode(Int.self, forKey: .codCharges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                codCharges = try container.decode(Int.self, forKey: .codCharges)
+                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,9 +88,9 @@ public extension PlatformClient.Payment {
 
             try? container.encode(methods, forKey: .methods)
 
-            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
-
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
+            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
 
             try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
         }
@@ -108,9 +108,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var methods: [String: Any]
 
-        public var anonymousCod: Bool?
-
         public var codCharges: Int?
+
+        public var anonymousCod: Bool?
 
         public var codAmountLimit: Int?
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case methods
 
-            case anonymousCod = "anonymous_cod"
-
             case codCharges = "cod_charges"
+
+            case anonymousCod = "anonymous_cod"
 
             case codAmountLimit = "cod_amount_limit"
         }
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.methods = methods
 
-            self.anonymousCod = anonymousCod
-
             self.codCharges = codCharges
+
+            self.anonymousCod = anonymousCod
 
             self.codAmountLimit = codAmountLimit
         }
@@ -152,7 +152,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             methods = try container.decode([String: Any].self, forKey: .methods)
 
             do {
-                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
+                codCharges = try container.decode(Int.self, forKey: .codCharges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,7 +160,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                codCharges = try container.decode(Int.self, forKey: .codCharges)
+                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,9 +183,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(methods, forKey: .methods)
 
-            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
-
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
+            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
 
             try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
         }

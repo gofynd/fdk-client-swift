@@ -11,9 +11,9 @@ public extension PlatformClient.Payment {
     class CODdata: Codable {
         public var isActive: Bool
 
-        public var userId: String
-
         public var remainingLimit: Int
+
+        public var userId: String
 
         public var limit: Int
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case userId = "user_id"
-
             case remainingLimit = "remaining_limit"
+
+            case userId = "user_id"
 
             case limit
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
             self.isActive = isActive
 
-            self.userId = userId
-
             self.remainingLimit = remainingLimit
+
+            self.userId = userId
 
             self.limit = limit
 
@@ -48,9 +48,9 @@ public extension PlatformClient.Payment {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            userId = try container.decode(String.self, forKey: .userId)
-
             remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
+
+            userId = try container.decode(String.self, forKey: .userId)
 
             limit = try container.decode(Int.self, forKey: .limit)
 
@@ -62,9 +62,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(limit, forKey: .limit)
 
@@ -82,9 +82,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class CODdata: Codable {
         public var isActive: Bool
 
-        public var userId: String
-
         public var remainingLimit: Int
+
+        public var userId: String
 
         public var limit: Int
 
@@ -93,9 +93,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case userId = "user_id"
-
             case remainingLimit = "remaining_limit"
+
+            case userId = "user_id"
 
             case limit
 
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(isActive: Bool, limit: Int, remainingLimit: Int, usages: Int, userId: String) {
             self.isActive = isActive
 
-            self.userId = userId
-
             self.remainingLimit = remainingLimit
+
+            self.userId = userId
 
             self.limit = limit
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            userId = try container.decode(String.self, forKey: .userId)
-
             remainingLimit = try container.decode(Int.self, forKey: .remainingLimit)
+
+            userId = try container.decode(String.self, forKey: .userId)
 
             limit = try container.decode(Int.self, forKey: .limit)
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(remainingLimit, forKey: .remainingLimit)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(limit, forKey: .limit)
 

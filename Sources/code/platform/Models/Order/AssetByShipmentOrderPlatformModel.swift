@@ -11,22 +11,22 @@ public extension PlatformClient.Order {
     class AssetByShipment: Codable {
         public var presignedUrls: [String: String]?
 
-        public var success: Bool
-
         public var expiresIn: String
 
         public var presignedType: String
+
+        public var success: Bool
 
         public var shipmentId: String
 
         public enum CodingKeys: String, CodingKey {
             case presignedUrls = "presigned_urls"
 
-            case success
-
             case expiresIn = "expires_in"
 
             case presignedType = "presigned_type"
+
+            case success
 
             case shipmentId = "shipment_id"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Order {
         public init(expiresIn: String, presignedType: String, presignedUrls: [String: String]? = nil, shipmentId: String, success: Bool) {
             self.presignedUrls = presignedUrls
 
-            self.success = success
-
             self.expiresIn = expiresIn
 
             self.presignedType = presignedType
+
+            self.success = success
 
             self.shipmentId = shipmentId
         }
@@ -54,11 +54,11 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             expiresIn = try container.decode(String.self, forKey: .expiresIn)
 
             presignedType = try container.decode(String.self, forKey: .presignedType)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
         }
@@ -68,11 +68,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(presignedUrls, forKey: .presignedUrls)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
 
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
@@ -88,22 +88,22 @@ public extension PlatformClient.ApplicationClient.Order {
     class AssetByShipment: Codable {
         public var presignedUrls: [String: String]?
 
-        public var success: Bool
-
         public var expiresIn: String
 
         public var presignedType: String
+
+        public var success: Bool
 
         public var shipmentId: String
 
         public enum CodingKeys: String, CodingKey {
             case presignedUrls = "presigned_urls"
 
-            case success
-
             case expiresIn = "expires_in"
 
             case presignedType = "presigned_type"
+
+            case success
 
             case shipmentId = "shipment_id"
         }
@@ -111,11 +111,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(expiresIn: String, presignedType: String, presignedUrls: [String: String]? = nil, shipmentId: String, success: Bool) {
             self.presignedUrls = presignedUrls
 
-            self.success = success
-
             self.expiresIn = expiresIn
 
             self.presignedType = presignedType
+
+            self.success = success
 
             self.shipmentId = shipmentId
         }
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             expiresIn = try container.decode(String.self, forKey: .expiresIn)
 
             presignedType = try container.decode(String.self, forKey: .presignedType)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
         }
@@ -145,11 +145,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(presignedUrls, forKey: .presignedUrls)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
 
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }

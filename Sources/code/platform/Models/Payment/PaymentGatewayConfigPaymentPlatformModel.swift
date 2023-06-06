@@ -13,9 +13,9 @@ public extension PlatformClient.Payment {
 
         public var isActive: Bool?
 
-        public var key: String
-
         public var merchantSalt: String
+
+        public var key: String
 
         public var configType: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Payment {
 
             case isActive = "is_active"
 
-            case key
-
             case merchantSalt = "merchant_salt"
+
+            case key
 
             case configType = "config_type"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             self.isActive = isActive
 
-            self.key = key
-
             self.merchantSalt = merchantSalt
+
+            self.key = key
 
             self.configType = configType
         }
@@ -56,9 +56,9 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
+
+            key = try container.decode(String.self, forKey: .key)
 
             configType = try container.decode(String.self, forKey: .configType)
         }
@@ -70,9 +70,9 @@ public extension PlatformClient.Payment {
 
             try? container.encode(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(configType, forKey: .configType)
         }
@@ -90,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var isActive: Bool?
 
-        public var key: String
-
         public var merchantSalt: String
+
+        public var key: String
 
         public var configType: String
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case isActive = "is_active"
 
-            case key
-
             case merchantSalt = "merchant_salt"
+
+            case key
 
             case configType = "config_type"
         }
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.isActive = isActive
 
-            self.key = key
-
             self.merchantSalt = merchantSalt
+
+            self.key = key
 
             self.configType = configType
         }
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
+
+            key = try container.decode(String.self, forKey: .key)
 
             configType = try container.decode(String.self, forKey: .configType)
         }
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(configType, forKey: .configType)
         }

@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class OrderDetailsResponse: Codable {
         public var success: Bool
 
-        public var shipments: [PlatformShipment]?
-
         public var order: OrderData?
+
+        public var shipments: [PlatformShipment]?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case shipments
-
             case order
+
+            case shipments
         }
 
         public init(order: OrderData? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
             self.success = success
 
-            self.shipments = shipments
-
             self.order = order
+
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
+                order = try container.decode(OrderData.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +45,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                order = try container.decode(OrderData.self, forKey: .order)
+                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,9 +58,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
-
             try? container.encodeIfPresent(order, forKey: .order)
+
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderDetailsResponse: Codable {
         public var success: Bool
 
-        public var shipments: [PlatformShipment]?
-
         public var order: OrderData?
+
+        public var shipments: [PlatformShipment]?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case shipments
-
             case order
+
+            case shipments
         }
 
         public init(order: OrderData? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
             self.success = success
 
-            self.shipments = shipments
-
             self.order = order
+
+            self.shipments = shipments
         }
 
         required public init(from decoder: Decoder) throws {
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Order {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
+                order = try container.decode(OrderData.self, forKey: .order)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                order = try container.decode(OrderData.self, forKey: .order)
+                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
-
             try? container.encodeIfPresent(order, forKey: .order)
+
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
         }
     }
 }

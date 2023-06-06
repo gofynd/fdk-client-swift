@@ -11,9 +11,9 @@ public extension PlatformClient.Payment {
     class CreatePaymentLinkRequest: Codable {
         public var amount: Double
 
-        public var meta: CreatePaymentLinkMeta
-
         public var email: String
+
+        public var meta: CreatePaymentLinkMeta
 
         public var mobileNumber: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case meta
-
             case email
+
+            case meta
 
             case mobileNumber = "mobile_number"
 
@@ -38,9 +38,9 @@ public extension PlatformClient.Payment {
         public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
             self.amount = amount
 
-            self.meta = meta
-
             self.email = email
+
+            self.meta = meta
 
             self.mobileNumber = mobileNumber
 
@@ -54,9 +54,9 @@ public extension PlatformClient.Payment {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
-
             email = try container.decode(String.self, forKey: .email)
+
+            meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
 
             mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
 
@@ -76,9 +76,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
 
@@ -98,9 +98,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class CreatePaymentLinkRequest: Codable {
         public var amount: Double
 
-        public var meta: CreatePaymentLinkMeta
-
         public var email: String
+
+        public var meta: CreatePaymentLinkMeta
 
         public var mobileNumber: String
 
@@ -111,9 +111,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case meta
-
             case email
+
+            case meta
 
             case mobileNumber = "mobile_number"
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
             self.amount = amount
 
-            self.meta = meta
-
             self.email = email
+
+            self.meta = meta
 
             self.mobileNumber = mobileNumber
 
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
-
             email = try container.decode(String.self, forKey: .email)
+
+            meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
 
             mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
 
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(email, forKey: .email)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
 

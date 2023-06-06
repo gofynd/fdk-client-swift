@@ -11,9 +11,9 @@ public extension PlatformClient.Payment {
     class PayoutCustomer: Codable {
         public var uniqueExternalId: String?
 
-        public var email: String?
-
         public var id: Int?
+
+        public var email: String?
 
         public var name: String?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case uniqueExternalId = "unique_external_id"
 
-            case email
-
             case id
+
+            case email
 
             case name
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         public init(email: String? = nil, id: Int? = nil, mobile: String? = nil, name: String? = nil, uniqueExternalId: String? = nil) {
             self.uniqueExternalId = uniqueExternalId
 
-            self.email = email
-
             self.id = id
+
+            self.email = email
 
             self.name = name
 
@@ -55,7 +55,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.Payment {
 
             try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
 
-            try? container.encode(email, forKey: .email)
-
             try? container.encode(id, forKey: .id)
+
+            try? container.encode(email, forKey: .email)
 
             try? container.encode(name, forKey: .name)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PayoutCustomer: Codable {
         public var uniqueExternalId: String?
 
-        public var email: String?
-
         public var id: Int?
+
+        public var email: String?
 
         public var name: String?
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case uniqueExternalId = "unique_external_id"
 
-            case email
-
             case id
+
+            case email
 
             case name
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(email: String? = nil, id: Int? = nil, mobile: String? = nil, name: String? = nil, uniqueExternalId: String? = nil) {
             self.uniqueExternalId = uniqueExternalId
 
-            self.email = email
-
             self.id = id
+
+            self.email = email
 
             self.name = name
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,9 +193,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
 
-            try? container.encode(email, forKey: .email)
-
             try? container.encode(id, forKey: .id)
+
+            try? container.encode(email, forKey: .email)
 
             try? container.encode(name, forKey: .name)
 

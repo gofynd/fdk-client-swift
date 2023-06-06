@@ -168,8 +168,6 @@ public extension PlatformClient {
         public func getShipmentById(
             channelShipmentId: String?,
             shipmentId: String?,
-            orderingCompanyId: String?,
-            requestByExt: String?,
 
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
@@ -181,14 +179,6 @@ public extension PlatformClient {
 
             if let value = shipmentId {
                 xQuery["shipment_id"] = value
-            }
-
-            if let value = orderingCompanyId {
-                xQuery["ordering_company_id"] = value
-            }
-
-            if let value = requestByExt {
-                xQuery["request_by_ext"] = value
             }
 
             PlatformAPIClient.execute(
