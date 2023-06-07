@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var paymentMethods: [String: Any]?
 
-        public var orderDate: String
-
         public var fyndOrderId: String
+
+        public var orderDate: String
 
         public var taxDetails: TaxDetails?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case paymentMethods = "payment_methods"
 
-            case orderDate = "order_date"
-
             case fyndOrderId = "fynd_order_id"
+
+            case orderDate = "order_date"
 
             case taxDetails = "tax_details"
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Order {
 
             self.paymentMethods = paymentMethods
 
-            self.orderDate = orderDate
-
             self.fyndOrderId = fyndOrderId
+
+            self.orderDate = orderDate
 
             self.taxDetails = taxDetails
 
@@ -68,9 +68,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderDate = try container.decode(String.self, forKey: .orderDate)
-
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            orderDate = try container.decode(String.self, forKey: .orderDate)
 
             do {
                 taxDetails = try container.decode(TaxDetails.self, forKey: .taxDetails)
@@ -96,9 +96,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
             try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
 
@@ -118,9 +118,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var paymentMethods: [String: Any]?
 
-        public var orderDate: String
-
         public var fyndOrderId: String
+
+        public var orderDate: String
 
         public var taxDetails: TaxDetails?
 
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case paymentMethods = "payment_methods"
 
-            case orderDate = "order_date"
-
             case fyndOrderId = "fynd_order_id"
+
+            case orderDate = "order_date"
 
             case taxDetails = "tax_details"
 
@@ -145,9 +145,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.paymentMethods = paymentMethods
 
-            self.orderDate = orderDate
-
             self.fyndOrderId = fyndOrderId
+
+            self.orderDate = orderDate
 
             self.taxDetails = taxDetails
 
@@ -173,9 +173,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderDate = try container.decode(String.self, forKey: .orderDate)
-
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            orderDate = try container.decode(String.self, forKey: .orderDate)
 
             do {
                 taxDetails = try container.decode(TaxDetails.self, forKey: .taxDetails)
@@ -201,9 +201,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
 
             try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
 

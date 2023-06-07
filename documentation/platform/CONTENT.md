@@ -8862,7 +8862,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | slug | String? |  yes  |  |
  | platform | String? |  yes  |  |
  | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
- | media | [SlideshowMedia](#SlideshowMedia)? |  yes  |  |
+ | media | [[SlideshowMedia](#SlideshowMedia)]? |  yes  |  |
  | active | Bool? |  yes  |  |
 
 ---

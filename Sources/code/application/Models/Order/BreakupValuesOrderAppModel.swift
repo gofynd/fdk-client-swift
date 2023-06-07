@@ -9,22 +9,22 @@ public extension ApplicationClient.Order {
     class BreakupValues: Codable {
         public var value: Double?
 
-        public var name: String?
+        public var display: String?
 
         public var currencySymbol: String?
 
-        public var display: String?
+        public var name: String?
 
         public var currencyCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case name
+            case display
 
             case currencySymbol = "currency_symbol"
 
-            case display
+            case name
 
             case currencyCode = "currency_code"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Order {
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, name: String? = nil, value: Double? = nil) {
             self.value = value
 
-            self.name = name
+            self.display = display
 
             self.currencySymbol = currencySymbol
 
-            self.display = display
+            self.name = name
 
             self.currencyCode = currencyCode
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }

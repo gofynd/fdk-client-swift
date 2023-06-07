@@ -11,66 +11,66 @@ public extension PlatformClient.Order {
     class BagStateMapper: Codable {
         public var appDisplayName: String?
 
-        public var appStateName: String?
+        public var notifyCustomer: Bool?
 
         public var bsId: Int
 
-        public var notifyCustomer: Bool?
+        public var name: String
 
-        public var displayName: String
-
-        public var journeyType: String
+        public var appStateName: String?
 
         public var isActive: Bool?
 
         public var stateType: String
 
-        public var name: String
+        public var journeyType: String
 
         public var appFacing: Bool?
+
+        public var displayName: String
 
         public enum CodingKeys: String, CodingKey {
             case appDisplayName = "app_display_name"
 
-            case appStateName = "app_state_name"
+            case notifyCustomer = "notify_customer"
 
             case bsId = "bs_id"
 
-            case notifyCustomer = "notify_customer"
+            case name
 
-            case displayName = "display_name"
-
-            case journeyType = "journey_type"
+            case appStateName = "app_state_name"
 
             case isActive = "is_active"
 
             case stateType = "state_type"
 
-            case name
+            case journeyType = "journey_type"
 
             case appFacing = "app_facing"
+
+            case displayName = "display_name"
         }
 
         public init(appDisplayName: String? = nil, appFacing: Bool? = nil, appStateName: String? = nil, bsId: Int, displayName: String, isActive: Bool? = nil, journeyType: String, name: String, notifyCustomer: Bool? = nil, stateType: String) {
             self.appDisplayName = appDisplayName
 
-            self.appStateName = appStateName
+            self.notifyCustomer = notifyCustomer
 
             self.bsId = bsId
 
-            self.notifyCustomer = notifyCustomer
+            self.name = name
 
-            self.displayName = displayName
-
-            self.journeyType = journeyType
+            self.appStateName = appStateName
 
             self.isActive = isActive
 
             self.stateType = stateType
 
-            self.name = name
+            self.journeyType = journeyType
 
             self.appFacing = appFacing
+
+            self.displayName = displayName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,7 +85,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                appStateName = try container.decode(String.self, forKey: .appStateName)
+                notifyCustomer = try container.decode(Bool.self, forKey: .notifyCustomer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,17 +94,15 @@ public extension PlatformClient.Order {
 
             bsId = try container.decode(Int.self, forKey: .bsId)
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
-                notifyCustomer = try container.decode(Bool.self, forKey: .notifyCustomer)
+                appStateName = try container.decode(String.self, forKey: .appStateName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            displayName = try container.decode(String.self, forKey: .displayName)
-
-            journeyType = try container.decode(String.self, forKey: .journeyType)
 
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -116,7 +114,7 @@ public extension PlatformClient.Order {
 
             stateType = try container.decode(String.self, forKey: .stateType)
 
-            name = try container.decode(String.self, forKey: .name)
+            journeyType = try container.decode(String.self, forKey: .journeyType)
 
             do {
                 appFacing = try container.decode(Bool.self, forKey: .appFacing)
@@ -125,6 +123,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            displayName = try container.decode(String.self, forKey: .displayName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -132,23 +132,23 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
 
-            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
+            try? container.encodeIfPresent(notifyCustomer, forKey: .notifyCustomer)
 
             try? container.encodeIfPresent(bsId, forKey: .bsId)
 
-            try? container.encodeIfPresent(notifyCustomer, forKey: .notifyCustomer)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
+            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(stateType, forKey: .stateType)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
 
             try? container.encodeIfPresent(appFacing, forKey: .appFacing)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
     }
 }
@@ -162,66 +162,66 @@ public extension PlatformClient.ApplicationClient.Order {
     class BagStateMapper: Codable {
         public var appDisplayName: String?
 
-        public var appStateName: String?
+        public var notifyCustomer: Bool?
 
         public var bsId: Int
 
-        public var notifyCustomer: Bool?
+        public var name: String
 
-        public var displayName: String
-
-        public var journeyType: String
+        public var appStateName: String?
 
         public var isActive: Bool?
 
         public var stateType: String
 
-        public var name: String
+        public var journeyType: String
 
         public var appFacing: Bool?
+
+        public var displayName: String
 
         public enum CodingKeys: String, CodingKey {
             case appDisplayName = "app_display_name"
 
-            case appStateName = "app_state_name"
+            case notifyCustomer = "notify_customer"
 
             case bsId = "bs_id"
 
-            case notifyCustomer = "notify_customer"
+            case name
 
-            case displayName = "display_name"
-
-            case journeyType = "journey_type"
+            case appStateName = "app_state_name"
 
             case isActive = "is_active"
 
             case stateType = "state_type"
 
-            case name
+            case journeyType = "journey_type"
 
             case appFacing = "app_facing"
+
+            case displayName = "display_name"
         }
 
         public init(appDisplayName: String? = nil, appFacing: Bool? = nil, appStateName: String? = nil, bsId: Int, displayName: String, isActive: Bool? = nil, journeyType: String, name: String, notifyCustomer: Bool? = nil, stateType: String) {
             self.appDisplayName = appDisplayName
 
-            self.appStateName = appStateName
+            self.notifyCustomer = notifyCustomer
 
             self.bsId = bsId
 
-            self.notifyCustomer = notifyCustomer
+            self.name = name
 
-            self.displayName = displayName
-
-            self.journeyType = journeyType
+            self.appStateName = appStateName
 
             self.isActive = isActive
 
             self.stateType = stateType
 
-            self.name = name
+            self.journeyType = journeyType
 
             self.appFacing = appFacing
+
+            self.displayName = displayName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -236,7 +236,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                appStateName = try container.decode(String.self, forKey: .appStateName)
+                notifyCustomer = try container.decode(Bool.self, forKey: .notifyCustomer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -245,17 +245,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             bsId = try container.decode(Int.self, forKey: .bsId)
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
-                notifyCustomer = try container.decode(Bool.self, forKey: .notifyCustomer)
+                appStateName = try container.decode(String.self, forKey: .appStateName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            displayName = try container.decode(String.self, forKey: .displayName)
-
-            journeyType = try container.decode(String.self, forKey: .journeyType)
 
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -267,7 +265,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             stateType = try container.decode(String.self, forKey: .stateType)
 
-            name = try container.decode(String.self, forKey: .name)
+            journeyType = try container.decode(String.self, forKey: .journeyType)
 
             do {
                 appFacing = try container.decode(Bool.self, forKey: .appFacing)
@@ -276,6 +274,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            displayName = try container.decode(String.self, forKey: .displayName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -283,23 +283,23 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(appDisplayName, forKey: .appDisplayName)
 
-            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
+            try? container.encodeIfPresent(notifyCustomer, forKey: .notifyCustomer)
 
             try? container.encodeIfPresent(bsId, forKey: .bsId)
 
-            try? container.encodeIfPresent(notifyCustomer, forKey: .notifyCustomer)
+            try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
+            try? container.encodeIfPresent(appStateName, forKey: .appStateName)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(stateType, forKey: .stateType)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
 
             try? container.encodeIfPresent(appFacing, forKey: .appFacing)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
     }
 }
