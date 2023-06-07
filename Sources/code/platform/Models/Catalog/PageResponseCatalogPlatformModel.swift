@@ -11,9 +11,9 @@ public extension PlatformClient.Catalog {
     class PageResponse: Codable {
         public var itemTotal: Int?
 
-        public var size: Int?
-
         public var hasPrevious: Bool?
+
+        public var size: Int?
 
         public var hasNext: Bool?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
-            case size
-
             case hasPrevious = "has_previous"
+
+            case size
 
             case hasNext = "has_next"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Catalog {
         public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
             self.itemTotal = itemTotal
 
-            self.size = size
-
             self.hasPrevious = hasPrevious
+
+            self.size = size
 
             self.hasNext = hasNext
 
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class PageResponse: Codable {
         public var itemTotal: Int?
 
-        public var size: Int?
-
         public var hasPrevious: Bool?
+
+        public var size: Int?
 
         public var hasNext: Bool?
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
-            case size
-
             case hasPrevious = "has_previous"
+
+            case size
 
             case hasNext = "has_next"
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(current: String? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil) {
             self.itemTotal = itemTotal
 
-            self.size = size
-
             self.hasPrevious = hasPrevious
+
+            self.size = size
 
             self.hasNext = hasNext
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,9 +193,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 

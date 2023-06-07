@@ -9,11 +9,11 @@ public extension ApplicationClient.Cart {
     class DisplayBreakup: Codable {
         public var display: String?
 
-        public var value: Double?
-
         public var currencyCode: String?
 
         public var currencySymbol: String?
+
+        public var value: Double?
 
         public var key: String?
 
@@ -22,11 +22,11 @@ public extension ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case display
 
-            case value
-
             case currencyCode = "currency_code"
 
             case currencySymbol = "currency_symbol"
+
+            case value
 
             case key
 
@@ -36,11 +36,11 @@ public extension ApplicationClient.Cart {
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, display: String? = nil, key: String? = nil, message: [String]? = nil, value: Double? = nil) {
             self.display = display
 
-            self.value = value
-
             self.currencyCode = currencyCode
 
             self.currencySymbol = currencySymbol
+
+            self.value = value
 
             self.key = key
 
@@ -59,14 +59,6 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,6 +68,14 @@ public extension ApplicationClient.Cart {
 
             do {
                 currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,11 +104,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(key, forKey: .key)
 

@@ -9,18 +9,18 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class DiscountRule: Codable {
-        public var offer: DiscountOffer
-
         public var itemCriteria: ItemCriteria
+
+        public var offer: DiscountOffer
 
         public var discountType: String
 
         public var buyCondition: String
 
         public enum CodingKeys: String, CodingKey {
-            case offer
-
             case itemCriteria = "item_criteria"
+
+            case offer
 
             case discountType = "discount_type"
 
@@ -28,9 +28,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(buyCondition: String, discountType: String, itemCriteria: ItemCriteria, offer: DiscountOffer) {
-            self.offer = offer
-
             self.itemCriteria = itemCriteria
+
+            self.offer = offer
 
             self.discountType = discountType
 
@@ -40,9 +40,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            offer = try container.decode(DiscountOffer.self, forKey: .offer)
-
             itemCriteria = try container.decode(ItemCriteria.self, forKey: .itemCriteria)
+
+            offer = try container.decode(DiscountOffer.self, forKey: .offer)
 
             discountType = try container.decode(String.self, forKey: .discountType)
 
@@ -52,9 +52,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(offer, forKey: .offer)
-
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
+
+            try? container.encodeIfPresent(offer, forKey: .offer)
 
             try? container.encodeIfPresent(discountType, forKey: .discountType)
 

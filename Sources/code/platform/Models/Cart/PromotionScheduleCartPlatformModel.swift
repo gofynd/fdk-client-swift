@@ -13,11 +13,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var cron: String?
 
-        public var duration: Int?
-
         public var published: Bool
 
         public var start: String
+
+        public var duration: Int?
 
         public var nextSchedule: [[String: Any]]?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case cron
 
-            case duration
-
             case published
 
             case start
+
+            case duration
 
             case nextSchedule = "next_schedule"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.cron = cron
 
-            self.duration = duration
-
             self.published = published
 
             self.start = start
+
+            self.duration = duration
 
             self.nextSchedule = nextSchedule
         }
@@ -68,6 +68,10 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            published = try container.decode(Bool.self, forKey: .published)
+
+            start = try container.decode(String.self, forKey: .start)
+
             do {
                 duration = try container.decode(Int.self, forKey: .duration)
 
@@ -75,10 +79,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            published = try container.decode(Bool.self, forKey: .published)
-
-            start = try container.decode(String.self, forKey: .start)
 
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
@@ -96,11 +96,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encode(cron, forKey: .cron)
 
-            try? container.encode(duration, forKey: .duration)
-
             try? container.encodeIfPresent(published, forKey: .published)
 
             try? container.encodeIfPresent(start, forKey: .start)
+
+            try? container.encode(duration, forKey: .duration)
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
         }

@@ -13,9 +13,9 @@ public extension ApplicationClient.Catalog {
 
         public var width: Double
 
-        public var length: Double
-
         public var isDefault: Bool
+
+        public var length: Double
 
         public enum CodingKeys: String, CodingKey {
             case height
@@ -24,9 +24,9 @@ public extension ApplicationClient.Catalog {
 
             case width
 
-            case length
-
             case isDefault = "is_default"
+
+            case length
         }
 
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.Catalog {
 
             self.width = width
 
-            self.length = length
-
             self.isDefault = isDefault
+
+            self.length = length
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient.Catalog {
 
             width = try container.decode(Double.self, forKey: .width)
 
-            length = try container.decode(Double.self, forKey: .length)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            length = try container.decode(Double.self, forKey: .length)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,9 +64,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(width, forKey: .width)
 
-            try? container.encodeIfPresent(length, forKey: .length)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(length, forKey: .length)
         }
     }
 }

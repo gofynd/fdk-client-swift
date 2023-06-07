@@ -2,34 +2,34 @@
 
 import Foundation
 
-public extension PlatformClient.Analytics {
+public extension PlatformClient.Order {
     /*
-         Model: StatsGroupComponents
-         Used By: Analytics
+         Model: BagStateTransitionMap
+         Used By: Order
      */
 
-    class StatsGroupComponents: Codable {
-        public var title: String?
+    class BagStateTransitionMap: Codable {
+        public var affiliate: [String: Any]?
 
-        public var components: [StatsGroupComponent]?
+        public var fynd: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case title
+            case affiliate
 
-            case components
+            case fynd
         }
 
-        public init(components: [StatsGroupComponent]? = nil, title: String? = nil) {
-            self.title = title
+        public init(affiliate: [String: Any]? = nil, fynd: [String: Any]? = nil) {
+            self.affiliate = affiliate
 
-            self.components = components
+            self.fynd = fynd
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                affiliate = try container.decode([String: Any].self, forKey: .affiliate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Analytics {
             } catch {}
 
             do {
-                components = try container.decode([StatsGroupComponent].self, forKey: .components)
+                fynd = try container.decode([String: Any].self, forKey: .fynd)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Analytics {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
-            try? container.encodeIfPresent(components, forKey: .components)
+            try? container.encodeIfPresent(fynd, forKey: .fynd)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Analytics {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: StatsGroupComponents
-         Used By: Analytics
+         Model: BagStateTransitionMap
+         Used By: Order
      */
 
-    class StatsGroupComponents: Codable {
-        public var title: String?
+    class BagStateTransitionMap: Codable {
+        public var affiliate: [String: Any]?
 
-        public var components: [StatsGroupComponent]?
+        public var fynd: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case title
+            case affiliate
 
-            case components
+            case fynd
         }
 
-        public init(components: [StatsGroupComponent]? = nil, title: String? = nil) {
-            self.title = title
+        public init(affiliate: [String: Any]? = nil, fynd: [String: Any]? = nil) {
+            self.affiliate = affiliate
 
-            self.components = components
+            self.fynd = fynd
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                affiliate = try container.decode([String: Any].self, forKey: .affiliate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Analytics {
             } catch {}
 
             do {
-                components = try container.decode([StatsGroupComponent].self, forKey: .components)
+                fynd = try container.decode([String: Any].self, forKey: .fynd)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Analytics {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
-            try? container.encodeIfPresent(components, forKey: .components)
+            try? container.encodeIfPresent(fynd, forKey: .fynd)
         }
     }
 }
