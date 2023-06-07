@@ -13,22 +13,22 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var id: String
 
-        public var lastName: String
+        public var employeeCode: String?
 
         public var user: String
 
-        public var employeeCode: String?
+        public var lastName: String
 
         public enum CodingKeys: String, CodingKey {
             case firstName = "first_name"
 
             case id = "_id"
 
-            case lastName = "last_name"
+            case employeeCode = "employee_code"
 
             case user
 
-            case employeeCode = "employee_code"
+            case lastName = "last_name"
         }
 
         public init(employeeCode: String? = nil, firstName: String, lastName: String, user: String, id: String) {
@@ -36,11 +36,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.id = id
 
-            self.lastName = lastName
+            self.employeeCode = employeeCode
 
             self.user = user
 
-            self.employeeCode = employeeCode
+            self.lastName = lastName
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,10 +50,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             id = try container.decode(String.self, forKey: .id)
 
-            lastName = try container.decode(String.self, forKey: .lastName)
-
-            user = try container.decode(String.self, forKey: .user)
-
             do {
                 employeeCode = try container.decode(String.self, forKey: .employeeCode)
 
@@ -61,6 +57,10 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            user = try container.decode(String.self, forKey: .user)
+
+            lastName = try container.decode(String.self, forKey: .lastName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,11 +70,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
         }
     }
 }

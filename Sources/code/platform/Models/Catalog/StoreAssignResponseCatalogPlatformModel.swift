@@ -9,24 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class StoreAssignResponse: Codable {
-        public var error: StoreAssignError?
-
         public var items: [StoreAssign]?
+
+        public var error: StoreAssignError?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case error
-
             case items
+
+            case error
 
             case success
         }
 
         public init(error: StoreAssignError? = nil, items: [StoreAssign]? = nil, success: Bool? = nil) {
-            self.error = error
-
             self.items = items
+
+            self.error = error
 
             self.success = success
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                error = try container.decode(StoreAssignError.self, forKey: .error)
+                items = try container.decode([StoreAssign].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([StoreAssign].self, forKey: .items)
+                error = try container.decode(StoreAssignError.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class StoreAssignResponse: Codable {
-        public var error: StoreAssignError?
-
         public var items: [StoreAssign]?
+
+        public var error: StoreAssignError?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case error
-
             case items
+
+            case error
 
             case success
         }
 
         public init(error: StoreAssignError? = nil, items: [StoreAssign]? = nil, success: Bool? = nil) {
-            self.error = error
-
             self.items = items
+
+            self.error = error
 
             self.success = success
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                error = try container.decode(StoreAssignError.self, forKey: .error)
+                items = try container.decode([StoreAssign].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([StoreAssign].self, forKey: .items)
+                error = try container.decode(StoreAssignError.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

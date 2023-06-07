@@ -9,24 +9,24 @@ public extension ApplicationClient.Logistic {
     class TATArticlesRequest: Codable {
         public var manufacturingTimeUnit: String?
 
-        public var category: TATCategoryRequest?
-
         public var manufacturingTime: Int?
+
+        public var category: TATCategoryRequest?
 
         public enum CodingKeys: String, CodingKey {
             case manufacturingTimeUnit = "manufacturing_time_unit"
 
-            case category
-
             case manufacturingTime = "manufacturing_time"
+
+            case category
         }
 
         public init(category: TATCategoryRequest? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
             self.manufacturingTimeUnit = manufacturingTimeUnit
 
-            self.category = category
-
             self.manufacturingTime = manufacturingTime
+
+            self.category = category
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                category = try container.decode(TATCategoryRequest.self, forKey: .category)
+                manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
+                category = try container.decode(TATCategoryRequest.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
 
-            try? container.encodeIfPresent(category, forKey: .category)
-
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
+
+            try? container.encodeIfPresent(category, forKey: .category)
         }
     }
 }

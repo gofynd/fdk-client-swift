@@ -11,18 +11,18 @@ public extension ApplicationClient.Cart {
 
         public var parentItemIdentifier: String?
 
-        public var freeGiftItemDetails: FreeGiftItem?
-
         public var articleId: String?
+
+        public var freeGiftItemDetails: FreeGiftItem?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
 
             case parentItemIdentifier = "parent_item_identifier"
 
-            case freeGiftItemDetails = "free_gift_item_details"
-
             case articleId = "article_id"
+
+            case freeGiftItemDetails = "free_gift_item_details"
         }
 
         public init(articleId: String? = nil, freeGiftItemDetails: FreeGiftItem? = nil, parentItemIdentifier: String? = nil, quantity: Int? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Cart {
 
             self.parentItemIdentifier = parentItemIdentifier
 
-            self.freeGiftItemDetails = freeGiftItemDetails
-
             self.articleId = articleId
+
+            self.freeGiftItemDetails = freeGiftItemDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                freeGiftItemDetails = try container.decode(FreeGiftItem.self, forKey: .freeGiftItemDetails)
+                articleId = try container.decode(String.self, forKey: .articleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                freeGiftItemDetails = try container.decode(FreeGiftItem.self, forKey: .freeGiftItemDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(parentItemIdentifier, forKey: .parentItemIdentifier)
 
-            try? container.encodeIfPresent(freeGiftItemDetails, forKey: .freeGiftItemDetails)
-
             try? container.encodeIfPresent(articleId, forKey: .articleId)
+
+            try? container.encodeIfPresent(freeGiftItemDetails, forKey: .freeGiftItemDetails)
         }
     }
 }

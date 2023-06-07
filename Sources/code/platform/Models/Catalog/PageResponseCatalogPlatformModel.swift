@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var hasPrevious: Bool?
 
-        public var size: Int?
-
         public var itemTotal: Int?
+
+        public var size: Int?
 
         public var current: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case hasPrevious = "has_previous"
 
-            case size
-
             case itemTotal = "item_total"
+
+            case size
 
             case current
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.hasPrevious = hasPrevious
 
-            self.size = size
-
             self.itemTotal = itemTotal
+
+            self.size = size
 
             self.current = current
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(current, forKey: .current)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var hasPrevious: Bool?
 
-        public var size: Int?
-
         public var itemTotal: Int?
+
+        public var size: Int?
 
         public var current: String?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case hasPrevious = "has_previous"
 
-            case size
-
             case itemTotal = "item_total"
+
+            case size
 
             case current
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.hasPrevious = hasPrevious
 
-            self.size = size
-
             self.itemTotal = itemTotal
+
+            self.size = size
 
             self.current = current
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(current, forKey: .current)
         }

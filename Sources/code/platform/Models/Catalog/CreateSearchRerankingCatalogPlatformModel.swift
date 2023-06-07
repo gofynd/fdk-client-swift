@@ -9,54 +9,54 @@ public extension PlatformClient.Catalog {
      */
 
     class CreateSearchReranking: Codable {
-        public var modifiedOn: String?
+        public var isActive: Bool?
 
-        public var words: [String]
-
-        public var appId: String?
+        public var createdBy: [String: Any]?
 
         public var modifiedBy: [String: Any]?
 
         public var createdOn: String?
 
-        public var createdBy: [String: Any]?
+        public var appId: String?
 
-        public var isActive: Bool?
+        public var modifiedOn: String?
+
+        public var words: [String]
 
         public var ranking: BoostBury1?
 
         public enum CodingKeys: String, CodingKey {
-            case modifiedOn = "modified_on"
+            case isActive = "is_active"
 
-            case words
-
-            case appId = "app_id"
+            case createdBy = "created_by"
 
             case modifiedBy = "modified_by"
 
             case createdOn = "created_on"
 
-            case createdBy = "created_by"
+            case appId = "app_id"
 
-            case isActive = "is_active"
+            case modifiedOn = "modified_on"
+
+            case words
 
             case ranking
         }
 
         public init(appId: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, ranking: BoostBury1? = nil, words: [String]) {
-            self.modifiedOn = modifiedOn
+            self.isActive = isActive
 
-            self.words = words
-
-            self.appId = appId
+            self.createdBy = createdBy
 
             self.modifiedBy = modifiedBy
 
             self.createdOn = createdOn
 
-            self.createdBy = createdBy
+            self.appId = appId
 
-            self.isActive = isActive
+            self.modifiedOn = modifiedOn
+
+            self.words = words
 
             self.ranking = ranking
         }
@@ -65,17 +65,15 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            words = try container.decode([String].self, forKey: .words)
-
             do {
-                appId = try container.decode(String.self, forKey: .appId)
+                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,7 +97,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
+                appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,12 +105,14 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            words = try container.decode([String].self, forKey: .words)
 
             do {
                 ranking = try container.decode(BoostBury1.self, forKey: .ranking)
@@ -126,19 +126,19 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(words, forKey: .words)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(ranking, forKey: .ranking)
         }
@@ -152,54 +152,54 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class CreateSearchReranking: Codable {
-        public var modifiedOn: String?
+        public var isActive: Bool?
 
-        public var words: [String]
-
-        public var appId: String?
+        public var createdBy: [String: Any]?
 
         public var modifiedBy: [String: Any]?
 
         public var createdOn: String?
 
-        public var createdBy: [String: Any]?
+        public var appId: String?
 
-        public var isActive: Bool?
+        public var modifiedOn: String?
+
+        public var words: [String]
 
         public var ranking: BoostBury1?
 
         public enum CodingKeys: String, CodingKey {
-            case modifiedOn = "modified_on"
+            case isActive = "is_active"
 
-            case words
-
-            case appId = "app_id"
+            case createdBy = "created_by"
 
             case modifiedBy = "modified_by"
 
             case createdOn = "created_on"
 
-            case createdBy = "created_by"
+            case appId = "app_id"
 
-            case isActive = "is_active"
+            case modifiedOn = "modified_on"
+
+            case words
 
             case ranking
         }
 
         public init(appId: String? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, ranking: BoostBury1? = nil, words: [String]) {
-            self.modifiedOn = modifiedOn
+            self.isActive = isActive
 
-            self.words = words
-
-            self.appId = appId
+            self.createdBy = createdBy
 
             self.modifiedBy = modifiedBy
 
             self.createdOn = createdOn
 
-            self.createdBy = createdBy
+            self.appId = appId
 
-            self.isActive = isActive
+            self.modifiedOn = modifiedOn
+
+            self.words = words
 
             self.ranking = ranking
         }
@@ -208,17 +208,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            words = try container.decode([String].self, forKey: .words)
-
             do {
-                appId = try container.decode(String.self, forKey: .appId)
+                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -242,7 +240,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
+                appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -250,12 +248,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            words = try container.decode([String].self, forKey: .words)
 
             do {
                 ranking = try container.decode(BoostBury1.self, forKey: .ranking)
@@ -269,19 +269,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(words, forKey: .words)
-
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(ranking, forKey: .ranking)
         }

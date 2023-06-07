@@ -9,53 +9,45 @@ public extension PlatformClient.Order {
      */
 
     class Meta: Codable {
-        public var paymentId: String?
-
-        public var paymentIdentifier: String?
+        public var paymentGateway: String?
 
         public var logoUrl: [String: String]?
 
-        public var paymentGateway: String?
+        public var paymentIdentifier: String?
 
         public var merchantCode: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case paymentId = "payment_id"
+        public var paymentId: String?
 
-            case paymentIdentifier = "payment_identifier"
+        public enum CodingKeys: String, CodingKey {
+            case paymentGateway = "payment_gateway"
 
             case logoUrl = "logo_url"
 
-            case paymentGateway = "payment_gateway"
+            case paymentIdentifier = "payment_identifier"
 
             case merchantCode = "merchant_code"
+
+            case paymentId = "payment_id"
         }
 
         public init(logoUrl: [String: String]? = nil, merchantCode: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil, paymentIdentifier: String? = nil) {
-            self.paymentId = paymentId
-
-            self.paymentIdentifier = paymentIdentifier
+            self.paymentGateway = paymentGateway
 
             self.logoUrl = logoUrl
 
-            self.paymentGateway = paymentGateway
+            self.paymentIdentifier = paymentIdentifier
 
             self.merchantCode = merchantCode
+
+            self.paymentId = paymentId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentId = try container.decode(String.self, forKey: .paymentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,20 +77,28 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                paymentId = try container.decode(String.self, forKey: .paymentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
-
-            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+
+            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
         }
     }
 }
@@ -110,53 +110,45 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Meta: Codable {
-        public var paymentId: String?
-
-        public var paymentIdentifier: String?
+        public var paymentGateway: String?
 
         public var logoUrl: [String: String]?
 
-        public var paymentGateway: String?
+        public var paymentIdentifier: String?
 
         public var merchantCode: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case paymentId = "payment_id"
+        public var paymentId: String?
 
-            case paymentIdentifier = "payment_identifier"
+        public enum CodingKeys: String, CodingKey {
+            case paymentGateway = "payment_gateway"
 
             case logoUrl = "logo_url"
 
-            case paymentGateway = "payment_gateway"
+            case paymentIdentifier = "payment_identifier"
 
             case merchantCode = "merchant_code"
+
+            case paymentId = "payment_id"
         }
 
         public init(logoUrl: [String: String]? = nil, merchantCode: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil, paymentIdentifier: String? = nil) {
-            self.paymentId = paymentId
-
-            self.paymentIdentifier = paymentIdentifier
+            self.paymentGateway = paymentGateway
 
             self.logoUrl = logoUrl
 
-            self.paymentGateway = paymentGateway
+            self.paymentIdentifier = paymentIdentifier
 
             self.merchantCode = merchantCode
+
+            self.paymentId = paymentId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentId = try container.decode(String.self, forKey: .paymentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,20 +178,28 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                paymentId = try container.decode(String.self, forKey: .paymentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
-
-            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+            try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+
+            try? container.encodeIfPresent(paymentId, forKey: .paymentId)
         }
     }
 }

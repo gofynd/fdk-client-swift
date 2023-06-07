@@ -9,22 +9,22 @@ public extension ApplicationClient.Logistic {
     class ReAssignStoreRequest: Codable {
         public var articles: [[String: Any]]
 
-        public var ignoredLocations: [String]
+        public var configuration: [String: Any]
 
         public var toPincode: String
 
-        public var configuration: [String: Any]
+        public var ignoredLocations: [String]
 
         public var identifier: String
 
         public enum CodingKeys: String, CodingKey {
             case articles
 
-            case ignoredLocations = "ignored_locations"
+            case configuration
 
             case toPincode = "to_pincode"
 
-            case configuration
+            case ignoredLocations = "ignored_locations"
 
             case identifier
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Logistic {
         public init(articles: [[String: Any]], configuration: [String: Any], identifier: String, ignoredLocations: [String], toPincode: String) {
             self.articles = articles
 
-            self.ignoredLocations = ignoredLocations
+            self.configuration = configuration
 
             self.toPincode = toPincode
 
-            self.configuration = configuration
+            self.ignoredLocations = ignoredLocations
 
             self.identifier = identifier
         }
@@ -46,11 +46,11 @@ public extension ApplicationClient.Logistic {
 
             articles = try container.decode([[String: Any]].self, forKey: .articles)
 
-            ignoredLocations = try container.decode([String].self, forKey: .ignoredLocations)
+            configuration = try container.decode([String: Any].self, forKey: .configuration)
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
-            configuration = try container.decode([String: Any].self, forKey: .configuration)
+            ignoredLocations = try container.decode([String].self, forKey: .ignoredLocations)
 
             identifier = try container.decode(String.self, forKey: .identifier)
         }
@@ -60,11 +60,11 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(ignoredLocations, forKey: .ignoredLocations)
+            try? container.encodeIfPresent(configuration, forKey: .configuration)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(configuration, forKey: .configuration)
+            try? container.encodeIfPresent(ignoredLocations, forKey: .ignoredLocations)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
         }

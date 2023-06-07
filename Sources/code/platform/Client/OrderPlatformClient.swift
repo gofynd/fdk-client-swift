@@ -432,6 +432,7 @@ public extension PlatformClient {
             fromDate: String?,
             toDate: String?,
             dpIds: String?,
+            stores: String?,
             salesChannels: String?,
             pageNo: Int?,
             pageSize: Int?,
@@ -481,6 +482,10 @@ public extension PlatformClient {
 
             if let value = dpIds {
                 xQuery["dp_ids"] = value
+            }
+
+            if let value = stores {
+                xQuery["stores"] = value
             }
 
             if let value = salesChannels {
@@ -1142,11 +1147,16 @@ public extension PlatformClient {
          **/
         public func generatePOSReceiptByOrderId(
             orderId: String,
+            shipmentId: String?,
             documentType: String?,
 
             onResponse: @escaping (_ response: GeneratePosOrderReceiptResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
+
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
 
             if let value = documentType {
                 xQuery["document_type"] = value

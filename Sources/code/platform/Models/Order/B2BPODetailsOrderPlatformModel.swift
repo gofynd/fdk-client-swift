@@ -15,11 +15,11 @@ public extension PlatformClient.Order {
 
         public var totalGstPercentage: Double?
 
+        public var partialCanRet: Bool?
+
         public var poLineAmount: Double?
 
         public var dockerNumber: String?
-
-        public var partialCanRet: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case poTaxAmount = "po_tax_amount"
@@ -28,11 +28,11 @@ public extension PlatformClient.Order {
 
             case totalGstPercentage = "total_gst_percentage"
 
+            case partialCanRet = "partial_can_ret"
+
             case poLineAmount = "po_line_amount"
 
             case dockerNumber = "docker_number"
-
-            case partialCanRet = "partial_can_ret"
         }
 
         public init(dockerNumber: String? = nil, itemBasePrice: Double? = nil, partialCanRet: Bool? = nil, poLineAmount: Double? = nil, poTaxAmount: Double? = nil, totalGstPercentage: Double? = nil) {
@@ -42,11 +42,11 @@ public extension PlatformClient.Order {
 
             self.totalGstPercentage = totalGstPercentage
 
+            self.partialCanRet = partialCanRet
+
             self.poLineAmount = poLineAmount
 
             self.dockerNumber = dockerNumber
-
-            self.partialCanRet = partialCanRet
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,6 +77,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 poLineAmount = try container.decode(Double.self, forKey: .poLineAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -86,14 +94,6 @@ public extension PlatformClient.Order {
 
             do {
                 dockerNumber = try container.decode(String.self, forKey: .dockerNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,11 +110,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
 
+            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+
             try? container.encodeIfPresent(poLineAmount, forKey: .poLineAmount)
 
             try? container.encodeIfPresent(dockerNumber, forKey: .dockerNumber)
-
-            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
         }
     }
 }
@@ -132,11 +132,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var totalGstPercentage: Double?
 
+        public var partialCanRet: Bool?
+
         public var poLineAmount: Double?
 
         public var dockerNumber: String?
-
-        public var partialCanRet: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case poTaxAmount = "po_tax_amount"
@@ -145,11 +145,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case totalGstPercentage = "total_gst_percentage"
 
+            case partialCanRet = "partial_can_ret"
+
             case poLineAmount = "po_line_amount"
 
             case dockerNumber = "docker_number"
-
-            case partialCanRet = "partial_can_ret"
         }
 
         public init(dockerNumber: String? = nil, itemBasePrice: Double? = nil, partialCanRet: Bool? = nil, poLineAmount: Double? = nil, poTaxAmount: Double? = nil, totalGstPercentage: Double? = nil) {
@@ -159,11 +159,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.totalGstPercentage = totalGstPercentage
 
+            self.partialCanRet = partialCanRet
+
             self.poLineAmount = poLineAmount
 
             self.dockerNumber = dockerNumber
-
-            self.partialCanRet = partialCanRet
         }
 
         required public init(from decoder: Decoder) throws {
@@ -194,6 +194,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 poLineAmount = try container.decode(Double.self, forKey: .poLineAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -203,14 +211,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 dockerNumber = try container.decode(String.self, forKey: .dockerNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -227,11 +227,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
 
+            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+
             try? container.encodeIfPresent(poLineAmount, forKey: .poLineAmount)
 
             try? container.encodeIfPresent(dockerNumber, forKey: .dockerNumber)
-
-            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
         }
     }
 }
