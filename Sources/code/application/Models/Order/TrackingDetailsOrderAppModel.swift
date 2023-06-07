@@ -7,22 +7,22 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class TrackingDetails: Codable {
-        public var trackingDetails: [NestedTrackingDetails]?
+        public var status: String?
 
         public var isCurrent: Bool?
 
-        public var status: String?
+        public var trackingDetails: [NestedTrackingDetails]?
 
         public var time: String?
 
         public var isPassed: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case trackingDetails = "tracking_details"
+            case status
 
             case isCurrent = "is_current"
 
-            case status
+            case trackingDetails = "tracking_details"
 
             case time
 
@@ -30,11 +30,11 @@ public extension ApplicationClient.Order {
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil, trackingDetails: [NestedTrackingDetails]? = nil) {
-            self.trackingDetails = trackingDetails
+            self.status = status
 
             self.isCurrent = isCurrent
 
-            self.status = status
+            self.trackingDetails = trackingDetails
 
             self.time = time
 
@@ -45,7 +45,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                trackingDetails = try container.decode([NestedTrackingDetails].self, forKey: .trackingDetails)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                trackingDetails = try container.decode([NestedTrackingDetails].self, forKey: .trackingDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,11 +88,11 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(trackingDetails, forKey: .trackingDetails)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(trackingDetails, forKey: .trackingDetails)
 
             try? container.encodeIfPresent(time, forKey: .time)
 

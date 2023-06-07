@@ -11,9 +11,9 @@ public extension ApplicationClient.Order {
 
         public var lockAfterTransition: Bool?
 
-        public var unlockBeforeTransition: Bool?
-
         public var task: Bool?
+
+        public var unlockBeforeTransition: Bool?
 
         public var forceTransition: Bool?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Order {
 
             case lockAfterTransition = "lock_after_transition"
 
-            case unlockBeforeTransition = "unlock_before_transition"
-
             case task
+
+            case unlockBeforeTransition = "unlock_before_transition"
 
             case forceTransition = "force_transition"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Order {
 
             self.lockAfterTransition = lockAfterTransition
 
-            self.unlockBeforeTransition = unlockBeforeTransition
-
             self.task = task
+
+            self.unlockBeforeTransition = unlockBeforeTransition
 
             self.forceTransition = forceTransition
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                unlockBeforeTransition = try container.decode(Bool.self, forKey: .unlockBeforeTransition)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(lockAfterTransition, forKey: .lockAfterTransition)
 
-            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
-
             try? container.encodeIfPresent(task, forKey: .task)
+
+            try? container.encodeIfPresent(unlockBeforeTransition, forKey: .unlockBeforeTransition)
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
         }
