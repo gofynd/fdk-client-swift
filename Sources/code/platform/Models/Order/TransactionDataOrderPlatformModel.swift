@@ -13,15 +13,15 @@ public extension PlatformClient.Order {
 
         public var terminalId: String?
 
-        public var amountPaid: Double?
-
         public var currency: String?
+
+        public var entity: String?
+
+        public var amountPaid: Double?
 
         public var paymentId: String?
 
         public var uniqueReferenceNumber: String?
-
-        public var entity: String?
 
         public var transactionId: String?
 
@@ -30,15 +30,15 @@ public extension PlatformClient.Order {
 
             case terminalId = "terminal_id"
 
-            case amountPaid = "amount_paid"
-
             case currency
+
+            case entity
+
+            case amountPaid = "amount_paid"
 
             case paymentId = "payment_id"
 
             case uniqueReferenceNumber = "unique_reference_number"
-
-            case entity
 
             case transactionId = "transaction_id"
         }
@@ -48,15 +48,15 @@ public extension PlatformClient.Order {
 
             self.terminalId = terminalId
 
-            self.amountPaid = amountPaid
-
             self.currency = currency
+
+            self.entity = entity
+
+            self.amountPaid = amountPaid
 
             self.paymentId = paymentId
 
             self.uniqueReferenceNumber = uniqueReferenceNumber
-
-            self.entity = entity
 
             self.transactionId = transactionId
         }
@@ -81,7 +81,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                entity = try container.decode(String.self, forKey: .entity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amountPaid = try container.decode(Double.self, forKey: .amountPaid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,14 +121,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                entity = try container.decode(String.self, forKey: .entity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 transactionId = try container.decode(String.self, forKey: .transactionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -136,15 +136,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(terminalId, forKey: .terminalId)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(entity, forKey: .entity)
+
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
             try? container.encodeIfPresent(paymentId, forKey: .paymentId)
 
             try? container.encodeIfPresent(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
-
-            try? container.encodeIfPresent(entity, forKey: .entity)
 
             try? container.encodeIfPresent(transactionId, forKey: .transactionId)
         }
@@ -162,15 +162,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var terminalId: String?
 
-        public var amountPaid: Double?
-
         public var currency: String?
+
+        public var entity: String?
+
+        public var amountPaid: Double?
 
         public var paymentId: String?
 
         public var uniqueReferenceNumber: String?
-
-        public var entity: String?
 
         public var transactionId: String?
 
@@ -179,15 +179,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case terminalId = "terminal_id"
 
-            case amountPaid = "amount_paid"
-
             case currency
+
+            case entity
+
+            case amountPaid = "amount_paid"
 
             case paymentId = "payment_id"
 
             case uniqueReferenceNumber = "unique_reference_number"
-
-            case entity
 
             case transactionId = "transaction_id"
         }
@@ -197,15 +197,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.terminalId = terminalId
 
-            self.amountPaid = amountPaid
-
             self.currency = currency
+
+            self.entity = entity
+
+            self.amountPaid = amountPaid
 
             self.paymentId = paymentId
 
             self.uniqueReferenceNumber = uniqueReferenceNumber
-
-            self.entity = entity
 
             self.transactionId = transactionId
         }
@@ -230,7 +230,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -238,7 +238,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                entity = try container.decode(String.self, forKey: .entity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amountPaid = try container.decode(Double.self, forKey: .amountPaid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -262,14 +270,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                entity = try container.decode(String.self, forKey: .entity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 transactionId = try container.decode(String.self, forKey: .transactionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -285,15 +285,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(terminalId, forKey: .terminalId)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(entity, forKey: .entity)
+
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
             try? container.encodeIfPresent(paymentId, forKey: .paymentId)
 
             try? container.encodeIfPresent(uniqueReferenceNumber, forKey: .uniqueReferenceNumber)
-
-            try? container.encodeIfPresent(entity, forKey: .entity)
 
             try? container.encodeIfPresent(transactionId, forKey: .transactionId)
         }

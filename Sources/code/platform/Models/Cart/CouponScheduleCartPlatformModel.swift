@@ -11,22 +11,22 @@ public extension PlatformClient.ApplicationClient.Cart {
     class CouponSchedule: Codable {
         public var start: String?
 
-        public var cron: String?
+        public var nextSchedule: [[String: Any]]?
 
         public var end: String?
 
-        public var nextSchedule: [[String: Any]]?
+        public var cron: String?
 
         public var duration: Int?
 
         public enum CodingKeys: String, CodingKey {
             case start
 
-            case cron
+            case nextSchedule = "next_schedule"
 
             case end
 
-            case nextSchedule = "next_schedule"
+            case cron
 
             case duration
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, start: String? = nil) {
             self.start = start
 
-            self.cron = cron
+            self.nextSchedule = nextSchedule
 
             self.end = end
 
-            self.nextSchedule = nextSchedule
+            self.cron = cron
 
             self.duration = duration
         }
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                cron = try container.decode(String.self, forKey: .cron)
+                nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
+                cron = try container.decode(String.self, forKey: .cron)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(start, forKey: .start)
 
-            try? container.encode(cron, forKey: .cron)
+            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
             try? container.encode(end, forKey: .end)
 
-            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+            try? container.encode(cron, forKey: .cron)
 
             try? container.encode(duration, forKey: .duration)
         }

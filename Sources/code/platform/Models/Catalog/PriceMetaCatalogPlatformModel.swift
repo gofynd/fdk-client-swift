@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var tpNotes: [String: Any]?
 
-        public var updatedAt: String?
-
         public var currency: String
+
+        public var updatedAt: String?
 
         public var effective: Double
 
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case tpNotes = "tp_notes"
 
-            case updatedAt = "updated_at"
-
             case currency
+
+            case updatedAt = "updated_at"
 
             case effective
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Catalog {
 
             self.tpNotes = tpNotes
 
-            self.updatedAt = updatedAt
-
             self.currency = currency
+
+            self.updatedAt = updatedAt
 
             self.effective = effective
 
@@ -62,6 +62,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            currency = try container.decode(String.self, forKey: .currency)
+
             do {
                 updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
@@ -69,8 +71,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            currency = try container.decode(String.self, forKey: .currency)
 
             effective = try container.decode(Double.self, forKey: .effective)
 
@@ -84,9 +84,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
@@ -106,9 +106,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var tpNotes: [String: Any]?
 
-        public var updatedAt: String?
-
         public var currency: String
+
+        public var updatedAt: String?
 
         public var effective: Double
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case tpNotes = "tp_notes"
 
-            case updatedAt = "updated_at"
-
             case currency
+
+            case updatedAt = "updated_at"
 
             case effective
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.tpNotes = tpNotes
 
-            self.updatedAt = updatedAt
-
             self.currency = currency
+
+            self.updatedAt = updatedAt
 
             self.effective = effective
 
@@ -155,6 +155,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            currency = try container.decode(String.self, forKey: .currency)
+
             do {
                 updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
@@ -162,8 +164,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            currency = try container.decode(String.self, forKey: .currency)
 
             effective = try container.decode(Double.self, forKey: .effective)
 
@@ -177,9 +177,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 

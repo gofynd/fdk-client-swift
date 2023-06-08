@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class UpdateShipmentLockResponse: Codable {
         public var checkResponse: [CheckResponse]?
 
-        public var message: String?
-
         public var success: Bool?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case checkResponse = "check_response"
 
-            case message
-
             case success
+
+            case message
         }
 
         public init(checkResponse: [CheckResponse]? = nil, message: String? = nil, success: Bool? = nil) {
             self.checkResponse = checkResponse
 
-            self.message = message
-
             self.success = success
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(checkResponse, forKey: .checkResponse)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class UpdateShipmentLockResponse: Codable {
         public var checkResponse: [CheckResponse]?
 
-        public var message: String?
-
         public var success: Bool?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case checkResponse = "check_response"
 
-            case message
-
             case success
+
+            case message
         }
 
         public init(checkResponse: [CheckResponse]? = nil, message: String? = nil, success: Bool? = nil) {
             self.checkResponse = checkResponse
 
-            self.message = message
-
             self.success = success
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(checkResponse, forKey: .checkResponse)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

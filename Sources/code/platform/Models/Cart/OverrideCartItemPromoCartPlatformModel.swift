@@ -11,42 +11,52 @@ public extension PlatformClient.ApplicationClient.Cart {
     class OverrideCartItemPromo: Codable {
         public var promoId: String
 
-        public var rwrdTndr: String?
-
         public var promoAmount: String
 
-        public var itemList: [[String: Any]]?
-
         public var promoDesc: String?
+
+        public var rwrdTndr: String?
+
+        public var itemList: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case promoId = "promo_id"
 
-            case rwrdTndr = "rwrd_tndr"
-
             case promoAmount = "promo_amount"
 
-            case itemList = "item_list"
-
             case promoDesc = "promo_desc"
+
+            case rwrdTndr = "rwrd_tndr"
+
+            case itemList = "item_list"
         }
 
         public init(itemList: [[String: Any]]? = nil, promoAmount: String, promoDesc: String? = nil, promoId: String, rwrdTndr: String? = nil) {
             self.promoId = promoId
 
-            self.rwrdTndr = rwrdTndr
-
             self.promoAmount = promoAmount
 
-            self.itemList = itemList
-
             self.promoDesc = promoDesc
+
+            self.rwrdTndr = rwrdTndr
+
+            self.itemList = itemList
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             promoId = try container.decode(String.self, forKey: .promoId)
+
+            promoAmount = try container.decode(String.self, forKey: .promoAmount)
+
+            do {
+                promoDesc = try container.decode(String.self, forKey: .promoDesc)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 rwrdTndr = try container.decode(String.self, forKey: .rwrdTndr)
@@ -56,18 +66,8 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            promoAmount = try container.decode(String.self, forKey: .promoAmount)
-
             do {
                 itemList = try container.decode([[String: Any]].self, forKey: .itemList)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promoDesc = try container.decode(String.self, forKey: .promoDesc)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,13 +80,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(promoId, forKey: .promoId)
 
-            try? container.encodeIfPresent(rwrdTndr, forKey: .rwrdTndr)
-
             try? container.encodeIfPresent(promoAmount, forKey: .promoAmount)
 
-            try? container.encodeIfPresent(itemList, forKey: .itemList)
-
             try? container.encodeIfPresent(promoDesc, forKey: .promoDesc)
+
+            try? container.encodeIfPresent(rwrdTndr, forKey: .rwrdTndr)
+
+            try? container.encodeIfPresent(itemList, forKey: .itemList)
         }
     }
 }

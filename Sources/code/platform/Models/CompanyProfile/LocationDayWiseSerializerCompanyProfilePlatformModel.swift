@@ -11,18 +11,18 @@ public extension PlatformClient.CompanyProfile {
     class LocationDayWiseSerializer: Codable {
         public var opening: LocationTimingSerializer?
 
-        public var open: Bool
-
         public var closing: LocationTimingSerializer?
+
+        public var open: Bool
 
         public var weekday: String
 
         public enum CodingKeys: String, CodingKey {
             case opening
 
-            case open
-
             case closing
+
+            case open
 
             case weekday
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.CompanyProfile {
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
             self.opening = opening
 
-            self.open = open
-
             self.closing = closing
+
+            self.open = open
 
             self.weekday = weekday
         }
@@ -48,8 +48,6 @@ public extension PlatformClient.CompanyProfile {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            open = try container.decode(Bool.self, forKey: .open)
-
             do {
                 closing = try container.decode(LocationTimingSerializer.self, forKey: .closing)
 
@@ -57,6 +55,8 @@ public extension PlatformClient.CompanyProfile {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            open = try container.decode(Bool.self, forKey: .open)
 
             weekday = try container.decode(String.self, forKey: .weekday)
         }
@@ -66,9 +66,9 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(opening, forKey: .opening)
 
-            try? container.encodeIfPresent(open, forKey: .open)
-
             try? container.encodeIfPresent(closing, forKey: .closing)
+
+            try? container.encodeIfPresent(open, forKey: .open)
 
             try? container.encodeIfPresent(weekday, forKey: .weekday)
         }
