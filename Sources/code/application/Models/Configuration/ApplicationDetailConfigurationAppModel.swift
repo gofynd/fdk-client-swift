@@ -7,23 +7,25 @@ public extension ApplicationClient.Configuration {
          Used By: Configuration
      */
     class ApplicationDetail: Codable {
-        public var name: String
+        public var name: String?
 
-        public var description: String
+        public var description: String?
 
-        public var logo: SecureUrl
+        public var logo: SecureUrl?
 
-        public var mobileLogo: SecureUrl
+        public var mobileLogo: SecureUrl?
 
-        public var favicon: SecureUrl
+        public var favicon: SecureUrl?
 
-        public var banner: SecureUrl
+        public var banner: SecureUrl?
 
         public var domain: Domain?
 
         public var domains: [Domain]?
 
         public var id: String?
+
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -43,9 +45,11 @@ public extension ApplicationClient.Configuration {
             case domains
 
             case id = "_id"
+
+            case slug
         }
 
-        public init(banner: SecureUrl, description: String, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl, logo: SecureUrl, mobileLogo: SecureUrl, name: String, id: String? = nil) {
+        public init(banner: SecureUrl? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, logo: SecureUrl? = nil, mobileLogo: SecureUrl? = nil, name: String? = nil, slug: String? = nil, id: String? = nil) {
             self.name = name
 
             self.description = description
@@ -63,22 +67,60 @@ public extension ApplicationClient.Configuration {
             self.domains = domains
 
             self.id = id
+
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            name = try container.decode(String.self, forKey: .name)
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
-            description = try container.decode(String.self, forKey: .description)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            logo = try container.decode(SecureUrl.self, forKey: .logo)
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
-            mobileLogo = try container.decode(SecureUrl.self, forKey: .mobileLogo)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            favicon = try container.decode(SecureUrl.self, forKey: .favicon)
+            do {
+                logo = try container.decode(SecureUrl.self, forKey: .logo)
 
-            banner = try container.decode(SecureUrl.self, forKey: .banner)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mobileLogo = try container.decode(SecureUrl.self, forKey: .mobileLogo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                favicon = try container.decode(SecureUrl.self, forKey: .favicon)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                banner = try container.decode(SecureUrl.self, forKey: .banner)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 domain = try container.decode(Domain.self, forKey: .domain)
@@ -98,6 +140,14 @@ public extension ApplicationClient.Configuration {
 
             do {
                 id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,6 +175,8 @@ public extension ApplicationClient.Configuration {
             try? container.encodeIfPresent(domains, forKey: .domains)
 
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

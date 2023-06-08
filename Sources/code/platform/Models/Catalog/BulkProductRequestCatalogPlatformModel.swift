@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var batchId: String
 
-        public var templateTag: String
-
         public var companyId: Int
+
+        public var templateTag: String
 
         public enum CodingKeys: String, CodingKey {
             case data
 
             case batchId = "batch_id"
 
-            case templateTag = "template_tag"
-
             case companyId = "company_id"
+
+            case templateTag = "template_tag"
         }
 
         public init(batchId: String, companyId: Int, data: [[String: Any]], templateTag: String) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.batchId = batchId
 
-            self.templateTag = templateTag
-
             self.companyId = companyId
+
+            self.templateTag = templateTag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,9 +44,9 @@ public extension PlatformClient.Catalog {
 
             batchId = try container.decode(String.self, forKey: .batchId)
 
-            templateTag = try container.decode(String.self, forKey: .templateTag)
-
             companyId = try container.decode(Int.self, forKey: .companyId)
+
+            templateTag = try container.decode(String.self, forKey: .templateTag)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +56,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
-            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
         }
     }
 }
@@ -74,18 +74,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var batchId: String
 
-        public var templateTag: String
-
         public var companyId: Int
+
+        public var templateTag: String
 
         public enum CodingKeys: String, CodingKey {
             case data
 
             case batchId = "batch_id"
 
-            case templateTag = "template_tag"
-
             case companyId = "company_id"
+
+            case templateTag = "template_tag"
         }
 
         public init(batchId: String, companyId: Int, data: [[String: Any]], templateTag: String) {
@@ -93,9 +93,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.batchId = batchId
 
-            self.templateTag = templateTag
-
             self.companyId = companyId
+
+            self.templateTag = templateTag
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             batchId = try container.decode(String.self, forKey: .batchId)
 
-            templateTag = try container.decode(String.self, forKey: .templateTag)
-
             companyId = try container.decode(Int.self, forKey: .companyId)
+
+            templateTag = try container.decode(String.self, forKey: .templateTag)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
-            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
         }
     }
 }

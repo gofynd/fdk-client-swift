@@ -196,7 +196,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | [Application](#Application)? |  yes  |  |
+ | application | [ApplicationData](#ApplicationData)? |  yes  |  |
 
 ---
 
@@ -307,7 +307,7 @@ Success
 
  
  
- #### [Application](#Application)
+ #### [ApplicationData](#ApplicationData)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -336,6 +336,7 @@ Success
  | appType | String? |  yes  |  |
  | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
+ | slug | String? |  yes  |  |
 
 ---
 
@@ -406,7 +407,7 @@ Success
 
  
  
- #### [LocationCountry](#LocationCountry)
+ #### [LocationDetails](#LocationDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -423,6 +424,10 @@ Success
  | id | String? |  yes  |  |
  | defaultCurrency | [LocationDefaultCurrency](#LocationDefaultCurrency)? |  yes  |  |
  | defaultLanguage | [LocationDefaultLanguage](#LocationDefaultLanguage)? |  yes  |  |
+ | stateCode | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | latitude | String? |  yes  |  |
+ | longitude | String? |  yes  |  |
 
 ---
 
@@ -433,7 +438,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[String: Any]]? |  yes  |  |
+ | items | [[LocationDetails](#LocationDetails)]? |  yes  |  |
 
 ---
 

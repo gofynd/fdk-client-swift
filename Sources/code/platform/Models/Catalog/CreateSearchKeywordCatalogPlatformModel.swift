@@ -9,42 +9,44 @@ public extension PlatformClient.Catalog {
      */
 
     class CreateSearchKeyword: Codable {
+        public var appId: String
+
         public var words: [String]?
 
         public var customJson: [String: Any]?
 
+        public var result: SearchKeywordResult
+
         public var isActive: Bool?
 
-        public var result: SearchKeywordResult1
-
-        public var appId: String
-
         public enum CodingKeys: String, CodingKey {
+            case appId = "app_id"
+
             case words
 
             case customJson = "_custom_json"
 
-            case isActive = "is_active"
-
             case result
 
-            case appId = "app_id"
+            case isActive = "is_active"
         }
 
-        public init(appId: String, isActive: Bool? = nil, result: SearchKeywordResult1, words: [String]? = nil, customJson: [String: Any]? = nil) {
+        public init(appId: String, isActive: Bool? = nil, result: SearchKeywordResult, words: [String]? = nil, customJson: [String: Any]? = nil) {
+            self.appId = appId
+
             self.words = words
 
             self.customJson = customJson
 
-            self.isActive = isActive
-
             self.result = result
 
-            self.appId = appId
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 words = try container.decode([String].self, forKey: .words)
@@ -62,6 +64,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            result = try container.decode(SearchKeywordResult.self, forKey: .result)
+
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -69,24 +73,20 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            result = try container.decode(SearchKeywordResult1.self, forKey: .result)
-
-            appId = try container.decode(String.self, forKey: .appId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
             try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(result, forKey: .result)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }
@@ -98,42 +98,44 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class CreateSearchKeyword: Codable {
+        public var appId: String
+
         public var words: [String]?
 
         public var customJson: [String: Any]?
 
+        public var result: SearchKeywordResult
+
         public var isActive: Bool?
 
-        public var result: SearchKeywordResult1
-
-        public var appId: String
-
         public enum CodingKeys: String, CodingKey {
+            case appId = "app_id"
+
             case words
 
             case customJson = "_custom_json"
 
-            case isActive = "is_active"
-
             case result
 
-            case appId = "app_id"
+            case isActive = "is_active"
         }
 
-        public init(appId: String, isActive: Bool? = nil, result: SearchKeywordResult1, words: [String]? = nil, customJson: [String: Any]? = nil) {
+        public init(appId: String, isActive: Bool? = nil, result: SearchKeywordResult, words: [String]? = nil, customJson: [String: Any]? = nil) {
+            self.appId = appId
+
             self.words = words
 
             self.customJson = customJson
 
-            self.isActive = isActive
-
             self.result = result
 
-            self.appId = appId
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            appId = try container.decode(String.self, forKey: .appId)
 
             do {
                 words = try container.decode([String].self, forKey: .words)
@@ -151,6 +153,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            result = try container.decode(SearchKeywordResult.self, forKey: .result)
+
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -158,24 +162,20 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            result = try container.decode(SearchKeywordResult1.self, forKey: .result)
-
-            appId = try container.decode(String.self, forKey: .appId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
             try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(result, forKey: .result)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }

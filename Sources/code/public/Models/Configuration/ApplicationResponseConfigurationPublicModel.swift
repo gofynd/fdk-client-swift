@@ -8,13 +8,13 @@ public extension PublicClient.Configuration {
      */
 
     class ApplicationResponse: Codable {
-        public var application: Application?
+        public var application: ApplicationData?
 
         public enum CodingKeys: String, CodingKey {
             case application
         }
 
-        public init(application: Application? = nil) {
+        public init(application: ApplicationData? = nil) {
             self.application = application
         }
 
@@ -22,7 +22,7 @@ public extension PublicClient.Configuration {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                application = try container.decode(Application.self, forKey: .application)
+                application = try container.decode(ApplicationData.self, forKey: .application)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

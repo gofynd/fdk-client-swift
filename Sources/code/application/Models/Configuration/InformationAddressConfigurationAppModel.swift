@@ -11,7 +11,7 @@ public extension ApplicationClient.Configuration {
 
         public var addressLine: [String]?
 
-        public var phone: InformationPhone?
+        public var phone: [InformationPhone]?
 
         public var city: String?
 
@@ -33,7 +33,7 @@ public extension ApplicationClient.Configuration {
             case pincode
         }
 
-        public init(addressLine: [String]? = nil, city: String? = nil, country: String? = nil, loc: String? = nil, phone: InformationPhone? = nil, pincode: Int? = nil) {
+        public init(addressLine: [String]? = nil, city: String? = nil, country: String? = nil, loc: String? = nil, phone: [InformationPhone]? = nil, pincode: Int? = nil) {
             self.loc = loc
 
             self.addressLine = addressLine
@@ -67,7 +67,7 @@ public extension ApplicationClient.Configuration {
             } catch {}
 
             do {
-                phone = try container.decode(InformationPhone.self, forKey: .phone)
+                phone = try container.decode([InformationPhone].self, forKey: .phone)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

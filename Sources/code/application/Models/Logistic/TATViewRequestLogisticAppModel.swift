@@ -11,26 +11,26 @@ public extension ApplicationClient.Logistic {
 
         public var toPincode: String?
 
-        public var locationDetails: [TATLocationDetailsRequest]?
-
         public var action: String?
+
+        public var identifier: String?
 
         public var journey: String?
 
-        public var identifier: String?
+        public var locationDetails: [TATLocationDetailsRequest]?
 
         public enum CodingKeys: String, CodingKey {
             case source
 
             case toPincode = "to_pincode"
 
-            case locationDetails = "location_details"
-
             case action
+
+            case identifier
 
             case journey
 
-            case identifier
+            case locationDetails = "location_details"
         }
 
         public init(action: String? = nil, identifier: String? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsRequest]? = nil, source: String? = nil, toPincode: String? = nil) {
@@ -38,13 +38,13 @@ public extension ApplicationClient.Logistic {
 
             self.toPincode = toPincode
 
-            self.locationDetails = locationDetails
-
             self.action = action
+
+            self.identifier = identifier
 
             self.journey = journey
 
-            self.identifier = identifier
+            self.locationDetails = locationDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -67,7 +67,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                locationDetails = try container.decode([TATLocationDetailsRequest].self, forKey: .locationDetails)
+                action = try container.decode(String.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                action = try container.decode(String.self, forKey: .action)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                locationDetails = try container.decode([TATLocationDetailsRequest].self, forKey: .locationDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(journey, forKey: .journey)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
         }
     }
 }
