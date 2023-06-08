@@ -11,7 +11,7 @@ public extension PlatformClient.Serviceability {
     class GetStoresViewResponse: Codable {
         public var items: [ItemResponse]?
 
-        public var page: ServiceabilityPageResponse
+        public var page: PageResponse
 
         public enum CodingKeys: String, CodingKey {
             case items
@@ -19,7 +19,7 @@ public extension PlatformClient.Serviceability {
             case page
         }
 
-        public init(items: [ItemResponse]? = nil, page: ServiceabilityPageResponse) {
+        public init(items: [ItemResponse]? = nil, page: PageResponse) {
             self.items = items
 
             self.page = page
@@ -36,7 +36,7 @@ public extension PlatformClient.Serviceability {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            page = try container.decode(ServiceabilityPageResponse.self, forKey: .page)
+            page = try container.decode(PageResponse.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,7 +58,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class GetStoresViewResponse: Codable {
         public var items: [ItemResponse]?
 
-        public var page: ServiceabilityPageResponse
+        public var page: PageResponse
 
         public enum CodingKeys: String, CodingKey {
             case items
@@ -66,7 +66,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             case page
         }
 
-        public init(items: [ItemResponse]? = nil, page: ServiceabilityPageResponse) {
+        public init(items: [ItemResponse]? = nil, page: PageResponse) {
             self.items = items
 
             self.page = page
@@ -83,7 +83,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            page = try container.decode(ServiceabilityPageResponse.self, forKey: .page)
+            page = try container.decode(PageResponse.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {

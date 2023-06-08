@@ -11,18 +11,18 @@ public extension ApplicationClient.Cart {
 
         public var freeGiftItemDetails: FreeGiftItem?
 
-        public var quantity: Int?
-
         public var articleId: String?
+
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case parentItemIdentifier = "parent_item_identifier"
 
             case freeGiftItemDetails = "free_gift_item_details"
 
-            case quantity
-
             case articleId = "article_id"
+
+            case quantity
         }
 
         public init(articleId: String? = nil, freeGiftItemDetails: FreeGiftItem? = nil, parentItemIdentifier: String? = nil, quantity: Int? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Cart {
 
             self.freeGiftItemDetails = freeGiftItemDetails
 
-            self.quantity = quantity
-
             self.articleId = articleId
+
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                articleId = try container.decode(String.self, forKey: .articleId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                articleId = try container.decode(String.self, forKey: .articleId)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(freeGiftItemDetails, forKey: .freeGiftItemDetails)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(articleId, forKey: .articleId)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }

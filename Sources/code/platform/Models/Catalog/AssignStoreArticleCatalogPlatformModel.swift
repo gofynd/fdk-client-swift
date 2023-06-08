@@ -9,7 +9,7 @@ public extension PlatformClient.Catalog {
      */
 
     class AssignStoreArticle: Codable {
-        public var query: ArticleQuery?
+        public var articleAssignment: ArticleAssignment?
 
         public var groupId: String?
 
@@ -17,10 +17,10 @@ public extension PlatformClient.Catalog {
 
         public var quantity: Int?
 
-        public var articleAssignment: ArticleAssignment?
+        public var query: ArticleQuery?
 
         public enum CodingKeys: String, CodingKey {
-            case query
+            case articleAssignment = "article_assignment"
 
             case groupId = "group_id"
 
@@ -28,11 +28,11 @@ public extension PlatformClient.Catalog {
 
             case quantity
 
-            case articleAssignment = "article_assignment"
+            case query
         }
 
         public init(articleAssignment: ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: ArticleQuery? = nil) {
-            self.query = query
+            self.articleAssignment = articleAssignment
 
             self.groupId = groupId
 
@@ -40,14 +40,14 @@ public extension PlatformClient.Catalog {
 
             self.quantity = quantity
 
-            self.articleAssignment = articleAssignment
+            self.query = query
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                query = try container.decode(ArticleQuery.self, forKey: .query)
+                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
+                query = try container.decode(ArticleQuery.self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
 
@@ -98,7 +98,7 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+            try? container.encodeIfPresent(query, forKey: .query)
         }
     }
 }
@@ -110,7 +110,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class AssignStoreArticle: Codable {
-        public var query: ArticleQuery?
+        public var articleAssignment: ArticleAssignment?
 
         public var groupId: String?
 
@@ -118,10 +118,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var quantity: Int?
 
-        public var articleAssignment: ArticleAssignment?
+        public var query: ArticleQuery?
 
         public enum CodingKeys: String, CodingKey {
-            case query
+            case articleAssignment = "article_assignment"
 
             case groupId = "group_id"
 
@@ -129,11 +129,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case quantity
 
-            case articleAssignment = "article_assignment"
+            case query
         }
 
         public init(articleAssignment: ArticleAssignment? = nil, groupId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, query: ArticleQuery? = nil) {
-            self.query = query
+            self.articleAssignment = articleAssignment
 
             self.groupId = groupId
 
@@ -141,14 +141,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.quantity = quantity
 
-            self.articleAssignment = articleAssignment
+            self.query = query
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                query = try container.decode(ArticleQuery.self, forKey: .query)
+                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(ArticleAssignment.self, forKey: .articleAssignment)
+                query = try container.decode(ArticleQuery.self, forKey: .query)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,7 +191,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
 
             try? container.encodeIfPresent(groupId, forKey: .groupId)
 
@@ -199,7 +199,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+            try? container.encodeIfPresent(query, forKey: .query)
         }
     }
 }

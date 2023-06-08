@@ -7,13 +7,9 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class ErrorDescription: Codable {
-        public var cancelled: Bool?
+        public var merchantOrderId: String?
 
         public var amount: Double?
-
-        public var msg: String?
-
-        public var merchantOrderId: String?
 
         public var expired: Bool?
 
@@ -21,16 +17,16 @@ public extension ApplicationClient.Payment {
 
         public var merchantName: String?
 
+        public var msg: String?
+
+        public var cancelled: Bool?
+
         public var paymentTransactionId: String?
 
         public enum CodingKeys: String, CodingKey {
-            case cancelled
+            case merchantOrderId = "merchant_order_id"
 
             case amount
-
-            case msg
-
-            case merchantOrderId = "merchant_order_id"
 
             case expired
 
@@ -38,23 +34,27 @@ public extension ApplicationClient.Payment {
 
             case merchantName = "merchant_name"
 
+            case msg
+
+            case cancelled
+
             case paymentTransactionId = "payment_transaction_id"
         }
 
         public init(amount: Double? = nil, cancelled: Bool? = nil, expired: Bool? = nil, invalidId: Bool? = nil, merchantName: String? = nil, merchantOrderId: String? = nil, msg: String? = nil, paymentTransactionId: String? = nil) {
-            self.cancelled = cancelled
+            self.merchantOrderId = merchantOrderId
 
             self.amount = amount
-
-            self.msg = msg
-
-            self.merchantOrderId = merchantOrderId
 
             self.expired = expired
 
             self.invalidId = invalidId
 
             self.merchantName = merchantName
+
+            self.msg = msg
+
+            self.cancelled = cancelled
 
             self.paymentTransactionId = paymentTransactionId
         }
@@ -63,7 +63,7 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cancelled = try container.decode(Bool.self, forKey: .cancelled)
+                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,22 +72,6 @@ public extension ApplicationClient.Payment {
 
             do {
                 amount = try container.decode(Double.self, forKey: .amount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                msg = try container.decode(String.self, forKey: .msg)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,6 +103,22 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
+                msg = try container.decode(String.self, forKey: .msg)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                cancelled = try container.decode(Bool.self, forKey: .cancelled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 paymentTransactionId = try container.decode(String.self, forKey: .paymentTransactionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -130,19 +130,19 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(cancelled, forKey: .cancelled)
+            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
 
             try? container.encode(amount, forKey: .amount)
-
-            try? container.encode(msg, forKey: .msg)
-
-            try? container.encode(merchantOrderId, forKey: .merchantOrderId)
 
             try? container.encode(expired, forKey: .expired)
 
             try? container.encode(invalidId, forKey: .invalidId)
 
             try? container.encode(merchantName, forKey: .merchantName)
+
+            try? container.encode(msg, forKey: .msg)
+
+            try? container.encode(cancelled, forKey: .cancelled)
 
             try? container.encode(paymentTransactionId, forKey: .paymentTransactionId)
         }

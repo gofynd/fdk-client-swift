@@ -7,62 +7,54 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class ChargeCustomerResponse: Codable {
-        public var message: String
-
-        public var aggregator: String
-
-        public var status: String
-
-        public var success: Bool
-
         public var deliveryAddressId: String?
 
         public var cartId: String?
 
         public var orderId: String
 
+        public var success: Bool
+
+        public var message: String
+
+        public var aggregator: String
+
+        public var status: String
+
         public enum CodingKeys: String, CodingKey {
-            case message
-
-            case aggregator
-
-            case status
-
-            case success
-
             case deliveryAddressId = "delivery_address_id"
 
             case cartId = "cart_id"
 
             case orderId = "order_id"
+
+            case success
+
+            case message
+
+            case aggregator
+
+            case status
         }
 
         public init(aggregator: String, cartId: String? = nil, deliveryAddressId: String? = nil, message: String, orderId: String, status: String, success: Bool) {
-            self.message = message
-
-            self.aggregator = aggregator
-
-            self.status = status
-
-            self.success = success
-
             self.deliveryAddressId = deliveryAddressId
 
             self.cartId = cartId
 
             self.orderId = orderId
+
+            self.success = success
+
+            self.message = message
+
+            self.aggregator = aggregator
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            message = try container.decode(String.self, forKey: .message)
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            status = try container.decode(String.self, forKey: .status)
-
-            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 deliveryAddressId = try container.decode(String.self, forKey: .deliveryAddressId)
@@ -81,24 +73,32 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             orderId = try container.decode(String.self, forKey: .orderId)
+
+            success = try container.decode(Bool.self, forKey: .success)
+
+            message = try container.decode(String.self, forKey: .message)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            status = try container.decode(String.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
-            try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encode(deliveryAddressId, forKey: .deliveryAddressId)
 
             try? container.encode(cartId, forKey: .cartId)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

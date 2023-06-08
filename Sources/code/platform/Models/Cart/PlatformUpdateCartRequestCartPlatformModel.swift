@@ -9,30 +9,32 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PlatformUpdateCartRequest: Codable {
+        public var operation: String
+
         public var userId: String?
 
         public var items: [UpdateProductCart]?
 
-        public var operation: String
-
         public enum CodingKeys: String, CodingKey {
+            case operation
+
             case userId = "user_id"
 
             case items
-
-            case operation
         }
 
         public init(items: [UpdateProductCart]? = nil, operation: String, userId: String? = nil) {
+            self.operation = operation
+
             self.userId = userId
 
             self.items = items
-
-            self.operation = operation
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            operation = try container.decode(String.self, forKey: .operation)
 
             do {
                 userId = try container.decode(String.self, forKey: .userId)
@@ -49,18 +51,16 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            operation = try container.decode(String.self, forKey: .operation)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(operation, forKey: .operation)
+
             try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(operation, forKey: .operation)
         }
     }
 }
