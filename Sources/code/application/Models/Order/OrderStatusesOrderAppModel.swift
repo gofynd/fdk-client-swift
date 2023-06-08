@@ -7,24 +7,24 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class OrderStatuses: Codable {
-        public var display: String?
-
         public var value: Int?
+
+        public var display: String?
 
         public var isSelected: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case display
-
             case value
+
+            case display
 
             case isSelected = "is_selected"
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, value: Int? = nil) {
-            self.display = display
-
             self.value = value
+
+            self.display = display
 
             self.isSelected = isSelected
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                value = try container.decode(Int.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(display, forKey: .display)
 
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
         }
