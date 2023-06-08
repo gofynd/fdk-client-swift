@@ -7,18 +7,18 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class NestedTrackingDetails: Codable {
-        public var isCurrent: Bool?
-
         public var isPassed: Bool?
+
+        public var isCurrent: Bool?
 
         public var time: String?
 
         public var status: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isCurrent = "is_current"
-
             case isPassed = "is_passed"
+
+            case isCurrent = "is_current"
 
             case time
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Order {
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil) {
-            self.isCurrent = isCurrent
-
             self.isPassed = isPassed
+
+            self.isCurrent = isCurrent
 
             self.time = time
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
+                isPassed = try container.decode(Bool.self, forKey: .isPassed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                isPassed = try container.decode(Bool.self, forKey: .isPassed)
+                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
-
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
+
+            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
 
             try? container.encodeIfPresent(time, forKey: .time)
 

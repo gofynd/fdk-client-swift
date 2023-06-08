@@ -9,27 +9,27 @@ public extension PlatformClient.Serviceability {
      */
 
     class GstCredentialsResponse: Codable {
-        public var eInvoice: EinvoiceResponse?
-
         public var eWaybill: EwayBillResponse?
 
-        public enum CodingKeys: String, CodingKey {
-            case eInvoice = "e_invoice"
+        public var eInvoice: EinvoiceResponse?
 
+        public enum CodingKeys: String, CodingKey {
             case eWaybill = "e_waybill"
+
+            case eInvoice = "e_invoice"
         }
 
         public init(eInvoice: EinvoiceResponse? = nil, eWaybill: EwayBillResponse? = nil) {
-            self.eInvoice = eInvoice
-
             self.eWaybill = eWaybill
+
+            self.eInvoice = eInvoice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                eInvoice = try container.decode(EinvoiceResponse.self, forKey: .eInvoice)
+                eWaybill = try container.decode(EwayBillResponse.self, forKey: .eWaybill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                eWaybill = try container.decode(EwayBillResponse.self, forKey: .eWaybill)
+                eInvoice = try container.decode(EinvoiceResponse.self, forKey: .eInvoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
-
             try? container.encodeIfPresent(eWaybill, forKey: .eWaybill)
+
+            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class GstCredentialsResponse: Codable {
-        public var eInvoice: EinvoiceResponse?
-
         public var eWaybill: EwayBillResponse?
 
-        public enum CodingKeys: String, CodingKey {
-            case eInvoice = "e_invoice"
+        public var eInvoice: EinvoiceResponse?
 
+        public enum CodingKeys: String, CodingKey {
             case eWaybill = "e_waybill"
+
+            case eInvoice = "e_invoice"
         }
 
         public init(eInvoice: EinvoiceResponse? = nil, eWaybill: EwayBillResponse? = nil) {
-            self.eInvoice = eInvoice
-
             self.eWaybill = eWaybill
+
+            self.eInvoice = eInvoice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                eInvoice = try container.decode(EinvoiceResponse.self, forKey: .eInvoice)
+                eWaybill = try container.decode(EwayBillResponse.self, forKey: .eWaybill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                eWaybill = try container.decode(EwayBillResponse.self, forKey: .eWaybill)
+                eInvoice = try container.decode(EinvoiceResponse.self, forKey: .eInvoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
-
             try? container.encodeIfPresent(eWaybill, forKey: .eWaybill)
+
+            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
         }
     }
 }

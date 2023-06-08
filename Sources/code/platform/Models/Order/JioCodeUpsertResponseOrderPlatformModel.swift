@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var success: Bool?
 
-        public var data: [[String: Any]]?
+        public var error: [NestedErrorSchemaDataSet]?
 
         public var identifier: String?
 
-        public var error: [NestedErrorSchemaDataSet]?
+        public var data: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case traceId = "trace_id"
 
             case success
 
-            case data
+            case error
 
             case identifier
 
-            case error
+            case data
         }
 
         public init(data: [[String: Any]]? = nil, error: [NestedErrorSchemaDataSet]? = nil, identifier: String? = nil, success: Bool? = nil, traceId: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.success = success
 
-            self.data = data
+            self.error = error
 
             self.identifier = identifier
 
-            self.error = error
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
+                data = try container.decode([[String: Any]].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,11 +94,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -114,22 +114,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var success: Bool?
 
-        public var data: [[String: Any]]?
+        public var error: [NestedErrorSchemaDataSet]?
 
         public var identifier: String?
 
-        public var error: [NestedErrorSchemaDataSet]?
+        public var data: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case traceId = "trace_id"
 
             case success
 
-            case data
+            case error
 
             case identifier
 
-            case error
+            case data
         }
 
         public init(data: [[String: Any]]? = nil, error: [NestedErrorSchemaDataSet]? = nil, identifier: String? = nil, success: Bool? = nil, traceId: String? = nil) {
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.success = success
 
-            self.data = data
+            self.error = error
 
             self.identifier = identifier
 
-            self.error = error
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                error = try container.decode([NestedErrorSchemaDataSet].self, forKey: .error)
+                data = try container.decode([[String: Any]].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,11 +195,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

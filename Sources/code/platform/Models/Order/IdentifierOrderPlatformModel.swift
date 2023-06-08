@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var upc: String?
 
-        public var alu: String?
+        public var isbn: String?
 
         public var ean: String?
 
-        public var isbn: String?
+        public var alu: String?
 
         public enum CodingKeys: String, CodingKey {
             case skuCode = "sku_code"
 
             case upc
 
-            case alu
+            case isbn
 
             case ean
 
-            case isbn
+            case alu
         }
 
         public init(alu: String? = nil, ean: String? = nil, isbn: String? = nil, skuCode: String? = nil, upc: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.upc = upc
 
-            self.alu = alu
+            self.isbn = isbn
 
             self.ean = ean
 
-            self.isbn = isbn
+            self.alu = alu
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                alu = try container.decode(String.self, forKey: .alu)
+                isbn = try container.decode(String.self, forKey: .isbn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                isbn = try container.decode(String.self, forKey: .isbn)
+                alu = try container.decode(String.self, forKey: .alu)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,11 +94,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(upc, forKey: .upc)
 
-            try? container.encodeIfPresent(alu, forKey: .alu)
+            try? container.encodeIfPresent(isbn, forKey: .isbn)
 
             try? container.encodeIfPresent(ean, forKey: .ean)
 
-            try? container.encodeIfPresent(isbn, forKey: .isbn)
+            try? container.encodeIfPresent(alu, forKey: .alu)
         }
     }
 }
@@ -114,22 +114,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var upc: String?
 
-        public var alu: String?
+        public var isbn: String?
 
         public var ean: String?
 
-        public var isbn: String?
+        public var alu: String?
 
         public enum CodingKeys: String, CodingKey {
             case skuCode = "sku_code"
 
             case upc
 
-            case alu
+            case isbn
 
             case ean
 
-            case isbn
+            case alu
         }
 
         public init(alu: String? = nil, ean: String? = nil, isbn: String? = nil, skuCode: String? = nil, upc: String? = nil) {
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.upc = upc
 
-            self.alu = alu
+            self.isbn = isbn
 
             self.ean = ean
 
-            self.isbn = isbn
+            self.alu = alu
         }
 
         required public init(from decoder: Decoder) throws {
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                alu = try container.decode(String.self, forKey: .alu)
+                isbn = try container.decode(String.self, forKey: .isbn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                isbn = try container.decode(String.self, forKey: .isbn)
+                alu = try container.decode(String.self, forKey: .alu)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,11 +195,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(upc, forKey: .upc)
 
-            try? container.encodeIfPresent(alu, forKey: .alu)
+            try? container.encodeIfPresent(isbn, forKey: .isbn)
 
             try? container.encodeIfPresent(ean, forKey: .ean)
 
-            try? container.encodeIfPresent(isbn, forKey: .isbn)
+            try? container.encodeIfPresent(alu, forKey: .alu)
         }
     }
 }

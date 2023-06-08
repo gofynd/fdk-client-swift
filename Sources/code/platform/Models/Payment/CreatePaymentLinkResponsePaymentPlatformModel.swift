@@ -11,9 +11,9 @@ public extension PlatformClient.Payment {
     class CreatePaymentLinkResponse: Codable {
         public var paymentLinkId: String?
 
-        public var pollingTimeout: Int?
-
         public var message: String
+
+        public var pollingTimeout: Int?
 
         public var statusCode: Int
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case paymentLinkId = "payment_link_id"
 
-            case pollingTimeout = "polling_timeout"
-
             case message
+
+            case pollingTimeout = "polling_timeout"
 
             case statusCode = "status_code"
 
@@ -38,9 +38,9 @@ public extension PlatformClient.Payment {
         public init(message: String, paymentLinkId: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
             self.paymentLinkId = paymentLinkId
 
-            self.pollingTimeout = pollingTimeout
-
             self.message = message
+
+            self.pollingTimeout = pollingTimeout
 
             self.statusCode = statusCode
 
@@ -60,6 +60,8 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            message = try container.decode(String.self, forKey: .message)
+
             do {
                 pollingTimeout = try container.decode(Int.self, forKey: .pollingTimeout)
 
@@ -67,8 +69,6 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
 
@@ -88,9 +88,9 @@ public extension PlatformClient.Payment {
 
             try? container.encode(paymentLinkId, forKey: .paymentLinkId)
 
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class CreatePaymentLinkResponse: Codable {
         public var paymentLinkId: String?
 
-        public var pollingTimeout: Int?
-
         public var message: String
+
+        public var pollingTimeout: Int?
 
         public var statusCode: Int
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case paymentLinkId = "payment_link_id"
 
-            case pollingTimeout = "polling_timeout"
-
             case message
+
+            case pollingTimeout = "polling_timeout"
 
             case statusCode = "status_code"
 
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(message: String, paymentLinkId: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
             self.paymentLinkId = paymentLinkId
 
-            self.pollingTimeout = pollingTimeout
-
             self.message = message
+
+            self.pollingTimeout = pollingTimeout
 
             self.statusCode = statusCode
 
@@ -159,6 +159,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            message = try container.decode(String.self, forKey: .message)
+
             do {
                 pollingTimeout = try container.decode(Int.self, forKey: .pollingTimeout)
 
@@ -166,8 +168,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
 
@@ -187,9 +187,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(paymentLinkId, forKey: .paymentLinkId)
 
-            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encode(pollingTimeout, forKey: .pollingTimeout)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 

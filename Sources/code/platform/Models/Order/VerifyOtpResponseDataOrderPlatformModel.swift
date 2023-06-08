@@ -15,7 +15,7 @@ public extension PlatformClient.Order {
 
         public var message: String?
 
-        public var mobile: Int?
+        public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
@@ -27,7 +27,7 @@ public extension PlatformClient.Order {
             case mobile
         }
 
-        public init(countryCode: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: Int? = nil) {
+        public init(countryCode: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: String? = nil) {
             self.countryCode = countryCode
 
             self.fyndOrderId = fyndOrderId
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                mobile = try container.decode(Int.self, forKey: .mobile)
+                mobile = try container.decode(String.self, forKey: .mobile)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var message: String?
 
-        public var mobile: Int?
+        public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case mobile
         }
 
-        public init(countryCode: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: Int? = nil) {
+        public init(countryCode: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: String? = nil) {
             self.countryCode = countryCode
 
             self.fyndOrderId = fyndOrderId
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                mobile = try container.decode(Int.self, forKey: .mobile)
+                mobile = try container.decode(String.self, forKey: .mobile)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

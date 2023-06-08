@@ -13,18 +13,18 @@ public extension PlatformClient.Serviceability {
 
         public var totalCount: Int
 
-        public var success: Bool
-
         public var items: [DpRuleResponse]
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case page
 
             case totalCount = "total_count"
 
-            case success
-
             case items
+
+            case success
         }
 
         public init(items: [DpRuleResponse], page: Page, success: Bool, totalCount: Int) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Serviceability {
 
             self.totalCount = totalCount
 
-            self.success = success
-
             self.items = items
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,9 +44,9 @@ public extension PlatformClient.Serviceability {
 
             totalCount = try container.decode(Int.self, forKey: .totalCount)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             items = try container.decode([DpRuleResponse].self, forKey: .items)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +56,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -74,18 +74,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public var totalCount: Int
 
-        public var success: Bool
-
         public var items: [DpRuleResponse]
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case page
 
             case totalCount = "total_count"
 
-            case success
-
             case items
+
+            case success
         }
 
         public init(items: [DpRuleResponse], page: Page, success: Bool, totalCount: Int) {
@@ -93,9 +93,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             self.totalCount = totalCount
 
-            self.success = success
-
             self.items = items
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             totalCount = try container.decode(Int.self, forKey: .totalCount)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             items = try container.decode([DpRuleResponse].self, forKey: .items)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

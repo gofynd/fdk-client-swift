@@ -11,22 +11,22 @@ public extension PlatformClient.Order {
     class AssetByShipment: Codable {
         public var success: Bool
 
-        public var presignedUrls: [String: String]?
-
         public var shipmentId: String
 
         public var presignedType: String
+
+        public var presignedUrls: [String: String]?
 
         public var expiresIn: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case presignedUrls = "presigned_urls"
-
             case shipmentId = "shipment_id"
 
             case presignedType = "presigned_type"
+
+            case presignedUrls = "presigned_urls"
 
             case expiresIn = "expires_in"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Order {
         public init(expiresIn: String, presignedType: String, presignedUrls: [String: String]? = nil, shipmentId: String, success: Bool) {
             self.success = success
 
-            self.presignedUrls = presignedUrls
-
             self.shipmentId = shipmentId
 
             self.presignedType = presignedType
+
+            self.presignedUrls = presignedUrls
 
             self.expiresIn = expiresIn
         }
@@ -48,6 +48,10 @@ public extension PlatformClient.Order {
 
             success = try container.decode(Bool.self, forKey: .success)
 
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            presignedType = try container.decode(String.self, forKey: .presignedType)
+
             do {
                 presignedUrls = try container.decode([String: String].self, forKey: .presignedUrls)
 
@@ -55,10 +59,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            presignedType = try container.decode(String.self, forKey: .presignedType)
 
             expiresIn = try container.decode(String.self, forKey: .expiresIn)
         }
@@ -68,11 +68,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(presignedUrls, forKey: .presignedUrls)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(presignedUrls, forKey: .presignedUrls)
 
             try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
         }
@@ -88,22 +88,22 @@ public extension PlatformClient.ApplicationClient.Order {
     class AssetByShipment: Codable {
         public var success: Bool
 
-        public var presignedUrls: [String: String]?
-
         public var shipmentId: String
 
         public var presignedType: String
+
+        public var presignedUrls: [String: String]?
 
         public var expiresIn: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case presignedUrls = "presigned_urls"
-
             case shipmentId = "shipment_id"
 
             case presignedType = "presigned_type"
+
+            case presignedUrls = "presigned_urls"
 
             case expiresIn = "expires_in"
         }
@@ -111,11 +111,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(expiresIn: String, presignedType: String, presignedUrls: [String: String]? = nil, shipmentId: String, success: Bool) {
             self.success = success
 
-            self.presignedUrls = presignedUrls
-
             self.shipmentId = shipmentId
 
             self.presignedType = presignedType
+
+            self.presignedUrls = presignedUrls
 
             self.expiresIn = expiresIn
         }
@@ -125,6 +125,10 @@ public extension PlatformClient.ApplicationClient.Order {
 
             success = try container.decode(Bool.self, forKey: .success)
 
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            presignedType = try container.decode(String.self, forKey: .presignedType)
+
             do {
                 presignedUrls = try container.decode([String: String].self, forKey: .presignedUrls)
 
@@ -132,10 +136,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
-
-            presignedType = try container.decode(String.self, forKey: .presignedType)
 
             expiresIn = try container.decode(String.self, forKey: .expiresIn)
         }
@@ -145,11 +145,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(presignedUrls, forKey: .presignedUrls)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(presignedUrls, forKey: .presignedUrls)
 
             try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
         }

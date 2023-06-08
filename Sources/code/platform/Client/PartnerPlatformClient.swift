@@ -63,6 +63,10 @@ public extension PlatformClient {
             pageNo: Double?,
             filterBy: String?,
             query: String?,
+            q: String?,
+            isApplicationLevel: String?,
+            isSaleschannel: String?,
+            extentionType: String?,
 
             onResponse: @escaping (_ response: ExtensionList?, _ error: FDKError?) -> Void
         ) {
@@ -90,6 +94,22 @@ public extension PlatformClient {
 
             if let value = query {
                 xQuery["query"] = value
+            }
+
+            if let value = q {
+                xQuery["q"] = value
+            }
+
+            if let value = isApplicationLevel {
+                xQuery["is_application_level"] = value
+            }
+
+            if let value = isSaleschannel {
+                xQuery["is_saleschannel"] = value
+            }
+
+            if let value = extentionType {
+                xQuery["extention_type"] = value
             }
 
             PlatformAPIClient.execute(
@@ -255,6 +275,8 @@ public extension PlatformClient {
             pageSize: Double?,
             pageNo: Double?,
             query: String?,
+            q: String?,
+            installed: String?,
 
             onResponse: @escaping (_ response: ExtensionResponse?, _ error: FDKError?) -> Void
         ) {
@@ -270,6 +292,14 @@ public extension PlatformClient {
 
             if let value = query {
                 xQuery["query"] = value
+            }
+
+            if let value = q {
+                xQuery["q"] = value
+            }
+
+            if let value = installed {
+                xQuery["installed"] = value
             }
 
             PlatformAPIClient.execute(

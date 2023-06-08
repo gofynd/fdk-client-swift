@@ -93,7 +93,7 @@ Get the list of all the extensions
 
 
 ```swift
-platformClient.partner.getExtensionsForCompany(pageSize: pageSize, tag: tag, currentPage: currentPage, pageNo: pageNo, filterBy: filterBy, query: query) { (response, error) in
+platformClient.partner.getExtensionsForCompany(pageSize: pageSize, tag: tag, currentPage: currentPage, pageNo: pageNo, filterBy: filterBy, query: query, q: q, isApplicationLevel: isApplicationLevel, isSaleschannel: isSaleschannel, extentionType: extentionType) { (response, error) in
     // Use response
 }
 ```
@@ -109,7 +109,11 @@ platformClient.partner.getExtensionsForCompany(pageSize: pageSize, tag: tag, cur
 | currentPage | String? | no | tag |   
 | pageNo | Double? | no | Current page number |   
 | filterBy | String? | no | Filter by |   
-| query | String? | no | query |  
+| query | String? | no | query |   
+| q | String? | no | Search value |   
+| isApplicationLevel | String? | no | Flag to mark application level |   
+| isSaleschannel | String? | no | Flag to mark sales channel level |   
+| extentionType | String? | no | Extension type |  
 
 
 
@@ -479,7 +483,7 @@ Get the list of private extensions
 
 
 ```swift
-platformClient.partner.getPrivateExtensions(pageSize: pageSize, pageNo: pageNo, query: query) { (response, error) in
+platformClient.partner.getPrivateExtensions(pageSize: pageSize, pageNo: pageNo, query: query, q: q, installed: installed) { (response, error) in
     // Use response
 }
 ```
@@ -492,7 +496,9 @@ platformClient.partner.getPrivateExtensions(pageSize: pageSize, pageNo: pageNo, 
 | -------- | ---- | -------- | ----------- | 
 | pageSize | Double? | no | Number of records you want to get in single page |   
 | pageNo | Double? | no | Number of page |   
-| query | String? | no | Filter query which we want to pass |  
+| query | String? | no | Filter query which we want to pass |   
+| q | String? | no | Search value |   
+| installed | String? | no | Filter flag for installed extension |  
 
 
 

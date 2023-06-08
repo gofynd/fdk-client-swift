@@ -9,27 +9,27 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentTimeStamp: Codable {
-        public var min: Int?
-
         public var max: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case min
+        public var min: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case max
+
+            case min
         }
 
         public init(max: Int? = nil, min: Int? = nil) {
-            self.min = min
-
             self.max = max
+
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Int.self, forKey: .min)
+                max = try container.decode(Int.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                max = try container.decode(Int.self, forKey: .max)
+                min = try container.decode(Int.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
             try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentTimeStamp: Codable {
-        public var min: Int?
-
         public var max: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case min
+        public var min: Int?
 
+        public enum CodingKeys: String, CodingKey {
             case max
+
+            case min
         }
 
         public init(max: Int? = nil, min: Int? = nil) {
-            self.min = min
-
             self.max = max
+
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Int.self, forKey: .min)
+                max = try container.decode(Int.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                max = try container.decode(Int.self, forKey: .max)
+                min = try container.decode(Int.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
             try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }

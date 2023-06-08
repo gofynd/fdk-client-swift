@@ -13,16 +13,22 @@ public extension PlatformClient.Order {
 
         public var otpCode: Int
 
+        public var mobile: String
+
         public enum CodingKeys: String, CodingKey {
             case requestId = "request_id"
 
             case otpCode = "otp_code"
+
+            case mobile
         }
 
-        public init(otpCode: Int, requestId: String) {
+        public init(mobile: String, otpCode: Int, requestId: String) {
             self.requestId = requestId
 
             self.otpCode = otpCode
+
+            self.mobile = mobile
         }
 
         required public init(from decoder: Decoder) throws {
@@ -31,6 +37,8 @@ public extension PlatformClient.Order {
             requestId = try container.decode(String.self, forKey: .requestId)
 
             otpCode = try container.decode(Int.self, forKey: .otpCode)
+
+            mobile = try container.decode(String.self, forKey: .mobile)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -39,6 +47,8 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(otpCode, forKey: .otpCode)
+
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
     }
 }
@@ -54,16 +64,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var otpCode: Int
 
+        public var mobile: String
+
         public enum CodingKeys: String, CodingKey {
             case requestId = "request_id"
 
             case otpCode = "otp_code"
+
+            case mobile
         }
 
-        public init(otpCode: Int, requestId: String) {
+        public init(mobile: String, otpCode: Int, requestId: String) {
             self.requestId = requestId
 
             self.otpCode = otpCode
+
+            self.mobile = mobile
         }
 
         required public init(from decoder: Decoder) throws {
@@ -72,6 +88,8 @@ public extension PlatformClient.ApplicationClient.Order {
             requestId = try container.decode(String.self, forKey: .requestId)
 
             otpCode = try container.decode(Int.self, forKey: .otpCode)
+
+            mobile = try container.decode(String.self, forKey: .mobile)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -80,6 +98,8 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(otpCode, forKey: .otpCode)
+
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
     }
 }

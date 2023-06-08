@@ -7,9 +7,9 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class CategoryItems: Codable {
-        public var banners: CategoryBanner
-
         public var slug: String
+
+        public var banners: CategoryBanner
 
         public var action: ProductListingAction
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Catalog {
         public var childs: [Child]?
 
         public enum CodingKeys: String, CodingKey {
-            case banners
-
             case slug
+
+            case banners
 
             case action
 
@@ -34,9 +34,9 @@ public extension ApplicationClient.Catalog {
         }
 
         public init(action: ProductListingAction, banners: CategoryBanner, childs: [Child]? = nil, name: String, slug: String, uid: Int) {
-            self.banners = banners
-
             self.slug = slug
+
+            self.banners = banners
 
             self.action = action
 
@@ -50,9 +50,9 @@ public extension ApplicationClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            banners = try container.decode(CategoryBanner.self, forKey: .banners)
-
             slug = try container.decode(String.self, forKey: .slug)
+
+            banners = try container.decode(CategoryBanner.self, forKey: .banners)
 
             action = try container.decode(ProductListingAction.self, forKey: .action)
 
@@ -72,9 +72,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
