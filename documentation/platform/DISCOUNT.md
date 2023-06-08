@@ -10,7 +10,6 @@ Discount
 * [createDiscount](#creatediscount)
 * [getDiscount](#getdiscount)
 * [updateDiscount](#updatediscount)
-* [upsertDiscountItems](#upsertdiscountitems)
 * [validateDiscountFile](#validatediscountfile)
 * [downloadDiscountFile](#downloaddiscountfile)
 * [getValidationJob](#getvalidationjob)
@@ -225,61 +224,6 @@ Create Discount.
 
 
 [DiscountJob](#DiscountJob)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### upsertDiscountItems
-Create custom discount from bulk.
-
-
-
-
-```swift
-platformClient.discount.upsertDiscountItems(id: id, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| id | String | yes | Job ID of the discount. |  
-| body | BulkDiscount | yes | Request body |
-
-
-Create custom discounts through API.
-
-*Returned Response:*
-
-
-
-
-[[String: Any]](#[String: Any])
 
 Success
 
@@ -709,33 +653,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[DiscountJob](#DiscountJob)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
-
----
-
-
- 
- 
- #### [DiscountItems](#DiscountItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemCode | String? |  yes  |  |
- | brandUid | Int? |  yes  |  |
- | sellerIdentifier | String? |  yes  |  |
- | discountType | String |  no  |  |
- | value | Double |  no  |  |
-
----
-
-
- 
- 
- #### [BulkDiscount](#BulkDiscount)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | companyId | Int |  no  |  |
- | items | [[DiscountItems](#DiscountItems)] |  no  |  |
 
 ---
 

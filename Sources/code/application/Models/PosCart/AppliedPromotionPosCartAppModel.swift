@@ -9,48 +9,42 @@ public extension ApplicationClient.PosCart {
     class AppliedPromotion: Codable {
         public var mrpPromotion: Bool?
 
+        public var promotionType: String?
+
+        public var articleQuantity: Int?
+
         public var amount: Double?
 
         public var promoId: String?
 
-        public var ownership: Ownership?
-
-        public var promotionType: String?
-
         public var offerText: String?
-
-        public var articleQuantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case mrpPromotion = "mrp_promotion"
+
+            case promotionType = "promotion_type"
+
+            case articleQuantity = "article_quantity"
 
             case amount
 
             case promoId = "promo_id"
 
-            case ownership
-
-            case promotionType = "promotion_type"
-
             case offerText = "offer_text"
-
-            case articleQuantity = "article_quantity"
         }
 
-        public init(amount: Double? = nil, articleQuantity: Int? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, articleQuantity: Int? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             self.mrpPromotion = mrpPromotion
+
+            self.promotionType = promotionType
+
+            self.articleQuantity = articleQuantity
 
             self.amount = amount
 
             self.promoId = promoId
 
-            self.ownership = ownership
-
-            self.promotionType = promotionType
-
             self.offerText = offerText
-
-            self.articleQuantity = articleQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,6 +52,22 @@ public extension ApplicationClient.PosCart {
 
             do {
                 mrpPromotion = try container.decode(Bool.self, forKey: .mrpPromotion)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                promotionType = try container.decode(String.self, forKey: .promotionType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,31 +91,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                ownership = try container.decode(Ownership.self, forKey: .ownership)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                promotionType = try container.decode(String.self, forKey: .promotionType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 offerText = try container.decode(String.self, forKey: .offerText)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,17 +104,15 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
+            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
+
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
+
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(promoId, forKey: .promoId)
 
-            try? container.encodeIfPresent(ownership, forKey: .ownership)
-
-            try? container.encodeIfPresent(promotionType, forKey: .promotionType)
-
             try? container.encodeIfPresent(offerText, forKey: .offerText)
-
-            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
         }
     }
 }

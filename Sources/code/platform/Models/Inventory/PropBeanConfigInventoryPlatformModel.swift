@@ -11,6 +11,8 @@ public extension PlatformClient.Inventory {
     class PropBeanConfig: Codable {
         public var required: Bool?
 
+        public var mapping: [String: PropBeanConfig]?
+
         public var optional: Bool?
 
         public var send: Send?
@@ -56,6 +58,8 @@ public extension PlatformClient.Inventory {
         public enum CodingKeys: String, CodingKey {
             case required
 
+            case mapping
+
             case optional
 
             case send
@@ -99,8 +103,10 @@ public extension PlatformClient.Inventory {
             case enrichFromMaster = "enrich_from_master"
         }
 
-        public init(allParamFunctionName: String? = nil, concatStr: String? = nil, constValue: [String: Any]? = nil, dataType: String? = nil, defaultValue: [String: Any]? = nil, destinationField: String? = nil, enrichFromMaster: Bool? = nil, functionName: String? = nil, identifierType: String? = nil, ignoreIfNotExists: Bool? = nil, include: Bool? = nil, indexField: String? = nil, optional: Bool? = nil, projectionQuery: [String: Any]? = nil, required: Bool? = nil, send: Send? = nil, sourceField: String? = nil, sourceFields: [String]? = nil, subSeparator: String? = nil, transformerName: String? = nil, validations: [[String: Any]]? = nil, values: [String]? = nil) {
+        public init(allParamFunctionName: String? = nil, concatStr: String? = nil, constValue: [String: Any]? = nil, dataType: String? = nil, defaultValue: [String: Any]? = nil, destinationField: String? = nil, enrichFromMaster: Bool? = nil, functionName: String? = nil, identifierType: String? = nil, ignoreIfNotExists: Bool? = nil, include: Bool? = nil, indexField: String? = nil, mapping: [String: PropBeanConfig]? = nil, optional: Bool? = nil, projectionQuery: [String: Any]? = nil, required: Bool? = nil, send: Send? = nil, sourceField: String? = nil, sourceFields: [String]? = nil, subSeparator: String? = nil, transformerName: String? = nil, validations: [[String: Any]]? = nil, values: [String]? = nil) {
             self.required = required
+
+            self.mapping = mapping
 
             self.optional = optional
 
@@ -150,6 +156,14 @@ public extension PlatformClient.Inventory {
 
             do {
                 required = try container.decode(Bool.self, forKey: .required)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mapping = try container.decode([String: PropBeanConfig].self, forKey: .mapping)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -329,6 +343,8 @@ public extension PlatformClient.Inventory {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(required, forKey: .required)
+
+            try? container.encodeIfPresent(mapping, forKey: .mapping)
 
             try? container.encodeIfPresent(optional, forKey: .optional)
 

@@ -46,7 +46,7 @@ Fetch all items added to the cart
 
 
 ```swift
-applicationClient.poscart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow) { (response, error) in
+applicationClient.poscart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -61,7 +61,6 @@ applicationClient.poscart.getCart(id: id, i: i, b: b, assignCardId: assignCardId
 | i | Bool? | no |  |   
 | b | Bool? | no |  |   
 | assignCardId | Int? | no |  |   
-| areaCode | String? | no |  |   
 | buyNow | Bool? | no |  |  
 
 
@@ -85,674 +84,10 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
 
 ```json
 {
-  "applied_promo_details": [
-    {
-      "application_id": "000000000000000000000001",
-      "apply_all_offers": false,
-      "apply_exclusive": null,
-      "buy_article_dict": {
-        "rule#1": {
-          "633527e850dfb8e73e6de996_0": {
-            "added_in_cart": false,
-            "added_quantity": 0,
-            "amount_paid": 0,
-            "applicable_credits": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 0,
-              "floor_value": 0,
-              "source_currency_code": "FC",
-              "source_currency_symbol": "",
-              "source_value": 0,
-              "value": 0
-            },
-            "article_assign_status": true,
-            "article_assignment": {
-              "level": "multi-companies",
-              "strategy": "optimal"
-            },
-            "article_error": {
-              "type": null,
-              "value": null,
-              "message": null
-            },
-            "article_id": "633527e850dfb8e73e6de996",
-            "article_index": "0",
-            "article_meta": {
-              "article_id": "633527e850dfb8e73e6de996",
-              "bulk_margin": 0,
-              "bulk_discount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              },
-              "bulk_coupon_code": null,
-              "country_of_origin": "India",
-              "dimension": {
-                "width": 70,
-                "unit": "cm",
-                "height": 70,
-                "is_default": true,
-                "length": 70
-              },
-              "fragile": false,
-              "manufacturer": {
-                "address": "10, PALI MALA RD, ADARSH NAGAR, BANDRA WEST,, MAHARASHTRA, MUMBAI",
-                "name": "Sabki Shop",
-                "is_default": true
-              },
-              "weight": {
-                "shipping": 250,
-                "unit": "gram",
-                "is_default": true
-              },
-              "raw_meta": {
-                "fynd_identifier": "4187_3412343256098",
-                "is_set_article": false,
-                "set_quantity": 1
-              },
-              "is_set": false,
-              "set": {},
-              "identifier": {
-                "ean": "3412343256098"
-              },
-              "hsn_code": null,
-              "hsn_code_id": "625fbd96faeed8b3df6ec3ce",
-              "raw_price": {
-                "effective": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "marked": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "transfer": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 0,
-                  "floor_value": 0,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 0,
-                  "value": 0
-                }
-              },
-              "seller_identifier": "3412343256098",
-              "_custom_json": {},
-              "tags": [],
-              "return_config": {
-                "time": 0,
-                "unit": "days",
-                "returnable": false
-              }
-            },
-            "attributes": {
-              "essential": "No",
-              "item_code": "BSFJ2-12608",
-              "gender": [
-                "Men"
-              ],
-              "denim_type": "Solid",
-              "pattern": "Solid",
-              "product_fit": "Slim",
-              "currency": "INR",
-              "media": [
-                {
-                  "type": "image",
-                  "meta": {
-                    "brand": "nike",
-                    "item_code": "BSFJ2-12608",
-                    "sequence": 0
-                  },
-                  "url": "https://hdn-1.addsale.com/addsale/products/pictures/item/free/original/nike/BSFJ2-12608/0/jMpkpyx17w-GWQjymow3-Black-Slim-Fit-Jeans.jpeg"
-                }
-              ],
-              "name": "Nike Jeans 12608",
-              "brand_name": "Nike"
-            },
-            "avl_qty": 97,
-            "brand_id": 18,
-            "bulk_coupon_applied": false,
-            "bulk_coupon_code": null,
-            "bulk_discount": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 0,
-              "floor_value": 0,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 0,
-              "value": 0
-            },
-            "bulk_margin": 0,
-            "cancellation_allowed": true,
-            "cashback": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "FC",
-                "source_currency_symbol": "",
-                "source_value": 0,
-                "value": 0
-              }
-            },
-            "category_id": [
-              150
-            ],
-            "cod_charges": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              }
-            },
-            "company_id": 2,
-            "company_info": {
-              "company_id": 2,
-              "c_name": "Sabki Shop",
-              "c_taxes": [
-                {
-                  "rate": 15,
-                  "enable": true,
-                  "effective_date": "2022-06-05T18:29:23.904000"
-                }
-              ],
-              "company_cin": "U45200MH1992PTC066474"
-            },
-            "company_taxes": [
-              {
-                "rate": 15,
-                "enable": true,
-                "effective_date": "2022-06-05T18:29:23.904000"
-              }
-            ],
-            "coupon": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              },
-              "article_count": 0,
-              "cancellation_allowed": true,
-              "return_allowed": true
-            },
-            "currency_dict": {
-              "code": "INR",
-              "rate": 1
-            },
-            "custom_meta": {},
-            "data": {},
-            "delivery_charges": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              }
-            },
-            "delivery_error_msg": "",
-            "delivery_promise": {
-              "timestamp": {
-                "min": 1646257339,
-                "max": 1646689339
-              },
-              "formatted": {
-                "min": "03 Mar, Thursday",
-                "max": "08 Mar, Tuesday"
-              }
-            },
-            "departments": [
-              99
-            ],
-            "discount": 0,
-            "discount_applied": {},
-            "dt_currency": "INR",
-            "dt_currency_symbol": "₹",
-            "esp_modified": false,
-            "extra_meta": {},
-            "float_amount_paid": 0,
-            "free_gift_items_meta": {},
-            "group_id": "",
-            "gst_amount": 167.1,
-            "gst_tax_percentage": 5,
-            "hsn_code": null,
-            "hsn_code_id": "625fbd96faeed8b3df6ec3ce",
-            "identifiers": {
-              "identifier": "BDnwAINORr6SlTKxZN3w"
-            },
-            "image_nature": "standard",
-            "include": true,
-            "is_valid": true,
-            "item_id": 75660796,
-            "item_size": "34",
-            "last_update_at": 1680852767,
-            "meta": {},
-            "net_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 3509.1,
-              "floor_value": 3509.1,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 3509.1,
-              "value": 3509.1
-            },
-            "old_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 3899,
-              "floor_value": 3899,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 3899,
-              "value": 3899
-            },
-            "original_price_effective": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 3899,
-              "floor_value": 3899,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 3899,
-              "value": 3899
-            },
-            "original_unit_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 3899,
-              "floor_value": 3899,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 3899,
-              "value": 3899
-            },
-            "parent_item_identifiers": {
-              "identifier": null,
-              "parent_item_size": null,
-              "parent_item_id": null
-            },
-            "pickup_stores": [],
-            "price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 3899,
-              "floor_value": 3899,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 3899,
-              "value": 3899
-            },
-            "price_effective": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 3899,
-              "floor_value": 3899,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 3899,
-              "value": 3899
-            },
-            "price_marked": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 3899,
-              "floor_value": 3899,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 3899,
-              "value": 3899
-            },
-            "product_tags": [],
-            "promotions": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "INR",
-                "source_currency_symbol": "₹",
-                "source_value": 0,
-                "value": 0
-              },
-              "applied": [
-                {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 389.9,
-                    "floor_value": 389.9,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 389.9,
-                    "value": 389.9
-                  },
-                  "applied_discounts": [
-                    {
-                      "type": "percentage",
-                      "value": 10
-                    }
-                  ],
-                  "applied_free_articles": [],
-                  "apply_exclusive": null,
-                  "article_quantity": 1,
-                  "buy_rules": [
-                    {
-                      "all_items": null,
-                      "cart_conditions": {},
-                      "item_criteria": {
-                        "item_brand": [
-                          18
-                        ]
-                      },
-                      "mrp_promo": false,
-                      "slug": "rule#1"
-                    }
-                  ],
-                  "cancellation_allowed": true,
-                  "discount_rules": [
-                    {
-                      "all_items": null,
-                      "buy_condition": "( rule#1 )",
-                      "item_criteria": {
-                        "buy_rules": [
-                          "rule#1"
-                        ]
-                      },
-                      "matched_buy_rules": [
-                        "rule#1"
-                      ],
-                      "offer": {
-                        "discount_percentage": 10
-                      },
-                      "raw_offer": {
-                        "item_criteria": {
-                          "buy_rules": [
-                            "rule#1"
-                          ]
-                        },
-                        "buy_condition": "( rule#1 )",
-                        "discount_type": "percentage",
-                        "offer": {
-                          "discount_percentage": 10
-                        }
-                      },
-                      "type": "percentage"
-                    }
-                  ],
-                  "mrp_promo": false,
-                  "offer_text": "10% of on NIKE Jeans",
-                  "ownership": {
-                    "payable_category": "seller",
-                    "payable_by": ""
-                  },
-                  "payable_category": "seller",
-                  "promo_code": null,
-                  "promo_id": "642fe329ed159b7aa743a293",
-                  "promo_type": "percentage",
-                  "promotion_group": "product",
-                  "return_allowed": true
-                }
-              ],
-              "apply_exclusive": null,
-              "available": [],
-              "cancellation_allowed": true,
-              "exclusive_promo_applied": false,
-              "mrp_promo_applied": false,
-              "return_allowed": true
-            },
-            "quantity": 1,
-            "quantity_assign_status": false,
-            "referral_credits": {
-              "amount": {
-                "conversion_rate": 1,
-                "currency_code": "INR",
-                "currency_symbol": "₹",
-                "floor_source_value": 0,
-                "floor_value": 0,
-                "source_currency_code": "FC",
-                "source_currency_symbol": "",
-                "source_value": 0,
-                "value": 0
-              }
-            },
-            "reload_data_only": true,
-            "return_allowed": false,
-            "sc_currency": "INR",
-            "sc_currency_symbol": "₹",
-            "selling_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 3899,
-              "floor_value": 3899,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 3899,
-              "value": 3899
-            },
-            "service_item_meta": {
-              "product_group_tags": null,
-              "products": null
-            },
-            "size_level_total_qty": 1,
-            "sizes": [
-              "34"
-            ],
-            "split_article_id": "633527e850dfb8e73e6de996_0",
-            "split_index": 0,
-            "store_id": 4187,
-            "store_info": {
-              "store_id": 4187,
-              "s_city": "HYDERABAD",
-              "store_name": "AND Inorbit Hyderabad",
-              "store_type": "mall",
-              "store_pincode": 500081,
-              "latitude": 17.4343693,
-              "longitude": 78.3866087
-            },
-            "strategy_validation_data": {},
-            "tags": [
-              "rule#1"
-            ],
-            "total_gst_amount": 167.1,
-            "total_value_of_good": 3342,
-            "transfer_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 0,
-              "floor_value": 0,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 0,
-              "value": 0
-            },
-            "unit_price": {
-              "conversion_rate": 1,
-              "currency_code": "INR",
-              "currency_symbol": "₹",
-              "floor_source_value": 3509.1,
-              "floor_value": 3509.1,
-              "source_currency_code": "INR",
-              "source_currency_symbol": "₹",
-              "source_value": 3509.1,
-              "value": 3509.1
-            },
-            "valid_inventory": true,
-            "value_of_good": 3342,
-            "verify_article": false
-          }
-        }
-      },
-      "buy_rules": [
-        {
-          "all_items": null,
-          "cart_conditions": {},
-          "item_criteria": {
-            "item_brand": [
-              18
-            ]
-          },
-          "mrp_promo": false,
-          "slug": "rule#1"
-        }
-      ],
-      "buy_rules_map": {
-        "rule#1": {
-          "item_brand": [
-            18
-          ]
-        }
-      },
-      "calculate_on": "esp",
-      "cancellation_allowed": true,
-      "code": null,
-      "discount": 389.9,
-      "discount_rules": [
-        {
-          "all_items": null,
-          "buy_condition": "( rule#1 )",
-          "item_criteria": {
-            "buy_rules": [
-              "rule#1"
-            ]
-          },
-          "matched_buy_rules": [
-            "rule#1"
-          ],
-          "offer": {
-            "discount_percentage": 10
-          },
-          "raw_offer": {
-            "item_criteria": {
-              "buy_rules": [
-                "rule#1"
-              ]
-            },
-            "buy_condition": "( rule#1 )",
-            "discount_type": "percentage",
-            "offer": {
-              "discount_percentage": 10
-            }
-          },
-          "type": "percentage"
-        }
-      ],
-      "id": "642fe329ed159b7aa743a293",
-      "mrp_promo": false,
-      "offer_text": "10% of on NIKE Jeans",
-      "ownership": {
-        "payable_category": "seller",
-        "payable_by": ""
-      },
-      "payable_category": "seller",
-      "priority": 1,
-      "promo_group": "product",
-      "remaining_allowed_qty": null,
-      "restrictions": {
-        "uses": {
-          "maximum": {
-            "user": 0,
-            "total": 0
-          },
-          "remaining": {
-            "user": 0,
-            "total": 0
-          }
-        },
-        "user_groups": [],
-        "post_order": {
-          "return_allowed": true,
-          "cancellation_allowed": true
-        },
-        "user_id": [],
-        "payments": [],
-        "user_registered": {
-          "start": null,
-          "end": null
-        },
-        "platforms": [
-          "web",
-          "android",
-          "ios"
-        ],
-        "anonymous_users": true
-      },
-      "return_allowed": true,
-      "stackable": true,
-      "type": "percentage",
-      "usage_meta": null
-    }
-  ],
   "items": [
     {
       "bulk_offer": {},
-      "delivery_promise": {
-        "timestamp": {
-          "min": 1646257339,
-          "max": 1646689339
-        },
-        "formatted": {
-          "min": "03 Mar, Thursday",
-          "max": "08 Mar, Tuesday"
-        }
-      },
       "discount": "67% OFF",
-      "moq": {},
       "article": {
         "type": "article",
         "uid": "604_902_SSTC60401_636BLUE_1",
@@ -782,13 +117,6 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
       "coupon_message": "",
       "key": "707569_1",
       "availability": {
-        "available_sizes": [
-          {
-            "is_available": true,
-            "display": "OS",
-            "value": "OS"
-          }
-        ],
         "sizes": [
           "1",
           "8",
@@ -980,7 +308,7 @@ Add items to cart
 
 
 ```swift
-applicationClient.poscart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNow, body: body) { (response, error) in
+applicationClient.poscart.addItems(i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -993,7 +321,6 @@ applicationClient.poscart.addItems(i: i, b: b, areaCode: areaCode, buyNow: buyNo
 | -------- | ---- | -------- | ----------- | 
 | i | Bool? | no |  |   
 | b | Bool? | no |  |   
-| areaCode | String? | no |  |   
 | buyNow | Bool? | no |  |  
 | body | AddCartRequest | yes | Request body |
 
@@ -1025,659 +352,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
     "message": "Product has been added to your cart",
     "success": true,
     "cart": {
-      "applied_promo_details": [
-        {
-          "application_id": "000000000000000000000001",
-          "apply_all_offers": false,
-          "apply_exclusive": null,
-          "buy_article_dict": {
-            "rule#1": {
-              "633527e850dfb8e73e6de996_0": {
-                "added_in_cart": false,
-                "added_quantity": 0,
-                "amount_paid": 0,
-                "applicable_credits": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 0,
-                  "floor_value": 0,
-                  "source_currency_code": "FC",
-                  "source_currency_symbol": "",
-                  "source_value": 0,
-                  "value": 0
-                },
-                "article_assign_status": true,
-                "article_assignment": {
-                  "level": "multi-companies",
-                  "strategy": "optimal"
-                },
-                "article_error": {
-                  "type": null,
-                  "value": null,
-                  "message": null
-                },
-                "article_id": "633527e850dfb8e73e6de996",
-                "article_index": "0",
-                "article_meta": {
-                  "article_id": "633527e850dfb8e73e6de996",
-                  "bulk_margin": 0,
-                  "bulk_discount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  },
-                  "bulk_coupon_code": null,
-                  "country_of_origin": "India",
-                  "dimension": {
-                    "width": 70,
-                    "unit": "cm",
-                    "height": 70,
-                    "is_default": true,
-                    "length": 70
-                  },
-                  "fragile": false,
-                  "manufacturer": {
-                    "address": "10, PALI MALA RD, ADARSH NAGAR, BANDRA WEST,, MAHARASHTRA, MUMBAI",
-                    "name": "Sabki Shop",
-                    "is_default": true
-                  },
-                  "weight": {
-                    "shipping": 250,
-                    "unit": "gram",
-                    "is_default": true
-                  },
-                  "raw_meta": {
-                    "fynd_identifier": "4187_3412343256098",
-                    "is_set_article": false,
-                    "set_quantity": 1
-                  },
-                  "is_set": false,
-                  "set": {},
-                  "identifier": {
-                    "ean": "3412343256098"
-                  },
-                  "hsn_code": null,
-                  "hsn_code_id": "625fbd96faeed8b3df6ec3ce",
-                  "raw_price": {
-                    "effective": {
-                      "conversion_rate": 1,
-                      "currency_code": "INR",
-                      "currency_symbol": "₹",
-                      "floor_source_value": 3899,
-                      "floor_value": 3899,
-                      "source_currency_code": "INR",
-                      "source_currency_symbol": "₹",
-                      "source_value": 3899,
-                      "value": 3899
-                    },
-                    "marked": {
-                      "conversion_rate": 1,
-                      "currency_code": "INR",
-                      "currency_symbol": "₹",
-                      "floor_source_value": 3899,
-                      "floor_value": 3899,
-                      "source_currency_code": "INR",
-                      "source_currency_symbol": "₹",
-                      "source_value": 3899,
-                      "value": 3899
-                    },
-                    "transfer": {
-                      "conversion_rate": 1,
-                      "currency_code": "INR",
-                      "currency_symbol": "₹",
-                      "floor_source_value": 0,
-                      "floor_value": 0,
-                      "source_currency_code": "INR",
-                      "source_currency_symbol": "₹",
-                      "source_value": 0,
-                      "value": 0
-                    }
-                  },
-                  "seller_identifier": "3412343256098",
-                  "_custom_json": {},
-                  "tags": [],
-                  "return_config": {
-                    "time": 0,
-                    "unit": "days",
-                    "returnable": false
-                  }
-                },
-                "attributes": {
-                  "essential": "No",
-                  "item_code": "BSFJ2-12608",
-                  "gender": [
-                    "Men"
-                  ],
-                  "denim_type": "Solid",
-                  "pattern": "Solid",
-                  "product_fit": "Slim",
-                  "currency": "INR",
-                  "media": [
-                    {
-                      "type": "image",
-                      "meta": {
-                        "brand": "nike",
-                        "item_code": "BSFJ2-12608",
-                        "sequence": 0
-                      },
-                      "url": "https://hdn-1.addsale.com/addsale/products/pictures/item/free/original/nike/BSFJ2-12608/0/jMpkpyx17w-GWQjymow3-Black-Slim-Fit-Jeans.jpeg"
-                    }
-                  ],
-                  "name": "Nike Jeans 12608",
-                  "brand_name": "Nike"
-                },
-                "avl_qty": 97,
-                "brand_id": 18,
-                "bulk_coupon_applied": false,
-                "bulk_coupon_code": null,
-                "bulk_discount": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 0,
-                  "floor_value": 0,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 0,
-                  "value": 0
-                },
-                "bulk_margin": 0,
-                "cancellation_allowed": true,
-                "cashback": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "FC",
-                    "source_currency_symbol": "",
-                    "source_value": 0,
-                    "value": 0
-                  }
-                },
-                "category_id": [
-                  150
-                ],
-                "cod_charges": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  }
-                },
-                "company_id": 2,
-                "company_info": {
-                  "company_id": 2,
-                  "c_name": "Sabki Shop",
-                  "c_taxes": [
-                    {
-                      "rate": 15,
-                      "enable": true,
-                      "effective_date": "2022-06-05T18:29:23.904000"
-                    }
-                  ],
-                  "company_cin": "U45200MH1992PTC066474"
-                },
-                "company_taxes": [
-                  {
-                    "rate": 15,
-                    "enable": true,
-                    "effective_date": "2022-06-05T18:29:23.904000"
-                  }
-                ],
-                "coupon": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  },
-                  "article_count": 0,
-                  "cancellation_allowed": true,
-                  "return_allowed": true
-                },
-                "currency_dict": {
-                  "code": "INR",
-                  "rate": 1
-                },
-                "custom_meta": {},
-                "data": {},
-                "delivery_charges": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  }
-                },
-                "delivery_error_msg": "",
-                "delivery_promise": {
-                  "timestamp": {
-                    "min": 1646257339,
-                    "max": 1646689339
-                  },
-                  "formatted": {
-                    "min": "03 Mar, Thursday",
-                    "max": "08 Mar, Tuesday"
-                  }
-                },
-                "departments": [
-                  99
-                ],
-                "discount": 0,
-                "discount_applied": {},
-                "dt_currency": "INR",
-                "dt_currency_symbol": "₹",
-                "esp_modified": false,
-                "extra_meta": {},
-                "float_amount_paid": 0,
-                "free_gift_items_meta": {},
-                "group_id": "",
-                "gst_amount": 167.1,
-                "gst_tax_percentage": 5,
-                "hsn_code": null,
-                "hsn_code_id": "625fbd96faeed8b3df6ec3ce",
-                "identifiers": {
-                  "identifier": "BDnwAINORr6SlTKxZN3w"
-                },
-                "image_nature": "standard",
-                "include": true,
-                "is_valid": true,
-                "item_id": 75660796,
-                "item_size": "34",
-                "last_update_at": 1680852767,
-                "meta": {},
-                "net_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3509.1,
-                  "floor_value": 3509.1,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3509.1,
-                  "value": 3509.1
-                },
-                "old_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "original_price_effective": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "original_unit_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "parent_item_identifiers": {
-                  "identifier": null,
-                  "parent_item_size": null,
-                  "parent_item_id": null
-                },
-                "pickup_stores": [],
-                "price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "price_effective": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "price_marked": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "product_tags": [],
-                "promotions": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  },
-                  "applied": [
-                    {
-                      "amount": {
-                        "conversion_rate": 1,
-                        "currency_code": "INR",
-                        "currency_symbol": "₹",
-                        "floor_source_value": 389.9,
-                        "floor_value": 389.9,
-                        "source_currency_code": "INR",
-                        "source_currency_symbol": "₹",
-                        "source_value": 389.9,
-                        "value": 389.9
-                      },
-                      "applied_discounts": [
-                        {
-                          "type": "percentage",
-                          "value": 10
-                        }
-                      ],
-                      "applied_free_articles": [],
-                      "apply_exclusive": null,
-                      "article_quantity": 1,
-                      "buy_rules": [
-                        {
-                          "all_items": null,
-                          "cart_conditions": {},
-                          "item_criteria": {
-                            "item_brand": [
-                              18
-                            ]
-                          },
-                          "mrp_promo": false,
-                          "slug": "rule#1"
-                        }
-                      ],
-                      "cancellation_allowed": true,
-                      "discount_rules": [
-                        {
-                          "all_items": null,
-                          "buy_condition": "( rule#1 )",
-                          "item_criteria": {
-                            "buy_rules": [
-                              "rule#1"
-                            ]
-                          },
-                          "matched_buy_rules": [
-                            "rule#1"
-                          ],
-                          "offer": {
-                            "discount_percentage": 10
-                          },
-                          "raw_offer": {
-                            "item_criteria": {
-                              "buy_rules": [
-                                "rule#1"
-                              ]
-                            },
-                            "buy_condition": "( rule#1 )",
-                            "discount_type": "percentage",
-                            "offer": {
-                              "discount_percentage": 10
-                            }
-                          },
-                          "type": "percentage"
-                        }
-                      ],
-                      "mrp_promo": false,
-                      "offer_text": "10% of on NIKE Jeans",
-                      "ownership": {
-                        "payable_category": "seller",
-                        "payable_by": ""
-                      },
-                      "payable_category": "seller",
-                      "promo_code": null,
-                      "promo_id": "642fe329ed159b7aa743a293",
-                      "promo_type": "percentage",
-                      "promotion_group": "product",
-                      "return_allowed": true
-                    }
-                  ],
-                  "apply_exclusive": null,
-                  "available": [],
-                  "cancellation_allowed": true,
-                  "exclusive_promo_applied": false,
-                  "mrp_promo_applied": false,
-                  "return_allowed": true
-                },
-                "quantity": 1,
-                "quantity_assign_status": false,
-                "referral_credits": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "FC",
-                    "source_currency_symbol": "",
-                    "source_value": 0,
-                    "value": 0
-                  }
-                },
-                "reload_data_only": true,
-                "return_allowed": false,
-                "sc_currency": "INR",
-                "sc_currency_symbol": "₹",
-                "selling_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "service_item_meta": {
-                  "product_group_tags": null,
-                  "products": null
-                },
-                "size_level_total_qty": 1,
-                "sizes": [
-                  "34"
-                ],
-                "split_article_id": "633527e850dfb8e73e6de996_0",
-                "split_index": 0,
-                "store_id": 4187,
-                "store_info": {
-                  "store_id": 4187,
-                  "s_city": "HYDERABAD",
-                  "store_name": "AND Inorbit Hyderabad",
-                  "store_type": "mall",
-                  "store_pincode": 500081,
-                  "latitude": 17.4343693,
-                  "longitude": 78.3866087
-                },
-                "strategy_validation_data": {},
-                "tags": [
-                  "rule#1"
-                ],
-                "total_gst_amount": 167.1,
-                "total_value_of_good": 3342,
-                "transfer_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 0,
-                  "floor_value": 0,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 0,
-                  "value": 0
-                },
-                "unit_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3509.1,
-                  "floor_value": 3509.1,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3509.1,
-                  "value": 3509.1
-                },
-                "valid_inventory": true,
-                "value_of_good": 3342,
-                "verify_article": false
-              }
-            }
-          },
-          "buy_rules": [
-            {
-              "all_items": null,
-              "cart_conditions": {},
-              "item_criteria": {
-                "item_brand": [
-                  18
-                ]
-              },
-              "mrp_promo": false,
-              "slug": "rule#1"
-            }
-          ],
-          "buy_rules_map": {
-            "rule#1": {
-              "item_brand": [
-                18
-              ]
-            }
-          },
-          "calculate_on": "esp",
-          "cancellation_allowed": true,
-          "code": null,
-          "discount": 389.9,
-          "discount_rules": [
-            {
-              "all_items": null,
-              "buy_condition": "( rule#1 )",
-              "item_criteria": {
-                "buy_rules": [
-                  "rule#1"
-                ]
-              },
-              "matched_buy_rules": [
-                "rule#1"
-              ],
-              "offer": {
-                "discount_percentage": 10
-              },
-              "raw_offer": {
-                "item_criteria": {
-                  "buy_rules": [
-                    "rule#1"
-                  ]
-                },
-                "buy_condition": "( rule#1 )",
-                "discount_type": "percentage",
-                "offer": {
-                  "discount_percentage": 10
-                }
-              },
-              "type": "percentage"
-            }
-          ],
-          "id": "642fe329ed159b7aa743a293",
-          "mrp_promo": false,
-          "offer_text": "10% of on NIKE Jeans",
-          "ownership": {
-            "payable_category": "seller",
-            "payable_by": ""
-          },
-          "payable_category": "seller",
-          "priority": 1,
-          "promo_group": "product",
-          "remaining_allowed_qty": null,
-          "restrictions": {
-            "uses": {
-              "maximum": {
-                "user": 0,
-                "total": 0
-              },
-              "remaining": {
-                "user": 0,
-                "total": 0
-              }
-            },
-            "user_groups": [],
-            "post_order": {
-              "return_allowed": true,
-              "cancellation_allowed": true
-            },
-            "user_id": [],
-            "payments": [],
-            "user_registered": {
-              "start": null,
-              "end": null
-            },
-            "platforms": [
-              "web",
-              "android",
-              "ios"
-            ],
-            "anonymous_users": true
-          },
-          "return_allowed": true,
-          "stackable": true,
-          "type": "percentage",
-          "usage_meta": null
-        }
-      ],
       "breakup_values": {
         "display": [
           {
@@ -1742,17 +416,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
             "parent_item_id": 7501190,
             "parent_item_size": "OS"
           },
-          "moq": {},
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1646257339,
-              "max": 1646689339
-            },
-            "formatted": {
-              "min": "03 Mar, Thursday",
-              "max": "08 Mar, Tuesday"
-            }
-          },
           "article": {
             "type": "article",
             "uid": "612_9_SE61201_19100302_10",
@@ -1799,13 +462,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
             "sizes": [
               "10"
             ],
-            "available_sizes": [
-              {
-                "is_available": true,
-                "display": "OS",
-                "value": "OS"
-              }
-            ],
             "other_store_quantity": 2,
             "out_of_stock": false,
             "deliverable": true,
@@ -1851,17 +507,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         },
         {
           "key": "246228_S",
-          "moq": {},
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1646257339,
-              "max": 1646689339
-            },
-            "formatted": {
-              "min": "03 Mar, Thursday",
-              "max": "08 Mar, Tuesday"
-            }
-          },
           "article": {
             "type": "article",
             "uid": "46_235_TM62_M11029ONDSXNS_S",
@@ -1912,13 +557,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
               "XL",
               "XXL"
             ],
-            "available_sizes": [
-              {
-                "is_available": true,
-                "display": "OS",
-                "value": "OS"
-              }
-            ],
             "other_store_quantity": 0,
             "out_of_stock": false,
             "deliverable": true,
@@ -1964,17 +602,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         },
         {
           "key": "443175_S",
-          "moq": {},
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1646257339,
-              "max": 1646689339
-            },
-            "formatted": {
-              "min": "03 Mar, Thursday",
-              "max": "08 Mar, Tuesday"
-            }
-          },
           "article": {
             "type": "article",
             "uid": "162_207_1271_LJ03LBLUDN88_S",
@@ -2024,13 +651,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
               "L",
               "S"
             ],
-            "available_sizes": [
-              {
-                "is_available": true,
-                "display": "OS",
-                "value": "OS"
-              }
-            ],
             "other_store_quantity": 8,
             "out_of_stock": false,
             "deliverable": true,
@@ -2076,17 +696,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         },
         {
           "key": "778937_OS",
-          "moq": {},
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1646257339,
-              "max": 1646689339
-            },
-            "formatted": {
-              "min": "03 Mar, Thursday",
-              "max": "08 Mar, Tuesday"
-            }
-          },
           "article": {
             "type": "article",
             "uid": "686_963_IC68601_PWUPC01977_OS",
@@ -2132,13 +741,6 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           "availability": {
             "sizes": [
               "OS"
-            ],
-            "available_sizes": [
-              {
-                "is_available": true,
-                "display": "OS",
-                "value": "OS"
-              }
             ],
             "other_store_quantity": 2,
             "out_of_stock": false,
@@ -2408,7 +1010,7 @@ Update items in the cart
 
 
 ```swift
-applicationClient.poscart.updateCart(id: id, i: i, b: b, areaCode: areaCode, buyNow: buyNow, body: body) { (response, error) in
+applicationClient.poscart.updateCart(id: id, i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2422,7 +1024,6 @@ applicationClient.poscart.updateCart(id: id, i: i, b: b, areaCode: areaCode, buy
 | id | String? | no |  |   
 | i | Bool? | no |  |   
 | b | Bool? | no |  |   
-| areaCode | String? | no |  |   
 | buyNow | Bool? | no |  |  
 | body | UpdateCartRequest | yes | Request body |
 
@@ -2644,659 +1245,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
 {
   "value": {
     "cart": {
-      "applied_promo_details": [
-        {
-          "application_id": "000000000000000000000001",
-          "apply_all_offers": false,
-          "apply_exclusive": null,
-          "buy_article_dict": {
-            "rule#1": {
-              "633527e850dfb8e73e6de996_0": {
-                "added_in_cart": false,
-                "added_quantity": 0,
-                "amount_paid": 0,
-                "applicable_credits": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 0,
-                  "floor_value": 0,
-                  "source_currency_code": "FC",
-                  "source_currency_symbol": "",
-                  "source_value": 0,
-                  "value": 0
-                },
-                "article_assign_status": true,
-                "article_assignment": {
-                  "level": "multi-companies",
-                  "strategy": "optimal"
-                },
-                "article_error": {
-                  "type": null,
-                  "value": null,
-                  "message": null
-                },
-                "article_id": "633527e850dfb8e73e6de996",
-                "article_index": "0",
-                "article_meta": {
-                  "article_id": "633527e850dfb8e73e6de996",
-                  "bulk_margin": 0,
-                  "bulk_discount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  },
-                  "bulk_coupon_code": null,
-                  "country_of_origin": "India",
-                  "dimension": {
-                    "width": 70,
-                    "unit": "cm",
-                    "height": 70,
-                    "is_default": true,
-                    "length": 70
-                  },
-                  "fragile": false,
-                  "manufacturer": {
-                    "address": "10, PALI MALA RD, ADARSH NAGAR, BANDRA WEST,, MAHARASHTRA, MUMBAI",
-                    "name": "Sabki Shop",
-                    "is_default": true
-                  },
-                  "weight": {
-                    "shipping": 250,
-                    "unit": "gram",
-                    "is_default": true
-                  },
-                  "raw_meta": {
-                    "fynd_identifier": "4187_3412343256098",
-                    "is_set_article": false,
-                    "set_quantity": 1
-                  },
-                  "is_set": false,
-                  "set": {},
-                  "identifier": {
-                    "ean": "3412343256098"
-                  },
-                  "hsn_code": null,
-                  "hsn_code_id": "625fbd96faeed8b3df6ec3ce",
-                  "raw_price": {
-                    "effective": {
-                      "conversion_rate": 1,
-                      "currency_code": "INR",
-                      "currency_symbol": "₹",
-                      "floor_source_value": 3899,
-                      "floor_value": 3899,
-                      "source_currency_code": "INR",
-                      "source_currency_symbol": "₹",
-                      "source_value": 3899,
-                      "value": 3899
-                    },
-                    "marked": {
-                      "conversion_rate": 1,
-                      "currency_code": "INR",
-                      "currency_symbol": "₹",
-                      "floor_source_value": 3899,
-                      "floor_value": 3899,
-                      "source_currency_code": "INR",
-                      "source_currency_symbol": "₹",
-                      "source_value": 3899,
-                      "value": 3899
-                    },
-                    "transfer": {
-                      "conversion_rate": 1,
-                      "currency_code": "INR",
-                      "currency_symbol": "₹",
-                      "floor_source_value": 0,
-                      "floor_value": 0,
-                      "source_currency_code": "INR",
-                      "source_currency_symbol": "₹",
-                      "source_value": 0,
-                      "value": 0
-                    }
-                  },
-                  "seller_identifier": "3412343256098",
-                  "_custom_json": {},
-                  "tags": [],
-                  "return_config": {
-                    "time": 0,
-                    "unit": "days",
-                    "returnable": false
-                  }
-                },
-                "attributes": {
-                  "essential": "No",
-                  "item_code": "BSFJ2-12608",
-                  "gender": [
-                    "Men"
-                  ],
-                  "denim_type": "Solid",
-                  "pattern": "Solid",
-                  "product_fit": "Slim",
-                  "currency": "INR",
-                  "media": [
-                    {
-                      "type": "image",
-                      "meta": {
-                        "brand": "nike",
-                        "item_code": "BSFJ2-12608",
-                        "sequence": 0
-                      },
-                      "url": "https://hdn-1.addsale.com/addsale/products/pictures/item/free/original/nike/BSFJ2-12608/0/jMpkpyx17w-GWQjymow3-Black-Slim-Fit-Jeans.jpeg"
-                    }
-                  ],
-                  "name": "Nike Jeans 12608",
-                  "brand_name": "Nike"
-                },
-                "avl_qty": 97,
-                "brand_id": 18,
-                "bulk_coupon_applied": false,
-                "bulk_coupon_code": null,
-                "bulk_discount": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 0,
-                  "floor_value": 0,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 0,
-                  "value": 0
-                },
-                "bulk_margin": 0,
-                "cancellation_allowed": true,
-                "cashback": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "FC",
-                    "source_currency_symbol": "",
-                    "source_value": 0,
-                    "value": 0
-                  }
-                },
-                "category_id": [
-                  150
-                ],
-                "cod_charges": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  }
-                },
-                "company_id": 2,
-                "company_info": {
-                  "company_id": 2,
-                  "c_name": "Sabki Shop",
-                  "c_taxes": [
-                    {
-                      "rate": 15,
-                      "enable": true,
-                      "effective_date": "2022-06-05T18:29:23.904000"
-                    }
-                  ],
-                  "company_cin": "U45200MH1992PTC066474"
-                },
-                "company_taxes": [
-                  {
-                    "rate": 15,
-                    "enable": true,
-                    "effective_date": "2022-06-05T18:29:23.904000"
-                  }
-                ],
-                "coupon": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  },
-                  "article_count": 0,
-                  "cancellation_allowed": true,
-                  "return_allowed": true
-                },
-                "currency_dict": {
-                  "code": "INR",
-                  "rate": 1
-                },
-                "custom_meta": {},
-                "data": {},
-                "delivery_charges": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  }
-                },
-                "delivery_error_msg": "",
-                "delivery_promise": {
-                  "timestamp": {
-                    "min": 1646257339,
-                    "max": 1646689339
-                  },
-                  "formatted": {
-                    "min": "03 Mar, Thursday",
-                    "max": "08 Mar, Tuesday"
-                  }
-                },
-                "departments": [
-                  99
-                ],
-                "discount": 0,
-                "discount_applied": {},
-                "dt_currency": "INR",
-                "dt_currency_symbol": "₹",
-                "esp_modified": false,
-                "extra_meta": {},
-                "float_amount_paid": 0,
-                "free_gift_items_meta": {},
-                "group_id": "",
-                "gst_amount": 167.1,
-                "gst_tax_percentage": 5,
-                "hsn_code": null,
-                "hsn_code_id": "625fbd96faeed8b3df6ec3ce",
-                "identifiers": {
-                  "identifier": "BDnwAINORr6SlTKxZN3w"
-                },
-                "image_nature": "standard",
-                "include": true,
-                "is_valid": true,
-                "item_id": 75660796,
-                "item_size": "34",
-                "last_update_at": 1680852767,
-                "meta": {},
-                "net_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3509.1,
-                  "floor_value": 3509.1,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3509.1,
-                  "value": 3509.1
-                },
-                "old_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "original_price_effective": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "original_unit_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "parent_item_identifiers": {
-                  "identifier": null,
-                  "parent_item_size": null,
-                  "parent_item_id": null
-                },
-                "pickup_stores": [],
-                "price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "price_effective": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "price_marked": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "product_tags": [],
-                "promotions": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "INR",
-                    "source_currency_symbol": "₹",
-                    "source_value": 0,
-                    "value": 0
-                  },
-                  "applied": [
-                    {
-                      "amount": {
-                        "conversion_rate": 1,
-                        "currency_code": "INR",
-                        "currency_symbol": "₹",
-                        "floor_source_value": 389.9,
-                        "floor_value": 389.9,
-                        "source_currency_code": "INR",
-                        "source_currency_symbol": "₹",
-                        "source_value": 389.9,
-                        "value": 389.9
-                      },
-                      "applied_discounts": [
-                        {
-                          "type": "percentage",
-                          "value": 10
-                        }
-                      ],
-                      "applied_free_articles": [],
-                      "apply_exclusive": null,
-                      "article_quantity": 1,
-                      "buy_rules": [
-                        {
-                          "all_items": null,
-                          "cart_conditions": {},
-                          "item_criteria": {
-                            "item_brand": [
-                              18
-                            ]
-                          },
-                          "mrp_promo": false,
-                          "slug": "rule#1"
-                        }
-                      ],
-                      "cancellation_allowed": true,
-                      "discount_rules": [
-                        {
-                          "all_items": null,
-                          "buy_condition": "( rule#1 )",
-                          "item_criteria": {
-                            "buy_rules": [
-                              "rule#1"
-                            ]
-                          },
-                          "matched_buy_rules": [
-                            "rule#1"
-                          ],
-                          "offer": {
-                            "discount_percentage": 10
-                          },
-                          "raw_offer": {
-                            "item_criteria": {
-                              "buy_rules": [
-                                "rule#1"
-                              ]
-                            },
-                            "buy_condition": "( rule#1 )",
-                            "discount_type": "percentage",
-                            "offer": {
-                              "discount_percentage": 10
-                            }
-                          },
-                          "type": "percentage"
-                        }
-                      ],
-                      "mrp_promo": false,
-                      "offer_text": "10% of on NIKE Jeans",
-                      "ownership": {
-                        "payable_category": "seller",
-                        "payable_by": ""
-                      },
-                      "payable_category": "seller",
-                      "promo_code": null,
-                      "promo_id": "642fe329ed159b7aa743a293",
-                      "promo_type": "percentage",
-                      "promotion_group": "product",
-                      "return_allowed": true
-                    }
-                  ],
-                  "apply_exclusive": null,
-                  "available": [],
-                  "cancellation_allowed": true,
-                  "exclusive_promo_applied": false,
-                  "mrp_promo_applied": false,
-                  "return_allowed": true
-                },
-                "quantity": 1,
-                "quantity_assign_status": false,
-                "referral_credits": {
-                  "amount": {
-                    "conversion_rate": 1,
-                    "currency_code": "INR",
-                    "currency_symbol": "₹",
-                    "floor_source_value": 0,
-                    "floor_value": 0,
-                    "source_currency_code": "FC",
-                    "source_currency_symbol": "",
-                    "source_value": 0,
-                    "value": 0
-                  }
-                },
-                "reload_data_only": true,
-                "return_allowed": false,
-                "sc_currency": "INR",
-                "sc_currency_symbol": "₹",
-                "selling_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3899,
-                  "floor_value": 3899,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3899,
-                  "value": 3899
-                },
-                "service_item_meta": {
-                  "product_group_tags": null,
-                  "products": null
-                },
-                "size_level_total_qty": 1,
-                "sizes": [
-                  "34"
-                ],
-                "split_article_id": "633527e850dfb8e73e6de996_0",
-                "split_index": 0,
-                "store_id": 4187,
-                "store_info": {
-                  "store_id": 4187,
-                  "s_city": "HYDERABAD",
-                  "store_name": "AND Inorbit Hyderabad",
-                  "store_type": "mall",
-                  "store_pincode": 500081,
-                  "latitude": 17.4343693,
-                  "longitude": 78.3866087
-                },
-                "strategy_validation_data": {},
-                "tags": [
-                  "rule#1"
-                ],
-                "total_gst_amount": 167.1,
-                "total_value_of_good": 3342,
-                "transfer_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 0,
-                  "floor_value": 0,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 0,
-                  "value": 0
-                },
-                "unit_price": {
-                  "conversion_rate": 1,
-                  "currency_code": "INR",
-                  "currency_symbol": "₹",
-                  "floor_source_value": 3509.1,
-                  "floor_value": 3509.1,
-                  "source_currency_code": "INR",
-                  "source_currency_symbol": "₹",
-                  "source_value": 3509.1,
-                  "value": 3509.1
-                },
-                "valid_inventory": true,
-                "value_of_good": 3342,
-                "verify_article": false
-              }
-            }
-          },
-          "buy_rules": [
-            {
-              "all_items": null,
-              "cart_conditions": {},
-              "item_criteria": {
-                "item_brand": [
-                  18
-                ]
-              },
-              "mrp_promo": false,
-              "slug": "rule#1"
-            }
-          ],
-          "buy_rules_map": {
-            "rule#1": {
-              "item_brand": [
-                18
-              ]
-            }
-          },
-          "calculate_on": "esp",
-          "cancellation_allowed": true,
-          "code": null,
-          "discount": 389.9,
-          "discount_rules": [
-            {
-              "all_items": null,
-              "buy_condition": "( rule#1 )",
-              "item_criteria": {
-                "buy_rules": [
-                  "rule#1"
-                ]
-              },
-              "matched_buy_rules": [
-                "rule#1"
-              ],
-              "offer": {
-                "discount_percentage": 10
-              },
-              "raw_offer": {
-                "item_criteria": {
-                  "buy_rules": [
-                    "rule#1"
-                  ]
-                },
-                "buy_condition": "( rule#1 )",
-                "discount_type": "percentage",
-                "offer": {
-                  "discount_percentage": 10
-                }
-              },
-              "type": "percentage"
-            }
-          ],
-          "id": "642fe329ed159b7aa743a293",
-          "mrp_promo": false,
-          "offer_text": "10% of on NIKE Jeans",
-          "ownership": {
-            "payable_category": "seller",
-            "payable_by": ""
-          },
-          "payable_category": "seller",
-          "priority": 1,
-          "promo_group": "product",
-          "remaining_allowed_qty": null,
-          "restrictions": {
-            "uses": {
-              "maximum": {
-                "user": 0,
-                "total": 0
-              },
-              "remaining": {
-                "user": 0,
-                "total": 0
-              }
-            },
-            "user_groups": [],
-            "post_order": {
-              "return_allowed": true,
-              "cancellation_allowed": true
-            },
-            "user_id": [],
-            "payments": [],
-            "user_registered": {
-              "start": null,
-              "end": null
-            },
-            "platforms": [
-              "web",
-              "android",
-              "ios"
-            ],
-            "anonymous_users": true
-          },
-          "return_allowed": true,
-          "stackable": true,
-          "type": "percentage",
-          "usage_meta": null
-        }
-      ],
       "breakup_values": {
         "coupon": {
           "type": "cash",
@@ -3407,17 +1355,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
             "parent_item_id": 7501190,
             "parent_item_size": "OS"
           },
-          "moq": {},
-          "delivery_promise": {
-            "timestamp": {
-              "min": 1646257339,
-              "max": 1646689339
-            },
-            "formatted": {
-              "min": "03 Mar, Thursday",
-              "max": "08 Mar, Tuesday"
-            }
-          },
           "article": {
             "type": "article",
             "uid": "507_9_96099_35656851_7",
@@ -3446,13 +1383,6 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
           },
           "coupon_message": "",
           "availability": {
-            "available_sizes": [
-              {
-                "is_available": true,
-                "display": "OS",
-                "value": "OS"
-              }
-            ],
             "sizes": [
               "10",
               "11",
@@ -4877,8 +2807,6 @@ Success. Returns an Address object containing a list of address saved in the acc
       "meta": {},
       "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
       "country_code": "IND",
-      "country_phone_code": "91",
-      "country_iso_code": "IND",
       "phone": 9915347757,
       "geo_location": {},
       "country": "India",
@@ -5025,8 +2953,6 @@ Success. Returns an Address object containing a list of address saved in the acc
   "meta": {},
   "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "country_code": "IND",
-  "country_phone_code": "91",
-  "country_iso_code": "IND",
   "phone": 9915347757,
   "geo_location": {},
   "country": "India",
@@ -8663,118 +6589,71 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [CouponBreakup](#CouponBreakup)
+ #### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | value | Double? |  yes  |  |
- | code | String? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | uid | String? |  yes  |  |
- | type | String? |  yes  |  |
+ | code | String? |  yes  | Currency code defined by ISO 4217:2015 |
+ | symbol | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [RawBreakup](#RawBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gstCharges | Double? |  yes  |  |
- | total | Double? |  yes  |  |
- | deliveryCharge | Double? |  yes  |  |
- | convenienceFee | Double? |  yes  |  |
- | mrpTotal | Double? |  yes  |  |
- | vog | Double? |  yes  |  |
- | codCharge | Double? |  yes  |  |
- | discount | Double? |  yes  |  |
- | coupon | Double? |  yes  |  |
- | subtotal | Double? |  yes  |  |
- | fyndCash | Double? |  yes  |  |
- | youSaved | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [LoyaltyPoints](#LoyaltyPoints)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | total | Double? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | applicable | Double? |  yes  |  |
- | description | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
+ #### [BasePrice](#BasePrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | currencySymbol | String? |  yes  |  |
+ | effective | Double? |  yes  |  |
  | currencyCode | String? |  yes  |  |
- | message | [String]? |  yes  |  |
- | value | Double? |  yes  |  |
- | display | String? |  yes  |  |
- | key | String? |  yes  |  |
+ | marked | Double? |  yes  |  |
 
 ---
 
 
  
  
- #### [CartBreakup](#CartBreakup)
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
- | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
- | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+ | base | [BasePrice](#BasePrice)? |  yes  |  |
+ | converted | [BasePrice](#BasePrice)? |  yes  |  |
 
 ---
 
 
  
  
- #### [PromiseFormatted](#PromiseFormatted)
+ #### [BaseInfo](#BaseInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | String? |  yes  |  |
- | max | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [PromiseTimestamp](#PromiseTimestamp)
+ #### [ProductArticle](#ProductArticle)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | Double? |  yes  |  |
- | max | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ShipmentPromise](#ShipmentPromise)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
- | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
+ | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
+ | store | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | size | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | type | String? |  yes  |  |
+ | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
+ | quantity | Int? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | productGroupTags | [String]? |  yes  |  |
 
 ---
 
@@ -8785,10 +6664,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
  | selling | Double? |  yes  |  |
  | marked | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
  | effective | Double? |  yes  |  |
  | addOn | Double? |  yes  |  |
 
@@ -8809,164 +6688,16 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [Ownership](#Ownership)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payableCategory | String? |  yes  | promo amount payable category |
- | payableBy | String? |  yes  | promo amount bearable party |
-
----
-
-
- 
- 
  #### [AppliedPromotion](#AppliedPromotion)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
+ | promotionType | String? |  yes  | Promotion type of current promotion |
+ | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
  | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
  | promoId | String? |  yes  | Promotion id |
- | ownership | [Ownership](#Ownership)? |  yes  | Ownership of promotion |
- | promotionType | String? |  yes  | Promotion type of current promotion |
  | offerText | String? |  yes  | Offer text of current promotion |
- | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  | Article idenfier generated by cart |
-
----
-
-
- 
- 
- #### [ProductAvailabilitySize](#ProductAvailabilitySize)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
- | display | String? |  yes  |  |
- | isAvailable | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductAvailability](#ProductAvailability)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sizes | [String]? |  yes  |  |
- | outOfStock | Bool? |  yes  |  |
- | availableSizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)]? |  yes  |  |
- | deliverable | Bool? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | otherStoreQuantity | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [BaseInfo](#BaseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [BasePrice](#BasePrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | effective | Double? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | marked | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ArticlePriceInfo](#ArticlePriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | [BasePrice](#BasePrice)? |  yes  |  |
- | converted | [BasePrice](#BasePrice)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductArticle](#ProductArticle)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | size | String? |  yes  |  |
- | seller | [BaseInfo](#BaseInfo)? |  yes  |  |
- | productGroupTags | [String]? |  yes  |  |
- | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
- | uid | String? |  yes  |  |
- | store | [BaseInfo](#BaseInfo)? |  yes  |  |
- | type | String? |  yes  |  |
- | quantity | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [PromoMeta](#PromoMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  | Product Category Id |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aspectRatio | String? |  yes  |  |
- | url | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
 
 ---
 
@@ -8988,9 +6719,34 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | url | String? |  yes  |  |
  | query | [ActionQuery](#ActionQuery)? |  yes  |  |
+ | url | String? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secureUrl | String? |  yes  |  |
+ | url | String? |  yes  |  |
+ | aspectRatio | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  | Product Category Id |
 
 ---
 
@@ -9001,14 +6757,51 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
- | images | [[ProductImage](#ProductImage)]? |  yes  |  |
- | action | [ProductAction](#ProductAction)? |  yes  |  |
  | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
+ | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | images | [[ProductImage](#ProductImage)]? |  yes  |  |
  | uid | Int? |  yes  |  |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
  | type | String? |  yes  |  |
  | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deliverable | Bool? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | outOfStock | Bool? |  yes  |  |
+ | otherStoreQuantity | Int? |  yes  |  |
+ | sizes | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | String? |  yes  | Article idenfier generated by cart |
+
+---
+
+
+ 
+ 
+ #### [PromoMeta](#PromoMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -9019,36 +6812,22 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponMessage | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | message | String? |  yes  |  |
- | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
- | moq | [String: Any]? |  yes  |  |
- | discount | String? |  yes  |  |
- | bulkOffer | [String: Any]? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
  | article | [ProductArticle](#ProductArticle)? |  yes  |  |
- | key | String? |  yes  |  |
- | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
- | isSet | Bool? |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | couponMessage | String? |  yes  |  |
+ | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | discount | String? |  yes  |  |
+ | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | promoMeta | [PromoMeta](#PromoMeta)? |  yes  |  |
+ | bulkOffer | [String: Any]? |  yes  |  |
  | quantity | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartCurrency](#CartCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  | Currency code defined by ISO 4217:2015 |
- | symbol | String? |  yes  |  |
+ | key | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
 
 ---
 
@@ -9059,9 +6838,127 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | defaultOptions | String? |  yes  |  |
  | enabled | Bool? |  yes  |  |
  | paymentIdentifier | String? |  yes  |  |
- | defaultOptions | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromiseFormatted](#PromiseFormatted)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | String? |  yes  |  |
+ | min | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromiseTimestamp](#PromiseTimestamp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | Double? |  yes  |  |
+ | min | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPromise](#ShipmentPromise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RawBreakup](#RawBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | vog | Double? |  yes  |  |
+ | subtotal | Double? |  yes  |  |
+ | fyndCash | Double? |  yes  |  |
+ | total | Double? |  yes  |  |
+ | codCharge | Double? |  yes  |  |
+ | gstCharges | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | coupon | Double? |  yes  |  |
+ | convenienceFee | Double? |  yes  |  |
+ | youSaved | Double? |  yes  |  |
+ | mrpTotal | Double? |  yes  |  |
+ | deliveryCharge | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LoyaltyPoints](#LoyaltyPoints)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | String? |  yes  |  |
+ | total | Double? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | applicable | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DisplayBreakup](#DisplayBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | String? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | message | [String]? |  yes  |  |
+ | key | String? |  yes  |  |
+ | value | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | String? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | code | String? |  yes  |  |
+ | value | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartBreakup](#CartBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
+ | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+ | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
 
 ---
 
@@ -9072,23 +6969,22 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstin | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | deliveryChargeInfo | String? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | id | String? |  yes  |  |
- | comment | String? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | restrictCheckout | Bool? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | appliedPromoDetails | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
- | message | String? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | couponText | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
+ | gstin | String? |  yes  |  |
  | lastModified | String? |  yes  |  |
+ | comment | String? |  yes  |  |
  | buyNow | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -9099,19 +6995,19 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | pos | Bool? |  yes  |  |
+ | storeId | Int? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | display | String? |  yes  |  |
+ | itemSize | String? |  yes  |  |
  | itemId | Int? |  yes  |  |
- | sellerId | Int? |  yes  |  |
- | productGroupTags | [String]? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | articleAssignment | [String: Any]? |  yes  |  |
  | articleId | String? |  yes  |  |
  | quantity | Int? |  yes  |  |
- | storeId | Int? |  yes  |  |
- | articleAssignment | [String: Any]? |  yes  |  |
- | display | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | parentItemIdentifiers | [[String: String]]? |  yes  |  |
- | pos | Bool? |  yes  |  |
- | itemSize | String? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
+ | sellerId | Int? |  yes  |  |
+ | productGroupTags | [String]? |  yes  |  |
 
 ---
 
@@ -9134,9 +7030,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | partial | Bool? |  yes  | When adding multiple items check if all added. True if only few are added. |
- | message | String? |  yes  |  |
- | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
  | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -9148,14 +7044,14 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | itemIndex | Int? |  yes  |  |
- | itemId | Int? |  yes  |  |
- | articleId | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | parentItemIdentifiers | [String: Any]? |  yes  |  |
  | extraMeta | [String: Any]? |  yes  |  |
  | itemSize | String? |  yes  |  |
+ | itemId | Int? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | articleId | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | quantity | Int? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  |  |
 
 ---
 
@@ -9166,8 +7062,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | operation | String |  no  |  |
  | items | [[UpdateProductCart](#UpdateProductCart)]? |  yes  |  |
+ | operation | String |  no  |  |
 
 ---
 
@@ -9178,9 +7074,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
  | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -9198,35 +7094,35 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [Coupon](#Coupon)
+ #### [PageCoupon](#PageCoupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponCode | String? |  yes  |  |
- | maxDiscountValue | Double? |  yes  |  |
- | expiresOn | String? |  yes  |  |
- | message | String? |  yes  |  |
- | isApplicable | Bool? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | minimumCartValue | Double? |  yes  |  |
- | couponValue | Double? |  yes  |  |
- | title | String? |  yes  |  |
- | subTitle | String? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
+ | total | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | totalItemCount | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [PageCoupon](#PageCoupon)
+ #### [Coupon](#Coupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | Int? |  yes  |  |
- | totalItemCount | Int? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
- | total | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | expiresOn | String? |  yes  |  |
+ | subTitle | String? |  yes  |  |
+ | maxDiscountValue | Double? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
+ | couponCode | String? |  yes  |  |
+ | title | String? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | isApplicable | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -9237,8 +7133,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availableCouponList | [[Coupon](#Coupon)]? |  yes  |  |
  | page | [PageCoupon](#PageCoupon)? |  yes  |  |
+ | availableCouponList | [[Coupon](#Coupon)]? |  yes  |  |
 
 ---
 
@@ -9250,6 +7146,38 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | couponCode | String |  no  | Coupon code to be applied |
+
+---
+
+
+ 
+ 
+ #### [OfferPrice](#OfferPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | Int? |  yes  | Original price of product |
+ | currencyCode | String? |  yes  | Currency code for all amounts |
+ | currencySymbol | String? |  yes  | Currency symbol for currency |
+ | effective | Int? |  yes  | Current per unit price of product after existing deductions |
+ | bulkEffective | Double? |  yes  | Discounted per unit price for current offer object |
+
+---
+
+
+ 
+ 
+ #### [OfferItem](#OfferItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | price | [OfferPrice](#OfferPrice)? |  yes  |  |
+ | best | Bool? |  yes  | Is true for best offer from all offers present for all sellers |
+ | autoApplied | Bool? |  yes  | Whether offer discount is auto applied in cart |
+ | total | Double? |  yes  | Total price of offer quantity with discount |
+ | margin | Int? |  yes  | Percentage value of discount |
+ | type | String? |  yes  | Offer type |
+ | quantity | Int? |  yes  | Quantity on which offer is applicable |
 
 ---
 
@@ -9268,44 +7196,12 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [OfferPrice](#OfferPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  | Currency symbol for currency |
- | currencyCode | String? |  yes  | Currency code for all amounts |
- | marked | Int? |  yes  | Original price of product |
- | bulkEffective | Double? |  yes  | Discounted per unit price for current offer object |
- | effective | Int? |  yes  | Current per unit price of product after existing deductions |
-
----
-
-
- 
- 
- #### [OfferItem](#OfferItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | autoApplied | Bool? |  yes  | Whether offer discount is auto applied in cart |
- | price | [OfferPrice](#OfferPrice)? |  yes  |  |
- | best | Bool? |  yes  | Is true for best offer from all offers present for all sellers |
- | total | Double? |  yes  | Total price of offer quantity with discount |
- | type | String? |  yes  | Offer type |
- | margin | Int? |  yes  | Percentage value of discount |
- | quantity | Int? |  yes  | Quantity on which offer is applicable |
-
----
-
-
- 
- 
  #### [BulkPriceOffer](#BulkPriceOffer)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | seller | [OfferSeller](#OfferSeller)? |  yes  |  |
  | offers | [[OfferItem](#OfferItem)]? |  yes  |  |
+ | seller | [OfferSeller](#OfferSeller)? |  yes  |  |
 
 ---
 
@@ -9338,8 +7234,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | latitude | Double? |  yes  |  |
  | longitude | Double? |  yes  |  |
+ | latitude | Double? |  yes  |  |
 
 ---
 
@@ -9350,30 +7246,28 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | area | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | name | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | phone | String? |  yes  |  |
- | isDefaultAddress | Bool? |  yes  |  |
- | geoLocation | [GeoLocation](#GeoLocation)? |  yes  |  |
  | landmark | String? |  yes  |  |
- | id | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | countryPhoneCode | String? |  yes  |  |
  | address | String? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | countryIsoCode | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
+ | isDefaultAddress | Bool? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
  | googleMapPoint | [String: Any]? |  yes  |  |
- | email | String? |  yes  |  |
  | userId | String? |  yes  |  |
+ | area | String? |  yes  |  |
+ | email | String? |  yes  |  |
+ | tags | [String]? |  yes  |  |
  | areaCodeSlug | String? |  yes  |  |
- | state | String? |  yes  |  |
  | country | String? |  yes  |  |
- | areaCode | String? |  yes  |  |
+ | geoLocation | [GeoLocation](#GeoLocation)? |  yes  |  |
  | city | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | areaCode | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -9385,7 +7279,6 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | [[Address](#Address)]? |  yes  |  |
- | piiMasking | Bool? |  yes  |  |
 
 ---
 
@@ -9396,9 +7289,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
  | success | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -9409,10 +7302,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | isUpdated | Bool? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
+ | isUpdated | Bool? |  yes  |  |
  | success | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -9423,8 +7316,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
  | isDeleted | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -9435,9 +7328,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | billingAddressId | String? |  yes  |  |
  | cartId | String? |  yes  |  |
  | id | String? |  yes  |  |
- | billingAddressId | String? |  yes  |  |
 
 ---
 
@@ -9448,12 +7341,12 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | merchantCode | String? |  yes  |  |
+ | addressId | String? |  yes  |  |
  | paymentMode | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | merchantCode | String? |  yes  |  |
  | paymentIdentifier | String? |  yes  |  |
  | aggregatorName | String? |  yes  |  |
- | addressId | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -9465,10 +7358,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | displayMessageEn | String? |  yes  |  |
- | valid | Bool? |  yes  |  |
- | discount | Double? |  yes  |  |
  | code | String? |  yes  |  |
  | title | String? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | valid | Bool? |  yes  |  |
 
 ---
 
@@ -9479,9 +7372,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponValidity | [CouponValidity](#CouponValidity)? |  yes  |  |
- | message | String? |  yes  |  |
  | success | Bool |  no  |  |
+ | message | String? |  yes  |  |
+ | couponValidity | [CouponValidity](#CouponValidity)? |  yes  |  |
 
 ---
 
@@ -9492,16 +7385,16 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | dpId | String? |  yes  |  |
  | shipments | Int? |  yes  |  |
- | shipmentType | String? |  yes  |  |
- | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | fulfillmentType | String? |  yes  |  |
- | fulfillmentId | Int? |  yes  |  |
- | boxType | String? |  yes  |  |
- | orderType | String? |  yes  |  |
  | dpOptions | [String: Any]? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | orderType | String? |  yes  |  |
+ | fulfillmentType | String? |  yes  |  |
+ | dpId | String? |  yes  |  |
+ | fulfillmentId | Int? |  yes  |  |
+ | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | boxType | String? |  yes  |  |
+ | shipmentType | String? |  yes  |  |
 
 ---
 
@@ -9512,25 +7405,25 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstin | String? |  yes  |  |
- | cartId | Int? |  yes  |  |
- | id | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | message | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
- | error | Bool? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
  | uid | String? |  yes  |  |
  | buyNow | Bool? |  yes  |  |
+ | error | Bool? |  yes  |  |
+ | cartId | Int? |  yes  |  |
  | deliveryChargeInfo | String? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
  | comment | String? |  yes  |  |
  | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | couponText | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
+ | gstin | String? |  yes  |  |
  | lastModified | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -9541,9 +7434,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipmentType | String |  no  | Shipment delivery type |
- | quantity | Int? |  yes  | Quantity of product in shipment |
  | articleUid | String |  no  | Article mongo id |
+ | quantity | Int? |  yes  | Quantity of product in shipment |
+ | shipmentType | String |  no  | Shipment delivery type |
 
 ---
 
@@ -9555,6 +7448,20 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | shipments | [[UpdateCartShipmentItem](#UpdateCartShipmentItem)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [StaffCheckout](#StaffCheckout)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | lastName | String |  no  |  |
+ | id | String |  no  |  |
+ | firstName | String |  no  |  |
+ | user | String |  no  |  |
 
 ---
 
@@ -9573,27 +7480,13 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  
  
- #### [StaffCheckout](#StaffCheckout)
+ #### [CustomerDetails](#CustomerDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | employeeCode | String? |  yes  |  |
- | user | String |  no  |  |
- | firstName | String |  no  |  |
- | id | String |  no  |  |
- | lastName | String |  no  |  |
-
----
-
-
- 
- 
- #### [CartCheckoutCustomMeta](#CartCheckoutCustomMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String |  no  |  |
- | value | String |  no  |  |
+ | name | String? |  yes  |  |
+ | mobile | String |  no  |  |
+ | email | String? |  yes  |  |
 
 ---
 
@@ -9604,26 +7497,26 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [String: Any]? |  yes  |  |
- | orderType | String |  no  |  |
- | merchantCode | String? |  yes  |  |
- | files | [[Files](#Files)]? |  yes  | List of file url |
- | paymentParams | [String: Any]? |  yes  |  |
- | callbackUrl | String? |  yes  |  |
- | pickAtStoreUid | Int? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  |  |
- | deliveryAddress | [String: Any]? |  yes  |  |
- | orderingStore | Int? |  yes  |  |
- | aggregator | String? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
- | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
- | billingAddressId | String? |  yes  |  |
  | pos | Bool? |  yes  |  |
- | billingAddress | [String: Any]? |  yes  |  |
- | addressId | String? |  yes  |  |
  | paymentAutoConfirm | Bool? |  yes  |  |
  | paymentMode | String |  no  |  |
- | customMeta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
+ | aggregator | String? |  yes  |  |
+ | merchantCode | String? |  yes  |  |
+ | billingAddress | [String: Any]? |  yes  |  |
+ | deliveryAddress | [String: Any]? |  yes  |  |
+ | addressId | String? |  yes  |  |
+ | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
+ | orderType | String |  no  |  |
+ | callbackUrl | String? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
+ | orderingStore | Int? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  |  |
+ | pickAtStoreUid | Int? |  yes  |  |
+ | files | [[Files](#Files)]? |  yes  | List of file url |
+ | customerDetails | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
+ | paymentParams | [String: Any]? |  yes  |  |
+ | billingAddressId | String? |  yes  |  |
 
 ---
 
@@ -9634,35 +7527,35 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstin | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | success | Bool? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | orderId | String? |  yes  |  |
- | deliveryChargeOrderValue | Int? |  yes  |  |
- | message | String? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | codAvailable | Bool? |  yes  |  |
- | errorMessage | String? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
  | deliveryCharges | Int? |  yes  |  |
- | couponText | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | codCharges | Int? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | codMessage | String? |  yes  |  |
- | cartId | Int? |  yes  |  |
- | id | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | userType | String? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | storeCode | String? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
  | uid | String? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | userType | String? |  yes  |  |
+ | codMessage | String? |  yes  |  |
+ | errorMessage | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
+ | codAvailable | Bool? |  yes  |  |
  | comment | String? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | codCharges | Int? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | storeEmps | [[String: Any]]? |  yes  |  |
- | storeCode | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | cartId | Int? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | deliveryChargeOrderValue | Int? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -9675,12 +7568,12 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | ---------- | ---- | -------- | ----------- |
  | cart | [CheckCart](#CheckCart)? |  yes  |  |
  | success | Bool? |  yes  |  |
- | orderId | String? |  yes  |  |
- | message | String? |  yes  |  |
  | callbackUrl | String? |  yes  |  |
- | data | [String: Any]? |  yes  |  |
- | appInterceptUrl | String? |  yes  |  |
  | paymentConfirmUrl | String? |  yes  |  |
+ | appInterceptUrl | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | data | [String: Any]? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -9691,10 +7584,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstin | String? |  yes  |  |
- | comment | String? |  yes  |  |
  | pickUpCustomerDetails | [String: Any]? |  yes  | Customer contact details for customer pickup at store |
+ | comment | String? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
+ | gstin | String? |  yes  |  |
 
 ---
 
@@ -9727,8 +7620,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pickupStores | [Int]? |  yes  | Store pick up available store uids |
  | availableModes | [String]? |  yes  | Available delivery modes |
+ | pickupStores | [Int]? |  yes  | Store pick up available store uids |
 
 ---
 
@@ -9739,22 +7632,22 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | state | String? |  yes  |  |
- | addressType | String? |  yes  |  |
  | id | Int? |  yes  |  |
- | address | String? |  yes  |  |
- | city | String? |  yes  |  |
- | country | String? |  yes  |  |
+ | pincode | Int? |  yes  |  |
  | area | String? |  yes  |  |
  | email | String? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | areaCodeSlug | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | landmark | String? |  yes  |  |
- | name | String? |  yes  |  |
- | areaCode | String? |  yes  |  |
  | phone | String? |  yes  |  |
+ | address | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+ | areaCodeSlug | String? |  yes  |  |
+ | storeCode | String? |  yes  |  |
+ | areaCode | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
 
 ---
 
@@ -9776,8 +7669,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  | Cart uid for generating sharing |
  | meta | [String: Any]? |  yes  | Staff, Ordering store or any other data. This data will be used to generate link as well as sent as shared details. |
+ | id | String? |  yes  | Cart uid for generating sharing |
 
 ---
 
@@ -9788,8 +7681,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | token | String? |  yes  | Short url unique id |
  | shareUrl | String? |  yes  | Short shareable final url |
+ | token | String? |  yes  | Short url unique id |
 
 ---
 
@@ -9801,10 +7694,10 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | token | String? |  yes  | Short link id |
- | user | [String: Any]? |  yes  | User details of who generated share link |
- | source | [String: Any]? |  yes  | Share link device and other source information |
- | createdOn | String? |  yes  |  |
  | meta | [String: Any]? |  yes  | Meta data sent while generating share cart link |
+ | user | [String: Any]? |  yes  | User details of who generated share link |
+ | createdOn | String? |  yes  |  |
+ | source | [String: Any]? |  yes  | Share link device and other source information |
 
 ---
 
@@ -9815,25 +7708,25 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstin | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | message | String? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | couponText | String? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | cartId | Int? |  yes  |  |
- | id | String? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
- | sharedCartDetails | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
  | uid | String? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | sharedCartDetails | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
  | comment | String? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | cartId | Int? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
  | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -9844,8 +7737,8 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | String? |  yes  |  |
  | cart | [SharedCart](#SharedCart)? |  yes  |  |
+ | error | String? |  yes  |  |
 
 ---
 

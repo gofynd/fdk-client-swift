@@ -27,6 +27,8 @@ public extension PlatformClient.Inventory {
 
         public var stores: [GStore]?
 
+        public var gstores: [GStore]?
+
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
 
@@ -45,9 +47,11 @@ public extension PlatformClient.Inventory {
             case name
 
             case stores
+
+            case gstores
         }
 
-        public init(integration: String? = nil, level: String? = nil, name: String? = nil, opted: Bool? = nil, permissions: [String]? = nil, stores: [GStore]? = nil, token: String? = nil, uid: Int? = nil, id: String? = nil) {
+        public init(gstores: [GStore]? = nil, integration: String? = nil, level: String? = nil, name: String? = nil, opted: Bool? = nil, permissions: [String]? = nil, stores: [GStore]? = nil, token: String? = nil, uid: Int? = nil, id: String? = nil) {
             self.id = id
 
             self.integration = integration
@@ -65,6 +69,8 @@ public extension PlatformClient.Inventory {
             self.name = name
 
             self.stores = stores
+
+            self.gstores = gstores
         }
 
         required public init(from decoder: Decoder) throws {
@@ -141,6 +147,14 @@ public extension PlatformClient.Inventory {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                gstores = try container.decode([GStore].self, forKey: .gstores)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -163,6 +177,8 @@ public extension PlatformClient.Inventory {
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(stores, forKey: .stores)
+
+            try? container.encodeIfPresent(gstores, forKey: .gstores)
         }
     }
 }

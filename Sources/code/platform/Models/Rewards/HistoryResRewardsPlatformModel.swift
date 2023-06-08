@@ -9,7 +9,7 @@ public extension PlatformClient.ApplicationClient.Rewards {
      */
 
     class HistoryRes: Codable {
-        public var items: [PointsHistory]?
+        public var items: [HistoryPretty]?
 
         public var page: Page?
 
@@ -23,7 +23,7 @@ public extension PlatformClient.ApplicationClient.Rewards {
             case points
         }
 
-        public init(items: [PointsHistory]? = nil, page: Page? = nil, points: Double? = nil) {
+        public init(items: [HistoryPretty]? = nil, page: Page? = nil, points: Double? = nil) {
             self.items = items
 
             self.page = page
@@ -35,7 +35,7 @@ public extension PlatformClient.ApplicationClient.Rewards {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([PointsHistory].self, forKey: .items)
+                items = try container.decode([HistoryPretty].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

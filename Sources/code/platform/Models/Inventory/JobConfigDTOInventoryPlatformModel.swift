@@ -9,11 +9,11 @@ public extension PlatformClient.Inventory {
      */
 
     class JobConfigDTO: Codable {
+        public var integration: String
+
         public var integrationData: [String: Any]?
 
         public var companyName: String?
-
-        public var integration: String
 
         public var companyId: Int
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Inventory {
         public var alias: String?
 
         public enum CodingKeys: String, CodingKey {
+            case integration
+
             case integrationData = "integration_data"
 
             case companyName = "company_name"
-
-            case integration
 
             case companyId = "company_id"
 
@@ -44,11 +44,11 @@ public extension PlatformClient.Inventory {
         }
 
         public init(alias: String? = nil, companyId: Int, companyName: String? = nil, integration: String, integrationData: [String: Any]? = nil, jobCode: String? = nil, taskDetails: TaskDTO? = nil, thresholdDetails: DataTresholdDTO? = nil) {
+            self.integration = integration
+
             self.integrationData = integrationData
 
             self.companyName = companyName
-
-            self.integration = integration
 
             self.companyId = companyId
 
@@ -63,6 +63,8 @@ public extension PlatformClient.Inventory {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            integration = try container.decode(String.self, forKey: .integration)
 
             do {
                 integrationData = try container.decode([String: Any].self, forKey: .integrationData)
@@ -79,8 +81,6 @@ public extension PlatformClient.Inventory {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            integration = try container.decode(String.self, forKey: .integration)
 
             companyId = try container.decode(Int.self, forKey: .companyId)
 
@@ -120,11 +120,11 @@ public extension PlatformClient.Inventory {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(integration, forKey: .integration)
+
             try? container.encodeIfPresent(integrationData, forKey: .integrationData)
 
             try? container.encodeIfPresent(companyName, forKey: .companyName)
-
-            try? container.encodeIfPresent(integration, forKey: .integration)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 

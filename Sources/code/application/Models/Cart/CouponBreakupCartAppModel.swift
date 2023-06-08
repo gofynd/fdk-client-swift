@@ -13,9 +13,9 @@ public extension ApplicationClient.Cart {
 
         public var isApplied: Bool?
 
-        public var message: String?
-
         public var value: Double?
+
+        public var message: String?
 
         public var uid: String?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Cart {
 
             case isApplied = "is_applied"
 
-            case message
-
             case value
+
+            case message
 
             case uid
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient.Cart {
 
             self.isApplied = isApplied
 
-            self.message = message
-
             self.value = value
+
+            self.message = message
 
             self.uid = uid
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                value = try container.decode(Double.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
         }
