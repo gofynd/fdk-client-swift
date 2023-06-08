@@ -17,7 +17,7 @@ public extension PlatformClient.Lead {
 
         public var content: TicketContent?
 
-        public var category: String
+        public var category: TicketCategory
 
         public var subCategory: String?
 
@@ -83,7 +83,7 @@ public extension PlatformClient.Lead {
             case createdAt = "created_at"
         }
 
-        public init(assignedTo: [String: Any]? = nil, category: String, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
+        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
             self.context = context
 
             self.createdOn = createdOn
@@ -156,7 +156,7 @@ public extension PlatformClient.Lead {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            category = try container.decode(String.self, forKey: .category)
+            category = try container.decode(TicketCategory.self, forKey: .category)
 
             do {
                 subCategory = try container.decode(String.self, forKey: .subCategory)
@@ -296,7 +296,7 @@ public extension PlatformClient.ApplicationClient.Lead {
 
         public var content: TicketContent?
 
-        public var category: String
+        public var category: TicketCategory
 
         public var subCategory: String?
 
@@ -362,7 +362,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             case createdAt = "created_at"
         }
 
-        public init(assignedTo: [String: Any]? = nil, category: String, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
+        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
             self.context = context
 
             self.createdOn = createdOn
@@ -435,7 +435,7 @@ public extension PlatformClient.ApplicationClient.Lead {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            category = try container.decode(String.self, forKey: .category)
+            category = try container.decode(TicketCategory.self, forKey: .category)
 
             do {
                 subCategory = try container.decode(String.self, forKey: .subCategory)

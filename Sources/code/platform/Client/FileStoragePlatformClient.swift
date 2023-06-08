@@ -296,7 +296,7 @@ public extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "get",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/proxy/",
                 query: xQuery,
                 body: nil,

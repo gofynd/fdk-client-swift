@@ -11,36 +11,36 @@ public extension PlatformClient.Order {
     class Charge: Codable {
         public var code: String?
 
-        public var type: String
+        public var tax: Tax?
 
         public var amount: [String: Any]
 
         public var name: String
 
-        public var tax: Tax
+        public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case code
 
-            case type
+            case tax
 
             case amount
 
             case name
 
-            case tax
+            case type
         }
 
-        public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax, type: String) {
+        public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
             self.code = code
 
-            self.type = type
+            self.tax = tax
 
             self.amount = amount
 
             self.name = name
 
-            self.tax = tax
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,13 +54,19 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
+            do {
+                tax = try container.decode(Tax.self, forKey: .tax)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
             name = try container.decode(String.self, forKey: .name)
 
-            tax = try container.decode(Tax.self, forKey: .tax)
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,13 +74,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(tax, forKey: .tax)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(tax, forKey: .tax)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -88,36 +94,36 @@ public extension PlatformClient.ApplicationClient.Order {
     class Charge: Codable {
         public var code: String?
 
-        public var type: String
+        public var tax: Tax?
 
         public var amount: [String: Any]
 
         public var name: String
 
-        public var tax: Tax
+        public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case code
 
-            case type
+            case tax
 
             case amount
 
             case name
 
-            case tax
+            case type
         }
 
-        public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax, type: String) {
+        public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
             self.code = code
 
-            self.type = type
+            self.tax = tax
 
             self.amount = amount
 
             self.name = name
 
-            self.tax = tax
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -131,13 +137,19 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
+            do {
+                tax = try container.decode(Tax.self, forKey: .tax)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
             name = try container.decode(String.self, forKey: .name)
 
-            tax = try container.decode(Tax.self, forKey: .tax)
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -145,13 +157,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(tax, forKey: .tax)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(tax, forKey: .tax)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

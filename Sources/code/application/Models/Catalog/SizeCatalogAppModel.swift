@@ -7,28 +7,28 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class Size: Codable {
-        public var isAvailable: Bool?
-
         public var quantity: Int?
 
-        public var value: [String: Any]?
+        public var isAvailable: Bool?
 
-        public var display: [String: Any]?
+        public var value: String?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isAvailable = "is_available"
-
             case quantity
+
+            case isAvailable = "is_available"
 
             case value
 
             case display
         }
 
-        public init(display: [String: Any]? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: [String: Any]? = nil) {
-            self.isAvailable = isAvailable
-
+        public init(display: String? = nil, isAvailable: Bool? = nil, quantity: Int? = nil, value: String? = nil) {
             self.quantity = quantity
+
+            self.isAvailable = isAvailable
 
             self.value = value
 
@@ -39,14 +39,6 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -55,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode([String: Any].self, forKey: .value)
+                isAvailable = try container.decode(Bool.self, forKey: .isAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +55,15 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode([String: Any].self, forKey: .display)
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
             try? container.encodeIfPresent(value, forKey: .value)
 

@@ -26,7 +26,7 @@ Get Ticket with the specific id
 
 
 ```swift
-lead.getTicket(id: id) { (response, error) in
+applicationClient.lead.getTicket(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -98,7 +98,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9890425946"
+          "phone": "9999999999"
         }
       ],
       "firstName": "Nikhil",
@@ -108,10 +108,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "nikhilmshchs@gmail.com"
+          "email": "niktest@xyz.com"
         }
       ],
-      "username": "nikhilmshchs_gmail_com_38425_20500281",
+      "username": "niktest_xyz_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -159,7 +159,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9890425946"
+            "phone": "9999999999"
           }
         ],
         "firstName": "Nikhil",
@@ -169,10 +169,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "nikhilmshchs@gmail.com"
+            "email": "niktest@xyz.com"
           }
         ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
+        "username": "niktest_xyz_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -280,7 +280,7 @@ Create history for specific Ticket
 
 
 ```swift
-lead.createHistory(id: id, body: body) { (response, error) in
+applicationClient.lead.createHistory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -377,7 +377,7 @@ Create Ticket
 
 
 ```swift
-lead.createTicket(body: body) { (response, error) in
+applicationClient.lead.createTicket(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -448,7 +448,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9890425946"
+          "phone": "9999999999"
         }
       ],
       "firstName": "Nikhil",
@@ -458,10 +458,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "nikhilmshchs@gmail.com"
+          "email": "niktest@xyz.com"
         }
       ],
-      "username": "nikhilmshchs_gmail_com_38425_20500281",
+      "username": "niktest_xyz_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -509,7 +509,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9890425946"
+            "phone": "9999999999"
           }
         ],
         "firstName": "Nikhil",
@@ -519,10 +519,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "nikhilmshchs@gmail.com"
+            "email": "niktest@xyz.com"
           }
         ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
+        "username": "niktest_xyz_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -630,7 +630,7 @@ Get specific Custom Form using it's slug
 
 
 ```swift
-lead.getCustomForm(slug: slug) { (response, error) in
+applicationClient.lead.getCustomForm(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -737,7 +737,7 @@ Submit Response for a specific Custom Form using it's slug
 
 
 ```swift
-lead.submitCustomForm(slug: slug, body: body) { (response, error) in
+applicationClient.lead.submitCustomForm(slug: slug, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -810,7 +810,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9890425946"
+            "phone": "9999999999"
           }
         ],
         "firstName": "Nikhil",
@@ -820,10 +820,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "nikhilmshchs@gmail.com"
+            "email": "niktest@xyz.com"
           }
         ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
+        "username": "niktest_xyz_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -871,7 +871,7 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9890425946"
+              "phone": "9999999999"
             }
           ],
           "firstName": "Nikhil",
@@ -881,10 +881,10 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "nikhilmshchs@gmail.com"
+              "email": "niktest@xyz.com"
             }
           ],
-          "username": "nikhilmshchs_gmail_com_38425_20500281",
+          "username": "niktest_xyz_com_38425_20500281",
           "createdAt": "2019-01-01T17:22:38.528Z",
           "updatedAt": "2021-01-22T10:02:42.258Z",
           "uid": "20500281",
@@ -993,7 +993,7 @@ Get participants of a specific Video Room using it's unique name
 
 
 ```swift
-lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) in
+applicationClient.lead.getParticipantsInsideVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -1058,7 +1058,7 @@ Get Token to join a specific Video Room using it's unqiue name
 
 
 ```swift
-lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
+applicationClient.lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -1432,7 +1432,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String |  no  | Success message for form submission |
- | ticket | [Ticket](#Ticket) |  no  | Ticket created on form submission |
+ | ticket | [Ticket](#Ticket)? |  yes  | Ticket created on form submission |
 
 ---
 
@@ -1642,6 +1642,7 @@ Success
  | supportCommunication | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support communication array list details |
  | showSupportDris | Bool? |  yes  | Denotes if support DRIS info should be shown |
  | integration | [String: Any]? |  yes  | Contains integrations basic information |
+ | type | String? |  yes  | The enity/platform for which the config is stored |
 
 ---
 
@@ -1778,7 +1779,7 @@ Success
  | createdOn | [CreatedOn](#CreatedOn)? |  yes  | Details of company and application realated to the ticket |
  | responseId | String? |  yes  | Details of company and application realated to the ticket |
  | content | [TicketContent](#TicketContent)? |  yes  | Ticket conetent details |
- | category | String |  no  | Category assigned to the ticket |
+ | category | [TicketCategory](#TicketCategory) |  no  | Category assigned to the ticket |
  | subCategory | String? |  yes  | Sub-category assigned to the ticket |
  | source | [TicketSourceEnum](#TicketSourceEnum) |  no  | Denotes if the ticket was created at company or application level |
  | status | [Status](#Status) |  no  | Denotes in what state is the ticket |

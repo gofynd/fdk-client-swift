@@ -43,7 +43,7 @@ Gets the list of company level tickets and/or ticket filters depending on query 
 
 
 ```swift
-client.lead.getTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+platformClient.lead.getTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -221,25 +221,25 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "nikhilmshchs@gmail.com"
+              "email": "niktest@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@gofynd.com"
+              "email": "xyz@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@fynd.com"
+              "email": "xyz@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@uniket.store"
+              "email": "xyz@xyz.com"
             }
           ],
           "phoneNumbers": [
@@ -248,12 +248,12 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9890425946"
+              "phone": "9999999999"
             }
           ],
           "firstName": "Nikhil",
           "lastName": "Manapure",
-          "username": "nikhilmanapure_gofynd_com_29298",
+          "username": "xyz_xyz_com",
           "createdAt": "2020-03-24T10:55:29.298Z",
           "updatedAt": "2020-05-12T07:46:41.816Z",
           "uid": "5567",
@@ -479,7 +479,7 @@ Creates a company level ticket
 
 
 ```swift
-client.lead.createTicket(body: body) { (response, error) in
+platformClient.lead.createTicket(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -549,7 +549,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9890425946"
+          "phone": "9999999999"
         }
       ],
       "firstName": "Nikhil",
@@ -559,10 +559,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "nikhilmshchs@gmail.com"
+          "email": "niktest@xyz.com"
         }
       ],
-      "username": "nikhilmshchs_gmail_com_38425_20500281",
+      "username": "niktest_xyz_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -610,7 +610,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9890425946"
+            "phone": "9999999999"
           }
         ],
         "firstName": "Nikhil",
@@ -620,10 +620,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "nikhilmshchs@gmail.com"
+            "email": "niktest@xyz.com"
           }
         ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
+        "username": "niktest_xyz_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -731,7 +731,7 @@ Gets the list of Application level Tickets and/or ticket filters depending on qu
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.getTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category) { (response, error) in
     // Use response
 }
 ```
@@ -907,25 +907,25 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "nikhilmshchs@gmail.com"
+              "email": "niktest@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@gofynd.com"
+              "email": "xyz@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@fynd.com"
+              "email": "xyz@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@uniket.store"
+              "email": "xyz@xyz.com"
             }
           ],
           "phoneNumbers": [
@@ -934,12 +934,12 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9890425946"
+              "phone": "9999999999"
             }
           ],
           "firstName": "Nikhil",
           "lastName": "Manapure",
-          "username": "nikhilmanapure_gofynd_com_29298",
+          "username": "xyz_xyz_com",
           "createdAt": "2020-03-24T10:55:29.298Z",
           "updatedAt": "2020-05-12T07:46:41.816Z",
           "uid": "5567",
@@ -1165,7 +1165,7 @@ Retreives ticket details of a company level ticket with ticket ID
 
 
 ```swift
-client.lead.getTicket(id: id) { (response, error) in
+platformClient.lead.getTicket(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1236,7 +1236,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9890425946"
+          "phone": "9999999999"
         }
       ],
       "firstName": "Nikhil",
@@ -1246,10 +1246,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "nikhilmshchs@gmail.com"
+          "email": "niktest@xyz.com"
         }
       ],
-      "username": "nikhilmshchs_gmail_com_38425_20500281",
+      "username": "niktest_xyz_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -1297,7 +1297,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9890425946"
+            "phone": "9999999999"
           }
         ],
         "firstName": "Nikhil",
@@ -1307,10 +1307,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "nikhilmshchs@gmail.com"
+            "email": "niktest@xyz.com"
           }
         ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
+        "username": "niktest_xyz_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -1418,7 +1418,7 @@ Edits ticket details of a company level ticket
 
 
 ```swift
-client.lead.editTicket(id: id, body: body) { (response, error) in
+platformClient.lead.editTicket(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1489,7 +1489,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9890425946"
+          "phone": "9999999999"
         }
       ],
       "firstName": "Nikhil",
@@ -1499,10 +1499,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "nikhilmshchs@gmail.com"
+          "email": "niktest@xyz.com"
         }
       ],
-      "username": "nikhilmshchs_gmail_com_38425_20500281",
+      "username": "niktest_xyz_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -1550,7 +1550,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9890425946"
+            "phone": "9999999999"
           }
         ],
         "firstName": "Nikhil",
@@ -1560,10 +1560,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "nikhilmshchs@gmail.com"
+            "email": "niktest@xyz.com"
           }
         ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
+        "username": "niktest_xyz_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -1671,7 +1671,7 @@ Retreives ticket details of a application level ticket
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.getTicket(id: id) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getTicket(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1743,7 +1743,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9890425946"
+          "phone": "9999999999"
         }
       ],
       "firstName": "Nikhil",
@@ -1753,10 +1753,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "nikhilmshchs@gmail.com"
+          "email": "niktest@xyz.com"
         }
       ],
-      "username": "nikhilmshchs_gmail_com_38425_20500281",
+      "username": "niktest_xyz_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -1804,7 +1804,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9890425946"
+            "phone": "9999999999"
           }
         ],
         "firstName": "Nikhil",
@@ -1814,10 +1814,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "nikhilmshchs@gmail.com"
+            "email": "niktest@xyz.com"
           }
         ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
+        "username": "niktest_xyz_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -1925,7 +1925,7 @@ Edits ticket details of a application level ticket
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.editTicket(id: id, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.editTicket(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1997,7 +1997,7 @@ Success
           "primary": true,
           "verified": true,
           "countryCode": 91,
-          "phone": "9890425946"
+          "phone": "9999999999"
         }
       ],
       "firstName": "Nikhil",
@@ -2007,10 +2007,10 @@ Success
           "active": true,
           "primary": true,
           "verified": true,
-          "email": "nikhilmshchs@gmail.com"
+          "email": "niktest@xyz.com"
         }
       ],
-      "username": "nikhilmshchs_gmail_com_38425_20500281",
+      "username": "niktest_xyz_com_38425_20500281",
       "createdAt": "2019-01-01T17:22:38.528Z",
       "updatedAt": "2021-01-22T10:02:42.258Z",
       "uid": "20500281",
@@ -2058,7 +2058,7 @@ Success
             "primary": true,
             "verified": true,
             "countryCode": 91,
-            "phone": "9890425946"
+            "phone": "9999999999"
           }
         ],
         "firstName": "Nikhil",
@@ -2068,10 +2068,10 @@ Success
             "active": true,
             "primary": true,
             "verified": true,
-            "email": "nikhilmshchs@gmail.com"
+            "email": "niktest@xyz.com"
           }
         ],
-        "username": "nikhilmshchs_gmail_com_38425_20500281",
+        "username": "niktest_xyz_com_38425_20500281",
         "createdAt": "2019-01-01T17:22:38.528Z",
         "updatedAt": "2021-01-22T10:02:42.258Z",
         "uid": "20500281",
@@ -2179,7 +2179,7 @@ Create history for specific company level ticket
 
 
 ```swift
-client.lead.createHistory(id: id, body: body) { (response, error) in
+platformClient.lead.createHistory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2276,7 +2276,7 @@ Gets history list for specific company level ticket
 
 
 ```swift
-client.lead.getTicketHistory(id: id) { (response, error) in
+platformClient.lead.getTicketHistory(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -2357,7 +2357,7 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "phone": "8412805281",
+              "phone": "9999999999",
               "countryCode": 91
             }
           ],
@@ -2368,10 +2368,10 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "satyenmaurya95@gmail.com"
+              "email": "sattest@xyz.com"
             }
           ],
-          "username": "satyenmaurya95_gmail_com_11118",
+          "username": "sat5_xyz_com_11118",
           "createdAt": "2020-10-10T05:33:31.119Z",
           "updatedAt": "2020-10-10T05:33:31.119Z",
           "uid": "5678",
@@ -2404,25 +2404,25 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "nikhilmshchs@gmail.com"
+              "email": "niktest@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@gofynd.com"
+              "email": "xyz@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@fynd.com"
+              "email": "xyz@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@uniket.store"
+              "email": "xyz@xyz.com"
             }
           ],
           "phoneNumbers": [
@@ -2431,12 +2431,12 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9890425946"
+              "phone": "9999999999"
             }
           ],
           "firstName": "Nikhil",
           "lastName": "Manapure",
-          "username": "nikhilmanapure_gofynd_com_29298",
+          "username": "xyz_xyz_com",
           "createdAt": "2020-03-24T10:55:29.298Z",
           "updatedAt": "2020-05-12T07:46:41.816Z",
           "uid": "5567",
@@ -2477,7 +2477,7 @@ Gets a list of feedback submitted against that ticket
 
 
 ```swift
-client.lead.getFeedbacks(id: id) { (response, error) in
+platformClient.lead.getFeedbacks(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -2561,7 +2561,7 @@ Submit a response for feeback form against that ticket
 
 
 ```swift
-client.lead.submitFeedback(id: id, body: body) { (response, error) in
+platformClient.lead.submitFeedback(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2641,7 +2641,7 @@ Create history for specific application level ticket
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.createHistory(id: id, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.createHistory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2738,7 +2738,7 @@ Gets history list for specific application level ticket
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.getTicketHistory(id: id) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getTicketHistory(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -2819,7 +2819,7 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "phone": "8412805281",
+              "phone": "9999999999",
               "countryCode": 91
             }
           ],
@@ -2830,10 +2830,10 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "satyenmaurya95@gmail.com"
+              "email": "sattest@xyz.com"
             }
           ],
-          "username": "satyenmaurya95_gmail_com_11118",
+          "username": "sat5_xyz_com_11118",
           "createdAt": "2020-10-10T05:33:31.119Z",
           "updatedAt": "2020-10-10T05:33:31.119Z",
           "uid": "5678",
@@ -2866,25 +2866,25 @@ Success
               "active": true,
               "primary": true,
               "verified": true,
-              "email": "nikhilmshchs@gmail.com"
+              "email": "niktest@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@gofynd.com"
+              "email": "xyz@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@fynd.com"
+              "email": "xyz@xyz.com"
             },
             {
               "active": true,
               "primary": false,
               "verified": true,
-              "email": "nikhilmanapure@uniket.store"
+              "email": "xyz@xyz.com"
             }
           ],
           "phoneNumbers": [
@@ -2893,12 +2893,12 @@ Success
               "primary": true,
               "verified": true,
               "countryCode": 91,
-              "phone": "9890425946"
+              "phone": "9999999999"
             }
           ],
           "firstName": "Nikhil",
           "lastName": "Manapure",
-          "username": "nikhilmanapure_gofynd_com_29298",
+          "username": "xyz_xyz_com",
           "createdAt": "2020-03-24T10:55:29.298Z",
           "updatedAt": "2020-05-12T07:46:41.816Z",
           "uid": "5567",
@@ -2939,7 +2939,7 @@ Get specific custom form using it's slug
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.getCustomForm(slug: slug) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getCustomForm(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -3046,7 +3046,7 @@ Edit the given custom form
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.editCustomForm(slug: slug, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.editCustomForm(slug: slug, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3163,7 +3163,7 @@ Get list of custom form
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.getCustomForms() { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getCustomForms() { (response, error) in
     // Use response
 }
 ```
@@ -3354,7 +3354,7 @@ Creates a new custom form
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.createCustomForm(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.createCustomForm(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3470,7 +3470,7 @@ Get Token to join a specific Video Room using it's unqiue name
 
 
 ```swift
-client.lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
+platformClient.lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -3535,7 +3535,7 @@ Get Token to join a specific Video Room using it's unqiue name
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -3600,7 +3600,7 @@ Get participants of a specific Video Room using it's unique name
 
 
 ```swift
-client.lead.getVideoParticipants(uniqueName: uniqueName) { (response, error) in
+platformClient.lead.getVideoParticipants(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -3665,7 +3665,7 @@ Get participants of a specific Video Room using it's unique name
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.getVideoParticipants(uniqueName: uniqueName) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getVideoParticipants(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -3730,7 +3730,7 @@ Open a video room.
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.openVideoRoom(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.openVideoRoom(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3794,7 +3794,7 @@ Close the video room and force all participants to leave.
 
 
 ```swift
-client.application("<APPLICATION_ID>").lead.closeVideoRoom(uniqueName: uniqueName) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.closeVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -3859,7 +3859,7 @@ Get general support configuration.
 
 
 ```swift
-client.lead.getGeneralConfig() { (response, error) in
+platformClient.lead.getGeneralConfig() { (response, error) in
     // Use response
 }
 ```
@@ -4228,7 +4228,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String |  no  | Success message for form submission |
- | ticket | [Ticket](#Ticket) |  no  | Ticket created on form submission |
+ | ticket | [Ticket](#Ticket)? |  yes  | Ticket created on form submission |
 
 ---
 
@@ -4438,6 +4438,7 @@ Success
  | supportCommunication | [CommunicationDetails](#CommunicationDetails)? |  yes  | Support communication array list details |
  | showSupportDris | Bool? |  yes  | Denotes if support DRIS info should be shown |
  | integration | [String: Any]? |  yes  | Contains integrations basic information |
+ | type | String? |  yes  | The enity/platform for which the config is stored |
 
 ---
 
@@ -4574,7 +4575,7 @@ Success
  | createdOn | [CreatedOn](#CreatedOn)? |  yes  | Details of company and application realated to the ticket |
  | responseId | String? |  yes  | Details of company and application realated to the ticket |
  | content | [TicketContent](#TicketContent)? |  yes  | Ticket conetent details |
- | category | String |  no  | Category assigned to the ticket |
+ | category | [TicketCategory](#TicketCategory) |  no  | Category assigned to the ticket |
  | subCategory | String? |  yes  | Sub-category assigned to the ticket |
  | source | [TicketSourceEnum](#TicketSourceEnum) |  no  | Denotes if the ticket was created at company or application level |
  | status | [Status](#Status) |  no  | Denotes in what state is the ticket |

@@ -17,9 +17,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var nextSchedule: [[String: Any]]?
 
-        public var duration: Int?
-
         public var published: Bool
+
+        public var duration: Int?
 
         public enum CodingKeys: String, CodingKey {
             case cron
@@ -30,9 +30,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case nextSchedule = "next_schedule"
 
-            case duration
-
             case published
+
+            case duration
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
@@ -44,9 +44,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.nextSchedule = nextSchedule
 
-            self.duration = duration
-
             self.published = published
+
+            self.duration = duration
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,6 +78,8 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            published = try container.decode(Bool.self, forKey: .published)
+
             do {
                 duration = try container.decode(Int.self, forKey: .duration)
 
@@ -85,8 +87,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            published = try container.decode(Bool.self, forKey: .published)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -100,9 +100,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
-            try? container.encode(duration, forKey: .duration)
-
             try? container.encodeIfPresent(published, forKey: .published)
+
+            try? container.encode(duration, forKey: .duration)
         }
     }
 }
