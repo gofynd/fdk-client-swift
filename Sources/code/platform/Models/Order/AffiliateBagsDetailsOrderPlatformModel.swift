@@ -4,40 +4,32 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: FilterInfoOption
+         Model: AffiliateBagsDetails
          Used By: Order
      */
 
-    class FilterInfoOption: Codable {
-        public var text: String
+    class AffiliateBagsDetails: Codable {
+        public var affiliateBagId: String?
 
-        public var name: String?
-
-        public var value: String?
+        public var couponCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case text
+            case affiliateBagId = "affiliate_bag_id"
 
-            case name
-
-            case value
+            case couponCode = "coupon_code"
         }
 
-        public init(name: String? = nil, text: String, value: String? = nil) {
-            self.text = text
+        public init(affiliateBagId: String? = nil, couponCode: String? = nil) {
+            self.affiliateBagId = affiliateBagId
 
-            self.name = name
-
-            self.value = value
+            self.couponCode = couponCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            text = try container.decode(String.self, forKey: .text)
-
             do {
-                name = try container.decode(String.self, forKey: .name)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                couponCode = try container.decode(String.self, forKey: .couponCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,51 +48,41 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encode(couponCode, forKey: .couponCode)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: FilterInfoOption
+         Model: AffiliateBagsDetails
          Used By: Order
      */
 
-    class FilterInfoOption: Codable {
-        public var text: String
+    class AffiliateBagsDetails: Codable {
+        public var affiliateBagId: String?
 
-        public var name: String?
-
-        public var value: String?
+        public var couponCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case text
+            case affiliateBagId = "affiliate_bag_id"
 
-            case name
-
-            case value
+            case couponCode = "coupon_code"
         }
 
-        public init(name: String? = nil, text: String, value: String? = nil) {
-            self.text = text
+        public init(affiliateBagId: String? = nil, couponCode: String? = nil) {
+            self.affiliateBagId = affiliateBagId
 
-            self.name = name
-
-            self.value = value
+            self.couponCode = couponCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            text = try container.decode(String.self, forKey: .text)
-
             do {
-                name = try container.decode(String.self, forKey: .name)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                couponCode = try container.decode(String.self, forKey: .couponCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,11 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encode(couponCode, forKey: .couponCode)
         }
     }
 }
