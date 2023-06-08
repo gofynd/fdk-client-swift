@@ -17,9 +17,9 @@ public extension PlatformClient.Order {
 
         public var shipmentAssignment: String?
 
-        public var paymentInfo: CreateChannelPaymentInfo?
-
         public var dpConfiguration: DpConfiguration?
+
+        public var paymentInfo: CreateChannelPaymentInfo?
 
         public enum CodingKeys: String, CodingKey {
             case logoUrl = "logo_url"
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
 
             case shipmentAssignment = "shipment_assignment"
 
-            case paymentInfo = "payment_info"
-
             case dpConfiguration = "dp_configuration"
+
+            case paymentInfo = "payment_info"
         }
 
         public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
@@ -44,9 +44,9 @@ public extension PlatformClient.Order {
 
             self.shipmentAssignment = shipmentAssignment
 
-            self.paymentInfo = paymentInfo
-
             self.dpConfiguration = dpConfiguration
+
+            self.paymentInfo = paymentInfo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,7 +85,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                paymentInfo = try container.decode(CreateChannelPaymentInfo.self, forKey: .paymentInfo)
+                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
+                paymentInfo = try container.decode(CreateChannelPaymentInfo.self, forKey: .paymentInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,9 +112,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
 
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
-
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
+
+            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
         }
     }
 }
@@ -134,9 +134,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var shipmentAssignment: String?
 
-        public var paymentInfo: CreateChannelPaymentInfo?
-
         public var dpConfiguration: DpConfiguration?
+
+        public var paymentInfo: CreateChannelPaymentInfo?
 
         public enum CodingKeys: String, CodingKey {
             case logoUrl = "logo_url"
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case shipmentAssignment = "shipment_assignment"
 
-            case paymentInfo = "payment_info"
-
             case dpConfiguration = "dp_configuration"
+
+            case paymentInfo = "payment_info"
         }
 
         public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.shipmentAssignment = shipmentAssignment
 
-            self.paymentInfo = paymentInfo
-
             self.dpConfiguration = dpConfiguration
+
+            self.paymentInfo = paymentInfo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                paymentInfo = try container.decode(CreateChannelPaymentInfo.self, forKey: .paymentInfo)
+                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
+                paymentInfo = try container.decode(CreateChannelPaymentInfo.self, forKey: .paymentInfo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,9 +229,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
 
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
-
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
+
+            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
         }
     }
 }
