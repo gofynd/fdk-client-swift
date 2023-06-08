@@ -4,38 +4,38 @@ import Foundation
 
 public extension PlatformClient.Finance {
     /*
-         Model: DownloadReportList
+         Model: InoviceListingPayloadDataFilters
          Used By: Finance
      */
 
-    class DownloadReportList: Codable {
-        public var items: [DownloadReportItems]?
+    class InoviceListingPayloadDataFilters: Codable {
+        public var paymentStatus: [String]?
 
-        public var page: Page?
+        public var companyId: [String]?
 
-        public var itemCount: Int?
+        public var invoiceType: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case paymentStatus = "payment_status"
 
-            case page
+            case companyId = "company_id"
 
-            case itemCount = "item_count"
+            case invoiceType = "invoice_type"
         }
 
-        public init(items: [DownloadReportItems]? = nil, itemCount: Int? = nil, page: Page? = nil) {
-            self.items = items
+        public init(companyId: [String]? = nil, invoiceType: [String]? = nil, paymentStatus: [String]? = nil) {
+            self.paymentStatus = paymentStatus
 
-            self.page = page
+            self.companyId = companyId
 
-            self.itemCount = itemCount
+            self.invoiceType = invoiceType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([DownloadReportItems].self, forKey: .items)
+                paymentStatus = try container.decode([String].self, forKey: .paymentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                companyId = try container.decode([String].self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                itemCount = try container.decode(Int.self, forKey: .itemCount)
+                invoiceType = try container.decode([String].self, forKey: .invoiceType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(paymentStatus, forKey: .paymentStatus)
 
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
+            try? container.encodeIfPresent(invoiceType, forKey: .invoiceType)
         }
     }
 }

@@ -9,24 +9,24 @@ public extension ApplicationClient.Order {
     class Invoice: Codable {
         public var invoiceUrl: String?
 
-        public var labelUrl: String?
-
         public var updatedDate: String?
+
+        public var labelUrl: String?
 
         public enum CodingKeys: String, CodingKey {
             case invoiceUrl = "invoice_url"
 
-            case labelUrl = "label_url"
-
             case updatedDate = "updated_date"
+
+            case labelUrl = "label_url"
         }
 
         public init(invoiceUrl: String? = nil, labelUrl: String? = nil, updatedDate: String? = nil) {
             self.invoiceUrl = invoiceUrl
 
-            self.labelUrl = labelUrl
-
             self.updatedDate = updatedDate
+
+            self.labelUrl = labelUrl
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                labelUrl = try container.decode(String.self, forKey: .labelUrl)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                updatedDate = try container.decode(String.self, forKey: .updatedDate)
+                labelUrl = try container.decode(String.self, forKey: .labelUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
 
-            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
-
             try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
+
+            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
         }
     }
 }

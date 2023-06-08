@@ -319,7 +319,7 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func getInvoiceList(
+        public func getInvoiceType(
             body: GetInvoiceListRequest,
             onResponse: @escaping (_ response: GetInvoiceListResponse?, _ error: FDKError?) -> Void
         ) {

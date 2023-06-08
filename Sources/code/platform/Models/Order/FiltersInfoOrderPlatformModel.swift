@@ -9,7 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class FiltersInfo: Codable {
-        public var required: Bool?
+        public var value: String
+
+        public var placeholderText: String?
 
         public var type: String
 
@@ -17,12 +19,12 @@ public extension PlatformClient.Order {
 
         public var text: String
 
-        public var value: String
-
-        public var placeholderText: String?
+        public var required: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case required
+            case value
+
+            case placeholderText = "placeholder_text"
 
             case type
 
@@ -30,13 +32,13 @@ public extension PlatformClient.Order {
 
             case text
 
-            case value
-
-            case placeholderText = "placeholder_text"
+            case required
         }
 
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
-            self.required = required
+            self.value = value
+
+            self.placeholderText = placeholderText
 
             self.type = type
 
@@ -44,16 +46,16 @@ public extension PlatformClient.Order {
 
             self.text = text
 
-            self.value = value
-
-            self.placeholderText = placeholderText
+            self.required = required
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            value = try container.decode(String.self, forKey: .value)
+
             do {
-                required = try container.decode(Bool.self, forKey: .required)
+                placeholderText = try container.decode(String.self, forKey: .placeholderText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,10 +74,8 @@ public extension PlatformClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
-            value = try container.decode(String.self, forKey: .value)
-
             do {
-                placeholderText = try container.decode(String.self, forKey: .placeholderText)
+                required = try container.decode(Bool.self, forKey: .required)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(required, forKey: .required)
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
@@ -94,9 +96,7 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+            try? container.encodeIfPresent(required, forKey: .required)
         }
     }
 }
@@ -108,7 +108,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class FiltersInfo: Codable {
-        public var required: Bool?
+        public var value: String
+
+        public var placeholderText: String?
 
         public var type: String
 
@@ -116,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var text: String
 
-        public var value: String
-
-        public var placeholderText: String?
+        public var required: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case required
+            case value
+
+            case placeholderText = "placeholder_text"
 
             case type
 
@@ -129,13 +131,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case text
 
-            case value
-
-            case placeholderText = "placeholder_text"
+            case required
         }
 
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
-            self.required = required
+            self.value = value
+
+            self.placeholderText = placeholderText
 
             self.type = type
 
@@ -143,16 +145,16 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.text = text
 
-            self.value = value
-
-            self.placeholderText = placeholderText
+            self.required = required
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            value = try container.decode(String.self, forKey: .value)
+
             do {
-                required = try container.decode(Bool.self, forKey: .required)
+                placeholderText = try container.decode(String.self, forKey: .placeholderText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -171,10 +173,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             text = try container.decode(String.self, forKey: .text)
 
-            value = try container.decode(String.self, forKey: .value)
-
             do {
-                placeholderText = try container.decode(String.self, forKey: .placeholderText)
+                required = try container.decode(Bool.self, forKey: .required)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -185,7 +185,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(required, forKey: .required)
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
@@ -193,9 +195,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+            try? container.encodeIfPresent(required, forKey: .required)
         }
     }
 }
