@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class Document: Codable {
         public var dsType: String
 
-        public var value: String
-
         public var url: String?
+
+        public var value: String
 
         public var legalName: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case dsType = "ds_type"
 
-            case value
-
             case url
+
+            case value
 
             case legalName = "legal_name"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Order {
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
             self.dsType = dsType
 
-            self.value = value
-
             self.url = url
+
+            self.value = value
 
             self.legalName = legalName
 
@@ -48,8 +48,6 @@ public extension PlatformClient.Order {
 
             dsType = try container.decode(String.self, forKey: .dsType)
 
-            value = try container.decode(String.self, forKey: .value)
-
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -57,6 +55,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            value = try container.decode(String.self, forKey: .value)
 
             legalName = try container.decode(String.self, forKey: .legalName)
 
@@ -68,9 +68,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(dsType, forKey: .dsType)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 
@@ -88,9 +88,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class Document: Codable {
         public var dsType: String
 
-        public var value: String
-
         public var url: String?
+
+        public var value: String
 
         public var legalName: String
 
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case dsType = "ds_type"
 
-            case value
-
             case url
+
+            case value
 
             case legalName = "legal_name"
 
@@ -111,9 +111,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
             self.dsType = dsType
 
-            self.value = value
-
             self.url = url
+
+            self.value = value
 
             self.legalName = legalName
 
@@ -125,8 +125,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             dsType = try container.decode(String.self, forKey: .dsType)
 
-            value = try container.decode(String.self, forKey: .value)
-
             do {
                 url = try container.decode(String.self, forKey: .url)
 
@@ -134,6 +132,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            value = try container.decode(String.self, forKey: .value)
 
             legalName = try container.decode(String.self, forKey: .legalName)
 
@@ -145,9 +145,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(dsType, forKey: .dsType)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 

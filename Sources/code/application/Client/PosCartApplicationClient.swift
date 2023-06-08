@@ -81,6 +81,7 @@ public extension ApplicationClient {
             id: String?,
             i: Bool?,
             b: Bool?,
+            p: Bool?,
             assignCardId: Int?,
             areaCode: String?,
             buyNow: Bool?,
@@ -99,6 +100,10 @@ public extension ApplicationClient {
 
             if let value = b {
                 xQuery["b"] = value
+            }
+
+            if let value = p {
+                xQuery["p"] = value
             }
 
             if let value = assignCardId {
@@ -199,6 +204,7 @@ public extension ApplicationClient {
         public func addItems(
             i: Bool?,
             b: Bool?,
+            p: Bool?,
             areaCode: String?,
             buyNow: Bool?,
             id: String?,
@@ -213,6 +219,10 @@ public extension ApplicationClient {
 
             if let value = b {
                 xQuery["b"] = value
+            }
+
+            if let value = p {
+                xQuery["p"] = value
             }
 
             if let value = areaCode {
@@ -267,6 +277,7 @@ public extension ApplicationClient {
             id: String?,
             i: Bool?,
             b: Bool?,
+            p: Bool?,
             areaCode: String?,
             buyNow: Bool?,
             body: UpdateCartRequest,
@@ -284,6 +295,10 @@ public extension ApplicationClient {
 
             if let value = b {
                 xQuery["b"] = value
+            }
+
+            if let value = p {
+                xQuery["p"] = value
             }
 
             if let value = areaCode {

@@ -13,22 +13,22 @@ public extension PlatformClient.Payment {
 
         public var paymentId: String?
 
-        public var paymentGateway: String?
+        public var orderId: String?
 
         public var currentStatus: String?
 
-        public var orderId: String?
+        public var paymentGateway: String?
 
         public enum CodingKeys: String, CodingKey {
             case extraMeta = "extra_meta"
 
             case paymentId = "payment_id"
 
-            case paymentGateway = "payment_gateway"
+            case orderId = "order_id"
 
             case currentStatus = "current_status"
 
-            case orderId = "order_id"
+            case paymentGateway = "payment_gateway"
         }
 
         public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Payment {
 
             self.paymentId = paymentId
 
-            self.paymentGateway = paymentGateway
+            self.orderId = orderId
 
             self.currentStatus = currentStatus
 
-            self.orderId = orderId
+            self.paymentGateway = paymentGateway
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,11 +94,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(paymentId, forKey: .paymentId)
 
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
         }
     }
 }
@@ -114,22 +114,22 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var paymentId: String?
 
-        public var paymentGateway: String?
+        public var orderId: String?
 
         public var currentStatus: String?
 
-        public var orderId: String?
+        public var paymentGateway: String?
 
         public enum CodingKeys: String, CodingKey {
             case extraMeta = "extra_meta"
 
             case paymentId = "payment_id"
 
-            case paymentGateway = "payment_gateway"
+            case orderId = "order_id"
 
             case currentStatus = "current_status"
 
-            case orderId = "order_id"
+            case paymentGateway = "payment_gateway"
         }
 
         public init(currentStatus: String? = nil, extraMeta: [String: Any]? = nil, orderId: String? = nil, paymentGateway: String? = nil, paymentId: String? = nil) {
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.paymentId = paymentId
 
-            self.paymentGateway = paymentGateway
+            self.orderId = orderId
 
             self.currentStatus = currentStatus
 
-            self.orderId = orderId
+            self.paymentGateway = paymentGateway
         }
 
         required public init(from decoder: Decoder) throws {
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,11 +195,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(paymentId, forKey: .paymentId)
 
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
         }
     }
 }

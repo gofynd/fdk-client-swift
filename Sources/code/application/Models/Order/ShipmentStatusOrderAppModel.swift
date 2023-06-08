@@ -9,24 +9,24 @@ public extension ApplicationClient.Order {
     class ShipmentStatus: Codable {
         public var title: String?
 
-        public var value: String?
-
         public var hexCode: String?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case title
 
-            case value
-
             case hexCode = "hex_code"
+
+            case value
         }
 
         public init(hexCode: String? = nil, title: String? = nil, value: String? = nil) {
             self.title = title
 
-            self.value = value
-
             self.hexCode = hexCode
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                hexCode = try container.decode(String.self, forKey: .hexCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                hexCode = try container.decode(String.self, forKey: .hexCode)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encode(value, forKey: .value)
-
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
+
+            try? container.encode(value, forKey: .value)
         }
     }
 }

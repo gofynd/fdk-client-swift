@@ -9,30 +9,30 @@ public extension ApplicationClient.Catalog {
     class Media: Codable {
         public var alt: String?
 
-        public var meta: Meta?
-
         public var type: String?
 
         public var url: String?
 
+        public var meta: Meta?
+
         public enum CodingKeys: String, CodingKey {
             case alt
-
-            case meta
 
             case type
 
             case url
+
+            case meta
         }
 
         public init(alt: String? = nil, meta: Meta? = nil, type: String? = nil, url: String? = nil) {
             self.alt = alt
 
-            self.meta = meta
-
             self.type = type
 
             self.url = url
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,14 +40,6 @@ public extension ApplicationClient.Catalog {
 
             do {
                 alt = try container.decode(String.self, forKey: .alt)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode(Meta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +61,14 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                meta = try container.decode(Meta.self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(alt, forKey: .alt)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

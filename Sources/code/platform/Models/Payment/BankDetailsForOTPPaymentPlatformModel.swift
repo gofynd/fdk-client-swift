@@ -11,22 +11,22 @@ public extension PlatformClient.Payment {
     class BankDetailsForOTP: Codable {
         public var accountHolder: String
 
-        public var accountNo: String
-
         public var branchName: String
 
         public var ifscCode: String
+
+        public var accountNo: String
 
         public var bankName: String
 
         public enum CodingKeys: String, CodingKey {
             case accountHolder = "account_holder"
 
-            case accountNo = "account_no"
-
             case branchName = "branch_name"
 
             case ifscCode = "ifsc_code"
+
+            case accountNo = "account_no"
 
             case bankName = "bank_name"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Payment {
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
             self.accountHolder = accountHolder
 
-            self.accountNo = accountNo
-
             self.branchName = branchName
 
             self.ifscCode = ifscCode
+
+            self.accountNo = accountNo
 
             self.bankName = bankName
         }
@@ -48,11 +48,11 @@ public extension PlatformClient.Payment {
 
             accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
-            accountNo = try container.decode(String.self, forKey: .accountNo)
-
             branchName = try container.decode(String.self, forKey: .branchName)
 
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
+
+            accountNo = try container.decode(String.self, forKey: .accountNo)
 
             bankName = try container.decode(String.self, forKey: .bankName)
         }
@@ -62,11 +62,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
-
             try? container.encodeIfPresent(branchName, forKey: .branchName)
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
             try? container.encodeIfPresent(bankName, forKey: .bankName)
         }
@@ -82,22 +82,22 @@ public extension PlatformClient.ApplicationClient.Payment {
     class BankDetailsForOTP: Codable {
         public var accountHolder: String
 
-        public var accountNo: String
-
         public var branchName: String
 
         public var ifscCode: String
+
+        public var accountNo: String
 
         public var bankName: String
 
         public enum CodingKeys: String, CodingKey {
             case accountHolder = "account_holder"
 
-            case accountNo = "account_no"
-
             case branchName = "branch_name"
 
             case ifscCode = "ifsc_code"
+
+            case accountNo = "account_no"
 
             case bankName = "bank_name"
         }
@@ -105,11 +105,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
             self.accountHolder = accountHolder
 
-            self.accountNo = accountNo
-
             self.branchName = branchName
 
             self.ifscCode = ifscCode
+
+            self.accountNo = accountNo
 
             self.bankName = bankName
         }
@@ -119,11 +119,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
-            accountNo = try container.decode(String.self, forKey: .accountNo)
-
             branchName = try container.decode(String.self, forKey: .branchName)
 
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
+
+            accountNo = try container.decode(String.self, forKey: .accountNo)
 
             bankName = try container.decode(String.self, forKey: .bankName)
         }
@@ -133,11 +133,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
-            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
-
             try? container.encodeIfPresent(branchName, forKey: .branchName)
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+
+            try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
             try? container.encodeIfPresent(bankName, forKey: .bankName)
         }
