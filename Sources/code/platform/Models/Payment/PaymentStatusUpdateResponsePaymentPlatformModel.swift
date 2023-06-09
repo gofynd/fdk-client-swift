@@ -11,9 +11,9 @@ public extension PlatformClient.Payment {
     class PaymentStatusUpdateResponse: Codable {
         public var aggregatorName: String
 
-        public var status: String
-
         public var success: Bool?
+
+        public var status: String
 
         public var retry: Bool
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case aggregatorName = "aggregator_name"
 
-            case status
-
             case success
+
+            case status
 
             case retry
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
             self.aggregatorName = aggregatorName
 
-            self.status = status
-
             self.success = success
+
+            self.status = status
 
             self.retry = retry
 
@@ -48,8 +48,6 @@ public extension PlatformClient.Payment {
 
             aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
-            status = try container.decode(String.self, forKey: .status)
-
             do {
                 success = try container.decode(Bool.self, forKey: .success)
 
@@ -57,6 +55,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(String.self, forKey: .status)
 
             retry = try container.decode(Bool.self, forKey: .retry)
 
@@ -74,9 +74,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encode(success, forKey: .success)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(retry, forKey: .retry)
 
@@ -94,9 +94,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentStatusUpdateResponse: Codable {
         public var aggregatorName: String
 
-        public var status: String
-
         public var success: Bool?
+
+        public var status: String
 
         public var retry: Bool
 
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case aggregatorName = "aggregator_name"
 
-            case status
-
             case success
+
+            case status
 
             case retry
 
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
             self.aggregatorName = aggregatorName
 
-            self.status = status
-
             self.success = success
+
+            self.status = status
 
             self.retry = retry
 
@@ -131,8 +131,6 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
-            status = try container.decode(String.self, forKey: .status)
-
             do {
                 success = try container.decode(Bool.self, forKey: .success)
 
@@ -140,6 +138,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(String.self, forKey: .status)
 
             retry = try container.decode(Bool.self, forKey: .retry)
 
@@ -157,9 +157,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encode(success, forKey: .success)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(retry, forKey: .retry)
 

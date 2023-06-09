@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class ProductBrand: Codable {
         public var uid: Int?
 
-        public var logo: Media2?
-
         public var action: Action?
+
+        public var logo: Media2?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case logo
-
             case action
+
+            case logo
 
             case name
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(action: Action? = nil, logo: Media2? = nil, name: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
-            self.logo = logo
-
             self.action = action
+
+            self.logo = logo
 
             self.name = name
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media2.self, forKey: .logo)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                logo = try container.decode(Media2.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductBrand: Codable {
         public var uid: Int?
 
-        public var logo: Media2?
-
         public var action: Action?
+
+        public var logo: Media2?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case logo
-
             case action
+
+            case logo
 
             case name
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(action: Action? = nil, logo: Media2? = nil, name: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
-            self.logo = logo
-
             self.action = action
+
+            self.logo = logo
 
             self.name = name
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media2.self, forKey: .logo)
+                action = try container.decode(Action.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(Action.self, forKey: .action)
+                logo = try container.decode(Media2.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

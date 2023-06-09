@@ -9,20 +9,20 @@ public extension PlatformClient.Serviceability {
      */
 
     class CompanyDpAccountRequest: Codable {
-        public var data: [DP]
+        public var data: [Dp1]
 
         public enum CodingKeys: String, CodingKey {
             case data
         }
 
-        public init(data: [DP]) {
+        public init(data: [Dp1]) {
             self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            data = try container.decode([DP].self, forKey: .data)
+            data = try container.decode([Dp1].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -40,20 +40,20 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class CompanyDpAccountRequest: Codable {
-        public var data: [DP]
+        public var data: [Dp1]
 
         public enum CodingKeys: String, CodingKey {
             case data
         }
 
-        public init(data: [DP]) {
+        public init(data: [Dp1]) {
             self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            data = try container.decode([DP].self, forKey: .data)
+            data = try container.decode([Dp1].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {

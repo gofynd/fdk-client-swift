@@ -17,9 +17,9 @@ public extension PlatformClient.Finance {
 
         public var page: Int?
 
-        public var search: String?
-
         public var startDate: String?
+
+        public var search: String?
 
         public enum CodingKeys: String, CodingKey {
             case filters
@@ -30,9 +30,9 @@ public extension PlatformClient.Finance {
 
             case page
 
-            case search
-
             case startDate = "start_date"
+
+            case search
         }
 
         public init(endDate: String? = nil, filters: InoviceListingPayloadDataFilters? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, startDate: String? = nil) {
@@ -44,9 +44,9 @@ public extension PlatformClient.Finance {
 
             self.page = page
 
-            self.search = search
-
             self.startDate = startDate
+
+            self.search = search
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,7 +85,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                search = try container.decode(String.self, forKey: .search)
+                startDate = try container.decode(String.self, forKey: .startDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                startDate = try container.decode(String.self, forKey: .startDate)
+                search = try container.decode(String.self, forKey: .search)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,9 +112,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(search, forKey: .search)
-
             try? container.encodeIfPresent(startDate, forKey: .startDate)
+
+            try? container.encodeIfPresent(search, forKey: .search)
         }
     }
 }

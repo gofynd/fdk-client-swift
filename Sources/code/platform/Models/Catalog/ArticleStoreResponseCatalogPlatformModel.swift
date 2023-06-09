@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class ArticleStoreResponse: Codable {
         public var uid: Int?
 
-        public var storeType: String?
-
         public var storeCode: String?
+
+        public var storeType: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case storeType = "store_type"
-
             case storeCode = "store_code"
+
+            case storeType = "store_type"
 
             case name
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
-            self.storeType = storeType
-
             self.storeCode = storeCode
+
+            self.storeType = storeType
 
             self.name = name
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                storeType = try container.decode(String.self, forKey: .storeType)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                storeType = try container.decode(String.self, forKey: .storeType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
-
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ArticleStoreResponse: Codable {
         public var uid: Int?
 
-        public var storeType: String?
-
         public var storeCode: String?
+
+        public var storeType: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
-            case storeType = "store_type"
-
             case storeCode = "store_code"
+
+            case storeType = "store_type"
 
             case name
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(name: String? = nil, storeCode: String? = nil, storeType: String? = nil, uid: Int? = nil) {
             self.uid = uid
 
-            self.storeType = storeType
-
             self.storeCode = storeCode
+
+            self.storeType = storeType
 
             self.name = name
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                storeType = try container.decode(String.self, forKey: .storeType)
+                storeCode = try container.decode(String.self, forKey: .storeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
+                storeType = try container.decode(String.self, forKey: .storeType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
-
             try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

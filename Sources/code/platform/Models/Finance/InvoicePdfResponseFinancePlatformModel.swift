@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class InvoicePdfResponse: Codable {
         public var error: [String]?
 
-        public var data: [String]?
-
         public var success: Bool?
+
+        public var data: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case error
 
-            case data
-
             case success
+
+            case data
         }
 
         public init(data: [String]? = nil, error: [String]? = nil, success: Bool? = nil) {
             self.error = error
 
-            self.data = data
-
             self.success = success
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                data = try container.decode([String].self, forKey: .data)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                data = try container.decode([String].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
