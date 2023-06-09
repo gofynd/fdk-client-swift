@@ -17,10 +17,22 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
 * [getStore](#getstore)
 * [getAllStores](#getallstores)
+* [getOptimalLocations](#getoptimallocations)
+* [addAppDp](#addappdp)
+* [deleteAppDp](#deleteappdp)
 * [updatePincodeMopView](#updatepincodemopview)
 * [updatePincodeBulkView](#updatepincodebulkview)
 * [updatePincodeCoDListing](#updatepincodecodlisting)
 * [updatePincodeAuditHistory](#updatepincodeaudithistory)
+* [upsertDpAccount](#upsertdpaccount)
+* [getDpRules](#getdprules)
+* [updateDpRule](#updatedprule)
+* [upsertDpRules](#upsertdprules)
+* [getDpRuleInsert](#getdpruleinsert)
+* [getDpCompanyRules](#getdpcompanyrules)
+* [upsertDpCompanyRules](#upsertdpcompanyrules)
+* [getDpApplicationRules](#getdpapplicationrules)
+* [upsertDpApplicationRules](#upsertdpapplicationrules)
 
 
 
@@ -364,7 +376,7 @@ Response status_code
 
 
 #### createZone
-Insertion of zone in database.
+Creation of a new zone
 
 
 
@@ -384,7 +396,7 @@ platformClient.serviceability.createZone(body: body) { (response, error) in
 | body | ZoneRequest | yes | Request body |
 
 
-This API returns response of insertion of zone in mongo database.<br>Correction- `zone_id` in the path must be removed.<br> path is `/service/platform/logistics-internal/v1.0/company/{}/zone/`
+This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone.
 
 *Returned Response:*
 
@@ -402,7 +414,11 @@ Response status_code
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "status_code": 200,
+  "zone_id": "64809f27f2b8f575d5cb9c56"
+}
 ```
 </details>
 
@@ -843,6 +859,169 @@ Response status_code
 ---
 
 
+#### getOptimalLocations
+Get serviceable store of the item
+
+
+
+
+```swift
+platformClient.serviceability.getOptimalLocations(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ReAssignStoreRequest | yes | Request body |
+
+
+This API returns serviceable store of the item.
+
+*Returned Response:*
+
+
+
+
+[ReAssignStoreResponse](#ReAssignStoreResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addAppDp
+Add application dp data
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.addAppDp(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ApplicationCompanyDpViewRequest | yes | Request body |
+
+
+This API add application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteAppDp
+Delete application dp data
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp(courierPartnerId: courierPartnerId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| courierPartnerId | Int | yes | A `courier_partner_id` is a unique identifier of a particular delivery partner. |  
+
+
+
+This API remove application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### updatePincodeMopView
 PincodeView update of MOP.
 
@@ -1062,6 +1241,482 @@ Response Data
 ---
 
 
+#### upsertDpAccount
+Upsertion of DpAccount in database.
+
+
+
+
+```swift
+platformClient.serviceability.upsertDpAccount(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CompanyDpAccountRequest | yes | Request body |
+
+
+This API returns response of upsertion of DpAccount in mongo database.
+
+*Returned Response:*
+
+
+
+
+[CompanyDpAccountResponse](#CompanyDpAccountResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDpRules
+Fetching of DpRules from database.
+
+
+
+
+```swift
+platformClient.serviceability.getDpRules(ruleUid: ruleUid) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| ruleUid | String | yes | A `rule_uid` is a unique identifier for a particular Dp. |  
+
+
+
+This API returns response of DpRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpRuleSuccessResponse](#DpRuleSuccessResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateDpRule
+Updating of DpRules from database.
+
+
+
+
+```swift
+platformClient.serviceability.updateDpRule(ruleUid: ruleUid, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| ruleUid | String | yes | A `rule_uid` is a unique identifier for a particular Dp. |  
+| body | DpRulesUpdateRequest | yes | Request body |
+
+
+This API updates and returns response of DpRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpRuleUpdateSuccessResponse](#DpRuleUpdateSuccessResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upsertDpRules
+Upsert of DpRules in database.
+
+
+
+
+```swift
+platformClient.serviceability.upsertDpRules(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | DpRuleRequest | yes | Request body |
+
+
+This API returns response of upsert of DpRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpRuleSuccessResponse](#DpRuleSuccessResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDpRuleInsert
+Fetching of DpRules from database.
+
+
+
+
+```swift
+platformClient.serviceability.getDpRuleInsert() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+This API returns response of DpRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpMultipleRuleSuccessResponse](#DpMultipleRuleSuccessResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDpCompanyRules
+Get All DpCompanyRules applied to company from database.
+
+
+
+
+```swift
+platformClient.serviceability.getDpCompanyRules() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+This API returns response of all DpCompanyRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upsertDpCompanyRules
+Upsert of DpCompanyRules in database.
+
+
+
+
+```swift
+platformClient.serviceability.upsertDpCompanyRules(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | DPCompanyRuleRequest | yes | Request body |
+
+
+This API returns response of upsert of DpCompanyRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDpApplicationRules
+Get All DpApplicationRules rules added at application level from database.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRules() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+This API returns response of all rules of DpApplicationRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPApplicationRuleResponse](#DPApplicationRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upsertDpApplicationRules
+Upsert of DpApplicationRules in database.
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRules(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | DPApplicationRuleRequest | yes | Request body |
+
+
+This API returns response of upsert of DpApplicationRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPApplicationRuleResponse](#DPApplicationRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -1071,9 +1726,9 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channelType | String |  no  |  |
- | serviceabilityType | String |  no  |  |
  | channelId | String |  no  |  |
+ | serviceabilityType | String |  no  |  |
+ | channelType | String |  no  |  |
 
 ---
 
@@ -1084,9 +1739,9 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String |  no  |  |
  | value | String |  no  |  |
  | type | String |  no  |  |
- | message | String |  no  |  |
 
 ---
 
@@ -1097,9 +1752,9 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
  | data | [ApplicationServiceabilityConfig](#ApplicationServiceabilityConfig)? |  yes  |  |
  | error | [ServiceabilityrErrorResponse](#ServiceabilityrErrorResponse)? |  yes  |  |
- | success | Bool |  no  |  |
 
 ---
 
@@ -1110,23 +1765,8 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | subType | [String] |  no  |  |
  | parentId | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [EntityRegionView_page](#EntityRegionView_page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemTotal | Int |  no  |  |
- | current | Int |  no  |  |
- | hasNext | Bool |  no  |  |
- | type | String |  no  |  |
- | size | Int |  no  |  |
+ | subType | [String] |  no  |  |
 
 ---
 
@@ -1137,9 +1777,9 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | String |  no  |  |
  | subType | String |  no  |  |
  | name | String |  no  |  |
+ | uid | String |  no  |  |
 
 ---
 
@@ -1150,9 +1790,24 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
  | value | String? |  yes  |  |
  | type | String? |  yes  |  |
- | message | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EntityRegionView_page](#EntityRegionView_page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | Int |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | current | Int |  no  |  |
+ | type | String |  no  |  |
+ | hasNext | Bool |  no  |  |
 
 ---
 
@@ -1163,10 +1818,38 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [EntityRegionView_page](#EntityRegionView_page) |  no  |  |
+ | success | Bool |  no  |  |
  | data | [[EntityRegionView_Items](#EntityRegionView_Items)] |  no  |  |
  | error | [EntityRegionView_Error](#EntityRegionView_Error) |  no  |  |
- | success | Bool |  no  |  |
+ | page | [EntityRegionView_page](#EntityRegionView_page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ZoneDataItem](#ZoneDataItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String |  no  |  |
+ | size | Int |  no  |  |
+ | itemTotal | Int |  no  |  |
+ | current | Int |  no  |  |
+ | hasNext | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ListViewSummary](#ListViewSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | totalZones | Int |  no  |  |
+ | totalActiveZones | Int |  no  |  |
+ | totalPincodesServed | Int |  no  |  |
 
 ---
 
@@ -1177,8 +1860,8 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channelType | String |  no  |  |
  | channelId | String |  no  |  |
+ | channelType | String |  no  |  |
 
 ---
 
@@ -1201,43 +1884,15 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zoneId | String |  no  |  |
+ | storesCount | Int |  no  |  |
  | isActive | Bool |  no  |  |
- | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
  | name | String |  no  |  |
  | companyId | Int |  no  |  |
+ | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
+ | zoneId | String |  no  |  |
  | pincodesCount | Int |  no  |  |
  | slug | String |  no  |  |
  | product | [ListViewProduct](#ListViewProduct) |  no  |  |
- | storesCount | Int |  no  |  |
-
----
-
-
- 
- 
- #### [ListViewSummary](#ListViewSummary)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | totalActiveZones | Int |  no  |  |
- | totalPincodesServed | Int |  no  |  |
- | totalZones | Int |  no  |  |
-
----
-
-
- 
- 
- #### [ZoneDataItem](#ZoneDataItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemTotal | Int |  no  |  |
- | current | Int |  no  |  |
- | hasNext | Bool |  no  |  |
- | size | Int |  no  |  |
- | type | String |  no  |  |
 
 ---
 
@@ -1248,9 +1903,22 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ListViewItems](#ListViewItems)] |  no  |  |
- | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
+ | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
+ | items | [[ListViewItems](#ListViewItems)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String |  no  |  |
+ | value | String |  no  |  |
+ | type | String |  no  |  |
 
 ---
 
@@ -1261,11 +1929,11 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | size | Int |  no  |  |
  | itemTotal | Int |  no  |  |
  | current | Int |  no  |  |
- | hasNext | Bool |  no  |  |
  | type | String |  no  |  |
- | size | Int |  no  |  |
+ | hasNext | Bool |  no  |  |
 
 ---
 
@@ -1276,8 +1944,8 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[String: Any]]? |  yes  |  |
  | page | [[CompanyStoreView_PageItems](#CompanyStoreView_PageItems)] |  no  |  |
+ | items | [[String: Any]]? |  yes  |  |
 
 ---
 
@@ -1288,8 +1956,8 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channelType | String |  no  |  |
  | channelId | String |  no  |  |
+ | channelType | String |  no  |  |
 
 ---
 
@@ -1312,9 +1980,9 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | country | String |  no  |  |
  | state | [String]? |  yes  |  |
  | pincode | [String]? |  yes  |  |
- | country | String |  no  |  |
 
 ---
 
@@ -1392,8 +2060,8 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statusCode | Int |  no  |  |
  | success | Bool |  no  |  |
+ | statusCode | Int |  no  |  |
 
 ---
 
@@ -1436,9 +2104,9 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
  | zoneId | String |  no  |  |
  | statusCode | Int |  no  |  |
- | success | Bool |  no  |  |
 
 ---
 
@@ -1449,8 +2117,8 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | String |  no  |  |
  | country | String |  no  |  |
+ | pincode | String |  no  |  |
 
 ---
 
@@ -1461,8 +2129,8 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zones | [String] |  no  |  |
  | serviceabilityType | String |  no  |  |
+ | zones | [String] |  no  |  |
 
 ---
 
@@ -1473,69 +2141,48 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[ListViewItems](#ListViewItems)] |  no  |  |
  | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
+ | items | [[ListViewItems](#ListViewItems)] |  no  |  |
 
 ---
 
 
  
  
- #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
+ #### [ServiceabilityPageResponse](#ServiceabilityPageResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String |  no  |  |
- | type | String |  no  |  |
- | message | String |  no  |  |
-
----
-
-
- 
- 
- #### [DocumentsResponse](#DocumentsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
- | verified | Bool? |  yes  |  |
+ | size | Int? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | current | Int? |  yes  |  |
  | type | String? |  yes  |  |
- | legalName | String? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
 
 ---
 
 
  
  
- #### [EwayBillResponse](#EwayBillResponse)
+ #### [MobileNo](#MobileNo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | countryCode | Int? |  yes  |  |
+ | number | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [EinvoiceResponse](#EinvoiceResponse)
+ #### [ManagerResponse](#ManagerResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [GstCredentialsResponse](#GstCredentialsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | eWaybill | [EwayBillResponse](#EwayBillResponse)? |  yes  |  |
- | eInvoice | [EinvoiceResponse](#EinvoiceResponse)? |  yes  |  |
+ | email | String? |  yes  |  |
+ | mobileNo | [MobileNo](#MobileNo)? |  yes  |  |
+ | name | String? |  yes  |  |
 
 ---
 
@@ -1547,15 +2194,15 @@ Response Data
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | transportMode | String? |  yes  |  |
- | areaCode | Int? |  yes  |  |
- | fmPriority | Int? |  yes  |  |
- | lmPriority | Int? |  yes  |  |
- | rvpPriority | Int? |  yes  |  |
  | assignDpFromSb | Bool? |  yes  |  |
+ | fmPriority | Int? |  yes  |  |
  | internalAccountId | String? |  yes  |  |
  | operations | [String]? |  yes  |  |
+ | rvpPriority | Int? |  yes  |  |
  | paymentMode | String? |  yes  |  |
  | externalAccountId | String? |  yes  |  |
+ | areaCode | Int? |  yes  |  |
+ | lmPriority | Int? |  yes  |  |
 
 ---
 
@@ -1566,87 +2213,20 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dp | [Dp](#Dp)? |  yes  |  |
  | override | Bool? |  yes  |  |
+ | dp | [Dp](#Dp)? |  yes  |  |
 
 ---
 
 
  
  
- #### [CreatedByResponse](#CreatedByResponse)
+ #### [IntegrationTypeResponse](#IntegrationTypeResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | username | String? |  yes  |  |
- | userId | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [MobileNo](#MobileNo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | number | String? |  yes  |  |
- | countryCode | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [ManagerResponse](#ManagerResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mobileNo | [MobileNo](#MobileNo)? |  yes  |  |
- | name | String? |  yes  |  |
- | email | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductReturnConfigResponse](#ProductReturnConfigResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | onSameStore | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [AddressResponse](#AddressResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pincode | Int? |  yes  |  |
- | landmark | String? |  yes  |  |
- | latitude | Double? |  yes  |  |
- | country | String? |  yes  |  |
- | address1 | String? |  yes  |  |
- | state | String? |  yes  |  |
- | address2 | String? |  yes  |  |
- | city | String? |  yes  |  |
- | longitude | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [ContactNumberResponse](#ContactNumberResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | number | String? |  yes  |  |
- | countryCode | Int? |  yes  |  |
+ | order | String? |  yes  |  |
+ | inventory | String? |  yes  |  |
 
 ---
 
@@ -1659,6 +2239,25 @@ Response Data
  | ---------- | ---- | -------- | ----------- |
  | username | String? |  yes  |  |
  | userId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AddressResponse](#AddressResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | longitude | Double? |  yes  |  |
+ | address2 | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | latitude | Double? |  yes  |  |
+ | pincode | Int? |  yes  |  |
+ | address1 | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
+ | city | String? |  yes  |  |
 
 ---
 
@@ -1681,10 +2280,67 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | open | Bool? |  yes  |  |
- | opening | [OpeningClosing](#OpeningClosing)? |  yes  |  |
  | weekday | String? |  yes  |  |
+ | open | Bool? |  yes  |  |
  | closing | [OpeningClosing](#OpeningClosing)? |  yes  |  |
+ | opening | [OpeningClosing](#OpeningClosing)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EinvoiceResponse](#EinvoiceResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EwayBillResponse](#EwayBillResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GstCredentialsResponse](#GstCredentialsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | eInvoice | [EinvoiceResponse](#EinvoiceResponse)? |  yes  |  |
+ | eWaybill | [EwayBillResponse](#EwayBillResponse)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductReturnConfigResponse](#ProductReturnConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | onSameStore | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreatedByResponse](#CreatedByResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | String? |  yes  |  |
+ | userId | String? |  yes  |  |
 
 ---
 
@@ -1702,12 +2358,26 @@ Response Data
 
  
  
- #### [IntegrationTypeResponse](#IntegrationTypeResponse)
+ #### [DocumentsResponse](#DocumentsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | order | String? |  yes  |  |
- | inventory | String? |  yes  |  |
+ | legalName | String? |  yes  |  |
+ | value | String? |  yes  |  |
+ | verified | Bool? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ContactNumberResponse](#ContactNumberResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | countryCode | Int? |  yes  |  |
+ | number | String? |  yes  |  |
 
 ---
 
@@ -1718,49 +2388,34 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | documents | [[DocumentsResponse](#DocumentsResponse)]? |  yes  |  |
- | gstCredentials | [GstCredentialsResponse](#GstCredentialsResponse)? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | uid | Int? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | displayName | String? |  yes  |  |
- | logistics | [LogisticsResponse](#LogisticsResponse)? |  yes  |  |
- | createdBy | [CreatedByResponse](#CreatedByResponse)? |  yes  |  |
  | manager | [ManagerResponse](#ManagerResponse)? |  yes  |  |
- | storeType | String? |  yes  |  |
- | productReturnConfig | [ProductReturnConfigResponse](#ProductReturnConfigResponse)? |  yes  |  |
- | notificationEmails | [String]? |  yes  |  |
- | createdOn | String? |  yes  |  |
- | stage | String? |  yes  |  |
- | code | String? |  yes  |  |
- | address | [AddressResponse](#AddressResponse)? |  yes  |  |
- | verifiedOn | String? |  yes  |  |
- | cls | String? |  yes  |  |
- | contactNumbers | [[ContactNumberResponse](#ContactNumberResponse)]? |  yes  |  |
- | verifiedBy | [ModifiedByResponse](#ModifiedByResponse)? |  yes  |  |
- | name | String? |  yes  |  |
- | company | Int? |  yes  |  |
- | timing | [[TimmingResponse](#TimmingResponse)]? |  yes  |  |
- | warnings | [WarningsResponse](#WarningsResponse)? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | modifiedBy | [ModifiedByResponse](#ModifiedByResponse)? |  yes  |  |
- | subType | String? |  yes  |  |
+ | logistics | [LogisticsResponse](#LogisticsResponse)? |  yes  |  |
+ | uid | Int? |  yes  |  |
  | integrationType | [IntegrationTypeResponse](#IntegrationTypeResponse)? |  yes  |  |
-
----
-
-
- 
- 
- #### [PageResponse](#PageResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemTotal | Int? |  yes  |  |
- | current | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | type | String? |  yes  |  |
- | size | Int? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+ | storeType | String? |  yes  |  |
+ | verifiedBy | [ModifiedByResponse](#ModifiedByResponse)? |  yes  |  |
+ | address | [AddressResponse](#AddressResponse)? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | notificationEmails | [String]? |  yes  |  |
+ | code | String? |  yes  |  |
+ | modifiedBy | [ModifiedByResponse](#ModifiedByResponse)? |  yes  |  |
+ | displayName | String? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
+ | cls | String? |  yes  |  |
+ | timing | [[TimmingResponse](#TimmingResponse)]? |  yes  |  |
+ | gstCredentials | [GstCredentialsResponse](#GstCredentialsResponse)? |  yes  |  |
+ | company | Int? |  yes  |  |
+ | productReturnConfig | [ProductReturnConfigResponse](#ProductReturnConfigResponse)? |  yes  |  |
+ | createdBy | [CreatedByResponse](#CreatedByResponse)? |  yes  |  |
+ | warnings | [WarningsResponse](#WarningsResponse)? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+ | documents | [[DocumentsResponse](#DocumentsResponse)]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | contactNumbers | [[ContactNumberResponse](#ContactNumberResponse)]? |  yes  |  |
+ | subType | String? |  yes  |  |
 
 ---
 
@@ -1771,8 +2426,62 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | page | [ServiceabilityPageResponse](#ServiceabilityPageResponse) |  no  |  |
  | items | [[ItemResponse](#ItemResponse)]? |  yes  |  |
- | page | [PageResponse](#PageResponse) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReAssignStoreRequest](#ReAssignStoreRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | configuration | [String: Any] |  no  |  |
+ | toPincode | String |  no  |  |
+ | identifier | String |  no  |  |
+ | articles | [[String: Any]] |  no  |  |
+ | ignoredLocations | [String] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ReAssignStoreResponse](#ReAssignStoreResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | articles | [[String: Any]]? |  yes  |  |
+ | error | [String: Any] |  no  |  |
+ | toPincode | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationCompanyDpViewRequest](#ApplicationCompanyDpViewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dpId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | applicationId | String |  no  |  |
+ | courierPartnerId | Int? |  yes  |  |
+ | companyId | Int |  no  |  |
 
 ---
 
@@ -1827,9 +2536,9 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | String? |  yes  |  |
  | error | [String: Any]? |  yes  |  |
  | statusCode | String? |  yes  |  |
- | success | String? |  yes  |  |
 
 ---
 
@@ -1908,11 +2617,11 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | size | Int |  no  |  |
  | itemTotal | Int |  no  |  |
  | current | Int |  no  |  |
- | hasNext | Bool |  no  |  |
  | type | String |  no  |  |
- | size | Int |  no  |  |
+ | hasNext | Bool |  no  |  |
 
 ---
 
@@ -1983,6 +2692,262 @@ Response Data
  | entityType | String? |  yes  |  |
  | page | [PincodeMopUpdateAuditHistoryPaging](#PincodeMopUpdateAuditHistoryPaging) |  no  |  |
  | data | [[PincodeMopUpdateAuditHistoryResponse](#PincodeMopUpdateAuditHistoryResponse)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DP](#DP)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | planRules | [String: Any] |  no  |  |
+ | accountId | String |  no  |  |
+ | dpId | String |  no  |  |
+ | isSelfShip | Bool |  no  |  |
+ | planId | String |  no  |  |
+ | stage | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyDpAccountRequest](#CompanyDpAccountRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[DP](#DP)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CompanyDpAccountResponse](#CompanyDpAccountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String |  no  |  |
+ | value | String |  no  |  |
+ | type | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DpAccountFailureResponse](#DpAccountFailureResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | error | [[ErrorResponse](#ErrorResponse)] |  no  |  |
+ | statusCode | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DpRuleResponse](#DpRuleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | conditions | [String] |  no  |  |
+ | dpIds | [String: Any] |  no  |  |
+ | modifiedOn | String? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | name | String |  no  |  |
+ | uid | String |  no  |  |
+ | companyId | Int |  no  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DpRuleSuccessResponse](#DpRuleSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | data | [DpRuleResponse](#DpRuleResponse) |  no  |  |
+ | statusCode | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorResponse1](#ErrorResponse1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String |  no  |  |
+ | value | String |  no  |  |
+ | type | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FailureResponse](#FailureResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | error | [[ErrorResponse1](#ErrorResponse1)] |  no  |  |
+ | statusCode | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DpRulesUpdateRequest](#DpRulesUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | conditions | [[String: Any]] |  no  |  |
+ | dpIds | [String: Any] |  no  |  |
+ | name | String |  no  |  |
+ | isActive | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DpRuleUpdateSuccessResponse](#DpRuleUpdateSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | data | [DpRuleResponse](#DpRuleResponse) |  no  |  |
+ | statusCode | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DpIds](#DpIds)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | priority | Int |  no  |  |
+ | enabled | Bool |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DpRuleRequest](#DpRuleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | conditions | [[String: Any]] |  no  |  |
+ | dpIds | [String: [DpIds](#DpIds)] |  no  |  |
+ | isActive | Bool? |  yes  |  |
+ | name | String |  no  |  |
+ | companyId | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | size | Int |  no  |  |
+ | hasPrevious | Bool |  no  |  |
+ | current | Int |  no  |  |
+ | total | Int |  no  |  |
+ | type | String |  no  |  |
+ | hasNext | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DpMultipleRuleSuccessResponse](#DpMultipleRuleSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | totalCount | Int |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | items | [[DpRuleResponse](#DpRuleResponse)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | data | [[DpRuleResponse](#DpRuleResponse)] |  no  |  |
+ | statusCode | Int |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DPCompanyRuleRequest](#DPCompanyRuleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ruleIds | [String] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DPApplicationRuleResponse](#DPApplicationRuleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | data | [[DpRuleResponse](#DpRuleResponse)] |  no  |  |
+ | statusCode | Bool |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [DPApplicationRuleRequest](#DPApplicationRuleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shippingRules | [String] |  no  |  |
 
 ---
 

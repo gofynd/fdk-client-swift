@@ -9,85 +9,69 @@ public extension PlatformClient.Order {
      */
 
     class Attributes: Codable {
-        public var name: String?
-
-        public var primaryMaterial: String?
-
-        public var essential: String?
+        public var gender: [String]?
 
         public var marketerName: String?
 
+        public var brandName: String?
+
         public var primaryColorHex: String?
 
-        public var brandName: String?
+        public var name: String?
+
+        public var primaryMaterial: String?
 
         public var primaryColor: String?
 
         public var marketerAddress: String?
 
-        public var gender: [String]?
+        public var essential: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
-            case primaryMaterial = "primary_material"
-
-            case essential
+            case gender
 
             case marketerName = "marketer_name"
 
+            case brandName = "brand_name"
+
             case primaryColorHex = "primary_color_hex"
 
-            case brandName = "brand_name"
+            case name
+
+            case primaryMaterial = "primary_material"
 
             case primaryColor = "primary_color"
 
             case marketerAddress = "marketer_address"
 
-            case gender
+            case essential
         }
 
         public init(brandName: String? = nil, essential: String? = nil, gender: [String]? = nil, marketerAddress: String? = nil, marketerName: String? = nil, name: String? = nil, primaryColor: String? = nil, primaryColorHex: String? = nil, primaryMaterial: String? = nil) {
-            self.name = name
-
-            self.primaryMaterial = primaryMaterial
-
-            self.essential = essential
+            self.gender = gender
 
             self.marketerName = marketerName
 
+            self.brandName = brandName
+
             self.primaryColorHex = primaryColorHex
 
-            self.brandName = brandName
+            self.name = name
+
+            self.primaryMaterial = primaryMaterial
 
             self.primaryColor = primaryColor
 
             self.marketerAddress = marketerAddress
 
-            self.gender = gender
+            self.essential = essential
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                primaryMaterial = try container.decode(String.self, forKey: .primaryMaterial)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                essential = try container.decode(String.self, forKey: .essential)
+                gender = try container.decode([String].self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,6 +87,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                brandName = try container.decode(String.self, forKey: .brandName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 primaryColorHex = try container.decode(String.self, forKey: .primaryColorHex)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -111,7 +103,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                brandName = try container.decode(String.self, forKey: .brandName)
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                primaryMaterial = try container.decode(String.self, forKey: .primaryMaterial)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,7 +135,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                gender = try container.decode([String].self, forKey: .gender)
+                essential = try container.decode(String.self, forKey: .essential)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,23 +146,23 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(primaryMaterial, forKey: .primaryMaterial)
-
-            try? container.encodeIfPresent(essential, forKey: .essential)
+            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(marketerName, forKey: .marketerName)
 
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
+
             try? container.encodeIfPresent(primaryColorHex, forKey: .primaryColorHex)
 
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(primaryMaterial, forKey: .primaryMaterial)
 
             try? container.encodeIfPresent(primaryColor, forKey: .primaryColor)
 
             try? container.encodeIfPresent(marketerAddress, forKey: .marketerAddress)
 
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encodeIfPresent(essential, forKey: .essential)
         }
     }
 }
@@ -174,85 +174,69 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Attributes: Codable {
-        public var name: String?
-
-        public var primaryMaterial: String?
-
-        public var essential: String?
+        public var gender: [String]?
 
         public var marketerName: String?
 
+        public var brandName: String?
+
         public var primaryColorHex: String?
 
-        public var brandName: String?
+        public var name: String?
+
+        public var primaryMaterial: String?
 
         public var primaryColor: String?
 
         public var marketerAddress: String?
 
-        public var gender: [String]?
+        public var essential: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
-            case primaryMaterial = "primary_material"
-
-            case essential
+            case gender
 
             case marketerName = "marketer_name"
 
+            case brandName = "brand_name"
+
             case primaryColorHex = "primary_color_hex"
 
-            case brandName = "brand_name"
+            case name
+
+            case primaryMaterial = "primary_material"
 
             case primaryColor = "primary_color"
 
             case marketerAddress = "marketer_address"
 
-            case gender
+            case essential
         }
 
         public init(brandName: String? = nil, essential: String? = nil, gender: [String]? = nil, marketerAddress: String? = nil, marketerName: String? = nil, name: String? = nil, primaryColor: String? = nil, primaryColorHex: String? = nil, primaryMaterial: String? = nil) {
-            self.name = name
-
-            self.primaryMaterial = primaryMaterial
-
-            self.essential = essential
+            self.gender = gender
 
             self.marketerName = marketerName
 
+            self.brandName = brandName
+
             self.primaryColorHex = primaryColorHex
 
-            self.brandName = brandName
+            self.name = name
+
+            self.primaryMaterial = primaryMaterial
 
             self.primaryColor = primaryColor
 
             self.marketerAddress = marketerAddress
 
-            self.gender = gender
+            self.essential = essential
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                primaryMaterial = try container.decode(String.self, forKey: .primaryMaterial)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                essential = try container.decode(String.self, forKey: .essential)
+                gender = try container.decode([String].self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -268,6 +252,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                brandName = try container.decode(String.self, forKey: .brandName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 primaryColorHex = try container.decode(String.self, forKey: .primaryColorHex)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -276,7 +268,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                brandName = try container.decode(String.self, forKey: .brandName)
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                primaryMaterial = try container.decode(String.self, forKey: .primaryMaterial)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -300,7 +300,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                gender = try container.decode([String].self, forKey: .gender)
+                essential = try container.decode(String.self, forKey: .essential)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -311,23 +311,23 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(primaryMaterial, forKey: .primaryMaterial)
-
-            try? container.encodeIfPresent(essential, forKey: .essential)
+            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(marketerName, forKey: .marketerName)
 
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
+
             try? container.encodeIfPresent(primaryColorHex, forKey: .primaryColorHex)
 
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(primaryMaterial, forKey: .primaryMaterial)
 
             try? container.encodeIfPresent(primaryColor, forKey: .primaryColor)
 
             try? container.encodeIfPresent(marketerAddress, forKey: .marketerAddress)
 
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encodeIfPresent(essential, forKey: .essential)
         }
     }
 }

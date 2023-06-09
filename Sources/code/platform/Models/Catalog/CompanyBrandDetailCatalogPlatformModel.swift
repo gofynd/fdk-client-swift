@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var companyId: Int?
 
-        public var brandId: Int?
-
         public var brandName: String?
+
+        public var brandId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case totalArticle = "total_article"
 
             case companyId = "company_id"
 
-            case brandId = "brand_id"
-
             case brandName = "brand_name"
+
+            case brandId = "brand_id"
         }
 
         public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, totalArticle: Int? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.companyId = companyId
 
-            self.brandId = brandId
-
             self.brandName = brandName
+
+            self.brandId = brandId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                brandId = try container.decode(Int.self, forKey: .brandId)
+                brandName = try container.decode(String.self, forKey: .brandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                brandName = try container.decode(String.self, forKey: .brandName)
+                brandId = try container.decode(Int.self, forKey: .brandId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
-
             try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var companyId: Int?
 
-        public var brandId: Int?
-
         public var brandName: String?
+
+        public var brandId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case totalArticle = "total_article"
 
             case companyId = "company_id"
 
-            case brandId = "brand_id"
-
             case brandName = "brand_name"
+
+            case brandId = "brand_id"
         }
 
         public init(brandId: Int? = nil, brandName: String? = nil, companyId: Int? = nil, totalArticle: Int? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.companyId = companyId
 
-            self.brandId = brandId
-
             self.brandName = brandName
+
+            self.brandId = brandId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                brandId = try container.decode(Int.self, forKey: .brandId)
+                brandName = try container.decode(String.self, forKey: .brandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                brandName = try container.decode(String.self, forKey: .brandName)
+                brandId = try container.decode(Int.self, forKey: .brandId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
-
             try? container.encodeIfPresent(brandName, forKey: .brandName)
+
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
         }
     }
 }

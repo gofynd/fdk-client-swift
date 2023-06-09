@@ -13,22 +13,22 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var key: Double?
 
-        public var min: Double?
-
         public var max: Double?
 
         public var value: Double?
+
+        public var min: Double?
 
         public enum CodingKeys: String, CodingKey {
             case discountQty = "discount_qty"
 
             case key
 
-            case min
-
             case max
 
             case value
+
+            case min
         }
 
         public init(discountQty: Double? = nil, key: Double? = nil, max: Double? = nil, min: Double? = nil, value: Double? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.key = key
 
-            self.min = min
-
             self.max = max
 
             self.value = value
+
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,14 +63,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -85,6 +77,14 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                min = try container.decode(Double.self, forKey: .min)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,11 +94,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
             try? container.encodeIfPresent(max, forKey: .max)
 
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }

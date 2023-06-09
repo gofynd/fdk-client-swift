@@ -9,24 +9,24 @@ public extension PlatformClient.Order {
      */
 
     class ReturnConfig1: Codable {
-        public var returnable: Bool?
-
         public var time: Double?
+
+        public var returnable: Bool?
 
         public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
-            case returnable
-
             case time
+
+            case returnable
 
             case unit
         }
 
         public init(returnable: Bool? = nil, time: Double? = nil, unit: String? = nil) {
-            self.returnable = returnable
-
             self.time = time
+
+            self.returnable = returnable
 
             self.unit = unit
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                returnable = try container.decode(Bool.self, forKey: .returnable)
+                time = try container.decode(Double.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                time = try container.decode(Double.self, forKey: .time)
+                returnable = try container.decode(Bool.self, forKey: .returnable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(returnable, forKey: .returnable)
-
             try? container.encodeIfPresent(time, forKey: .time)
+
+            try? container.encodeIfPresent(returnable, forKey: .returnable)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ReturnConfig1: Codable {
-        public var returnable: Bool?
-
         public var time: Double?
+
+        public var returnable: Bool?
 
         public var unit: String?
 
         public enum CodingKeys: String, CodingKey {
-            case returnable
-
             case time
+
+            case returnable
 
             case unit
         }
 
         public init(returnable: Bool? = nil, time: Double? = nil, unit: String? = nil) {
-            self.returnable = returnable
-
             self.time = time
+
+            self.returnable = returnable
 
             self.unit = unit
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                returnable = try container.decode(Bool.self, forKey: .returnable)
+                time = try container.decode(Double.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                time = try container.decode(Double.self, forKey: .time)
+                returnable = try container.decode(Bool.self, forKey: .returnable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(returnable, forKey: .returnable)
-
             try? container.encodeIfPresent(time, forKey: .time)
+
+            try? container.encodeIfPresent(returnable, forKey: .returnable)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }
