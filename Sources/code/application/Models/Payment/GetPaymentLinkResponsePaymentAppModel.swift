@@ -7,68 +7,78 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class GetPaymentLinkResponse: Codable {
+        public var success: Bool
+
         public var statusCode: Int
+
+        public var externalOrderId: String?
 
         public var merchantName: String?
 
         public var pollingTimeout: Int?
 
-        public var externalOrderId: String?
-
         public var paymentLinkCurrentStatus: String?
+
+        public var message: String
 
         public var amount: Double?
 
         public var paymentLinkUrl: String?
 
-        public var message: String
-
-        public var success: Bool
-
         public enum CodingKeys: String, CodingKey {
+            case success
+
             case statusCode = "status_code"
+
+            case externalOrderId = "external_order_id"
 
             case merchantName = "merchant_name"
 
             case pollingTimeout = "polling_timeout"
 
-            case externalOrderId = "external_order_id"
-
             case paymentLinkCurrentStatus = "payment_link_current_status"
+
+            case message
 
             case amount
 
             case paymentLinkUrl = "payment_link_url"
-
-            case message
-
-            case success
         }
 
         public init(amount: Double? = nil, externalOrderId: String? = nil, merchantName: String? = nil, message: String, paymentLinkCurrentStatus: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
+            self.success = success
+
             self.statusCode = statusCode
+
+            self.externalOrderId = externalOrderId
 
             self.merchantName = merchantName
 
             self.pollingTimeout = pollingTimeout
 
-            self.externalOrderId = externalOrderId
-
             self.paymentLinkCurrentStatus = paymentLinkCurrentStatus
+
+            self.message = message
 
             self.amount = amount
 
             self.paymentLinkUrl = paymentLinkUrl
-
-            self.message = message
-
-            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            success = try container.decode(Bool.self, forKey: .success)
+
             statusCode = try container.decode(Int.self, forKey: .statusCode)
+
+            do {
+                externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 merchantName = try container.decode(String.self, forKey: .merchantName)
@@ -87,20 +97,14 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 paymentLinkCurrentStatus = try container.decode(String.self, forKey: .paymentLinkCurrentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            message = try container.decode(String.self, forKey: .message)
 
             do {
                 amount = try container.decode(Double.self, forKey: .amount)
@@ -117,32 +121,28 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            message = try container.decode(String.self, forKey: .message)
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(success, forKey: .success)
+
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+
+            try? container.encode(externalOrderId, forKey: .externalOrderId)
 
             try? container.encode(merchantName, forKey: .merchantName)
 
             try? container.encode(pollingTimeout, forKey: .pollingTimeout)
 
-            try? container.encode(externalOrderId, forKey: .externalOrderId)
-
             try? container.encode(paymentLinkCurrentStatus, forKey: .paymentLinkCurrentStatus)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encode(amount, forKey: .amount)
 
             try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
-
-            try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

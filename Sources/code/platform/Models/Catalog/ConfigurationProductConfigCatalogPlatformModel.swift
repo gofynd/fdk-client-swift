@@ -13,13 +13,13 @@ public extension PlatformClient.Catalog {
 
         public var subtitle: String?
 
-        public var size: ProductSize?
-
-        public var isActive: Bool
+        public var key: String
 
         public var priority: Int
 
-        public var key: String
+        public var isActive: Bool
+
+        public var size: ProductSize?
 
         public var title: String?
 
@@ -28,13 +28,13 @@ public extension PlatformClient.Catalog {
 
             case subtitle
 
-            case size
-
-            case isActive = "is_active"
+            case key
 
             case priority
 
-            case key
+            case isActive = "is_active"
+
+            case size
 
             case title
         }
@@ -44,13 +44,13 @@ public extension PlatformClient.Catalog {
 
             self.subtitle = subtitle
 
-            self.size = size
-
-            self.isActive = isActive
+            self.key = key
 
             self.priority = priority
 
-            self.key = key
+            self.isActive = isActive
+
+            self.size = size
 
             self.title = title
         }
@@ -74,6 +74,12 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            key = try container.decode(String.self, forKey: .key)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             do {
                 size = try container.decode(ProductSize.self, forKey: .size)
 
@@ -81,12 +87,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            key = try container.decode(String.self, forKey: .key)
 
             do {
                 title = try container.decode(String.self, forKey: .title)
@@ -104,13 +104,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(title, forKey: .title)
         }
@@ -128,13 +128,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var subtitle: String?
 
-        public var size: ProductSize?
-
-        public var isActive: Bool
+        public var key: String
 
         public var priority: Int
 
-        public var key: String
+        public var isActive: Bool
+
+        public var size: ProductSize?
 
         public var title: String?
 
@@ -143,13 +143,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case subtitle
 
-            case size
-
-            case isActive = "is_active"
+            case key
 
             case priority
 
-            case key
+            case isActive = "is_active"
+
+            case size
 
             case title
         }
@@ -159,13 +159,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.subtitle = subtitle
 
-            self.size = size
-
-            self.isActive = isActive
+            self.key = key
 
             self.priority = priority
 
-            self.key = key
+            self.isActive = isActive
+
+            self.size = size
 
             self.title = title
         }
@@ -189,6 +189,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            key = try container.decode(String.self, forKey: .key)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
             do {
                 size = try container.decode(ProductSize.self, forKey: .size)
 
@@ -196,12 +202,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
-            key = try container.decode(String.self, forKey: .key)
 
             do {
                 title = try container.decode(String.self, forKey: .title)
@@ -219,13 +219,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(title, forKey: .title)
         }

@@ -13,22 +13,22 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var success: String
 
-        public var cart: [String: Any]
-
         public var data: [String: Any]
 
         public var orderId: String
+
+        public var cart: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case success
 
-            case cart
-
             case data
 
             case orderId = "order_id"
+
+            case cart
         }
 
         public init(cart: [String: Any], data: [String: Any], message: String, orderId: String, success: String) {
@@ -36,11 +36,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.success = success
 
-            self.cart = cart
-
             self.data = data
 
             self.orderId = orderId
+
+            self.cart = cart
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,11 +50,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             success = try container.decode(String.self, forKey: .success)
 
-            cart = try container.decode([String: Any].self, forKey: .cart)
-
             data = try container.decode([String: Any].self, forKey: .data)
 
             orderId = try container.decode(String.self, forKey: .orderId)
+
+            cart = try container.decode([String: Any].self, forKey: .cart)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(cart, forKey: .cart)
-
             try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(cart, forKey: .cart)
         }
     }
 }

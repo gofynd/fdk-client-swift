@@ -11,102 +11,102 @@ public extension PlatformClient.Catalog {
     class ProductTemplate: Codable {
         public var logo: String?
 
-        public var name: String?
-
-        public var departments: [String]?
-
-        public var createdBy: [String: Any]?
-
-        public var modifiedOn: String?
-
         public var isExpirable: Bool
-
-        public var modifiedBy: [String: Any]?
 
         public var isArchived: Bool?
 
         public var description: String?
 
-        public var isActive: Bool?
-
         public var categories: [String]?
 
-        public var createdOn: String?
-
-        public var attributes: [String]?
+        public var isActive: Bool?
 
         public var isPhysical: Bool
 
-        public var slug: String
+        public var createdOn: String?
+
+        public var name: String?
+
+        public var createdBy: [String: Any]?
+
+        public var modifiedOn: String?
+
+        public var modifiedBy: [String: Any]?
+
+        public var attributes: [String]?
+
+        public var departments: [String]?
 
         public var tag: String?
+
+        public var slug: String
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case name
-
-            case departments
-
-            case createdBy = "created_by"
-
-            case modifiedOn = "modified_on"
-
             case isExpirable = "is_expirable"
-
-            case modifiedBy = "modified_by"
 
             case isArchived = "is_archived"
 
             case description
 
-            case isActive = "is_active"
-
             case categories
 
-            case createdOn = "created_on"
-
-            case attributes
+            case isActive = "is_active"
 
             case isPhysical = "is_physical"
 
-            case slug
+            case createdOn = "created_on"
+
+            case name
+
+            case createdBy = "created_by"
+
+            case modifiedOn = "modified_on"
+
+            case modifiedBy = "modified_by"
+
+            case attributes
+
+            case departments
 
             case tag
+
+            case slug
         }
 
         public init(attributes: [String]? = nil, categories: [String]? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String]? = nil, description: String? = nil, isActive: Bool? = nil, isArchived: Bool? = nil, isExpirable: Bool, isPhysical: Bool, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, slug: String, tag: String? = nil) {
             self.logo = logo
 
-            self.name = name
-
-            self.departments = departments
-
-            self.createdBy = createdBy
-
-            self.modifiedOn = modifiedOn
-
             self.isExpirable = isExpirable
-
-            self.modifiedBy = modifiedBy
 
             self.isArchived = isArchived
 
             self.description = description
 
-            self.isActive = isActive
-
             self.categories = categories
 
-            self.createdOn = createdOn
-
-            self.attributes = attributes
+            self.isActive = isActive
 
             self.isPhysical = isPhysical
 
-            self.slug = slug
+            self.createdOn = createdOn
+
+            self.name = name
+
+            self.createdBy = createdBy
+
+            self.modifiedOn = modifiedOn
+
+            self.modifiedBy = modifiedBy
+
+            self.attributes = attributes
+
+            self.departments = departments
 
             self.tag = tag
+
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -120,8 +120,10 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            isExpirable = try container.decode(Bool.self, forKey: .isExpirable)
+
             do {
-                name = try container.decode(String.self, forKey: .name)
+                isArchived = try container.decode(Bool.self, forKey: .isArchived)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +131,41 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                departments = try container.decode([String].self, forKey: .departments)
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                categories = try container.decode([String].self, forKey: .categories)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            isPhysical = try container.decode(Bool.self, forKey: .isPhysical)
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -152,50 +188,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isExpirable = try container.decode(Bool.self, forKey: .isExpirable)
-
             do {
                 modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isArchived = try container.decode(Bool.self, forKey: .isArchived)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                categories = try container.decode([String].self, forKey: .categories)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,9 +204,13 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isPhysical = try container.decode(Bool.self, forKey: .isPhysical)
+            do {
+                departments = try container.decode([String].self, forKey: .departments)
 
-            slug = try container.decode(String.self, forKey: .slug)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 tag = try container.decode(String.self, forKey: .tag)
@@ -221,6 +219,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            slug = try container.decode(String.self, forKey: .slug)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -228,35 +228,35 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encode(departments, forKey: .departments)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
             try? container.encodeIfPresent(isExpirable, forKey: .isExpirable)
-
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
             try? container.encodeIfPresent(isArchived, forKey: .isArchived)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encode(categories, forKey: .categories)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encode(attributes, forKey: .attributes)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(isPhysical, forKey: .isPhysical)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+
+            try? container.encode(attributes, forKey: .attributes)
+
+            try? container.encode(departments, forKey: .departments)
 
             try? container.encodeIfPresent(tag, forKey: .tag)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }
@@ -270,102 +270,102 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductTemplate: Codable {
         public var logo: String?
 
-        public var name: String?
-
-        public var departments: [String]?
-
-        public var createdBy: [String: Any]?
-
-        public var modifiedOn: String?
-
         public var isExpirable: Bool
-
-        public var modifiedBy: [String: Any]?
 
         public var isArchived: Bool?
 
         public var description: String?
 
-        public var isActive: Bool?
-
         public var categories: [String]?
 
-        public var createdOn: String?
-
-        public var attributes: [String]?
+        public var isActive: Bool?
 
         public var isPhysical: Bool
 
-        public var slug: String
+        public var createdOn: String?
+
+        public var name: String?
+
+        public var createdBy: [String: Any]?
+
+        public var modifiedOn: String?
+
+        public var modifiedBy: [String: Any]?
+
+        public var attributes: [String]?
+
+        public var departments: [String]?
 
         public var tag: String?
+
+        public var slug: String
 
         public enum CodingKeys: String, CodingKey {
             case logo
 
-            case name
-
-            case departments
-
-            case createdBy = "created_by"
-
-            case modifiedOn = "modified_on"
-
             case isExpirable = "is_expirable"
-
-            case modifiedBy = "modified_by"
 
             case isArchived = "is_archived"
 
             case description
 
-            case isActive = "is_active"
-
             case categories
 
-            case createdOn = "created_on"
-
-            case attributes
+            case isActive = "is_active"
 
             case isPhysical = "is_physical"
 
-            case slug
+            case createdOn = "created_on"
+
+            case name
+
+            case createdBy = "created_by"
+
+            case modifiedOn = "modified_on"
+
+            case modifiedBy = "modified_by"
+
+            case attributes
+
+            case departments
 
             case tag
+
+            case slug
         }
 
         public init(attributes: [String]? = nil, categories: [String]? = nil, createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String]? = nil, description: String? = nil, isActive: Bool? = nil, isArchived: Bool? = nil, isExpirable: Bool, isPhysical: Bool, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, slug: String, tag: String? = nil) {
             self.logo = logo
 
-            self.name = name
-
-            self.departments = departments
-
-            self.createdBy = createdBy
-
-            self.modifiedOn = modifiedOn
-
             self.isExpirable = isExpirable
-
-            self.modifiedBy = modifiedBy
 
             self.isArchived = isArchived
 
             self.description = description
 
-            self.isActive = isActive
-
             self.categories = categories
 
-            self.createdOn = createdOn
-
-            self.attributes = attributes
+            self.isActive = isActive
 
             self.isPhysical = isPhysical
 
-            self.slug = slug
+            self.createdOn = createdOn
+
+            self.name = name
+
+            self.createdBy = createdBy
+
+            self.modifiedOn = modifiedOn
+
+            self.modifiedBy = modifiedBy
+
+            self.attributes = attributes
+
+            self.departments = departments
 
             self.tag = tag
+
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -379,8 +379,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            isExpirable = try container.decode(Bool.self, forKey: .isExpirable)
+
             do {
-                name = try container.decode(String.self, forKey: .name)
+                isArchived = try container.decode(Bool.self, forKey: .isArchived)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -388,7 +390,41 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                departments = try container.decode([String].self, forKey: .departments)
+                description = try container.decode(String.self, forKey: .description)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                categories = try container.decode([String].self, forKey: .categories)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            isPhysical = try container.decode(Bool.self, forKey: .isPhysical)
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -411,50 +447,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isExpirable = try container.decode(Bool.self, forKey: .isExpirable)
-
             do {
                 modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isArchived = try container.decode(Bool.self, forKey: .isArchived)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                categories = try container.decode([String].self, forKey: .categories)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -469,9 +463,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isPhysical = try container.decode(Bool.self, forKey: .isPhysical)
+            do {
+                departments = try container.decode([String].self, forKey: .departments)
 
-            slug = try container.decode(String.self, forKey: .slug)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 tag = try container.decode(String.self, forKey: .tag)
@@ -480,6 +478,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            slug = try container.decode(String.self, forKey: .slug)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -487,35 +487,35 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encode(departments, forKey: .departments)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
             try? container.encodeIfPresent(isExpirable, forKey: .isExpirable)
-
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
             try? container.encodeIfPresent(isArchived, forKey: .isArchived)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encode(categories, forKey: .categories)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encode(attributes, forKey: .attributes)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(isPhysical, forKey: .isPhysical)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+
+            try? container.encode(attributes, forKey: .attributes)
+
+            try? container.encode(departments, forKey: .departments)
 
             try? container.encodeIfPresent(tag, forKey: .tag)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

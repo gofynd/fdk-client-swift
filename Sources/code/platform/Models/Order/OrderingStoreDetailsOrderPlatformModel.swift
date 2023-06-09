@@ -9,126 +9,126 @@ public extension PlatformClient.Order {
      */
 
     class OrderingStoreDetails: Codable {
-        public var phone: String
-
-        public var meta: [String: Any]
-
-        public var address: String
-
-        public var state: String
+        public var country: String
 
         public var storeName: String
 
-        public var contactPerson: String
+        public var meta: [String: Any]
 
-        public var country: String
-
-        public var pincode: String
+        public var phone: String
 
         public var city: String
 
-        public var code: String
-
         public var orderingStoreId: Int
 
+        public var code: String
+
+        public var contactPerson: String
+
+        public var address: String
+
+        public var pincode: String
+
+        public var state: String
+
         public enum CodingKeys: String, CodingKey {
-            case phone
-
-            case meta
-
-            case address
-
-            case state
+            case country
 
             case storeName = "store_name"
 
-            case contactPerson = "contact_person"
+            case meta
 
-            case country
-
-            case pincode
+            case phone
 
             case city
 
+            case orderingStoreId = "ordering_store_id"
+
             case code
 
-            case orderingStoreId = "ordering_store_id"
+            case contactPerson = "contact_person"
+
+            case address
+
+            case pincode
+
+            case state
         }
 
         public init(address: String, city: String, code: String, contactPerson: String, country: String, meta: [String: Any], orderingStoreId: Int, phone: String, pincode: String, state: String, storeName: String) {
-            self.phone = phone
-
-            self.meta = meta
-
-            self.address = address
-
-            self.state = state
+            self.country = country
 
             self.storeName = storeName
 
-            self.contactPerson = contactPerson
+            self.meta = meta
 
-            self.country = country
-
-            self.pincode = pincode
+            self.phone = phone
 
             self.city = city
 
+            self.orderingStoreId = orderingStoreId
+
             self.code = code
 
-            self.orderingStoreId = orderingStoreId
+            self.contactPerson = contactPerson
+
+            self.address = address
+
+            self.pincode = pincode
+
+            self.state = state
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            phone = try container.decode(String.self, forKey: .phone)
-
-            meta = try container.decode([String: Any].self, forKey: .meta)
-
-            address = try container.decode(String.self, forKey: .address)
-
-            state = try container.decode(String.self, forKey: .state)
+            country = try container.decode(String.self, forKey: .country)
 
             storeName = try container.decode(String.self, forKey: .storeName)
 
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+            meta = try container.decode([String: Any].self, forKey: .meta)
 
-            country = try container.decode(String.self, forKey: .country)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
+            phone = try container.decode(String.self, forKey: .phone)
 
             city = try container.decode(String.self, forKey: .city)
 
+            orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
+
             code = try container.decode(String.self, forKey: .code)
 
-            orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            state = try container.decode(String.self, forKey: .state)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(storeName, forKey: .storeName)
 
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
+            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
+
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(state, forKey: .state)
         }
     }
 }
@@ -140,126 +140,126 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderingStoreDetails: Codable {
-        public var phone: String
-
-        public var meta: [String: Any]
-
-        public var address: String
-
-        public var state: String
+        public var country: String
 
         public var storeName: String
 
-        public var contactPerson: String
+        public var meta: [String: Any]
 
-        public var country: String
-
-        public var pincode: String
+        public var phone: String
 
         public var city: String
 
-        public var code: String
-
         public var orderingStoreId: Int
 
+        public var code: String
+
+        public var contactPerson: String
+
+        public var address: String
+
+        public var pincode: String
+
+        public var state: String
+
         public enum CodingKeys: String, CodingKey {
-            case phone
-
-            case meta
-
-            case address
-
-            case state
+            case country
 
             case storeName = "store_name"
 
-            case contactPerson = "contact_person"
+            case meta
 
-            case country
-
-            case pincode
+            case phone
 
             case city
 
+            case orderingStoreId = "ordering_store_id"
+
             case code
 
-            case orderingStoreId = "ordering_store_id"
+            case contactPerson = "contact_person"
+
+            case address
+
+            case pincode
+
+            case state
         }
 
         public init(address: String, city: String, code: String, contactPerson: String, country: String, meta: [String: Any], orderingStoreId: Int, phone: String, pincode: String, state: String, storeName: String) {
-            self.phone = phone
-
-            self.meta = meta
-
-            self.address = address
-
-            self.state = state
+            self.country = country
 
             self.storeName = storeName
 
-            self.contactPerson = contactPerson
+            self.meta = meta
 
-            self.country = country
-
-            self.pincode = pincode
+            self.phone = phone
 
             self.city = city
 
+            self.orderingStoreId = orderingStoreId
+
             self.code = code
 
-            self.orderingStoreId = orderingStoreId
+            self.contactPerson = contactPerson
+
+            self.address = address
+
+            self.pincode = pincode
+
+            self.state = state
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            phone = try container.decode(String.self, forKey: .phone)
-
-            meta = try container.decode([String: Any].self, forKey: .meta)
-
-            address = try container.decode(String.self, forKey: .address)
-
-            state = try container.decode(String.self, forKey: .state)
+            country = try container.decode(String.self, forKey: .country)
 
             storeName = try container.decode(String.self, forKey: .storeName)
 
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+            meta = try container.decode([String: Any].self, forKey: .meta)
 
-            country = try container.decode(String.self, forKey: .country)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
+            phone = try container.decode(String.self, forKey: .phone)
 
             city = try container.decode(String.self, forKey: .city)
 
+            orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
+
             code = try container.decode(String.self, forKey: .code)
 
-            orderingStoreId = try container.decode(Int.self, forKey: .orderingStoreId)
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+
+            address = try container.decode(String.self, forKey: .address)
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            state = try container.decode(String.self, forKey: .state)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(storeName, forKey: .storeName)
 
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(phone, forKey: .phone)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
+            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
+
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(orderingStoreId, forKey: .orderingStoreId)
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(state, forKey: .state)
         }
     }
 }

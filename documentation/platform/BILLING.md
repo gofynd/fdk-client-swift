@@ -1679,6 +1679,7 @@ Success
  | links | [String: Any]? |  yes  |  |
  | enabled | Bool? |  yes  |  |
  | displayText | String? |  yes  |  |
+ | config | [String: Any]? |  yes  |  |
 
 ---
 
@@ -2378,7 +2379,7 @@ Success
  | subscriberId | String? |  yes  |  |
  | planId | String? |  yes  |  |
  | productSuiteId | String? |  yes  |  |
- | planData | [Plan](#Plan)? |  yes  |  |
+ | planData | [String: Any]? |  yes  |  |
  | currentStatus | String? |  yes  |  |
  | collectionMethod | String? |  yes  |  |
  | createdAt | String? |  yes  |  |

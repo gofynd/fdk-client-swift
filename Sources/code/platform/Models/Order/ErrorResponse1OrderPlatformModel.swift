@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class ErrorResponse1: Codable {
-        public var status: Int?
-
         public var errorTrace: String?
+
+        public var status: Int?
 
         public var success: Bool?
 
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case errorTrace = "error_trace"
+
+            case status
 
             case success
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(errorTrace: String? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
-            self.status = status
-
             self.errorTrace = errorTrace
+
+            self.status = status
 
             self.success = success
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                errorTrace = try container.decode(String.self, forKey: .errorTrace)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                errorTrace = try container.decode(String.self, forKey: .errorTrace)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ErrorResponse1: Codable {
-        public var status: Int?
-
         public var errorTrace: String?
+
+        public var status: Int?
 
         public var success: Bool?
 
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case errorTrace = "error_trace"
+
+            case status
 
             case success
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(errorTrace: String? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
-            self.status = status
-
             self.errorTrace = errorTrace
+
+            self.status = status
 
             self.success = success
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                errorTrace = try container.decode(String.self, forKey: .errorTrace)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                errorTrace = try container.decode(String.self, forKey: .errorTrace)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(success, forKey: .success)
 

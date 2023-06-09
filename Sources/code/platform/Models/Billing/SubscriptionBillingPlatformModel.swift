@@ -29,7 +29,7 @@ public extension PlatformClient.Billing {
 
         public var productSuiteId: String?
 
-        public var planData: Plan?
+        public var planData: [String: Any]?
 
         public var currentStatus: String?
 
@@ -75,7 +75,7 @@ public extension PlatformClient.Billing {
             case latestInvoice = "latest_invoice"
         }
 
-        public init(cancelAtPeriodEnd: Bool? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currentPeriod: SubscriptionCurrentPeriod? = nil, currentStatus: String? = nil, invoiceSettings: SubscriptionInvoiceSettings? = nil, isActive: Bool? = nil, latestInvoice: String? = nil, modifiedAt: String? = nil, pauseCollection: SubscriptionPauseCollection? = nil, planData: Plan? = nil, planId: String? = nil, productSuiteId: String? = nil, subscriberId: String? = nil, trial: SubscriptionTrial? = nil, id: String? = nil) {
+        public init(cancelAtPeriodEnd: Bool? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currentPeriod: SubscriptionCurrentPeriod? = nil, currentStatus: String? = nil, invoiceSettings: SubscriptionInvoiceSettings? = nil, isActive: Bool? = nil, latestInvoice: String? = nil, modifiedAt: String? = nil, pauseCollection: SubscriptionPauseCollection? = nil, planData: [String: Any]? = nil, planId: String? = nil, productSuiteId: String? = nil, subscriberId: String? = nil, trial: SubscriptionTrial? = nil, id: String? = nil) {
             self.currentPeriod = currentPeriod
 
             self.pauseCollection = pauseCollection
@@ -193,7 +193,7 @@ public extension PlatformClient.Billing {
             } catch {}
 
             do {
-                planData = try container.decode(Plan.self, forKey: .planData)
+                planData = try container.decode([String: Any].self, forKey: .planData)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
