@@ -11,24 +11,24 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PlatformUpdateCartRequest: Codable {
         public var items: [UpdateProductCart]?
 
-        public var userId: String?
-
         public var operation: String
+
+        public var userId: String?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case userId = "user_id"
-
             case operation
+
+            case userId = "user_id"
         }
 
         public init(items: [UpdateProductCart]? = nil, operation: String, userId: String? = nil) {
             self.items = items
 
-            self.userId = userId
-
             self.operation = operation
+
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,8 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            operation = try container.decode(String.self, forKey: .operation)
+
             do {
                 userId = try container.decode(String.self, forKey: .userId)
 
@@ -49,8 +51,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            operation = try container.decode(String.self, forKey: .operation)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(operation, forKey: .operation)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }

@@ -11,22 +11,22 @@ public extension PlatformClient.ApplicationClient.Cart {
     class StaffCheckout: Codable {
         public var lastName: String
 
-        public var user: String
+        public var employeeCode: String?
 
         public var id: String
 
-        public var employeeCode: String?
+        public var user: String
 
         public var firstName: String
 
         public enum CodingKeys: String, CodingKey {
             case lastName = "last_name"
 
-            case user
+            case employeeCode = "employee_code"
 
             case id = "_id"
 
-            case employeeCode = "employee_code"
+            case user
 
             case firstName = "first_name"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(employeeCode: String? = nil, firstName: String, lastName: String, user: String, id: String) {
             self.lastName = lastName
 
-            self.user = user
+            self.employeeCode = employeeCode
 
             self.id = id
 
-            self.employeeCode = employeeCode
+            self.user = user
 
             self.firstName = firstName
         }
@@ -48,10 +48,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            user = try container.decode(String.self, forKey: .user)
-
-            id = try container.decode(String.self, forKey: .id)
-
             do {
                 employeeCode = try container.decode(String.self, forKey: .employeeCode)
 
@@ -59,6 +55,10 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(String.self, forKey: .id)
+
+            user = try container.decode(String.self, forKey: .user)
 
             firstName = try container.decode(String.self, forKey: .firstName)
         }
@@ -68,11 +68,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
         }

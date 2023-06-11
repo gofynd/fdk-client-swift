@@ -9,75 +9,75 @@ public extension PlatformClient.Finance {
      */
 
     class InvoiceListingResponseItems: Codable {
-        public var invoiceNumber: String?
+        public var invoiceType: String?
 
-        public var period: String?
+        public var isDownloadable: Bool?
+
+        public var company: String?
 
         public var invoiceDate: String?
 
         public var status: String?
 
-        public var isDownloadable: Bool?
+        public var dueDate: String?
+
+        public var period: String?
+
+        public var invoiceNumber: String?
 
         public var invoiceId: String?
 
         public var amount: String?
 
-        public var dueDate: String?
-
-        public var company: String?
-
-        public var invoiceType: String?
-
         public enum CodingKeys: String, CodingKey {
-            case invoiceNumber = "invoice_number"
+            case invoiceType = "invoice_type"
 
-            case period
+            case isDownloadable = "is_downloadable"
+
+            case company
 
             case invoiceDate = "invoice_date"
 
             case status
 
-            case isDownloadable = "is_downloadable"
+            case dueDate = "due_date"
+
+            case period
+
+            case invoiceNumber = "invoice_number"
 
             case invoiceId = "invoice_id"
 
             case amount
-
-            case dueDate = "due_date"
-
-            case company
-
-            case invoiceType = "invoice_type"
         }
 
         public init(amount: String? = nil, company: String? = nil, dueDate: String? = nil, invoiceDate: String? = nil, invoiceId: String? = nil, invoiceNumber: String? = nil, invoiceType: String? = nil, isDownloadable: Bool? = nil, period: String? = nil, status: String? = nil) {
-            self.invoiceNumber = invoiceNumber
+            self.invoiceType = invoiceType
 
-            self.period = period
+            self.isDownloadable = isDownloadable
+
+            self.company = company
 
             self.invoiceDate = invoiceDate
 
             self.status = status
 
-            self.isDownloadable = isDownloadable
+            self.dueDate = dueDate
+
+            self.period = period
+
+            self.invoiceNumber = invoiceNumber
 
             self.invoiceId = invoiceId
 
             self.amount = amount
-
-            self.dueDate = dueDate
-
-            self.company = company
-
-            self.invoiceType = invoiceType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
+                invoiceType = try container.decode(String.self, forKey: .invoiceType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,15 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                period = try container.decode(String.self, forKey: .period)
+                isDownloadable = try container.decode(Bool.self, forKey: .isDownloadable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                company = try container.decode(String.self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,7 +117,23 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                isDownloadable = try container.decode(Bool.self, forKey: .isDownloadable)
+                dueDate = try container.decode(String.self, forKey: .dueDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                period = try container.decode(String.self, forKey: .period)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,54 +155,30 @@ public extension PlatformClient.Finance {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                dueDate = try container.decode(String.self, forKey: .dueDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                company = try container.decode(String.self, forKey: .company)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                invoiceType = try container.decode(String.self, forKey: .invoiceType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
+            try? container.encodeIfPresent(invoiceType, forKey: .invoiceType)
 
-            try? container.encodeIfPresent(period, forKey: .period)
+            try? container.encodeIfPresent(isDownloadable, forKey: .isDownloadable)
+
+            try? container.encodeIfPresent(company, forKey: .company)
 
             try? container.encodeIfPresent(invoiceDate, forKey: .invoiceDate)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(isDownloadable, forKey: .isDownloadable)
+            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
+
+            try? container.encodeIfPresent(period, forKey: .period)
+
+            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
 
             try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
-
-            try? container.encodeIfPresent(dueDate, forKey: .dueDate)
-
-            try? container.encodeIfPresent(company, forKey: .company)
-
-            try? container.encodeIfPresent(invoiceType, forKey: .invoiceType)
         }
     }
 }

@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class Reason: Codable {
         public var displayName: String?
 
-        public var qcType: [String]?
+        public var questionSet: [QuestionSet]?
 
         public var id: Int?
 
-        public var questionSet: [QuestionSet]?
+        public var qcType: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
-            case qcType = "qc_type"
+            case questionSet = "question_set"
 
             case id
 
-            case questionSet = "question_set"
+            case qcType = "qc_type"
         }
 
         public init(displayName: String? = nil, id: Int? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil) {
             self.displayName = displayName
 
-            self.qcType = qcType
+            self.questionSet = questionSet
 
             self.id = id
 
-            self.questionSet = questionSet
+            self.qcType = qcType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                qcType = try container.decode([String].self, forKey: .qcType)
+                questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
+                qcType = try container.decode([String].self, forKey: .qcType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(qcType, forKey: .qcType)
+            try? container.encodeIfPresent(questionSet, forKey: .questionSet)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(questionSet, forKey: .questionSet)
+            try? container.encodeIfPresent(qcType, forKey: .qcType)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class Reason: Codable {
         public var displayName: String?
 
-        public var qcType: [String]?
+        public var questionSet: [QuestionSet]?
 
         public var id: Int?
 
-        public var questionSet: [QuestionSet]?
+        public var qcType: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
-            case qcType = "qc_type"
+            case questionSet = "question_set"
 
             case id
 
-            case questionSet = "question_set"
+            case qcType = "qc_type"
         }
 
         public init(displayName: String? = nil, id: Int? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil) {
             self.displayName = displayName
 
-            self.qcType = qcType
+            self.questionSet = questionSet
 
             self.id = id
 
-            self.questionSet = questionSet
+            self.qcType = qcType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                qcType = try container.decode([String].self, forKey: .qcType)
+                questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                questionSet = try container.decode([QuestionSet].self, forKey: .questionSet)
+                qcType = try container.decode([String].self, forKey: .qcType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(qcType, forKey: .qcType)
+            try? container.encodeIfPresent(questionSet, forKey: .questionSet)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(questionSet, forKey: .questionSet)
+            try? container.encodeIfPresent(qcType, forKey: .qcType)
         }
     }
 }

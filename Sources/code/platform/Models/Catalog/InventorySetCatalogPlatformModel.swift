@@ -9,32 +9,30 @@ public extension PlatformClient.Catalog {
      */
 
     class InventorySet: Codable {
-        public var sizeDistribution: SizeDistribution
-
         public var quantity: Int?
+
+        public var sizeDistribution: SizeDistribution
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case sizeDistribution = "size_distribution"
-
             case quantity
+
+            case sizeDistribution = "size_distribution"
 
             case name
         }
 
         public init(name: String? = nil, quantity: Int? = nil, sizeDistribution: SizeDistribution) {
-            self.sizeDistribution = sizeDistribution
-
             self.quantity = quantity
+
+            self.sizeDistribution = sizeDistribution
 
             self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            sizeDistribution = try container.decode(SizeDistribution.self, forKey: .sizeDistribution)
 
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
@@ -43,6 +41,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            sizeDistribution = try container.decode(SizeDistribution.self, forKey: .sizeDistribution)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -56,9 +56,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -72,32 +72,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventorySet: Codable {
-        public var sizeDistribution: SizeDistribution
-
         public var quantity: Int?
+
+        public var sizeDistribution: SizeDistribution
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
-            case sizeDistribution = "size_distribution"
-
             case quantity
+
+            case sizeDistribution = "size_distribution"
 
             case name
         }
 
         public init(name: String? = nil, quantity: Int? = nil, sizeDistribution: SizeDistribution) {
-            self.sizeDistribution = sizeDistribution
-
             self.quantity = quantity
+
+            self.sizeDistribution = sizeDistribution
 
             self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            sizeDistribution = try container.decode(SizeDistribution.self, forKey: .sizeDistribution)
 
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
@@ -106,6 +104,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            sizeDistribution = try container.decode(SizeDistribution.self, forKey: .sizeDistribution)
 
             do {
                 name = try container.decode(String.self, forKey: .name)
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

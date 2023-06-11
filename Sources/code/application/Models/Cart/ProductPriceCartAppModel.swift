@@ -9,9 +9,9 @@ public extension ApplicationClient.Cart {
     class ProductPrice: Codable {
         public var selling: Double?
 
-        public var addOn: Double?
-
         public var marked: Double?
+
+        public var addOn: Double?
 
         public var effective: Double?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case selling
 
-            case addOn = "add_on"
-
             case marked
+
+            case addOn = "add_on"
 
             case effective
 
@@ -36,9 +36,9 @@ public extension ApplicationClient.Cart {
         public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
             self.selling = selling
 
-            self.addOn = addOn
-
             self.marked = marked
+
+            self.addOn = addOn
 
             self.effective = effective
 
@@ -59,7 +59,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                addOn = try container.decode(Double.self, forKey: .addOn)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                addOn = try container.decode(Double.self, forKey: .addOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,9 +104,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(selling, forKey: .selling)
 
-            try? container.encodeIfPresent(addOn, forKey: .addOn)
-
             try? container.encodeIfPresent(marked, forKey: .marked)
+
+            try? container.encodeIfPresent(addOn, forKey: .addOn)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 

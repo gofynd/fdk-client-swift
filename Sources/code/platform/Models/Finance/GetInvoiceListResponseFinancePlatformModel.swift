@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class GetInvoiceListResponse: Codable {
         public var success: Bool?
 
-        public var paymentStatusList: [[String: Any]]?
-
         public var invoiceTypeList: [[String: Any]]?
+
+        public var paymentStatusList: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case paymentStatusList = "payment_status_list"
-
             case invoiceTypeList = "invoice_type_list"
+
+            case paymentStatusList = "payment_status_list"
         }
 
         public init(invoiceTypeList: [[String: Any]]? = nil, paymentStatusList: [[String: Any]]? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.paymentStatusList = paymentStatusList
-
             self.invoiceTypeList = invoiceTypeList
+
+            self.paymentStatusList = paymentStatusList
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                paymentStatusList = try container.decode([[String: Any]].self, forKey: .paymentStatusList)
+                invoiceTypeList = try container.decode([[String: Any]].self, forKey: .invoiceTypeList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                invoiceTypeList = try container.decode([[String: Any]].self, forKey: .invoiceTypeList)
+                paymentStatusList = try container.decode([[String: Any]].self, forKey: .paymentStatusList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(paymentStatusList, forKey: .paymentStatusList)
-
             try? container.encodeIfPresent(invoiceTypeList, forKey: .invoiceTypeList)
+
+            try? container.encodeIfPresent(paymentStatusList, forKey: .paymentStatusList)
         }
     }
 }

@@ -7,9 +7,9 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class UserInfo: Codable {
-        public var email: String?
-
         public var gender: String?
+
+        public var email: String?
 
         public var mobile: String?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Order {
         public var firstName: String?
 
         public enum CodingKeys: String, CodingKey {
-            case email
-
             case gender
+
+            case email
 
             case mobile
 
@@ -34,9 +34,9 @@ public extension ApplicationClient.Order {
         }
 
         public init(email: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil, name: String? = nil) {
-            self.email = email
-
             self.gender = gender
+
+            self.email = email
 
             self.mobile = mobile
 
@@ -51,7 +51,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -59,7 +59,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                gender = try container.decode(String.self, forKey: .gender)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,9 +102,9 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
             try? container.encodeIfPresent(gender, forKey: .gender)
+
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 

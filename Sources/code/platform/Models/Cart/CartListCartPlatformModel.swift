@@ -13,26 +13,26 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var itemCounts: Int?
 
-        public var pickUpCustomerDetails: [String: Any]?
-
-        public var createdOn: String?
-
         public var userId: String?
 
         public var cartId: String?
+
+        public var pickUpCustomerDetails: [String: Any]?
+
+        public var createdOn: String?
 
         public enum CodingKeys: String, CodingKey {
             case cartValue = "cart_value"
 
             case itemCounts = "item_counts"
 
-            case pickUpCustomerDetails = "pick_up_customer_details"
-
-            case createdOn = "created_on"
-
             case userId = "user_id"
 
             case cartId = "cart_id"
+
+            case pickUpCustomerDetails = "pick_up_customer_details"
+
+            case createdOn = "created_on"
         }
 
         public init(cartId: String? = nil, cartValue: Double? = nil, createdOn: String? = nil, itemCounts: Int? = nil, pickUpCustomerDetails: [String: Any]? = nil, userId: String? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.itemCounts = itemCounts
 
-            self.pickUpCustomerDetails = pickUpCustomerDetails
-
-            self.createdOn = createdOn
-
             self.userId = userId
 
             self.cartId = cartId
+
+            self.pickUpCustomerDetails = pickUpCustomerDetails
+
+            self.createdOn = createdOn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,22 +69,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -99,6 +83,22 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -108,13 +108,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(itemCounts, forKey: .itemCounts)
 
-            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
-
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
             try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
+
+            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
         }
     }
 }

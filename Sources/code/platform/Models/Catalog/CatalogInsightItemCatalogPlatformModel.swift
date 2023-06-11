@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class CatalogInsightItem: Codable {
         public var sellableCount: Int?
 
-        public var count: Int?
-
         public var outOfStockCount: Int?
+
+        public var count: Int?
 
         public enum CodingKeys: String, CodingKey {
             case sellableCount = "sellable_count"
 
-            case count
-
             case outOfStockCount = "out_of_stock_count"
+
+            case count
         }
 
         public init(count: Int? = nil, outOfStockCount: Int? = nil, sellableCount: Int? = nil) {
             self.sellableCount = sellableCount
 
-            self.count = count
-
             self.outOfStockCount = outOfStockCount
+
+            self.count = count
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                outOfStockCount = try container.decode(Int.self, forKey: .outOfStockCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                outOfStockCount = try container.decode(Int.self, forKey: .outOfStockCount)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(sellableCount, forKey: .sellableCount)
 
-            try? container.encodeIfPresent(count, forKey: .count)
-
             try? container.encodeIfPresent(outOfStockCount, forKey: .outOfStockCount)
+
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CatalogInsightItem: Codable {
         public var sellableCount: Int?
 
-        public var count: Int?
-
         public var outOfStockCount: Int?
+
+        public var count: Int?
 
         public enum CodingKeys: String, CodingKey {
             case sellableCount = "sellable_count"
 
-            case count
-
             case outOfStockCount = "out_of_stock_count"
+
+            case count
         }
 
         public init(count: Int? = nil, outOfStockCount: Int? = nil, sellableCount: Int? = nil) {
             self.sellableCount = sellableCount
 
-            self.count = count
-
             self.outOfStockCount = outOfStockCount
+
+            self.count = count
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                outOfStockCount = try container.decode(Int.self, forKey: .outOfStockCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                outOfStockCount = try container.decode(Int.self, forKey: .outOfStockCount)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(sellableCount, forKey: .sellableCount)
 
-            try? container.encodeIfPresent(count, forKey: .count)
-
             try? container.encodeIfPresent(outOfStockCount, forKey: .outOfStockCount)
+
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 }
