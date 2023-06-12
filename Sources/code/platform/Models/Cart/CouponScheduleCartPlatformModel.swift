@@ -11,9 +11,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class CouponSchedule: Codable {
         public var nextSchedule: [[String: Any]]?
 
-        public var start: String?
-
         public var cron: String?
+
+        public var start: String?
 
         public var duration: Int?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case nextSchedule = "next_schedule"
 
-            case start
-
             case cron
+
+            case start
 
             case duration
 
@@ -34,9 +34,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, start: String? = nil) {
             self.nextSchedule = nextSchedule
 
-            self.start = start
-
             self.cron = cron
+
+            self.start = start
 
             self.duration = duration
 
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                cron = try container.decode(String.self, forKey: .cron)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                cron = try container.decode(String.self, forKey: .cron)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
-            try? container.encodeIfPresent(start, forKey: .start)
-
             try? container.encode(cron, forKey: .cron)
+
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encode(duration, forKey: .duration)
 

@@ -9,11 +9,11 @@ public extension PlatformClient.Order {
      */
 
     class BulkActionDetailsDataField: Codable {
+        public var companyId: String?
+
         public var batchId: String?
 
         public var successfulShipmentIds: [String]?
-
-        public var companyId: String?
 
         public var successfulShipmentsCount: Int?
 
@@ -24,11 +24,11 @@ public extension PlatformClient.Order {
         public var totalShipmentsCount: Int?
 
         public enum CodingKeys: String, CodingKey {
+            case companyId = "company_id"
+
             case batchId = "batch_id"
 
             case successfulShipmentIds = "successful_shipment_ids"
-
-            case companyId = "company_id"
 
             case successfulShipmentsCount = "successful_shipments_count"
 
@@ -40,11 +40,11 @@ public extension PlatformClient.Order {
         }
 
         public init(batchId: String? = nil, companyId: String? = nil, failedShipmentsCount: Int? = nil, processingShipmentsCount: Int? = nil, successfulShipmentsCount: Int? = nil, successfulShipmentIds: [String]? = nil, totalShipmentsCount: Int? = nil) {
+            self.companyId = companyId
+
             self.batchId = batchId
 
             self.successfulShipmentIds = successfulShipmentIds
-
-            self.companyId = companyId
 
             self.successfulShipmentsCount = successfulShipmentsCount
 
@@ -59,6 +59,14 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                companyId = try container.decode(String.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 batchId = try container.decode(String.self, forKey: .batchId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -68,14 +76,6 @@ public extension PlatformClient.Order {
 
             do {
                 successfulShipmentIds = try container.decode([String].self, forKey: .successfulShipmentIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(String.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,11 +118,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
             try? container.encodeIfPresent(successfulShipmentIds, forKey: .successfulShipmentIds)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(successfulShipmentsCount, forKey: .successfulShipmentsCount)
 
@@ -142,11 +142,11 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class BulkActionDetailsDataField: Codable {
+        public var companyId: String?
+
         public var batchId: String?
 
         public var successfulShipmentIds: [String]?
-
-        public var companyId: String?
 
         public var successfulShipmentsCount: Int?
 
@@ -157,11 +157,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public var totalShipmentsCount: Int?
 
         public enum CodingKeys: String, CodingKey {
+            case companyId = "company_id"
+
             case batchId = "batch_id"
 
             case successfulShipmentIds = "successful_shipment_ids"
-
-            case companyId = "company_id"
 
             case successfulShipmentsCount = "successful_shipments_count"
 
@@ -173,11 +173,11 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(batchId: String? = nil, companyId: String? = nil, failedShipmentsCount: Int? = nil, processingShipmentsCount: Int? = nil, successfulShipmentsCount: Int? = nil, successfulShipmentIds: [String]? = nil, totalShipmentsCount: Int? = nil) {
+            self.companyId = companyId
+
             self.batchId = batchId
 
             self.successfulShipmentIds = successfulShipmentIds
-
-            self.companyId = companyId
 
             self.successfulShipmentsCount = successfulShipmentsCount
 
@@ -192,6 +192,14 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                companyId = try container.decode(String.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 batchId = try container.decode(String.self, forKey: .batchId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -201,14 +209,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 successfulShipmentIds = try container.decode([String].self, forKey: .successfulShipmentIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyId = try container.decode(String.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,11 +251,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
             try? container.encodeIfPresent(successfulShipmentIds, forKey: .successfulShipmentIds)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(successfulShipmentsCount, forKey: .successfulShipmentsCount)
 

@@ -9,80 +9,72 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class ActivePromosResponse: Codable {
-        public var type: String?
-
         public var createdOn: String?
 
-        public var description: String?
+        public var type: String?
 
         public var title: String?
 
-        public var example: String?
+        public var subtitle: String?
 
         public var isHidden: Bool?
 
-        public var entitySlug: String?
-
         public var modifiedOn: String?
 
-        public var subtitle: String?
+        public var entitySlug: String?
+
+        public var description: String?
 
         public var entityType: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case type
+        public var example: String?
 
+        public enum CodingKeys: String, CodingKey {
             case createdOn = "created_on"
 
-            case description
+            case type
 
             case title
 
-            case example
+            case subtitle
 
             case isHidden = "is_hidden"
 
-            case entitySlug = "entity_slug"
-
             case modifiedOn = "modified_on"
 
-            case subtitle
+            case entitySlug = "entity_slug"
+
+            case description
 
             case entityType = "entity_type"
+
+            case example
         }
 
         public init(createdOn: String? = nil, description: String? = nil, entitySlug: String? = nil, entityType: String? = nil, example: String? = nil, isHidden: Bool? = nil, modifiedOn: String? = nil, subtitle: String? = nil, title: String? = nil, type: String? = nil) {
-            self.type = type
-
             self.createdOn = createdOn
 
-            self.description = description
+            self.type = type
 
             self.title = title
 
-            self.example = example
+            self.subtitle = subtitle
 
             self.isHidden = isHidden
 
-            self.entitySlug = entitySlug
-
             self.modifiedOn = modifiedOn
 
-            self.subtitle = subtitle
+            self.entitySlug = entitySlug
+
+            self.description = description
 
             self.entityType = entityType
+
+            self.example = example
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 createdOn = try container.decode(String.self, forKey: .createdOn)
@@ -93,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,7 +101,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                example = try container.decode(String.self, forKey: .example)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,14 +117,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                entitySlug = try container.decode(String.self, forKey: .entitySlug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -141,7 +125,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                entitySlug = try container.decode(String.self, forKey: .entitySlug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -155,30 +147,38 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                example = try container.decode(String.self, forKey: .example)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encodeIfPresent(example, forKey: .example)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
 
             try? container.encodeIfPresent(isHidden, forKey: .isHidden)
 
-            try? container.encodeIfPresent(entitySlug, forKey: .entitySlug)
-
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(entitySlug, forKey: .entitySlug)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(entityType, forKey: .entityType)
+
+            try? container.encodeIfPresent(example, forKey: .example)
         }
     }
 }

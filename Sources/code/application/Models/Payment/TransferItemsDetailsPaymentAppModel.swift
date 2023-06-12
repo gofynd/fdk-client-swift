@@ -13,9 +13,9 @@ public extension ApplicationClient.Payment {
 
         public var id: Int
 
-        public var logoSmall: String
-
         public var name: String
+
+        public var logoSmall: String
 
         public enum CodingKeys: String, CodingKey {
             case logoLarge = "logo_large"
@@ -24,9 +24,9 @@ public extension ApplicationClient.Payment {
 
             case id
 
-            case logoSmall = "logo_small"
-
             case name
+
+            case logoSmall = "logo_small"
         }
 
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.Payment {
 
             self.id = id
 
-            self.logoSmall = logoSmall
-
             self.name = name
+
+            self.logoSmall = logoSmall
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,9 +56,9 @@ public extension ApplicationClient.Payment {
 
             id = try container.decode(Int.self, forKey: .id)
 
-            logoSmall = try container.decode(String.self, forKey: .logoSmall)
-
             name = try container.decode(String.self, forKey: .name)
+
+            logoSmall = try container.decode(String.self, forKey: .logoSmall)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,9 +70,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
         }
     }
 }
