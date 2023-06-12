@@ -23,7 +23,7 @@ Get all pages of a theme
 
 
 ```swift
-theme.getAllPages(themeId: themeId) { (response, error) in
+applicationClient.theme.getAllPages(themeId: themeId) { (response, error) in
     // Use response
 }
 ```
@@ -344,7 +344,7 @@ Get page of a theme
 
 
 ```swift
-theme.getPage(themeId: themeId, pageValue: pageValue) { (response, error) in
+applicationClient.theme.getPage(themeId: themeId, pageValue: pageValue) { (response, error) in
     // Use response
 }
 ```
@@ -768,7 +768,7 @@ Get the theme currently applied to an application
 
 
 ```swift
-theme.getAppliedTheme() { (response, error) in
+applicationClient.theme.getAppliedTheme() { (response, error) in
     // Use response
 }
 ```
@@ -2948,7 +2948,7 @@ Get a theme for a preview
 
 
 ```swift
-theme.getThemeForPreview(themeId: themeId) { (response, error) in
+applicationClient.theme.getThemeForPreview(themeId: themeId) { (response, error) in
     // Use response
 }
 ```

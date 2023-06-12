@@ -1,5 +1,6 @@
 import Foundation
-public extension ApplicationClient {
+
+public extension ApplicationClient.Content {
     enum PageType: String, Codable, CaseIterable {
         case aboutUs = "about-us"
         case addresses
@@ -22,8 +23,6 @@ public extension ApplicationClient {
         case page
         case policy
         case product
-        case productReviews = "product-reviews"
-        case addProductReview = "add-product-review"
         case productRequest = "product-request"
         case products
         case profile
@@ -136,10 +135,6 @@ public extension ApplicationClient {
                 return "/privacy-policy"
             case .product:
                 return "/product/:slug"
-            case .productReviews:
-                return "/product/:slug/reviews"
-            case .addProductReview:
-                return "/product/:slug/add-review"
             case .productRequest:
                 return "/product-request/"
             case .products:
@@ -235,10 +230,6 @@ public extension ApplicationClient {
                 return "Privacy Policy"
             case .product:
                 return "Product"
-            case .productReviews:
-                return "Product Reviews"
-            case .addProductReview:
-                return "Add Product review"
             case .productRequest:
                 return "Product Request"
             case .products:
@@ -334,10 +325,6 @@ public extension ApplicationClient {
                 return []
             case .product:
                 return [(name: "slug", required: true)]
-            case .productReviews:
-                return [(name: "slug", required: true)]
-            case .addProductReview:
-                return [(name: "slug", required: true)]
             case .productRequest:
                 return []
             case .products:
@@ -432,10 +419,6 @@ public extension ApplicationClient {
             case .policy:
                 return []
             case .product:
-                return []
-            case .productReviews:
-                return []
-            case .addProductReview:
                 return []
             case .productRequest:
                 return []

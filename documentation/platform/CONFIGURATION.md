@@ -11,6 +11,7 @@ Application configuration apis
 * [getPreviousVersions](#getpreviousversions)
 * [getAppFeatures](#getappfeatures)
 * [updateAppFeatures](#updateappfeatures)
+* [modifyAppFeatures](#modifyappfeatures)
 * [getAppBasicDetails](#getappbasicdetails)
 * [updateAppBasicDetails](#updateappbasicdetails)
 * [getAppContactInfo](#getappcontactinfo)
@@ -65,7 +66,7 @@ Get latest build config
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getBuildConfig(platformType: platformType) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getBuildConfig(platformType: platformType) { (response, error) in
     // Use response
 }
 ```
@@ -138,7 +139,7 @@ Update build config for next build
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.updateBuildConfig(platformType: platformType, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.updateBuildConfig(platformType: platformType, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -211,7 +212,7 @@ Get previous build versions
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getPreviousVersions(platformType: platformType) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getPreviousVersions(platformType: platformType) { (response, error) in
     // Use response
 }
 ```
@@ -281,7 +282,7 @@ Get features of application
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getAppFeatures() { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getAppFeatures() { (response, error) in
     // Use response
 }
 ```
@@ -427,7 +428,7 @@ Update features of application
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.updateAppFeatures(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.updateAppFeatures(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -558,6 +559,147 @@ Success
 ---
 
 
+#### modifyAppFeatures
+Update features of application
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").configuration.modifyAppFeatures(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | AppFeatureRequest | yes | Request body |
+
+
+Update features of application
+
+*Returned Response:*
+
+
+
+
+[AppFeature](#AppFeature)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "product_detail": {
+    "similar": [
+      "basic",
+      "visual",
+      "brand",
+      "category",
+      "seller",
+      "price",
+      "specs"
+    ],
+    "seller_selection": true,
+    "update_product_meta": true,
+    "request_product": true
+  },
+  "landing_page": {
+    "launch_page": {
+      "page_type": "home",
+      "params": null,
+      "query": null
+    },
+    "continue_as_guest": true,
+    "login_btn_text": "Click here to sign-in",
+    "show_domain_textbox": true,
+    "show_register_btn": true
+  },
+  "registration_page": {
+    "ask_store_address": false
+  },
+  "home_page": {
+    "order_processing": true
+  },
+  "common": {
+    "international_shipping": {
+      "enabled": true
+    },
+    "communication_optin_dialog": {
+      "visibility": true
+    },
+    "deployment_store_selection": {
+      "enabled": true,
+      "type": "hard"
+    },
+    "listing_price": {
+      "value": "min",
+      "sort": "min"
+    },
+    "currency": {
+      "value": [
+        "INR"
+      ],
+      "type": "explicit",
+      "default_currency": "INR"
+    },
+    "revenue_engine": {
+      "enabled": false
+    },
+    "feedback": {
+      "enabled": true
+    },
+    "compare_products": {
+      "enabled": true
+    }
+  },
+  "cart": {
+    "gst_input": true,
+    "staff_selection": true,
+    "placing_for_customer": true,
+    "google_map": true,
+    "revenue_engine_coupon": false
+  },
+  "qr": {
+    "application": true,
+    "products": true,
+    "collections": true
+  },
+  "pcr": {
+    "staff_selection": true
+  },
+  "order": {
+    "buy_again": true
+  },
+  "_id": "5e57643c986e4119c973df7d",
+  "app": "000000000000000000000004",
+  "created_at": "2020-02-27T06:39:56.088Z",
+  "modified_at": "2021-03-09T15:40:29.188Z",
+  "__v": 1
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getAppBasicDetails
 Get basic application details
 
@@ -565,7 +707,7 @@ Get basic application details
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getAppBasicDetails() { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getAppBasicDetails() { (response, error) in
     // Use response
 }
 ```
@@ -655,7 +797,7 @@ Add or update application's basic details
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.updateAppBasicDetails(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.updateAppBasicDetails(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -747,7 +889,7 @@ Get application information
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getAppContactInfo() { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getAppContactInfo() { (response, error) in
     // Use response
 }
 ```
@@ -912,7 +1054,7 @@ Get application information
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.updateAppContactInfo(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.updateAppContactInfo(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1074,7 +1216,7 @@ Get social tokens
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getAppApiTokens() { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getAppApiTokens() { (response, error) in
     // Use response
 }
 ```
@@ -1202,7 +1344,7 @@ Add social tokens
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.updateAppApiTokens(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.updateAppApiTokens(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1334,7 +1476,7 @@ Application inventory enabled companies
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getAppCompanies(uid: uid, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getAppCompanies(uid: uid, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -1416,7 +1558,7 @@ Application inventory enabled stores
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getAppStores(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getAppStores(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -1510,7 +1652,7 @@ Get application configuration
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getInventoryConfig() { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getInventoryConfig() { (response, error) in
     // Use response
 }
 ```
@@ -1710,6 +1852,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -1745,7 +1898,7 @@ Update application configuration
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.updateInventoryConfig(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.updateInventoryConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1949,6 +2102,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -1984,7 +2148,7 @@ Partially update application configuration
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryConfig(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.partiallyUpdateInventoryConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2188,6 +2352,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -2223,7 +2398,7 @@ Get application enabled currency list
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig() { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getAppCurrencyConfig() { (response, error) in
     // Use response
 }
 ```
@@ -2289,7 +2464,7 @@ Add initial application supported currency
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.updateAppCurrencyConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2359,7 +2534,7 @@ Get currencies enabled in the application
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency() { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getAppSupportedCurrency() { (response, error) in
     // Use response
 }
 ```
@@ -2427,7 +2602,7 @@ Get ordering store by filter
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter(pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoresByFilter(pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2567,7 +2742,7 @@ Add/Update ordering store config
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.updateOrderingStoreConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2644,7 +2819,7 @@ Get deployment stores
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getStaffOrderingStores(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getStaffOrderingStores(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -2701,7 +2876,7 @@ Get attached domain list
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getDomains() { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getDomains() { (response, error) in
     // Use response
 }
 ```
@@ -2778,7 +2953,7 @@ Add new domain to application
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.addDomain(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.addDomain(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2840,7 +3015,7 @@ Remove attached domain
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.removeDomainById(id: id) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.removeDomainById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -2897,7 +3072,7 @@ Change domain type
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.changeDomainType(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.changeDomainType(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2975,7 +3150,7 @@ Get domain connected status.
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getDomainStatus(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getDomainStatus(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3045,7 +3220,7 @@ Create application
 
 
 ```swift
-client.configuration.createApplication(body: body) { (response, error) in
+platformClient.configuration.createApplication(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3099,7 +3274,7 @@ Get list of application under company
 
 
 ```swift
-client.configuration.getApplications(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
+platformClient.configuration.getApplications(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -3156,7 +3331,7 @@ Get application data from id
 
 
 ```swift
-client.application("<APPLICATION_ID>").configuration.getApplicationById() { (response, error) in
+platformClient.application("<APPLICATION_ID>").configuration.getApplicationById() { (response, error) in
     // Use response
 }
 ```
@@ -3206,7 +3381,7 @@ Get all currencies
 
 
 ```swift
-client.configuration.getCurrencies() { (response, error) in
+platformClient.configuration.getCurrencies() { (response, error) in
     // Use response
 }
 ```
@@ -3269,7 +3444,7 @@ Check domain availibility before linking to application
 
 
 ```swift
-client.configuration.getDomainAvailibility(body: body) { (response, error) in
+platformClient.configuration.getDomainAvailibility(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3367,7 +3542,7 @@ Get integration data
 
 
 ```swift
-client.configuration.getIntegrationById(id: id) { (response, error) in
+platformClient.configuration.getIntegrationById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3509,7 +3684,7 @@ Get all available integration opt-ins
 
 
 ```swift
-client.configuration.getAvailableOptIns(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+platformClient.configuration.getAvailableOptIns(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -3672,7 +3847,7 @@ Get company/store level integration opt-ins
 
 
 ```swift
-client.configuration.getSelectedOptIns(level: level, uid: uid, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+platformClient.configuration.getSelectedOptIns(level: level, uid: uid, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -3837,7 +4012,7 @@ Get integration level config
 
 
 ```swift
-client.configuration.getIntegrationLevelConfig(id: id, level: level, opted: opted, checkPermission: checkPermission) { (response, error) in
+platformClient.configuration.getIntegrationLevelConfig(id: id, level: level, opted: opted, checkPermission: checkPermission) { (response, error) in
     // Use response
 }
 ```
@@ -3916,7 +4091,7 @@ Update a store level opt-in for integration
 
 
 ```swift
-client.configuration.updateLevelIntegration(id: id, level: level, body: body) { (response, error) in
+platformClient.configuration.updateLevelIntegration(id: id, level: level, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3989,7 +4164,7 @@ Get level data for integration
 
 
 ```swift
-client.configuration.getIntegrationByLevelId(id: id, level: level, uid: uid) { (response, error) in
+platformClient.configuration.getIntegrationByLevelId(id: id, level: level, uid: uid) { (response, error) in
     // Use response
 }
 ```
@@ -4063,7 +4238,7 @@ Update a store level opt-in for integration
 
 
 ```swift
-client.configuration.updateLevelUidIntegration(id: id, level: level, uid: uid, body: body) { (response, error) in
+platformClient.configuration.updateLevelUidIntegration(id: id, level: level, uid: uid, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4137,7 +4312,7 @@ Check store has active integration
 
 
 ```swift
-client.configuration.getLevelActiveIntegrations(id: id, level: level, uid: uid, permission: permission) { (response, error) in
+platformClient.configuration.getLevelActiveIntegrations(id: id, level: level, uid: uid, permission: permission) { (response, error) in
     // Use response
 }
 ```
@@ -4212,7 +4387,7 @@ Get brands by company
 
 
 ```swift
-client.configuration.getBrandsByCompany(q: q) { (response, error) in
+platformClient.configuration.getBrandsByCompany(q: q) { (response, error) in
     // Use response
 }
 ```
@@ -4284,7 +4459,7 @@ Get company by brand uids
 
 
 ```swift
-client.configuration.getCompanyByBrands(pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+platformClient.configuration.getCompanyByBrands(pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4362,7 +4537,7 @@ Get stores by brand uids
 
 
 ```swift
-client.configuration.getStoreByBrands(pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+platformClient.configuration.getStoreByBrands(pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4479,7 +4654,7 @@ Get other seller applications
 
 
 ```swift
-client.configuration.getOtherSellerApplications(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+platformClient.configuration.getOtherSellerApplications(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -4578,7 +4753,7 @@ Get other seller applications
 
 
 ```swift
-client.configuration.getOtherSellerApplicationById(id: id) { (response, error) in
+platformClient.configuration.getOtherSellerApplicationById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -4680,7 +4855,7 @@ Opt out company or store from other seller application
 
 
 ```swift
-client.configuration.optOutFromApplication(id: id, body: body) { (response, error) in
+platformClient.configuration.optOutFromApplication(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4749,6 +4924,7 @@ Success
  | logistics | [AppLogisticsConfig](#AppLogisticsConfig)? |  yes  |  |
  | business | String? |  yes  |  |
  | commsEnabled | Bool? |  yes  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
  | platforms | [String]? |  yes  |  |
  | id | String? |  yes  |  |
  | loyaltyPoints | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
@@ -5074,6 +5250,7 @@ Success
  | payment | [AppPaymentConfig](#AppPaymentConfig)? |  yes  |  |
  | loyaltyPoints | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
  | commsEnabled | Bool? |  yes  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
 
 ---
 
@@ -5177,6 +5354,30 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brands | [CompanyBrandInfo](#CompanyBrandInfo)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConfig](#CommunicationConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [CommsConfig](#CommsConfig)? |  yes  |  |
+ | sms | [CommsConfig](#CommsConfig)? |  yes  |  |
+ | voice | [CommsConfig](#CommsConfig)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CommsConfig](#CommsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  | Check current communication channel is enabled |
 
 ---
 
