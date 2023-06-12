@@ -13,22 +13,22 @@ public extension PlatformClient.Payment {
 
         public var merchantSalt: String
 
-        public var secret: String
-
         public var key: String
 
         public var configType: String
+
+        public var secret: String
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
             case merchantSalt = "merchant_salt"
 
-            case secret
-
             case key
 
             case configType = "config_type"
+
+            case secret
         }
 
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Payment {
 
             self.merchantSalt = merchantSalt
 
-            self.secret = secret
-
             self.key = key
 
             self.configType = configType
+
+            self.secret = secret
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,11 +56,11 @@ public extension PlatformClient.Payment {
 
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
 
-            secret = try container.decode(String.self, forKey: .secret)
-
             key = try container.decode(String.self, forKey: .key)
 
             configType = try container.decode(String.self, forKey: .configType)
+
+            secret = try container.decode(String.self, forKey: .secret)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,11 +70,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
 
-            try? container.encodeIfPresent(secret, forKey: .secret)
-
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(configType, forKey: .configType)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
         }
     }
 }
@@ -90,22 +90,22 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var merchantSalt: String
 
-        public var secret: String
-
         public var key: String
 
         public var configType: String
+
+        public var secret: String
 
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
             case merchantSalt = "merchant_salt"
 
-            case secret
-
             case key
 
             case configType = "config_type"
+
+            case secret
         }
 
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
@@ -113,11 +113,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.merchantSalt = merchantSalt
 
-            self.secret = secret
-
             self.key = key
 
             self.configType = configType
+
+            self.secret = secret
         }
 
         required public init(from decoder: Decoder) throws {
@@ -133,11 +133,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             merchantSalt = try container.decode(String.self, forKey: .merchantSalt)
 
-            secret = try container.decode(String.self, forKey: .secret)
-
             key = try container.decode(String.self, forKey: .key)
 
             configType = try container.decode(String.self, forKey: .configType)
+
+            secret = try container.decode(String.self, forKey: .secret)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -147,11 +147,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(merchantSalt, forKey: .merchantSalt)
 
-            try? container.encodeIfPresent(secret, forKey: .secret)
-
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(configType, forKey: .configType)
+
+            try? container.encodeIfPresent(secret, forKey: .secret)
         }
     }
 }

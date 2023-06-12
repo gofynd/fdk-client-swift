@@ -11,26 +11,26 @@ public extension PlatformClient.Order {
     class LineItem: Codable {
         public var externalLineId: String?
 
-        public var charges: [Charge]?
-
-        public var customMessasge: String?
-
         public var sellerIdentifier: String
 
         public var meta: [String: Any]?
+
+        public var charges: [Charge]?
+
+        public var customMessasge: String?
 
         public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case externalLineId = "external_line_id"
 
-            case charges
-
-            case customMessasge = "custom_messasge"
-
             case sellerIdentifier = "seller_identifier"
 
             case meta
+
+            case charges
+
+            case customMessasge = "custom_messasge"
 
             case quantity
         }
@@ -38,13 +38,13 @@ public extension PlatformClient.Order {
         public init(charges: [Charge]? = nil, customMessasge: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
             self.externalLineId = externalLineId
 
-            self.charges = charges
-
-            self.customMessasge = customMessasge
-
             self.sellerIdentifier = sellerIdentifier
 
             self.meta = meta
+
+            self.charges = charges
+
+            self.customMessasge = customMessasge
 
             self.quantity = quantity
         }
@@ -54,6 +54,16 @@ public extension PlatformClient.Order {
 
             do {
                 externalLineId = try container.decode(String.self, forKey: .externalLineId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,16 +86,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
 
@@ -100,13 +100,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(externalLineId, forKey: .externalLineId)
 
-            try? container.encodeIfPresent(charges, forKey: .charges)
-
-            try? container.encodeIfPresent(customMessasge, forKey: .customMessasge)
-
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(charges, forKey: .charges)
+
+            try? container.encodeIfPresent(customMessasge, forKey: .customMessasge)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
@@ -122,26 +122,26 @@ public extension PlatformClient.ApplicationClient.Order {
     class LineItem: Codable {
         public var externalLineId: String?
 
-        public var charges: [Charge]?
-
-        public var customMessasge: String?
-
         public var sellerIdentifier: String
 
         public var meta: [String: Any]?
+
+        public var charges: [Charge]?
+
+        public var customMessasge: String?
 
         public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case externalLineId = "external_line_id"
 
-            case charges
-
-            case customMessasge = "custom_messasge"
-
             case sellerIdentifier = "seller_identifier"
 
             case meta
+
+            case charges
+
+            case customMessasge = "custom_messasge"
 
             case quantity
         }
@@ -149,13 +149,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(charges: [Charge]? = nil, customMessasge: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
             self.externalLineId = externalLineId
 
-            self.charges = charges
-
-            self.customMessasge = customMessasge
-
             self.sellerIdentifier = sellerIdentifier
 
             self.meta = meta
+
+            self.charges = charges
+
+            self.customMessasge = customMessasge
 
             self.quantity = quantity
         }
@@ -165,6 +165,16 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 externalLineId = try container.decode(String.self, forKey: .externalLineId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,16 +197,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
 
@@ -211,13 +211,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(externalLineId, forKey: .externalLineId)
 
-            try? container.encodeIfPresent(charges, forKey: .charges)
-
-            try? container.encodeIfPresent(customMessasge, forKey: .customMessasge)
-
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(charges, forKey: .charges)
+
+            try? container.encodeIfPresent(customMessasge, forKey: .customMessasge)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
         }

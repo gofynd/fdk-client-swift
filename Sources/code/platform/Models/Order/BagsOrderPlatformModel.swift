@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var affiliateBagId: String?
 
-        public var affiliateOrderId: String?
-
         public var bagId: Int?
+
+        public var affiliateOrderId: String?
 
         public enum CodingKeys: String, CodingKey {
             case isLocked = "is_locked"
 
             case affiliateBagId = "affiliate_bag_id"
 
-            case affiliateOrderId = "affiliate_order_id"
-
             case bagId = "bag_id"
+
+            case affiliateOrderId = "affiliate_order_id"
         }
 
         public init(affiliateBagId: String? = nil, affiliateOrderId: String? = nil, bagId: Int? = nil, isLocked: Bool? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.affiliateBagId = affiliateBagId
 
-            self.affiliateOrderId = affiliateOrderId
-
             self.bagId = bagId
+
+            self.affiliateOrderId = affiliateOrderId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                bagId = try container.decode(Int.self, forKey: .bagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                bagId = try container.decode(Int.self, forKey: .bagId)
+                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
-
             try? container.encodeIfPresent(bagId, forKey: .bagId)
+
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var affiliateBagId: String?
 
-        public var affiliateOrderId: String?
-
         public var bagId: Int?
+
+        public var affiliateOrderId: String?
 
         public enum CodingKeys: String, CodingKey {
             case isLocked = "is_locked"
 
             case affiliateBagId = "affiliate_bag_id"
 
-            case affiliateOrderId = "affiliate_order_id"
-
             case bagId = "bag_id"
+
+            case affiliateOrderId = "affiliate_order_id"
         }
 
         public init(affiliateBagId: String? = nil, affiliateOrderId: String? = nil, bagId: Int? = nil, isLocked: Bool? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.affiliateBagId = affiliateBagId
 
-            self.affiliateOrderId = affiliateOrderId
-
             self.bagId = bagId
+
+            self.affiliateOrderId = affiliateOrderId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
+                bagId = try container.decode(Int.self, forKey: .bagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                bagId = try container.decode(Int.self, forKey: .bagId)
+                affiliateOrderId = try container.decode(String.self, forKey: .affiliateOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
-            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
-
             try? container.encodeIfPresent(bagId, forKey: .bagId)
+
+            try? container.encodeIfPresent(affiliateOrderId, forKey: .affiliateOrderId)
         }
     }
 }
