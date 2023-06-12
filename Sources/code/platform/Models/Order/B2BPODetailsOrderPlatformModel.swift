@@ -11,26 +11,26 @@ public extension PlatformClient.Order {
     class B2BPODetails: Codable {
         public var poLineAmount: Double?
 
-        public var itemBasePrice: Double?
+        public var partialCanRet: Bool?
 
         public var totalGstPercentage: Double?
 
-        public var poTaxAmount: Double?
+        public var itemBasePrice: Double?
 
-        public var partialCanRet: Bool?
+        public var poTaxAmount: Double?
 
         public var dockerNumber: String?
 
         public enum CodingKeys: String, CodingKey {
             case poLineAmount = "po_line_amount"
 
-            case itemBasePrice = "item_base_price"
+            case partialCanRet = "partial_can_ret"
 
             case totalGstPercentage = "total_gst_percentage"
 
-            case poTaxAmount = "po_tax_amount"
+            case itemBasePrice = "item_base_price"
 
-            case partialCanRet = "partial_can_ret"
+            case poTaxAmount = "po_tax_amount"
 
             case dockerNumber = "docker_number"
         }
@@ -38,13 +38,13 @@ public extension PlatformClient.Order {
         public init(dockerNumber: String? = nil, itemBasePrice: Double? = nil, partialCanRet: Bool? = nil, poLineAmount: Double? = nil, poTaxAmount: Double? = nil, totalGstPercentage: Double? = nil) {
             self.poLineAmount = poLineAmount
 
-            self.itemBasePrice = itemBasePrice
+            self.partialCanRet = partialCanRet
 
             self.totalGstPercentage = totalGstPercentage
 
-            self.poTaxAmount = poTaxAmount
+            self.itemBasePrice = itemBasePrice
 
-            self.partialCanRet = partialCanRet
+            self.poTaxAmount = poTaxAmount
 
             self.dockerNumber = dockerNumber
         }
@@ -61,7 +61,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                itemBasePrice = try container.decode(Double.self, forKey: .itemBasePrice)
+                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
+                itemBasePrice = try container.decode(Double.self, forKey: .itemBasePrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
+                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,13 +106,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(poLineAmount, forKey: .poLineAmount)
 
-            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
+            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
 
             try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
 
-            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
+            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
 
-            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
 
             try? container.encodeIfPresent(dockerNumber, forKey: .dockerNumber)
         }
@@ -128,26 +128,26 @@ public extension PlatformClient.ApplicationClient.Order {
     class B2BPODetails: Codable {
         public var poLineAmount: Double?
 
-        public var itemBasePrice: Double?
+        public var partialCanRet: Bool?
 
         public var totalGstPercentage: Double?
 
-        public var poTaxAmount: Double?
+        public var itemBasePrice: Double?
 
-        public var partialCanRet: Bool?
+        public var poTaxAmount: Double?
 
         public var dockerNumber: String?
 
         public enum CodingKeys: String, CodingKey {
             case poLineAmount = "po_line_amount"
 
-            case itemBasePrice = "item_base_price"
+            case partialCanRet = "partial_can_ret"
 
             case totalGstPercentage = "total_gst_percentage"
 
-            case poTaxAmount = "po_tax_amount"
+            case itemBasePrice = "item_base_price"
 
-            case partialCanRet = "partial_can_ret"
+            case poTaxAmount = "po_tax_amount"
 
             case dockerNumber = "docker_number"
         }
@@ -155,13 +155,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(dockerNumber: String? = nil, itemBasePrice: Double? = nil, partialCanRet: Bool? = nil, poLineAmount: Double? = nil, poTaxAmount: Double? = nil, totalGstPercentage: Double? = nil) {
             self.poLineAmount = poLineAmount
 
-            self.itemBasePrice = itemBasePrice
+            self.partialCanRet = partialCanRet
 
             self.totalGstPercentage = totalGstPercentage
 
-            self.poTaxAmount = poTaxAmount
+            self.itemBasePrice = itemBasePrice
 
-            self.partialCanRet = partialCanRet
+            self.poTaxAmount = poTaxAmount
 
             self.dockerNumber = dockerNumber
         }
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                itemBasePrice = try container.decode(Double.self, forKey: .itemBasePrice)
+                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
+                itemBasePrice = try container.decode(Double.self, forKey: .itemBasePrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
+                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,13 +223,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(poLineAmount, forKey: .poLineAmount)
 
-            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
+            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
 
             try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
 
-            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
+            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
 
-            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
 
             try? container.encodeIfPresent(dockerNumber, forKey: .dockerNumber)
         }

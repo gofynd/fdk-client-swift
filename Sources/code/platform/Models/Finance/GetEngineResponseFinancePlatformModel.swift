@@ -11,30 +11,30 @@ public extension PlatformClient.Finance {
     class GetEngineResponse: Codable {
         public var items: [[String: Any]]?
 
-        public var success: Bool?
+        public var itemCount: Int?
 
         public var page: Page?
 
-        public var itemCount: Int?
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case success
+            case itemCount = "item_count"
 
             case page
 
-            case itemCount = "item_count"
+            case success
         }
 
         public init(items: [[String: Any]]? = nil, itemCount: Int? = nil, page: Page? = nil, success: Bool? = nil) {
             self.items = items
 
-            self.success = success
+            self.itemCount = itemCount
 
             self.page = page
 
-            self.itemCount = itemCount
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                itemCount = try container.decode(Int.self, forKey: .itemCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                itemCount = try container.decode(Int.self, forKey: .itemCount)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

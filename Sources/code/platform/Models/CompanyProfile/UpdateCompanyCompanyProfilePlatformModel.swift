@@ -11,27 +11,25 @@ public extension PlatformClient.CompanyProfile {
     class UpdateCompany: Codable {
         public var companyType: String?
 
-        public var businessDetails: BusinessDetails?
-
-        public var businessInfo: String?
-
-        public var name: String?
+        public var notificationEmails: [String]?
 
         public var contactDetails: ContactDetails?
 
-        public var warnings: [String: Any]?
-
-        public var rejectReason: String?
-
-        public var franchiseEnabled: Bool?
-
-        public var documents: [Document]?
-
-        public var slug: String?
+        public var businessDetails: BusinessDetails?
 
         public var customJson: [String: Any]?
 
-        public var notificationEmails: [String]?
+        public var warnings: [String: Any]?
+
+        public var businessInfo: String?
+
+        public var rejectReason: String?
+
+        public var documents: [Document]?
+
+        public var franchiseEnabled: Bool?
+
+        public var slug: String?
 
         public var taxes: [CompanyTaxesSerializer1]?
 
@@ -39,68 +37,70 @@ public extension PlatformClient.CompanyProfile {
 
         public var addresses: [CreateUpdateAddressSerializer]?
 
+        public var name: String?
+
         public enum CodingKeys: String, CodingKey {
             case companyType = "company_type"
 
-            case businessDetails = "business_details"
-
-            case businessInfo = "business_info"
-
-            case name
+            case notificationEmails = "notification_emails"
 
             case contactDetails = "contact_details"
 
-            case warnings
-
-            case rejectReason = "reject_reason"
-
-            case franchiseEnabled = "franchise_enabled"
-
-            case documents
-
-            case slug
+            case businessDetails = "business_details"
 
             case customJson = "_custom_json"
 
-            case notificationEmails = "notification_emails"
+            case warnings
+
+            case businessInfo = "business_info"
+
+            case rejectReason = "reject_reason"
+
+            case documents
+
+            case franchiseEnabled = "franchise_enabled"
+
+            case slug
 
             case taxes
 
             case businessType = "business_type"
 
             case addresses
+
+            case name
         }
 
         public init(addresses: [CreateUpdateAddressSerializer]? = nil, businessDetails: BusinessDetails? = nil, businessInfo: String? = nil, businessType: String? = nil, companyType: String? = nil, contactDetails: ContactDetails? = nil, documents: [Document]? = nil, franchiseEnabled: Bool? = nil, name: String? = nil, notificationEmails: [String]? = nil, rejectReason: String? = nil, slug: String? = nil, taxes: [CompanyTaxesSerializer1]? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             self.companyType = companyType
 
-            self.businessDetails = businessDetails
-
-            self.businessInfo = businessInfo
-
-            self.name = name
+            self.notificationEmails = notificationEmails
 
             self.contactDetails = contactDetails
 
-            self.warnings = warnings
-
-            self.rejectReason = rejectReason
-
-            self.franchiseEnabled = franchiseEnabled
-
-            self.documents = documents
-
-            self.slug = slug
+            self.businessDetails = businessDetails
 
             self.customJson = customJson
 
-            self.notificationEmails = notificationEmails
+            self.warnings = warnings
+
+            self.businessInfo = businessInfo
+
+            self.rejectReason = rejectReason
+
+            self.documents = documents
+
+            self.franchiseEnabled = franchiseEnabled
+
+            self.slug = slug
 
             self.taxes = taxes
 
             self.businessType = businessType
 
             self.addresses = addresses
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -115,23 +115,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                businessDetails = try container.decode(BusinessDetails.self, forKey: .businessDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                businessInfo = try container.decode(String.self, forKey: .businessInfo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
+                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,39 +131,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                warnings = try container.decode([String: Any].self, forKey: .warnings)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                rejectReason = try container.decode(String.self, forKey: .rejectReason)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                franchiseEnabled = try container.decode(Bool.self, forKey: .franchiseEnabled)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                documents = try container.decode([Document].self, forKey: .documents)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
+                businessDetails = try container.decode(BusinessDetails.self, forKey: .businessDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,7 +147,47 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+                warnings = try container.decode([String: Any].self, forKey: .warnings)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                businessInfo = try container.decode(String.self, forKey: .businessInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                rejectReason = try container.decode(String.self, forKey: .rejectReason)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                documents = try container.decode([Document].self, forKey: .documents)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                franchiseEnabled = try container.decode(Bool.self, forKey: .franchiseEnabled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,6 +217,14 @@ public extension PlatformClient.CompanyProfile {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -232,33 +232,33 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(companyType, forKey: .companyType)
 
-            try? container.encodeIfPresent(businessDetails, forKey: .businessDetails)
-
-            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
-
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
             try? container.encodeIfPresent(contactDetails, forKey: .contactDetails)
 
-            try? container.encodeIfPresent(warnings, forKey: .warnings)
-
-            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
-
-            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
-
-            try? container.encodeIfPresent(documents, forKey: .documents)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(businessDetails, forKey: .businessDetails)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
+            try? container.encodeIfPresent(warnings, forKey: .warnings)
+
+            try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
+
+            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
+
+            try? container.encodeIfPresent(documents, forKey: .documents)
+
+            try? container.encodeIfPresent(franchiseEnabled, forKey: .franchiseEnabled)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(taxes, forKey: .taxes)
 
             try? container.encodeIfPresent(businessType, forKey: .businessType)
 
             try? container.encodeIfPresent(addresses, forKey: .addresses)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

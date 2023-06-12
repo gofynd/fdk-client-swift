@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class PlatformUserDetails: Codable {
         public var platformUserLastName: String?
 
-        public var platformUserEmployeeCode: String?
-
         public var platformUserId: String?
+
+        public var platformUserEmployeeCode: String?
 
         public var platformUserFirstName: String?
 
         public enum CodingKeys: String, CodingKey {
             case platformUserLastName = "platform_user_last_name"
 
-            case platformUserEmployeeCode = "platform_user_employee_code"
-
             case platformUserId = "platform_user_id"
+
+            case platformUserEmployeeCode = "platform_user_employee_code"
 
             case platformUserFirstName = "platform_user_first_name"
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(platformUserEmployeeCode: String? = nil, platformUserFirstName: String? = nil, platformUserId: String? = nil, platformUserLastName: String? = nil) {
             self.platformUserLastName = platformUserLastName
 
-            self.platformUserEmployeeCode = platformUserEmployeeCode
-
             self.platformUserId = platformUserId
+
+            self.platformUserEmployeeCode = platformUserEmployeeCode
 
             self.platformUserFirstName = platformUserFirstName
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                platformUserEmployeeCode = try container.decode(String.self, forKey: .platformUserEmployeeCode)
+                platformUserId = try container.decode(String.self, forKey: .platformUserId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                platformUserId = try container.decode(String.self, forKey: .platformUserId)
+                platformUserEmployeeCode = try container.decode(String.self, forKey: .platformUserEmployeeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(platformUserLastName, forKey: .platformUserLastName)
 
-            try? container.encode(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
-
             try? container.encode(platformUserId, forKey: .platformUserId)
+
+            try? container.encode(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
 
             try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class PlatformUserDetails: Codable {
         public var platformUserLastName: String?
 
-        public var platformUserEmployeeCode: String?
-
         public var platformUserId: String?
+
+        public var platformUserEmployeeCode: String?
 
         public var platformUserFirstName: String?
 
         public enum CodingKeys: String, CodingKey {
             case platformUserLastName = "platform_user_last_name"
 
-            case platformUserEmployeeCode = "platform_user_employee_code"
-
             case platformUserId = "platform_user_id"
+
+            case platformUserEmployeeCode = "platform_user_employee_code"
 
             case platformUserFirstName = "platform_user_first_name"
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(platformUserEmployeeCode: String? = nil, platformUserFirstName: String? = nil, platformUserId: String? = nil, platformUserLastName: String? = nil) {
             self.platformUserLastName = platformUserLastName
 
-            self.platformUserEmployeeCode = platformUserEmployeeCode
-
             self.platformUserId = platformUserId
+
+            self.platformUserEmployeeCode = platformUserEmployeeCode
 
             self.platformUserFirstName = platformUserFirstName
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                platformUserEmployeeCode = try container.decode(String.self, forKey: .platformUserEmployeeCode)
+                platformUserId = try container.decode(String.self, forKey: .platformUserId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                platformUserId = try container.decode(String.self, forKey: .platformUserId)
+                platformUserEmployeeCode = try container.decode(String.self, forKey: .platformUserEmployeeCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(platformUserLastName, forKey: .platformUserLastName)
 
-            try? container.encode(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
-
             try? container.encode(platformUserId, forKey: .platformUserId)
+
+            try? container.encode(platformUserEmployeeCode, forKey: .platformUserEmployeeCode)
 
             try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
         }
