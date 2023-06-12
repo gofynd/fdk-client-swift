@@ -13,26 +13,26 @@ public extension PlatformClient.Finance {
 
         public var endDate: String?
 
+        public var itemCount: Int?
+
         public var headers: [String]?
 
         public var startDate: String?
 
         public var items: [[String]]?
 
-        public var itemCount: Int?
-
         public enum CodingKeys: String, CodingKey {
             case page
 
             case endDate = "end_date"
+
+            case itemCount = "item_count"
 
             case headers
 
             case startDate = "start_date"
 
             case items
-
-            case itemCount = "item_count"
         }
 
         public init(endDate: String? = nil, headers: [String]? = nil, items: [[String]]? = nil, itemCount: Int? = nil, page: Page? = nil, startDate: String? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Finance {
 
             self.endDate = endDate
 
+            self.itemCount = itemCount
+
             self.headers = headers
 
             self.startDate = startDate
 
             self.items = items
-
-            self.itemCount = itemCount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,6 +62,14 @@ public extension PlatformClient.Finance {
 
             do {
                 endDate = try container.decode(String.self, forKey: .endDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemCount = try container.decode(Int.self, forKey: .itemCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,14 +99,6 @@ public extension PlatformClient.Finance {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                itemCount = try container.decode(Int.self, forKey: .itemCount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -108,13 +108,13 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(endDate, forKey: .endDate)
 
+            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
+
             try? container.encodeIfPresent(headers, forKey: .headers)
 
             try? container.encodeIfPresent(startDate, forKey: .startDate)
 
             try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
         }
     }
 }

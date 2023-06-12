@@ -9,18 +9,18 @@ public extension ApplicationClient.Catalog {
     class StoreDetail: Codable {
         public var name: String?
 
-        public var id: Int?
-
         public var city: String?
+
+        public var id: Int?
 
         public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case id
-
             case city
+
+            case id
 
             case code
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Catalog {
         public init(city: String? = nil, code: String? = nil, id: Int? = nil, name: String? = nil) {
             self.name = name
 
-            self.id = id
-
             self.city = city
+
+            self.id = id
 
             self.code = code
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                city = try container.decode(String.self, forKey: .city)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                city = try container.decode(String.self, forKey: .city)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(code, forKey: .code)
         }

@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class MetricsCount: Codable {
         public var options: [Options]?
 
+        public var key: String
+
         public var value: Int
 
         public var text: String
 
-        public var key: String
-
         public enum CodingKeys: String, CodingKey {
             case options
+
+            case key
 
             case value
 
             case text
-
-            case key
         }
 
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.options = options
 
+            self.key = key
+
             self.value = value
 
             self.text = text
-
-            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,11 +48,11 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            key = try container.decode(String.self, forKey: .key)
+
             value = try container.decode(Int.self, forKey: .value)
 
             text = try container.decode(String.self, forKey: .text)
-
-            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,11 +60,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(options, forKey: .options)
 
+            try? container.encodeIfPresent(key, forKey: .key)
+
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(text, forKey: .text)
-
-            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }
@@ -78,30 +78,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class MetricsCount: Codable {
         public var options: [Options]?
 
+        public var key: String
+
         public var value: Int
 
         public var text: String
 
-        public var key: String
-
         public enum CodingKeys: String, CodingKey {
             case options
+
+            case key
 
             case value
 
             case text
-
-            case key
         }
 
         public init(key: String, options: [Options]? = nil, text: String, value: Int) {
             self.options = options
 
+            self.key = key
+
             self.value = value
 
             self.text = text
-
-            self.key = key
         }
 
         required public init(from decoder: Decoder) throws {
@@ -115,11 +115,11 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            key = try container.decode(String.self, forKey: .key)
+
             value = try container.decode(Int.self, forKey: .value)
 
             text = try container.decode(String.self, forKey: .text)
-
-            key = try container.decode(String.self, forKey: .key)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(options, forKey: .options)
 
+            try? container.encodeIfPresent(key, forKey: .key)
+
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(text, forKey: .text)
-
-            try? container.encodeIfPresent(key, forKey: .key)
         }
     }
 }

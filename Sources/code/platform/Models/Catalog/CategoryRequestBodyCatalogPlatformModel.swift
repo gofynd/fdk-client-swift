@@ -13,21 +13,21 @@ public extension PlatformClient.Catalog {
 
         public var slug: String?
 
-        public var media: Media3?
-
-        public var departments: [Int]
-
-        public var synonyms: [String]?
+        public var priority: Int?
 
         public var isActive: Bool
 
-        public var tryouts: [String]?
-
-        public var name: String
-
-        public var priority: Int?
+        public var departments: [Int]
 
         public var level: Int
+
+        public var media: Media3?
+
+        public var tryouts: [String]?
+
+        public var synonyms: [String]?
+
+        public var name: String
 
         public var hierarchy: [Hierarchy]?
 
@@ -36,21 +36,21 @@ public extension PlatformClient.Catalog {
 
             case slug
 
-            case media
-
-            case departments
-
-            case synonyms
+            case priority
 
             case isActive = "is_active"
 
-            case tryouts
-
-            case name
-
-            case priority
+            case departments
 
             case level
+
+            case media
+
+            case tryouts
+
+            case synonyms
+
+            case name
 
             case hierarchy
         }
@@ -60,21 +60,21 @@ public extension PlatformClient.Catalog {
 
             self.slug = slug
 
-            self.media = media
-
-            self.departments = departments
-
-            self.synonyms = synonyms
+            self.priority = priority
 
             self.isActive = isActive
 
-            self.tryouts = tryouts
-
-            self.name = name
-
-            self.priority = priority
+            self.departments = departments
 
             self.level = level
+
+            self.media = media
+
+            self.tryouts = tryouts
+
+            self.synonyms = synonyms
+
+            self.name = name
 
             self.hierarchy = hierarchy
         }
@@ -99,17 +99,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                media = try container.decode(Media3.self, forKey: .media)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            departments = try container.decode([Int].self, forKey: .departments)
-
-            do {
-                synonyms = try container.decode([String].self, forKey: .synonyms)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,6 +107,18 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            departments = try container.decode([Int].self, forKey: .departments)
+
+            level = try container.decode(Int.self, forKey: .level)
+
+            do {
+                media = try container.decode(Media3.self, forKey: .media)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 tryouts = try container.decode([String].self, forKey: .tryouts)
@@ -126,17 +128,15 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                synonyms = try container.decode([String].self, forKey: .synonyms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            level = try container.decode(Int.self, forKey: .level)
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 hierarchy = try container.decode([Hierarchy].self, forKey: .hierarchy)
@@ -154,21 +154,21 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(media, forKey: .media)
-
-            try? container.encodeIfPresent(departments, forKey: .departments)
-
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(departments, forKey: .departments)
 
             try? container.encodeIfPresent(level, forKey: .level)
+
+            try? container.encodeIfPresent(media, forKey: .media)
+
+            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
+
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
         }
@@ -186,21 +186,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var slug: String?
 
-        public var media: Media3?
-
-        public var departments: [Int]
-
-        public var synonyms: [String]?
+        public var priority: Int?
 
         public var isActive: Bool
 
-        public var tryouts: [String]?
-
-        public var name: String
-
-        public var priority: Int?
+        public var departments: [Int]
 
         public var level: Int
+
+        public var media: Media3?
+
+        public var tryouts: [String]?
+
+        public var synonyms: [String]?
+
+        public var name: String
 
         public var hierarchy: [Hierarchy]?
 
@@ -209,21 +209,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case slug
 
-            case media
-
-            case departments
-
-            case synonyms
+            case priority
 
             case isActive = "is_active"
 
-            case tryouts
-
-            case name
-
-            case priority
+            case departments
 
             case level
+
+            case media
+
+            case tryouts
+
+            case synonyms
+
+            case name
 
             case hierarchy
         }
@@ -233,21 +233,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.slug = slug
 
-            self.media = media
-
-            self.departments = departments
-
-            self.synonyms = synonyms
+            self.priority = priority
 
             self.isActive = isActive
 
-            self.tryouts = tryouts
-
-            self.name = name
-
-            self.priority = priority
+            self.departments = departments
 
             self.level = level
+
+            self.media = media
+
+            self.tryouts = tryouts
+
+            self.synonyms = synonyms
+
+            self.name = name
 
             self.hierarchy = hierarchy
         }
@@ -272,17 +272,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                media = try container.decode(Media3.self, forKey: .media)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            departments = try container.decode([Int].self, forKey: .departments)
-
-            do {
-                synonyms = try container.decode([String].self, forKey: .synonyms)
+                priority = try container.decode(Int.self, forKey: .priority)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -290,6 +280,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            departments = try container.decode([Int].self, forKey: .departments)
+
+            level = try container.decode(Int.self, forKey: .level)
+
+            do {
+                media = try container.decode(Media3.self, forKey: .media)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 tryouts = try container.decode([String].self, forKey: .tryouts)
@@ -299,17 +301,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
-                priority = try container.decode(Int.self, forKey: .priority)
+                synonyms = try container.decode([String].self, forKey: .synonyms)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            level = try container.decode(Int.self, forKey: .level)
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 hierarchy = try container.decode([Hierarchy].self, forKey: .hierarchy)
@@ -327,21 +327,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(media, forKey: .media)
-
-            try? container.encodeIfPresent(departments, forKey: .departments)
-
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(departments, forKey: .departments)
 
             try? container.encodeIfPresent(level, forKey: .level)
+
+            try? container.encodeIfPresent(media, forKey: .media)
+
+            try? container.encodeIfPresent(tryouts, forKey: .tryouts)
+
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
         }

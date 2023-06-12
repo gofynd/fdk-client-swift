@@ -11,15 +11,15 @@ public extension ApplicationClient.Order {
 
         public var shipmentType: String?
 
-        public var updatedAt: String?
+        public var status: String?
 
-        public var lastLocationRecievedAt: String?
+        public var updatedAt: String?
 
         public var updatedTime: String?
 
-        public var status: String?
-
         public var accountName: String?
+
+        public var lastLocationRecievedAt: String?
 
         public var reason: String?
 
@@ -28,15 +28,15 @@ public extension ApplicationClient.Order {
 
             case shipmentType = "shipment_type"
 
-            case updatedAt = "updated_at"
+            case status
 
-            case lastLocationRecievedAt = "last_location_recieved_at"
+            case updatedAt = "updated_at"
 
             case updatedTime = "updated_time"
 
-            case status
-
             case accountName = "account_name"
+
+            case lastLocationRecievedAt = "last_location_recieved_at"
 
             case reason
         }
@@ -46,15 +46,15 @@ public extension ApplicationClient.Order {
 
             self.shipmentType = shipmentType
 
-            self.updatedAt = updatedAt
+            self.status = status
 
-            self.lastLocationRecievedAt = lastLocationRecievedAt
+            self.updatedAt = updatedAt
 
             self.updatedTime = updatedTime
 
-            self.status = status
-
             self.accountName = accountName
+
+            self.lastLocationRecievedAt = lastLocationRecievedAt
 
             self.reason = reason
         }
@@ -79,7 +79,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -87,7 +87,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                lastLocationRecievedAt = try container.decode(String.self, forKey: .lastLocationRecievedAt)
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +103,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                accountName = try container.decode(String.self, forKey: .accountName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,7 +111,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                accountName = try container.decode(String.self, forKey: .accountName)
+                lastLocationRecievedAt = try container.decode(String.self, forKey: .lastLocationRecievedAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,15 +134,15 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
 
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(lastLocationRecievedAt, forKey: .lastLocationRecievedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
 
             try? container.encodeIfPresent(updatedTime, forKey: .updatedTime)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(accountName, forKey: .accountName)
+
+            try? container.encodeIfPresent(lastLocationRecievedAt, forKey: .lastLocationRecievedAt)
 
             try? container.encodeIfPresent(reason, forKey: .reason)
         }

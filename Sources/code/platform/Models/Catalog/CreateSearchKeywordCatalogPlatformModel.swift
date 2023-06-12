@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var isActive: Bool?
 
-        public var words: [String]?
-
         public var result: SearchKeywordResult
+
+        public var words: [String]?
 
         public var customJson: [String: Any]?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case isActive = "is_active"
 
-            case words
-
             case result
+
+            case words
 
             case customJson = "_custom_json"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.isActive = isActive
 
-            self.words = words
-
             self.result = result
+
+            self.words = words
 
             self.customJson = customJson
         }
@@ -56,6 +56,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            result = try container.decode(SearchKeywordResult.self, forKey: .result)
+
             do {
                 words = try container.decode([String].self, forKey: .words)
 
@@ -63,8 +65,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            result = try container.decode(SearchKeywordResult.self, forKey: .result)
 
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
@@ -82,9 +82,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(words, forKey: .words)
-
             try? container.encodeIfPresent(result, forKey: .result)
+
+            try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
@@ -102,9 +102,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var isActive: Bool?
 
-        public var words: [String]?
-
         public var result: SearchKeywordResult
+
+        public var words: [String]?
 
         public var customJson: [String: Any]?
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case isActive = "is_active"
 
-            case words
-
             case result
+
+            case words
 
             case customJson = "_custom_json"
         }
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.isActive = isActive
 
-            self.words = words
-
             self.result = result
+
+            self.words = words
 
             self.customJson = customJson
         }
@@ -145,6 +145,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            result = try container.decode(SearchKeywordResult.self, forKey: .result)
+
             do {
                 words = try container.decode([String].self, forKey: .words)
 
@@ -152,8 +154,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            result = try container.decode(SearchKeywordResult.self, forKey: .result)
 
             do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
@@ -171,9 +171,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(words, forKey: .words)
-
             try? container.encodeIfPresent(result, forKey: .result)
+
+            try? container.encodeIfPresent(words, forKey: .words)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

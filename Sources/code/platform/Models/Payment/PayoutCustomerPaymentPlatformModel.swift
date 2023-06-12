@@ -9,22 +9,22 @@ public extension PlatformClient.Payment {
      */
 
     class PayoutCustomer: Codable {
-        public var name: String?
+        public var uniqueExternalId: String?
 
         public var email: String?
 
-        public var uniqueExternalId: String?
+        public var name: String?
 
         public var id: Int?
 
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
+            case uniqueExternalId = "unique_external_id"
 
             case email
 
-            case uniqueExternalId = "unique_external_id"
+            case name
 
             case id
 
@@ -32,11 +32,11 @@ public extension PlatformClient.Payment {
         }
 
         public init(email: String? = nil, id: Int? = nil, mobile: String? = nil, name: String? = nil, uniqueExternalId: String? = nil) {
-            self.name = name
+            self.uniqueExternalId = uniqueExternalId
 
             self.email = email
 
-            self.uniqueExternalId = uniqueExternalId
+            self.name = name
 
             self.id = id
 
@@ -47,7 +47,7 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(name, forKey: .name)
+            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encode(email, forKey: .email)
 
-            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
+            try? container.encode(name, forKey: .name)
 
             try? container.encode(id, forKey: .id)
 
@@ -110,22 +110,22 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class PayoutCustomer: Codable {
-        public var name: String?
+        public var uniqueExternalId: String?
 
         public var email: String?
 
-        public var uniqueExternalId: String?
+        public var name: String?
 
         public var id: Int?
 
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
-            case name
+            case uniqueExternalId = "unique_external_id"
 
             case email
 
-            case uniqueExternalId = "unique_external_id"
+            case name
 
             case id
 
@@ -133,11 +133,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         }
 
         public init(email: String? = nil, id: Int? = nil, mobile: String? = nil, name: String? = nil, uniqueExternalId: String? = nil) {
-            self.name = name
+            self.uniqueExternalId = uniqueExternalId
 
             self.email = email
 
-            self.uniqueExternalId = uniqueExternalId
+            self.name = name
 
             self.id = id
 
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                uniqueExternalId = try container.decode(String.self, forKey: .uniqueExternalId)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,11 +191,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(name, forKey: .name)
+            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
 
             try? container.encode(email, forKey: .email)
 
-            try? container.encode(uniqueExternalId, forKey: .uniqueExternalId)
+            try? container.encode(name, forKey: .name)
 
             try? container.encode(id, forKey: .id)
 

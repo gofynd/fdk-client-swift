@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class Media2: Codable {
         public var url: String
 
-        public var type: String?
-
         public var meta: [String: Any]?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case url
 
-            case type
-
             case meta
+
+            case type
         }
 
         public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
             self.url = url
 
-            self.type = type
-
             self.meta = meta
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             url = try container.decode(String.self, forKey: .url)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +45,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,9 +58,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Media2: Codable {
         public var url: String
 
-        public var type: String?
-
         public var meta: [String: Any]?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case url
 
-            case type
-
             case meta
+
+            case type
         }
 
         public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
             self.url = url
 
-            self.type = type
-
             self.meta = meta
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             url = try container.decode(String.self, forKey: .url)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

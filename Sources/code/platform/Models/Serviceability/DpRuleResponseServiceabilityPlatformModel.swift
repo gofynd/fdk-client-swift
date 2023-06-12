@@ -9,72 +9,84 @@ public extension PlatformClient.Serviceability {
      */
 
     class DpRuleResponse: Codable {
-        public var createdOn: String?
-
-        public var modifiedOn: String?
-
-        public var name: String
-
-        public var createdBy: [String: Any]?
+        public var conditions: [String]
 
         public var dpIds: [String: Any]
 
-        public var uid: String
+        public var modifiedOn: String?
 
-        public var conditions: [String]
+        public var createdOn: String?
 
         public var modifiedBy: [String: Any]?
 
-        public var companyId: Int
-
         public var isActive: Bool?
 
+        public var name: String
+
+        public var uid: String
+
+        public var companyId: Int
+
+        public var createdBy: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
-            case createdOn = "created_on"
-
-            case modifiedOn = "modified_on"
-
-            case name
-
-            case createdBy = "created_by"
+            case conditions
 
             case dpIds = "dp_ids"
 
-            case uid
+            case modifiedOn = "modified_on"
 
-            case conditions
+            case createdOn = "created_on"
 
             case modifiedBy = "modified_by"
 
+            case isActive = "is_active"
+
+            case name
+
+            case uid
+
             case companyId = "company_id"
 
-            case isActive = "is_active"
+            case createdBy = "created_by"
         }
 
         public init(companyId: Int, conditions: [String], createdBy: [String: Any]? = nil, createdOn: String? = nil, dpIds: [String: Any], isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, uid: String) {
-            self.createdOn = createdOn
-
-            self.modifiedOn = modifiedOn
-
-            self.name = name
-
-            self.createdBy = createdBy
+            self.conditions = conditions
 
             self.dpIds = dpIds
 
-            self.uid = uid
+            self.modifiedOn = modifiedOn
 
-            self.conditions = conditions
+            self.createdOn = createdOn
 
             self.modifiedBy = modifiedBy
 
+            self.isActive = isActive
+
+            self.name = name
+
+            self.uid = uid
+
             self.companyId = companyId
 
-            self.isActive = isActive
+            self.createdBy = createdBy
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            conditions = try container.decode([String].self, forKey: .conditions)
+
+            dpIds = try container.decode([String: Any].self, forKey: .dpIds)
+
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 createdOn = try container.decode(String.self, forKey: .createdOn)
@@ -85,7 +97,15 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,32 +114,12 @@ public extension PlatformClient.Serviceability {
 
             name = try container.decode(String.self, forKey: .name)
 
-            do {
-                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            dpIds = try container.decode([String: Any].self, forKey: .dpIds)
-
             uid = try container.decode(String.self, forKey: .uid)
-
-            conditions = try container.decode([String].self, forKey: .conditions)
-
-            do {
-                modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             companyId = try container.decode(Int.self, forKey: .companyId)
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,25 +130,25 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            try? container.encodeIfPresent(conditions, forKey: .conditions)
 
             try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(conditions, forKey: .conditions)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
         }
     }
 }
@@ -160,72 +160,84 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class DpRuleResponse: Codable {
-        public var createdOn: String?
-
-        public var modifiedOn: String?
-
-        public var name: String
-
-        public var createdBy: [String: Any]?
+        public var conditions: [String]
 
         public var dpIds: [String: Any]
 
-        public var uid: String
+        public var modifiedOn: String?
 
-        public var conditions: [String]
+        public var createdOn: String?
 
         public var modifiedBy: [String: Any]?
 
-        public var companyId: Int
-
         public var isActive: Bool?
 
+        public var name: String
+
+        public var uid: String
+
+        public var companyId: Int
+
+        public var createdBy: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
-            case createdOn = "created_on"
-
-            case modifiedOn = "modified_on"
-
-            case name
-
-            case createdBy = "created_by"
+            case conditions
 
             case dpIds = "dp_ids"
 
-            case uid
+            case modifiedOn = "modified_on"
 
-            case conditions
+            case createdOn = "created_on"
 
             case modifiedBy = "modified_by"
 
+            case isActive = "is_active"
+
+            case name
+
+            case uid
+
             case companyId = "company_id"
 
-            case isActive = "is_active"
+            case createdBy = "created_by"
         }
 
         public init(companyId: Int, conditions: [String], createdBy: [String: Any]? = nil, createdOn: String? = nil, dpIds: [String: Any], isActive: Bool? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String, uid: String) {
-            self.createdOn = createdOn
-
-            self.modifiedOn = modifiedOn
-
-            self.name = name
-
-            self.createdBy = createdBy
+            self.conditions = conditions
 
             self.dpIds = dpIds
 
-            self.uid = uid
+            self.modifiedOn = modifiedOn
 
-            self.conditions = conditions
+            self.createdOn = createdOn
 
             self.modifiedBy = modifiedBy
 
+            self.isActive = isActive
+
+            self.name = name
+
+            self.uid = uid
+
             self.companyId = companyId
 
-            self.isActive = isActive
+            self.createdBy = createdBy
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            conditions = try container.decode([String].self, forKey: .conditions)
+
+            dpIds = try container.decode([String: Any].self, forKey: .dpIds)
+
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 createdOn = try container.decode(String.self, forKey: .createdOn)
@@ -236,7 +248,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -245,32 +265,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             name = try container.decode(String.self, forKey: .name)
 
-            do {
-                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            dpIds = try container.decode([String: Any].self, forKey: .dpIds)
-
             uid = try container.decode(String.self, forKey: .uid)
-
-            conditions = try container.decode([String].self, forKey: .conditions)
-
-            do {
-                modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             companyId = try container.decode(Int.self, forKey: .companyId)
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                createdBy = try container.decode([String: Any].self, forKey: .createdBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -281,25 +281,25 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+            try? container.encodeIfPresent(conditions, forKey: .conditions)
 
             try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(conditions, forKey: .conditions)
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
         }
     }
 }

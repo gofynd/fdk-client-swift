@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var email: String?
 
-        public var userId: String?
-
         public var username: String?
+
+        public var userId: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
             case email
 
-            case userId = "user_id"
-
             case username
+
+            case userId = "user_id"
         }
 
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.email = email
 
-            self.userId = userId
-
             self.username = username
+
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var email: String?
 
-        public var userId: String?
-
         public var username: String?
+
+        public var userId: String?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
             case email
 
-            case userId = "user_id"
-
             case username
+
+            case userId = "user_id"
         }
 
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.email = email
 
-            self.userId = userId
-
             self.username = username
+
+            self.userId = userId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(username, forKey: .username)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
         }
     }
 }

@@ -1,39 +1,41 @@
 
 
 import Foundation
-public extension ApplicationClient.Catalog {
+
+public extension PlatformClient.Finance {
     /*
-         Model: ProductStockPrice
-         Used By: Catalog
+         Model: UnpaidInvoiceDataItems
+         Used By: Finance
      */
-    class ProductStockPrice: Codable {
-        public var effective: Double?
+
+    class UnpaidInvoiceDataItems: Codable {
+        public var totalUnpaidAmount: Double?
 
         public var currency: String?
 
-        public var marked: Double?
+        public var totalUnpaidInvoiceCount: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case effective
+            case totalUnpaidAmount = "total_unpaid_amount"
 
             case currency
 
-            case marked
+            case totalUnpaidInvoiceCount = "total_unpaid_invoice_count"
         }
 
-        public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil) {
-            self.effective = effective
+        public init(currency: String? = nil, totalUnpaidAmount: Double? = nil, totalUnpaidInvoiceCount: Int? = nil) {
+            self.totalUnpaidAmount = totalUnpaidAmount
 
             self.currency = currency
 
-            self.marked = marked
+            self.totalUnpaidInvoiceCount = totalUnpaidInvoiceCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                totalUnpaidAmount = try container.decode(Double.self, forKey: .totalUnpaidAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +51,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                totalUnpaidInvoiceCount = try container.decode(Int.self, forKey: .totalUnpaidInvoiceCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +62,11 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(totalUnpaidAmount, forKey: .totalUnpaidAmount)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
+            try? container.encodeIfPresent(totalUnpaidInvoiceCount, forKey: .totalUnpaidInvoiceCount)
         }
     }
 }
