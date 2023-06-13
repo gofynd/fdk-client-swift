@@ -9,30 +9,30 @@ public extension ApplicationClient.Catalog {
     class UserDetail: Codable {
         public var superUser: Bool?
 
-        public var username: String
-
         public var contact: String?
 
         public var userId: String
 
+        public var username: String
+
         public enum CodingKeys: String, CodingKey {
             case superUser = "super_user"
-
-            case username
 
             case contact
 
             case userId = "user_id"
+
+            case username
         }
 
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
             self.superUser = superUser
 
-            self.username = username
-
             self.contact = contact
 
             self.userId = userId
+
+            self.username = username
         }
 
         required public init(from decoder: Decoder) throws {
@@ -46,8 +46,6 @@ public extension ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            username = try container.decode(String.self, forKey: .username)
-
             do {
                 contact = try container.decode(String.self, forKey: .contact)
 
@@ -57,6 +55,8 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             userId = try container.decode(String.self, forKey: .userId)
+
+            username = try container.decode(String.self, forKey: .username)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(superUser, forKey: .superUser)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(contact, forKey: .contact)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(username, forKey: .username)
         }
     }
 }
