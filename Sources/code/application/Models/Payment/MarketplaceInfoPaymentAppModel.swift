@@ -9,24 +9,24 @@ public extension ApplicationClient.Payment {
     class MarketplaceInfo: Codable {
         public var dateOfJoining: String?
 
-        public var name: String
-
         public var membershipId: String
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case dateOfJoining = "date_of_joining"
 
-            case name
-
             case membershipId = "membership_id"
+
+            case name
         }
 
         public init(dateOfJoining: String? = nil, membershipId: String, name: String) {
             self.dateOfJoining = dateOfJoining
 
-            self.name = name
-
             self.membershipId = membershipId
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,9 +40,9 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             membershipId = try container.decode(String.self, forKey: .membershipId)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(dateOfJoining, forKey: .dateOfJoining)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(membershipId, forKey: .membershipId)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

@@ -11,9 +11,9 @@ public extension ApplicationClient.PosCart {
 
         public var hasPrevious: Bool?
 
-        public var total: Int?
-
         public var hasNext: Bool?
+
+        public var total: Int?
 
         public var totalItemCount: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.PosCart {
 
             case hasPrevious = "has_previous"
 
-            case total
-
             case hasNext = "has_next"
+
+            case total
 
             case totalItemCount = "total_item_count"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.PosCart {
 
             self.hasPrevious = hasPrevious
 
-            self.total = total
-
             self.hasNext = hasNext
+
+            self.total = total
 
             self.totalItemCount = totalItemCount
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                total = try container.decode(Int.self, forKey: .total)
+                hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                total = try container.decode(Int.self, forKey: .total)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
-            try? container.encodeIfPresent(total, forKey: .total)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(total, forKey: .total)
 
             try? container.encodeIfPresent(totalItemCount, forKey: .totalItemCount)
         }
