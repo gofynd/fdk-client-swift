@@ -9,46 +9,46 @@ public extension PlatformClient.Order {
      */
 
     class CreateOrderAPI: Codable {
+        public var config: [String: Any]?
+
+        public var externalOrderId: String?
+
         public var currencyInfo: [String: Any]?
 
-        public var charges: [Charge]?
+        public var shippingInfo: ShippingInfo
+
+        public var paymentInfo: PaymentInfo
 
         public var taxInfo: TaxInfo?
 
         public var externalCreationDate: String?
 
-        public var shippingInfo: ShippingInfo
-
-        public var externalOrderId: String?
-
-        public var config: [String: Any]?
-
-        public var paymentInfo: PaymentInfo
-
         public var meta: [String: Any]?
+
+        public var charges: [Charge]?
 
         public var billingInfo: BillingInfo
 
         public var shipments: [Shipment]
 
         public enum CodingKeys: String, CodingKey {
+            case config
+
+            case externalOrderId = "external_order_id"
+
             case currencyInfo = "currency_info"
 
-            case charges
+            case shippingInfo = "shipping_info"
+
+            case paymentInfo = "payment_info"
 
             case taxInfo = "tax_info"
 
             case externalCreationDate = "external_creation_date"
 
-            case shippingInfo = "shipping_info"
-
-            case externalOrderId = "external_order_id"
-
-            case config
-
-            case paymentInfo = "payment_info"
-
             case meta
+
+            case charges
 
             case billingInfo = "billing_info"
 
@@ -56,23 +56,23 @@ public extension PlatformClient.Order {
         }
 
         public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil) {
+            self.config = config
+
+            self.externalOrderId = externalOrderId
+
             self.currencyInfo = currencyInfo
 
-            self.charges = charges
+            self.shippingInfo = shippingInfo
+
+            self.paymentInfo = paymentInfo
 
             self.taxInfo = taxInfo
 
             self.externalCreationDate = externalCreationDate
 
-            self.shippingInfo = shippingInfo
-
-            self.externalOrderId = externalOrderId
-
-            self.config = config
-
-            self.paymentInfo = paymentInfo
-
             self.meta = meta
+
+            self.charges = charges
 
             self.billingInfo = billingInfo
 
@@ -83,7 +83,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currencyInfo = try container.decode([String: Any].self, forKey: .currencyInfo)
+                config = try container.decode([String: Any].self, forKey: .config)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,12 +91,24 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                charges = try container.decode([Charge].self, forKey: .charges)
+                externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                currencyInfo = try container.decode([String: Any].self, forKey: .currencyInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            shippingInfo = try container.decode(ShippingInfo.self, forKey: .shippingInfo)
+
+            paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
 
             do {
                 taxInfo = try container.decode(TaxInfo.self, forKey: .taxInfo)
@@ -114,28 +126,16 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            shippingInfo = try container.decode(ShippingInfo.self, forKey: .shippingInfo)
-
-            do {
-                externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                config = try container.decode([String: Any].self, forKey: .config)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
-
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                charges = try container.decode([Charge].self, forKey: .charges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,23 +150,23 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(config, forKey: .config)
+
+            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
+
             try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
 
-            try? container.encodeIfPresent(charges, forKey: .charges)
+            try? container.encodeIfPresent(shippingInfo, forKey: .shippingInfo)
+
+            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
 
             try? container.encodeIfPresent(taxInfo, forKey: .taxInfo)
 
             try? container.encodeIfPresent(externalCreationDate, forKey: .externalCreationDate)
 
-            try? container.encodeIfPresent(shippingInfo, forKey: .shippingInfo)
-
-            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
-
-            try? container.encodeIfPresent(config, forKey: .config)
-
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(charges, forKey: .charges)
 
             try? container.encodeIfPresent(billingInfo, forKey: .billingInfo)
 
@@ -182,46 +182,46 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class CreateOrderAPI: Codable {
+        public var config: [String: Any]?
+
+        public var externalOrderId: String?
+
         public var currencyInfo: [String: Any]?
 
-        public var charges: [Charge]?
+        public var shippingInfo: ShippingInfo
+
+        public var paymentInfo: PaymentInfo
 
         public var taxInfo: TaxInfo?
 
         public var externalCreationDate: String?
 
-        public var shippingInfo: ShippingInfo
-
-        public var externalOrderId: String?
-
-        public var config: [String: Any]?
-
-        public var paymentInfo: PaymentInfo
-
         public var meta: [String: Any]?
+
+        public var charges: [Charge]?
 
         public var billingInfo: BillingInfo
 
         public var shipments: [Shipment]
 
         public enum CodingKeys: String, CodingKey {
+            case config
+
+            case externalOrderId = "external_order_id"
+
             case currencyInfo = "currency_info"
 
-            case charges
+            case shippingInfo = "shipping_info"
+
+            case paymentInfo = "payment_info"
 
             case taxInfo = "tax_info"
 
             case externalCreationDate = "external_creation_date"
 
-            case shippingInfo = "shipping_info"
-
-            case externalOrderId = "external_order_id"
-
-            case config
-
-            case paymentInfo = "payment_info"
-
             case meta
+
+            case charges
 
             case billingInfo = "billing_info"
 
@@ -229,23 +229,23 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(billingInfo: BillingInfo, charges: [Charge]? = nil, config: [String: Any]? = nil, currencyInfo: [String: Any]? = nil, externalCreationDate: String? = nil, externalOrderId: String? = nil, meta: [String: Any]? = nil, paymentInfo: PaymentInfo, shipments: [Shipment], shippingInfo: ShippingInfo, taxInfo: TaxInfo? = nil) {
+            self.config = config
+
+            self.externalOrderId = externalOrderId
+
             self.currencyInfo = currencyInfo
 
-            self.charges = charges
+            self.shippingInfo = shippingInfo
+
+            self.paymentInfo = paymentInfo
 
             self.taxInfo = taxInfo
 
             self.externalCreationDate = externalCreationDate
 
-            self.shippingInfo = shippingInfo
-
-            self.externalOrderId = externalOrderId
-
-            self.config = config
-
-            self.paymentInfo = paymentInfo
-
             self.meta = meta
+
+            self.charges = charges
 
             self.billingInfo = billingInfo
 
@@ -256,7 +256,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currencyInfo = try container.decode([String: Any].self, forKey: .currencyInfo)
+                config = try container.decode([String: Any].self, forKey: .config)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -264,12 +264,24 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                charges = try container.decode([Charge].self, forKey: .charges)
+                externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                currencyInfo = try container.decode([String: Any].self, forKey: .currencyInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            shippingInfo = try container.decode(ShippingInfo.self, forKey: .shippingInfo)
+
+            paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
 
             do {
                 taxInfo = try container.decode(TaxInfo.self, forKey: .taxInfo)
@@ -287,28 +299,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            shippingInfo = try container.decode(ShippingInfo.self, forKey: .shippingInfo)
-
-            do {
-                externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                config = try container.decode([String: Any].self, forKey: .config)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            paymentInfo = try container.decode(PaymentInfo.self, forKey: .paymentInfo)
-
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                charges = try container.decode([Charge].self, forKey: .charges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -323,23 +323,23 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(config, forKey: .config)
+
+            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
+
             try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
 
-            try? container.encodeIfPresent(charges, forKey: .charges)
+            try? container.encodeIfPresent(shippingInfo, forKey: .shippingInfo)
+
+            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
 
             try? container.encodeIfPresent(taxInfo, forKey: .taxInfo)
 
             try? container.encodeIfPresent(externalCreationDate, forKey: .externalCreationDate)
 
-            try? container.encodeIfPresent(shippingInfo, forKey: .shippingInfo)
-
-            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
-
-            try? container.encodeIfPresent(config, forKey: .config)
-
-            try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(charges, forKey: .charges)
 
             try? container.encodeIfPresent(billingInfo, forKey: .billingInfo)
 

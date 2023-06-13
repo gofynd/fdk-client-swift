@@ -9,44 +9,42 @@ public extension PlatformClient.Catalog {
      */
 
     class ProductFiltersKey: Codable {
-        public var display: String
-
         public var logo: String?
 
-        public var name: String
-
         public var operators: [String]?
+
+        public var display: String
+
+        public var name: String
 
         public var kind: String?
 
         public enum CodingKeys: String, CodingKey {
-            case display
-
             case logo
 
-            case name
-
             case operators
+
+            case display
+
+            case name
 
             case kind
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
-            self.display = display
-
             self.logo = logo
 
-            self.name = name
-
             self.operators = operators
+
+            self.display = display
+
+            self.name = name
 
             self.kind = kind
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            display = try container.decode(String.self, forKey: .display)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -56,8 +54,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 operators = try container.decode([String].self, forKey: .operators)
 
@@ -65,6 +61,10 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            display = try container.decode(String.self, forKey: .display)
+
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 kind = try container.decode(String.self, forKey: .kind)
@@ -78,13 +78,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(kind, forKey: .kind)
         }
@@ -98,44 +98,42 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProductFiltersKey: Codable {
-        public var display: String
-
         public var logo: String?
 
-        public var name: String
-
         public var operators: [String]?
+
+        public var display: String
+
+        public var name: String
 
         public var kind: String?
 
         public enum CodingKeys: String, CodingKey {
-            case display
-
             case logo
 
-            case name
-
             case operators
+
+            case display
+
+            case name
 
             case kind
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
-            self.display = display
-
             self.logo = logo
 
-            self.name = name
-
             self.operators = operators
+
+            self.display = display
+
+            self.name = name
 
             self.kind = kind
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            display = try container.decode(String.self, forKey: .display)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -145,8 +143,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 operators = try container.decode([String].self, forKey: .operators)
 
@@ -154,6 +150,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            display = try container.decode(String.self, forKey: .display)
+
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 kind = try container.decode(String.self, forKey: .kind)
@@ -167,13 +167,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(kind, forKey: .kind)
         }
