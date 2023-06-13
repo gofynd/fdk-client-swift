@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class ActionInfo: Codable {
         public var slug: String
 
-        public var displayText: String
-
         public var id: Int
+
+        public var displayText: String
 
         public var description: String
 
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case displayText = "display_text"
-
             case id
+
+            case displayText = "display_text"
 
             case description
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(description: String, displayText: String, id: Int, slug: String) {
             self.slug = slug
 
-            self.displayText = displayText
-
             self.id = id
+
+            self.displayText = displayText
 
             self.description = description
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Order {
 
             slug = try container.decode(String.self, forKey: .slug)
 
-            displayText = try container.decode(String.self, forKey: .displayText)
-
             id = try container.decode(Int.self, forKey: .id)
+
+            displayText = try container.decode(String.self, forKey: .displayText)
 
             description = try container.decode(String.self, forKey: .description)
         }
@@ -54,9 +54,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(displayText, forKey: .displayText)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
 
             try? container.encodeIfPresent(description, forKey: .description)
         }
@@ -72,18 +72,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class ActionInfo: Codable {
         public var slug: String
 
-        public var displayText: String
-
         public var id: Int
+
+        public var displayText: String
 
         public var description: String
 
         public enum CodingKeys: String, CodingKey {
             case slug
 
-            case displayText = "display_text"
-
             case id
+
+            case displayText = "display_text"
 
             case description
         }
@@ -91,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(description: String, displayText: String, id: Int, slug: String) {
             self.slug = slug
 
-            self.displayText = displayText
-
             self.id = id
+
+            self.displayText = displayText
 
             self.description = description
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             slug = try container.decode(String.self, forKey: .slug)
 
-            displayText = try container.decode(String.self, forKey: .displayText)
-
             id = try container.decode(Int.self, forKey: .id)
+
+            displayText = try container.decode(String.self, forKey: .displayText)
 
             description = try container.decode(String.self, forKey: .description)
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(displayText, forKey: .displayText)
-
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
 
             try? container.encodeIfPresent(description, forKey: .description)
         }
