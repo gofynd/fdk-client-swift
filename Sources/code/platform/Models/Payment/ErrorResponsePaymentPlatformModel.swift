@@ -9,36 +9,40 @@ public extension PlatformClient.Payment {
      */
 
     class ErrorResponse: Codable {
-        public var error: ErrorDescription?
+        public var statusCode: Int
 
         public var success: Bool
 
+        public var error: ErrorDescription?
+
         public var message: String
 
-        public var statusCode: Int
-
         public enum CodingKeys: String, CodingKey {
-            case error
+            case statusCode = "status_code"
 
             case success
 
-            case message
+            case error
 
-            case statusCode = "status_code"
+            case message
         }
 
         public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
-            self.error = error
+            self.statusCode = statusCode
 
             self.success = success
 
-            self.message = message
+            self.error = error
 
-            self.statusCode = statusCode
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 error = try container.decode(ErrorDescription.self, forKey: .error)
@@ -48,23 +52,19 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             message = try container.decode(String.self, forKey: .message)
-
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(error, forKey: .error)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(error, forKey: .error)
 
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -76,36 +76,40 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class ErrorResponse: Codable {
-        public var error: ErrorDescription?
+        public var statusCode: Int
 
         public var success: Bool
 
+        public var error: ErrorDescription?
+
         public var message: String
 
-        public var statusCode: Int
-
         public enum CodingKeys: String, CodingKey {
-            case error
+            case statusCode = "status_code"
 
             case success
 
-            case message
+            case error
 
-            case statusCode = "status_code"
+            case message
         }
 
         public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
-            self.error = error
+            self.statusCode = statusCode
 
             self.success = success
 
-            self.message = message
+            self.error = error
 
-            self.statusCode = statusCode
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 error = try container.decode(ErrorDescription.self, forKey: .error)
@@ -115,23 +119,19 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             message = try container.decode(String.self, forKey: .message)
-
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(error, forKey: .error)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(error, forKey: .error)
 
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

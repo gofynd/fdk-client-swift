@@ -650,8 +650,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | categoryL1 | [[CategoryL1](#CategoryL1)]? |  yes  |  |
- | categoryL2 | [[CategoryL2](#CategoryL2)]? |  yes  |  |
+ | categoriesL1 | [[CategoryL1](#CategoryL1)]? |  yes  |  |
+ | categoriesL2 | [[CategoryL2](#CategoryL2)]? |  yes  |  |
 
 ---
 
@@ -707,7 +707,7 @@ Success
  | videoUrl | [[String: Any]]? |  yes  |  |
  | youtube | [String]? |  yes  |  |
  | screenshots | [Screenshots](#Screenshots)? |  yes  |  |
- | integrations | String? |  yes  |  |
+ | integrations | [String]? |  yes  |  |
  | featuredBanner | String? |  yes  |  |
 
 ---
@@ -751,6 +751,7 @@ Success
  | price | [Price](#Price)? |  yes  |  |
  | trialDays | Double? |  yes  |  |
  | type | String? |  yes  |  |
+ | customMeta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -834,6 +835,7 @@ Success
  | scope | [String]? |  yes  |  |
  | slug | String? |  yes  |  |
  | id | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
 
 ---
 

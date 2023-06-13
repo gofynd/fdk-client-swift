@@ -9,18 +9,18 @@ public extension ApplicationClient.Payment {
     class CreditSummary: Codable {
         public var statusMessage: String
 
-        public var merchantCustomerRefId: String
-
         public var status: String
+
+        public var merchantCustomerRefId: String
 
         public var balance: BalanceDetails?
 
         public enum CodingKeys: String, CodingKey {
             case statusMessage = "status_message"
 
-            case merchantCustomerRefId = "merchant_customer_ref_id"
-
             case status
+
+            case merchantCustomerRefId = "merchant_customer_ref_id"
 
             case balance
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Payment {
         public init(balance: BalanceDetails? = nil, merchantCustomerRefId: String, status: String, statusMessage: String) {
             self.statusMessage = statusMessage
 
-            self.merchantCustomerRefId = merchantCustomerRefId
-
             self.status = status
+
+            self.merchantCustomerRefId = merchantCustomerRefId
 
             self.balance = balance
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient.Payment {
 
             statusMessage = try container.decode(String.self, forKey: .statusMessage)
 
-            merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
-
             status = try container.decode(String.self, forKey: .status)
+
+            merchantCustomerRefId = try container.decode(String.self, forKey: .merchantCustomerRefId)
 
             do {
                 balance = try container.decode(BalanceDetails.self, forKey: .balance)
@@ -58,9 +58,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(statusMessage, forKey: .statusMessage)
 
-            try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(merchantCustomerRefId, forKey: .merchantCustomerRefId)
 
             try? container.encodeIfPresent(balance, forKey: .balance)
         }
