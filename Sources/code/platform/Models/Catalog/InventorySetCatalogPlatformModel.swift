@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class InventorySet: Codable {
         public var sizeDistribution: SizeDistribution
 
-        public var name: String?
-
         public var quantity: Int?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case sizeDistribution = "size_distribution"
 
-            case name
-
             case quantity
+
+            case name
         }
 
         public init(name: String? = nil, quantity: Int? = nil, sizeDistribution: SizeDistribution) {
             self.sizeDistribution = sizeDistribution
 
-            self.name = name
-
             self.quantity = quantity
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             sizeDistribution = try container.decode(SizeDistribution.self, forKey: .sizeDistribution)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +45,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,9 +58,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventorySet: Codable {
         public var sizeDistribution: SizeDistribution
 
-        public var name: String?
-
         public var quantity: Int?
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case sizeDistribution = "size_distribution"
 
-            case name
-
             case quantity
+
+            case name
         }
 
         public init(name: String? = nil, quantity: Int? = nil, sizeDistribution: SizeDistribution) {
             self.sizeDistribution = sizeDistribution
 
-            self.name = name
-
             self.quantity = quantity
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             sizeDistribution = try container.decode(SizeDistribution.self, forKey: .sizeDistribution)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(sizeDistribution, forKey: .sizeDistribution)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

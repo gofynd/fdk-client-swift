@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var quantity: InventoryExportQuantityFilter?
 
-        public var brandIds: [Int]?
-
         public var storeIds: [Int]
+
+        public var brandIds: [Int]?
 
         public var toDate: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case quantity
 
-            case brandIds = "brand_ids"
-
             case storeIds = "store_ids"
+
+            case brandIds = "brand_ids"
 
             case toDate = "to_date"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.quantity = quantity
 
-            self.brandIds = brandIds
-
             self.storeIds = storeIds
+
+            self.brandIds = brandIds
 
             self.toDate = toDate
         }
@@ -62,6 +62,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            storeIds = try container.decode([Int].self, forKey: .storeIds)
+
             do {
                 brandIds = try container.decode([Int].self, forKey: .brandIds)
 
@@ -69,8 +71,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             do {
                 toDate = try container.decode(String.self, forKey: .toDate)
@@ -88,9 +88,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
-
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
         }
@@ -108,9 +108,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var quantity: InventoryExportQuantityFilter?
 
-        public var brandIds: [Int]?
-
         public var storeIds: [Int]
+
+        public var brandIds: [Int]?
 
         public var toDate: String?
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case quantity
 
-            case brandIds = "brand_ids"
-
             case storeIds = "store_ids"
+
+            case brandIds = "brand_ids"
 
             case toDate = "to_date"
         }
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.quantity = quantity
 
-            self.brandIds = brandIds
-
             self.storeIds = storeIds
+
+            self.brandIds = brandIds
 
             self.toDate = toDate
         }
@@ -157,6 +157,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            storeIds = try container.decode([Int].self, forKey: .storeIds)
+
             do {
                 brandIds = try container.decode([Int].self, forKey: .brandIds)
 
@@ -164,8 +166,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            storeIds = try container.decode([Int].self, forKey: .storeIds)
 
             do {
                 toDate = try container.decode(String.self, forKey: .toDate)
@@ -183,9 +183,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
-
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+
+            try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
         }

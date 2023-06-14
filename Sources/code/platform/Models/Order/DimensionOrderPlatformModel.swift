@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class Dimension: Codable {
         public var weight: String?
 
-        public var length: Double?
-
         public var height: String?
+
+        public var length: Double?
 
         public var packagingType: String?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case weight
 
-            case length
-
             case height
+
+            case length
 
             case packagingType = "packaging_type"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Order {
         public init(height: String? = nil, length: Double? = nil, packagingType: String? = nil, weight: String? = nil, width: Double? = nil) {
             self.weight = weight
 
-            self.length = length
-
             self.height = height
+
+            self.length = length
 
             self.packagingType = packagingType
 
@@ -55,7 +55,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                length = try container.decode(Double.self, forKey: .length)
+                height = try container.decode(String.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                height = try container.decode(String.self, forKey: .height)
+                length = try container.decode(Double.self, forKey: .length)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
-            try? container.encodeIfPresent(length, forKey: .length)
-
             try? container.encodeIfPresent(height, forKey: .height)
+
+            try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(packagingType, forKey: .packagingType)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class Dimension: Codable {
         public var weight: String?
 
-        public var length: Double?
-
         public var height: String?
+
+        public var length: Double?
 
         public var packagingType: String?
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case weight
 
-            case length
-
             case height
+
+            case length
 
             case packagingType = "packaging_type"
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(height: String? = nil, length: Double? = nil, packagingType: String? = nil, weight: String? = nil, width: Double? = nil) {
             self.weight = weight
 
-            self.length = length
-
             self.height = height
+
+            self.length = length
 
             self.packagingType = packagingType
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                length = try container.decode(Double.self, forKey: .length)
+                height = try container.decode(String.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                height = try container.decode(String.self, forKey: .height)
+                length = try container.decode(Double.self, forKey: .length)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,9 +193,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
-            try? container.encodeIfPresent(length, forKey: .length)
-
             try? container.encodeIfPresent(height, forKey: .height)
+
+            try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(packagingType, forKey: .packagingType)
 

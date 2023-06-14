@@ -13,7 +13,7 @@ public extension PlatformClient.Order {
 
         public var unit: String?
 
-        public var time: Int?
+        public var time: Double?
 
         public enum CodingKeys: String, CodingKey {
             case returnable
@@ -23,7 +23,7 @@ public extension PlatformClient.Order {
             case time
         }
 
-        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
+        public init(returnable: Bool? = nil, time: Double? = nil, unit: String? = nil) {
             self.returnable = returnable
 
             self.unit = unit
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                time = try container.decode(Int.self, forKey: .time)
+                time = try container.decode(Double.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var unit: String?
 
-        public var time: Int?
+        public var time: Double?
 
         public enum CodingKeys: String, CodingKey {
             case returnable
@@ -92,7 +92,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case time
         }
 
-        public init(returnable: Bool? = nil, time: Int? = nil, unit: String? = nil) {
+        public init(returnable: Bool? = nil, time: Double? = nil, unit: String? = nil) {
             self.returnable = returnable
 
             self.unit = unit
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                time = try container.decode(Int.self, forKey: .time)
+                time = try container.decode(Double.self, forKey: .time)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
