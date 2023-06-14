@@ -11,30 +11,30 @@ public extension ApplicationClient.Payment {
 
         public var deviceModel: String?
 
-        public var osVersion: String?
+        public var identifierType: String?
+
+        public var identificationNumber: String?
 
         public var deviceType: String?
 
         public var deviceMake: String?
 
-        public var identificationNumber: String?
-
-        public var identifierType: String?
+        public var osVersion: String?
 
         public enum CodingKeys: String, CodingKey {
             case os
 
             case deviceModel = "device_model"
 
-            case osVersion = "os_version"
+            case identifierType = "identifier_type"
+
+            case identificationNumber = "identification_number"
 
             case deviceType = "device_type"
 
             case deviceMake = "device_make"
 
-            case identificationNumber = "identification_number"
-
-            case identifierType = "identifier_type"
+            case osVersion = "os_version"
         }
 
         public init(deviceMake: String? = nil, deviceModel: String? = nil, deviceType: String? = nil, identificationNumber: String? = nil, identifierType: String? = nil, os: String? = nil, osVersion: String? = nil) {
@@ -42,15 +42,15 @@ public extension ApplicationClient.Payment {
 
             self.deviceModel = deviceModel
 
-            self.osVersion = osVersion
+            self.identifierType = identifierType
+
+            self.identificationNumber = identificationNumber
 
             self.deviceType = deviceType
 
             self.deviceMake = deviceMake
 
-            self.identificationNumber = identificationNumber
-
-            self.identifierType = identifierType
+            self.osVersion = osVersion
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +73,15 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                osVersion = try container.decode(String.self, forKey: .osVersion)
+                identifierType = try container.decode(String.self, forKey: .identifierType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identificationNumber = try container.decode(String.self, forKey: .identificationNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,15 +105,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                identificationNumber = try container.decode(String.self, forKey: .identificationNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                identifierType = try container.decode(String.self, forKey: .identifierType)
+                osVersion = try container.decode(String.self, forKey: .osVersion)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,15 +120,15 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(deviceModel, forKey: .deviceModel)
 
-            try? container.encode(osVersion, forKey: .osVersion)
+            try? container.encode(identifierType, forKey: .identifierType)
+
+            try? container.encode(identificationNumber, forKey: .identificationNumber)
 
             try? container.encode(deviceType, forKey: .deviceType)
 
             try? container.encode(deviceMake, forKey: .deviceMake)
 
-            try? container.encode(identificationNumber, forKey: .identificationNumber)
-
-            try? container.encode(identifierType, forKey: .identifierType)
+            try? container.encode(osVersion, forKey: .osVersion)
         }
     }
 }

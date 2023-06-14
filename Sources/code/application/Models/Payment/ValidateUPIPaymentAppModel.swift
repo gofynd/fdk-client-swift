@@ -11,18 +11,18 @@ public extension ApplicationClient.Payment {
 
         public var customerName: String
 
-        public var upiVpa: String
-
         public var status: String
+
+        public var upiVpa: String
 
         public enum CodingKeys: String, CodingKey {
             case isValid = "is_valid"
 
             case customerName = "customer_name"
 
-            case upiVpa = "upi_vpa"
-
             case status
+
+            case upiVpa = "upi_vpa"
         }
 
         public init(customerName: String, isValid: Bool, status: String, upiVpa: String) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Payment {
 
             self.customerName = customerName
 
-            self.upiVpa = upiVpa
-
             self.status = status
+
+            self.upiVpa = upiVpa
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,9 +42,9 @@ public extension ApplicationClient.Payment {
 
             customerName = try container.decode(String.self, forKey: .customerName)
 
-            upiVpa = try container.decode(String.self, forKey: .upiVpa)
-
             status = try container.decode(String.self, forKey: .status)
+
+            upiVpa = try container.decode(String.self, forKey: .upiVpa)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -54,9 +54,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
-            try? container.encodeIfPresent(upiVpa, forKey: .upiVpa)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(upiVpa, forKey: .upiVpa)
         }
     }
 }

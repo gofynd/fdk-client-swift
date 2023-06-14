@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var type: String
 
-        public var value: String
-
         public var text: String
+
+        public var value: String
 
         public enum CodingKeys: String, CodingKey {
             case options
 
             case type
 
-            case value
-
             case text
+
+            case value
         }
 
         public init(options: [FilterInfoOption]? = nil, text: String, type: String, value: String) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.type = type
 
-            self.value = value
-
             self.text = text
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
 
             type = try container.decode(String.self, forKey: .type)
 
-            value = try container.decode(String.self, forKey: .value)
-
             text = try container.decode(String.self, forKey: .text)
+
+            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var type: String
 
-        public var value: String
-
         public var text: String
+
+        public var value: String
 
         public enum CodingKeys: String, CodingKey {
             case options
 
             case type
 
-            case value
-
             case text
+
+            case value
         }
 
         public init(options: [FilterInfoOption]? = nil, text: String, type: String, value: String) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.type = type
 
-            self.value = value
-
             self.text = text
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             type = try container.decode(String.self, forKey: .type)
 
-            value = try container.decode(String.self, forKey: .value)
-
             text = try container.decode(String.self, forKey: .text)
+
+            value = try container.decode(String.self, forKey: .value)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(text, forKey: .text)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
