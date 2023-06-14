@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class UserInfo: Codable {
         public var username: String?
 
-        public var email: String?
-
         public var uid: String?
+
+        public var email: String?
 
         public var userId: String?
 
         public enum CodingKeys: String, CodingKey {
             case username
 
-            case email
-
             case uid
+
+            case email
 
             case userId = "user_id"
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
             self.username = username
 
-            self.email = email
-
             self.uid = uid
+
+            self.email = email
 
             self.userId = userId
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class UserInfo: Codable {
         public var username: String?
 
-        public var email: String?
-
         public var uid: String?
+
+        public var email: String?
 
         public var userId: String?
 
         public enum CodingKeys: String, CodingKey {
             case username
 
-            case email
-
             case uid
+
+            case email
 
             case userId = "user_id"
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(email: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil) {
             self.username = username
 
-            self.email = email
-
             self.uid = uid
+
+            self.email = email
 
             self.userId = userId
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
         }

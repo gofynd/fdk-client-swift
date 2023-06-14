@@ -9,18 +9,18 @@ public extension PlatformClient.Payment {
      */
 
     class MultiTenderPaymentMethod: Codable {
-        public var name: String?
-
         public var mode: String
+
+        public var name: String?
 
         public var amount: Double
 
         public var meta: MultiTenderPaymentMeta?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case mode
+
+            case name
 
             case amount
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Payment {
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
-            self.name = name
-
             self.mode = mode
+
+            self.name = name
 
             self.amount = amount
 
@@ -40,6 +40,8 @@ public extension PlatformClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            mode = try container.decode(String.self, forKey: .mode)
+
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -47,8 +49,6 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mode = try container.decode(String.self, forKey: .mode)
 
             amount = try container.decode(Double.self, forKey: .amount)
 
@@ -64,9 +64,9 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
@@ -82,18 +82,18 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class MultiTenderPaymentMethod: Codable {
-        public var name: String?
-
         public var mode: String
+
+        public var name: String?
 
         public var amount: Double
 
         public var meta: MultiTenderPaymentMeta?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case mode
+
+            case name
 
             case amount
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
-            self.name = name
-
             self.mode = mode
+
+            self.name = name
 
             self.amount = amount
 
@@ -113,6 +113,8 @@ public extension PlatformClient.ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            mode = try container.decode(String.self, forKey: .mode)
+
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -120,8 +122,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mode = try container.decode(String.self, forKey: .mode)
 
             amount = try container.decode(Double.self, forKey: .amount)
 
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 

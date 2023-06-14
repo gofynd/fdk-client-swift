@@ -9,24 +9,24 @@ public extension PlatformClient.Payment {
      */
 
     class NotFoundResourceError: Codable {
-        public var description: String
-
         public var success: Bool
+
+        public var description: String
 
         public var code: String
 
         public enum CodingKeys: String, CodingKey {
-            case description
-
             case success
+
+            case description
 
             case code
         }
 
         public init(code: String, description: String, success: Bool) {
-            self.description = description
-
             self.success = success
+
+            self.description = description
 
             self.code = code
         }
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            description = try container.decode(String.self, forKey: .description)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            description = try container.decode(String.self, forKey: .description)
 
             code = try container.decode(String.self, forKey: .code)
         }
@@ -44,9 +44,9 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(code, forKey: .code)
         }
@@ -60,24 +60,24 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class NotFoundResourceError: Codable {
-        public var description: String
-
         public var success: Bool
+
+        public var description: String
 
         public var code: String
 
         public enum CodingKeys: String, CodingKey {
-            case description
-
             case success
+
+            case description
 
             case code
         }
 
         public init(code: String, description: String, success: Bool) {
-            self.description = description
-
             self.success = success
+
+            self.description = description
 
             self.code = code
         }
@@ -85,9 +85,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            description = try container.decode(String.self, forKey: .description)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            description = try container.decode(String.self, forKey: .description)
 
             code = try container.decode(String.self, forKey: .code)
         }
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(code, forKey: .code)
         }

@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class AutocompletePageAction: Codable {
         public var params: [String: Any]?
 
-        public var type: String?
-
         public var url: String?
+
+        public var type: String?
 
         public var query: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case params
 
-            case type
-
             case url
+
+            case type
 
             case query
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil, url: String? = nil) {
             self.params = params
 
-            self.type = type
-
             self.url = url
+
+            self.type = type
 
             self.query = query
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(params, forKey: .params)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(query, forKey: .query)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AutocompletePageAction: Codable {
         public var params: [String: Any]?
 
-        public var type: String?
-
         public var url: String?
+
+        public var type: String?
 
         public var query: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case params
 
-            case type
-
             case url
+
+            case type
 
             case query
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(params: [String: Any]? = nil, query: [String: Any]? = nil, type: String? = nil, url: String? = nil) {
             self.params = params
 
-            self.type = type
-
             self.url = url
+
+            self.type = type
 
             self.query = query
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(params, forKey: .params)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(query, forKey: .query)
         }

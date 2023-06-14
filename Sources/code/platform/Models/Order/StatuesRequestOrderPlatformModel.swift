@@ -15,20 +15,26 @@ public extension PlatformClient.Order {
 
         public var excludeBagsNextState: String?
 
+        public var splitShipment: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case shipments
 
             case status
 
             case excludeBagsNextState = "exclude_bags_next_state"
+
+            case splitShipment = "split_shipment"
         }
 
-        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
+        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, splitShipment: Bool? = nil, status: String? = nil) {
             self.shipments = shipments
 
             self.status = status
 
             self.excludeBagsNextState = excludeBagsNextState
+
+            self.splitShipment = splitShipment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,6 +63,14 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                splitShipment = try container.decode(Bool.self, forKey: .splitShipment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -67,6 +81,8 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
+
+            try? container.encodeIfPresent(splitShipment, forKey: .splitShipment)
         }
     }
 }
@@ -84,20 +100,26 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var excludeBagsNextState: String?
 
+        public var splitShipment: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case shipments
 
             case status
 
             case excludeBagsNextState = "exclude_bags_next_state"
+
+            case splitShipment = "split_shipment"
         }
 
-        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
+        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, splitShipment: Bool? = nil, status: String? = nil) {
             self.shipments = shipments
 
             self.status = status
 
             self.excludeBagsNextState = excludeBagsNextState
+
+            self.splitShipment = splitShipment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -126,6 +148,14 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                splitShipment = try container.decode(Bool.self, forKey: .splitShipment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -136,6 +166,8 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
+
+            try? container.encodeIfPresent(splitShipment, forKey: .splitShipment)
         }
     }
 }

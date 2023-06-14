@@ -9,9 +9,9 @@ public extension ApplicationClient.PosCart {
     class StaffCheckout: Codable {
         public var lastName: String
 
-        public var user: String
-
         public var employeeCode: String?
+
+        public var user: String
 
         public var id: String
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.PosCart {
         public enum CodingKeys: String, CodingKey {
             case lastName = "last_name"
 
-            case user
-
             case employeeCode = "employee_code"
+
+            case user
 
             case id = "_id"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.PosCart {
         public init(employeeCode: String? = nil, firstName: String, lastName: String, user: String, id: String) {
             self.lastName = lastName
 
-            self.user = user
-
             self.employeeCode = employeeCode
+
+            self.user = user
 
             self.id = id
 
@@ -46,8 +46,6 @@ public extension ApplicationClient.PosCart {
 
             lastName = try container.decode(String.self, forKey: .lastName)
 
-            user = try container.decode(String.self, forKey: .user)
-
             do {
                 employeeCode = try container.decode(String.self, forKey: .employeeCode)
 
@@ -55,6 +53,8 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            user = try container.decode(String.self, forKey: .user)
 
             id = try container.decode(String.self, forKey: .id)
 
@@ -66,9 +66,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(lastName, forKey: .lastName)
 
-            try? container.encodeIfPresent(user, forKey: .user)
-
             try? container.encodeIfPresent(employeeCode, forKey: .employeeCode)
+
+            try? container.encodeIfPresent(user, forKey: .user)
 
             try? container.encodeIfPresent(id, forKey: .id)
 

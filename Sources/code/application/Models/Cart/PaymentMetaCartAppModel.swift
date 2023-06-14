@@ -7,18 +7,18 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class PaymentMeta: Codable {
-        public var paymentGateway: String?
-
         public var type: String?
+
+        public var paymentGateway: String?
 
         public var paymentIdentifier: String?
 
         public var merchantCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case paymentGateway = "payment_gateway"
-
             case type
+
+            case paymentGateway = "payment_gateway"
 
             case paymentIdentifier = "payment_identifier"
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Cart {
         }
 
         public init(merchantCode: String? = nil, paymentGateway: String? = nil, paymentIdentifier: String? = nil, type: String? = nil) {
-            self.paymentGateway = paymentGateway
-
             self.type = type
+
+            self.paymentGateway = paymentGateway
 
             self.paymentIdentifier = paymentIdentifier
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
             try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 

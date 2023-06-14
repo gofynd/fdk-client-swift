@@ -7,30 +7,30 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class ProductStatus: Codable {
-        public var value: String?
+        public var title: String?
 
         public var createdAt: String?
 
-        public var title: String?
+        public var value: String?
 
         public var hexCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case value
+            case title
 
             case createdAt = "created_at"
 
-            case title
+            case value
 
             case hexCode = "hex_code"
         }
 
         public init(createdAt: String? = nil, hexCode: String? = nil, title: String? = nil, value: String? = nil) {
-            self.value = value
+            self.title = title
 
             self.createdAt = createdAt
 
-            self.title = title
+            self.value = value
 
             self.hexCode = hexCode
         }
@@ -39,7 +39,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,11 +74,11 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
         }
