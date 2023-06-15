@@ -11,54 +11,62 @@ public extension PlatformClient.Order {
     class PaymentMethod1: Codable {
         public var name: String
 
-        public var transactionData: [String: Any]?
-
         public var refundBy: String
 
-        public var meta: [String: Any]?
-
-        public var amount: Double
+        public var mode: String
 
         public var collectBy: String
 
-        public var mode: String
+        public var amount: Double
+
+        public var transactionData: [String: Any]?
+
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case transactionData = "transaction_data"
-
             case refundBy = "refund_by"
 
-            case meta
-
-            case amount
+            case mode
 
             case collectBy = "collect_by"
 
-            case mode
+            case amount
+
+            case transactionData = "transaction_data"
+
+            case meta
         }
 
         public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
             self.name = name
 
-            self.transactionData = transactionData
-
             self.refundBy = refundBy
 
-            self.meta = meta
-
-            self.amount = amount
+            self.mode = mode
 
             self.collectBy = collectBy
 
-            self.mode = mode
+            self.amount = amount
+
+            self.transactionData = transactionData
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             name = try container.decode(String.self, forKey: .name)
+
+            refundBy = try container.decode(String.self, forKey: .refundBy)
+
+            mode = try container.decode(String.self, forKey: .mode)
+
+            collectBy = try container.decode(String.self, forKey: .collectBy)
+
+            amount = try container.decode(Double.self, forKey: .amount)
 
             do {
                 transactionData = try container.decode([String: Any].self, forKey: .transactionData)
@@ -68,8 +76,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            refundBy = try container.decode(String.self, forKey: .refundBy)
-
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
@@ -77,12 +83,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            amount = try container.decode(Double.self, forKey: .amount)
-
-            collectBy = try container.decode(String.self, forKey: .collectBy)
-
-            mode = try container.decode(String.self, forKey: .mode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -90,17 +90,17 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
-
             try? container.encodeIfPresent(refundBy, forKey: .refundBy)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
@@ -114,54 +114,62 @@ public extension PlatformClient.ApplicationClient.Order {
     class PaymentMethod1: Codable {
         public var name: String
 
-        public var transactionData: [String: Any]?
-
         public var refundBy: String
 
-        public var meta: [String: Any]?
-
-        public var amount: Double
+        public var mode: String
 
         public var collectBy: String
 
-        public var mode: String
+        public var amount: Double
+
+        public var transactionData: [String: Any]?
+
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case transactionData = "transaction_data"
-
             case refundBy = "refund_by"
 
-            case meta
-
-            case amount
+            case mode
 
             case collectBy = "collect_by"
 
-            case mode
+            case amount
+
+            case transactionData = "transaction_data"
+
+            case meta
         }
 
         public init(amount: Double, collectBy: String, meta: [String: Any]? = nil, mode: String, name: String, refundBy: String, transactionData: [String: Any]? = nil) {
             self.name = name
 
-            self.transactionData = transactionData
-
             self.refundBy = refundBy
 
-            self.meta = meta
-
-            self.amount = amount
+            self.mode = mode
 
             self.collectBy = collectBy
 
-            self.mode = mode
+            self.amount = amount
+
+            self.transactionData = transactionData
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             name = try container.decode(String.self, forKey: .name)
+
+            refundBy = try container.decode(String.self, forKey: .refundBy)
+
+            mode = try container.decode(String.self, forKey: .mode)
+
+            collectBy = try container.decode(String.self, forKey: .collectBy)
+
+            amount = try container.decode(Double.self, forKey: .amount)
 
             do {
                 transactionData = try container.decode([String: Any].self, forKey: .transactionData)
@@ -171,8 +179,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            refundBy = try container.decode(String.self, forKey: .refundBy)
-
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
@@ -180,12 +186,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            amount = try container.decode(Double.self, forKey: .amount)
-
-            collectBy = try container.decode(String.self, forKey: .collectBy)
-
-            mode = try container.decode(String.self, forKey: .mode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -193,17 +193,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
-
             try? container.encodeIfPresent(refundBy, forKey: .refundBy)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(mode, forKey: .mode)
 
             try? container.encodeIfPresent(collectBy, forKey: .collectBy)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
+            try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

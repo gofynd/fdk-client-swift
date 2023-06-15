@@ -9,9 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class ErrorResponse: Codable {
-        public var status: Int?
-
         public var code: String?
+
+        public var status: Int?
 
         public var error: String?
 
@@ -20,9 +20,9 @@ public extension PlatformClient.Catalog {
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case code
+
+            case status
 
             case error
 
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.status = status
-
             self.code = code
+
+            self.status = status
 
             self.error = error
 
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
@@ -110,9 +110,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ErrorResponse: Codable {
-        public var status: Int?
-
         public var code: String?
+
+        public var status: Int?
 
         public var error: String?
 
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case code
+
+            case status
 
             case error
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(code: String? = nil, error: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
-            self.status = status
-
             self.code = code
+
+            self.status = status
 
             self.error = error
 
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(Int.self, forKey: .status)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                status = try container.decode(Int.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,9 +191,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
