@@ -40,7 +40,7 @@ platformClient.filestorage.startUpload(namespace: namespace, body: body) { (resp
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartRequest | yes | Request body |
 
 
@@ -113,7 +113,7 @@ platformClient.filestorage.completeUpload(namespace: namespace, body: body) { (r
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartResponse | yes | Request body |
 
 
@@ -186,7 +186,7 @@ platformClient.application("<APPLICATION_ID>").filestorage.appStartUpload(namesp
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartRequest | yes | Request body |
 
 
@@ -259,7 +259,7 @@ platformClient.application("<APPLICATION_ID>").filestorage.appCompleteUpload(nam
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | Segregation of different types of files(prodcuts, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartResponse | yes | Request body |
 
 
