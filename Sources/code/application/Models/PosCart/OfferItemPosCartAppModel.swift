@@ -9,30 +9,30 @@ public extension ApplicationClient.PosCart {
     class OfferItem: Codable {
         public var quantity: Int?
 
-        public var price: OfferPrice?
-
-        public var best: Bool?
-
-        public var type: String?
-
         public var margin: Int?
 
         public var autoApplied: Bool?
+
+        public var best: Bool?
+
+        public var price: OfferPrice?
+
+        public var type: String?
 
         public var total: Double?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
 
-            case price
-
-            case best
-
-            case type
-
             case margin
 
             case autoApplied = "auto_applied"
+
+            case best
+
+            case price
+
+            case type
 
             case total
         }
@@ -40,15 +40,15 @@ public extension ApplicationClient.PosCart {
         public init(autoApplied: Bool? = nil, best: Bool? = nil, margin: Int? = nil, price: OfferPrice? = nil, quantity: Int? = nil, total: Double? = nil, type: String? = nil) {
             self.quantity = quantity
 
-            self.price = price
-
-            self.best = best
-
-            self.type = type
-
             self.margin = margin
 
             self.autoApplied = autoApplied
+
+            self.best = best
+
+            self.price = price
+
+            self.type = type
 
             self.total = total
         }
@@ -58,30 +58,6 @@ public extension ApplicationClient.PosCart {
 
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                price = try container.decode(OfferPrice.self, forKey: .price)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                best = try container.decode(Bool.self, forKey: .best)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,6 +81,30 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
+                best = try container.decode(Bool.self, forKey: .best)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                price = try container.decode(OfferPrice.self, forKey: .price)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 total = try container.decode(Double.self, forKey: .total)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -118,15 +118,15 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(price, forKey: .price)
-
-            try? container.encodeIfPresent(best, forKey: .best)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(margin, forKey: .margin)
 
             try? container.encodeIfPresent(autoApplied, forKey: .autoApplied)
+
+            try? container.encodeIfPresent(best, forKey: .best)
+
+            try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(total, forKey: .total)
         }

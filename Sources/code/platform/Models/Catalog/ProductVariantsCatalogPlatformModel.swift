@@ -13,11 +13,11 @@ public extension PlatformClient.Catalog {
 
         public var itemCode: String?
 
-        public var media: [Media1]?
+        public var uid: Int?
 
         public var name: String?
 
-        public var uid: Int?
+        public var media: [Media1]?
 
         public var categoryUid: Int?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Catalog {
 
             case itemCode = "item_code"
 
-            case media
+            case uid
 
             case name
 
-            case uid
+            case media
 
             case categoryUid = "category_uid"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Catalog {
 
             self.itemCode = itemCode
 
-            self.media = media
+            self.uid = uid
 
             self.name = name
 
-            self.uid = uid
+            self.media = media
 
             self.categoryUid = categoryUid
         }
@@ -69,7 +69,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                media = try container.decode([Media1].self, forKey: .media)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                media = try container.decode([Media1].self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,11 +108,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(itemCode, forKey: .itemCode)
 
-            try? container.encodeIfPresent(media, forKey: .media)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(media, forKey: .media)
 
             try? container.encodeIfPresent(categoryUid, forKey: .categoryUid)
         }
@@ -130,11 +130,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var itemCode: String?
 
-        public var media: [Media1]?
+        public var uid: Int?
 
         public var name: String?
 
-        public var uid: Int?
+        public var media: [Media1]?
 
         public var categoryUid: Int?
 
@@ -143,11 +143,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case itemCode = "item_code"
 
-            case media
+            case uid
 
             case name
 
-            case uid
+            case media
 
             case categoryUid = "category_uid"
         }
@@ -157,11 +157,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.itemCode = itemCode
 
-            self.media = media
+            self.uid = uid
 
             self.name = name
 
-            self.uid = uid
+            self.media = media
 
             self.categoryUid = categoryUid
         }
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                media = try container.decode([Media1].self, forKey: .media)
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                media = try container.decode([Media1].self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,11 +225,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(itemCode, forKey: .itemCode)
 
-            try? container.encodeIfPresent(media, forKey: .media)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(media, forKey: .media)
 
             try? container.encodeIfPresent(categoryUid, forKey: .categoryUid)
         }

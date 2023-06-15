@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class SuperLane: Codable {
-        public var totalItems: Int?
-
         public var options: [SubLane]?
+
+        public var totalItems: Int?
 
         public var text: String
 
         public var value: String
 
         public enum CodingKeys: String, CodingKey {
-            case totalItems = "total_items"
-
             case options
+
+            case totalItems = "total_items"
 
             case text
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
-            self.totalItems = totalItems
-
             self.options = options
+
+            self.totalItems = totalItems
 
             self.text = text
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                totalItems = try container.decode(Int.self, forKey: .totalItems)
+                options = try container.decode([SubLane].self, forKey: .options)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                options = try container.decode([SubLane].self, forKey: .options)
+                totalItems = try container.decode(Int.self, forKey: .totalItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
-
             try? container.encodeIfPresent(options, forKey: .options)
+
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
 
             try? container.encodeIfPresent(text, forKey: .text)
 
@@ -82,18 +82,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class SuperLane: Codable {
-        public var totalItems: Int?
-
         public var options: [SubLane]?
+
+        public var totalItems: Int?
 
         public var text: String
 
         public var value: String
 
         public enum CodingKeys: String, CodingKey {
-            case totalItems = "total_items"
-
             case options
+
+            case totalItems = "total_items"
 
             case text
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
-            self.totalItems = totalItems
-
             self.options = options
+
+            self.totalItems = totalItems
 
             self.text = text
 
@@ -114,7 +114,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                totalItems = try container.decode(Int.self, forKey: .totalItems)
+                options = try container.decode([SubLane].self, forKey: .options)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +122,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                options = try container.decode([SubLane].self, forKey: .options)
+                totalItems = try container.decode(Int.self, forKey: .totalItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
-
             try? container.encodeIfPresent(options, forKey: .options)
+
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
 
             try? container.encodeIfPresent(text, forKey: .text)
 
