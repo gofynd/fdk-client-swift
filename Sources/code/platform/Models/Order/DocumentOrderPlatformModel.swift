@@ -9,22 +9,22 @@ public extension PlatformClient.Order {
      */
 
     class Document: Codable {
-        public var legalName: String
+        public var value: String
 
         public var verified: Bool
 
-        public var value: String
+        public var legalName: String
 
         public var url: String?
 
         public var dsType: String
 
         public enum CodingKeys: String, CodingKey {
-            case legalName = "legal_name"
+            case value
 
             case verified
 
-            case value
+            case legalName = "legal_name"
 
             case url
 
@@ -32,11 +32,11 @@ public extension PlatformClient.Order {
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
-            self.legalName = legalName
+            self.value = value
 
             self.verified = verified
 
-            self.value = value
+            self.legalName = legalName
 
             self.url = url
 
@@ -46,11 +46,11 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            legalName = try container.decode(String.self, forKey: .legalName)
+            value = try container.decode(String.self, forKey: .value)
 
             verified = try container.decode(Bool.self, forKey: .verified)
 
-            value = try container.decode(String.self, forKey: .value)
+            legalName = try container.decode(String.self, forKey: .legalName)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -66,11 +66,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(legalName, forKey: .legalName)
 
             try? container.encodeIfPresent(url, forKey: .url)
 
@@ -86,22 +86,22 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Document: Codable {
-        public var legalName: String
+        public var value: String
 
         public var verified: Bool
 
-        public var value: String
+        public var legalName: String
 
         public var url: String?
 
         public var dsType: String
 
         public enum CodingKeys: String, CodingKey {
-            case legalName = "legal_name"
+            case value
 
             case verified
 
-            case value
+            case legalName = "legal_name"
 
             case url
 
@@ -109,11 +109,11 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
-            self.legalName = legalName
+            self.value = value
 
             self.verified = verified
 
-            self.value = value
+            self.legalName = legalName
 
             self.url = url
 
@@ -123,11 +123,11 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            legalName = try container.decode(String.self, forKey: .legalName)
+            value = try container.decode(String.self, forKey: .value)
 
             verified = try container.decode(Bool.self, forKey: .verified)
 
-            value = try container.decode(String.self, forKey: .value)
+            legalName = try container.decode(String.self, forKey: .legalName)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -143,11 +143,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(legalName, forKey: .legalName)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(verified, forKey: .verified)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(legalName, forKey: .legalName)
 
             try? container.encodeIfPresent(url, forKey: .url)
 

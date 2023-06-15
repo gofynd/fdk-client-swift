@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var actualStatus: String
 
-        public var title: String
-
         public var hexCode: String
+
+        public var title: String
 
         public var status: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case actualStatus = "actual_status"
 
-            case title
-
             case hexCode = "hex_code"
+
+            case title
 
             case status
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.actualStatus = actualStatus
 
-            self.title = title
-
             self.hexCode = hexCode
+
+            self.title = title
 
             self.status = status
         }
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
 
             actualStatus = try container.decode(String.self, forKey: .actualStatus)
 
-            title = try container.decode(String.self, forKey: .title)
-
             hexCode = try container.decode(String.self, forKey: .hexCode)
+
+            title = try container.decode(String.self, forKey: .title)
 
             status = try container.decode(String.self, forKey: .status)
         }
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
+
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }
@@ -84,9 +84,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var actualStatus: String
 
-        public var title: String
-
         public var hexCode: String
+
+        public var title: String
 
         public var status: String
 
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case actualStatus = "actual_status"
 
-            case title
-
             case hexCode = "hex_code"
+
+            case title
 
             case status
         }
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.actualStatus = actualStatus
 
-            self.title = title
-
             self.hexCode = hexCode
+
+            self.title = title
 
             self.status = status
         }
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             actualStatus = try container.decode(String.self, forKey: .actualStatus)
 
-            title = try container.decode(String.self, forKey: .title)
-
             hexCode = try container.decode(String.self, forKey: .hexCode)
+
+            title = try container.decode(String.self, forKey: .title)
 
             status = try container.decode(String.self, forKey: .status)
         }
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(actualStatus, forKey: .actualStatus)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
+
+            try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }
