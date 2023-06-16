@@ -9,7 +9,7 @@ public extension PlatformClient.Order {
      */
 
     class Dates: Codable {
-        public var deliveryDate: [String: Any]?
+        public var deliveryDate: String?
 
         public var orderCreated: String?
 
@@ -19,7 +19,7 @@ public extension PlatformClient.Order {
             case orderCreated = "order_created"
         }
 
-        public init(deliveryDate: [String: Any]? = nil, orderCreated: String? = nil) {
+        public init(deliveryDate: String? = nil, orderCreated: String? = nil) {
             self.deliveryDate = deliveryDate
 
             self.orderCreated = orderCreated
@@ -29,7 +29,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                deliveryDate = try container.decode([String: Any].self, forKey: .deliveryDate)
+                deliveryDate = try container.decode(String.self, forKey: .deliveryDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Dates: Codable {
-        public var deliveryDate: [String: Any]?
+        public var deliveryDate: String?
 
         public var orderCreated: String?
 
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case orderCreated = "order_created"
         }
 
-        public init(deliveryDate: [String: Any]? = nil, orderCreated: String? = nil) {
+        public init(deliveryDate: String? = nil, orderCreated: String? = nil) {
             self.deliveryDate = deliveryDate
 
             self.orderCreated = orderCreated
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                deliveryDate = try container.decode([String: Any].self, forKey: .deliveryDate)
+                deliveryDate = try container.decode(String.self, forKey: .deliveryDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -4,48 +4,40 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: ShipmentDetailsResponse
+         Model: Options
          Used By: Order
      */
 
-    class ShipmentDetailsResponse: Codable {
-        public var shipments: [PlatformShipment]?
+    class Options: Codable {
+        public var value: Int?
 
-        public var success: Bool
-
-        public var order: OrderDict?
+        public var text: String?
 
         public enum CodingKeys: String, CodingKey {
-            case shipments
+            case value
 
-            case success
-
-            case order
+            case text
         }
 
-        public init(order: OrderDict? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
-            self.shipments = shipments
+        public init(text: String? = nil, value: Int? = nil) {
+            self.value = value
 
-            self.success = success
-
-            self.order = order
+            self.text = text
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
+                value = try container.decode(Int.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             do {
-                order = try container.decode(OrderDict.self, forKey: .order)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,59 +48,49 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
+            try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(order, forKey: .order)
+            try? container.encodeIfPresent(text, forKey: .text)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: ShipmentDetailsResponse
+         Model: Options
          Used By: Order
      */
 
-    class ShipmentDetailsResponse: Codable {
-        public var shipments: [PlatformShipment]?
+    class Options: Codable {
+        public var value: Int?
 
-        public var success: Bool
-
-        public var order: OrderDict?
+        public var text: String?
 
         public enum CodingKeys: String, CodingKey {
-            case shipments
+            case value
 
-            case success
-
-            case order
+            case text
         }
 
-        public init(order: OrderDict? = nil, shipments: [PlatformShipment]? = nil, success: Bool) {
-            self.shipments = shipments
+        public init(text: String? = nil, value: Int? = nil) {
+            self.value = value
 
-            self.success = success
-
-            self.order = order
+            self.text = text
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shipments = try container.decode([PlatformShipment].self, forKey: .shipments)
+                value = try container.decode(Int.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             do {
-                order = try container.decode(OrderDict.self, forKey: .order)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,11 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
+            try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(order, forKey: .order)
+            try? container.encodeIfPresent(text, forKey: .text)
         }
     }
 }

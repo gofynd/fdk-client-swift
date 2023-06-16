@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var quantity: Int
 
-        public var id: String
-
         public var brandId: Int
+
+        public var id: String
 
         public var weight: [String: Any]
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
 
             case quantity
 
-            case id = "_id"
-
             case brandId = "brand_id"
+
+            case id = "_id"
 
             case weight
 
@@ -44,9 +44,9 @@ public extension PlatformClient.Order {
 
             self.quantity = quantity
 
-            self.id = id
-
             self.brandId = brandId
+
+            self.id = id
 
             self.weight = weight
 
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             quantity = try container.decode(Int.self, forKey: .quantity)
 
-            id = try container.decode(String.self, forKey: .id)
-
             brandId = try container.decode(Int.self, forKey: .brandId)
+
+            id = try container.decode(String.self, forKey: .id)
 
             weight = try container.decode([String: Any].self, forKey: .weight)
 
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(brandId, forKey: .brandId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
@@ -104,9 +104,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var quantity: Int
 
-        public var id: String
-
         public var brandId: Int
+
+        public var id: String
 
         public var weight: [String: Any]
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case quantity
 
-            case id = "_id"
-
             case brandId = "brand_id"
+
+            case id = "_id"
 
             case weight
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.quantity = quantity
 
-            self.id = id
-
             self.brandId = brandId
+
+            self.id = id
 
             self.weight = weight
 
@@ -153,9 +153,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             quantity = try container.decode(Int.self, forKey: .quantity)
 
-            id = try container.decode(String.self, forKey: .id)
-
             brandId = try container.decode(Int.self, forKey: .brandId)
+
+            id = try container.decode(String.self, forKey: .id)
 
             weight = try container.decode([String: Any].self, forKey: .weight)
 
@@ -171,9 +171,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(brandId, forKey: .brandId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 

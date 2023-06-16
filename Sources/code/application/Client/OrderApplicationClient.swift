@@ -31,6 +31,10 @@ public extension ApplicationClient {
 
             ulrs["getShipmentReasons"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons")
 
+            ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/status")
+
+            ulrs["getProducts"] = config.domain.appendAsPath("/service/application/order/v1.0/products")
+
             self.relativeUrls = ulrs
         }
 
@@ -163,7 +167,7 @@ public extension ApplicationClient {
         public func getPosOrderById(
             orderId: String,
 
-            onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
         ) {
             var fullUrl = relativeUrls["getPosOrderById"] ?? ""
 
@@ -185,7 +189,7 @@ public extension ApplicationClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(OrderList.self, from: data)
+                        let response = Utility.decode(OrderById.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -248,9 +252,16 @@ public extension ApplicationClient {
          **/
         public func getInvoiceByShipmentId(
             shipmentId: String,
+            documentType: String?,
 
             onResponse: @escaping (_ response: ResponseGetInvoiceShipment?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = documentType {
+                xQuery["document_type"] = value
+            }
+
             var fullUrl = relativeUrls["getInvoiceByShipmentId"] ?? ""
 
             fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
@@ -259,7 +270,7 @@ public extension ApplicationClient {
                 config: config,
                 method: "get",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders: [],
                 body: nil,
                 responseType: "application/json",
@@ -542,6 +553,121 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ShipmentReasons.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Update the shipment status
+         * Description: Use this API to update the status of a shipment using its shipment ID.
+         **/
+        public func updateShipmentStatus(
+            shipmentId: String,
+            body: UpdateShipmentStatusRequest,
+            onResponse: @escaping (_ response: ShipmentApplicationStatusResponse?, _ error: FDKError?) -> Void
+        ) {
+            var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
+
+            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "put",
+                url: fullUrl,
+                query: nil,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ShipmentApplicationStatusResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary:
+         * Description:
+         **/
+        public func getProducts(
+            status: Int?,
+            pageNo: Int?,
+            pageSize: Int?,
+            fromDate: String?,
+            toDate: String?,
+            searchValue: String?,
+
+            onResponse: @escaping (_ response: ProductListResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = status {
+                xQuery["status"] = value
+            }
+
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            if let value = fromDate {
+                xQuery["from_date"] = value
+            }
+
+            if let value = toDate {
+                xQuery["to_date"] = value
+            }
+
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
+
+            let fullUrl = relativeUrls["getProducts"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "get",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ProductListResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

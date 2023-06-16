@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: FileUploadResponse
+         Model: AffiliateBagsDetails
          Used By: Order
      */
 
-    class FileUploadResponse: Codable {
-        public var url: String?
+    class AffiliateBagsDetails: Codable {
+        public var affiliateBagId: String?
 
-        public var expiry: Int?
+        public var couponCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case url
+            case affiliateBagId = "affiliate_bag_id"
 
-            case expiry
+            case couponCode = "coupon_code"
         }
 
-        public init(expiry: Int? = nil, url: String? = nil) {
-            self.url = url
+        public init(affiliateBagId: String? = nil, couponCode: String? = nil) {
+            self.affiliateBagId = affiliateBagId
 
-            self.expiry = expiry
+            self.couponCode = couponCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                expiry = try container.decode(Int.self, forKey: .expiry)
+                couponCode = try container.decode(String.self, forKey: .couponCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
-            try? container.encodeIfPresent(expiry, forKey: .expiry)
+            try? container.encode(couponCode, forKey: .couponCode)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: FileUploadResponse
+         Model: AffiliateBagsDetails
          Used By: Order
      */
 
-    class FileUploadResponse: Codable {
-        public var url: String?
+    class AffiliateBagsDetails: Codable {
+        public var affiliateBagId: String?
 
-        public var expiry: Int?
+        public var couponCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case url
+            case affiliateBagId = "affiliate_bag_id"
 
-            case expiry
+            case couponCode = "coupon_code"
         }
 
-        public init(expiry: Int? = nil, url: String? = nil) {
-            self.url = url
+        public init(affiliateBagId: String? = nil, couponCode: String? = nil) {
+            self.affiliateBagId = affiliateBagId
 
-            self.expiry = expiry
+            self.couponCode = couponCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                affiliateBagId = try container.decode(String.self, forKey: .affiliateBagId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                expiry = try container.decode(Int.self, forKey: .expiry)
+                couponCode = try container.decode(String.self, forKey: .couponCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(affiliateBagId, forKey: .affiliateBagId)
 
-            try? container.encodeIfPresent(expiry, forKey: .expiry)
+            try? container.encode(couponCode, forKey: .couponCode)
         }
     }
 }
