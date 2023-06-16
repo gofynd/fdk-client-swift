@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class OptinCompanyMetrics: Codable {
         public var brand: Int?
 
-        public var store: Int?
-
         public var company: String?
+
+        public var store: Int?
 
         public enum CodingKeys: String, CodingKey {
             case brand
 
-            case store
-
             case company
+
+            case store
         }
 
         public init(brand: Int? = nil, company: String? = nil, store: Int? = nil) {
             self.brand = brand
 
-            self.store = store
-
             self.company = company
+
+            self.store = store
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                store = try container.decode(Int.self, forKey: .store)
+                company = try container.decode(String.self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                company = try container.decode(String.self, forKey: .company)
+                store = try container.decode(Int.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(brand, forKey: .brand)
 
-            try? container.encodeIfPresent(store, forKey: .store)
-
             try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(store, forKey: .store)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class OptinCompanyMetrics: Codable {
         public var brand: Int?
 
-        public var store: Int?
-
         public var company: String?
+
+        public var store: Int?
 
         public enum CodingKeys: String, CodingKey {
             case brand
 
-            case store
-
             case company
+
+            case store
         }
 
         public init(brand: Int? = nil, company: String? = nil, store: Int? = nil) {
             self.brand = brand
 
-            self.store = store
-
             self.company = company
+
+            self.store = store
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                store = try container.decode(Int.self, forKey: .store)
+                company = try container.decode(String.self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                company = try container.decode(String.self, forKey: .company)
+                store = try container.decode(Int.self, forKey: .store)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(brand, forKey: .brand)
 
-            try? container.encodeIfPresent(store, forKey: .store)
-
             try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(store, forKey: .store)
         }
     }
 }

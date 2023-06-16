@@ -11,42 +11,42 @@ public extension PlatformClient.Order {
     class Shipment: Codable {
         public var externalShipmentId: String?
 
-        public var lineItems: [LineItem]
-
         public var meta: [String: Any]?
 
         public var processingDates: ProcessingDates?
 
-        public var priority: Int?
-
         public var locationId: Int
+
+        public var lineItems: [LineItem]
+
+        public var priority: Int?
 
         public enum CodingKeys: String, CodingKey {
             case externalShipmentId = "external_shipment_id"
-
-            case lineItems = "line_items"
 
             case meta
 
             case processingDates = "processing_dates"
 
-            case priority
-
             case locationId = "location_id"
+
+            case lineItems = "line_items"
+
+            case priority
         }
 
         public init(externalShipmentId: String? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
             self.externalShipmentId = externalShipmentId
 
-            self.lineItems = lineItems
-
             self.meta = meta
 
             self.processingDates = processingDates
 
-            self.priority = priority
-
             self.locationId = locationId
+
+            self.lineItems = lineItems
+
+            self.priority = priority
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,8 +59,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            lineItems = try container.decode([LineItem].self, forKey: .lineItems)
 
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
@@ -78,6 +76,10 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            locationId = try container.decode(Int.self, forKey: .locationId)
+
+            lineItems = try container.decode([LineItem].self, forKey: .lineItems)
+
             do {
                 priority = try container.decode(Int.self, forKey: .priority)
 
@@ -85,8 +87,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            locationId = try container.decode(Int.self, forKey: .locationId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,15 +94,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
 
-            try? container.encodeIfPresent(lineItems, forKey: .lineItems)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(processingDates, forKey: .processingDates)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
             try? container.encodeIfPresent(locationId, forKey: .locationId)
+
+            try? container.encodeIfPresent(lineItems, forKey: .lineItems)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
         }
     }
 }
@@ -116,42 +116,42 @@ public extension PlatformClient.ApplicationClient.Order {
     class Shipment: Codable {
         public var externalShipmentId: String?
 
-        public var lineItems: [LineItem]
-
         public var meta: [String: Any]?
 
         public var processingDates: ProcessingDates?
 
-        public var priority: Int?
-
         public var locationId: Int
+
+        public var lineItems: [LineItem]
+
+        public var priority: Int?
 
         public enum CodingKeys: String, CodingKey {
             case externalShipmentId = "external_shipment_id"
-
-            case lineItems = "line_items"
 
             case meta
 
             case processingDates = "processing_dates"
 
-            case priority
-
             case locationId = "location_id"
+
+            case lineItems = "line_items"
+
+            case priority
         }
 
         public init(externalShipmentId: String? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
             self.externalShipmentId = externalShipmentId
 
-            self.lineItems = lineItems
-
             self.meta = meta
 
             self.processingDates = processingDates
 
-            self.priority = priority
-
             self.locationId = locationId
+
+            self.lineItems = lineItems
+
+            self.priority = priority
         }
 
         required public init(from decoder: Decoder) throws {
@@ -164,8 +164,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            lineItems = try container.decode([LineItem].self, forKey: .lineItems)
 
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
@@ -183,6 +181,10 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            locationId = try container.decode(Int.self, forKey: .locationId)
+
+            lineItems = try container.decode([LineItem].self, forKey: .lineItems)
+
             do {
                 priority = try container.decode(Int.self, forKey: .priority)
 
@@ -190,8 +192,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            locationId = try container.decode(Int.self, forKey: .locationId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -199,15 +199,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(externalShipmentId, forKey: .externalShipmentId)
 
-            try? container.encodeIfPresent(lineItems, forKey: .lineItems)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(processingDates, forKey: .processingDates)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
-
             try? container.encodeIfPresent(locationId, forKey: .locationId)
+
+            try? container.encodeIfPresent(lineItems, forKey: .lineItems)
+
+            try? container.encodeIfPresent(priority, forKey: .priority)
         }
     }
 }
