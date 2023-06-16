@@ -4,38 +4,38 @@ import Foundation
 
 public extension PlatformClient.Serviceability {
     /*
-         Model: Error
+         Model: CommonError
          Used By: Serviceability
      */
 
-    class Error: Codable {
-        public var type: String?
+    class CommonError: Codable {
+        public var error: [String: Any]?
 
-        public var value: String?
+        public var statusCode: String?
 
-        public var message: String?
+        public var success: String?
 
         public enum CodingKeys: String, CodingKey {
-            case type
+            case error
 
-            case value
+            case statusCode = "status_code"
 
-            case message
+            case success
         }
 
-        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
-            self.type = type
+        public init(error: [String: Any]? = nil, statusCode: String? = nil, success: String? = nil) {
+            self.error = error
 
-            self.value = value
+            self.statusCode = statusCode
 
-            self.message = message
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                error = try container.decode([String: Any].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                statusCode = try container.decode(String.self, forKey: .statusCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                success = try container.decode(String.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,49 +62,49 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-         Model: Error
+         Model: CommonError
          Used By: Serviceability
      */
 
-    class Error: Codable {
-        public var type: String?
+    class CommonError: Codable {
+        public var error: [String: Any]?
 
-        public var value: String?
+        public var statusCode: String?
 
-        public var message: String?
+        public var success: String?
 
         public enum CodingKeys: String, CodingKey {
-            case type
+            case error
 
-            case value
+            case statusCode = "status_code"
 
-            case message
+            case success
         }
 
-        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
-            self.type = type
+        public init(error: [String: Any]? = nil, statusCode: String? = nil, success: String? = nil) {
+            self.error = error
 
-            self.value = value
+            self.statusCode = statusCode
 
-            self.message = message
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                error = try container.decode([String: Any].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                statusCode = try container.decode(String.self, forKey: .statusCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                success = try container.decode(String.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(type, forKey: .type)
+            try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

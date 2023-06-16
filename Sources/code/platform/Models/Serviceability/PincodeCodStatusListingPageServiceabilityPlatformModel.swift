@@ -11,36 +11,36 @@ public extension PlatformClient.Serviceability {
     class PincodeCodStatusListingPage: Codable {
         public var itemTotal: Int
 
-        public var currentPageNumber: Int
-
         public var size: Int
 
         public var type: String
 
         public var hasNext: Bool
 
+        public var current: Int
+
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
-
-            case currentPageNumber = "current_page_number"
 
             case size
 
             case type
 
             case hasNext = "has_next"
+
+            case current
         }
 
-        public init(currentPageNumber: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
+        public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
             self.itemTotal = itemTotal
-
-            self.currentPageNumber = currentPageNumber
 
             self.size = size
 
             self.type = type
 
             self.hasNext = hasNext
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,13 +48,13 @@ public extension PlatformClient.Serviceability {
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            currentPageNumber = try container.decode(Int.self, forKey: .currentPageNumber)
-
             size = try container.decode(Int.self, forKey: .size)
 
             type = try container.decode(String.self, forKey: .type)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            current = try container.decode(Int.self, forKey: .current)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,13 +62,13 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(currentPageNumber, forKey: .currentPageNumber)
-
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }
@@ -82,36 +82,36 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class PincodeCodStatusListingPage: Codable {
         public var itemTotal: Int
 
-        public var currentPageNumber: Int
-
         public var size: Int
 
         public var type: String
 
         public var hasNext: Bool
 
+        public var current: Int
+
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
-
-            case currentPageNumber = "current_page_number"
 
             case size
 
             case type
 
             case hasNext = "has_next"
+
+            case current
         }
 
-        public init(currentPageNumber: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
+        public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
             self.itemTotal = itemTotal
-
-            self.currentPageNumber = currentPageNumber
 
             self.size = size
 
             self.type = type
 
             self.hasNext = hasNext
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -119,13 +119,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            currentPageNumber = try container.decode(Int.self, forKey: .currentPageNumber)
-
             size = try container.decode(Int.self, forKey: .size)
 
             type = try container.decode(String.self, forKey: .type)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            current = try container.decode(Int.self, forKey: .current)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -133,13 +133,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(currentPageNumber, forKey: .currentPageNumber)
-
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }

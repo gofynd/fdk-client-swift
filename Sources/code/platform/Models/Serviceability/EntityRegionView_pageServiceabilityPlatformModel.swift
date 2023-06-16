@@ -13,22 +13,22 @@ public extension PlatformClient.Serviceability {
 
         public var size: Int
 
-        public var current: Int
-
         public var type: String
 
         public var hasNext: Bool
+
+        public var current: Int
 
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
             case size
 
-            case current
-
             case type
 
             case hasNext = "has_next"
+
+            case current
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Serviceability {
 
             self.size = size
 
-            self.current = current
-
             self.type = type
 
             self.hasNext = hasNext
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,11 +50,11 @@ public extension PlatformClient.Serviceability {
 
             size = try container.decode(Int.self, forKey: .size)
 
-            current = try container.decode(Int.self, forKey: .current)
-
             type = try container.decode(String.self, forKey: .type)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            current = try container.decode(Int.self, forKey: .current)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }
@@ -84,22 +84,22 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public var size: Int
 
-        public var current: Int
-
         public var type: String
 
         public var hasNext: Bool
+
+        public var current: Int
 
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
             case size
 
-            case current
-
             case type
 
             case hasNext = "has_next"
+
+            case current
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
@@ -107,11 +107,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             self.size = size
 
-            self.current = current
-
             self.type = type
 
             self.hasNext = hasNext
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -121,11 +121,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             size = try container.decode(Int.self, forKey: .size)
 
-            current = try container.decode(Int.self, forKey: .current)
-
             type = try container.decode(String.self, forKey: .type)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            current = try container.decode(Int.self, forKey: .current)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }

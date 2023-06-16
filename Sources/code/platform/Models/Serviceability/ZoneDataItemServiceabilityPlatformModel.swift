@@ -11,36 +11,36 @@ public extension PlatformClient.Serviceability {
     class ZoneDataItem: Codable {
         public var itemTotal: Int
 
-        public var type: String
-
         public var size: Int
+
+        public var hasNext: Bool
 
         public var current: Int
 
-        public var hasNext: Bool
+        public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
-            case type
-
             case size
+
+            case hasNext = "has_next"
 
             case current
 
-            case hasNext = "has_next"
+            case type
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
             self.itemTotal = itemTotal
 
-            self.type = type
-
             self.size = size
+
+            self.hasNext = hasNext
 
             self.current = current
 
-            self.hasNext = hasNext
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,13 +48,13 @@ public extension PlatformClient.Serviceability {
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            type = try container.decode(String.self, forKey: .type)
-
             size = try container.decode(Int.self, forKey: .size)
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             current = try container.decode(Int.self, forKey: .current)
 
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,13 +62,13 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -82,36 +82,36 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ZoneDataItem: Codable {
         public var itemTotal: Int
 
-        public var type: String
-
         public var size: Int
+
+        public var hasNext: Bool
 
         public var current: Int
 
-        public var hasNext: Bool
+        public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case itemTotal = "item_total"
 
-            case type
-
             case size
+
+            case hasNext = "has_next"
 
             case current
 
-            case hasNext = "has_next"
+            case type
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, size: Int, type: String) {
             self.itemTotal = itemTotal
 
-            self.type = type
-
             self.size = size
+
+            self.hasNext = hasNext
 
             self.current = current
 
-            self.hasNext = hasNext
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -119,13 +119,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            type = try container.decode(String.self, forKey: .type)
-
             size = try container.decode(Int.self, forKey: .size)
+
+            hasNext = try container.decode(Bool.self, forKey: .hasNext)
 
             current = try container.decode(Int.self, forKey: .current)
 
-            hasNext = try container.decode(Bool.self, forKey: .hasNext)
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -133,13 +133,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
             try? container.encodeIfPresent(current, forKey: .current)
 
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
