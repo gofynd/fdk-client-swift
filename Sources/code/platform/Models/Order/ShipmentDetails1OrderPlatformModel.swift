@@ -17,9 +17,9 @@ public extension PlatformClient.Order {
 
         public var fulfillmentId: Int
 
-        public var boxType: String?
-
         public var dpId: Int?
+
+        public var boxType: String?
 
         public var affiliateShipmentId: String
 
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             case fulfillmentId = "fulfillment_id"
 
-            case boxType = "box_type"
-
             case dpId = "dp_id"
+
+            case boxType = "box_type"
 
             case affiliateShipmentId = "affiliate_shipment_id"
         }
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
 
             self.fulfillmentId = fulfillmentId
 
-            self.boxType = boxType
-
             self.dpId = dpId
+
+            self.boxType = boxType
 
             self.affiliateShipmentId = affiliateShipmentId
         }
@@ -73,7 +73,7 @@ public extension PlatformClient.Order {
             fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
 
             do {
-                boxType = try container.decode(String.self, forKey: .boxType)
+                dpId = try container.decode(Int.self, forKey: .dpId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                dpId = try container.decode(Int.self, forKey: .dpId)
+                boxType = try container.decode(String.self, forKey: .boxType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,9 +102,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encode(boxType, forKey: .boxType)
+            try? container.encodeIfPresent(dpId, forKey: .dpId)
 
-            try? container.encode(dpId, forKey: .dpId)
+            try? container.encodeIfPresent(boxType, forKey: .boxType)
 
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
         }
@@ -126,9 +126,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var fulfillmentId: Int
 
-        public var boxType: String?
-
         public var dpId: Int?
+
+        public var boxType: String?
 
         public var affiliateShipmentId: String
 
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case fulfillmentId = "fulfillment_id"
 
-            case boxType = "box_type"
-
             case dpId = "dp_id"
+
+            case boxType = "box_type"
 
             case affiliateShipmentId = "affiliate_shipment_id"
         }
@@ -157,9 +157,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.fulfillmentId = fulfillmentId
 
-            self.boxType = boxType
-
             self.dpId = dpId
+
+            self.boxType = boxType
 
             self.affiliateShipmentId = affiliateShipmentId
         }
@@ -182,7 +182,7 @@ public extension PlatformClient.ApplicationClient.Order {
             fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
 
             do {
-                boxType = try container.decode(String.self, forKey: .boxType)
+                dpId = try container.decode(Int.self, forKey: .dpId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -190,7 +190,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                dpId = try container.decode(Int.self, forKey: .dpId)
+                boxType = try container.decode(String.self, forKey: .boxType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,9 +211,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encode(boxType, forKey: .boxType)
+            try? container.encodeIfPresent(dpId, forKey: .dpId)
 
-            try? container.encode(dpId, forKey: .dpId)
+            try? container.encodeIfPresent(boxType, forKey: .boxType)
 
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
         }

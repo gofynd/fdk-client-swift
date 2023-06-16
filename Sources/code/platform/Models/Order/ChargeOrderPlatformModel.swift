@@ -9,8 +9,6 @@ public extension PlatformClient.Order {
      */
 
     class Charge: Codable {
-        public var name: String
-
         public var code: String?
 
         public var type: String
@@ -19,9 +17,9 @@ public extension PlatformClient.Order {
 
         public var tax: Tax?
 
-        public enum CodingKeys: String, CodingKey {
-            case name
+        public var name: String
 
+        public enum CodingKeys: String, CodingKey {
             case code
 
             case type
@@ -29,11 +27,11 @@ public extension PlatformClient.Order {
             case amount
 
             case tax
+
+            case name
         }
 
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
-            self.name = name
-
             self.code = code
 
             self.type = type
@@ -41,12 +39,12 @@ public extension PlatformClient.Order {
             self.amount = amount
 
             self.tax = tax
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 code = try container.decode(String.self, forKey: .code)
@@ -67,12 +65,12 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
@@ -81,6 +79,8 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(tax, forKey: .tax)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -92,8 +92,6 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Charge: Codable {
-        public var name: String
-
         public var code: String?
 
         public var type: String
@@ -102,9 +100,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var tax: Tax?
 
-        public enum CodingKeys: String, CodingKey {
-            case name
+        public var name: String
 
+        public enum CodingKeys: String, CodingKey {
             case code
 
             case type
@@ -112,11 +110,11 @@ public extension PlatformClient.ApplicationClient.Order {
             case amount
 
             case tax
+
+            case name
         }
 
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
-            self.name = name
-
             self.code = code
 
             self.type = type
@@ -124,12 +122,12 @@ public extension PlatformClient.ApplicationClient.Order {
             self.amount = amount
 
             self.tax = tax
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 code = try container.decode(String.self, forKey: .code)
@@ -150,12 +148,12 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
@@ -164,6 +162,8 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(tax, forKey: .tax)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

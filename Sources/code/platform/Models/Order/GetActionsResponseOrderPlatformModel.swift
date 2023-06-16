@@ -9,20 +9,20 @@ public extension PlatformClient.Order {
      */
 
     class GetActionsResponse: Codable {
-        public var permissions: ActionInfo
+        public var permissions: [ActionInfo]
 
         public enum CodingKeys: String, CodingKey {
             case permissions
         }
 
-        public init(permissions: ActionInfo) {
+        public init(permissions: [ActionInfo]) {
             self.permissions = permissions
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            permissions = try container.decode(ActionInfo.self, forKey: .permissions)
+            permissions = try container.decode([ActionInfo].self, forKey: .permissions)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -40,20 +40,20 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class GetActionsResponse: Codable {
-        public var permissions: ActionInfo
+        public var permissions: [ActionInfo]
 
         public enum CodingKeys: String, CodingKey {
             case permissions
         }
 
-        public init(permissions: ActionInfo) {
+        public init(permissions: [ActionInfo]) {
             self.permissions = permissions
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            permissions = try container.decode(ActionInfo.self, forKey: .permissions)
+            permissions = try container.decode([ActionInfo].self, forKey: .permissions)
         }
 
         public func encode(to encoder: Encoder) throws {

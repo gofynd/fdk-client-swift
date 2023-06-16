@@ -11,13 +11,13 @@ public extension PlatformClient.Order {
     class BagMeta: Codable {
         public var extraMeta: [String: Any]?
 
-        public var customJson: [String: Any]?
-
-        public var partialCanRet: Bool?
+        public var groupId: String?
 
         public var customMessage: String?
 
-        public var groupId: String?
+        public var customJson: [String: Any]?
+
+        public var partialCanRet: Bool?
 
         public var b2BPoDetails: B2BPODetails?
 
@@ -28,13 +28,13 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case extraMeta = "extra_meta"
 
-            case customJson = "custom_json"
-
-            case partialCanRet = "partial_can_ret"
+            case groupId = "group_id"
 
             case customMessage = "custom_message"
 
-            case groupId = "group_id"
+            case customJson = "custom_json"
+
+            case partialCanRet = "partial_can_ret"
 
             case b2BPoDetails = "b2b_po_details"
 
@@ -46,13 +46,13 @@ public extension PlatformClient.Order {
         public init(b2BPoDetails: B2BPODetails? = nil, customJson: [String: Any]? = nil, customMessage: String? = nil, docketNumber: String? = nil, extraMeta: [String: Any]? = nil, giftCard: GiftCard? = nil, groupId: String? = nil, partialCanRet: Bool? = nil) {
             self.extraMeta = extraMeta
 
-            self.customJson = customJson
-
-            self.partialCanRet = partialCanRet
+            self.groupId = groupId
 
             self.customMessage = customMessage
 
-            self.groupId = groupId
+            self.customJson = customJson
+
+            self.partialCanRet = partialCanRet
 
             self.b2BPoDetails = b2BPoDetails
 
@@ -73,15 +73,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
+                groupId = try container.decode(String.self, forKey: .groupId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +89,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                groupId = try container.decode(String.self, forKey: .groupId)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,13 +134,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+            try? container.encodeIfPresent(groupId, forKey: .groupId)
 
             try? container.encodeIfPresent(customMessage, forKey: .customMessage)
 
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
 
             try? container.encodeIfPresent(b2BPoDetails, forKey: .b2BPoDetails)
 
@@ -160,13 +160,13 @@ public extension PlatformClient.ApplicationClient.Order {
     class BagMeta: Codable {
         public var extraMeta: [String: Any]?
 
-        public var customJson: [String: Any]?
-
-        public var partialCanRet: Bool?
+        public var groupId: String?
 
         public var customMessage: String?
 
-        public var groupId: String?
+        public var customJson: [String: Any]?
+
+        public var partialCanRet: Bool?
 
         public var b2BPoDetails: B2BPODetails?
 
@@ -177,13 +177,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case extraMeta = "extra_meta"
 
-            case customJson = "custom_json"
-
-            case partialCanRet = "partial_can_ret"
+            case groupId = "group_id"
 
             case customMessage = "custom_message"
 
-            case groupId = "group_id"
+            case customJson = "custom_json"
+
+            case partialCanRet = "partial_can_ret"
 
             case b2BPoDetails = "b2b_po_details"
 
@@ -195,13 +195,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(b2BPoDetails: B2BPODetails? = nil, customJson: [String: Any]? = nil, customMessage: String? = nil, docketNumber: String? = nil, extraMeta: [String: Any]? = nil, giftCard: GiftCard? = nil, groupId: String? = nil, partialCanRet: Bool? = nil) {
             self.extraMeta = extraMeta
 
-            self.customJson = customJson
-
-            self.partialCanRet = partialCanRet
+            self.groupId = groupId
 
             self.customMessage = customMessage
 
-            self.groupId = groupId
+            self.customJson = customJson
+
+            self.partialCanRet = partialCanRet
 
             self.b2BPoDetails = b2BPoDetails
 
@@ -222,15 +222,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
+                groupId = try container.decode(String.self, forKey: .groupId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -246,7 +238,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                groupId = try container.decode(String.self, forKey: .groupId)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                partialCanRet = try container.decode(Bool.self, forKey: .partialCanRet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -283,13 +283,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
-            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+            try? container.encodeIfPresent(groupId, forKey: .groupId)
 
             try? container.encodeIfPresent(customMessage, forKey: .customMessage)
 
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
 
             try? container.encodeIfPresent(b2BPoDetails, forKey: .b2BPoDetails)
 
