@@ -5,13 +5,7 @@
 ##### [Back to Platform docs](./README.md)
 
 ## Webhook Methods
-Sureshot is a webhook system where user can register their webhook to all available events in Fynd Platform, On event trigger. Sureshot will call all registered webhook endpoints for that specific event.This is the feature where sellers can subscribe(register webhook) to events provided. 
-
- Sellers can view list of events available for subscription. 
-
- They can register their webhook to specific event. 
-
- Once that event gets triggered in system, sellers will receive event data on their registered webhook
+Webhook dispatcher with retry and one event to many subscriber vice versa
 * [getSubscribersByCompany](#getsubscribersbycompany)
 * [registerSubscriberToEvent](#registersubscribertoevent)
 * [updateSubscriberConfig](#updatesubscriberconfig)
@@ -461,6 +455,25 @@ Success
 
  
  
+ #### [SubscriberConfig](#SubscriberConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | Int? |  yes  |  |
+ | name | String? |  yes  |  |
+ | webhookUrl | String? |  yes  |  |
+ | association | [Association](#Association)? |  yes  |  |
+ | customHeaders | [String: Any]? |  yes  |  |
+ | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
+ | emailId | String? |  yes  |  |
+ | authMeta | [AuthMeta](#AuthMeta)? |  yes  |  |
+ | eventId | [Int]? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [SubscriberResponse](#SubscriberResponse)
 
  | Properties | Type | Nullable | Description |
@@ -530,60 +543,6 @@ Success
  | eventType | String? |  yes  |  |
  | eventCategory | String? |  yes  |  |
  | version | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [EventConfigDetails](#EventConfigDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | eventName | String? |  yes  |  |
- | eventType | String? |  yes  |  |
- | eventCategory | String? |  yes  |  |
- | version | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | description | String? |  yes  |  |
- | createdOn | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [SubscriberConfigDetails](#SubscriberConfigDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | webhookUrl | String? |  yes  |  |
- | association | [Association](#Association)? |  yes  |  |
- | customHeaders | [String: Any]? |  yes  |  |
- | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
- | emailId | String? |  yes  |  |
- | authMeta | [AuthMeta](#AuthMeta)? |  yes  |  |
- | eventId | [Int]? |  yes  |  |
-
----
-
-
- 
- 
- #### [SubscriberConfig](#SubscriberConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | webhookUrl | String? |  yes  |  |
- | association | [Association](#Association)? |  yes  |  |
- | customHeaders | [String: Any]? |  yes  |  |
- | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
- | emailId | String? |  yes  |  |
- | authMeta | [AuthMeta](#AuthMeta)? |  yes  |  |
- | eventId | [Int]? |  yes  |  |
 
 ---
 

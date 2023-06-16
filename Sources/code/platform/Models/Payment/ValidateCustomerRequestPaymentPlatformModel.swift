@@ -11,54 +11,54 @@ public extension PlatformClient.Payment {
     class ValidateCustomerRequest: Codable {
         public var billingAddress: [String: Any]?
 
-        public var merchantParams: [String: Any]?
-
-        public var transactionAmountInPaise: Int
-
         public var orderItems: [[String: Any]]?
+
+        public var aggregator: String
+
+        public var merchantParams: [String: Any]?
 
         public var payload: String?
 
-        public var phoneNumber: String
+        public var transactionAmountInPaise: Int
 
         public var deliveryAddress: [String: Any]?
 
-        public var aggregator: String
+        public var phoneNumber: String
 
         public enum CodingKeys: String, CodingKey {
             case billingAddress = "billing_address"
 
-            case merchantParams = "merchant_params"
-
-            case transactionAmountInPaise = "transaction_amount_in_paise"
-
             case orderItems = "order_items"
+
+            case aggregator
+
+            case merchantParams = "merchant_params"
 
             case payload
 
-            case phoneNumber = "phone_number"
+            case transactionAmountInPaise = "transaction_amount_in_paise"
 
             case deliveryAddress = "delivery_address"
 
-            case aggregator
+            case phoneNumber = "phone_number"
         }
 
         public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
             self.billingAddress = billingAddress
 
-            self.merchantParams = merchantParams
-
-            self.transactionAmountInPaise = transactionAmountInPaise
-
             self.orderItems = orderItems
+
+            self.aggregator = aggregator
+
+            self.merchantParams = merchantParams
 
             self.payload = payload
 
-            self.phoneNumber = phoneNumber
+            self.transactionAmountInPaise = transactionAmountInPaise
 
             self.deliveryAddress = deliveryAddress
 
-            self.aggregator = aggregator
+            self.phoneNumber = phoneNumber
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,17 +73,17 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+                orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             do {
-                orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
+                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -98,7 +98,7 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
 
             do {
                 deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
@@ -108,7 +108,7 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -116,19 +116,19 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
-            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
-
-            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
-
             try? container.encodeIfPresent(orderItems, forKey: .orderItems)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
             try? container.encode(payload, forKey: .payload)
 
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
             try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         }
     }
 }
@@ -142,54 +142,54 @@ public extension PlatformClient.ApplicationClient.Payment {
     class ValidateCustomerRequest: Codable {
         public var billingAddress: [String: Any]?
 
-        public var merchantParams: [String: Any]?
-
-        public var transactionAmountInPaise: Int
-
         public var orderItems: [[String: Any]]?
+
+        public var aggregator: String
+
+        public var merchantParams: [String: Any]?
 
         public var payload: String?
 
-        public var phoneNumber: String
+        public var transactionAmountInPaise: Int
 
         public var deliveryAddress: [String: Any]?
 
-        public var aggregator: String
+        public var phoneNumber: String
 
         public enum CodingKeys: String, CodingKey {
             case billingAddress = "billing_address"
 
-            case merchantParams = "merchant_params"
-
-            case transactionAmountInPaise = "transaction_amount_in_paise"
-
             case orderItems = "order_items"
+
+            case aggregator
+
+            case merchantParams = "merchant_params"
 
             case payload
 
-            case phoneNumber = "phone_number"
+            case transactionAmountInPaise = "transaction_amount_in_paise"
 
             case deliveryAddress = "delivery_address"
 
-            case aggregator
+            case phoneNumber = "phone_number"
         }
 
         public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
             self.billingAddress = billingAddress
 
-            self.merchantParams = merchantParams
-
-            self.transactionAmountInPaise = transactionAmountInPaise
-
             self.orderItems = orderItems
+
+            self.aggregator = aggregator
+
+            self.merchantParams = merchantParams
 
             self.payload = payload
 
-            self.phoneNumber = phoneNumber
+            self.transactionAmountInPaise = transactionAmountInPaise
 
             self.deliveryAddress = deliveryAddress
 
-            self.aggregator = aggregator
+            self.phoneNumber = phoneNumber
         }
 
         required public init(from decoder: Decoder) throws {
@@ -204,17 +204,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+                orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             do {
-                orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
+                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,7 +229,7 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
+            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
 
             do {
                 deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
@@ -239,7 +239,7 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -247,19 +247,19 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
-            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
-
-            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
-
             try? container.encodeIfPresent(orderItems, forKey: .orderItems)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
             try? container.encode(payload, forKey: .payload)
 
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
             try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         }
     }
 }

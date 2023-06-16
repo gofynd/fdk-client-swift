@@ -6,6 +6,9 @@
 
 ## Communication Methods
 Manages email, sms, push notifications sent to users
+* [getAppProviders](#getappproviders)
+* [updateAppProviders](#updateappproviders)
+* [getGlobalProviders](#getglobalproviders)
 * [getCampaigns](#getcampaigns)
 * [createCampaign](#createcampaign)
 * [getCampaignById](#getcampaignbyid)
@@ -19,8 +22,10 @@ Manages email, sms, push notifications sent to users
 * [getNSampleRecordsFromCsv](#getnsamplerecordsfromcsv)
 * [getEmailProviders](#getemailproviders)
 * [createEmailProvider](#createemailprovider)
+* [getDefaultEmailProviders](#getdefaultemailproviders)
 * [getEmailProviderById](#getemailproviderbyid)
 * [updateEmailProviderById](#updateemailproviderbyid)
+* [deleteEmailProviderById](#deleteemailproviderbyid)
 * [getEmailTemplates](#getemailtemplates)
 * [createEmailTemplate](#createemailtemplate)
 * [getSystemEmailTemplates](#getsystememailtemplates)
@@ -39,8 +44,10 @@ Manages email, sms, push notifications sent to users
 * [verfiyOtp](#verfiyotp)
 * [getSmsProviders](#getsmsproviders)
 * [createSmsProvider](#createsmsprovider)
+* [getDefaultSmsProviders](#getdefaultsmsproviders)
 * [getSmsProviderById](#getsmsproviderbyid)
 * [updateSmsProviderById](#updatesmsproviderbyid)
+* [deleteSmsProviderById](#deletesmsproviderbyid)
 * [getSmsTemplates](#getsmstemplates)
 * [createSmsTemplate](#createsmstemplate)
 * [getSmsTemplateById](#getsmstemplatebyid)
@@ -60,6 +67,279 @@ Manages email, sms, push notifications sent to users
 
 
 ## Methods with example and description
+
+
+#### getAppProviders
+Get app providers
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.getAppProviders() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Using this API will return a list of application providers.
+
+*Returned Response:*
+
+
+
+
+[AppProvider](#AppProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "email": {
+      "transaction": {
+        "provider": "5f0408cec0c2a2175a1c16f6"
+      },
+      "promotional": {
+        "provider": "6385ed1ebf50a6c9a61d58d5"
+      },
+      "otp": {
+        "provider": "5f0408cec0c2a2175a1c16f6"
+      }
+    },
+    "sms": {
+      "transaction": {
+        "provider": "63db8c68975237fff4f2133e"
+      },
+      "promotional": {
+        "provider": "63db8c68975237fff4f2133e"
+      },
+      "otp": {
+        "provider": "63db8c68975237fff4f21346"
+      }
+    },
+    "voice": {
+      "transaction": {
+        "provider": "643cf4098bb1fc2c1d67f089"
+      },
+      "otp": {
+        "provider": "643cf4098bb1fc2c1d67f089"
+      }
+    },
+    "_id": "63e20ce7648381edb6de45ff",
+    "application": "637b6355dc65337da9b5c951",
+    "created_at": "2023-02-07T08:33:43.169Z",
+    "updated_at": "2023-05-30T07:16:39.161Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateAppProviders
+update app providers
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.updateAppProviders(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | AppProviderReq | yes | Request body |
+
+
+Using this API will update the application providers.
+
+*Returned Response:*
+
+
+
+
+[AppProvider](#AppProvider)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "email": {
+      "transaction": {
+        "provider": "5f0408cec0c2a2175a1c16f6"
+      },
+      "promotional": {
+        "provider": "6385ed1ebf50a6c9a61d58d5"
+      },
+      "otp": {
+        "provider": "5f0408cec0c2a2175a1c16f6"
+      }
+    },
+    "sms": {
+      "transaction": {
+        "provider": "63db8c68975237fff4f2133e"
+      },
+      "promotional": {
+        "provider": "63db8c68975237fff4f2133e"
+      },
+      "otp": {
+        "provider": "63db8c68975237fff4f21346"
+      }
+    },
+    "voice": {
+      "transaction": {
+        "provider": "643cf4098bb1fc2c1d67f089"
+      },
+      "otp": {
+        "provider": "643cf4098bb1fc2c1d67f089"
+      }
+    },
+    "_id": "63e20ce7648381edb6de45ff",
+    "application": "637b6355dc65337da9b5c951",
+    "created_at": "2023-02-07T08:33:43.169Z",
+    "updated_at": "2023-05-30T07:16:39.161Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getGlobalProviders
+Get global providers
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.getGlobalProviders() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Using this API, will retrieve a list of global providers.
+
+*Returned Response:*
+
+
+
+
+[GlobalProviders](#GlobalProviders)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "email": [
+      {
+        "_id": "5f0408cec0c2a2175a1c16f6",
+        "name": "Fynd-falconide"
+      }
+    ],
+    "sms": [
+      {
+        "_id": "63db8c68975237fff4f2133e",
+        "name": "Fynd Transactional - timesinternet"
+      },
+      {
+        "_id": "63db8c68975237fff4f21346",
+        "name": "Fynd OTP - timesinternet"
+      }
+    ],
+    "voice": [
+      {
+        "_id": "643cf4098bb1fc2c1d67f089",
+        "name": "Fynd-exotel"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 #### getCampaigns
@@ -1081,7 +1361,7 @@ platformClient.application("<APPLICATION_ID>").communication.getEmailProviders(p
 
 
 
-Get email providers
+By using this api, you may retrieve all the email providers that the user has setup. The outcome will be in a paginated form, fetching providers according to the current page and page number parameters.
 
 *Returned Response:*
 
@@ -1090,7 +1370,7 @@ Get email providers
 
 [EmailProviders](#EmailProviders)
 
-Success
+Successful retrieval of email providers list
 
 
 
@@ -1173,7 +1453,7 @@ platformClient.application("<APPLICATION_ID>").communication.createEmailProvider
 | body | EmailProviderReq | yes | Request body |
 
 
-Create email provider
+By using this API, a new email provider will be created based on the user's customised definitions.
 
 *Returned Response:*
 
@@ -1182,7 +1462,7 @@ Create email provider
 
 [EmailProvider](#EmailProvider)
 
-Success
+Successfully created a eamil provider
 
 
 
@@ -1233,6 +1513,82 @@ Success
 ---
 
 
+#### getDefaultEmailProviders
+Get default email providers
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.getDefaultEmailProviders() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Using this api will fetch a list of email providers provided by the system i.e the default providers.
+
+*Returned Response:*
+
+
+
+
+[[DefaultEmailProviders]](#[DefaultEmailProviders])
+
+Successful retrieval of the default email providers list
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": [
+    {
+      "_id": "5f0408cec0c2a2175a1c16f6",
+      "from": [
+        {
+          "name": "Fynd",
+          "email": "hey@gofynd.com",
+          "is_default": true
+        },
+        {
+          "name": "Fynd",
+          "email": "updates@gofynd.com",
+          "is_default": false
+        }
+      ],
+      "name": "Fynd",
+      "is_default": true
+    }
+  ]
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getEmailProviderById
 Get email provider by id
 
@@ -1255,7 +1611,7 @@ platformClient.application("<APPLICATION_ID>").communication.getEmailProviderByI
 
 
 
-Get email provider by id
+By using this API, a specific email provider will be returned that was retrieved based on the provider's id.
 
 *Returned Response:*
 
@@ -1264,7 +1620,7 @@ Get email provider by id
 
 [EmailProvider](#EmailProvider)
 
-Success
+Successful retrieval of the specific email provider
 
 
 
@@ -1337,7 +1693,7 @@ platformClient.application("<APPLICATION_ID>").communication.updateEmailProvider
 | body | EmailProviderReq | yes | Request body |
 
 
-Update email provider by id
+By using this API, you can modify a certain email provider's definitions based on it's ID.
 
 *Returned Response:*
 
@@ -1346,7 +1702,7 @@ Update email provider by id
 
 [EmailProvider](#EmailProvider)
 
-Success
+Successfully modified a specific email provider using the provider ID
 
 
 
@@ -1379,6 +1735,71 @@ Success
     "updated_at": "2020-12-16T12:27:48.051Z",
     "slug": "test-falconide-application-falconide-ZTD-D7wbB",
     "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteEmailProviderById
+delete email provider by id
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.deleteEmailProviderById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes | Email provider id |  
+
+
+
+By using this api, you can delete a certain email provider based on its ID.
+
+*Returned Response:*
+
+
+
+
+[GenericSuccess](#GenericSuccess)
+
+Successfully deleted a specific email provider using the provider ID
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
   }
 }
 ```
@@ -3362,7 +3783,7 @@ platformClient.application("<APPLICATION_ID>").communication.getSmsProviders(pag
 
 
 
-Get sms providers
+By using this api, you may retrieve all the SMS providers that the user has setup. The outcome will be in a paginated form, fetching providers according to the current page and page number parameters.
 
 *Returned Response:*
 
@@ -3371,7 +3792,7 @@ Get sms providers
 
 [SmsProviders](#SmsProviders)
 
-Success
+Successful retrieval of SMS providers list
 
 
 
@@ -3388,6 +3809,7 @@ Success
   "value": {
     "items": [
       {
+        "entity_id": "application",
         "rpt": 1,
         "type": "application",
         "provider": "telspiel",
@@ -3450,7 +3872,7 @@ platformClient.application("<APPLICATION_ID>").communication.createSmsProvider(b
 | body | SmsProviderReq | yes | Request body |
 
 
-Create sms provider
+By using this API, a new SMS provider will be created based on the user's customised definitions.
 
 *Returned Response:*
 
@@ -3459,7 +3881,7 @@ Create sms provider
 
 [SmsProvider](#SmsProvider)
 
-Success
+Successfully created a SMS provider
 
 
 
@@ -3474,6 +3896,7 @@ Success
 ```json
 {
   "value": {
+    "entity_id": "application",
     "rpt": 1,
     "type": "application",
     "provider": "telspiel",
@@ -3489,6 +3912,74 @@ Success
     "slug": "test-telspiel-application-telspiel-p9UY1r7nG",
     "__v": 0
   }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getDefaultSmsProviders
+Get default sms providers
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.getDefaultSmsProviders() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Using this api will fetch a list of SMS providers provided by the system i.e the default providers.
+
+*Returned Response:*
+
+
+
+
+[[DefaultSmsProviders]](#[DefaultSmsProviders])
+
+Successful retrieval of the default SMS providers list
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": [
+    {
+      "_id": "63db8c68975237fff4f2133e",
+      "name": "Fynd timesinternet",
+      "is_default": true
+    },
+    {
+      "_id": "5f9658b11aaa5e363eb38b47",
+      "name": "Fynd - Telspiel"
+    }
+  ]
 }
 ```
 </details>
@@ -3528,7 +4019,7 @@ platformClient.application("<APPLICATION_ID>").communication.getSmsProviderById(
 
 
 
-Get sms provider by id
+By using this API, a specific SMS provider will be returned that was retrieved based on the provider's id.
 
 *Returned Response:*
 
@@ -3537,7 +4028,7 @@ Get sms provider by id
 
 [SmsProvider](#SmsProvider)
 
-Success
+Successful retrieval of the specific SMS provider
 
 
 
@@ -3552,6 +4043,7 @@ Success
 ```json
 {
   "value": {
+    "entity_id": "application",
     "rpt": 1,
     "type": "application",
     "provider": "telspiel",
@@ -3606,7 +4098,7 @@ platformClient.application("<APPLICATION_ID>").communication.updateSmsProviderBy
 | body | SmsProviderReq | yes | Request body |
 
 
-Update sms provider by id
+By using this API, you can modify a certain SMS provider's definitions based on it's ID.
 
 *Returned Response:*
 
@@ -3615,7 +4107,7 @@ Update sms provider by id
 
 [SmsProvider](#SmsProvider)
 
-Success
+Successfully modified a specific SMS provider using the provider ID
 
 
 
@@ -3630,6 +4122,7 @@ Success
 ```json
 {
   "value": {
+    "entity_id": "application",
     "rpt": 1,
     "type": "application",
     "provider": "telspiel",
@@ -3644,6 +4137,71 @@ Success
     "updated_at": "2020-12-16T12:26:47.794Z",
     "slug": "test-telspiel-application-telspiel-p9UY1r7nG",
     "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteSmsProviderById
+delete sms provider by id
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").communication.deleteSmsProviderById(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes | Sms provider id |  
+
+
+
+By using this api, you can delete a certain SMS provider based on its ID.
+
+*Returned Response:*
+
+
+
+
+[GenericSuccess](#GenericSuccess)
+
+Successfully deleted a specific email provider using the provider ID
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
   }
 }
 ```
@@ -5265,6 +5823,39 @@ Success
 
  
  
+ #### [EmailProviderAdmin](#EmailProviderAdmin)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | provider | String? |  yes  |  |
+ | fromAddress | [[EmailProviderReqFrom](#EmailProviderReqFrom)]? |  yes  |  |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | apiKey | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | v | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EmailProvidersAdmin](#EmailProvidersAdmin)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[EmailProvider](#EmailProvider)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [EmailProviderReqFrom](#EmailProviderReqFrom)
 
  | Properties | Type | Nullable | Description |
@@ -5322,6 +5913,33 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[EmailProvider](#EmailProvider)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DefaultEmailProviders](#DefaultEmailProviders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | fromAddress | [[DefaultEmailProvidersObjFrom](#DefaultEmailProvidersObjFrom)]? |  yes  |  |
+ | name | String? |  yes  |  |
+ | isDefault | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DefaultEmailProvidersObjFrom](#DefaultEmailProvidersObjFrom)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | email | String? |  yes  |  |
+ | isDefault | Bool? |  yes  |  |
 
 ---
 
@@ -6042,6 +6660,152 @@ Success
 
  
  
+ #### [AppProvider](#AppProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [AppProviderRes](#AppProviderRes)? |  yes  |  |
+ | sms | [AppProviderRes](#AppProviderRes)? |  yes  |  |
+ | voice | [AppProviderResVoice](#AppProviderResVoice)? |  yes  |  |
+ | id | String? |  yes  |  |
+ | application | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | v | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppProviderRes](#AppProviderRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | transaction | [AppProviderResObj](#AppProviderResObj)? |  yes  |  |
+ | promotional | [AppProviderResObj](#AppProviderResObj)? |  yes  |  |
+ | otp | [AppProviderResObj](#AppProviderResObj)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppProviderResVoice](#AppProviderResVoice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | transaction | [AppProviderResObj](#AppProviderResObj)? |  yes  |  |
+ | otp | [AppProviderResObj](#AppProviderResObj)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppProviderResObj](#AppProviderResObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | provider | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GlobalProviders](#GlobalProviders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [[GlobalProvidersResObj](#GlobalProvidersResObj)]? |  yes  |  |
+ | sms | [[GlobalProvidersResObj](#GlobalProvidersResObj)]? |  yes  |  |
+ | voice | [[GlobalProvidersResObj](#GlobalProvidersResObj)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GlobalProvidersResObj](#GlobalProvidersResObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppProviderAdmin](#AppProviderAdmin)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [AppProviderAdminObj](#AppProviderAdminObj)? |  yes  |  |
+ | sms | [AppProviderAdminObj](#AppProviderAdminObj)? |  yes  |  |
+ | voice | [AppProviderAdminObj](#AppProviderAdminObj)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppProviderAdminObj](#AppProviderAdminObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | transaction | [AppProviderResObj](#AppProviderResObj)? |  yes  |  |
+ | otp | [AppProviderResObj](#AppProviderResObj)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateGlobalProviders](#UpdateGlobalProviders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [UpdateGlobalProvidersObj](#UpdateGlobalProvidersObj)? |  yes  |  |
+ | sms | [UpdateGlobalProvidersObj](#UpdateGlobalProvidersObj)? |  yes  |  |
+ | voice | [UpdateGlobalProvidersObj](#UpdateGlobalProvidersObj)? |  yes  |  |
+ | id | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | v | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateGlobalProvidersObj](#UpdateGlobalProvidersObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | defaultProvider | String? |  yes  |  |
+ | otpProvider | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AppProviderReq](#AppProviderReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [AppProviderRes](#AppProviderRes)? |  yes  |  |
+ | sms | [AppProviderRes](#AppProviderRes)? |  yes  |  |
+ | voice | [AppProviderResVoice](#AppProviderResVoice)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [PushtokenReq](#PushtokenReq)
 
  | Properties | Type | Nullable | Description |
@@ -6077,6 +6841,42 @@ Success
 
  
  
+ #### [SmsProviderAdmin](#SmsProviderAdmin)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rpt | Int? |  yes  |  |
+ | type | String? |  yes  |  |
+ | provider | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | entityId | String? |  yes  |  |
+ | description | String? |  yes  |  |
+ | sender | String? |  yes  |  |
+ | username | String? |  yes  |  |
+ | authkey | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | v | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SmsProvidersAdmin](#SmsProvidersAdmin)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SmsProviderAdmin](#SmsProviderAdmin)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [SmsProviderReq](#SmsProviderReq)
 
  | Properties | Type | Nullable | Description |
@@ -6103,6 +6903,7 @@ Success
  | provider | String? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
+ | entityId | String? |  yes  |  |
  | description | String? |  yes  |  |
  | sender | String? |  yes  |  |
  | username | String? |  yes  |  |
@@ -6124,6 +6925,19 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[SmsProvider](#SmsProvider)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DefaultSmsProviders](#DefaultSmsProviders)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | isDefault | Bool? |  yes  |  |
 
 ---
 
@@ -6577,6 +7391,209 @@ Success
  | itemTotal | Int? |  yes  |  |
  | nextId | String? |  yes  |  |
  | hasPrevious | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenericSuccess](#GenericSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvalidRangeErrorReqPositive](#InvalidRangeErrorReqPositive)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | code | Int? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvalidInputRequiredByteOrHexError](#InvalidInputRequiredByteOrHexError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [NameValidatorError](#NameValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [NameValidatorErrorMessage](#NameValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [NameValidatorErrorMessage](#NameValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ApikeyValidatorError](#ApikeyValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [ApikeyValidatorErrorMessage](#ApikeyValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ApikeyValidatorErrorMessage](#ApikeyValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | apiKey | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedidValidatorError](#FeedidValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [FeedidValidatorErrorMessage](#FeedidValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedidValidatorErrorMessage](#FeedidValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | feedid | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UsernameValidatorError](#UsernameValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [UsernameValidatorErrorMessage](#UsernameValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UsernameValidatorErrorMessage](#UsernameValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PasswordValidatorError](#PasswordValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [PasswordValidatorErrorMessage](#PasswordValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PasswordValidatorErrorMessage](#PasswordValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | password | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ValidatorErrorBody](#ValidatorErrorBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | properties | [ValidatorErrorMessageProperties](#ValidatorErrorMessageProperties)? |  yes  |  |
+ | kind | String? |  yes  |  |
+ | path | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ValidatorErrorMessageProperties](#ValidatorErrorMessageProperties)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | path | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CastToStringFail](#CastToStringFail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvalidID](#InvalidID)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | sentry | String? |  yes  |  |
 
 ---
 

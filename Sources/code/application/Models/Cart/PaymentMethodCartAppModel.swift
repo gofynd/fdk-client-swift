@@ -11,9 +11,9 @@ public extension ApplicationClient.Cart {
 
         public var name: String?
 
-        public var paymentMeta: PaymentMeta
-
         public var payment: String?
+
+        public var paymentMeta: PaymentMeta
 
         public var amount: Double?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
 
             case name
 
-            case paymentMeta = "payment_meta"
-
             case payment
+
+            case paymentMeta = "payment_meta"
 
             case amount
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Cart {
 
             self.name = name
 
-            self.paymentMeta = paymentMeta
-
             self.payment = payment
+
+            self.paymentMeta = paymentMeta
 
             self.amount = amount
         }
@@ -54,8 +54,6 @@ public extension ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
-
             do {
                 payment = try container.decode(String.self, forKey: .payment)
 
@@ -63,6 +61,8 @@ public extension ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
 
             do {
                 amount = try container.decode(Double.self, forKey: .amount)
@@ -80,9 +80,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
-
             try? container.encodeIfPresent(payment, forKey: .payment)
+
+            try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
 
             try? container.encode(amount, forKey: .amount)
         }

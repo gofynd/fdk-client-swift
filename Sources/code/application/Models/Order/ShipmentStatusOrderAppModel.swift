@@ -11,22 +11,16 @@ public extension ApplicationClient.Order {
 
         public var hexCode: String?
 
-        public var value: String?
-
         public enum CodingKeys: String, CodingKey {
             case title
 
             case hexCode = "hex_code"
-
-            case value
         }
 
-        public init(hexCode: String? = nil, title: String? = nil, value: String? = nil) {
+        public init(hexCode: String? = nil, title: String? = nil) {
             self.title = title
 
             self.hexCode = hexCode
-
-            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,14 +41,6 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -63,8 +49,6 @@ public extension ApplicationClient.Order {
             try? container.encodeIfPresent(title, forKey: .title)
 
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
-
-            try? container.encode(value, forKey: .value)
         }
     }
 }

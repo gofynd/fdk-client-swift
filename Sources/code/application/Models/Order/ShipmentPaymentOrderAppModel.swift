@@ -7,42 +7,42 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class ShipmentPayment: Codable {
-        public var paymentMode: String?
+        public var status: String?
+
+        public var displayName: String?
 
         public var mop: String?
 
-        public var status: String?
+        public var paymentMode: String?
 
         public var logo: String?
-
-        public var displayName: String?
 
         public var mode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case paymentMode = "payment_mode"
+            case status
+
+            case displayName = "display_name"
 
             case mop
 
-            case status
+            case paymentMode = "payment_mode"
 
             case logo
-
-            case displayName = "display_name"
 
             case mode
         }
 
         public init(displayName: String? = nil, logo: String? = nil, mode: String? = nil, mop: String? = nil, paymentMode: String? = nil, status: String? = nil) {
-            self.paymentMode = paymentMode
+            self.status = status
+
+            self.displayName = displayName
 
             self.mop = mop
 
-            self.status = status
+            self.paymentMode = paymentMode
 
             self.logo = logo
-
-            self.displayName = displayName
 
             self.mode = mode
         }
@@ -51,7 +51,15 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +75,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,14 +84,6 @@ public extension ApplicationClient.Order {
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,15 +102,15 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(mop, forKey: .mop)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
         }

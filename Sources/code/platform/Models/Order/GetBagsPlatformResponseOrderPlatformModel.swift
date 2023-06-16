@@ -9,7 +9,7 @@ public extension PlatformClient.Order {
      */
 
     class GetBagsPlatformResponse: Codable {
-        public var page: BagsPage
+        public var page: Page1
 
         public var items: [BagDetailsPlatformResponse]
 
@@ -19,7 +19,7 @@ public extension PlatformClient.Order {
             case items
         }
 
-        public init(items: [BagDetailsPlatformResponse], page: BagsPage) {
+        public init(items: [BagDetailsPlatformResponse], page: Page1) {
             self.page = page
 
             self.items = items
@@ -28,7 +28,7 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            page = try container.decode(BagsPage.self, forKey: .page)
+            page = try container.decode(Page1.self, forKey: .page)
 
             items = try container.decode([BagDetailsPlatformResponse].self, forKey: .items)
         }
@@ -50,7 +50,7 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class GetBagsPlatformResponse: Codable {
-        public var page: BagsPage
+        public var page: Page1
 
         public var items: [BagDetailsPlatformResponse]
 
@@ -60,7 +60,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case items
         }
 
-        public init(items: [BagDetailsPlatformResponse], page: BagsPage) {
+        public init(items: [BagDetailsPlatformResponse], page: Page1) {
             self.page = page
 
             self.items = items
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            page = try container.decode(BagsPage.self, forKey: .page)
+            page = try container.decode(Page1.self, forKey: .page)
 
             items = try container.decode([BagDetailsPlatformResponse].self, forKey: .items)
         }

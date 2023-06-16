@@ -19,6 +19,8 @@ public extension PlatformClient.Communication {
 
         public var name: String?
 
+        public var entityId: String?
+
         public var description: String?
 
         public var sender: String?
@@ -48,6 +50,8 @@ public extension PlatformClient.Communication {
 
             case name
 
+            case entityId = "entity_id"
+
             case description
 
             case sender
@@ -67,7 +71,7 @@ public extension PlatformClient.Communication {
             case v = "__v"
         }
 
-        public init(application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, entityId: String? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
             self.rpt = rpt
 
             self.type = type
@@ -77,6 +81,8 @@ public extension PlatformClient.Communication {
             self.id = id
 
             self.name = name
+
+            self.entityId = entityId
 
             self.description = description
 
@@ -134,6 +140,14 @@ public extension PlatformClient.Communication {
 
             do {
                 name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                entityId = try container.decode(String.self, forKey: .entityId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,6 +239,8 @@ public extension PlatformClient.Communication {
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(entityId, forKey: .entityId)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
@@ -264,6 +280,8 @@ public extension PlatformClient.ApplicationClient.Communication {
 
         public var name: String?
 
+        public var entityId: String?
+
         public var description: String?
 
         public var sender: String?
@@ -293,6 +311,8 @@ public extension PlatformClient.ApplicationClient.Communication {
 
             case name
 
+            case entityId = "entity_id"
+
             case description
 
             case sender
@@ -312,7 +332,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             case v = "__v"
         }
 
-        public init(application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, authkey: String? = nil, createdAt: String? = nil, description: String? = nil, entityId: String? = nil, name: String? = nil, provider: String? = nil, rpt: Int? = nil, sender: String? = nil, slug: String? = nil, type: String? = nil, updatedAt: String? = nil, username: String? = nil, id: String? = nil, v: Int? = nil) {
             self.rpt = rpt
 
             self.type = type
@@ -322,6 +342,8 @@ public extension PlatformClient.ApplicationClient.Communication {
             self.id = id
 
             self.name = name
+
+            self.entityId = entityId
 
             self.description = description
 
@@ -379,6 +401,14 @@ public extension PlatformClient.ApplicationClient.Communication {
 
             do {
                 name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                entityId = try container.decode(String.self, forKey: .entityId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -470,6 +500,8 @@ public extension PlatformClient.ApplicationClient.Communication {
             try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(entityId, forKey: .entityId)
 
             try? container.encodeIfPresent(description, forKey: .description)
 

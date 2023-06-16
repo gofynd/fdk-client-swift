@@ -7,8 +7,6 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class TransferItemsDetails: Codable {
-        public var logoSmall: String
-
         public var logoLarge: String
 
         public var id: Int
@@ -17,9 +15,9 @@ public extension ApplicationClient.Payment {
 
         public var name: String
 
-        public enum CodingKeys: String, CodingKey {
-            case logoSmall = "logo_small"
+        public var logoSmall: String
 
+        public enum CodingKeys: String, CodingKey {
             case logoLarge = "logo_large"
 
             case id
@@ -27,11 +25,11 @@ public extension ApplicationClient.Payment {
             case displayName = "display_name"
 
             case name
+
+            case logoSmall = "logo_small"
         }
 
         public init(displayName: String? = nil, id: Int, logoLarge: String, logoSmall: String, name: String) {
-            self.logoSmall = logoSmall
-
             self.logoLarge = logoLarge
 
             self.id = id
@@ -39,12 +37,12 @@ public extension ApplicationClient.Payment {
             self.displayName = displayName
 
             self.name = name
+
+            self.logoSmall = logoSmall
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            logoSmall = try container.decode(String.self, forKey: .logoSmall)
 
             logoLarge = try container.decode(String.self, forKey: .logoLarge)
 
@@ -59,12 +57,12 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             name = try container.decode(String.self, forKey: .name)
+
+            logoSmall = try container.decode(String.self, forKey: .logoSmall)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
 
             try? container.encodeIfPresent(logoLarge, forKey: .logoLarge)
 
@@ -73,6 +71,8 @@ public extension ApplicationClient.Payment {
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logoSmall, forKey: .logoSmall)
         }
     }
 }

@@ -1749,20 +1749,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Edit a product.
-         * Description: This API allows to edit product.
+         * Summary: Delete a product.
+         * Description: This API allows to delete product.
          **/
-        public func editProduct(
+        public func deleteProduct(
             itemId: Int,
-            body: ProductCreateUpdateSchemaV2,
+
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "delete",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -1788,20 +1788,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Delete a product.
-         * Description: This API allows to delete product.
+         * Summary: Edit a product.
+         * Description: This API allows to edit product.
          **/
-        public func deleteProduct(
+        public func editProduct(
             itemId: Int,
-
+            body: ProductCreateUpdateSchemaV2,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "put",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -2098,20 +2098,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create products in bulk associated with given batch Id.
-         * Description: This API helps to create products in bulk push to kafka for approval/creation.
+         * Summary: Delete Bulk product job.
+         * Description: This API allows to delete bulk product job associated with company.
          **/
-        public func createProductsInBulk(
-            batchId: String,
-            body: BulkProductRequest,
+        public func deleteProductBulkJob(
+            batchId: Int,
+
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk/\(batchId)",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -2137,20 +2137,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Delete Bulk product job.
-         * Description: This API allows to delete bulk product job associated with company.
+         * Summary: Create products in bulk associated with given batch Id.
+         * Description: This API helps to create products in bulk push to kafka for approval/creation.
          **/
-        public func deleteProductBulkJob(
-            batchId: Int,
-
+        public func createProductsInBulk(
+            batchId: String,
+            body: BulkProductRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk/\(batchId)",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -2714,20 +2714,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Create products in bulk associated with given batch Id.
-         * Description: This API helps to create products in bulk push to kafka for approval/creation.
+         * Summary: Delete Bulk Inventory job.
+         * Description: This API allows to delete bulk Inventory job associated with company.
          **/
-        public func createBulkInventory(
+        public func deleteBulkInventoryJob(
             batchId: String,
-            body: InventoryBulkRequest,
+
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -2753,20 +2753,20 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Delete Bulk Inventory job.
-         * Description: This API allows to delete bulk Inventory job associated with company.
+         * Summary: Create products in bulk associated with given batch Id.
+         * Description: This API helps to create products in bulk push to kafka for approval/creation.
          **/
-        public func deleteBulkInventoryJob(
+        public func createBulkInventory(
             batchId: String,
-
+            body: InventoryBulkRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
                 query: nil,
-                body: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -3013,7 +3013,7 @@ public extension PlatformClient {
          * Summary: Add Inventory for particular size and store.
          * Description: This API allows add Inventory for particular size and store.
          **/
-        public func updateRealtimeInventory(
+        public func deleteRealtimeInventory(
             itemId: Int,
             sellerIdentifier: String,
             body: InventoryRequestSchemaV2,
@@ -3021,7 +3021,7 @@ public extension PlatformClient {
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "delete",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)/",
                 query: nil,
                 body: body.dictionary,
@@ -3053,7 +3053,7 @@ public extension PlatformClient {
          * Summary: Add Inventory for particular size and store.
          * Description: This API allows add Inventory for particular size and store.
          **/
-        public func deleteRealtimeInventory(
+        public func updateRealtimeInventory(
             itemId: Int,
             sellerIdentifier: String,
             body: InventoryRequestSchemaV2,
@@ -3061,7 +3061,7 @@ public extension PlatformClient {
         ) {
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "post",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)/",
                 query: nil,
                 body: body.dictionary,

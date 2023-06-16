@@ -9,33 +9,65 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentDetails: Codable {
-        public var actionToStatus: [String: Any]?
+        public var articles: [ArticleDetails1]
 
-        public var lockStatus: Bool?
+        public var fulfillmentId: Int
 
-        public var lockMessage: String?
+        public var shipments: Int
+
+        public var affiliateShipmentId: String
+
+        public var dpId: Int?
+
+        public var boxType: String?
+
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case actionToStatus = "action_to_status"
+            case articles
 
-            case lockStatus = "lock_status"
+            case fulfillmentId = "fulfillment_id"
 
-            case lockMessage = "lock_message"
+            case shipments
+
+            case affiliateShipmentId = "affiliate_shipment_id"
+
+            case dpId = "dp_id"
+
+            case boxType = "box_type"
+
+            case meta
         }
 
-        public init(actionToStatus: [String: Any]? = nil, lockMessage: String? = nil, lockStatus: Bool? = nil) {
-            self.actionToStatus = actionToStatus
+        public init(affiliateShipmentId: String, articles: [ArticleDetails1], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, meta: [String: Any]? = nil, shipments: Int) {
+            self.articles = articles
 
-            self.lockStatus = lockStatus
+            self.fulfillmentId = fulfillmentId
 
-            self.lockMessage = lockMessage
+            self.shipments = shipments
+
+            self.affiliateShipmentId = affiliateShipmentId
+
+            self.dpId = dpId
+
+            self.boxType = boxType
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            articles = try container.decode([ArticleDetails1].self, forKey: .articles)
+
+            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+
+            shipments = try container.decode(Int.self, forKey: .shipments)
+
+            affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
+
             do {
-                actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
+                dpId = try container.decode(Int.self, forKey: .dpId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +75,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
+                boxType = try container.decode(String.self, forKey: .boxType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +83,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +94,19 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
+            try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+
+            try? container.encode(dpId, forKey: .dpId)
+
+            try? container.encode(boxType, forKey: .boxType)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
@@ -78,33 +118,65 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentDetails: Codable {
-        public var actionToStatus: [String: Any]?
+        public var articles: [ArticleDetails1]
 
-        public var lockStatus: Bool?
+        public var fulfillmentId: Int
 
-        public var lockMessage: String?
+        public var shipments: Int
+
+        public var affiliateShipmentId: String
+
+        public var dpId: Int?
+
+        public var boxType: String?
+
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case actionToStatus = "action_to_status"
+            case articles
 
-            case lockStatus = "lock_status"
+            case fulfillmentId = "fulfillment_id"
 
-            case lockMessage = "lock_message"
+            case shipments
+
+            case affiliateShipmentId = "affiliate_shipment_id"
+
+            case dpId = "dp_id"
+
+            case boxType = "box_type"
+
+            case meta
         }
 
-        public init(actionToStatus: [String: Any]? = nil, lockMessage: String? = nil, lockStatus: Bool? = nil) {
-            self.actionToStatus = actionToStatus
+        public init(affiliateShipmentId: String, articles: [ArticleDetails1], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, meta: [String: Any]? = nil, shipments: Int) {
+            self.articles = articles
 
-            self.lockStatus = lockStatus
+            self.fulfillmentId = fulfillmentId
 
-            self.lockMessage = lockMessage
+            self.shipments = shipments
+
+            self.affiliateShipmentId = affiliateShipmentId
+
+            self.dpId = dpId
+
+            self.boxType = boxType
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            articles = try container.decode([ArticleDetails1].self, forKey: .articles)
+
+            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+
+            shipments = try container.decode(Int.self, forKey: .shipments)
+
+            affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
+
             do {
-                actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
+                dpId = try container.decode(Int.self, forKey: .dpId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +184,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
+                boxType = try container.decode(String.self, forKey: .boxType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +192,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +203,19 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
+            try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+
+            try? container.encode(dpId, forKey: .dpId)
+
+            try? container.encode(boxType, forKey: .boxType)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

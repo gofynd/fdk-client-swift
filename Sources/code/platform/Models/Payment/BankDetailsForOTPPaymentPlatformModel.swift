@@ -11,9 +11,9 @@ public extension PlatformClient.Payment {
     class BankDetailsForOTP: Codable {
         public var accountNo: String
 
-        public var branchName: String
-
         public var ifscCode: String
+
+        public var branchName: String
 
         public var bankName: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case accountNo = "account_no"
 
-            case branchName = "branch_name"
-
             case ifscCode = "ifsc_code"
+
+            case branchName = "branch_name"
 
             case bankName = "bank_name"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
             self.accountNo = accountNo
 
-            self.branchName = branchName
-
             self.ifscCode = ifscCode
+
+            self.branchName = branchName
 
             self.bankName = bankName
 
@@ -48,9 +48,9 @@ public extension PlatformClient.Payment {
 
             accountNo = try container.decode(String.self, forKey: .accountNo)
 
-            branchName = try container.decode(String.self, forKey: .branchName)
-
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
+
+            branchName = try container.decode(String.self, forKey: .branchName)
 
             bankName = try container.decode(String.self, forKey: .bankName)
 
@@ -62,9 +62,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
-            try? container.encodeIfPresent(branchName, forKey: .branchName)
-
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+
+            try? container.encodeIfPresent(branchName, forKey: .branchName)
 
             try? container.encodeIfPresent(bankName, forKey: .bankName)
 
@@ -82,9 +82,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class BankDetailsForOTP: Codable {
         public var accountNo: String
 
-        public var branchName: String
-
         public var ifscCode: String
+
+        public var branchName: String
 
         public var bankName: String
 
@@ -93,9 +93,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case accountNo = "account_no"
 
-            case branchName = "branch_name"
-
             case ifscCode = "ifsc_code"
+
+            case branchName = "branch_name"
 
             case bankName = "bank_name"
 
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
             self.accountNo = accountNo
 
-            self.branchName = branchName
-
             self.ifscCode = ifscCode
+
+            self.branchName = branchName
 
             self.bankName = bankName
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             accountNo = try container.decode(String.self, forKey: .accountNo)
 
-            branchName = try container.decode(String.self, forKey: .branchName)
-
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
+
+            branchName = try container.decode(String.self, forKey: .branchName)
 
             bankName = try container.decode(String.self, forKey: .bankName)
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
-            try? container.encodeIfPresent(branchName, forKey: .branchName)
-
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
+
+            try? container.encodeIfPresent(branchName, forKey: .branchName)
 
             try? container.encodeIfPresent(bankName, forKey: .bankName)
 

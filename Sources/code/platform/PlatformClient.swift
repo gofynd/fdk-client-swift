@@ -5382,6 +5382,118 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: Get app providers
+             * Description: Using this API will return a list of application providers.
+             **/
+            public func getAppProviders(
+                onResponse: @escaping (_ response: AppProvider?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/app-provider/get-provider",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(AppProvider.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: update app providers
+             * Description: Using this API will update the application providers.
+             **/
+            public func updateAppProviders(
+                body: AppProviderReq,
+                onResponse: @escaping (_ response: AppProvider?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/app-provider/update-provider",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(AppProvider.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get global providers
+             * Description: Using this API, will retrieve a list of global providers.
+             **/
+            public func getGlobalProviders(
+                onResponse: @escaping (_ response: GlobalProviders?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/app-provider/global-providers",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GlobalProviders.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Get campaigns
              * Description: Get campaigns
              **/
@@ -5840,7 +5952,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Get email providers
-             * Description: Get email providers
+             * Description: By using this api, you may retrieve all the email providers that the user has setup. The outcome will be in a paginated form, fetching providers according to the current page and page number parameters.
              **/
             public func getEmailProviders(
                 pageNo: Int?,
@@ -5895,7 +6007,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Create email provider
-             * Description: Create email provider
+             * Description: By using this API, a new email provider will be created based on the user's customised definitions.
              **/
             public func createEmailProvider(
                 body: EmailProviderReq,
@@ -5932,8 +6044,45 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: Get default email providers
+             * Description: Using this api will fetch a list of email providers provided by the system i.e the default providers.
+             **/
+            public func getDefaultEmailProviders(
+                onResponse: @escaping (_ response: [DefaultEmailProviders]?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/default-providers",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode([DefaultEmailProviders].self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Get email provider by id
-             * Description: Get email provider by id
+             * Description: By using this API, a specific email provider will be returned that was retrieved based on the provider's id.
              **/
             public func getEmailProviderById(
                 id: String,
@@ -5972,7 +6121,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Update email provider by id
-             * Description: Update email provider by id
+             * Description: By using this API, you can modify a certain email provider's definitions based on it's ID.
              **/
             public func updateEmailProviderById(
                 id: String,
@@ -5996,6 +6145,45 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(EmailProvider.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: delete email provider by id
+             * Description: By using this api, you can delete a certain email provider based on its ID.
+             **/
+            public func deleteEmailProviderById(
+                id: String,
+
+                onResponse: @escaping (_ response: GenericSuccess?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/email/providers/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GenericSuccess.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -6691,7 +6879,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Get sms providers
-             * Description: Get sms providers
+             * Description: By using this api, you may retrieve all the SMS providers that the user has setup. The outcome will be in a paginated form, fetching providers according to the current page and page number parameters.
              **/
             public func getSmsProviders(
                 pageNo: Int?,
@@ -6746,7 +6934,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Create sms provider
-             * Description: Create sms provider
+             * Description: By using this API, a new SMS provider will be created based on the user's customised definitions.
              **/
             public func createSmsProvider(
                 body: SmsProviderReq,
@@ -6783,8 +6971,45 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: Get default sms providers
+             * Description: Using this api will fetch a list of SMS providers provided by the system i.e the default providers.
+             **/
+            public func getDefaultSmsProviders(
+                onResponse: @escaping (_ response: [DefaultSmsProviders]?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/default-providers",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode([DefaultSmsProviders].self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Get sms provider by id
-             * Description: Get sms provider by id
+             * Description: By using this API, a specific SMS provider will be returned that was retrieved based on the provider's id.
              **/
             public func getSmsProviderById(
                 id: String,
@@ -6823,7 +7048,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Update sms provider by id
-             * Description: Update sms provider by id
+             * Description: By using this API, you can modify a certain SMS provider's definitions based on it's ID.
              **/
             public func updateSmsProviderById(
                 id: String,
@@ -6847,6 +7072,45 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(SmsProvider.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: delete sms provider by id
+             * Description: By using this api, you can delete a certain SMS provider based on its ID.
+             **/
+            public func deleteSmsProviderById(
+                id: String,
+
+                onResponse: @escaping (_ response: GenericSuccess?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/communication/v1.0/company/\(companyId)/application/\(applicationId)/sms/providers/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GenericSuccess.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -8846,159 +9110,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary:
-             * Description:
-             **/
-            public func getApplicationShipments(
-                lane: String?,
-                searchType: String?,
-                searchId: String?,
-                fromDate: String?,
-                toDate: String?,
-                dpIds: String?,
-                orderingCompanyId: String?,
-                stores: String?,
-                salesChannel: String?,
-                requestByExt: String?,
-                pageNo: Int?,
-                pageSize: Int?,
-                customerId: String?,
-                isPrioritySort: Bool?,
-
-                onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:]
-
-                if let value = lane {
-                    xQuery["lane"] = value
-                }
-
-                if let value = searchType {
-                    xQuery["search_type"] = value
-                }
-
-                if let value = searchId {
-                    xQuery["search_id"] = value
-                }
-
-                if let value = fromDate {
-                    xQuery["from_date"] = value
-                }
-
-                if let value = toDate {
-                    xQuery["to_date"] = value
-                }
-
-                if let value = dpIds {
-                    xQuery["dp_ids"] = value
-                }
-
-                if let value = orderingCompanyId {
-                    xQuery["ordering_company_id"] = value
-                }
-
-                if let value = stores {
-                    xQuery["stores"] = value
-                }
-
-                if let value = salesChannel {
-                    xQuery["sales_channel"] = value
-                }
-
-                if let value = requestByExt {
-                    xQuery["request_by_ext"] = value
-                }
-
-                if let value = pageNo {
-                    xQuery["page_no"] = value
-                }
-
-                if let value = pageSize {
-                    xQuery["page_size"] = value
-                }
-
-                if let value = customerId {
-                    xQuery["customer_id"] = value
-                }
-
-                if let value = isPrioritySort {
-                    xQuery["is_priority_sort"] = value
-                }
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/orders/v1.0/company/\(companyId)/application/\(applicationId)/shipments/",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(ShipmentInternalPlatformViewResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary:
-             * Description:
-             **/
-            public func getAppOrderShipmentDetails(
-                orderId: String,
-
-                onResponse: @escaping (_ response: OrderDetailsResponse?, _ error: FDKError?) -> Void
-            ) {
-                var xQuery: [String: Any] = [:]
-
-                xQuery["order_id"] = orderId
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "get",
-                    url: "/service/platform/orders/v1.0/company/\(companyId)/application/\(applicationId)/order-details",
-                    query: xQuery,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(OrderDetailsResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Track shipment
              * Description: Track Shipment by shipment id, for application based on application Id
              **/
@@ -9089,45 +9200,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update the search keyword configuraton by their ID.
-             * Description: Thist API allows you to update the search keyword configuration by their ID.
-             **/
-            public func updateSearchKeywords(
-                id: String,
-                body: CreateSearchKeyword,
-                onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(GetSearchWordsData.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Delete a custom keyword mapping by thier ID.
              * Description: This API allows you to delete a custom keyword mapping by their ID within an application. Returns an object that tells whether the keywords was deleted successfully
              **/
@@ -9153,6 +9225,45 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(DeleteResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update the search keyword configuraton by their ID.
+             * Description: Thist API allows you to update the search keyword configuration by their ID.
+             **/
+            public func updateSearchKeywords(
+                id: String,
+                body: CreateSearchKeyword,
+                onResponse: @escaping (_ response: GetSearchWordsData?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/keyword/\(id)/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetSearchWordsData.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -9294,45 +9405,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update a autocomplete keyword config by ID.
-             * Description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to update a mapping by it's `id`.
-             **/
-            public func updateAutocompleteKeyword(
-                id: String,
-                body: GetAutocompleteWordsData,
-                onResponse: @escaping (_ response: UpdateAutocompleteWordData?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(UpdateAutocompleteWordData.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Delete a autocomplete keyword config by ID.
              * Description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to delete a keywords by it's `id`.
              **/
@@ -9358,6 +9430,45 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(DeleteResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update a autocomplete keyword config by ID.
+             * Description: Autocomplete keywords configuration help you to extend and customize the behaviour of autocomplete search results in Fynd Platform. This API allows you to update a mapping by it's `id`.
+             **/
+            public func updateAutocompleteKeyword(
+                id: String,
+                body: GetAutocompleteWordsData,
+                onResponse: @escaping (_ response: UpdateAutocompleteWordData?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/autocomplete/\(id)/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(UpdateAutocompleteWordData.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -9574,45 +9685,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update the search rerank details of an application by its ID.
-             * Description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to update the search re-ranking configured for the application.
-             **/
-            public func updateSearchRerankConfig(
-                id: String,
-                body: CreateSearchReranking,
-                onResponse: @escaping (_ response: SearchRerankingModel?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/rerank/\(id)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(SearchRerankingModel.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Delete the search re-ranking configured for an application bt its ID.
              * Description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to delete a search re-ranking configured for the application.
              **/
@@ -9638,6 +9710,45 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(DeleteRerankResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update the search rerank details of an application by its ID.
+             * Description: Search Reranking allows you rank and boost the search of the keywords and products in the product listing. This API allows you to update the search re-ranking configured for the application.
+             **/
+            public func updateSearchRerankConfig(
+                id: String,
+                body: CreateSearchReranking,
+                onResponse: @escaping (_ response: SearchRerankingModel?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/search/rerank/\(id)/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SearchRerankingModel.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -9876,46 +9987,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update the group configurations for the application.
-             * Description: Update the group configurations for the application.
-             **/
-            public func updateGroupConfiguration(
-                configType: String,
-                groupSlug: String,
-                body: AppConfigurationDetail,
-                onResponse: @escaping (_ response: AppConfigurationDetail?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(AppConfigurationDetail.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Delete configuration of the product config type of the application.
              * Description: Delete configuration of the product config type of the application.
              **/
@@ -9942,6 +10013,46 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(ConfigSuccessResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update the group configurations for the application.
+             * Description: Update the group configurations for the application.
+             **/
+            public func updateGroupConfiguration(
+                configType: String,
+                groupSlug: String,
+                body: AppConfigurationDetail,
+                onResponse: @escaping (_ response: AppConfigurationDetail?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/groups/\(groupSlug)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(AppConfigurationDetail.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -10051,46 +10162,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update configuration for listings
-             * Description: Update configuration for listing.
-             **/
-            public func updateListingConfiguration(
-                configType: String,
-                configId: String,
-                body: AppConfigurationsSort,
-                onResponse: @escaping (_ response: AppConfigurationsSort?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(AppConfigurationsSort.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Delete configuration for listings
              * Description: Delete configuration for listing.
              **/
@@ -10117,6 +10188,46 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(ConfigSuccessResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update configuration for listings
+             * Description: Update configuration for listing.
+             **/
+            public func updateListingConfiguration(
+                configType: String,
+                configId: String,
+                body: AppConfigurationsSort,
+                onResponse: @escaping (_ response: AppConfigurationsSort?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/catalog/v2.0/company/\(companyId)/application/\(applicationId)/productConfiguration/\(configType)/item/\(configId)/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(AppConfigurationsSort.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -10599,45 +10710,6 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Update a collection by its ID.
-             * Description: This API enables you to update a collection by specifying its unique identifier (`ID`). By utilizing this endpoint, you can easily modify and refine the attributes, settings, and contents of a specific collection, ensuring it remains relevant and aligned with your business goals.
-             **/
-            public func updateCollection(
-                id: String,
-                body: UpdateCollection,
-                onResponse: @escaping (_ response: CollectionUpdateResponse?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "put",
-                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(CollectionUpdateResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
              * Summary: Delete a collection.
              * Description: This API allows you to delete the collection of an application.
              **/
@@ -10663,6 +10735,45 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(DeleteResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update a collection by its ID.
+             * Description: This API enables you to update a collection by specifying its unique identifier (`ID`). By utilizing this endpoint, you can easily modify and refine the attributes, settings, and contents of a specific collection, ensuring it remains relevant and aligned with your business goals.
+             **/
+            public func updateCollection(
+                id: String,
+                body: UpdateCollection,
+                onResponse: @escaping (_ response: CollectionUpdateResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/catalog/v1.0/company/\(companyId)/application/\(applicationId)/collections/\(id)/",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(CollectionUpdateResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -14486,10 +14597,10 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Remove cart meta configuration
-             * Description: Remove cart meta configuration
+             * Summary: Remove cart dynamic injection
+             * Description: Remove cart dynamic injection
              **/
-            public func removeCartMetaConfig(
+            public func removeCartDynamicInjection(
                 id: String,
 
                 onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
@@ -17351,6 +17462,44 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: GET zone from the Pincode.
+             * Description: This API returns zone from the Pincode View.
+             **/
+            public func getZoneFromPincodeView(
+                body: GetZoneFromPincodeViewRequest,
+                onResponse: @escaping (_ response: GetZoneFromPincodeViewResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/zones",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: GET zones from the application_id.
              * Description: This API returns zones from the application_id View.
              **/
@@ -17397,121 +17546,6 @@ public class PlatformClient {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             let response = Utility.decode(GetZoneFromApplicationIdViewResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: GET zone from the Pincode.
-             * Description: This API returns zone from the Pincode View.
-             **/
-            public func getZoneFromPincodeView(
-                body: GetZoneFromPincodeViewRequest,
-                onResponse: @escaping (_ response: GetZoneFromPincodeViewResponse?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/zones",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(GetZoneFromPincodeViewResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: Add application dp data
-             * Description: This API add application dp data.
-             **/
-            public func addAppDp(
-                body: ApplicationCompanyDpViewRequest,
-                onResponse: @escaping (_ response: ApplicationCompanyDpViewResponse?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "post",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(ApplicationCompanyDpViewResponse.self, from: data)
-
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                    }
-                )
-            }
-
-            /**
-             *
-             * Summary: Delete application dp data
-             * Description: This API remove application dp data.
-             **/
-            public func deleteAppDp(
-                courierPartnerId: Int,
-
-                onResponse: @escaping (_ response: ApplicationCompanyDpViewResponse?, _ error: FDKError?) -> Void
-            ) {
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "delete",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courierPartner/\(courierPartnerId)",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { responseData, error, responseCode in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            let response = Utility.decode(ApplicationCompanyDpViewResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {
@@ -17678,10 +17712,48 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: Upsert of DpApplicationRules in database.
+             * Description: This API returns response of upsert of DpApplicationRules in mongo database.
+             **/
+            public func upsertDpApplicationRulePriority(
+                body: DPApplicationRuleRequest,
+                onResponse: @escaping (_ response: DPApplicationRuleResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courier/priority",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(DPApplicationRuleResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Get All DpApplicationRules rules added at application level from database.
              * Description: This API returns response of all rules of DpApplicationRules from mongo database.
              **/
-            public func getDpApplicationRules(
+            public func getDpApplicationRulePriority(
                 onResponse: @escaping (_ response: DPApplicationRuleResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
@@ -17715,17 +17787,54 @@ public class PlatformClient {
 
             /**
              *
-             * Summary: Upsert of DpApplicationRules in database.
-             * Description: This API returns response of upsert of DpApplicationRules in mongo database.
+             * Summary: Self-ship configuration of application.
+             * Description: This API returns Self-ship configuration of the application.
              **/
-            public func upsertDpApplicationRules(
-                body: DPApplicationRuleRequest,
-                onResponse: @escaping (_ response: DPApplicationRuleResponse?, _ error: FDKError?) -> Void
+            public func getApplicationServiceabilitySelfShipment(
+                onResponse: @escaping (_ response: ApplicationSelfShipConfigResponse?, _ error: FDKError?) -> Void
             ) {
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "put",
-                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/courier/priority",
+                    method: "get",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/selfship",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(ApplicationSelfShipConfigResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Self-ship configuration of application.
+             * Description: This API updates Self-ship configuration of the application.
+             **/
+            public func patchApplicationServiceabilitySelfShipment(
+                body: SelfShipResponse,
+                onResponse: @escaping (_ response: ApplicationSelfShipConfigResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/logistics/v1.0/company/\(companyId)/application/\(applicationId)/selfship",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -17738,7 +17847,7 @@ public class PlatformClient {
                             }
                             onResponse(nil, err)
                         } else if let data = responseData {
-                            let response = Utility.decode(DPApplicationRuleResponse.self, from: data)
+                            let response = Utility.decode(ApplicationSelfShipConfigResponse.self, from: data)
 
                             onResponse(response, nil)
                         } else {

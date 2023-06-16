@@ -456,4 +456,207 @@ Success. Check the example shown below or refer `PushtokenRes` for more details.
 ---
 
 
+ 
+ 
+ #### [GenericSuccess](#GenericSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvalidRangeErrorReqPositive](#InvalidRangeErrorReqPositive)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | code | Int? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvalidInputRequiredByteOrHexError](#InvalidInputRequiredByteOrHexError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [NameValidatorError](#NameValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [NameValidatorErrorMessage](#NameValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [NameValidatorErrorMessage](#NameValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ApikeyValidatorError](#ApikeyValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [ApikeyValidatorErrorMessage](#ApikeyValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ApikeyValidatorErrorMessage](#ApikeyValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | apiKey | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedidValidatorError](#FeedidValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [FeedidValidatorErrorMessage](#FeedidValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FeedidValidatorErrorMessage](#FeedidValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | feedid | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UsernameValidatorError](#UsernameValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [UsernameValidatorErrorMessage](#UsernameValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UsernameValidatorErrorMessage](#UsernameValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | username | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PasswordValidatorError](#PasswordValidatorError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [PasswordValidatorErrorMessage](#PasswordValidatorErrorMessage)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PasswordValidatorErrorMessage](#PasswordValidatorErrorMessage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | password | [ValidatorErrorBody](#ValidatorErrorBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ValidatorErrorBody](#ValidatorErrorBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | properties | [ValidatorErrorMessageProperties](#ValidatorErrorMessageProperties)? |  yes  |  |
+ | kind | String? |  yes  |  |
+ | path | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ValidatorErrorMessageProperties](#ValidatorErrorMessageProperties)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | path | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CastToStringFail](#CastToStringFail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InvalidID](#InvalidID)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
 

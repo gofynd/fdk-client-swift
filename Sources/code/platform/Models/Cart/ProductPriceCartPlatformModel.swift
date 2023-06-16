@@ -9,42 +9,42 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class ProductPrice: Codable {
-        public var effective: Double?
+        public var marked: Double?
 
-        public var currencySymbol: String?
+        public var effective: Double?
 
         public var selling: Double?
 
-        public var addOn: Double?
+        public var currencySymbol: String?
 
-        public var marked: Double?
+        public var addOn: Double?
 
         public var currencyCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case effective
+            case marked
 
-            case currencySymbol = "currency_symbol"
+            case effective
 
             case selling
 
-            case addOn = "add_on"
+            case currencySymbol = "currency_symbol"
 
-            case marked
+            case addOn = "add_on"
 
             case currencyCode = "currency_code"
         }
 
         public init(addOn: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
-            self.effective = effective
+            self.marked = marked
 
-            self.currencySymbol = currencySymbol
+            self.effective = effective
 
             self.selling = selling
 
-            self.addOn = addOn
+            self.currencySymbol = currencySymbol
 
-            self.marked = marked
+            self.addOn = addOn
 
             self.currencyCode = currencyCode
         }
@@ -53,7 +53,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                marked = try container.decode(Double.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                addOn = try container.decode(Double.self, forKey: .addOn)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                marked = try container.decode(Double.self, forKey: .marked)
+                addOn = try container.decode(Double.self, forKey: .addOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,15 +104,15 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
+            try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+            try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(selling, forKey: .selling)
 
-            try? container.encodeIfPresent(addOn, forKey: .addOn)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
+            try? container.encodeIfPresent(addOn, forKey: .addOn)
 
             try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
         }
