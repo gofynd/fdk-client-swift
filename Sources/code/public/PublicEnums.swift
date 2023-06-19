@@ -18,3 +18,5 @@ public extension PublicClient.Webhook {
 }
 
 public extension PublicClient.Inventory {}
+
+public extension PublicClient.Partner {}

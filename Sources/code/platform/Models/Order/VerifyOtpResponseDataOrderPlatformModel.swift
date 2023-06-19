@@ -9,30 +9,30 @@ public extension PlatformClient.Order {
      */
 
     class VerifyOtpResponseData: Codable {
-        public var countryCode: String?
+        public var message: String?
 
         public var fyndOrderId: String?
 
-        public var message: String?
+        public var countryCode: String?
 
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
-            case countryCode = "country_code"
+            case message
 
             case fyndOrderId = "fynd_order_id"
 
-            case message
+            case countryCode = "country_code"
 
             case mobile
         }
 
         public init(countryCode: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: String? = nil) {
-            self.countryCode = countryCode
+            self.message = message
 
             self.fyndOrderId = fyndOrderId
 
-            self.message = message
+            self.countryCode = countryCode
 
             self.mobile = mobile
         }
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                countryCode = try container.decode(String.self, forKey: .countryCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
@@ -94,30 +94,30 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class VerifyOtpResponseData: Codable {
-        public var countryCode: String?
+        public var message: String?
 
         public var fyndOrderId: String?
 
-        public var message: String?
+        public var countryCode: String?
 
         public var mobile: String?
 
         public enum CodingKeys: String, CodingKey {
-            case countryCode = "country_code"
+            case message
 
             case fyndOrderId = "fynd_order_id"
 
-            case message
+            case countryCode = "country_code"
 
             case mobile
         }
 
         public init(countryCode: String? = nil, fyndOrderId: String? = nil, message: String? = nil, mobile: String? = nil) {
-            self.countryCode = countryCode
+            self.message = message
 
             self.fyndOrderId = fyndOrderId
 
-            self.message = message
+            self.countryCode = countryCode
 
             self.mobile = mobile
         }
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                countryCode = try container.decode(String.self, forKey: .countryCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,11 +161,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
         }

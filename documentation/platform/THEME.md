@@ -30,6 +30,14 @@ Responsible for themes
 * [archiveTheme](#archivetheme)
 * [unarchiveTheme](#unarchivetheme)
 * [getThemeLastModified](#getthemelastmodified)
+* [getCompanyLevelThemes](#getcompanylevelthemes)
+* [addMarketplaceThemeToCompany](#addmarketplacethemetocompany)
+* [deleteCompanyTheme](#deletecompanytheme)
+* [getApplicationThemesV2](#getapplicationthemesv2)
+* [getApplicationThemesCountV2](#getapplicationthemescountv2)
+* [getApplicationThemeByIdV2](#getapplicationthemebyidv2)
+* [updateThemeV2](#updatethemev2)
+* [applyThemeV2](#applythemev2)
 
 
 
@@ -34879,8 +34887,510 @@ Use this API to fetch Last-Modified timestamp in header metadata.
 ---
 
 
+#### getCompanyLevelThemes
+Get themes for a company
+
+
+
+
+```swift
+platformClient.theme.getCompanyLevelThemes() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Retrieve a list of themes available for a specific company.
+
+*Returned Response:*
+
+
+
+
+[[ThemeSchema]](#[ThemeSchema])
+
+A list of themes for the company.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addMarketplaceThemeToCompany
+Apply a theme to a company
+
+
+
+
+```swift
+platformClient.theme.addMarketplaceThemeToCompany(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ThemeReq | yes | Request body |
+
+
+Add a marketplace theme to a company by providing the theme ID and company ID.
+
+*Returned Response:*
+
+
+
+
+[ThemeSchema](#ThemeSchema)
+
+The theme was successfully applied to the company.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### deleteCompanyTheme
+Delete a theme
+
+
+
+
+```swift
+platformClient.theme.deleteCompanyTheme(themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| themeId | String | yes | The ID of the theme. |  
+
+
+
+Delete a specific theme for a company by providing the company ID and theme ID.
+
+*Returned Response:*
+
+
+
+
+[ThemeSchema](#ThemeSchema)
+
+Theme deleted successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationThemesV2
+Get all the themes for a specific application
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").theme.getApplicationThemesV2() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[[AllThemesApplicationResponseV2]](#[AllThemesApplicationResponseV2])
+
+The list of themes for the application was fetched successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationThemesCountV2
+Get the count of themes for a specific application
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").theme.getApplicationThemesCountV2() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[[String: Any]](#[String: Any])
+
+The count of themes for the application was fetched successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getApplicationThemeByIdV2
+Get Theme By Theme Id
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").theme.getApplicationThemeByIdV2(themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| themeId | String | yes | The ID of the theme |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+The list of themes for the application was fetched successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateThemeV2
+Update theme for a specific company and application
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").theme.updateThemeV2(themeId: themeId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| themeId | String | yes | The ID of the theme. |  
+| body | UpdateThemeRequestBodyV2 | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+Theme updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### applyThemeV2
+Apply a theme to an application
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").theme.applyThemeV2(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ApplyThemeRequestV2 | yes | Request body |
+
+
+Apply a theme to an application by providing the marketplace theme ID.
+
+*Returned Response:*
+
+
+
+
+[ApplyThemeResponseV2](#ApplyThemeResponseV2)
+
+Successfully applied the theme
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
+
+ 
+ 
+ #### [ThemeReq](#ThemeReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marketplaceThemeId | String? |  yes  | The ID of the marketplace theme to apply to the company. |
+
+---
+
+
+ 
+ 
+ #### [ThemeSchema](#ThemeSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  | The unique identifier for the theme. |
+ | name | String? |  yes  | The name of the theme. |
+ | marketplaceThemeId | [MarketplaceThemeId](#MarketplaceThemeId)? |  yes  |  |
+ | companyId | Int? |  yes  | The ID of the company that the theme belongs to. |
+ | meta | [ThemeMeta](#ThemeMeta)? |  yes  |  |
+ | createdAt | String? |  yes  | The timestamp when the theme was created. |
+ | updatedAt | String? |  yes  | The timestamp when the theme was last updated. |
+
+---
+
+
+ 
+ 
+ #### [MarketplaceThemeId](#MarketplaceThemeId)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  | The unique identifier for the marketplace theme. |
+ | isDefault | Bool? |  yes  | Whether the theme is the default theme. |
+
+---
+
+
+ 
+ 
+ #### [ThemeMeta](#ThemeMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment | [ThemePayment](#ThemePayment)? |  yes  |  |
+ | industry | [String]? |  yes  | A list of industry categories the theme is suitable for. |
+ | description | String? |  yes  | A description of the theme. |
+ | images | [ThemeImages](#ThemeImages)? |  yes  |  |
+ | slug | String? |  yes  | The slug for the theme. |
+
+---
+
+
+ 
+ 
+ #### [ThemePayment](#ThemePayment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isPaid | Bool? |  yes  | Whether the theme is a paid theme. |
+ | amount | Double? |  yes  | The amount to be paid for the theme. |
+
+---
+
+
+ 
+ 
+ #### [ThemeImages](#ThemeImages)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | String? |  yes  | The URL of the desktop image for the theme. |
+ | mobile | String? |  yes  | The URL of the mobile image for the theme. |
+
+---
+
 
  
  
@@ -34989,6 +35499,230 @@ Use this API to fetch Last-Modified timestamp in header metadata.
  | screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate)? |  yes  |  |
  | user | [AvailablePageUserPredicate](#AvailablePageUserPredicate)? |  yes  |  |
  | route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketplaceThemeResponse](#MarketplaceThemeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | Int? |  yes  | HTTP status code |
+ | body | [MarketplaceThemeResponseBody](#MarketplaceThemeResponseBody)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketplaceThemeResponseBody](#MarketplaceThemeResponseBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  |  |
+ | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [MarketplaceTheme](#MarketplaceTheme)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  | Theme ID |
+ | payment | [PaymentInfo](#PaymentInfo)? |  yes  |  |
+ | contact | [ContactInfo](#ContactInfo)? |  yes  |  |
+ | industry | [String]? |  yes  | Industries the theme is suitable for |
+ | isUpdate | Bool? |  yes  | Indicates if the theme is an update |
+ | isDefault | Bool? |  yes  | Indicates if the theme is a default theme |
+ | name | String? |  yes  | Theme name |
+ | tagline | String? |  yes  | Theme tagline |
+ | description | String? |  yes  | Theme description |
+ | catalogSize | [CatalogSize](#CatalogSize)? |  yes  |  |
+ | images | [Images](#Images)? |  yes  |  |
+ | carousel | [[CarouselItem](#CarouselItem)]? |  yes  |  |
+ | src | String? |  yes  | Theme source URL |
+ | explore | [ExploreInfo](#ExploreInfo)? |  yes  |  |
+ | features | [[Feature](#Feature)]? |  yes  |  |
+ | highlights | [[Highlight](#Highlight)]? |  yes  |  |
+ | variations | [[Variation](#Variation)]? |  yes  |  |
+ | documentation | [Documentation](#Documentation)? |  yes  |  |
+ | status | String? |  yes  | Theme status |
+ | step | Int? |  yes  | Theme step |
+ | comments | [Comments](#Comments)? |  yes  |  |
+ | release | [Release](#Release)? |  yes  |  |
+ | slug | String? |  yes  | Theme slug |
+ | organizationId | String? |  yes  | Organization ID |
+ | userId | String? |  yes  | User ID |
+ | createdAt | String? |  yes  | Theme creation timestamp |
+ | updatedAt | String? |  yes  | Theme update timestamp |
+ | templateThemeId | String? |  yes  | Template theme ID |
+
+---
+
+
+ 
+ 
+ #### [PaymentInfo](#PaymentInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isPaid | Bool? |  yes  | Indicates if the theme is paid |
+ | amount | Double? |  yes  | Amount of payment |
+
+---
+
+
+ 
+ 
+ #### [ContactInfo](#ContactInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | developerContact | [String]? |  yes  | Developer contact information |
+ | sellerContact | String? |  yes  | Seller contact information |
+
+---
+
+
+ 
+ 
+ #### [CatalogSize](#CatalogSize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | Int? |  yes  | Minimum catalog size |
+ | max | Int? |  yes  | Maximum catalog size |
+
+---
+
+
+ 
+ 
+ #### [Images](#Images)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | [String]? |  yes  | Desktop theme image URL |
+ | mobile | String? |  yes  | Mobile theme image URL |
+ | android | [String]? |  yes  |  |
+ | ios | [String]? |  yes  |  |
+ | thumbnail | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CarouselItem](#CarouselItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | String? |  yes  | Desktop carousel image URL |
+ | mobile | String? |  yes  | Mobile carousel image URL |
+
+---
+
+
+ 
+ 
+ #### [ExploreInfo](#ExploreInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | String? |  yes  | Explore feature title |
+ | description | String? |  yes  | Explore feature description |
+
+---
+
+
+ 
+ 
+ #### [Feature](#Feature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | String? |  yes  | Feature category |
+ | list | [[FeatureItem](#FeatureItem)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FeatureItem](#FeatureItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | label | String? |  yes  | Feature label |
+ | description | String? |  yes  | Feature description |
+
+---
+
+
+ 
+ 
+ #### [Highlight](#Highlight)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | String? |  yes  | Highlight title |
+ | description | String? |  yes  | Highlight description |
+ | image | String? |  yes  | Highlight image URL |
+
+---
+
+
+ 
+ 
+ #### [Variation](#Variation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  | Variation name |
+ | color | String? |  yes  | Variation color |
+ | demoUrl | String? |  yes  | Variation demo URL |
+ | images | [Images](#Images)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Documentation](#Documentation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | notes | String? |  yes  | Documentation notes |
+ | url | String? |  yes  | Documentation URL |
+
+---
+
+
+ 
+ 
+ #### [Comments](#Comments)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | developerRemark | String? |  yes  | Developer remark |
+ | reviewerFeedback | String? |  yes  | Reviewer feedback |
+
+---
+
+
+ 
+ 
+ #### [Release](#Release)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | version | String? |  yes  | Release version |
+ | notes | String? |  yes  | Release notes |
 
 ---
 
@@ -35186,20 +35920,6 @@ Use this API to fetch Last-Modified timestamp in header metadata.
  | features | [String]? |  yes  |  |
  | name | String? |  yes  |  |
  | description | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Images](#Images)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | desktop | [String]? |  yes  |  |
- | android | [String]? |  yes  |  |
- | ios | [String]? |  yes  |  |
- | thumbnail | [String]? |  yes  |  |
 
 ---
 
@@ -35485,6 +36205,762 @@ Use this API to fetch Last-Modified timestamp in header metadata.
  | id | String? |  yes  |  |
  | label | String? |  yes  |  |
  | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ApplyThemeRequestV2](#ApplyThemeRequestV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marketplaceThemeId | String |  no  | The ID of the theme to be applied |
+
+---
+
+
+ 
+ 
+ #### [ApplyThemeResponseV2](#ApplyThemeResponseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | font | [FontV2](#FontV2)? |  yes  |  |
+ | config | [ConfigV2](#ConfigV2)? |  yes  |  |
+ | applied | Bool? |  yes  | Whether the theme has been applied or not |
+ | isPrivate | Bool? |  yes  | Whether the theme is private or not |
+ | tags | [String]? |  yes  | An array of tags associated with the theme |
+ | id | String? |  yes  | The unique identifier of the theme |
+ | applicationId | String? |  yes  | The ID of the application |
+ | marketplaceThemeId | String? |  yes  | The ID of the theme in the marketplace |
+ | meta | [MetaV2](#MetaV2)? |  yes  |  |
+ | name | String? |  yes  | The name of the theme |
+ | templateThemeId | String? |  yes  | The ID of the template theme |
+ | version | String? |  yes  | The version of the theme |
+ | styles | [String: Any]? |  yes  | The styles associated with the theme |
+ | createdAt | String? |  yes  | The creation timestamp of the theme |
+ | updatedAt | String? |  yes  | The last update timestamp of the theme |
+
+---
+
+
+ 
+ 
+ #### [AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | font | [FontV2](#FontV2)? |  yes  |  |
+ | config | [ConfigV2](#ConfigV2)? |  yes  |  |
+ | applied | Bool? |  yes  | Whether the theme has been applied or not |
+ | isPrivate | Bool? |  yes  | Whether the theme is private or not |
+ | tags | [String]? |  yes  | An array of tags associated with the theme |
+ | id | String? |  yes  | The unique identifier of the theme |
+ | applicationId | String? |  yes  | The ID of the application |
+ | marketplaceThemeId | String? |  yes  | The ID of the theme in the marketplace |
+ | meta | [MetaV2](#MetaV2)? |  yes  |  |
+ | name | String? |  yes  | The name of the theme |
+ | templateThemeId | String? |  yes  | The ID of the template theme |
+ | version | String? |  yes  | The version of the theme |
+ | styles | [String: Any]? |  yes  | The styles associated with the theme |
+ | createdAt | String? |  yes  | The creation timestamp of the theme |
+ | updatedAt | String? |  yes  | The last update timestamp of the theme |
+ | assets | [AssetsV2](#AssetsV2)? |  yes  |  |
+ | availableSections | [[SectionItem](#SectionItem)]? |  yes  | Available sections information |
+
+---
+
+
+ 
+ 
+ #### [UpdateThemeRequestBodyV2](#UpdateThemeRequestBodyV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | config | [ConfigV2](#ConfigV2)? |  yes  |  |
+ | font | [FontV2](#FontV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FontV2](#FontV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | variants | [FontVariantsV2](#FontVariantsV2) |  no  |  |
+ | family | String |  no  | The font family |
+
+---
+
+
+ 
+ 
+ #### [FontVariantsV2](#FontVariantsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | light | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+ | regular | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+ | medium | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+ | semiBold | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+ | bold | [FontVariantV2](#FontVariantV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FontVariantV2](#FontVariantV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  | The name of the font variant |
+ | file | String |  no  | The URL of the font file |
+
+---
+
+
+ 
+ 
+ #### [ConfigV2](#ConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | String |  no  | The current configuration |
+ | list | [[ConfigurationV2](#ConfigurationV2)] |  no  | A list of configurations |
+ | globalSchema | [GlobalSchemaV2](#GlobalSchemaV2)? |  yes  |  |
+ | preset | [PresetV2](#PresetV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ConfigurationV2](#ConfigurationV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  | The name of the configuration |
+ | globalConfig | [GlobalConfigV2](#GlobalConfigV2)? |  yes  |  |
+ | custom | [CustomConfigV2](#CustomConfigV2)? |  yes  |  |
+ | page | [String]? |  yes  | An array of pages |
+
+---
+
+
+ 
+ 
+ #### [GlobalConfigV2](#GlobalConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | statics | [StaticConfigV2](#StaticConfigV2)? |  yes  |  |
+ | auth | [AuthConfigV2](#AuthConfigV2)? |  yes  |  |
+ | palette | [PaletteConfigV2](#PaletteConfigV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [StaticConfigV2](#StaticConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | [StaticPropsV2](#StaticPropsV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AuthConfigV2](#AuthConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | showHeaderAuth | Bool? |  yes  | Whether to show header authentication or not |
+ | showFooterAuth | Bool? |  yes  | Whether to show footer authentication or not |
+
+---
+
+
+ 
+ 
+ #### [PaletteConfigV2](#PaletteConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | generalSetting | [GeneralSettingV2](#GeneralSettingV2)? |  yes  |  |
+ | advanceSetting | [AdvanceSettingV2](#AdvanceSettingV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CustomConfigV2](#CustomConfigV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | [CustomPropsV2](#CustomPropsV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [MetaV2](#MetaV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | payment | [PaymentV2](#PaymentV2)? |  yes  |  |
+ | description | String? |  yes  | The description of the theme |
+ | industry | [String]? |  yes  | An array of industries associated with the theme |
+ | release | [ReleaseV2](#ReleaseV2)? |  yes  |  |
+ | images | [ImagesV2](#ImagesV2)? |  yes  |  |
+ | slug | String? |  yes  | The slug of the theme |
+ | name | String? |  yes  | The name of the theme |
+
+---
+
+
+ 
+ 
+ #### [PaymentV2](#PaymentV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isPaid | Bool? |  yes  | Whether the theme is paid or not |
+ | amount | Double? |  yes  | The amount of the theme |
+
+---
+
+
+ 
+ 
+ #### [ReleaseV2](#ReleaseV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | notes | String? |  yes  | The release notes of the theme |
+ | version | String? |  yes  | The version of the theme |
+
+---
+
+
+ 
+ 
+ #### [ImagesV2](#ImagesV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | String? |  yes  | The URL of the desktop image |
+ | mobile | String? |  yes  | The URL of the mobile image |
+
+---
+
+
+ 
+ 
+ #### [StaticPropsV2](#StaticPropsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | colors | [ColorsV2](#ColorsV2)? |  yes  |  |
+ | auth | [AuthConfigV2](#AuthConfigV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ColorsV2](#ColorsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | primaryColor | String? |  yes  | The primary color |
+ | secondaryColor | String? |  yes  | The secondary color |
+ | accentColor | String? |  yes  | The accent color |
+ | linkColor | String? |  yes  | The link color |
+ | buttonSecondaryColor | String? |  yes  | The secondary button color |
+ | bgColor | String? |  yes  | The background color |
+
+---
+
+
+ 
+ 
+ #### [GeneralSettingV2](#GeneralSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | theme | [ThemeSettingV2](#ThemeSettingV2)? |  yes  |  |
+ | text | [TextSettingV2](#TextSettingV2)? |  yes  |  |
+ | button | [ButtonSettingV2](#ButtonSettingV2)? |  yes  |  |
+ | saleDiscount | [SaleDiscountSettingV2](#SaleDiscountSettingV2)? |  yes  |  |
+ | header | [HeaderSettingV2](#HeaderSettingV2)? |  yes  |  |
+ | footer | [FooterSettingV2](#FooterSettingV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [AdvanceSettingV2](#AdvanceSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | overlayPopup | [OverlayPopupSettingV2](#OverlayPopupSettingV2)? |  yes  |  |
+ | dividerStrokeHighlight | [DividerStrokeHighlightSettingV2](#DividerStrokeHighlightSettingV2)? |  yes  |  |
+ | userAlerts | [UserAlertsSettingV2](#UserAlertsSettingV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ThemeSettingV2](#ThemeSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pageBackground | String? |  yes  | The page background color |
+ | themeAccent | String? |  yes  | The theme accent color |
+
+---
+
+
+ 
+ 
+ #### [TextSettingV2](#TextSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | textHeading | String? |  yes  | The text heading color |
+ | textBody | String? |  yes  | The text body color |
+ | textLabel | String? |  yes  | The text label color |
+ | textSecondary | String? |  yes  | The secondary text color |
+
+---
+
+
+ 
+ 
+ #### [ButtonSettingV2](#ButtonSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | buttonPrimary | String? |  yes  | The primary button color |
+ | buttonSecondary | String? |  yes  | The secondary button color |
+ | buttonLink | String? |  yes  | The button link color |
+
+---
+
+
+ 
+ 
+ #### [SaleDiscountSettingV2](#SaleDiscountSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | saleBadgeBackground | String? |  yes  | The sale badge background color |
+ | saleBadgeText | String? |  yes  | The sale badge text color |
+ | saleDiscountText | String? |  yes  | The sale discount text color |
+ | saleTimer | String? |  yes  | The sale timer color |
+
+---
+
+
+ 
+ 
+ #### [HeaderSettingV2](#HeaderSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | headerBackground | String? |  yes  | The header background color |
+ | headerNav | String? |  yes  | The header navigation color |
+ | headerIcon | String? |  yes  | The header icon color |
+
+---
+
+
+ 
+ 
+ #### [FooterSettingV2](#FooterSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | footerBackground | String? |  yes  | The footer background color |
+ | footerBottomBackground | String? |  yes  | The footer bottom background color |
+ | footerHeadingText | String? |  yes  | The footer heading text color |
+ | footerBodyText | String? |  yes  | The footer body text color |
+ | footerIcon | String? |  yes  | The footer icon color |
+
+---
+
+
+ 
+ 
+ #### [OverlayPopupSettingV2](#OverlayPopupSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dialogBackgroung | String? |  yes  | The dialog background color |
+ | overlay | String? |  yes  | The overlay color |
+
+---
+
+
+ 
+ 
+ #### [DividerStrokeHighlightSettingV2](#DividerStrokeHighlightSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dividerStrokes | String? |  yes  | The divider strokes color |
+ | highlight | String? |  yes  | The highlight color |
+
+---
+
+
+ 
+ 
+ #### [UserAlertsSettingV2](#UserAlertsSettingV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | successBackground | String? |  yes  | The success background color |
+ | successText | String? |  yes  | The success text color |
+ | errorBackground | String? |  yes  | The error background color |
+ | errorText | String? |  yes  | The error text color |
+ | infoBackground | String? |  yes  | The info background color |
+ | infoText | String? |  yes  | The info text color |
+
+---
+
+
+ 
+ 
+ #### [CustomPropsV2](#CustomPropsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | headerBgColor | String? |  yes  | The header background color |
+ | headerTextColor | String? |  yes  | The header text color |
+ | headerBorderColor | String? |  yes  | The header border color |
+ | headerIconColor | String? |  yes  | The header icon color |
+ | headerCartNotificationBgColor | String? |  yes  | The header cart notification background color |
+ | headerCartNotificationTextColor | String? |  yes  | The header cart notification text color |
+ | headerNavHoverColor | String? |  yes  | The header navigation hover color |
+ | buttonPrimaryColor | String? |  yes  | The primary button color |
+ | buttonPrimaryLabelColor | String? |  yes  | The primary button label color |
+ | buttonAddToCartColor | String? |  yes  | The add to cart button color |
+ | buttonAddToCartLabelColor | String? |  yes  | The add to cart button label color |
+ | buttonSecondaryColor | String? |  yes  | The secondary button color |
+ | buttonSecondaryLabelColor | String? |  yes  | The secondary button label color |
+ | buttonTertiaryColor | String? |  yes  | The tertiary button color |
+ | buttonTertiaryLabelColor | String? |  yes  | The tertiary button label color |
+ | buttonTertiaryHoverColor | String? |  yes  | The tertiary button hover color |
+ | buttonTertiaryHoverTextColor | String? |  yes  | The tertiary button hover text color |
+ | textHeadingLinkColor | String? |  yes  | The text heading link color |
+ | textBodyColor | String? |  yes  | The text body color |
+ | textPriceColor | String? |  yes  | The text price color |
+ | textSalePriceColor | String? |  yes  | The text sale price color |
+ | textStrikethroughPriceColor | String? |  yes  | The text strikethrough price color |
+ | textDiscountColor | String? |  yes  | The text discount color |
+ | footerBgColor | String? |  yes  | The footer background color |
+ | footerTextColor | String? |  yes  | The footer text color |
+ | footerBorderColor | String? |  yes  | The footer border color |
+ | footerNavHoverColor | String? |  yes  | The footer navigation hover color |
+ | disableCart | Bool? |  yes  | Whether to disable the cart or not |
+ | isMenuBelowLogo | Bool? |  yes  | Whether the menu is below the logo or not |
+ | menuPosition | String? |  yes  | The position of the menu |
+
+---
+
+
+ 
+ 
+ #### [GlobalSchemaV2](#GlobalSchemaV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | [[PropV2](#PropV2)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PropV2](#PropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  | The type of the property |
+ | category | String? |  yes  | The category of the property |
+ | id | String? |  yes  | The ID of the property |
+ | label | String? |  yes  | The label of the property |
+ | info | String? |  yes  | Additional information about the property |
+
+---
+
+
+ 
+ 
+ #### [AssetsV2](#AssetsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | umdJs | [UMDJs](#UMDJs)? |  yes  |  |
+ | commonJs | [CommonJS](#CommonJS)? |  yes  |  |
+ | css | [CSS](#CSS)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UMDJs](#UMDJs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | links | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CommonJS](#CommonJS)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | link | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CSS](#CSS)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | links | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SectionItem](#SectionItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | [[String: Any]]? |  yes  |  |
+ | blocks | [[String: Any]]? |  yes  | Blocks |
+ | name | String? |  yes  | Name of the section |
+ | label | String? |  yes  | Label for the section |
+
+---
+
+
+ 
+ 
+ #### [PresetV2](#PresetV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | pages | [[PageV2](#PageV2)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PageV2](#PageV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sections | [[SectionV2](#SectionV2)]? |  yes  |  |
+ | value | String? |  yes  | The value of the page. |
+
+---
+
+
+ 
+ 
+ #### [SectionV2](#SectionV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocks | [[BlockV2](#BlockV2)]? |  yes  |  |
+ | predicate | [PredicateV2](#PredicateV2)? |  yes  |  |
+ | name | String? |  yes  | The name of the section. |
+ | props | [SectionPropsV2](#SectionPropsV2)? |  yes  |  |
+ | preset | [SectionPresetV2](#SectionPresetV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BlockV2](#BlockV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  | The type of the block. |
+ | name | String? |  yes  | The name of the block. |
+ | props | [BlockPropsV2](#BlockPropsV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PredicateV2](#PredicateV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | screen | [ScreenV2](#ScreenV2)? |  yes  |  |
+ | user | [UserV2](#UserV2)? |  yes  |  |
+ | route | [RouteV2](#RouteV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ScreenV2](#ScreenV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mobile | Bool? |  yes  | True if the screen is a mobile device. |
+ | desktop | Bool? |  yes  | True if the screen is a desktop device. |
+ | tablet | Bool? |  yes  | True if the screen is a tablet device. |
+
+---
+
+
+ 
+ 
+ #### [UserV2](#UserV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | authenticated | Bool? |  yes  | True if the user is authenticated. |
+ | anonymous | Bool? |  yes  | True if the user is anonymous. |
+
+---
+
+
+ 
+ 
+ #### [RouteV2](#RouteV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | selected | String? |  yes  | The selected route. |
+ | exactUrl | String? |  yes  | The exact URL of the route. |
+
+---
+
+
+ 
+ 
+ #### [SectionPropsV2](#SectionPropsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | title | [TextPropV2](#TextPropV2)? |  yes  |  |
+ | itemMargin | [TextPropV2](#TextPropV2)? |  yes  |  |
+ | autoplay | [CheckboxPropV2](#CheckboxPropV2)? |  yes  |  |
+ | slideInterval | [RangePropV2](#RangePropV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SectionPresetV2](#SectionPresetV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | blocks | [[BlockV2](#BlockV2)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BlockPropsV2](#BlockPropsV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | image | [ImagePickerPropV2](#ImagePickerPropV2)? |  yes  |  |
+ | slideLink | [UrlPropV2](#UrlPropV2)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TextPropV2](#TextPropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String? |  yes  | The value of the text property. |
+ | type | String? |  yes  | The type of the property. |
+
+---
+
+
+ 
+ 
+ #### [CheckboxPropV2](#CheckboxPropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | Bool? |  yes  | The value of the checkbox property. |
+ | type | String? |  yes  | The type of the property. |
+
+---
+
+
+ 
+ 
+ #### [RangePropV2](#RangePropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | Int? |  yes  | The value of the range property. |
+ | type | String? |  yes  | The type of the property. |
+
+---
+
+
+ 
+ 
+ #### [ImagePickerPropV2](#ImagePickerPropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  | The type of the property. |
+ | value | String? |  yes  | The value of the image picker property. |
+
+---
+
+
+ 
+ 
+ #### [UrlPropV2](#UrlPropV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  | The type of the property. |
+ | value | String? |  yes  | The value of the URL property. |
 
 ---
 

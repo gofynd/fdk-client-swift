@@ -7,8 +7,6 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class ProductStockPriceV3: Codable {
-        public var selling: Double?
-
         public var marked: Double?
 
         public var effective: Double?
@@ -16,8 +14,6 @@ public extension ApplicationClient.Catalog {
         public var currency: String?
 
         public enum CodingKeys: String, CodingKey {
-            case selling
-
             case marked
 
             case effective
@@ -25,9 +21,7 @@ public extension ApplicationClient.Catalog {
             case currency
         }
 
-        public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
-            self.selling = selling
-
+        public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil) {
             self.marked = marked
 
             self.effective = effective
@@ -37,14 +31,6 @@ public extension ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                selling = try container.decode(Double.self, forKey: .selling)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 marked = try container.decode(Double.self, forKey: .marked)
@@ -73,8 +59,6 @@ public extension ApplicationClient.Catalog {
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(selling, forKey: .selling)
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 

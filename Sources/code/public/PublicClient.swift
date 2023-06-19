@@ -8,11 +8,15 @@ public class PublicClient {
 
     public let inventory: Inventory
 
+    public let partner: Partner
+
     public init(config: PublicConfig) {
         configuration = Configuration(config: config)
 
         webhook = Webhook(config: config)
 
         inventory = Inventory(config: config)
+
+        partner = Partner(config: config)
     }
 }

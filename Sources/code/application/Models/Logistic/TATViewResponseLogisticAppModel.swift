@@ -7,84 +7,84 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class TATViewResponse: Codable {
-        public var identifier: String?
-
         public var paymentMode: String?
-
-        public var journey: String?
-
-        public var requestUuid: String?
 
         public var error: TATErrorSchemaResponse?
 
-        public var toCity: String?
-
         public var success: Bool?
 
-        public var isCodAvailable: Bool?
-
-        public var toPincode: String?
+        public var identifier: String?
 
         public var stormbreakerUuid: String?
+
+        public var journey: String?
 
         public var locationDetails: [TATLocationDetailsResponse]?
 
         public var action: String?
 
+        public var requestUuid: String?
+
+        public var toCity: String?
+
+        public var isCodAvailable: Bool?
+
+        public var toPincode: String?
+
         public var source: String?
 
         public enum CodingKeys: String, CodingKey {
-            case identifier
-
             case paymentMode = "payment_mode"
-
-            case journey
-
-            case requestUuid = "request_uuid"
 
             case error
 
-            case toCity = "to_city"
-
             case success
 
-            case isCodAvailable = "is_cod_available"
-
-            case toPincode = "to_pincode"
+            case identifier
 
             case stormbreakerUuid = "stormbreaker_uuid"
+
+            case journey
 
             case locationDetails = "location_details"
 
             case action
 
+            case requestUuid = "request_uuid"
+
+            case toCity = "to_city"
+
+            case isCodAvailable = "is_cod_available"
+
+            case toPincode = "to_pincode"
+
             case source
         }
 
         public init(action: String? = nil, error: TATErrorSchemaResponse? = nil, identifier: String? = nil, isCodAvailable: Bool? = nil, journey: String? = nil, locationDetails: [TATLocationDetailsResponse]? = nil, paymentMode: String? = nil, requestUuid: String? = nil, source: String? = nil, stormbreakerUuid: String? = nil, success: Bool? = nil, toCity: String? = nil, toPincode: String? = nil) {
-            self.identifier = identifier
-
             self.paymentMode = paymentMode
-
-            self.journey = journey
-
-            self.requestUuid = requestUuid
 
             self.error = error
 
-            self.toCity = toCity
-
             self.success = success
 
-            self.isCodAvailable = isCodAvailable
-
-            self.toPincode = toPincode
+            self.identifier = identifier
 
             self.stormbreakerUuid = stormbreakerUuid
+
+            self.journey = journey
 
             self.locationDetails = locationDetails
 
             self.action = action
+
+            self.requestUuid = requestUuid
+
+            self.toCity = toCity
+
+            self.isCodAvailable = isCodAvailable
+
+            self.toPincode = toPincode
 
             self.source = source
         }
@@ -93,31 +93,7 @@ public extension ApplicationClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 paymentMode = try container.decode(String.self, forKey: .paymentMode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                journey = try container.decode(String.self, forKey: .journey)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                requestUuid = try container.decode(String.self, forKey: .requestUuid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,14 +109,6 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                toCity = try container.decode(String.self, forKey: .toCity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -149,15 +117,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                isCodAvailable = try container.decode(Bool.self, forKey: .isCodAvailable)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                toPincode = try container.decode(String.self, forKey: .toPincode)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -166,6 +126,14 @@ public extension ApplicationClient.Logistic {
 
             do {
                 stormbreakerUuid = try container.decode(String.self, forKey: .stormbreakerUuid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                journey = try container.decode(String.self, forKey: .journey)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -189,6 +157,38 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
+                requestUuid = try container.decode(String.self, forKey: .requestUuid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                toCity = try container.decode(String.self, forKey: .toCity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isCodAvailable = try container.decode(Bool.self, forKey: .isCodAvailable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                toPincode = try container.decode(String.self, forKey: .toPincode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 source = try container.decode(String.self, forKey: .source)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -200,29 +200,29 @@ public extension ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
-
-            try? container.encodeIfPresent(journey, forKey: .journey)
-
-            try? container.encodeIfPresent(requestUuid, forKey: .requestUuid)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(toCity, forKey: .toCity)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
-
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(stormbreakerUuid, forKey: .stormbreakerUuid)
+
+            try? container.encodeIfPresent(journey, forKey: .journey)
 
             try? container.encodeIfPresent(locationDetails, forKey: .locationDetails)
 
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(requestUuid, forKey: .requestUuid)
+
+            try? container.encodeIfPresent(toCity, forKey: .toCity)
+
+            try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
+
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
             try? container.encodeIfPresent(source, forKey: .source)
         }

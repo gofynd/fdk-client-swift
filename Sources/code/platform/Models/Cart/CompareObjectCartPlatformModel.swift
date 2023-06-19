@@ -9,9 +9,9 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CompareObject: Codable {
-        public var equals: Double?
-
         public var lessThan: Double?
+
+        public var equals: Double?
 
         public var lessThanEquals: Double?
 
@@ -20,9 +20,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public var greaterThanEquals: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case equals
-
             case lessThan = "less_than"
+
+            case equals
 
             case lessThanEquals = "less_than_equals"
 
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(equals: Double? = nil, greaterThan: Double? = nil, greaterThanEquals: Double? = nil, lessThan: Double? = nil, lessThanEquals: Double? = nil) {
-            self.equals = equals
-
             self.lessThan = lessThan
+
+            self.equals = equals
 
             self.lessThanEquals = lessThanEquals
 
@@ -47,7 +47,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                equals = try container.decode(Double.self, forKey: .equals)
+                lessThan = try container.decode(Double.self, forKey: .lessThan)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                lessThan = try container.decode(Double.self, forKey: .lessThan)
+                equals = try container.decode(Double.self, forKey: .equals)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(equals, forKey: .equals)
-
             try? container.encodeIfPresent(lessThan, forKey: .lessThan)
+
+            try? container.encodeIfPresent(equals, forKey: .equals)
 
             try? container.encodeIfPresent(lessThanEquals, forKey: .lessThanEquals)
 

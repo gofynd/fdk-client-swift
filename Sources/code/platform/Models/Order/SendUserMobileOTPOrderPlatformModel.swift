@@ -9,26 +9,24 @@ public extension PlatformClient.Order {
      */
 
     class SendUserMobileOTP: Codable {
-        public var mobile: String
-
         public var countryCode: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case mobile
+        public var mobile: Int
 
+        public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
+
+            case mobile
         }
 
-        public init(countryCode: String? = nil, mobile: String) {
-            self.mobile = mobile
-
+        public init(countryCode: String? = nil, mobile: Int) {
             self.countryCode = countryCode
+
+            self.mobile = mobile
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            mobile = try container.decode(String.self, forKey: .mobile)
 
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
@@ -37,14 +35,16 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mobile = try container.decode(Int.self, forKey: .mobile)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
     }
 }
@@ -56,26 +56,24 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class SendUserMobileOTP: Codable {
-        public var mobile: String
-
         public var countryCode: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case mobile
+        public var mobile: Int
 
+        public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
+
+            case mobile
         }
 
-        public init(countryCode: String? = nil, mobile: String) {
-            self.mobile = mobile
-
+        public init(countryCode: String? = nil, mobile: Int) {
             self.countryCode = countryCode
+
+            self.mobile = mobile
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            mobile = try container.decode(String.self, forKey: .mobile)
 
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
@@ -84,14 +82,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mobile = try container.decode(Int.self, forKey: .mobile)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mobile, forKey: .mobile)
-
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
         }
     }
 }

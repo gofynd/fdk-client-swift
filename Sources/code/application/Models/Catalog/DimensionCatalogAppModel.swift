@@ -11,9 +11,9 @@ public extension ApplicationClient.Catalog {
 
         public var length: Double
 
-        public var width: Double
-
         public var isDefault: Bool
+
+        public var width: Double
 
         public var unit: String
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Catalog {
 
             case length
 
-            case width
-
             case isDefault = "is_default"
+
+            case width
 
             case unit
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Catalog {
 
             self.length = length
 
-            self.width = width
-
             self.isDefault = isDefault
+
+            self.width = width
 
             self.unit = unit
         }
@@ -48,9 +48,9 @@ public extension ApplicationClient.Catalog {
 
             length = try container.decode(Double.self, forKey: .length)
 
-            width = try container.decode(Double.self, forKey: .width)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            width = try container.decode(Double.self, forKey: .width)
 
             unit = try container.decode(String.self, forKey: .unit)
         }
@@ -62,9 +62,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(length, forKey: .length)
 
-            try? container.encodeIfPresent(width, forKey: .width)
-
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }

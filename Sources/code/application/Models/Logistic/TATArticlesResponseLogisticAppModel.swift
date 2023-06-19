@@ -9,48 +9,48 @@ public extension ApplicationClient.Logistic {
     class TATArticlesResponse: Codable {
         public var error: TATErrorSchemaResponse?
 
-        public var isCodAvailable: Bool?
+        public var manufacturingTimeUnit: String?
 
-        public var category: TATCategoryRequest?
+        public var promise: TATPromiseResponse?
 
         public var manufacturingTimeSeconds: Int?
 
         public var manufacturingTime: Int?
 
-        public var promise: TATPromiseResponse?
+        public var isCodAvailable: Bool?
 
-        public var manufacturingTimeUnit: String?
+        public var category: TATCategoryRequest?
 
         public enum CodingKeys: String, CodingKey {
             case error
 
-            case isCodAvailable = "is_cod_available"
+            case manufacturingTimeUnit = "manufacturing_time_unit"
 
-            case category
+            case promise
 
             case manufacturingTimeSeconds = "_manufacturing_time_seconds"
 
             case manufacturingTime = "manufacturing_time"
 
-            case promise
+            case isCodAvailable = "is_cod_available"
 
-            case manufacturingTimeUnit = "manufacturing_time_unit"
+            case category
         }
 
         public init(category: TATCategoryRequest? = nil, error: TATErrorSchemaResponse? = nil, isCodAvailable: Bool? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil, promise: TATPromiseResponse? = nil, manufacturingTimeSeconds: Int? = nil) {
             self.error = error
 
-            self.isCodAvailable = isCodAvailable
+            self.manufacturingTimeUnit = manufacturingTimeUnit
 
-            self.category = category
+            self.promise = promise
 
             self.manufacturingTimeSeconds = manufacturingTimeSeconds
 
             self.manufacturingTime = manufacturingTime
 
-            self.promise = promise
+            self.isCodAvailable = isCodAvailable
 
-            self.manufacturingTimeUnit = manufacturingTimeUnit
+            self.category = category
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,7 +65,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                isCodAvailable = try container.decode(Bool.self, forKey: .isCodAvailable)
+                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +73,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                category = try container.decode(TATCategoryRequest.self, forKey: .category)
+                promise = try container.decode(TATPromiseResponse.self, forKey: .promise)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                promise = try container.decode(TATPromiseResponse.self, forKey: .promise)
+                isCodAvailable = try container.decode(Bool.self, forKey: .isCodAvailable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                manufacturingTimeUnit = try container.decode(String.self, forKey: .manufacturingTimeUnit)
+                category = try container.decode(TATCategoryRequest.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,17 +118,17 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
+            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
 
-            try? container.encodeIfPresent(category, forKey: .category)
+            try? container.encodeIfPresent(promise, forKey: .promise)
 
             try? container.encodeIfPresent(manufacturingTimeSeconds, forKey: .manufacturingTimeSeconds)
 
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
 
-            try? container.encodeIfPresent(promise, forKey: .promise)
+            try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
 
-            try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
+            try? container.encodeIfPresent(category, forKey: .category)
         }
     }
 }

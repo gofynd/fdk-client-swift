@@ -9,6 +9,8 @@ public extension ApplicationClient.Theme {
     class Images: Codable {
         public var desktop: [String]?
 
+        public var mobile: String?
+
         public var android: [String]?
 
         public var ios: [String]?
@@ -18,6 +20,8 @@ public extension ApplicationClient.Theme {
         public enum CodingKeys: String, CodingKey {
             case desktop
 
+            case mobile
+
             case android
 
             case ios
@@ -25,8 +29,10 @@ public extension ApplicationClient.Theme {
             case thumbnail
         }
 
-        public init(android: [String]? = nil, desktop: [String]? = nil, ios: [String]? = nil, thumbnail: [String]? = nil) {
+        public init(android: [String]? = nil, desktop: [String]? = nil, ios: [String]? = nil, mobile: String? = nil, thumbnail: [String]? = nil) {
             self.desktop = desktop
+
+            self.mobile = mobile
 
             self.android = android
 
@@ -40,6 +46,14 @@ public extension ApplicationClient.Theme {
 
             do {
                 desktop = try container.decode([String].self, forKey: .desktop)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mobile = try container.decode(String.self, forKey: .mobile)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,6 +89,8 @@ public extension ApplicationClient.Theme {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(desktop, forKey: .desktop)
+
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
 
             try? container.encodeIfPresent(android, forKey: .android)
 

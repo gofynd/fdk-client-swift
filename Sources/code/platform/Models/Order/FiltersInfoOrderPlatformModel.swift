@@ -11,11 +11,11 @@ public extension PlatformClient.Order {
     class FiltersInfo: Codable {
         public var placeholderText: String?
 
-        public var text: String
-
         public var options: [FilterInfoOption]?
 
         public var type: String
+
+        public var text: String
 
         public var value: String
 
@@ -24,11 +24,11 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case placeholderText = "placeholder_text"
 
-            case text
-
             case options
 
             case type
+
+            case text
 
             case value
 
@@ -38,11 +38,11 @@ public extension PlatformClient.Order {
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
             self.placeholderText = placeholderText
 
-            self.text = text
-
             self.options = options
 
             self.type = type
+
+            self.text = text
 
             self.value = value
 
@@ -60,8 +60,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            text = try container.decode(String.self, forKey: .text)
-
             do {
                 options = try container.decode([FilterInfoOption].self, forKey: .options)
 
@@ -71,6 +69,8 @@ public extension PlatformClient.Order {
             } catch {}
 
             type = try container.decode(String.self, forKey: .type)
+
+            text = try container.decode(String.self, forKey: .text)
 
             value = try container.decode(String.self, forKey: .value)
 
@@ -88,11 +88,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
-            try? container.encodeIfPresent(text, forKey: .text)
-
             try? container.encode(options, forKey: .options)
 
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
@@ -110,11 +110,11 @@ public extension PlatformClient.ApplicationClient.Order {
     class FiltersInfo: Codable {
         public var placeholderText: String?
 
-        public var text: String
-
         public var options: [FilterInfoOption]?
 
         public var type: String
+
+        public var text: String
 
         public var value: String
 
@@ -123,11 +123,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case placeholderText = "placeholder_text"
 
-            case text
-
             case options
 
             case type
+
+            case text
 
             case value
 
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(options: [FilterInfoOption]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String, type: String, value: String) {
             self.placeholderText = placeholderText
 
-            self.text = text
-
             self.options = options
 
             self.type = type
+
+            self.text = text
 
             self.value = value
 
@@ -159,8 +159,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            text = try container.decode(String.self, forKey: .text)
-
             do {
                 options = try container.decode([FilterInfoOption].self, forKey: .options)
 
@@ -170,6 +168,8 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             type = try container.decode(String.self, forKey: .type)
+
+            text = try container.decode(String.self, forKey: .text)
 
             value = try container.decode(String.self, forKey: .value)
 
@@ -187,11 +187,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
-            try? container.encodeIfPresent(text, forKey: .text)
-
             try? container.encode(options, forKey: .options)
 
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(value, forKey: .value)
 

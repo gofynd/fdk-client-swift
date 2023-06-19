@@ -1087,6 +1087,10 @@ public extension ApplicationClient {
             paymentIdentifier: String?,
             aggregatorName: String?,
             merchantCode: String?,
+            iin: String?,
+            network: String?,
+            type: String?,
+            cardId: String?,
 
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -1118,6 +1122,22 @@ public extension ApplicationClient {
 
             if let value = merchantCode {
                 xQuery["merchant_code"] = value
+            }
+
+            if let value = iin {
+                xQuery["iin"] = value
+            }
+
+            if let value = network {
+                xQuery["network"] = value
+            }
+
+            if let value = type {
+                xQuery["type"] = value
+            }
+
+            if let value = cardId {
+                xQuery["card_id"] = value
             }
 
             let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""

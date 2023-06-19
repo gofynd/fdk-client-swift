@@ -124,8 +124,8 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Get a single brand.
-         * Description: This API helps to get data associated to a particular brand.
+         * Summary: Get a single company brand.
+         * Description: This API helps to get data associated to a particular company brand.
          **/
         public func getBrand(
             brandId: String,
