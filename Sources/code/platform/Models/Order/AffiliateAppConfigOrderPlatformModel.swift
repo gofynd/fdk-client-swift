@@ -13,17 +13,17 @@ public extension PlatformClient.Order {
 
         public var secret: String
 
-        public var id: String
+        public var owner: String
 
         public var createdAt: String
 
-        public var owner: String
-
         public var description: String?
 
-        public var token: String
+        public var id: String
 
         public var updatedAt: String
+
+        public var token: String
 
         public var meta: [AffiliateAppConfigMeta]?
 
@@ -32,17 +32,17 @@ public extension PlatformClient.Order {
 
             case secret
 
-            case id
+            case owner
 
             case createdAt = "created_at"
 
-            case owner
-
             case description
 
-            case token
+            case id
 
             case updatedAt = "updated_at"
+
+            case token
 
             case meta
         }
@@ -52,17 +52,17 @@ public extension PlatformClient.Order {
 
             self.secret = secret
 
-            self.id = id
+            self.owner = owner
 
             self.createdAt = createdAt
 
-            self.owner = owner
-
             self.description = description
 
-            self.token = token
+            self.id = id
 
             self.updatedAt = updatedAt
+
+            self.token = token
 
             self.meta = meta
         }
@@ -74,11 +74,9 @@ public extension PlatformClient.Order {
 
             secret = try container.decode(String.self, forKey: .secret)
 
-            id = try container.decode(String.self, forKey: .id)
+            owner = try container.decode(String.self, forKey: .owner)
 
             createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            owner = try container.decode(String.self, forKey: .owner)
 
             do {
                 description = try container.decode(String.self, forKey: .description)
@@ -88,9 +86,11 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            token = try container.decode(String.self, forKey: .token)
+            id = try container.decode(String.self, forKey: .id)
 
             updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
+            token = try container.decode(String.self, forKey: .token)
 
             do {
                 meta = try container.decode([AffiliateAppConfigMeta].self, forKey: .meta)
@@ -108,17 +108,17 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(owner, forKey: .owner)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
-            try? container.encodeIfPresent(owner, forKey: .owner)
-
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(token, forKey: .token)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(token, forKey: .token)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
         }
@@ -136,17 +136,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var secret: String
 
-        public var id: String
+        public var owner: String
 
         public var createdAt: String
 
-        public var owner: String
-
         public var description: String?
 
-        public var token: String
+        public var id: String
 
         public var updatedAt: String
+
+        public var token: String
 
         public var meta: [AffiliateAppConfigMeta]?
 
@@ -155,17 +155,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case secret
 
-            case id
+            case owner
 
             case createdAt = "created_at"
 
-            case owner
-
             case description
 
-            case token
+            case id
 
             case updatedAt = "updated_at"
+
+            case token
 
             case meta
         }
@@ -175,17 +175,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.secret = secret
 
-            self.id = id
+            self.owner = owner
 
             self.createdAt = createdAt
 
-            self.owner = owner
-
             self.description = description
 
-            self.token = token
+            self.id = id
 
             self.updatedAt = updatedAt
+
+            self.token = token
 
             self.meta = meta
         }
@@ -197,11 +197,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             secret = try container.decode(String.self, forKey: .secret)
 
-            id = try container.decode(String.self, forKey: .id)
+            owner = try container.decode(String.self, forKey: .owner)
 
             createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            owner = try container.decode(String.self, forKey: .owner)
 
             do {
                 description = try container.decode(String.self, forKey: .description)
@@ -211,9 +209,11 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            token = try container.decode(String.self, forKey: .token)
+            id = try container.decode(String.self, forKey: .id)
 
             updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
+            token = try container.decode(String.self, forKey: .token)
 
             do {
                 meta = try container.decode([AffiliateAppConfigMeta].self, forKey: .meta)
@@ -231,17 +231,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(owner, forKey: .owner)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
-            try? container.encodeIfPresent(owner, forKey: .owner)
-
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(token, forKey: .token)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(token, forKey: .token)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
         }

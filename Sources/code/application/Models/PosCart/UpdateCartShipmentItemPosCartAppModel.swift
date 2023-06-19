@@ -7,32 +7,30 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class UpdateCartShipmentItem: Codable {
-        public var articleUid: String
-
         public var quantity: Int?
 
         public var shipmentType: String
 
-        public enum CodingKeys: String, CodingKey {
-            case articleUid = "article_uid"
+        public var articleUid: String
 
+        public enum CodingKeys: String, CodingKey {
             case quantity
 
             case shipmentType = "shipment_type"
+
+            case articleUid = "article_uid"
         }
 
         public init(articleUid: String, quantity: Int? = nil, shipmentType: String) {
-            self.articleUid = articleUid
-
             self.quantity = quantity
 
             self.shipmentType = shipmentType
+
+            self.articleUid = articleUid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            articleUid = try container.decode(String.self, forKey: .articleUid)
 
             do {
                 quantity = try container.decode(Int.self, forKey: .quantity)
@@ -43,16 +41,18 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             shipmentType = try container.decode(String.self, forKey: .shipmentType)
+
+            articleUid = try container.decode(String.self, forKey: .articleUid)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(articleUid, forKey: .articleUid)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(shipmentType, forKey: .shipmentType)
+
+            try? container.encodeIfPresent(articleUid, forKey: .articleUid)
         }
     }
 }

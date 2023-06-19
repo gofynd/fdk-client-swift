@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var forceTransition: Bool?
 
-        public var task: Bool?
-
         public var statuses: [StatuesRequest]?
+
+        public var task: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case unlockBeforeTransition = "unlock_before_transition"
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case forceTransition = "force_transition"
 
-            case task
-
             case statuses
+
+            case task
         }
 
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.forceTransition = forceTransition
 
-            self.task = task
-
             self.statuses = statuses
+
+            self.task = task
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
 
-            try? container.encodeIfPresent(task, forKey: .task)
-
             try? container.encodeIfPresent(statuses, forKey: .statuses)
+
+            try? container.encodeIfPresent(task, forKey: .task)
         }
     }
 }
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var forceTransition: Bool?
 
-        public var task: Bool?
-
         public var statuses: [StatuesRequest]?
+
+        public var task: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case unlockBeforeTransition = "unlock_before_transition"
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case forceTransition = "force_transition"
 
-            case task
-
             case statuses
+
+            case task
         }
 
         public init(forceTransition: Bool? = nil, lockAfterTransition: Bool? = nil, statuses: [StatuesRequest]? = nil, task: Bool? = nil, unlockBeforeTransition: Bool? = nil) {
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.forceTransition = forceTransition
 
-            self.task = task
-
             self.statuses = statuses
+
+            self.task = task
         }
 
         required public init(from decoder: Decoder) throws {
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                task = try container.decode(Bool.self, forKey: .task)
+                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                statuses = try container.decode([StatuesRequest].self, forKey: .statuses)
+                task = try container.decode(Bool.self, forKey: .task)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,9 +197,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(forceTransition, forKey: .forceTransition)
 
-            try? container.encodeIfPresent(task, forKey: .task)
-
             try? container.encodeIfPresent(statuses, forKey: .statuses)
+
+            try? container.encodeIfPresent(task, forKey: .task)
         }
     }
 }
