@@ -14,7 +14,7 @@ public enum PlatformAPIClient {
             if let token = token {
                 var finalHeaders = headers
                 finalHeaders.append((key: "Authorization", value: "Bearer " + token.accessToken))
-                finalHeaders.append((key: "x-fp-sdk-version", value: "1.0.3"))
+                finalHeaders.append((key: "x-fp-sdk-version", value: "1.1.2"))
                 finalHeaders.append(contentsOf: config.extraHeaders)
                 if let userAgent = config.userAgent {
                     finalHeaders.append((key: "User-Agent", value: userAgent))
