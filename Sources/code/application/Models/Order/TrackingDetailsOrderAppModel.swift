@@ -9,42 +9,42 @@ public extension ApplicationClient.Order {
     class TrackingDetails: Codable {
         public var isPassed: Bool?
 
-        public var isCurrent: Bool?
-
-        public var trackingDetails: [NestedTrackingDetails]?
-
-        public var status: String?
+        public var value: String?
 
         public var time: String?
 
-        public var value: String?
+        public var status: String?
+
+        public var trackingDetails: [NestedTrackingDetails]?
+
+        public var isCurrent: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case isPassed = "is_passed"
 
-            case isCurrent = "is_current"
-
-            case trackingDetails = "tracking_details"
-
-            case status
+            case value
 
             case time
 
-            case value
+            case status
+
+            case trackingDetails = "tracking_details"
+
+            case isCurrent = "is_current"
         }
 
         public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil, trackingDetails: [NestedTrackingDetails]? = nil, value: String? = nil) {
             self.isPassed = isPassed
 
-            self.isCurrent = isCurrent
-
-            self.trackingDetails = trackingDetails
-
-            self.status = status
+            self.value = value
 
             self.time = time
 
-            self.value = value
+            self.status = status
+
+            self.trackingDetails = trackingDetails
+
+            self.isCurrent = isCurrent
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,23 +59,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                trackingDetails = try container.decode([NestedTrackingDetails].self, forKey: .trackingDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                status = try container.decode(String.self, forKey: .status)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +75,23 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                trackingDetails = try container.decode([NestedTrackingDetails].self, forKey: .trackingDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isCurrent = try container.decode(Bool.self, forKey: .isCurrent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,15 +104,15 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(isPassed, forKey: .isPassed)
 
-            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
-
-            try? container.encodeIfPresent(trackingDetails, forKey: .trackingDetails)
-
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(value, forKey: .value)
 
             try? container.encodeIfPresent(time, forKey: .time)
 
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(trackingDetails, forKey: .trackingDetails)
+
+            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
         }
     }
 }

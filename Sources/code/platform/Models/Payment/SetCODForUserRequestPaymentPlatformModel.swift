@@ -11,24 +11,24 @@ public extension PlatformClient.Payment {
     class SetCODForUserRequest: Codable {
         public var mobileno: String
 
-        public var merchantUserId: String
-
         public var isActive: Bool
+
+        public var merchantUserId: String
 
         public enum CodingKeys: String, CodingKey {
             case mobileno
 
-            case merchantUserId = "merchant_user_id"
-
             case isActive = "is_active"
+
+            case merchantUserId = "merchant_user_id"
         }
 
         public init(isActive: Bool, merchantUserId: String, mobileno: String) {
             self.mobileno = mobileno
 
-            self.merchantUserId = merchantUserId
-
             self.isActive = isActive
+
+            self.merchantUserId = merchantUserId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             mobileno = try container.decode(String.self, forKey: .mobileno)
 
-            merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(mobileno, forKey: .mobileno)
 
-            try? container.encodeIfPresent(merchantUserId, forKey: .merchantUserId)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(merchantUserId, forKey: .merchantUserId)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Payment {
     class SetCODForUserRequest: Codable {
         public var mobileno: String
 
-        public var merchantUserId: String
-
         public var isActive: Bool
+
+        public var merchantUserId: String
 
         public enum CodingKeys: String, CodingKey {
             case mobileno
 
-            case merchantUserId = "merchant_user_id"
-
             case isActive = "is_active"
+
+            case merchantUserId = "merchant_user_id"
         }
 
         public init(isActive: Bool, merchantUserId: String, mobileno: String) {
             self.mobileno = mobileno
 
-            self.merchantUserId = merchantUserId
-
             self.isActive = isActive
+
+            self.merchantUserId = merchantUserId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             mobileno = try container.decode(String.self, forKey: .mobileno)
 
-            merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            merchantUserId = try container.decode(String.self, forKey: .merchantUserId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(mobileno, forKey: .mobileno)
 
-            try? container.encodeIfPresent(merchantUserId, forKey: .merchantUserId)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(merchantUserId, forKey: .merchantUserId)
         }
     }
 }

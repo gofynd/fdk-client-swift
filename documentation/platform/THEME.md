@@ -38,6 +38,7 @@ Responsible for themes
 * [getApplicationThemeByIdV2](#getapplicationthemebyidv2)
 * [updateThemeV2](#updatethemev2)
 * [applyThemeV2](#applythemev2)
+* [updateThemeNameV2](#updatethemenamev2)
 
 
 
@@ -35310,6 +35311,61 @@ Successfully applied the theme
 ---
 
 
+#### updateThemeNameV2
+Update Theme Name
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").theme.updateThemeNameV2(themeId: themeId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| themeId | String | yes | The ID of the theme to be updated. |  
+| body | UpdateThemeNameRequestBodyV2 | yes | Request body |
+
+
+Update the name of a theme for a specific company and application.
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+Theme name updated successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -36268,6 +36324,17 @@ Successfully applied the theme
  | updatedAt | String? |  yes  | The last update timestamp of the theme |
  | assets | [AssetsV2](#AssetsV2)? |  yes  |  |
  | availableSections | [[SectionItem](#SectionItem)]? |  yes  | Available sections information |
+
+---
+
+
+ 
+ 
+ #### [UpdateThemeNameRequestBodyV2](#UpdateThemeNameRequestBodyV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  | The new name of the theme. |
 
 ---
 

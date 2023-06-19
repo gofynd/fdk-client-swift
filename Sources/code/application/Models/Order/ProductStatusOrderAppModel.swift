@@ -9,30 +9,30 @@ public extension ApplicationClient.Order {
     class ProductStatus: Codable {
         public var hexCode: String?
 
-        public var title: String?
-
         public var createdAt: String?
 
         public var value: String?
 
+        public var title: String?
+
         public enum CodingKeys: String, CodingKey {
             case hexCode = "hex_code"
-
-            case title
 
             case createdAt = "created_at"
 
             case value
+
+            case title
         }
 
         public init(createdAt: String? = nil, hexCode: String? = nil, title: String? = nil, value: String? = nil) {
             self.hexCode = hexCode
 
-            self.title = title
-
             self.createdAt = createdAt
 
             self.value = value
+
+            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,14 +40,6 @@ public extension ApplicationClient.Order {
 
             do {
                 hexCode = try container.decode(String.self, forKey: .hexCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,6 +61,14 @@ public extension ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(hexCode, forKey: .hexCode)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

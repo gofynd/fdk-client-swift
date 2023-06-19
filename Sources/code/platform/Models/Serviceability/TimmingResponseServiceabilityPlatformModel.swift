@@ -13,18 +13,18 @@ public extension PlatformClient.Serviceability {
 
         public var opening: OpeningClosing?
 
-        public var closing: OpeningClosing?
-
         public var open: Bool?
+
+        public var closing: OpeningClosing?
 
         public enum CodingKeys: String, CodingKey {
             case weekday
 
             case opening
 
-            case closing
-
             case open
+
+            case closing
         }
 
         public init(closing: OpeningClosing? = nil, open: Bool? = nil, opening: OpeningClosing? = nil, weekday: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Serviceability {
 
             self.opening = opening
 
-            self.closing = closing
-
             self.open = open
+
+            self.closing = closing
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                closing = try container.decode(OpeningClosing.self, forKey: .closing)
+                open = try container.decode(Bool.self, forKey: .open)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                open = try container.decode(Bool.self, forKey: .open)
+                closing = try container.decode(OpeningClosing.self, forKey: .closing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(opening, forKey: .opening)
 
-            try? container.encodeIfPresent(closing, forKey: .closing)
-
             try? container.encodeIfPresent(open, forKey: .open)
+
+            try? container.encodeIfPresent(closing, forKey: .closing)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public var opening: OpeningClosing?
 
-        public var closing: OpeningClosing?
-
         public var open: Bool?
+
+        public var closing: OpeningClosing?
 
         public enum CodingKeys: String, CodingKey {
             case weekday
 
             case opening
 
-            case closing
-
             case open
+
+            case closing
         }
 
         public init(closing: OpeningClosing? = nil, open: Bool? = nil, opening: OpeningClosing? = nil, weekday: String? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             self.opening = opening
 
-            self.closing = closing
-
             self.open = open
+
+            self.closing = closing
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                closing = try container.decode(OpeningClosing.self, forKey: .closing)
+                open = try container.decode(Bool.self, forKey: .open)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                open = try container.decode(Bool.self, forKey: .open)
+                closing = try container.decode(OpeningClosing.self, forKey: .closing)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(opening, forKey: .opening)
 
-            try? container.encodeIfPresent(closing, forKey: .closing)
-
             try? container.encodeIfPresent(open, forKey: .open)
+
+            try? container.encodeIfPresent(closing, forKey: .closing)
         }
     }
 }

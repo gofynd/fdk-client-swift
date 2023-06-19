@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var value: String
 
-        public var dsType: String
-
         public var verified: Bool
+
+        public var dsType: String
 
         public enum CodingKeys: String, CodingKey {
             case legalName = "legal_name"
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case value
 
-            case dsType = "ds_type"
-
             case verified
+
+            case dsType = "ds_type"
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.value = value
 
-            self.dsType = dsType
-
             self.verified = verified
+
+            self.dsType = dsType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.Order {
 
             value = try container.decode(String.self, forKey: .value)
 
-            dsType = try container.decode(String.self, forKey: .dsType)
-
             verified = try container.decode(Bool.self, forKey: .verified)
+
+            dsType = try container.decode(String.self, forKey: .dsType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,9 +72,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
-
             try? container.encodeIfPresent(verified, forKey: .verified)
+
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
         }
     }
 }
@@ -92,9 +92,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var value: String
 
-        public var dsType: String
-
         public var verified: Bool
+
+        public var dsType: String
 
         public enum CodingKeys: String, CodingKey {
             case legalName = "legal_name"
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case value
 
-            case dsType = "ds_type"
-
             case verified
+
+            case dsType = "ds_type"
         }
 
         public init(dsType: String, legalName: String, url: String? = nil, value: String, verified: Bool) {
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.value = value
 
-            self.dsType = dsType
-
             self.verified = verified
+
+            self.dsType = dsType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             value = try container.decode(String.self, forKey: .value)
 
-            dsType = try container.decode(String.self, forKey: .dsType)
-
             verified = try container.decode(Bool.self, forKey: .verified)
+
+            dsType = try container.decode(String.self, forKey: .dsType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -149,9 +149,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
-
             try? container.encodeIfPresent(verified, forKey: .verified)
+
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
         }
     }
 }

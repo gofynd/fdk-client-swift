@@ -324,7 +324,7 @@ platformClient.discount.validateDiscountFile(discount: discount, body: body) { (
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | discount | String? | no | discount |  
-| body | DiscountJob | yes | Request body |
+| body | FileJobRequest | yes | Request body |
 
 
 Validate File.
@@ -715,6 +715,18 @@ Success
 
  
  
+ #### [DiscountMeta](#DiscountMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timer | Bool |  no  |  |
+ | numberOfMinutes | Double |  no  |  |
+
+---
+
+
+ 
+ 
  #### [DiscountItems](#DiscountItems)
 
  | Properties | Type | Nullable | Description |
@@ -724,6 +736,7 @@ Success
  | sellerIdentifier | String? |  yes  |  |
  | discountType | String |  no  |  |
  | value | Double |  no  |  |
+ | discountMeta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
 
 ---
 
@@ -753,6 +766,27 @@ Success
  | body | [String: Any]? |  yes  |  |
  | type | String |  no  |  |
  | fileType | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [FileJobRequest](#FileJobRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | isActive | Bool |  no  |  |
+ | appIds | [String]? |  yes  |  |
+ | jobType | String? |  yes  |  |
+ | discountType | String? |  yes  |  |
+ | discountLevel | String? |  yes  |  |
+ | filePath | String? |  yes  |  |
+ | brandIds | [Int]? |  yes  |  |
+ | storeIds | [Int]? |  yes  |  |
+ | validity | [ValidityObject](#ValidityObject) |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
 
 ---
 

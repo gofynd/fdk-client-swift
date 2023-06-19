@@ -9,9 +9,9 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class SharedCartDetails: Codable {
-        public var createdOn: String?
-
         public var user: [String: Any]?
+
+        public var createdOn: String?
 
         public var token: String?
 
@@ -20,9 +20,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public var source: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case createdOn = "created_on"
-
             case user
+
+            case createdOn = "created_on"
 
             case token
 
@@ -32,9 +32,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(createdOn: String? = nil, meta: [String: Any]? = nil, source: [String: Any]? = nil, token: String? = nil, user: [String: Any]? = nil) {
-            self.createdOn = createdOn
-
             self.user = user
+
+            self.createdOn = createdOn
 
             self.token = token
 
@@ -47,7 +47,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                user = try container.decode([String: Any].self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                user = try container.decode([String: Any].self, forKey: .user)
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
-
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(token, forKey: .token)
 
