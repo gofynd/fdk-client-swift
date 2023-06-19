@@ -9,56 +9,48 @@ public extension PlatformClient.Order {
      */
 
     class PaymentMethod: Codable {
-        public var mode: String?
-
         public var meta: Meta?
-
-        public var refundBy: String?
-
-        public var collectBy: String?
-
-        public var amount: Double?
 
         public var name: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case mode
+        public var amount: Double?
 
+        public var mode: String?
+
+        public var collectBy: String?
+
+        public var refundBy: String?
+
+        public enum CodingKeys: String, CodingKey {
             case meta
 
-            case refundBy = "refund_by"
-
-            case collectBy = "collect_by"
+            case name
 
             case amount
 
-            case name
+            case mode
+
+            case collectBy = "collect_by"
+
+            case refundBy = "refund_by"
         }
 
         public init(amount: Double? = nil, collectBy: String? = nil, meta: Meta? = nil, mode: String? = nil, name: String? = nil, refundBy: String? = nil) {
-            self.mode = mode
-
             self.meta = meta
 
-            self.refundBy = refundBy
-
-            self.collectBy = collectBy
+            self.name = name
 
             self.amount = amount
 
-            self.name = name
+            self.mode = mode
+
+            self.collectBy = collectBy
+
+            self.refundBy = refundBy
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                mode = try container.decode(String.self, forKey: .mode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 meta = try container.decode(Meta.self, forKey: .meta)
@@ -69,15 +61,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                refundBy = try container.decode(String.self, forKey: .refundBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                collectBy = try container.decode(String.self, forKey: .collectBy)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +77,23 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                mode = try container.decode(String.self, forKey: .mode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                collectBy = try container.decode(String.self, forKey: .collectBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                refundBy = try container.decode(String.self, forKey: .refundBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,17 +104,17 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
-
-            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
+
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
         }
     }
 }
@@ -126,56 +126,48 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PaymentMethod: Codable {
-        public var mode: String?
-
         public var meta: Meta?
-
-        public var refundBy: String?
-
-        public var collectBy: String?
-
-        public var amount: Double?
 
         public var name: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case mode
+        public var amount: Double?
 
+        public var mode: String?
+
+        public var collectBy: String?
+
+        public var refundBy: String?
+
+        public enum CodingKeys: String, CodingKey {
             case meta
 
-            case refundBy = "refund_by"
-
-            case collectBy = "collect_by"
+            case name
 
             case amount
 
-            case name
+            case mode
+
+            case collectBy = "collect_by"
+
+            case refundBy = "refund_by"
         }
 
         public init(amount: Double? = nil, collectBy: String? = nil, meta: Meta? = nil, mode: String? = nil, name: String? = nil, refundBy: String? = nil) {
-            self.mode = mode
-
             self.meta = meta
 
-            self.refundBy = refundBy
-
-            self.collectBy = collectBy
+            self.name = name
 
             self.amount = amount
 
-            self.name = name
+            self.mode = mode
+
+            self.collectBy = collectBy
+
+            self.refundBy = refundBy
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                mode = try container.decode(String.self, forKey: .mode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 meta = try container.decode(Meta.self, forKey: .meta)
@@ -186,15 +178,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                refundBy = try container.decode(String.self, forKey: .refundBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                collectBy = try container.decode(String.self, forKey: .collectBy)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +194,23 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                mode = try container.decode(String.self, forKey: .mode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                collectBy = try container.decode(String.self, forKey: .collectBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                refundBy = try container.decode(String.self, forKey: .refundBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,17 +221,17 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
-
-            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(mode, forKey: .mode)
+
+            try? container.encodeIfPresent(collectBy, forKey: .collectBy)
+
+            try? container.encodeIfPresent(refundBy, forKey: .refundBy)
         }
     }
 }

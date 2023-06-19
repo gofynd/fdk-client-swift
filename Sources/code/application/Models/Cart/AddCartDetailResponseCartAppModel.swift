@@ -7,30 +7,30 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class AddCartDetailResponse: Codable {
-        public var cart: CartDetailResponse?
+        public var partial: Bool?
 
         public var message: String?
 
-        public var partial: Bool?
+        public var cart: CartDetailResponse?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case cart
+            case partial
 
             case message
 
-            case partial
+            case cart
 
             case success
         }
 
         public init(cart: CartDetailResponse? = nil, message: String? = nil, partial: Bool? = nil, success: Bool? = nil) {
-            self.cart = cart
+            self.partial = partial
 
             self.message = message
 
-            self.partial = partial
+            self.cart = cart
 
             self.success = success
         }
@@ -39,7 +39,7 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cart = try container.decode(CartDetailResponse.self, forKey: .cart)
+                partial = try container.decode(Bool.self, forKey: .partial)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                partial = try container.decode(Bool.self, forKey: .partial)
+                cart = try container.decode(CartDetailResponse.self, forKey: .cart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,11 +74,11 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(cart, forKey: .cart)
+            try? container.encodeIfPresent(partial, forKey: .partial)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(partial, forKey: .partial)
+            try? container.encodeIfPresent(cart, forKey: .cart)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

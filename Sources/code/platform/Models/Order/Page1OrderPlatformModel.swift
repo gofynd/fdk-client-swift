@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var pageType: String
 
-        public var itemTotal: Int
-
         public var current: Int
+
+        public var itemTotal: Int
 
         public enum CodingKeys: String, CodingKey {
             case size
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case pageType = "page_type"
 
-            case itemTotal = "item_total"
-
             case current
+
+            case itemTotal = "item_total"
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.pageType = pageType
 
-            self.itemTotal = itemTotal
-
             self.current = current
+
+            self.itemTotal = itemTotal
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Order {
 
             pageType = try container.decode(String.self, forKey: .pageType)
 
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
             current = try container.decode(Int.self, forKey: .current)
+
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +66,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(pageType, forKey: .pageType)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
             try? container.encodeIfPresent(current, forKey: .current)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
         }
     }
 }
@@ -86,9 +86,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var pageType: String
 
-        public var itemTotal: Int
-
         public var current: Int
+
+        public var itemTotal: Int
 
         public enum CodingKeys: String, CodingKey {
             case size
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case pageType = "page_type"
 
-            case itemTotal = "item_total"
-
             case current
+
+            case itemTotal = "item_total"
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.pageType = pageType
 
-            self.itemTotal = itemTotal
-
             self.current = current
+
+            self.itemTotal = itemTotal
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             pageType = try container.decode(String.self, forKey: .pageType)
 
-            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
-
             current = try container.decode(Int.self, forKey: .current)
+
+            itemTotal = try container.decode(Int.self, forKey: .itemTotal)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(pageType, forKey: .pageType)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
-
             try? container.encodeIfPresent(current, forKey: .current)
+
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
         }
     }
 }

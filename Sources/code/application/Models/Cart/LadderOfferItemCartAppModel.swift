@@ -11,9 +11,9 @@ public extension ApplicationClient.Cart {
 
         public var minQuantity: Int?
 
-        public var price: LadderPrice?
-
         public var maxQuantity: Int?
+
+        public var price: LadderPrice?
 
         public var margin: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
 
             case minQuantity = "min_quantity"
 
-            case price
-
             case maxQuantity = "max_quantity"
+
+            case price
 
             case margin
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Cart {
 
             self.minQuantity = minQuantity
 
-            self.price = price
-
             self.maxQuantity = maxQuantity
+
+            self.price = price
 
             self.margin = margin
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                price = try container.decode(LadderPrice.self, forKey: .price)
+                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+                price = try container.decode(LadderPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
-            try? container.encodeIfPresent(price, forKey: .price)
-
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+
+            try? container.encodeIfPresent(price, forKey: .price)
 
             try? container.encodeIfPresent(margin, forKey: .margin)
         }
