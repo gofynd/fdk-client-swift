@@ -9,24 +9,24 @@ public extension PlatformClient.Finance {
      */
 
     class GetInvoiceListResponse: Codable {
-        public var invoiceTypeList: [[String: Any]]?
-
         public var success: Bool?
+
+        public var invoiceTypeList: [[String: Any]]?
 
         public var paymentStatusList: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case invoiceTypeList = "invoice_type_list"
-
             case success
+
+            case invoiceTypeList = "invoice_type_list"
 
             case paymentStatusList = "payment_status_list"
         }
 
         public init(invoiceTypeList: [[String: Any]]? = nil, paymentStatusList: [[String: Any]]? = nil, success: Bool? = nil) {
-            self.invoiceTypeList = invoiceTypeList
-
             self.success = success
+
+            self.invoiceTypeList = invoiceTypeList
 
             self.paymentStatusList = paymentStatusList
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                invoiceTypeList = try container.decode([[String: Any]].self, forKey: .invoiceTypeList)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                invoiceTypeList = try container.decode([[String: Any]].self, forKey: .invoiceTypeList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(invoiceTypeList, forKey: .invoiceTypeList)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(invoiceTypeList, forKey: .invoiceTypeList)
 
             try? container.encodeIfPresent(paymentStatusList, forKey: .paymentStatusList)
         }

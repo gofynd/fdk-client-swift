@@ -326,7 +326,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/finance/v1.0/company/\(companyId)/get-invoice-type",
+                url: "/service/platform/finance/v1.0/company/\(companyId)/invoice-type",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
