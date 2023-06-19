@@ -11,42 +11,42 @@ public extension PlatformClient.Order {
     class CreateChannelConfig: Codable {
         public var paymentInfo: CreateChannelPaymentInfo?
 
-        public var locationReassignment: Bool?
-
         public var lockStates: [String]?
 
         public var dpConfiguration: DpConfiguration?
 
+        public var shipmentAssignment: String?
+
         public var logoUrl: [String: Any]?
 
-        public var shipmentAssignment: String?
+        public var locationReassignment: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case paymentInfo = "payment_info"
-
-            case locationReassignment = "location_reassignment"
 
             case lockStates = "lock_states"
 
             case dpConfiguration = "dp_configuration"
 
+            case shipmentAssignment = "shipment_assignment"
+
             case logoUrl = "logo_url"
 
-            case shipmentAssignment = "shipment_assignment"
+            case locationReassignment = "location_reassignment"
         }
 
         public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
             self.paymentInfo = paymentInfo
 
-            self.locationReassignment = locationReassignment
-
             self.lockStates = lockStates
 
             self.dpConfiguration = dpConfiguration
 
+            self.shipmentAssignment = shipmentAssignment
+
             self.logoUrl = logoUrl
 
-            self.shipmentAssignment = shipmentAssignment
+            self.locationReassignment = locationReassignment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,14 +54,6 @@ public extension PlatformClient.Order {
 
             do {
                 paymentInfo = try container.decode(CreateChannelPaymentInfo.self, forKey: .paymentInfo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,6 +77,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 logoUrl = try container.decode([String: Any].self, forKey: .logoUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -93,7 +93,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
+                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,15 +106,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
 
-            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
-
             try? container.encodeIfPresent(lockStates, forKey: .lockStates)
 
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
 
+            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
+
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
-            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
+            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
         }
     }
 }
@@ -128,42 +128,42 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreateChannelConfig: Codable {
         public var paymentInfo: CreateChannelPaymentInfo?
 
-        public var locationReassignment: Bool?
-
         public var lockStates: [String]?
 
         public var dpConfiguration: DpConfiguration?
 
+        public var shipmentAssignment: String?
+
         public var logoUrl: [String: Any]?
 
-        public var shipmentAssignment: String?
+        public var locationReassignment: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case paymentInfo = "payment_info"
-
-            case locationReassignment = "location_reassignment"
 
             case lockStates = "lock_states"
 
             case dpConfiguration = "dp_configuration"
 
+            case shipmentAssignment = "shipment_assignment"
+
             case logoUrl = "logo_url"
 
-            case shipmentAssignment = "shipment_assignment"
+            case locationReassignment = "location_reassignment"
         }
 
         public init(dpConfiguration: DpConfiguration? = nil, locationReassignment: Bool? = nil, lockStates: [String]? = nil, logoUrl: [String: Any]? = nil, paymentInfo: CreateChannelPaymentInfo? = nil, shipmentAssignment: String? = nil) {
             self.paymentInfo = paymentInfo
 
-            self.locationReassignment = locationReassignment
-
             self.lockStates = lockStates
 
             self.dpConfiguration = dpConfiguration
 
+            self.shipmentAssignment = shipmentAssignment
+
             self.logoUrl = logoUrl
 
-            self.shipmentAssignment = shipmentAssignment
+            self.locationReassignment = locationReassignment
         }
 
         required public init(from decoder: Decoder) throws {
@@ -171,14 +171,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 paymentInfo = try container.decode(CreateChannelPaymentInfo.self, forKey: .paymentInfo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,6 +194,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 logoUrl = try container.decode([String: Any].self, forKey: .logoUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
+                locationReassignment = try container.decode(Bool.self, forKey: .locationReassignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,15 +223,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(paymentInfo, forKey: .paymentInfo)
 
-            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
-
             try? container.encodeIfPresent(lockStates, forKey: .lockStates)
 
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
 
+            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
+
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
-            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
+            try? container.encodeIfPresent(locationReassignment, forKey: .locationReassignment)
         }
     }
 }

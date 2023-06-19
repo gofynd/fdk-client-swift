@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var name: String?
 
-        public var isActive: Bool
-
         public var priority: Int
+
+        public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
             case key
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case name
 
-            case isActive = "is_active"
-
             case priority
+
+            case isActive = "is_active"
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Catalog {
 
             self.name = name
 
-            self.isActive = isActive
-
             self.priority = priority
+
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             priority = try container.decode(Int.self, forKey: .priority)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }
@@ -98,9 +98,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var name: String?
 
-        public var isActive: Bool
-
         public var priority: Int
+
+        public var isActive: Bool
 
         public enum CodingKeys: String, CodingKey {
             case key
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case name
 
-            case isActive = "is_active"
-
             case priority
+
+            case isActive = "is_active"
         }
 
         public init(isActive: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.name = name
 
-            self.isActive = isActive
-
             self.priority = priority
+
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             priority = try container.decode(Int.self, forKey: .priority)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }
