@@ -11,9 +11,9 @@ public extension ApplicationClient.Order {
 
         public var id: Int?
 
-        public var code: String?
-
         public var companyName: String?
+
+        public var code: String?
 
         public var companyId: Int?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Order {
 
             case id
 
-            case code
-
             case companyName = "company_name"
+
+            case code
 
             case companyId = "company_id"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Order {
 
             self.id = id
 
-            self.code = code
-
             self.companyName = companyName
+
+            self.code = code
 
             self.companyId = companyId
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                companyName = try container.decode(String.self, forKey: .companyName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                companyName = try container.decode(String.self, forKey: .companyName)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(code, forKey: .code)
-
             try? container.encodeIfPresent(companyName, forKey: .companyName)
+
+            try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
         }

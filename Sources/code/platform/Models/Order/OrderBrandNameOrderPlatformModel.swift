@@ -13,11 +13,11 @@ public extension PlatformClient.Order {
 
         public var id: Int
 
-        public var modifiedOn: String?
-
         public var createdOn: String
 
         public var company: String
+
+        public var modifiedOn: String?
 
         public var logo: String
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Order {
 
             case id
 
-            case modifiedOn = "modified_on"
-
             case createdOn = "created_on"
 
             case company
+
+            case modifiedOn = "modified_on"
 
             case logo
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Order {
 
             self.id = id
 
-            self.modifiedOn = modifiedOn
-
             self.createdOn = createdOn
 
             self.company = company
+
+            self.modifiedOn = modifiedOn
 
             self.logo = logo
         }
@@ -56,6 +56,10 @@ public extension PlatformClient.Order {
 
             id = try container.decode(Int.self, forKey: .id)
 
+            createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            company = try container.decode(String.self, forKey: .company)
+
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
@@ -63,10 +67,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            company = try container.decode(String.self, forKey: .company)
 
             logo = try container.decode(String.self, forKey: .logo)
         }
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encode(company, forKey: .company)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
@@ -100,11 +100,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var id: Int
 
-        public var modifiedOn: String?
-
         public var createdOn: String
 
         public var company: String
+
+        public var modifiedOn: String?
 
         public var logo: String
 
@@ -113,11 +113,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case id
 
-            case modifiedOn = "modified_on"
-
             case createdOn = "created_on"
 
             case company
+
+            case modifiedOn = "modified_on"
 
             case logo
         }
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.id = id
 
-            self.modifiedOn = modifiedOn
-
             self.createdOn = createdOn
 
             self.company = company
+
+            self.modifiedOn = modifiedOn
 
             self.logo = logo
         }
@@ -143,6 +143,10 @@ public extension PlatformClient.ApplicationClient.Order {
 
             id = try container.decode(Int.self, forKey: .id)
 
+            createdOn = try container.decode(String.self, forKey: .createdOn)
+
+            company = try container.decode(String.self, forKey: .company)
+
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
@@ -150,10 +154,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            createdOn = try container.decode(String.self, forKey: .createdOn)
-
-            company = try container.decode(String.self, forKey: .company)
 
             logo = try container.decode(String.self, forKey: .logo)
         }
@@ -165,11 +165,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encode(company, forKey: .company)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

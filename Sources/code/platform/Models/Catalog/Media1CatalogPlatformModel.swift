@@ -9,24 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class Media1: Codable {
-        public var type: String?
-
         public var meta: [String: Any]?
+
+        public var type: String?
 
         public var url: String
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case meta
+
+            case type
 
             case url
         }
 
         public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
-            self.type = type
-
             self.meta = meta
+
+            self.type = type
 
             self.url = url
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,9 +56,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(url, forKey: .url)
         }
@@ -72,24 +72,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Media1: Codable {
-        public var type: String?
-
         public var meta: [String: Any]?
+
+        public var type: String?
 
         public var url: String
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case meta
+
+            case type
 
             case url
         }
 
         public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
-            self.type = type
-
             self.meta = meta
+
+            self.type = type
 
             self.url = url
         }
@@ -98,7 +98,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,7 +106,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(url, forKey: .url)
         }

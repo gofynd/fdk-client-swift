@@ -11,32 +11,30 @@ public extension PlatformClient.Catalog {
     class ProductBulkAssets: Codable {
         public var user: [String: Any]
 
-        public var url: String
-
         public var companyId: Int?
+
+        public var url: String
 
         public enum CodingKeys: String, CodingKey {
             case user
 
-            case url
-
             case companyId = "company_id"
+
+            case url
         }
 
         public init(companyId: Int? = nil, url: String, user: [String: Any]) {
             self.user = user
 
-            self.url = url
-
             self.companyId = companyId
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             user = try container.decode([String: Any].self, forKey: .user)
-
-            url = try container.decode(String.self, forKey: .url)
 
             do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
@@ -45,6 +43,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            url = try container.decode(String.self, forKey: .url)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
@@ -68,32 +68,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductBulkAssets: Codable {
         public var user: [String: Any]
 
-        public var url: String
-
         public var companyId: Int?
+
+        public var url: String
 
         public enum CodingKeys: String, CodingKey {
             case user
 
-            case url
-
             case companyId = "company_id"
+
+            case url
         }
 
         public init(companyId: Int? = nil, url: String, user: [String: Any]) {
             self.user = user
 
-            self.url = url
-
             self.companyId = companyId
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             user = try container.decode([String: Any].self, forKey: .user)
-
-            url = try container.decode(String.self, forKey: .url)
 
             do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
@@ -102,6 +100,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            url = try container.decode(String.self, forKey: .url)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }

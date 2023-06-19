@@ -9,17 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class GetAddressSerializer: Codable {
-        public var state: String?
-
-        public var city: String?
-
-        public var countryCode: String?
-
-        public var address2: String?
-
         public var addressType: String?
 
-        public var country: String?
+        public var landmark: String?
 
         public var latitude: Double?
 
@@ -27,22 +19,22 @@ public extension PlatformClient.Catalog {
 
         public var longitude: Double?
 
-        public var landmark: String?
+        public var state: String?
+
+        public var address2: String?
+
+        public var city: String?
+
+        public var country: String?
+
+        public var countryCode: String?
 
         public var address1: String?
 
         public enum CodingKeys: String, CodingKey {
-            case state
-
-            case city
-
-            case countryCode = "country_code"
-
-            case address2
-
             case addressType = "address_type"
 
-            case country
+            case landmark
 
             case latitude
 
@@ -50,23 +42,23 @@ public extension PlatformClient.Catalog {
 
             case longitude
 
-            case landmark
+            case state
+
+            case address2
+
+            case city
+
+            case country
+
+            case countryCode = "country_code"
 
             case address1
         }
 
         public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
-            self.state = state
-
-            self.city = city
-
-            self.countryCode = countryCode
-
-            self.address2 = address2
-
             self.addressType = addressType
 
-            self.country = country
+            self.landmark = landmark
 
             self.latitude = latitude
 
@@ -74,45 +66,21 @@ public extension PlatformClient.Catalog {
 
             self.longitude = longitude
 
-            self.landmark = landmark
+            self.state = state
+
+            self.address2 = address2
+
+            self.city = city
+
+            self.country = country
+
+            self.countryCode = countryCode
 
             self.address1 = address1
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                state = try container.decode(String.self, forKey: .state)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                city = try container.decode(String.self, forKey: .city)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address2 = try container.decode(String.self, forKey: .address2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 addressType = try container.decode(String.self, forKey: .addressType)
@@ -123,7 +91,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                country = try container.decode(String.self, forKey: .country)
+                landmark = try container.decode(String.self, forKey: .landmark)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -155,7 +123,39 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                landmark = try container.decode(String.self, forKey: .landmark)
+                state = try container.decode(String.self, forKey: .state)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                city = try container.decode(String.self, forKey: .city)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                countryCode = try container.decode(String.self, forKey: .countryCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -174,17 +174,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-
-            try? container.encodeIfPresent(address2, forKey: .address2)
-
             try? container.encodeIfPresent(addressType, forKey: .addressType)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
 
             try? container.encodeIfPresent(latitude, forKey: .latitude)
 
@@ -192,7 +184,15 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(longitude, forKey: .longitude)
 
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
             try? container.encodeIfPresent(address1, forKey: .address1)
         }
@@ -206,17 +206,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class GetAddressSerializer: Codable {
-        public var state: String?
-
-        public var city: String?
-
-        public var countryCode: String?
-
-        public var address2: String?
-
         public var addressType: String?
 
-        public var country: String?
+        public var landmark: String?
 
         public var latitude: Double?
 
@@ -224,22 +216,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var longitude: Double?
 
-        public var landmark: String?
+        public var state: String?
+
+        public var address2: String?
+
+        public var city: String?
+
+        public var country: String?
+
+        public var countryCode: String?
 
         public var address1: String?
 
         public enum CodingKeys: String, CodingKey {
-            case state
-
-            case city
-
-            case countryCode = "country_code"
-
-            case address2
-
             case addressType = "address_type"
 
-            case country
+            case landmark
 
             case latitude
 
@@ -247,23 +239,23 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case longitude
 
-            case landmark
+            case state
+
+            case address2
+
+            case city
+
+            case country
+
+            case countryCode = "country_code"
 
             case address1
         }
 
         public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, pincode: Int? = nil, state: String? = nil) {
-            self.state = state
-
-            self.city = city
-
-            self.countryCode = countryCode
-
-            self.address2 = address2
-
             self.addressType = addressType
 
-            self.country = country
+            self.landmark = landmark
 
             self.latitude = latitude
 
@@ -271,45 +263,21 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.longitude = longitude
 
-            self.landmark = landmark
+            self.state = state
+
+            self.address2 = address2
+
+            self.city = city
+
+            self.country = country
+
+            self.countryCode = countryCode
 
             self.address1 = address1
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                state = try container.decode(String.self, forKey: .state)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                city = try container.decode(String.self, forKey: .city)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                countryCode = try container.decode(String.self, forKey: .countryCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address2 = try container.decode(String.self, forKey: .address2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 addressType = try container.decode(String.self, forKey: .addressType)
@@ -320,7 +288,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                country = try container.decode(String.self, forKey: .country)
+                landmark = try container.decode(String.self, forKey: .landmark)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -352,7 +320,39 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                landmark = try container.decode(String.self, forKey: .landmark)
+                state = try container.decode(String.self, forKey: .state)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                city = try container.decode(String.self, forKey: .city)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                country = try container.decode(String.self, forKey: .country)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                countryCode = try container.decode(String.self, forKey: .countryCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -371,17 +371,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(city, forKey: .city)
-
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-
-            try? container.encodeIfPresent(address2, forKey: .address2)
-
             try? container.encodeIfPresent(addressType, forKey: .addressType)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
 
             try? container.encodeIfPresent(latitude, forKey: .latitude)
 
@@ -389,7 +381,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(longitude, forKey: .longitude)
 
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
             try? container.encodeIfPresent(address1, forKey: .address1)
         }
