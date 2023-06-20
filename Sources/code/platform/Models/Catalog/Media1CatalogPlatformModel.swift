@@ -9,58 +9,46 @@ public extension PlatformClient.Catalog {
      */
 
     class Media1: Codable {
-        public var meta: [String: Any]?
+        public var logo: String
 
-        public var url: String
+        public var portrait: String
 
-        public var type: String?
+        public var landscape: String
 
         public enum CodingKeys: String, CodingKey {
-            case meta
+            case logo
 
-            case url
+            case portrait
 
-            case type
+            case landscape
         }
 
-        public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
-            self.meta = meta
+        public init(landscape: String, logo: String, portrait: String) {
+            self.logo = logo
 
-            self.url = url
+            self.portrait = portrait
 
-            self.type = type
+            self.landscape = landscape
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+            logo = try container.decode(String.self, forKey: .logo)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            portrait = try container.decode(String.self, forKey: .portrait)
 
-            url = try container.decode(String.self, forKey: .url)
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            landscape = try container.decode(String.self, forKey: .landscape)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(portrait, forKey: .portrait)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(landscape, forKey: .landscape)
         }
     }
 }
@@ -72,58 +60,46 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Media1: Codable {
-        public var meta: [String: Any]?
+        public var logo: String
 
-        public var url: String
+        public var portrait: String
 
-        public var type: String?
+        public var landscape: String
 
         public enum CodingKeys: String, CodingKey {
-            case meta
+            case logo
 
-            case url
+            case portrait
 
-            case type
+            case landscape
         }
 
-        public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
-            self.meta = meta
+        public init(landscape: String, logo: String, portrait: String) {
+            self.logo = logo
 
-            self.url = url
+            self.portrait = portrait
 
-            self.type = type
+            self.landscape = landscape
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+            logo = try container.decode(String.self, forKey: .logo)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            portrait = try container.decode(String.self, forKey: .portrait)
 
-            url = try container.decode(String.self, forKey: .url)
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            landscape = try container.decode(String.self, forKey: .landscape)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(portrait, forKey: .portrait)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(landscape, forKey: .landscape)
         }
     }
 }

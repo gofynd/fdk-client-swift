@@ -9,22 +9,22 @@ public extension PlatformClient.Serviceability {
      */
 
     class DpRule: Codable {
+        public var name: String
+
         public var dpIds: [String: DpSchemaInRuleListing]
 
         public var companyId: Int?
-
-        public var name: String
 
         public var isActive: Bool?
 
         public var conditions: [[String: Any]]
 
         public enum CodingKeys: String, CodingKey {
+            case name
+
             case dpIds = "dp_ids"
 
             case companyId = "company_id"
-
-            case name
 
             case isActive = "is_active"
 
@@ -32,11 +32,11 @@ public extension PlatformClient.Serviceability {
         }
 
         public init(companyId: Int? = nil, conditions: [[String: Any]], dpIds: [String: DpSchemaInRuleListing], isActive: Bool? = nil, name: String) {
+            self.name = name
+
             self.dpIds = dpIds
 
             self.companyId = companyId
-
-            self.name = name
 
             self.isActive = isActive
 
@@ -45,6 +45,8 @@ public extension PlatformClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            name = try container.decode(String.self, forKey: .name)
 
             dpIds = try container.decode([String: DpSchemaInRuleListing].self, forKey: .dpIds)
 
@@ -55,8 +57,6 @@ public extension PlatformClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -72,11 +72,11 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 
@@ -92,22 +92,22 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class DpRule: Codable {
+        public var name: String
+
         public var dpIds: [String: DpSchemaInRuleListing]
 
         public var companyId: Int?
-
-        public var name: String
 
         public var isActive: Bool?
 
         public var conditions: [[String: Any]]
 
         public enum CodingKeys: String, CodingKey {
+            case name
+
             case dpIds = "dp_ids"
 
             case companyId = "company_id"
-
-            case name
 
             case isActive = "is_active"
 
@@ -115,11 +115,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         }
 
         public init(companyId: Int? = nil, conditions: [[String: Any]], dpIds: [String: DpSchemaInRuleListing], isActive: Bool? = nil, name: String) {
+            self.name = name
+
             self.dpIds = dpIds
 
             self.companyId = companyId
-
-            self.name = name
 
             self.isActive = isActive
 
@@ -128,6 +128,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            name = try container.decode(String.self, forKey: .name)
 
             dpIds = try container.decode([String: DpSchemaInRuleListing].self, forKey: .dpIds)
 
@@ -138,8 +140,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 isActive = try container.decode(Bool.self, forKey: .isActive)
@@ -155,11 +155,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(isActive, forKey: .isActive)
 

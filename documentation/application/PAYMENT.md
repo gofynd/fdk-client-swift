@@ -18,6 +18,10 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
 * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
 * [getRupifiBannerDetails](#getrupifibannerdetails)
+* [getEpaylaterBannerDetails](#getepaylaterbannerdetails)
+* [resendOrCancelPayment](#resendorcancelpayment)
+* [renderHTML](#renderhtml)
+* [validateVPA](#validatevpa)
 * [getActiveRefundTransferModes](#getactiverefundtransfermodes)
 * [enableOrDisableRefundTransferMode](#enableordisablerefundtransfermode)
 * [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
@@ -28,6 +32,19 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
 * [verifyOtpAndAddBeneficiaryForWallet](#verifyotpandaddbeneficiaryforwallet)
 * [updateDefaultBeneficiary](#updatedefaultbeneficiary)
+* [getPaymentLink](#getpaymentlink)
+* [createPaymentLink](#createpaymentlink)
+* [resendPaymentLink](#resendpaymentlink)
+* [cancelPaymentLink](#cancelpaymentlink)
+* [getPaymentModeRoutesPaymentLink](#getpaymentmoderoutespaymentlink)
+* [pollingPaymentLink](#pollingpaymentlink)
+* [createOrderHandlerPaymentLink](#createorderhandlerpaymentlink)
+* [initialisePaymentPaymentLink](#initialisepaymentpaymentlink)
+* [checkAndUpdatePaymentStatusPaymentLink](#checkandupdatepaymentstatuspaymentlink)
+* [customerCreditSummary](#customercreditsummary)
+* [redirectToAggregator](#redirecttoaggregator)
+* [checkCredit](#checkcredit)
+* [customerOnboard](#customeronboard)
 
 
 
@@ -332,7 +349,8 @@ Success. Returns a list of cards saved by the user. Check the example shown belo
       "card_name": "Lorem Ipsum",
       "expired": false,
       "card_fingerprint": null,
-      "card_brand_image": "https://hdn-1.fynd.com/payment/visa.png"
+      "card_brand_image": "https://hdn-1.fynd.com/payment/visa.png",
+      "compliant_with_tokenisation_guidelines": true
     }
   ]
 }
@@ -442,23 +460,54 @@ Success. Check the example shown below or refer `ValidateCustomerResponse` for m
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success is True i.e user is allowed</i></summary>
 
 ```json
 {
-  "success": true,
-  "message": "data fetched",
-  "data": {
-    "api_version": 2,
+  "value": {
+    "success": true,
+    "message": "data fetched",
     "data": {
-      "approved": true,
-      "button_text": "Buy Now, Pay Later",
-      "first_transaction": false
-    },
-    "aggregator": "Simpl"
+      "api_version": 2,
+      "data": {
+        "approved": true,
+        "button_text": "Buy Now, Pay Later",
+        "first_transaction": false
+      },
+      "aggregator": "Simpl"
+    }
   }
 }
 ```
+</details>
+
+<details>
+<summary><i>&nbsp; success is True i.e user not allowed</i></summary>
+
+```json
+{
+  "value": {
+    "success": false,
+    "message": "data fetched",
+    "error": {
+      "api_version": 2,
+      "data": {
+        "approved": false,
+        "button_text": "Buy Now, Pay Later",
+        "first_transaction": false
+      },
+      "aggregator": "Simpl"
+    },
+    "data": {}
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -584,7 +633,12 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "timeout": 240,
   "virtual_id": null,
   "razorpay_payment_id": "pay_dummy_001",
-  "customer_id": "cust_dummy_001"
+  "payment_id": "pay_dummy_001",
+  "customer_id": "cust_dummy_001",
+  "amount": 10000,
+  "contact": "9999999999",
+  "order_id": "FY000120000101",
+  "email": "abc@xyz.com"
 }
 ```
 </details>
@@ -709,6 +763,24 @@ Success. Returns all available options for payment. Check the example shown belo
   "payment_options": {
     "payment_option": [
       {
+        "name": "COD",
+        "display_name": "Cash on Delivery",
+        "display_priority": 1,
+        "payment_mode_id": 11,
+        "aggregator_name": "Fynd",
+        "logo": "https://hdn-1.fynd.com/payment/cod.png",
+        "logo_url": {
+          "small": "https://hdn-1.fynd.com/payment/cod.png",
+          "large": "https://hdn-1.fynd.com/payment/cod.png"
+        },
+        "list": [
+          {
+            "cod_limit": 1000,
+            "remaining_limit": 100
+          }
+        ]
+      },
+      {
         "name": "CARD",
         "display_priority": 2,
         "payment_mode_id": 2,
@@ -716,7 +788,8 @@ Success. Returns all available options for payment. Check the example shown belo
         "list": [],
         "anonymous_enable": true,
         "aggregator_name": "Razorpay",
-        "add_card_enabled": false
+        "add_card_enabled": false,
+        "save_card": true
       },
       {
         "name": "NB",
@@ -949,10 +1022,35 @@ Success. Returns all available options for payment. Check the example shown belo
             "retry_count": 0,
             "fynd_vpa": "shopsense.rzp@hdfcbank",
             "intent_flow": true,
+            "intent_app": [
+              {
+                "code": "google_pay",
+                "display_name": "Google Pay",
+                "package_name": "com.google.android.apps.nbu.paisa.user",
+                "logos": {
+                  "small": "https://hdn-1.fynd.com/payment/upi-google-pay.png",
+                  "large": "https://hdn-1.fynd.com/payment/upi-google-pay.png"
+                }
+              }
+            ],
             "intent_app_error_list": [
               "com.csam.icici.bank.imobile",
               "in.org.npci.upiapp",
               "com.whatsapp"
+            ],
+            "intent_app_error_dict_list": [
+              {
+                "package_name": "com.csam.icici.bank.imobile",
+                "code": "icici"
+              },
+              {
+                "package_name": "in.org.npci.upiapp",
+                "code": "upiapp"
+              },
+              {
+                "package_name": "com.whatsapp",
+                "code": "whatsapp"
+              }
             ]
           }
         ]
@@ -980,6 +1078,36 @@ Success. Returns all available options for payment. Check the example shown belo
               "small": "https://hdn-1.fynd.com/payment/simpl_logo.png",
               "large": "https://hdn-1.fynd.com/payment/simpl_logo.png"
             }
+          },
+          {
+            "aggregator_name": "Potlee",
+            "name": "POTLEE",
+            "display_name": "Potlee",
+            "code": "POTLEE",
+            "merchant_code": "POTLEE",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/Potlee.png",
+              "small": "https://hdn-1.fynd.com/payment/Potlee.png"
+            }
+          }
+        ]
+      },
+      {
+        "name": "JIOPP",
+        "display_priority": 15,
+        "payment_mode_id": 15,
+        "display_name": "Jio Partner Pay",
+        "list": [
+          {
+            "aggregator_name": "Jio",
+            "name": "JioPP",
+            "display_name": "Jio Partner Pay",
+            "code": "JIOPP",
+            "logo_url": {
+              "large": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
+              "small": "https://hdn-1.fynd.com/payment/Pos+Logo.png"
+            },
+            "merchant_code": "JIOPP"
           }
         ]
       }
@@ -1007,7 +1135,47 @@ Success. Returns all available options for payment. Check the example shown belo
           }
         },
         "api_link": "",
-        "payment_flow": "sdk"
+        "payment_flow": "sdk",
+        "payment_flow_data": {
+          "is_customer_validation_required": true,
+          "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
+          "config": {
+            "redirect": false,
+            "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
+          },
+          "data": {
+            "user_phone": null,
+            "user_email": null
+          },
+          "return_url": null
+        }
+      },
+      "potlee": {
+        "data": {
+          "gateway": {
+            "route": "potlee",
+            "entity": "api",
+            "is_customer_validation_required": true,
+            "cust_validation_url": "https://api.fyndx0.de/gringotts/api/v1/validate-customer/",
+            "return_url": null
+          },
+          "payment_flow_data": {
+            "is_customer_validation_required": true,
+            "cust_validation_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/callback/",
+            "config": {
+              "redirect": true,
+              "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/callback/"
+            },
+            "return_url": null
+          }
+        },
+        "api_link": "",
+        "payment_flow": "api",
+        "payment_flow_data": {
+          "return_url": null,
+          "cust_validation_url": "https://api.fyndx0.de/gringotts/api/v1/validate-customer/",
+          "is_customer_validation_required": true
+        }
       },
       "mswipe": {
         "data": {
@@ -1070,7 +1238,35 @@ Success. Returns all available options for payment. Check the example shown belo
         "api_link": "",
         "return_url": "",
         "payment_flow": "api",
-        "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/"
+        "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/",
+        "payment_flow_data": {
+          "is_customer_validation_required": true,
+          "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
+          "config": {
+            "redirect": false,
+            "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
+          },
+          "data": {
+            "user_phone": null,
+            "user_email": null
+          },
+          "return_url": null
+        }
+      },
+      "jiopay": {
+        "api_link": "http://psp-mandate-merchant-sit.jiomoney.com:3003/pg",
+        "payment_flow": "api",
+        "data": {}
+      },
+      "epaylater": {
+        "data": {},
+        "api_link": "https://api-blackbox.epaylater.in/web/process-transaction/",
+        "payment_flow": "api"
+      },
+      "Jio": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
       }
     }
   }
@@ -1149,7 +1345,7 @@ Success. Returns all available options for payment. Check the example shown belo
           {
             "aggregator_name": "Fynd",
             "name": "CAS",
-            "display_name": "CASH",
+            "display_name": "Cash",
             "code": "CAS",
             "logo_url": {
               "large": "https://hdn-1.fynd.com/payment/cod.png",
@@ -1198,10 +1394,35 @@ Success. Returns all available options for payment. Check the example shown belo
             "retry_count": 0,
             "fynd_vpa": "shopsense.rzp@hdfcbank",
             "intent_flow": true,
+            "intent_app": [
+              {
+                "code": "google_pay",
+                "display_name": "Google Pay",
+                "package_name": "com.google.android.apps.nbu.paisa.user",
+                "logos": {
+                  "small": "https://hdn-1.fynd.com/payment/upi-google-pay.png",
+                  "large": "https://hdn-1.fynd.com/payment/upi-google-pay.png"
+                }
+              }
+            ],
             "intent_app_error_list": [
               "com.csam.icici.bank.imobile",
               "in.org.npci.upiapp",
               "com.whatsapp"
+            ],
+            "intent_app_error_dict_list": [
+              {
+                "package_name": "com.csam.icici.bank.imobile",
+                "code": "icici"
+              },
+              {
+                "package_name": "in.org.npci.upiapp",
+                "code": "upiapp"
+              },
+              {
+                "package_name": "com.whatsapp",
+                "code": "whatsapp"
+              }
             ]
           }
         ]
@@ -1346,6 +1567,290 @@ Success. Return CreditLine Offer detail. Check the example shown below or refer 
   "data": {
     "kyc_url": "http://rupifi.kyc1.com/",
     "status": "APPROVED"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getEpaylaterBannerDetails
+Get Epaylater Enabled
+
+
+
+
+```swift
+applicationClient.payment.getEpaylaterBannerDetails() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Get Epaylater Enabled if user is tentatively approved by epaylater
+
+*Returned Response:*
+
+
+
+
+[EpaylaterBannerResponse](#EpaylaterBannerResponse)
+
+Success. Return Epaylater Offer detail. Check the example shown below or refer `EpaylaterBannerResponseSchema` for more details. if `display=True`, then show banner otherwise do not show.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; User is registered successfully</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "data": {
+      "display": false,
+      "message": "User is Active",
+      "status": "ACTIVE"
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; User is not registered or KYC not done or approval pending</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "data": {
+      "display": true,
+      "message": "User is not registered",
+      "status": "NOT REGISTERED"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### resendOrCancelPayment
+API to resend and cancel a payment link which was already generated.
+
+
+
+
+```swift
+applicationClient.payment.resendOrCancelPayment(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ResendOrCancelPaymentRequest | yes | Request body |
+
+
+Use this API to perform resend or cancel a payment link based on request payload.
+
+*Returned Response:*
+
+
+
+
+[ResendOrCancelPaymentResponse](#ResendOrCancelPaymentResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `ResendOrCancelPaymentResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; request_type is cancel</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "data": {
+      "message": "Payment link Cancelled.",
+      "status": true
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; request_type is resend</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "data": {
+      "message": "Notification triggered.",
+      "status": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### renderHTML
+Convert base64 string to HTML form
+
+
+
+
+```swift
+applicationClient.payment.renderHTML(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | renderHTMLRequest | yes | Request body |
+
+
+Use this API to decode base64 html form to plain HTML string.
+
+*Returned Response:*
+
+
+
+
+[renderHTMLResponse](#renderHTMLResponse)
+
+Success and return HTML decoded text
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "html": "<html><body>Your HTML text</body></html>"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### validateVPA
+API to Validate UPI ID
+
+
+
+
+```swift
+applicationClient.payment.validateVPA(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | ValidateVPARequest | yes | Request body |
+
+
+API to Validate UPI ID
+
+*Returned Response:*
+
+
+
+
+[ValidateVPAResponse](#ValidateVPAResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `ValidateVPAResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "upi_vpa": "success@razorpay",
+    "status": "VALID",
+    "is_valid": true,
+    "customer_name": "Verified"
   }
 }
 ```
@@ -2007,6 +2512,1241 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 ---
 
 
+#### getPaymentLink
+Get payment link
+
+
+
+
+```swift
+applicationClient.payment.getPaymentLink(paymentLinkId: paymentLinkId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| paymentLinkId | String? | no |  |  
+
+
+
+Use this API to get a payment link
+
+*Returned Response:*
+
+
+
+
+[GetPaymentLinkResponse](#GetPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link",
+  "status_code": 200,
+  "payment_link_current_status": "resent",
+  "payment_link_url": "https://api.fyndx0.de/service/application/payment/v1.0/payment/options/link/?id=4adb4451720a82ee69a3c1c4cc9ab442&refresh=false",
+  "external_order_id": "FY62614DF9D5CF31D3D0",
+  "amount": 21900,
+  "merchant_name": "Fynd",
+  "polling_timeout": 1800
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createPaymentLink
+Create payment link
+
+
+
+
+```swift
+applicationClient.payment.createPaymentLink(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CreatePaymentLinkRequest | yes | Request body |
+
+
+Use this API to create a payment link for the customer
+
+*Returned Response:*
+
+
+
+
+[CreatePaymentLinkResponse](#CreatePaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link created",
+  "status_code": 200,
+  "payment_link_url": "https://api.fyndx0.de/service/application/payment/v1.0/payment/options/link/?id=96b15ea2014a76c8d2774783e239ce26&refresh=false",
+  "payment_link_id": "96b15ea2014a76c8d2774783e239ce26",
+  "polling_timeout": 480
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### resendPaymentLink
+Resend payment link
+
+
+
+
+```swift
+applicationClient.payment.resendPaymentLink(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CancelOrResendPaymentLinkRequest | yes | Request body |
+
+
+Use this API to resend a payment link for the customer
+
+*Returned Response:*
+
+
+
+
+[ResendPaymentLinkResponse](#ResendPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link resent",
+  "status_code": 200,
+  "polling_timeout": 480
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### cancelPaymentLink
+Cancel payment link
+
+
+
+
+```swift
+applicationClient.payment.cancelPaymentLink(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CancelOrResendPaymentLinkRequest | yes | Request body |
+
+
+Use this API to cancel a payment link for the customer
+
+*Returned Response:*
+
+
+
+
+[CancelPaymentLinkResponse](#CancelPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Payment link cancelled",
+  "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getPaymentModeRoutesPaymentLink
+Get applicable payment options for payment link
+
+
+
+
+```swift
+applicationClient.payment.getPaymentModeRoutesPaymentLink(paymentLinkId: paymentLinkId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| paymentLinkId | String | yes | Payment link id |  
+
+
+
+Use this API to get all valid payment options for doing a payment through payment link
+
+*Returned Response:*
+
+
+
+
+[PaymentModeRouteResponse](#PaymentModeRouteResponse)
+
+Success. Returns all available options for payment. Check the example shown below or refer `PaymentModeRouteResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "payment_options": {
+    "payment_option": [
+      {
+        "name": "CARD",
+        "display_priority": 2,
+        "payment_mode_id": 2,
+        "display_name": "Card",
+        "list": [],
+        "anonymous_enable": true,
+        "aggregator_name": "Razorpay",
+        "add_card_enabled": false,
+        "is_pay_by_card_pl": true
+      },
+      {
+        "name": "NB",
+        "display_priority": 3,
+        "payment_mode_id": 3,
+        "display_name": "Net Banking",
+        "list": [
+          {
+            "aggregator_name": "Razorpay",
+            "name": "ICICI Bank",
+            "code": "ICIC",
+            "bank_name": "ICICI Bank",
+            "bank_code": "ICIC",
+            "url": "https://hdn-1.fynd.com/payment/NB_ICICI.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_ICICI.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_ICICI.png"
+            },
+            "merchant_code": "NB_ICICI",
+            "display_priority": 1,
+            "display_name": "ICICI Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "HDFC Bank",
+            "code": "HDFC",
+            "bank_name": "HDFC Bank",
+            "bank_code": "HDFC",
+            "url": "https://hdn-1.fynd.com/payment/NB_HDFC.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_HDFC.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_HDFC.png"
+            },
+            "merchant_code": "NB_HDFC",
+            "display_priority": 2,
+            "display_name": "HDFC Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Axis Bank",
+            "code": "UTIB",
+            "bank_name": "Axis Bank",
+            "bank_code": "UTIB",
+            "url": "https://hdn-1.fynd.com/payment/NB_AXIS.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_AXIS.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_AXIS.png"
+            },
+            "merchant_code": "NB_AXIS",
+            "display_priority": 3,
+            "display_name": "Axis Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of India",
+            "code": "SBIN",
+            "bank_name": "State Bank of India",
+            "bank_code": "SBIN",
+            "url": "https://hdn-1.fynd.com/payment/NB_SBI.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_SBI.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_SBI.png"
+            },
+            "merchant_code": "NB_SBI",
+            "display_priority": 4,
+            "display_name": "State Bank of India"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Kotak Mahindra Bank",
+            "code": "KKBK",
+            "bank_name": "Kotak Mahindra Bank",
+            "bank_code": "KKBK",
+            "url": "https://hdn-1.fynd.com/payment/NB_KOTAK.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_KOTAK.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_KOTAK.png"
+            },
+            "merchant_code": "NB_KOTAK",
+            "display_priority": 5,
+            "display_name": "Kotak Mahindra Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Indusind Bank",
+            "code": "INDB",
+            "bank_name": "Indusind Bank",
+            "bank_code": "INDB",
+            "url": "https://hdn-1.fynd.com/payment/NB_INDUS.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_INDUS.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_INDUS.png"
+            },
+            "merchant_code": "INDB",
+            "display_priority": 6,
+            "display_name": "Indusind Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "City Union Bank",
+            "code": "CIUB",
+            "bank_name": "City Union Bank",
+            "bank_code": "CIUB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_CUB",
+            "display_priority": 9,
+            "display_name": "City Union Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Catholic Syrian Bank",
+            "code": "CSBK",
+            "bank_name": "Catholic Syrian Bank",
+            "bank_code": "CSBK",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "CSBK",
+            "display_priority": 11,
+            "display_name": "Catholic Syrian Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "State Bank of Hyderabad",
+            "code": "SBHY",
+            "bank_name": "State Bank of Hyderabad",
+            "bank_code": "SBHY",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "NB_SBH",
+            "display_priority": 12,
+            "display_name": "State Bank of Hyderabad"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Allahabad Bank",
+            "code": "ALLA",
+            "bank_name": "Allahabad Bank",
+            "bank_code": "ALLA",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "ALLA",
+            "display_priority": 15,
+            "display_name": "Allahabad Bank"
+          },
+          {
+            "aggregator_name": "Razorpay",
+            "name": "Syndicate Bank",
+            "code": "SYNB",
+            "bank_name": "Syndicate Bank",
+            "bank_code": "SYNB",
+            "url": "https://hdn-1.fynd.com/payment/NB_generic.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/NB_generic.png",
+              "large": "https://hdn-1.fynd.com/payment/NB_generic.png"
+            },
+            "merchant_code": "SYNB",
+            "display_priority": 17,
+            "display_name": "Syndicate Bank"
+          }
+        ]
+      },
+      {
+        "name": "WL",
+        "display_priority": 4,
+        "payment_mode_id": 4,
+        "display_name": "Wallet",
+        "list": [
+          {
+            "wallet_name": "Paytm",
+            "wallet_code": "paytm",
+            "name": "Paytm",
+            "display_name": "Paytm",
+            "code": "paytm",
+            "wallet_id": 4,
+            "merchant_code": "PAYTM",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/paytm_logo_small.png",
+              "large": "https://hdn-1.fynd.com/payment/paytm_logo_large.png"
+            },
+            "aggregator_name": "Juspay",
+            "display_priority": 1
+          },
+          {
+            "wallet_name": "Amazon Pay",
+            "wallet_code": "amazonpay",
+            "name": "Amazon Pay",
+            "display_name": "Amazon Pay",
+            "code": "amazonpay",
+            "wallet_id": 10,
+            "merchant_code": "AMAZONPAY",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/amazon-pay.png",
+              "large": "https://hdn-1.fynd.com/payment/amazon-pay.png"
+            },
+            "aggregator_name": "Razorpay",
+            "display_priority": 9
+          }
+        ]
+      },
+      {
+        "name": "UPI",
+        "display_priority": 9,
+        "payment_mode_id": 7,
+        "display_name": "UPI",
+        "list": [
+          {
+            "aggregator_name": "Razorpay",
+            "name": "UPI",
+            "display_name": "BHIM UPI",
+            "code": "UPI",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/upi_100x78.png",
+              "large": "https://hdn-1.fynd.com/payment/upi_150x100.png"
+            },
+            "merchant_code": "UPI",
+            "timeout": 310,
+            "retry_count": 0,
+            "fynd_vpa": "shopsense.rzp@hdfcbank",
+            "intent_flow": true,
+            "intent_app": [
+              {
+                "code": "google_pay",
+                "display_name": "Google Pay",
+                "logos": {
+                  "small": "https://hdn-1.fynd.com/payment/upi-google-pay.png",
+                  "large": "https://hdn-1.fynd.com/payment/upi-google-pay.png"
+                }
+              }
+            ],
+            "intent_app_error_list": [
+              "com.csam.icici.bank.imobile",
+              "in.org.npci.upiapp",
+              "com.whatsapp"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "JUSPAYPG",
+        "display_priority": 18,
+        "payment_mode_id": 24,
+        "display_name": "Pay Using Juspay",
+        "list": []
+      },
+      {
+        "name": "PL",
+        "display_priority": 21,
+        "display_name": "Pay Later",
+        "list": [
+          {
+            "aggregator_name": "Simpl",
+            "name": "Simpl",
+            "display_name": "Simpl",
+            "code": "simpl",
+            "merchant_code": "SIMPL",
+            "logo": "https://hdn-1.fynd.com/payment/simpl_logo.png",
+            "logo_url": {
+              "small": "https://hdn-1.fynd.com/payment/simpl_logo.png",
+              "large": "https://hdn-1.fynd.com/payment/simpl_logo.png"
+            }
+          }
+        ]
+      }
+    ],
+    "payment_flows": {
+      "simpl": {
+        "data": {
+          "gateway": {
+            "route": "simpl",
+            "entity": "sdk",
+            "is_customer_validation_required": true,
+            "cust_validation_url": "https://api.fyndx0.de/gringotts/api/v1/validate-customer/?app_id=000000000000000000000001",
+            "sdk": {
+              "config": {
+                "redirect": false,
+                "callback_url": null,
+                "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
+              },
+              "data": {
+                "user_phone": "9999632145",
+                "user_email": "app@fynd.com"
+              }
+            },
+            "return_url": null
+          }
+        },
+        "api_link": "",
+        "payment_flow": "sdk",
+        "payment_flow_data": {
+          "is_customer_validation_required": true,
+          "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
+          "config": {
+            "redirect": false,
+            "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
+          },
+          "data": {
+            "user_phone": null,
+            "user_email": null
+          },
+          "return_url": null
+        }
+      },
+      "mswipe": {
+        "data": {
+          "gateway": {
+            "sdk": {
+              "config": {
+                "redirect": false,
+                "action_url": "url",
+                "webhook_url": "url",
+                "timeout": 60
+              }
+            }
+          }
+        },
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "juspay": {
+        "data": {},
+        "api_link": "https://sandbox.juspay.in/txns",
+        "payment_flow": "api"
+      },
+      "razorpay": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "bqr_razorpay": {
+        "data": {},
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
+        "payment_flow": "api"
+      },
+      "fynd": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "jio": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "api"
+      },
+      "stripe": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "ccavenue": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "payumoney": {
+        "data": {},
+        "api_link": "",
+        "payment_flow": "sdk"
+      },
+      "rupifi": {
+        "data": {},
+        "api_link": "",
+        "return_url": "",
+        "payment_flow": "api",
+        "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/",
+        "payment_flow_data": {
+          "is_customer_validation_required": true,
+          "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
+          "config": {
+            "redirect": false,
+            "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
+          },
+          "data": {
+            "user_phone": null,
+            "user_email": null
+          },
+          "return_url": null
+        }
+      }
+    }
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### pollingPaymentLink
+Used for polling if payment successful or not
+
+
+
+
+```swift
+applicationClient.payment.pollingPaymentLink(paymentLinkId: paymentLinkId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| paymentLinkId | String? | no |  |  
+
+
+
+Use this API to poll if payment through payment was successful or not
+
+*Returned Response:*
+
+
+
+
+[PollingPaymentLinkResponse](#PollingPaymentLinkResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "aggregator_name": "Fynd",
+  "status": "complete",
+  "redirect_url": "https://api.fyndx0.de/service/application/order/v1.0/orders/?success=true&order_id=FY62B3FF87016F24A4E6&aggregator_name=Fynd&cart_id=412&delivery_address_id=136&billing_address_id=136",
+  "payment_link_id": "223d2a8df39a5dcdd8525498bee73199",
+  "amount": 21900,
+  "order_id": "FY62B3FF87016F24A4E6",
+  "status_code": 200
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createOrderHandlerPaymentLink
+Create Order user
+
+
+
+
+```swift
+applicationClient.payment.createOrderHandlerPaymentLink(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CreateOrderUserRequest | yes | Request body |
+
+
+Use this API to create a order and payment on aggregator side
+
+*Returned Response:*
+
+
+
+
+[CreateOrderUserResponse](#CreateOrderUserResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "",
+  "success": true,
+  "data": {
+    "amount": 2190000,
+    "order_id": "order_JeaZ5ryKO01rno",
+    "email": "abc@example.com",
+    "contact": "9999999999",
+    "currency": "INR",
+    "customer_id": "cust_CZgcLVGsGP8BUQ",
+    "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
+    "method": "upi",
+    "aggregator": "Razorpay",
+    "merchant_order_id": "FY629EDC0980B6A8C1EA"
+  },
+  "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
+  "payment_confirm_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
+  "order_id": "FY629EDC0980B6A8C1EA"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### initialisePaymentPaymentLink
+Initialize a payment (server-to-server) for UPI and BharatQR
+
+
+
+
+```swift
+applicationClient.payment.initialisePaymentPaymentLink(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PaymentInitializationRequest | yes | Request body |
+
+
+Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
+
+*Returned Response:*
+
+
+
+
+[PaymentInitializationResponse](#PaymentInitializationResponse)
+
+Success. Check the example shown below or refer `PaymentInitializationResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "aggregator": "UPI_Razorpay",
+  "method": "upi",
+  "status": "success",
+  "merchant_order_id": "FY000120000101",
+  "aggregator_order_id": "lorem_GX8W00p2ipsum",
+  "polling_url": "https://api.fynd.com/service/application/payment/v0.1/payments/confirm/polling/?app_id=000000000000000000000001",
+  "timeout": 240,
+  "virtual_id": null,
+  "razorpay_payment_id": "pay_dummy_001",
+  "customer_id": "cust_dummy_001"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### checkAndUpdatePaymentStatusPaymentLink
+Performs continuous polling to check status of payment on the server
+
+
+
+
+```swift
+applicationClient.payment.checkAndUpdatePaymentStatusPaymentLink(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PaymentStatusUpdateRequest | yes | Request body |
+
+
+Use this API to perform continuous polling at intervals to check the status of payment until timeout.
+
+*Returned Response:*
+
+
+
+
+[PaymentStatusUpdateResponse](#PaymentStatusUpdateResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `PaymentStatusUpdateResponse` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "aggregator_name": "UPI_Razorpay",
+  "status": "success",
+  "retry": false
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### customerCreditSummary
+API to fetch the customer credit summary
+
+
+
+
+```swift
+applicationClient.payment.customerCreditSummary(aggregator: aggregator) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| aggregator | String? | no |  |  
+
+
+
+Use this API to fetch the customer credit summary.
+
+*Returned Response:*
+
+
+
+
+[CustomerCreditSummaryResponse](#CustomerCreditSummaryResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `CustomerCreditSummaryResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "merchant_customer_ref_id": "ABHI0002",
+    "status": "Bill Due",
+    "status_message": "Pay now to avoid interest charges",
+    "balance": {
+      "value": 87424,
+      "formatted_value": "₹ 87,424.00",
+      "currency": "INR"
+    },
+    "limit": {
+      "value": 100000,
+      "formatted_value": "₹ 100,000.00",
+      "currency": "INR"
+    },
+    "due_amount": {
+      "value": 12576,
+      "formatted_value": "₹ 12,576.00",
+      "currency": "INR"
+    },
+    "used_amount": {
+      "value": 12576,
+      "formatted_value": "₹ 12,576.00",
+      "currency": "INR"
+    },
+    "due_date": "Oct 22 2021",
+    "days_overdue": 123
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### redirectToAggregator
+API to get the redirect url to redirect the user to aggregator's page
+
+
+
+
+```swift
+applicationClient.payment.redirectToAggregator(source: source, aggregator: aggregator) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| source | String? | no | This is a String value that contains callback URL as value. |   
+| aggregator | String? | no | This is a String value that contains aggregator name as value. |  
+
+
+
+Use this API to get the redirect url to redirect the user to aggregator's page
+
+*Returned Response:*
+
+
+
+
+[RedirectToAggregatorResponse](#RedirectToAggregatorResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `RedirectToAggregatorResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "redirect_url": "https://api-blackbox.epaylater.in//marketplace/customer/transactions/v2?encryptedPayload=dpPuB2+kZ6NyIrg0eWAwk7TbF14502RkIARgullt3PGWMh7Ix0Tc720b6idZzXNxzwaA3BOi2DHUALpqSfOagra+i0wRIVc36O62fwPscQE=checksum=6F06AEAE2A3CBBC81457FB2287C4DEFCFC16DEA8F33482D682134D64E43E34C2merchantId=Sample1234567890redirectConfirmUrl=http://localhost:8000/",
+    "status": true
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### checkCredit
+API to fetch the customer credit summary
+
+
+
+
+```swift
+applicationClient.payment.checkCredit(aggregator: aggregator) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| aggregator | String? | no |  |  
+
+
+
+Use this API to fetch the customer credit summary.
+
+*Returned Response:*
+
+
+
+
+[CheckCreditResponse](#CheckCreditResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `CheckCreditResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_registered": false,
+    "status": true,
+    "signup_url": "https://merchant.epaylater.in"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### customerOnboard
+API to fetch the customer credit summary
+
+
+
+
+```swift
+applicationClient.payment.customerOnboard(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CustomerOnboardingRequest | yes | Request body |
+
+
+Use this API to fetch the customer credit summary.
+
+*Returned Response:*
+
+
+
+
+[CustomerOnboardingResponse](#CustomerOnboardingResponse)
+
+Success. Returns the status of payment. Check the example shown below or refer `CustomerOnboardingResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "session": {
+      "session_id": "109dae9a-9fe0-4277-979c-0bebb0136930"
+    },
+    "redirect_url": "https://retail-dev.epaylater.in?sessionId=109dae9a-9fe0-4277-979c-0bebb0136930",
+    "status": true
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -2016,16 +3756,16 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | configType | String |  no  | Fynd or self payment gateway |
- | merchantKey | String? |  yes  | Unique merchant key |
- | pin | String? |  yes  | Masked pin |
- | sdk | Bool? |  yes  | SDK |
  | secret | String |  no  | Masked payment gateway api secret |
- | verifyApi | String? |  yes  | Payment gateway verify payment api endpoint |
- | key | String |  no  | Payment gateway api key |
+ | pin | String? |  yes  | Masked pin |
  | userId | String? |  yes  | Registered User id |
- | api | String? |  yes  | Payment gateway api endpoint |
+ | merchantKey | String? |  yes  | Unique merchant key |
+ | key | String |  no  | Payment gateway api key |
+ | configType | String |  no  | Fynd or self payment gateway |
  | merchantId | String? |  yes  | Unique merchant id |
+ | verifyApi | String? |  yes  | Payment gateway verify payment api endpoint |
+ | api | String? |  yes  | Payment gateway api endpoint |
+ | sdk | Bool? |  yes  | SDK |
 
 ---
 
@@ -2036,16 +3776,16 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
- | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
- | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
- | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
- | env | String |  no  | Environment i.e Live or Test |
+ | success | Bool |  no  |  |
  | razorpay | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | ccavenue | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
  | simpl | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
  | stripe | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
- | success | Bool |  no  |  |
+ | payumoney | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
  | rupifi | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | mswipe | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | juspay | [AggregatorConfigDetail](#AggregatorConfigDetail)? |  yes  |  |
+ | env | String |  no  | Environment i.e Live or Test |
 
 ---
 
@@ -2056,8 +3796,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String |  no  | Error descrption code. |
  | description | String |  no  | Error human understandable description. |
+ | code | String |  no  | Error descrption code. |
 
 ---
 
@@ -2068,8 +3808,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  no  |  |
  | success | Bool |  no  | Response is successful or not |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  no  |  |
 
 ---
 
@@ -2080,10 +3820,10 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cardId | String |  no  | Card token of payment gateway. |
  | refresh | Bool? |  yes  | Refresh cache flag. |
- | nameOnCard | String? |  yes  |  |
  | nickname | String? |  yes  |  |
+ | nameOnCard | String? |  yes  |  |
+ | cardId | String |  no  | Card token of payment gateway. |
 
 ---
 
@@ -2094,9 +3834,9 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Response is successful or not. |
  | message | String? |  yes  | Human readable message. |
  | data | [String: Any] |  no  | List of cards of customer. |
- | success | Bool |  no  | Response is successful or not. |
 
 ---
 
@@ -2107,9 +3847,9 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | String |  no  | Payment gateway name. |
  | customerId | String? |  yes  | Payment gateway customer id. |
  | api | String? |  yes  | Payment gateway CARD api endpoint |
+ | aggregator | String |  no  | Payment gateway name. |
 
 ---
 
@@ -2120,9 +3860,9 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Response is successful or not. |
  | message | String |  no  | Human readable message. |
  | cards | [CardPaymentGateway](#CardPaymentGateway) |  no  | Card's payment gateway with customer id. |
- | success | Bool |  no  | Response is successful or not. |
 
 ---
 
@@ -2133,22 +3873,23 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cardIssuer | String? |  yes  | card_issuer |
- | cardId | String? |  yes  | card_id |
- | cardNumber | String? |  yes  | card_number |
  | cardReference | String? |  yes  | card_reference |
- | cardBrand | String? |  yes  | card_brand |
- | cardIsin | String? |  yes  | card_isin |
- | nickname | String? |  yes  | nickname |
- | cardName | String? |  yes  | card_name |
- | cardBrandImage | String? |  yes  | card_brand_image |
- | cardToken | String? |  yes  | card_token |
- | cardType | String? |  yes  | card_type |
- | expYear | Int? |  yes  | exp_year |
- | cardFingerprint | String? |  yes  | card_fingerprint |
- | expMonth | Int? |  yes  | exp_month |
  | aggregatorName | String |  no  | aggregator_name |
+ | expMonth | Int? |  yes  | exp_month |
+ | cardBrandImage | String? |  yes  | card_brand_image |
+ | cardFingerprint | String? |  yes  | card_fingerprint |
+ | cardToken | String? |  yes  | card_token |
+ | cardNumber | String? |  yes  | card_number |
+ | nickname | String? |  yes  | nickname |
+ | expYear | Int? |  yes  | exp_year |
+ | cardId | String? |  yes  | card_id |
+ | cardBrand | String? |  yes  | card_brand |
+ | compliantWithTokenisationGuidelines | Bool? |  yes  | If card is tokenised or not |
  | expired | Bool? |  yes  | expired |
+ | cardIsin | String? |  yes  | card_isin |
+ | cardType | String? |  yes  | card_type |
+ | cardIssuer | String? |  yes  | card_issuer |
+ | cardName | String? |  yes  | card_name |
 
 ---
 
@@ -2159,9 +3900,9 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Response is successful or not. |
  | message | String |  no  | Human readable message. |
  | data | [[Card](#Card)]? |  yes  | List of cards of customer. |
- | success | Bool |  no  | Response is successful or not. |
 
 ---
 
@@ -2183,8 +3924,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  | Human readable message. |
  | success | Bool |  no  | Response is successful or not. |
+ | message | String? |  yes  | Human readable message. |
 
 ---
 
@@ -2195,11 +3936,14 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | deliveryAddress | [String: Any]? |  yes  | Extra meta fields. |
+ | merchantParams | [String: Any]? |  yes  | Extra meta fields. |
+ | orderItems | [[String: Any]]? |  yes  | Extra meta fields. |
  | transactionAmountInPaise | Int |  no  | Payable amount in paise |
- | phoneNumber | String |  no  | User mobile number without country code. |
  | aggregator | String |  no  | Payment gateway name in camel case i.e Simpl, Rupifi |
- | merchantParams | [String: Any] |  no  | Extra meta fields. |
- | payload | String |  no  | Hashed payload string. |
+ | phoneNumber | String |  no  | User mobile number without country code. |
+ | billingAddress | [String: Any]? |  yes  | Extra meta fields. |
+ | payload | String? |  yes  | Hashed payload string. |
 
 ---
 
@@ -2210,9 +3954,10 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String |  no  | Error or success message. |
- | data | [String: Any] |  no  | Payment gateway response data |
  | success | Bool |  no  | Response is successful or not |
+ | message | String |  no  | Error or success message. |
+ | data | [String: Any]? |  yes  | Payment gateway response data |
+ | error | [String: Any]? |  yes  | error details |
 
 ---
 
@@ -2223,11 +3968,11 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verified | Bool? |  yes  | Already Verified flag from payment gateway i.e Mswipe |
- | amount | Int |  no  | Chargable amount of order. |
+ | orderId | String |  no  | Unique order id. |
  | transactionToken | String? |  yes  | Transaction token of payment gateway. |
  | aggregator | String |  no  | Payment gateway name i.e Simpl, Mswipe |
- | orderId | String |  no  | Unique order id. |
+ | verified | Bool? |  yes  | Already Verified flag from payment gateway i.e Mswipe |
+ | amount | Int |  no  | Chargable amount of order. |
 
 ---
 
@@ -2238,13 +3983,13 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | String |  no  | Status of charged payment. |
- | message | String |  no  | Human readable message. |
- | deliveryAddressId | String? |  yes  | Delivery adddress id of customer |
- | cartId | String? |  yes  | Cart id of customer |
- | aggregator | String |  no  | Payment gateway name i.e Simpl, Mswipe |
- | orderId | String |  no  | Unique order id. |
  | success | Bool |  no  | Response is successful or not. |
+ | message | String |  no  | Human readable message. |
+ | orderId | String |  no  | Unique order id. |
+ | deliveryAddressId | String? |  yes  | Delivery adddress id of customer |
+ | aggregator | String |  no  | Payment gateway name i.e Simpl, Mswipe |
+ | status | String |  no  | Status of charged payment. |
+ | cartId | String? |  yes  | Cart id of customer |
 
 ---
 
@@ -2255,15 +4000,19 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aggregator | String |  no  | Payment gateway name |
- | virtualId | String? |  yes  | Bharat QR code virtual id |
- | aggregatorOrderId | String |  no  | Payment gateway order id |
- | method | String |  no  | Payment method |
- | timeout | Int |  no  | Payment polling timeout if not recieved response |
- | merchantOrderId | String |  no  | Unique fynd order id |
+ | razorpayPaymentId | String? |  yes  | Payment gateway payment id |
  | customerId | String |  no  | Payment gateway customer id. |
- | razorpayPaymentId | String |  no  | Payment gateway payment id |
- | pollingUrl | String |  no  | Polling url to check payment status |
+ | method | String |  no  | Payment method |
+ | vpa | String? |  yes  | Customer vpa address |
+ | orderId | String |  no  | Payment gateway order id |
+ | deviceId | String? |  yes  | EDC machine Unique Identifier |
+ | aggregator | String |  no  | Payment gateway name |
+ | contact | String |  no  | Customer valid mobile number |
+ | timeout | Int? |  yes  | Payment polling timeout if not recieved response |
+ | amount | Double |  no  | Payable amount. |
+ | merchantOrderId | String |  no  | Unique fynd order id |
+ | currency | String |  no  | Currency code. |
+ | email | String |  no  | Customer valid email |
 
 ---
 
@@ -2274,21 +4023,27 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | String? |  yes  | Status of payment. |
- | virtualId | String? |  yes  | Payment virtual address. |
- | aggregatorOrderId | String? |  yes  | Payment order id |
- | method | String |  no  | Payment method |
- | razorpayPaymentId | String? |  yes  | Payment  id. |
- | bqrImage | String? |  yes  | Bharath qr image url. |
- | timeout | Int? |  yes  | timeout. |
- | amount | Int? |  yes  | Payable amount. |
+ | upiPollUrl | String? |  yes  | UPI poll url. |
  | merchantOrderId | String |  no  | order id |
  | currency | String? |  yes  | Currency code. |
- | customerId | String? |  yes  | Payment gateway customer id. |
+ | email | String? |  yes  | Customer valid email |
+ | method | String |  no  | Payment method |
+ | orderId | String? |  yes  | Payment gateway order id |
  | aggregator | String |  no  | Payment gateway name |
- | pollingUrl | String |  no  | Polling url. |
- | vpa | String? |  yes  | Customer vpa address |
+ | contact | String? |  yes  | Customer valid mobile number |
+ | aggregatorOrderId | String? |  yes  | Payment order id |
  | success | Bool |  no  | Response is successful or not. |
+ | razorpayPaymentId | String? |  yes  | Payment  id. |
+ | bqrImage | String? |  yes  | Bharath qr image url. |
+ | virtualId | String? |  yes  | Payment virtual address. |
+ | deviceId | String? |  yes  | EDC machine Unique Identifier |
+ | paymentId | String? |  yes  | Payment id. |
+ | status | String? |  yes  | Status of payment. |
+ | timeout | Int? |  yes  | timeout. |
+ | amount | Int? |  yes  | Payable amount. |
+ | customerId | String? |  yes  | Payment gateway customer id. |
+ | vpa | String? |  yes  | Customer vpa address |
+ | pollingUrl | String |  no  | Polling url. |
 
 ---
 
@@ -2299,17 +4054,21 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | String |  no  | Status of payment. |
+ | razorpayPaymentId | String? |  yes  | Payment  id. |
+ | customerId | String |  no  | Payment gateway customer id. |
  | method | String |  no  | Payment method |
- | contact | String |  no  | Customer valid mobile number |
+ | vpa | String? |  yes  | Customer vpa address |
+ | orderId | String? |  yes  | Payment gateway order id |
+ | deviceId | String? |  yes  | EDC machine Unique Identifier |
+ | aggregator | String |  no  | Payment gateway name |
+ | paymentId | String? |  yes  | Payment id. |
+ | contact | String? |  yes  | Customer valid mobile number |
+ | status | String |  no  | Status of payment. |
  | amount | Int |  no  | Payable amount. |
  | merchantOrderId | String |  no  | Unique fynd order id |
- | currency | String |  no  | Currency code. |
- | customerId | String |  no  | Payment gateway customer id. |
- | aggregator | String |  no  | Payment gateway name |
- | orderId | String |  no  | Payment gateway order id |
- | vpa | String |  no  | Customer vpa address |
- | email | String |  no  | Customer valid email |
+ | merchantTransactionId | String |  no  | Unique fynd transaction id |
+ | currency | String? |  yes  | Currency code. |
+ | email | String? |  yes  | Customer valid email |
 
 ---
 
@@ -2320,9 +4079,111 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | String |  no  | Payment status |
+ | success | Bool? |  yes  | Response is successful or not |
  | aggregatorName | String |  no  | Payment gateway name |
+ | redirectUrl | String? |  yes  | Redirect url |
  | retry | Bool |  no  | Response is successful or not. |
+ | status | String |  no  | Payment status |
+
+---
+
+
+ 
+ 
+ #### [PaymentModeLogo](#PaymentModeLogo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | small | String |  no  | smalll |
+ | large | String |  no  | large |
+
+---
+
+
+ 
+ 
+ #### [IntentApp](#IntentApp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | displayName | String? |  yes  | display_name |
+ | packageName | String? |  yes  | package_name |
+ | code | String? |  yes  | code |
+ | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
+
+---
+
+
+ 
+ 
+ #### [IntentAppErrorList](#IntentAppErrorList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | packageName | String? |  yes  | package_name |
+ | code | String? |  yes  | code |
+
+---
+
+
+ 
+ 
+ #### [PaymentModeList](#PaymentModeList)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cardReference | String? |  yes  | card_reference |
+ | aggregatorName | String |  no  | aggregator_name |
+ | expMonth | Int? |  yes  | exp_month |
+ | intentAppErrorList | [String]? |  yes  | intent_app_error_list |
+ | name | String? |  yes  | name |
+ | intentApp | [[IntentApp](#IntentApp)]? |  yes  | intent_app |
+ | fyndVpa | String? |  yes  | fynd_vpa |
+ | code | String? |  yes  | code |
+ | compliantWithTokenisationGuidelines | Bool? |  yes  | If card is tokenised or not |
+ | cardIsin | String? |  yes  | card_isin |
+ | remainingLimit | Double? |  yes  | Remaining limit |
+ | intentAppErrorDictList | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
+ | codLimitPerOrder | Double? |  yes  | Cod limit per order |
+ | cardId | String? |  yes  | card_id |
+ | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
+ | intentFlow | Bool? |  yes  | intent_flow |
+ | nickname | String? |  yes  | nickname |
+ | cardIssuer | String? |  yes  | card_issuer |
+ | cardName | String? |  yes  | card_name |
+ | retryCount | Int? |  yes  | retry_count |
+ | merchantCode | String? |  yes  | merchant code |
+ | cardToken | String? |  yes  | card_token |
+ | cardNumber | String? |  yes  | card_number |
+ | expYear | Int? |  yes  | exp_year |
+ | cardBrand | String? |  yes  | card_brand |
+ | timeout | Int? |  yes  | timeout |
+ | expired | Bool? |  yes  | expired |
+ | cardFingerprint | String? |  yes  | card_fingerprint |
+ | displayPriority | Int? |  yes  | Dispaly Priority |
+ | codLimit | Double? |  yes  | cod limit |
+ | cardBrandImage | String? |  yes  | card_brand_image |
+ | displayName | String? |  yes  | display name |
+ | cardType | String? |  yes  | card_type |
+
+---
+
+
+ 
+ 
+ #### [RootPaymentMode](#RootPaymentMode)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregatorName | String? |  yes  | Dispaly Priority |
+ | displayPriority | Int |  no  | Dispaly Priority |
+ | isPayByCardPl | Bool? |  yes  | This flag will be true in case of Payment link payment through card |
+ | anonymousEnable | Bool? |  yes  | Annonymous card flag |
+ | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
+ | addCardEnabled | Bool? |  yes  | Annonymous card flag |
+ | name | String |  no  | Payment mode name |
+ | saveCard | Bool? |  yes  | Card save or not |
+ | displayName | String |  no  | Payment mode display name |
 
 ---
 
@@ -2335,6 +4196,7 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
  | ---------- | ---- | -------- | ----------- |
  | paymentFlow | String? |  yes  | payment_flow |
  | data | [String: Any]? |  yes  | Data |
+ | paymentFlowData | String? |  yes  | payment_flow_data |
  | apiLink | String? |  yes  | api_link |
 
 ---
@@ -2346,83 +4208,19 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Juspay |
- | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  | Payubiz |
- | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ccavenue |
- | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  | mswipe |
- | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  | Fynd |
- | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Razorpay |
  | upiRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | UPI_Razorpay |
+ | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  | Payubiz |
+ | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Razorpay |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ccavenue |
  | simpl | [AggregatorRoute](#AggregatorRoute)? |  yes  | simpl |
  | stripe | [AggregatorRoute](#AggregatorRoute)? |  yes  | Stripe |
+ | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  | Fynd |
  | bqrRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | BQR_Razorpay |
  | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  | Rupifi |
-
----
-
-
- 
- 
- #### [PaymentModeLogo](#PaymentModeLogo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | large | String |  no  | large |
- | small | String |  no  | smalll |
-
----
-
-
- 
- 
- #### [PaymentModeList](#PaymentModeList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | merchantCode | String? |  yes  | merchant code |
- | fyndVpa | String? |  yes  | fynd_vpa |
- | displayPriority | Int? |  yes  | Dispaly Priority |
- | intentFlow | Bool? |  yes  | intent_flow |
- | expMonth | Int? |  yes  | exp_month |
- | aggregatorName | String |  no  | aggregator_name |
- | retryCount | Int? |  yes  | retry_count |
- | expired | Bool? |  yes  | expired |
- | cardIssuer | String? |  yes  | card_issuer |
- | cardBrand | String? |  yes  | card_brand |
- | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
- | cardName | String? |  yes  | card_name |
- | cardIsin | String? |  yes  | card_isin |
- | intentAppErrorList | [String]? |  yes  | intent_app_error_list |
- | cardNumber | String? |  yes  | card_number |
- | cardBrandImage | String? |  yes  | card_brand_image |
- | nickname | String? |  yes  | nickname |
- | cardToken | String? |  yes  | card_token |
- | cardType | String? |  yes  | card_type |
- | expYear | Int? |  yes  | exp_year |
- | name | String? |  yes  | name |
- | code | String? |  yes  | code |
- | displayName | String? |  yes  | display name |
- | cardId | String? |  yes  | card_id |
- | cardReference | String? |  yes  | card_reference |
- | timeout | Int? |  yes  | timeout |
- | cardFingerprint | String? |  yes  | card_fingerprint |
-
----
-
-
- 
- 
- #### [RootPaymentMode](#RootPaymentMode)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | displayName | String |  no  | Payment mode display name |
- | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
- | displayPriority | Int |  no  | Dispaly Priority |
- | addCardEnabled | Bool? |  yes  | Annonymous card flag |
- | name | String |  no  | Payment mode name |
- | anonymousEnable | Bool? |  yes  | Annonymous card flag |
- | aggregatorName | String? |  yes  | Dispaly Priority |
+ | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Jiopay |
+ | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  | mswipe |
+ | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  | Epaylater |
+ | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Juspay |
 
 ---
 
@@ -2433,8 +4231,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentFlows | [PaymentFlow](#PaymentFlow) |  no  | payment_flows |
  | paymentOption | [[RootPaymentMode](#RootPaymentMode)] |  no  | Payment options |
+ | paymentFlows | [PaymentFlow](#PaymentFlow) |  no  | payment_flows |
 
 ---
 
@@ -2445,8 +4243,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentOptions | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  | payment_options |
  | success | Bool |  no  | Response is successful or not |
+ | paymentOptions | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  | payment_options |
 
 ---
 
@@ -2469,8 +4267,130 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RupifiBannerData](#RupifiBannerData) |  no  | Rupifi KYC banner details. |
  | success | Bool |  no  | Successful or not. |
+ | data | [RupifiBannerData](#RupifiBannerData) |  no  | Rupifi KYC banner details. |
+
+---
+
+
+ 
+ 
+ #### [EpaylaterBannerData](#EpaylaterBannerData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  | ePayLater message |
+ | display | Bool |  no  | Need to display banner or not |
+ | status | String? |  yes  | Epaylater KYC status |
+
+---
+
+
+ 
+ 
+ #### [EpaylaterBannerResponse](#EpaylaterBannerResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Successful or not. |
+ | data | [EpaylaterBannerData](#EpaylaterBannerData) |  no  | Epaylater KYC banner details. |
+
+---
+
+
+ 
+ 
+ #### [ResendOrCancelPaymentRequest](#ResendOrCancelPaymentRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | orderId | String |  no  | Unique order id |
+ | deviceId | String? |  yes  | EDC machine Unique Identifier |
+ | requestType | String |  no  | Either resend or cancel |
+
+---
+
+
+ 
+ 
+ #### [LinkStatus](#LinkStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String |  no  | Message |
+ | status | Bool |  no  | Link action status |
+
+---
+
+
+ 
+ 
+ #### [ResendOrCancelPaymentResponse](#ResendOrCancelPaymentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Response is successful or not. |
+ | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
+
+---
+
+
+ 
+ 
+ #### [renderHTMLRequest](#renderHTMLRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base64Html | String |  no  | base64 encoded html string |
+ | returntype | String? |  yes  | Return Type of API |
+
+---
+
+
+ 
+ 
+ #### [renderHTMLResponse](#renderHTMLResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | html | String |  no  | HTML string |
+
+---
+
+
+ 
+ 
+ #### [ValidateVPARequest](#ValidateVPARequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | upiVpa | String |  no  | UPI ID |
+
+---
+
+
+ 
+ 
+ #### [ValidateUPI](#ValidateUPI)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | upiVpa | String |  no  | UPI ID |
+ | isValid | Bool |  no  | boolean is true or false. |
+ | status | String |  no  | VALID or INVALID |
+ | customerName | String |  no  | Customer Bank |
+
+---
+
+
+ 
+ 
+ #### [ValidateVPAResponse](#ValidateVPAResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Response is successful or not. |
+ | data | [ValidateUPI](#ValidateUPI) |  no  | Data about UPI ID validate. |
 
 ---
 
@@ -2481,11 +4401,11 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | displayName | Bool? |  yes  | Beneficiary Display Name |
- | logoLarge | String |  no  | Beneficiary large Logo |
- | id | String |  no  |   |
  | name | String |  no  |  Beneficiary Name |
+ | id | Int |  no  |   |
  | logoSmall | String |  no  | Beneficiary small Logo |
+ | displayName | String? |  yes  | Beneficiary Display Name |
+ | logoLarge | String |  no  | Beneficiary large Logo |
 
 ---
 
@@ -2519,8 +4439,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enable | Bool |  no  | True for enabling the Transfer Mode |
  | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
+ | enable | Bool |  no  | True for enabling the Transfer Mode |
 
 ---
 
@@ -2542,25 +4462,25 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | accountHolder | String |  no  | Account Holder Name |
- | comment | Bool? |  yes  | Remarks |
+ | bankName | String |  no  | Bank Name Of Account |
+ | mobile | String? |  yes  | MObile no of User |
  | accountNo | String |  no  | Account Number |
- | delightsUserName | String |  no  | User Id Who filled the Beneficiary  |
+ | modifiedOn | String |  no  | MOdification Date of Beneficiary |
+ | email | String |  no  | EMail of User |
+ | ifscCode | String |  no  | Ifsc Code Of Account |
+ | branchName | String? |  yes  | Branch Name Of Account |
+ | delightsUserName | String? |  yes  | User Id Who filled the Beneficiary  |
+ | title | String |  no  | Title Of Account |
  | id | Int |  no  |   |
+ | accountHolder | String |  no  | Account Holder Name |
+ | address | String |  no  | Address of User |
+ | comment | String? |  yes  | Remarks |
  | beneficiaryId | String |  no  | Benenficiary Id |
  | subtitle | String |  no  | SHort Title Of Account |
- | ifscCode | String |  no  | Ifsc Code Of Account |
- | address | String |  no  | Address of User |
- | isActive | Bool |  no  | Boolean Flag whether Beneficiary set or not |
- | title | String |  no  | Title Of Account |
- | bankName | String |  no  | Bank Name Of Account |
- | displayName | String |  no  | Display Name Of Account |
- | createdOn | String |  no  | Creation Date of Beneficiary |
- | modifiedOn | String |  no  | MOdification Date of Beneficiary |
- | mobile | Bool? |  yes  | MObile no of User |
  | transferMode | String |  no  | Transfer Mode Of Account |
- | branchName | Bool? |  yes  | Branch Name Of Account |
- | email | String |  no  | EMail of User |
+ | createdOn | String |  no  | Creation Date of Beneficiary |
+ | isActive | Bool |  no  | Boolean Flag whether Beneficiary set or not |
+ | displayName | String |  no  | Display Name Of Account |
 
 ---
 
@@ -2571,8 +4491,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)] |  no  | All Beneficiaries Of An Order |
  | showBeneficiaryDetails | Bool? |  yes  | Show beneficiary details or not. |
+ | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)]? |  yes  | All Beneficiaries Of An Order |
 
 ---
 
@@ -2583,9 +4503,9 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String |  no  | Bad Request Data |
  | success | Bool |  no  | Response is successful or not |
  | description | String |  no  | Not Found |
+ | code | String |  no  | Bad Request Data |
 
 ---
 
@@ -2596,8 +4516,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | branchName | String |  no  | Branch Name Of Account |
  | success | Bool? |  yes  | Response is successful or not |
+ | branchName | String |  no  | Branch Name Of Account |
  | bankName | String |  no  | Bank Name Of Account |
 
 ---
@@ -2609,9 +4529,9 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String |  no  | Error descrption code. |
  | success | Bool |  no  | Response is successful or not |
  | description | String |  no  | Error human understandable description. |
+ | code | String |  no  | Error descrption code. |
 
 ---
 
@@ -2635,8 +4555,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String |  no  | Aggregator Response of beneficicary  |
  | success | Bool? |  yes  | Response is successful or not |
+ | message | String |  no  | Aggregator Response of beneficicary  |
 
 ---
 
@@ -2647,9 +4567,9 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isVerifiedFlag | Bool |  no  | Vefified flag. |
  | success | String |  no  | Response is successful or not |
  | description | String |  no  | Wrong OTP Code |
+ | isVerifiedFlag | Bool |  no  | Vefified flag. |
 
 ---
 
@@ -2660,17 +4580,17 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | accountHolder | String |  no  | Name of the Account Holder |
- | branchName | String |  no  | Branch Name of the Account |
- | comment | String? |  yes  | Remarks added by The user |
- | ifscCode | String |  no  | Ifsc Code of the Account |
- | address | String? |  yes  | Address of the User |
  | vpa | String? |  yes  |  |
+ | bankName | String |  no  | Bank Name of the Account |
  | mobile | String |  no  | Moblie Number of the User |
- | wallet | String? |  yes  |  |
  | accountNo | String |  no  | Account NUmber of the Account Holder |
  | email | String |  no  | Email of the Account Holder |
- | bankName | String |  no  | Bank Name of the Account |
+ | ifscCode | String |  no  | Ifsc Code of the Account |
+ | wallet | String? |  yes  |  |
+ | branchName | String |  no  | Branch Name of the Account |
+ | accountHolder | String |  no  | Name of the Account Holder |
+ | address | String? |  yes  | Address of the User |
+ | comment | String? |  yes  | Remarks added by The user |
 
 ---
 
@@ -2681,13 +4601,13 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipmentId | String |  no  | Shipment Id of the respective Merchant Order Id |
- | delights | Bool |  no  | True if  beneficiary to be added by delights or False if by User |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
- | otp | String? |  yes  |  |
  | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
  | orderId | String |  no  | Merchant Order Id |
+ | delights | Bool |  no  | True if  beneficiary to be added by delights or False if by User |
+ | shipmentId | String |  no  | Shipment Id of the respective Merchant Order Id |
+ | otp | String? |  yes  |  |
  | requestId | String? |  yes  |  |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
 
 ---
 
@@ -2698,10 +4618,10 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Success or failure flag. |
  | message | String |  no  | Response message |
  | data | [String: Any]? |  yes  | Refund account data. |
  | isVerifiedFlag | Bool? |  yes  |  |
- | success | Bool |  no  | Success or failure flag. |
 
 ---
 
@@ -2712,11 +4632,11 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | accountHolder | String |  no  |  |
+ | bankName | String |  no  |  |
+ | accountNo | String |  no  |  |
  | ifscCode | String |  no  |  |
  | branchName | String |  no  |  |
- | accountNo | String |  no  |  |
- | bankName | String |  no  |  |
+ | accountHolder | String |  no  |  |
 
 ---
 
@@ -2751,9 +4671,9 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isVerifiedFlag | String |  no  | Boolean Flag whether OTP Validation is already done or not |
- | requestId | String |  no  | request id  |
  | success | Bool? |  yes  | Response is successful or not |
+ | requestId | String |  no  | request id  |
+ | isVerifiedFlag | String |  no  | Boolean Flag whether OTP Validation is already done or not |
 
 ---
 
@@ -2764,8 +4684,8 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | beneficiaryId | String |  no  | Beneficiary Hash Id of the beneficiary added |
  | orderId | String |  no  | Merchant Order Id |
+ | beneficiaryId | String |  no  | Beneficiary Hash Id of the beneficiary added |
 
 ---
 
@@ -2776,8 +4696,467 @@ Success. Check the example shown below or refer `SetDefaultBeneficiaryResponse` 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isBeneficiarySet | Bool |  no  | Boolean Flag whether Beneficiary set or not |
  | success | Bool? |  yes  | Response is successful or not |
+ | isBeneficiarySet | Bool |  no  | Boolean Flag whether Beneficiary set or not |
+
+---
+
+
+ 
+ 
+ #### [GetPaymentLinkResponse](#GetPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Successful or failure |
+ | paymentLinkUrl | String? |  yes  | Url of payment link |
+ | message | String |  no  | Message |
+ | pollingTimeout | Int? |  yes  | Polling request timeout |
+ | merchantName | String? |  yes  | Merchant name |
+ | externalOrderId | String? |  yes  | Merchant order id |
+ | statusCode | Int |  no  | HTTP status code |
+ | amount | Double? |  yes  | Total value of order |
+ | paymentLinkCurrentStatus | String? |  yes  | Status of payment link |
+
+---
+
+
+ 
+ 
+ #### [ErrorDescription](#ErrorDescription)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cancelled | Bool? |  yes  | Payment link is cancelled or not |
+ | expired | Bool? |  yes  | Payment link expired or not |
+ | merchantName | String? |  yes  | Name of merchant that created payment link |
+ | paymentTransactionId | String? |  yes  | Payment transaction id |
+ | msg | String? |  yes  | Message |
+ | invalidId | Bool? |  yes  | Payment link id is valid or not |
+ | amount | Double? |  yes  | Amount paid |
+ | merchantOrderId | String? |  yes  | Order id |
+
+---
+
+
+ 
+ 
+ #### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String |  no  | Message |
+ | statusCode | Int |  no  | HTTP status code |
+ | error | [ErrorDescription](#ErrorDescription)? |  yes  |  |
+ | success | Bool |  no  | Successful or failure |
+
+---
+
+
+ 
+ 
+ #### [CreatePaymentLinkMeta](#CreatePaymentLinkMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | checkoutMode | String |  no  |  |
+ | assignCardId | String? |  yes  |  |
+ | pincode | String |  no  |  |
+ | amount | String |  no  |  |
+ | cartId | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [CreatePaymentLinkRequest](#CreatePaymentLinkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  | Meta |
+ | description | String? |  yes  | Merchant order id |
+ | mobileNumber | String |  no  | Mobile number to which the payment link is to be sent |
+ | externalOrderId | String |  no  | Merchant order id |
+ | amount | Double |  no  | Total value of order |
+ | email | String |  no  | Email to which the payment link is to be sent |
+
+---
+
+
+ 
+ 
+ #### [CreatePaymentLinkResponse](#CreatePaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Successful or failure |
+ | paymentLinkUrl | String? |  yes  | Url of payment link |
+ | message | String |  no  | Message |
+ | pollingTimeout | Int? |  yes  | Polling request timeout |
+ | paymentLinkId | String? |  yes  | Unique id of payment link |
+ | statusCode | Int |  no  | HTTP status code |
+
+---
+
+
+ 
+ 
+ #### [CancelOrResendPaymentLinkRequest](#CancelOrResendPaymentLinkRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | paymentLinkId | String |  no  | Unique id of payment link |
+
+---
+
+
+ 
+ 
+ #### [ResendPaymentLinkResponse](#ResendPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Successful or failure |
+ | message | String |  no  | Message |
+ | statusCode | Int |  no  | HTTP status code |
+ | pollingTimeout | Int? |  yes  | Polling request timeout |
+
+---
+
+
+ 
+ 
+ #### [CancelPaymentLinkResponse](#CancelPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Successful or failure |
+ | message | String |  no  | Message |
+ | statusCode | Int |  no  | HTTP status code |
+
+---
+
+
+ 
+ 
+ #### [PollingPaymentLinkResponse](#PollingPaymentLinkResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  | Successful or failure |
+ | aggregatorName | String? |  yes  | Aggregator name |
+ | message | String? |  yes  | Message |
+ | orderId | String? |  yes  | Fynd order id |
+ | redirectUrl | String? |  yes  | Url to redirect to |
+ | httpStatus | Int? |  yes  | HTTP status code |
+ | statusCode | Int? |  yes  | HTTP status code |
+ | status | String? |  yes  | Status of payment link |
+ | paymentLinkId | String? |  yes  | Payment link id |
+ | amount | Double? |  yes  | Amount |
+
+---
+
+
+ 
+ 
+ #### [PaymentMethodsMeta](#PaymentMethodsMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | merchantCode | String |  no  | Merchant code |
+ | paymentIdentifier | String |  no  | Payment identifier |
+ | paymentGateway | String |  no  | Payment gateway name |
+
+---
+
+
+ 
+ 
+ #### [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  | Payment mode name |
+ | mode | String |  no  | Payment mode |
+ | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  no  | Meta |
+
+---
+
+
+ 
+ 
+ #### [CreateOrderUserRequest](#CreateOrderUserRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [String: Any]? |  yes  | Meta |
+ | paymentMethods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  no  | Payment method details |
+ | failureCallbackUrl | String |  no  | Failure page url |
+ | successCallbackUrl | String |  no  | Success  page url |
+ | paymentLinkId | String |  no  | Unique id of payment link |
+ | currency | String |  no  | Currency |
+
+---
+
+
+ 
+ 
+ #### [CreateOrderUserData](#CreateOrderUserData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customerId | String? |  yes  | Aggregator customer id |
+ | method | String? |  yes  | Method |
+ | orderId | String? |  yes  | Aggregator order id |
+ | callbackUrl | String? |  yes  | Callback url for aggregator |
+ | aggregator | String? |  yes  | Aggregator name |
+ | contact | String? |  yes  | Mobile number |
+ | amount | Double? |  yes  | Amount |
+ | merchantOrderId | String? |  yes  | Merchant order id |
+ | currency | String? |  yes  | Currency |
+ | email | String? |  yes  | Email |
+
+---
+
+
+ 
+ 
+ #### [CreateOrderUserResponse](#CreateOrderUserResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Successful or failure |
+ | paymentConfirmUrl | String? |  yes  | Payment confirm url for aggregator |
+ | message | String |  no  | Message |
+ | orderId | String? |  yes  | Merchant order id |
+ | callbackUrl | String? |  yes  | Callback url for aggregator |
+ | statusCode | Int |  no  | HTTP status code |
+ | data | [CreateOrderUserData](#CreateOrderUserData)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BalanceDetails](#BalanceDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | formattedValue | String |  no  | Formated Amount with currency symbol |
+ | value | Double |  no  | Payment amount |
+ | currency | String |  no  | Currency Code |
+
+---
+
+
+ 
+ 
+ #### [CreditSummary](#CreditSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | balance | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
+ | statusMessage | String |  no  | message to customer |
+ | merchantCustomerRefId | String |  no  | Unique aggregator customer id |
+ | status | String |  no  | Customer Credit status |
+
+---
+
+
+ 
+ 
+ #### [CustomerCreditSummaryResponse](#CustomerCreditSummaryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Payment confirmation updated or not. |
+ | data | [CreditSummary](#CreditSummary)? |  yes  | Credit summary of user. |
+
+---
+
+
+ 
+ 
+ #### [RedirectURL](#RedirectURL)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | signupUrl | String |  no  | URL to which the user may redirect. |
+ | status | Bool |  no  | Aggregator's Operation is successful or not. |
+
+---
+
+
+ 
+ 
+ #### [RedirectToAggregatorResponse](#RedirectToAggregatorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Status updated or not. |
+ | data | [RedirectURL](#RedirectURL) |  no  | Redirect URL. |
+
+---
+
+
+ 
+ 
+ #### [CreditDetail](#CreditDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | signupUrl | String |  no  | URL to which the user may redirect. |
+ | isRegistered | Bool |  no  | User is registered with aggregator or not. |
+ | status | Bool |  no  | Operation is successful or not. |
+
+---
+
+
+ 
+ 
+ #### [CheckCreditResponse](#CheckCreditResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Operation is successful or not. |
+ | data | [CreditDetail](#CreditDetail) |  no  | Credit summary of user. |
+
+---
+
+
+ 
+ 
+ #### [KYCAddress](#KYCAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | addressline1 | String |  no  | Address Line 1 |
+ | city | String |  no  | City |
+ | addressline2 | String? |  yes  | Address Line 2 |
+ | landMark | String? |  yes  | Land Mark |
+ | pincode | String |  no  | Pincode |
+ | state | String |  no  | State |
+ | ownershipType | String? |  yes  | Address Owner Type |
+
+---
+
+
+ 
+ 
+ #### [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | phone | String |  no  | Email |
+ | firstName | String |  no  | First Name |
+ | lastName | String? |  yes  | Last Name |
+ | middleName | String? |  yes  | middle Name |
+ | voterId | String? |  yes  | Voter ID Number |
+ | mothersName | String? |  yes  | Mother's Name |
+ | passport | String? |  yes  | Passport |
+ | gender | String? |  yes  | Gender |
+ | pan | String? |  yes  | Pan Number |
+ | fathersName | String? |  yes  | Father's Name |
+ | dob | String |  no  | DOB |
+ | mobileVerified | Bool |  no  | Is Mobile Verified or not |
+ | emailVerified | Bool |  no  | Is Email Verified or not |
+ | addressAsPerId | [KYCAddress](#KYCAddress) |  no  | Address details |
+ | drivingLicense | String? |  yes  | Driver License |
+ | email | String? |  yes  | Email |
+
+---
+
+
+ 
+ 
+ #### [DeviceDetails](#DeviceDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deviceType | String? |  yes  | Device Type(E.g. Mobile) |
+ | identifierType | String? |  yes  | Static value = ip |
+ | os | String? |  yes  | OS Name |
+ | identificationNumber | String? |  yes  | IP |
+ | deviceModel | String? |  yes  | Device Model |
+ | deviceMake | String? |  yes  | Device maker |
+ | osVersion | String? |  yes  | OS Version |
+
+---
+
+
+ 
+ 
+ #### [MarketplaceInfo](#MarketplaceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  | Name of store |
+ | dateOfJoining | String? |  yes  | Date of joining |
+ | membershipId | String |  no  | merchant id |
+
+---
+
+
+ 
+ 
+ #### [BusinessDetails](#BusinessDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fda | String? |  yes  | Driver License |
+ | gstin | String? |  yes  | GSTIN Number |
+ | businessOwnershipType | String? |  yes  | business Ownershipp type(e.g Rented) |
+ | name | String? |  yes  | Business Name |
+ | entityType | String? |  yes  | Busineess Entity Type |
+ | pan | String? |  yes  | Pan Number |
+ | shopAndEstablishment | [String: Any]? |  yes  | Shop Establishment |
+ | vintage | String? |  yes  | Vintage |
+ | businessType | String? |  yes  | Business Type |
+ | fssai | String? |  yes  | FDA License Number |
+ | address | [KYCAddress](#KYCAddress)? |  yes  | Address details |
+
+---
+
+
+ 
+ 
+ #### [CustomerOnboardingRequest](#CustomerOnboardingRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | String |  no  | Aggregator Name |
+ | source | String? |  yes  | callbackURL |
+ | mcc | String? |  yes  | Mcc |
+ | personalInfo | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)? |  yes  | Credit summary of user. |
+ | device | [DeviceDetails](#DeviceDetails)? |  yes  | Device Details. |
+ | marketplaceInfo | [MarketplaceInfo](#MarketplaceInfo)? |  yes  | Market Place info. |
+ | businessInfo | [BusinessDetails](#BusinessDetails)? |  yes  | Business summary. |
+
+---
+
+
+ 
+ 
+ #### [OnboardSummary](#OnboardSummary)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | redirectUrl | String |  no  | URL to which the user may redirect. |
+ | status | Bool |  no  | Operation Status |
+ | session | [String: Any] |  no  | User Session |
+
+---
+
+
+ 
+ 
+ #### [CustomerOnboardingResponse](#CustomerOnboardingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  | Status updated or not. |
+ | data | [OnboardSummary](#OnboardSummary) |  no  | Redirect URL. |
 
 ---
 

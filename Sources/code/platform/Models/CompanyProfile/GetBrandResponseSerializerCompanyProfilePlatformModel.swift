@@ -9,120 +9,120 @@ public extension PlatformClient.CompanyProfile {
      */
 
     class GetBrandResponseSerializer: Codable {
-        public var createdOn: String?
+        public var modifiedOn: String?
 
         public var warnings: [String: Any]?
 
-        public var verifiedOn: String?
+        public var slugKey: String?
 
-        public var banner: BrandBannerSerializer?
+        public var description: String?
 
         public var mode: String?
 
-        public var uid: Int?
+        public var rejectReason: String?
 
-        public var customJson: [String: Any]?
+        public var banner: BrandBannerSerializer?
+
+        public var synonyms: [String]?
+
+        public var modifiedBy: UserSerializer?
 
         public var logo: String?
 
-        public var localeLanguage: [String: Any]?
+        public var uid: Int?
+
+        public var verifiedOn: String?
+
+        public var verifiedBy: UserSerializer?
+
+        public var createdOn: String?
 
         public var createdBy: UserSerializer?
 
         public var stage: String?
 
-        public var slugKey: String?
+        public var localeLanguage: [String: Any]?
 
-        public var synonyms: [String]?
-
-        public var description: String?
-
-        public var modifiedOn: String?
-
-        public var modifiedBy: UserSerializer?
-
-        public var rejectReason: String?
-
-        public var verifiedBy: UserSerializer?
+        public var customJson: [String: Any]?
 
         public var name: String
 
         public enum CodingKeys: String, CodingKey {
-            case createdOn = "created_on"
+            case modifiedOn = "modified_on"
 
             case warnings
 
-            case verifiedOn = "verified_on"
+            case slugKey = "slug_key"
 
-            case banner
+            case description
 
             case mode
 
-            case uid
+            case rejectReason = "reject_reason"
 
-            case customJson = "_custom_json"
+            case banner
+
+            case synonyms
+
+            case modifiedBy = "modified_by"
 
             case logo
 
-            case localeLanguage = "_locale_language"
+            case uid
+
+            case verifiedOn = "verified_on"
+
+            case verifiedBy = "verified_by"
+
+            case createdOn = "created_on"
 
             case createdBy = "created_by"
 
             case stage
 
-            case slugKey = "slug_key"
+            case localeLanguage = "_locale_language"
 
-            case synonyms
-
-            case description
-
-            case modifiedOn = "modified_on"
-
-            case modifiedBy = "modified_by"
-
-            case rejectReason = "reject_reason"
-
-            case verifiedBy = "verified_by"
+            case customJson = "_custom_json"
 
             case name
         }
 
         public init(banner: BrandBannerSerializer? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, description: String? = nil, logo: String? = nil, mode: String? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String, rejectReason: String? = nil, slugKey: String? = nil, stage: String? = nil, synonyms: [String]? = nil, uid: Int? = nil, verifiedBy: UserSerializer? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil, localeLanguage: [String: Any]? = nil) {
-            self.createdOn = createdOn
+            self.modifiedOn = modifiedOn
 
             self.warnings = warnings
 
-            self.verifiedOn = verifiedOn
+            self.slugKey = slugKey
 
-            self.banner = banner
+            self.description = description
 
             self.mode = mode
 
-            self.uid = uid
+            self.rejectReason = rejectReason
 
-            self.customJson = customJson
+            self.banner = banner
+
+            self.synonyms = synonyms
+
+            self.modifiedBy = modifiedBy
 
             self.logo = logo
 
-            self.localeLanguage = localeLanguage
+            self.uid = uid
+
+            self.verifiedOn = verifiedOn
+
+            self.verifiedBy = verifiedBy
+
+            self.createdOn = createdOn
 
             self.createdBy = createdBy
 
             self.stage = stage
 
-            self.slugKey = slugKey
+            self.localeLanguage = localeLanguage
 
-            self.synonyms = synonyms
-
-            self.description = description
-
-            self.modifiedOn = modifiedOn
-
-            self.modifiedBy = modifiedBy
-
-            self.rejectReason = rejectReason
-
-            self.verifiedBy = verifiedBy
+            self.customJson = customJson
 
             self.name = name
         }
@@ -131,7 +131,7 @@ public extension PlatformClient.CompanyProfile {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                createdOn = try container.decode(String.self, forKey: .createdOn)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +147,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
+                slugKey = try container.decode(String.self, forKey: .slugKey)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -155,7 +155,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                banner = try container.decode(BrandBannerSerializer.self, forKey: .banner)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -171,7 +171,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                rejectReason = try container.decode(String.self, forKey: .rejectReason)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -179,7 +179,23 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
+                banner = try container.decode(BrandBannerSerializer.self, forKey: .banner)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                synonyms = try container.decode([String].self, forKey: .synonyms)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,7 +211,31 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                localeLanguage = try container.decode([String: Any].self, forKey: .localeLanguage)
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                verifiedOn = try container.decode(String.self, forKey: .verifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                verifiedBy = try container.decode(UserSerializer.self, forKey: .verifiedBy)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                createdOn = try container.decode(String.self, forKey: .createdOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -219,7 +259,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                slugKey = try container.decode(String.self, forKey: .slugKey)
+                localeLanguage = try container.decode([String: Any].self, forKey: .localeLanguage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -227,47 +267,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                synonyms = try container.decode([String].self, forKey: .synonyms)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                description = try container.decode(String.self, forKey: .description)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedBy = try container.decode(UserSerializer.self, forKey: .modifiedBy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                rejectReason = try container.decode(String.self, forKey: .rejectReason)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                verifiedBy = try container.decode(UserSerializer.self, forKey: .verifiedBy)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -280,41 +280,41 @@ public extension PlatformClient.CompanyProfile {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(warnings, forKey: .warnings)
 
-            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
 
-            try? container.encodeIfPresent(banner, forKey: .banner)
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encodeIfPresent(banner, forKey: .banner)
+
+            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
+
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
-            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(verifiedOn, forKey: .verifiedOn)
+
+            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
             try? container.encodeIfPresent(stage, forKey: .stage)
 
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+            try? container.encodeIfPresent(localeLanguage, forKey: .localeLanguage)
 
-            try? container.encodeIfPresent(synonyms, forKey: .synonyms)
-
-            try? container.encodeIfPresent(description, forKey: .description)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
-
-            try? container.encodeIfPresent(rejectReason, forKey: .rejectReason)
-
-            try? container.encodeIfPresent(verifiedBy, forKey: .verifiedBy)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

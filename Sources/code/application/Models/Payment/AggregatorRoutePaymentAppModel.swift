@@ -11,6 +11,8 @@ public extension ApplicationClient.Payment {
 
         public var data: [String: Any]?
 
+        public var paymentFlowData: String?
+
         public var apiLink: String?
 
         public enum CodingKeys: String, CodingKey {
@@ -18,13 +20,17 @@ public extension ApplicationClient.Payment {
 
             case data
 
+            case paymentFlowData = "payment_flow_data"
+
             case apiLink = "api_link"
         }
 
-        public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil) {
+        public init(apiLink: String? = nil, data: [String: Any]? = nil, paymentFlow: String? = nil, paymentFlowData: String? = nil) {
             self.paymentFlow = paymentFlow
 
             self.data = data
+
+            self.paymentFlowData = paymentFlowData
 
             self.apiLink = apiLink
         }
@@ -49,6 +55,14 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
+                paymentFlowData = try container.decode(String.self, forKey: .paymentFlowData)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 apiLink = try container.decode(String.self, forKey: .apiLink)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -63,6 +77,8 @@ public extension ApplicationClient.Payment {
             try? container.encode(paymentFlow, forKey: .paymentFlow)
 
             try? container.encode(data, forKey: .data)
+
+            try? container.encode(paymentFlowData, forKey: .paymentFlowData)
 
             try? container.encode(apiLink, forKey: .apiLink)
         }

@@ -11,18 +11,18 @@ public extension PlatformClient.CompanyProfile {
     class ErrorResponse: Codable {
         public var status: Int?
 
-        public var message: String?
-
         public var meta: [String: Any]?
+
+        public var message: String?
 
         public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case message
-
             case meta
+
+            case message
 
             case code
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.CompanyProfile {
         public init(code: String? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             self.status = status
 
-            self.message = message
-
             self.meta = meta
+
+            self.message = message
 
             self.code = code
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(code, forKey: .code)
         }

@@ -9,153 +9,153 @@ public extension PlatformClient.Order {
      */
 
     class OrderBags: Codable {
-        public var lineNumber: Int?
+        public var canCancel: Bool?
 
-        public var identifier: String?
+        public var article: OrderBagArticle?
 
-        public var groupId: String?
+        public var deliveryAddress: PlatformDeliveryAddress?
+
+        public var prices: Prices?
 
         public var financialBreakup: FinancialBreakup?
-
-        public var meta: BagMeta?
-
-        public var currentStatus: CurrentStatus?
 
         public var gstDetails: BagGST?
 
         public var bagConfigs: BagConfigs?
 
-        public var canReturn: Bool?
-
-        public var parentPromoBags: [String: Any]?
-
-        public var quantity: Int?
-
-        public var canCancel: Bool?
-
         public var entityType: String?
 
-        public var brand: OrderBrandName?
-
-        public var deliveryAddress: PlatformDeliveryAddress?
-
-        public var article: OrderBagArticle?
+        public var identifier: String?
 
         public var bagId: Int
 
         public var item: PlatformItem?
 
-        public var sellerIdentifier: String?
+        public var currentStatus: CurrentStatus?
 
-        public var prices: Prices?
-
-        public var displayName: String?
-
-        public var appliedPromos: [AppliedPromos]?
+        public var meta: BagMeta?
 
         public var affiliateBagDetails: AffiliateBagsDetails?
 
+        public var appliedPromos: [AppliedPromos]?
+
+        public var groupId: String?
+
+        public var lineNumber: Int?
+
+        public var canReturn: Bool?
+
+        public var parentPromoBags: [String: Any]?
+
+        public var sellerIdentifier: String?
+
+        public var brand: OrderBrandName?
+
+        public var quantity: Int?
+
+        public var displayName: String?
+
         public enum CodingKeys: String, CodingKey {
-            case lineNumber = "line_number"
+            case canCancel = "can_cancel"
 
-            case identifier
+            case article
 
-            case groupId = "group_id"
+            case deliveryAddress = "delivery_address"
+
+            case prices
 
             case financialBreakup = "financial_breakup"
-
-            case meta
-
-            case currentStatus = "current_status"
 
             case gstDetails = "gst_details"
 
             case bagConfigs = "bag_configs"
 
-            case canReturn = "can_return"
-
-            case parentPromoBags = "parent_promo_bags"
-
-            case quantity
-
-            case canCancel = "can_cancel"
-
             case entityType = "entity_type"
 
-            case brand
-
-            case deliveryAddress = "delivery_address"
-
-            case article
+            case identifier
 
             case bagId = "bag_id"
 
             case item
 
-            case sellerIdentifier = "seller_identifier"
+            case currentStatus = "current_status"
 
-            case prices
+            case meta
 
-            case displayName = "display_name"
+            case affiliateBagDetails = "affiliate_bag_details"
 
             case appliedPromos = "applied_promos"
 
-            case affiliateBagDetails = "affiliate_bag_details"
+            case groupId = "group_id"
+
+            case lineNumber = "line_number"
+
+            case canReturn = "can_return"
+
+            case parentPromoBags = "parent_promo_bags"
+
+            case sellerIdentifier = "seller_identifier"
+
+            case brand
+
+            case quantity
+
+            case displayName = "display_name"
         }
 
         public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: BagGST? = nil, identifier: String? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: BagMeta? = nil, parentPromoBags: [String: Any]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
-            self.lineNumber = lineNumber
+            self.canCancel = canCancel
 
-            self.identifier = identifier
+            self.article = article
 
-            self.groupId = groupId
+            self.deliveryAddress = deliveryAddress
+
+            self.prices = prices
 
             self.financialBreakup = financialBreakup
-
-            self.meta = meta
-
-            self.currentStatus = currentStatus
 
             self.gstDetails = gstDetails
 
             self.bagConfigs = bagConfigs
 
-            self.canReturn = canReturn
-
-            self.parentPromoBags = parentPromoBags
-
-            self.quantity = quantity
-
-            self.canCancel = canCancel
-
             self.entityType = entityType
 
-            self.brand = brand
-
-            self.deliveryAddress = deliveryAddress
-
-            self.article = article
+            self.identifier = identifier
 
             self.bagId = bagId
 
             self.item = item
 
-            self.sellerIdentifier = sellerIdentifier
+            self.currentStatus = currentStatus
 
-            self.prices = prices
+            self.meta = meta
 
-            self.displayName = displayName
+            self.affiliateBagDetails = affiliateBagDetails
 
             self.appliedPromos = appliedPromos
 
-            self.affiliateBagDetails = affiliateBagDetails
+            self.groupId = groupId
+
+            self.lineNumber = lineNumber
+
+            self.canReturn = canReturn
+
+            self.parentPromoBags = parentPromoBags
+
+            self.sellerIdentifier = sellerIdentifier
+
+            self.brand = brand
+
+            self.quantity = quantity
+
+            self.displayName = displayName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+                canCancel = try container.decode(Bool.self, forKey: .canCancel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,7 +163,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                article = try container.decode(OrderBagArticle.self, forKey: .article)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -171,7 +171,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                groupId = try container.decode(String.self, forKey: .groupId)
+                deliveryAddress = try container.decode(PlatformDeliveryAddress.self, forKey: .deliveryAddress)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                prices = try container.decode(Prices.self, forKey: .prices)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,22 +188,6 @@ public extension PlatformClient.Order {
 
             do {
                 financialBreakup = try container.decode(FinancialBreakup.self, forKey: .financialBreakup)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode(BagMeta.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currentStatus = try container.decode(CurrentStatus.self, forKey: .currentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -219,38 +211,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                canReturn = try container.decode(Bool.self, forKey: .canReturn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                parentPromoBags = try container.decode([String: Any].self, forKey: .parentPromoBags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                canCancel = try container.decode(Bool.self, forKey: .canCancel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 entityType = try container.decode(String.self, forKey: .entityType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -259,23 +219,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                brand = try container.decode(OrderBrandName.self, forKey: .brand)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deliveryAddress = try container.decode(PlatformDeliveryAddress.self, forKey: .deliveryAddress)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                article = try container.decode(OrderBagArticle.self, forKey: .article)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -293,7 +237,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+                currentStatus = try container.decode(CurrentStatus.self, forKey: .currentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -301,7 +245,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                prices = try container.decode(Prices.self, forKey: .prices)
+                meta = try container.decode(BagMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -309,7 +253,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                affiliateBagDetails = try container.decode(AffiliateBagsDetails.self, forKey: .affiliateBagDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -325,7 +269,63 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                affiliateBagDetails = try container.decode(AffiliateBagsDetails.self, forKey: .affiliateBagDetails)
+                groupId = try container.decode(String.self, forKey: .groupId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                canReturn = try container.decode(Bool.self, forKey: .canReturn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                parentPromoBags = try container.decode([String: Any].self, forKey: .parentPromoBags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(OrderBrandName.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -336,51 +336,51 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(article, forKey: .article)
 
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
+
+            try? container.encodeIfPresent(prices, forKey: .prices)
 
             try? container.encodeIfPresent(financialBreakup, forKey: .financialBreakup)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
             try? container.encodeIfPresent(gstDetails, forKey: .gstDetails)
 
             try? container.encodeIfPresent(bagConfigs, forKey: .bagConfigs)
 
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
-
-            try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
-
             try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
-            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
-
-            try? container.encodeIfPresent(article, forKey: .article)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
             try? container.encodeIfPresent(item, forKey: .item)
 
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
-            try? container.encodeIfPresent(prices, forKey: .prices)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(affiliateBagDetails, forKey: .affiliateBagDetails)
 
             try? container.encodeIfPresent(appliedPromos, forKey: .appliedPromos)
 
-            try? container.encodeIfPresent(affiliateBagDetails, forKey: .affiliateBagDetails)
+            try? container.encodeIfPresent(groupId, forKey: .groupId)
+
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+
+            try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
+
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
     }
 }
@@ -392,153 +392,153 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderBags: Codable {
-        public var lineNumber: Int?
+        public var canCancel: Bool?
 
-        public var identifier: String?
+        public var article: OrderBagArticle?
 
-        public var groupId: String?
+        public var deliveryAddress: PlatformDeliveryAddress?
+
+        public var prices: Prices?
 
         public var financialBreakup: FinancialBreakup?
-
-        public var meta: BagMeta?
-
-        public var currentStatus: CurrentStatus?
 
         public var gstDetails: BagGST?
 
         public var bagConfigs: BagConfigs?
 
-        public var canReturn: Bool?
-
-        public var parentPromoBags: [String: Any]?
-
-        public var quantity: Int?
-
-        public var canCancel: Bool?
-
         public var entityType: String?
 
-        public var brand: OrderBrandName?
-
-        public var deliveryAddress: PlatformDeliveryAddress?
-
-        public var article: OrderBagArticle?
+        public var identifier: String?
 
         public var bagId: Int
 
         public var item: PlatformItem?
 
-        public var sellerIdentifier: String?
+        public var currentStatus: CurrentStatus?
 
-        public var prices: Prices?
-
-        public var displayName: String?
-
-        public var appliedPromos: [AppliedPromos]?
+        public var meta: BagMeta?
 
         public var affiliateBagDetails: AffiliateBagsDetails?
 
+        public var appliedPromos: [AppliedPromos]?
+
+        public var groupId: String?
+
+        public var lineNumber: Int?
+
+        public var canReturn: Bool?
+
+        public var parentPromoBags: [String: Any]?
+
+        public var sellerIdentifier: String?
+
+        public var brand: OrderBrandName?
+
+        public var quantity: Int?
+
+        public var displayName: String?
+
         public enum CodingKeys: String, CodingKey {
-            case lineNumber = "line_number"
+            case canCancel = "can_cancel"
 
-            case identifier
+            case article
 
-            case groupId = "group_id"
+            case deliveryAddress = "delivery_address"
+
+            case prices
 
             case financialBreakup = "financial_breakup"
-
-            case meta
-
-            case currentStatus = "current_status"
 
             case gstDetails = "gst_details"
 
             case bagConfigs = "bag_configs"
 
-            case canReturn = "can_return"
-
-            case parentPromoBags = "parent_promo_bags"
-
-            case quantity
-
-            case canCancel = "can_cancel"
-
             case entityType = "entity_type"
 
-            case brand
-
-            case deliveryAddress = "delivery_address"
-
-            case article
+            case identifier
 
             case bagId = "bag_id"
 
             case item
 
-            case sellerIdentifier = "seller_identifier"
+            case currentStatus = "current_status"
 
-            case prices
+            case meta
 
-            case displayName = "display_name"
+            case affiliateBagDetails = "affiliate_bag_details"
 
             case appliedPromos = "applied_promos"
 
-            case affiliateBagDetails = "affiliate_bag_details"
+            case groupId = "group_id"
+
+            case lineNumber = "line_number"
+
+            case canReturn = "can_return"
+
+            case parentPromoBags = "parent_promo_bags"
+
+            case sellerIdentifier = "seller_identifier"
+
+            case brand
+
+            case quantity
+
+            case displayName = "display_name"
         }
 
         public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: BagGST? = nil, identifier: String? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: BagMeta? = nil, parentPromoBags: [String: Any]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
-            self.lineNumber = lineNumber
+            self.canCancel = canCancel
 
-            self.identifier = identifier
+            self.article = article
 
-            self.groupId = groupId
+            self.deliveryAddress = deliveryAddress
+
+            self.prices = prices
 
             self.financialBreakup = financialBreakup
-
-            self.meta = meta
-
-            self.currentStatus = currentStatus
 
             self.gstDetails = gstDetails
 
             self.bagConfigs = bagConfigs
 
-            self.canReturn = canReturn
-
-            self.parentPromoBags = parentPromoBags
-
-            self.quantity = quantity
-
-            self.canCancel = canCancel
-
             self.entityType = entityType
 
-            self.brand = brand
-
-            self.deliveryAddress = deliveryAddress
-
-            self.article = article
+            self.identifier = identifier
 
             self.bagId = bagId
 
             self.item = item
 
-            self.sellerIdentifier = sellerIdentifier
+            self.currentStatus = currentStatus
 
-            self.prices = prices
+            self.meta = meta
 
-            self.displayName = displayName
+            self.affiliateBagDetails = affiliateBagDetails
 
             self.appliedPromos = appliedPromos
 
-            self.affiliateBagDetails = affiliateBagDetails
+            self.groupId = groupId
+
+            self.lineNumber = lineNumber
+
+            self.canReturn = canReturn
+
+            self.parentPromoBags = parentPromoBags
+
+            self.sellerIdentifier = sellerIdentifier
+
+            self.brand = brand
+
+            self.quantity = quantity
+
+            self.displayName = displayName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+                canCancel = try container.decode(Bool.self, forKey: .canCancel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -546,7 +546,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                identifier = try container.decode(String.self, forKey: .identifier)
+                article = try container.decode(OrderBagArticle.self, forKey: .article)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -554,7 +554,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                groupId = try container.decode(String.self, forKey: .groupId)
+                deliveryAddress = try container.decode(PlatformDeliveryAddress.self, forKey: .deliveryAddress)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                prices = try container.decode(Prices.self, forKey: .prices)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -563,22 +571,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 financialBreakup = try container.decode(FinancialBreakup.self, forKey: .financialBreakup)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode(BagMeta.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currentStatus = try container.decode(CurrentStatus.self, forKey: .currentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -602,38 +594,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                canReturn = try container.decode(Bool.self, forKey: .canReturn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                parentPromoBags = try container.decode([String: Any].self, forKey: .parentPromoBags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                canCancel = try container.decode(Bool.self, forKey: .canCancel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 entityType = try container.decode(String.self, forKey: .entityType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -642,23 +602,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                brand = try container.decode(OrderBrandName.self, forKey: .brand)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                deliveryAddress = try container.decode(PlatformDeliveryAddress.self, forKey: .deliveryAddress)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                article = try container.decode(OrderBagArticle.self, forKey: .article)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -676,7 +620,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+                currentStatus = try container.decode(CurrentStatus.self, forKey: .currentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -684,7 +628,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                prices = try container.decode(Prices.self, forKey: .prices)
+                meta = try container.decode(BagMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -692,7 +636,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                affiliateBagDetails = try container.decode(AffiliateBagsDetails.self, forKey: .affiliateBagDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -708,7 +652,63 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                affiliateBagDetails = try container.decode(AffiliateBagsDetails.self, forKey: .affiliateBagDetails)
+                groupId = try container.decode(String.self, forKey: .groupId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                canReturn = try container.decode(Bool.self, forKey: .canReturn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                parentPromoBags = try container.decode([String: Any].self, forKey: .parentPromoBags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(OrderBrandName.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -719,51 +719,51 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
+            try? container.encodeIfPresent(article, forKey: .article)
 
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
+
+            try? container.encodeIfPresent(prices, forKey: .prices)
 
             try? container.encodeIfPresent(financialBreakup, forKey: .financialBreakup)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
             try? container.encodeIfPresent(gstDetails, forKey: .gstDetails)
 
             try? container.encodeIfPresent(bagConfigs, forKey: .bagConfigs)
 
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
-
-            try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
-
             try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
-
-            try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
-
-            try? container.encodeIfPresent(article, forKey: .article)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(bagId, forKey: .bagId)
 
             try? container.encodeIfPresent(item, forKey: .item)
 
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
-            try? container.encodeIfPresent(prices, forKey: .prices)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(affiliateBagDetails, forKey: .affiliateBagDetails)
 
             try? container.encodeIfPresent(appliedPromos, forKey: .appliedPromos)
 
-            try? container.encodeIfPresent(affiliateBagDetails, forKey: .affiliateBagDetails)
+            try? container.encodeIfPresent(groupId, forKey: .groupId)
+
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+
+            try? container.encodeIfPresent(parentPromoBags, forKey: .parentPromoBags)
+
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
         }
     }
 }

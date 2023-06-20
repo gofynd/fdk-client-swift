@@ -11,30 +11,30 @@ public extension PlatformClient.Finance {
     class InvoiceListingResponse: Codable {
         public var page: Page?
 
-        public var items: [InvoiceListingResponseItems]?
-
         public var itemCount: Int?
 
         public var unpaidInvoiceData: UnpaidInvoiceDataItems?
 
+        public var items: [InvoiceListingResponseItems]?
+
         public enum CodingKeys: String, CodingKey {
             case page
-
-            case items
 
             case itemCount = "item_count"
 
             case unpaidInvoiceData = "unpaid_invoice_data"
+
+            case items
         }
 
         public init(items: [InvoiceListingResponseItems]? = nil, itemCount: Int? = nil, page: Page? = nil, unpaidInvoiceData: UnpaidInvoiceDataItems? = nil) {
             self.page = page
 
-            self.items = items
-
             self.itemCount = itemCount
 
             self.unpaidInvoiceData = unpaidInvoiceData
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,14 +42,6 @@ public extension PlatformClient.Finance {
 
             do {
                 page = try container.decode(Page.self, forKey: .page)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                items = try container.decode([InvoiceListingResponseItems].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,6 +63,14 @@ public extension PlatformClient.Finance {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                items = try container.decode([InvoiceListingResponseItems].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(itemCount, forKey: .itemCount)
 
             try? container.encodeIfPresent(unpaidInvoiceData, forKey: .unpaidInvoiceData)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
