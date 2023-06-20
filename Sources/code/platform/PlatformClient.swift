@@ -37,6 +37,8 @@ public class PlatformClient {
 
     public let serviceability: Serviceability
 
+    public let finance: Finance
+
     public init(config: PlatformConfig) {
         self.config = config
 
@@ -71,6 +73,8 @@ public class PlatformClient {
         auditTrail = AuditTrail(config: config)
 
         serviceability = Serviceability(config: config)
+
+        finance = Finance(config: config)
     }
 
     public func applicationClient(id: String) -> ApplicationClient {

@@ -13,22 +13,22 @@ public extension PlatformClient.Order {
 
         public var shipmentId: String
 
-        public var expiresIn: String
-
         public var success: Bool
 
         public var presignedType: String
+
+        public var expiresIn: String
 
         public enum CodingKeys: String, CodingKey {
             case presignedUrls = "presigned_urls"
 
             case shipmentId = "shipment_id"
 
-            case expiresIn = "expires_in"
-
             case success
 
             case presignedType = "presigned_type"
+
+            case expiresIn = "expires_in"
         }
 
         public init(expiresIn: String, presignedType: String, presignedUrls: [String: String]? = nil, shipmentId: String, success: Bool) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Order {
 
             self.shipmentId = shipmentId
 
-            self.expiresIn = expiresIn
-
             self.success = success
 
             self.presignedType = presignedType
+
+            self.expiresIn = expiresIn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,11 +56,11 @@ public extension PlatformClient.Order {
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
-            expiresIn = try container.decode(String.self, forKey: .expiresIn)
-
             success = try container.decode(Bool.self, forKey: .success)
 
             presignedType = try container.decode(String.self, forKey: .presignedType)
+
+            expiresIn = try container.decode(String.self, forKey: .expiresIn)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,11 +70,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
         }
     }
 }
@@ -90,22 +90,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var shipmentId: String
 
-        public var expiresIn: String
-
         public var success: Bool
 
         public var presignedType: String
+
+        public var expiresIn: String
 
         public enum CodingKeys: String, CodingKey {
             case presignedUrls = "presigned_urls"
 
             case shipmentId = "shipment_id"
 
-            case expiresIn = "expires_in"
-
             case success
 
             case presignedType = "presigned_type"
+
+            case expiresIn = "expires_in"
         }
 
         public init(expiresIn: String, presignedType: String, presignedUrls: [String: String]? = nil, shipmentId: String, success: Bool) {
@@ -113,11 +113,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.shipmentId = shipmentId
 
-            self.expiresIn = expiresIn
-
             self.success = success
 
             self.presignedType = presignedType
+
+            self.expiresIn = expiresIn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -133,11 +133,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
-            expiresIn = try container.decode(String.self, forKey: .expiresIn)
-
             success = try container.decode(Bool.self, forKey: .success)
 
             presignedType = try container.decode(String.self, forKey: .presignedType)
+
+            expiresIn = try container.decode(String.self, forKey: .expiresIn)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -147,11 +147,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(presignedType, forKey: .presignedType)
+
+            try? container.encodeIfPresent(expiresIn, forKey: .expiresIn)
         }
     }
 }

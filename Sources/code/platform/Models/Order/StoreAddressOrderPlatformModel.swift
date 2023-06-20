@@ -9,126 +9,136 @@ public extension PlatformClient.Order {
      */
 
     class StoreAddress: Codable {
+        public var area: String?
+
+        public var contactPerson: String
+
         public var address2: String?
 
         public var latitude: Double
 
-        public var area: String?
+        public var addressType: String
+
+        public var address1: String
+
+        public var phone: String
+
+        public var city: String
 
         public var landmark: String?
 
         public var pincode: Int
 
-        public var version: String?
-
-        public var countryCode: String
-
-        public var phone: String
-
-        public var createdAt: String
-
         public var longitude: Double
-
-        public var state: String
-
-        public var country: String
-
-        public var contactPerson: String
-
-        public var updatedAt: String
-
-        public var address1: String
-
-        public var addressCategory: String
-
-        public var city: String
 
         public var email: String?
 
-        public var addressType: String
+        public var country: String
+
+        public var createdAt: String
+
+        public var state: String
+
+        public var countryCode: String
+
+        public var updatedAt: String
+
+        public var addressCategory: String
+
+        public var version: String?
 
         public enum CodingKeys: String, CodingKey {
+            case area
+
+            case contactPerson = "contact_person"
+
             case address2
 
             case latitude
 
-            case area
+            case addressType = "address_type"
+
+            case address1
+
+            case phone
+
+            case city
 
             case landmark
 
             case pincode
 
-            case version
-
-            case countryCode = "country_code"
-
-            case phone
-
-            case createdAt = "created_at"
-
             case longitude
-
-            case state
-
-            case country
-
-            case contactPerson = "contact_person"
-
-            case updatedAt = "updated_at"
-
-            case address1
-
-            case addressCategory = "address_category"
-
-            case city
 
             case email
 
-            case addressType = "address_type"
+            case country
+
+            case createdAt = "created_at"
+
+            case state
+
+            case countryCode = "country_code"
+
+            case updatedAt = "updated_at"
+
+            case addressCategory = "address_category"
+
+            case version
         }
 
         public init(address1: String, address2: String? = nil, addressCategory: String, addressType: String, area: String? = nil, city: String, contactPerson: String, country: String, countryCode: String, createdAt: String, email: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, phone: String, pincode: Int, state: String, updatedAt: String, version: String? = nil) {
+            self.area = area
+
+            self.contactPerson = contactPerson
+
             self.address2 = address2
 
             self.latitude = latitude
 
-            self.area = area
+            self.addressType = addressType
+
+            self.address1 = address1
+
+            self.phone = phone
+
+            self.city = city
 
             self.landmark = landmark
 
             self.pincode = pincode
 
-            self.version = version
-
-            self.countryCode = countryCode
-
-            self.phone = phone
-
-            self.createdAt = createdAt
-
             self.longitude = longitude
-
-            self.state = state
-
-            self.country = country
-
-            self.contactPerson = contactPerson
-
-            self.updatedAt = updatedAt
-
-            self.address1 = address1
-
-            self.addressCategory = addressCategory
-
-            self.city = city
 
             self.email = email
 
-            self.addressType = addressType
+            self.country = country
+
+            self.createdAt = createdAt
+
+            self.state = state
+
+            self.countryCode = countryCode
+
+            self.updatedAt = updatedAt
+
+            self.addressCategory = addressCategory
+
+            self.version = version
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                area = try container.decode(String.self, forKey: .area)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
             do {
                 address2 = try container.decode(String.self, forKey: .address2)
@@ -140,13 +150,13 @@ public extension PlatformClient.Order {
 
             latitude = try container.decode(Double.self, forKey: .latitude)
 
-            do {
-                area = try container.decode(String.self, forKey: .area)
+            addressType = try container.decode(String.self, forKey: .addressType)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            address1 = try container.decode(String.self, forKey: .address1)
+
+            phone = try container.decode(String.self, forKey: .phone)
+
+            city = try container.decode(String.self, forKey: .city)
 
             do {
                 landmark = try container.decode(String.self, forKey: .landmark)
@@ -158,35 +168,7 @@ public extension PlatformClient.Order {
 
             pincode = try container.decode(Int.self, forKey: .pincode)
 
-            do {
-                version = try container.decode(String.self, forKey: .version)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            countryCode = try container.decode(String.self, forKey: .countryCode)
-
-            phone = try container.decode(String.self, forKey: .phone)
-
-            createdAt = try container.decode(String.self, forKey: .createdAt)
-
             longitude = try container.decode(Double.self, forKey: .longitude)
-
-            state = try container.decode(String.self, forKey: .state)
-
-            country = try container.decode(String.self, forKey: .country)
-
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
-
-            updatedAt = try container.decode(String.self, forKey: .updatedAt)
-
-            address1 = try container.decode(String.self, forKey: .address1)
-
-            addressCategory = try container.decode(String.self, forKey: .addressCategory)
-
-            city = try container.decode(String.self, forKey: .city)
 
             do {
                 email = try container.decode(String.self, forKey: .email)
@@ -196,49 +178,67 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            addressType = try container.decode(String.self, forKey: .addressType)
+            country = try container.decode(String.self, forKey: .country)
+
+            createdAt = try container.decode(String.self, forKey: .createdAt)
+
+            state = try container.decode(String.self, forKey: .state)
+
+            countryCode = try container.decode(String.self, forKey: .countryCode)
+
+            updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
+            addressCategory = try container.decode(String.self, forKey: .addressCategory)
+
+            do {
+                version = try container.decode(String.self, forKey: .version)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(area, forKey: .area)
+
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+
             try? container.encodeIfPresent(address2, forKey: .address2)
 
             try? container.encodeIfPresent(latitude, forKey: .latitude)
 
-            try? container.encodeIfPresent(area, forKey: .area)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
+
+            try? container.encodeIfPresent(address1, forKey: .address1)
+
+            try? container.encode(phone, forKey: .phone)
+
+            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(landmark, forKey: .landmark)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(version, forKey: .version)
-
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-
-            try? container.encode(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
             try? container.encodeIfPresent(longitude, forKey: .longitude)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
-
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-
-            try? container.encodeIfPresent(address1, forKey: .address1)
-
-            try? container.encodeIfPresent(addressCategory, forKey: .addressCategory)
-
-            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(addressCategory, forKey: .addressCategory)
+
+            try? container.encodeIfPresent(version, forKey: .version)
         }
     }
 }
@@ -250,126 +250,136 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class StoreAddress: Codable {
+        public var area: String?
+
+        public var contactPerson: String
+
         public var address2: String?
 
         public var latitude: Double
 
-        public var area: String?
+        public var addressType: String
+
+        public var address1: String
+
+        public var phone: String
+
+        public var city: String
 
         public var landmark: String?
 
         public var pincode: Int
 
-        public var version: String?
-
-        public var countryCode: String
-
-        public var phone: String
-
-        public var createdAt: String
-
         public var longitude: Double
-
-        public var state: String
-
-        public var country: String
-
-        public var contactPerson: String
-
-        public var updatedAt: String
-
-        public var address1: String
-
-        public var addressCategory: String
-
-        public var city: String
 
         public var email: String?
 
-        public var addressType: String
+        public var country: String
+
+        public var createdAt: String
+
+        public var state: String
+
+        public var countryCode: String
+
+        public var updatedAt: String
+
+        public var addressCategory: String
+
+        public var version: String?
 
         public enum CodingKeys: String, CodingKey {
+            case area
+
+            case contactPerson = "contact_person"
+
             case address2
 
             case latitude
 
-            case area
+            case addressType = "address_type"
+
+            case address1
+
+            case phone
+
+            case city
 
             case landmark
 
             case pincode
 
-            case version
-
-            case countryCode = "country_code"
-
-            case phone
-
-            case createdAt = "created_at"
-
             case longitude
-
-            case state
-
-            case country
-
-            case contactPerson = "contact_person"
-
-            case updatedAt = "updated_at"
-
-            case address1
-
-            case addressCategory = "address_category"
-
-            case city
 
             case email
 
-            case addressType = "address_type"
+            case country
+
+            case createdAt = "created_at"
+
+            case state
+
+            case countryCode = "country_code"
+
+            case updatedAt = "updated_at"
+
+            case addressCategory = "address_category"
+
+            case version
         }
 
         public init(address1: String, address2: String? = nil, addressCategory: String, addressType: String, area: String? = nil, city: String, contactPerson: String, country: String, countryCode: String, createdAt: String, email: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, phone: String, pincode: Int, state: String, updatedAt: String, version: String? = nil) {
+            self.area = area
+
+            self.contactPerson = contactPerson
+
             self.address2 = address2
 
             self.latitude = latitude
 
-            self.area = area
+            self.addressType = addressType
+
+            self.address1 = address1
+
+            self.phone = phone
+
+            self.city = city
 
             self.landmark = landmark
 
             self.pincode = pincode
 
-            self.version = version
-
-            self.countryCode = countryCode
-
-            self.phone = phone
-
-            self.createdAt = createdAt
-
             self.longitude = longitude
-
-            self.state = state
-
-            self.country = country
-
-            self.contactPerson = contactPerson
-
-            self.updatedAt = updatedAt
-
-            self.address1 = address1
-
-            self.addressCategory = addressCategory
-
-            self.city = city
 
             self.email = email
 
-            self.addressType = addressType
+            self.country = country
+
+            self.createdAt = createdAt
+
+            self.state = state
+
+            self.countryCode = countryCode
+
+            self.updatedAt = updatedAt
+
+            self.addressCategory = addressCategory
+
+            self.version = version
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                area = try container.decode(String.self, forKey: .area)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
 
             do {
                 address2 = try container.decode(String.self, forKey: .address2)
@@ -381,13 +391,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             latitude = try container.decode(Double.self, forKey: .latitude)
 
-            do {
-                area = try container.decode(String.self, forKey: .area)
+            addressType = try container.decode(String.self, forKey: .addressType)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            address1 = try container.decode(String.self, forKey: .address1)
+
+            phone = try container.decode(String.self, forKey: .phone)
+
+            city = try container.decode(String.self, forKey: .city)
 
             do {
                 landmark = try container.decode(String.self, forKey: .landmark)
@@ -399,35 +409,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             pincode = try container.decode(Int.self, forKey: .pincode)
 
-            do {
-                version = try container.decode(String.self, forKey: .version)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            countryCode = try container.decode(String.self, forKey: .countryCode)
-
-            phone = try container.decode(String.self, forKey: .phone)
-
-            createdAt = try container.decode(String.self, forKey: .createdAt)
-
             longitude = try container.decode(Double.self, forKey: .longitude)
-
-            state = try container.decode(String.self, forKey: .state)
-
-            country = try container.decode(String.self, forKey: .country)
-
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
-
-            updatedAt = try container.decode(String.self, forKey: .updatedAt)
-
-            address1 = try container.decode(String.self, forKey: .address1)
-
-            addressCategory = try container.decode(String.self, forKey: .addressCategory)
-
-            city = try container.decode(String.self, forKey: .city)
 
             do {
                 email = try container.decode(String.self, forKey: .email)
@@ -437,49 +419,67 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            addressType = try container.decode(String.self, forKey: .addressType)
+            country = try container.decode(String.self, forKey: .country)
+
+            createdAt = try container.decode(String.self, forKey: .createdAt)
+
+            state = try container.decode(String.self, forKey: .state)
+
+            countryCode = try container.decode(String.self, forKey: .countryCode)
+
+            updatedAt = try container.decode(String.self, forKey: .updatedAt)
+
+            addressCategory = try container.decode(String.self, forKey: .addressCategory)
+
+            do {
+                version = try container.decode(String.self, forKey: .version)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(area, forKey: .area)
+
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+
             try? container.encodeIfPresent(address2, forKey: .address2)
 
             try? container.encodeIfPresent(latitude, forKey: .latitude)
 
-            try? container.encodeIfPresent(area, forKey: .area)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
+
+            try? container.encodeIfPresent(address1, forKey: .address1)
+
+            try? container.encode(phone, forKey: .phone)
+
+            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(landmark, forKey: .landmark)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(version, forKey: .version)
-
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-
-            try? container.encode(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
             try? container.encodeIfPresent(longitude, forKey: .longitude)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
-
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-
-            try? container.encodeIfPresent(address1, forKey: .address1)
-
-            try? container.encodeIfPresent(addressCategory, forKey: .addressCategory)
-
-            try? container.encodeIfPresent(city, forKey: .city)
 
             try? container.encodeIfPresent(email, forKey: .email)
 
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(addressCategory, forKey: .addressCategory)
+
+            try? container.encodeIfPresent(version, forKey: .version)
         }
     }
 }
