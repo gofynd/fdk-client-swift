@@ -11,11 +11,11 @@ public extension ApplicationClient.Catalog {
 
         public var col2: ColumnHeader?
 
+        public var col6: ColumnHeader?
+
         public var col3: ColumnHeader?
 
         public var col4: ColumnHeader?
-
-        public var col6: ColumnHeader?
 
         public var col1: ColumnHeader?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.Catalog {
 
             case col2 = "col_2"
 
+            case col6 = "col_6"
+
             case col3 = "col_3"
 
             case col4 = "col_4"
-
-            case col6 = "col_6"
 
             case col1 = "col_1"
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.Catalog {
 
             self.col2 = col2
 
+            self.col6 = col6
+
             self.col3 = col3
 
             self.col4 = col4
-
-            self.col6 = col6
 
             self.col1 = col1
         }
@@ -67,6 +67,14 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
+                col6 = try container.decode(ColumnHeader.self, forKey: .col6)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 col3 = try container.decode(ColumnHeader.self, forKey: .col3)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,14 +84,6 @@ public extension ApplicationClient.Catalog {
 
             do {
                 col4 = try container.decode(ColumnHeader.self, forKey: .col4)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                col6 = try container.decode(ColumnHeader.self, forKey: .col6)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(col2, forKey: .col2)
 
+            try? container.encodeIfPresent(col6, forKey: .col6)
+
             try? container.encodeIfPresent(col3, forKey: .col3)
 
             try? container.encodeIfPresent(col4, forKey: .col4)
-
-            try? container.encodeIfPresent(col6, forKey: .col6)
 
             try? container.encodeIfPresent(col1, forKey: .col1)
         }

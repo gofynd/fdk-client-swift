@@ -4,38 +4,38 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: PlatformBreakupValues
+         Model: ShipmentTags1
          Used By: Order
      */
 
-    class PlatformBreakupValues: Codable {
-        public var display: String?
+    class ShipmentTags1: Codable {
+        public var entityType: String?
 
-        public var value: String?
+        public var displayText: String?
 
-        public var name: String?
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
-            case display
+            case entityType = "entity_type"
 
-            case value
+            case displayText = "display_text"
 
-            case name
+            case slug
         }
 
-        public init(display: String? = nil, name: String? = nil, value: String? = nil) {
-            self.display = display
+        public init(displayText: String? = nil, entityType: String? = nil, slug: String? = nil) {
+            self.entityType = entityType
 
-            self.value = value
+            self.displayText = displayText
 
-            self.name = name
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                entityType = try container.decode(String.self, forKey: .entityType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                displayText = try container.decode(String.self, forKey: .displayText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,49 +62,49 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: PlatformBreakupValues
+         Model: ShipmentTags1
          Used By: Order
      */
 
-    class PlatformBreakupValues: Codable {
-        public var display: String?
+    class ShipmentTags1: Codable {
+        public var entityType: String?
 
-        public var value: String?
+        public var displayText: String?
 
-        public var name: String?
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
-            case display
+            case entityType = "entity_type"
 
-            case value
+            case displayText = "display_text"
 
-            case name
+            case slug
         }
 
-        public init(display: String? = nil, name: String? = nil, value: String? = nil) {
-            self.display = display
+        public init(displayText: String? = nil, entityType: String? = nil, slug: String? = nil) {
+            self.entityType = entityType
 
-            self.value = value
+            self.displayText = displayText
 
-            self.name = name
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                entityType = try container.decode(String.self, forKey: .entityType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                displayText = try container.decode(String.self, forKey: .displayText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

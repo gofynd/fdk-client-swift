@@ -9,24 +9,26 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentHistoryResponse: Codable {
-        public var success: Bool?
-
         public var activityHistory: [HistoryDict]
 
-        public enum CodingKeys: String, CodingKey {
-            case success
+        public var success: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case activityHistory = "activity_history"
+
+            case success
         }
 
         public init(activityHistory: [HistoryDict], success: Bool? = nil) {
-            self.success = success
-
             self.activityHistory = activityHistory
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            activityHistory = try container.decode([HistoryDict].self, forKey: .activityHistory)
 
             do {
                 success = try container.decode(Bool.self, forKey: .success)
@@ -35,16 +37,14 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            activityHistory = try container.decode([HistoryDict].self, forKey: .activityHistory)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(activityHistory, forKey: .activityHistory)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -56,24 +56,26 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentHistoryResponse: Codable {
-        public var success: Bool?
-
         public var activityHistory: [HistoryDict]
 
-        public enum CodingKeys: String, CodingKey {
-            case success
+        public var success: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case activityHistory = "activity_history"
+
+            case success
         }
 
         public init(activityHistory: [HistoryDict], success: Bool? = nil) {
-            self.success = success
-
             self.activityHistory = activityHistory
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            activityHistory = try container.decode([HistoryDict].self, forKey: .activityHistory)
 
             do {
                 success = try container.decode(Bool.self, forKey: .success)
@@ -82,16 +84,14 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            activityHistory = try container.decode([HistoryDict].self, forKey: .activityHistory)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(activityHistory, forKey: .activityHistory)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
