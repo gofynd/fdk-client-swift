@@ -11,32 +11,30 @@ public extension PlatformClient.Catalog {
     class CollectionItem: Codable {
         public var action: String
 
-        public var itemId: Int
-
         public var priority: Int?
+
+        public var itemId: Int
 
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case itemId = "item_id"
-
             case priority
+
+            case itemId = "item_id"
         }
 
         public init(action: String, itemId: Int, priority: Int? = nil) {
             self.action = action
 
-            self.itemId = itemId
-
             self.priority = priority
+
+            self.itemId = itemId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             action = try container.decode(String.self, forKey: .action)
-
-            itemId = try container.decode(Int.self, forKey: .itemId)
 
             do {
                 priority = try container.decode(Int.self, forKey: .priority)
@@ -45,6 +43,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            itemId = try container.decode(Int.self, forKey: .itemId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
         }
     }
 }
@@ -68,32 +68,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionItem: Codable {
         public var action: String
 
-        public var itemId: Int
-
         public var priority: Int?
+
+        public var itemId: Int
 
         public enum CodingKeys: String, CodingKey {
             case action
 
-            case itemId = "item_id"
-
             case priority
+
+            case itemId = "item_id"
         }
 
         public init(action: String, itemId: Int, priority: Int? = nil) {
             self.action = action
 
-            self.itemId = itemId
-
             self.priority = priority
+
+            self.itemId = itemId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             action = try container.decode(String.self, forKey: .action)
-
-            itemId = try container.decode(Int.self, forKey: .itemId)
 
             do {
                 priority = try container.decode(Int.self, forKey: .priority)
@@ -102,6 +100,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            itemId = try container.decode(Int.self, forKey: .itemId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(action, forKey: .action)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
         }
     }
 }

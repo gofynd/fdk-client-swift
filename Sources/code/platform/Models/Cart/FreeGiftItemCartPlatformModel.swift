@@ -9,26 +9,26 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class FreeGiftItem: Codable {
-        public var itemImagesUrl: [String]?
+        public var itemSlug: String?
 
-        public var itemId: Int?
+        public var itemImagesUrl: [String]?
 
         public var itemName: String?
 
-        public var itemSlug: String?
+        public var itemId: Int?
 
         public var itemBrandName: String?
 
         public var itemPriceDetails: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case itemImagesUrl = "item_images_url"
+            case itemSlug = "item_slug"
 
-            case itemId = "item_id"
+            case itemImagesUrl = "item_images_url"
 
             case itemName = "item_name"
 
-            case itemSlug = "item_slug"
+            case itemId = "item_id"
 
             case itemBrandName = "item_brand_name"
 
@@ -36,13 +36,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(itemBrandName: String? = nil, itemId: Int? = nil, itemImagesUrl: [String]? = nil, itemName: String? = nil, itemPriceDetails: [String: Any]? = nil, itemSlug: String? = nil) {
-            self.itemImagesUrl = itemImagesUrl
+            self.itemSlug = itemSlug
 
-            self.itemId = itemId
+            self.itemImagesUrl = itemImagesUrl
 
             self.itemName = itemName
 
-            self.itemSlug = itemSlug
+            self.itemId = itemId
 
             self.itemBrandName = itemBrandName
 
@@ -53,7 +53,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
+                itemSlug = try container.decode(String.self, forKey: .itemSlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                itemId = try container.decode(Int.self, forKey: .itemId)
+                itemImagesUrl = try container.decode([String].self, forKey: .itemImagesUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                itemSlug = try container.decode(String.self, forKey: .itemSlug)
+                itemId = try container.decode(Int.self, forKey: .itemId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,13 +104,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
+            try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
+            try? container.encodeIfPresent(itemImagesUrl, forKey: .itemImagesUrl)
 
             try? container.encodeIfPresent(itemName, forKey: .itemName)
 
-            try? container.encodeIfPresent(itemSlug, forKey: .itemSlug)
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
 
             try? container.encodeIfPresent(itemBrandName, forKey: .itemBrandName)
 

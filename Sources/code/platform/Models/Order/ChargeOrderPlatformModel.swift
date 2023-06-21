@@ -9,6 +9,8 @@ public extension PlatformClient.Order {
      */
 
     class Charge: Codable {
+        public var type: String
+
         public var code: String?
 
         public var tax: Tax?
@@ -17,9 +19,9 @@ public extension PlatformClient.Order {
 
         public var name: String
 
-        public var type: String
-
         public enum CodingKeys: String, CodingKey {
+            case type
+
             case code
 
             case tax
@@ -27,11 +29,11 @@ public extension PlatformClient.Order {
             case amount
 
             case name
-
-            case type
         }
 
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
+            self.type = type
+
             self.code = code
 
             self.tax = tax
@@ -39,12 +41,12 @@ public extension PlatformClient.Order {
             self.amount = amount
 
             self.name = name
-
-            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 code = try container.decode(String.self, forKey: .code)
@@ -65,12 +67,12 @@ public extension PlatformClient.Order {
             amount = try container.decode([String: Any].self, forKey: .amount)
 
             name = try container.decode(String.self, forKey: .name)
-
-            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
@@ -79,8 +81,6 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -92,6 +92,8 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Charge: Codable {
+        public var type: String
+
         public var code: String?
 
         public var tax: Tax?
@@ -100,9 +102,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var name: String
 
-        public var type: String
-
         public enum CodingKeys: String, CodingKey {
+            case type
+
             case code
 
             case tax
@@ -110,11 +112,11 @@ public extension PlatformClient.ApplicationClient.Order {
             case amount
 
             case name
-
-            case type
         }
 
         public init(amount: [String: Any], code: String? = nil, name: String, tax: Tax? = nil, type: String) {
+            self.type = type
+
             self.code = code
 
             self.tax = tax
@@ -122,12 +124,12 @@ public extension PlatformClient.ApplicationClient.Order {
             self.amount = amount
 
             self.name = name
-
-            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 code = try container.decode(String.self, forKey: .code)
@@ -148,12 +150,12 @@ public extension PlatformClient.ApplicationClient.Order {
             amount = try container.decode([String: Any].self, forKey: .amount)
 
             name = try container.decode(String.self, forKey: .name)
-
-            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
@@ -162,8 +164,6 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

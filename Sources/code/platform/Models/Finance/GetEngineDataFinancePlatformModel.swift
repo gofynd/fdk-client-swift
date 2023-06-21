@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class GetEngineData: Codable {
         public var tableName: String?
 
-        public var filters: GetEngineFilters?
-
         public var project: [String]?
+
+        public var filters: GetEngineFilters?
 
         public enum CodingKeys: String, CodingKey {
             case tableName = "table_name"
 
-            case filters
-
             case project
+
+            case filters
         }
 
         public init(filters: GetEngineFilters? = nil, project: [String]? = nil, tableName: String? = nil) {
             self.tableName = tableName
 
-            self.filters = filters
-
             self.project = project
+
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                filters = try container.decode(GetEngineFilters.self, forKey: .filters)
+                project = try container.decode([String].self, forKey: .project)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                project = try container.decode([String].self, forKey: .project)
+                filters = try container.decode(GetEngineFilters.self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(tableName, forKey: .tableName)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(project, forKey: .project)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }

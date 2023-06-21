@@ -11,42 +11,42 @@ public extension PlatformClient.Order {
     class ShipmentDetail: Codable {
         public var id: Int
 
-        public var bagList: [Int]?
+        public var shipmentId: String?
 
         public var status: String?
 
-        public var remarks: String?
+        public var bagList: [Int]?
 
         public var meta: Meta1
 
-        public var shipmentId: String?
+        public var remarks: String?
 
         public enum CodingKeys: String, CodingKey {
             case id
 
-            case bagList = "bag_list"
+            case shipmentId = "shipment_id"
 
             case status
 
-            case remarks
+            case bagList = "bag_list"
 
             case meta
 
-            case shipmentId = "shipment_id"
+            case remarks
         }
 
         public init(bagList: [Int]? = nil, id: Int, meta: Meta1, remarks: String? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.id = id
 
-            self.bagList = bagList
+            self.shipmentId = shipmentId
 
             self.status = status
 
-            self.remarks = remarks
+            self.bagList = bagList
 
             self.meta = meta
 
-            self.shipmentId = shipmentId
+            self.remarks = remarks
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension PlatformClient.Order {
             id = try container.decode(Int.self, forKey: .id)
 
             do {
-                bagList = try container.decode([Int].self, forKey: .bagList)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                remarks = try container.decode(String.self, forKey: .remarks)
+                bagList = try container.decode([Int].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension PlatformClient.Order {
             meta = try container.decode(Meta1.self, forKey: .meta)
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                remarks = try container.decode(String.self, forKey: .remarks)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,15 +94,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(bagList, forKey: .bagList)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(remarks, forKey: .remarks)
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(remarks, forKey: .remarks)
         }
     }
 }
@@ -116,42 +116,42 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentDetail: Codable {
         public var id: Int
 
-        public var bagList: [Int]?
+        public var shipmentId: String?
 
         public var status: String?
 
-        public var remarks: String?
+        public var bagList: [Int]?
 
         public var meta: Meta1
 
-        public var shipmentId: String?
+        public var remarks: String?
 
         public enum CodingKeys: String, CodingKey {
             case id
 
-            case bagList = "bag_list"
+            case shipmentId = "shipment_id"
 
             case status
 
-            case remarks
+            case bagList = "bag_list"
 
             case meta
 
-            case shipmentId = "shipment_id"
+            case remarks
         }
 
         public init(bagList: [Int]? = nil, id: Int, meta: Meta1, remarks: String? = nil, shipmentId: String? = nil, status: String? = nil) {
             self.id = id
 
-            self.bagList = bagList
+            self.shipmentId = shipmentId
 
             self.status = status
 
-            self.remarks = remarks
+            self.bagList = bagList
 
             self.meta = meta
 
-            self.shipmentId = shipmentId
+            self.remarks = remarks
         }
 
         required public init(from decoder: Decoder) throws {
@@ -160,7 +160,7 @@ public extension PlatformClient.ApplicationClient.Order {
             id = try container.decode(Int.self, forKey: .id)
 
             do {
-                bagList = try container.decode([Int].self, forKey: .bagList)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +176,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                remarks = try container.decode(String.self, forKey: .remarks)
+                bagList = try container.decode([Int].self, forKey: .bagList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Order {
             meta = try container.decode(Meta1.self, forKey: .meta)
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                remarks = try container.decode(String.self, forKey: .remarks)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -199,15 +199,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encodeIfPresent(bagList, forKey: .bagList)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(remarks, forKey: .remarks)
+            try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(remarks, forKey: .remarks)
         }
     }
 }
