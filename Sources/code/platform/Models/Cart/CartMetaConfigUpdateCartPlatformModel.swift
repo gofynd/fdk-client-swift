@@ -9,11 +9,11 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CartMetaConfigUpdate: Codable {
+        public var giftDisplayText: String?
+
+        public var enabled: Bool?
+
         public var revenueEngineCoupon: Bool?
-
-        public var minCartValue: Int?
-
-        public var bulkCoupons: Bool?
 
         public var deliveryCharges: DeliveryCharges?
 
@@ -21,16 +21,16 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var maxCartItems: Int?
 
-        public var giftDisplayText: String?
+        public var bulkCoupons: Bool?
 
-        public var enabled: Bool?
+        public var minCartValue: Int?
 
         public enum CodingKeys: String, CodingKey {
+            case giftDisplayText = "gift_display_text"
+
+            case enabled
+
             case revenueEngineCoupon = "revenue_engine_coupon"
-
-            case minCartValue = "min_cart_value"
-
-            case bulkCoupons = "bulk_coupons"
 
             case deliveryCharges = "delivery_charges"
 
@@ -38,17 +38,17 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case maxCartItems = "max_cart_items"
 
-            case giftDisplayText = "gift_display_text"
+            case bulkCoupons = "bulk_coupons"
 
-            case enabled
+            case minCartValue = "min_cart_value"
         }
 
         public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, giftDisplayText: String? = nil, giftPricing: Double? = nil, maxCartItems: Int? = nil, minCartValue: Int? = nil, revenueEngineCoupon: Bool? = nil) {
+            self.giftDisplayText = giftDisplayText
+
+            self.enabled = enabled
+
             self.revenueEngineCoupon = revenueEngineCoupon
-
-            self.minCartValue = minCartValue
-
-            self.bulkCoupons = bulkCoupons
 
             self.deliveryCharges = deliveryCharges
 
@@ -56,32 +56,32 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.maxCartItems = maxCartItems
 
-            self.giftDisplayText = giftDisplayText
+            self.bulkCoupons = bulkCoupons
 
-            self.enabled = enabled
+            self.minCartValue = minCartValue
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                giftDisplayText = try container.decode(String.self, forKey: .giftDisplayText)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                enabled = try container.decode(Bool.self, forKey: .enabled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 revenueEngineCoupon = try container.decode(Bool.self, forKey: .revenueEngineCoupon)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                minCartValue = try container.decode(Int.self, forKey: .minCartValue)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                bulkCoupons = try container.decode(Bool.self, forKey: .bulkCoupons)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,7 +113,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                giftDisplayText = try container.decode(String.self, forKey: .giftDisplayText)
+                bulkCoupons = try container.decode(Bool.self, forKey: .bulkCoupons)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,7 +121,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                minCartValue = try container.decode(Int.self, forKey: .minCartValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,11 +132,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(giftDisplayText, forKey: .giftDisplayText)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
+
             try? container.encodeIfPresent(revenueEngineCoupon, forKey: .revenueEngineCoupon)
-
-            try? container.encodeIfPresent(minCartValue, forKey: .minCartValue)
-
-            try? container.encodeIfPresent(bulkCoupons, forKey: .bulkCoupons)
 
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
 
@@ -144,9 +144,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(maxCartItems, forKey: .maxCartItems)
 
-            try? container.encodeIfPresent(giftDisplayText, forKey: .giftDisplayText)
+            try? container.encodeIfPresent(bulkCoupons, forKey: .bulkCoupons)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(minCartValue, forKey: .minCartValue)
         }
     }
 }

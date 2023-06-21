@@ -13,26 +13,26 @@ public extension PlatformClient.Order {
 
         public var total: Int?
 
-        public var current: Int?
-
-        public var size: Int?
+        public var type: String?
 
         public var hasPrevious: Bool?
 
-        public var type: String?
+        public var size: Int?
+
+        public var current: Int?
 
         public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
 
             case total
 
-            case current
-
-            case size
+            case type
 
             case hasPrevious = "has_previous"
 
-            case type
+            case size
+
+            case current
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, size: Int? = nil, total: Int? = nil, type: String? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Order {
 
             self.total = total
 
-            self.current = current
-
-            self.size = size
+            self.type = type
 
             self.hasPrevious = hasPrevious
 
-            self.type = type
+            self.size = size
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,15 +69,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                size = try container.decode(Int.self, forKey: .size)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +85,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                size = try container.decode(Int.self, forKey: .size)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,13 +108,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }
@@ -130,26 +130,26 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var total: Int?
 
-        public var current: Int?
-
-        public var size: Int?
+        public var type: String?
 
         public var hasPrevious: Bool?
 
-        public var type: String?
+        public var size: Int?
+
+        public var current: Int?
 
         public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
 
             case total
 
-            case current
-
-            case size
+            case type
 
             case hasPrevious = "has_previous"
 
-            case type
+            case size
+
+            case current
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, size: Int? = nil, total: Int? = nil, type: String? = nil) {
@@ -157,13 +157,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.total = total
 
-            self.current = current
-
-            self.size = size
+            self.type = type
 
             self.hasPrevious = hasPrevious
 
-            self.type = type
+            self.size = size
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -186,15 +186,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                current = try container.decode(Int.self, forKey: .current)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                size = try container.decode(Int.self, forKey: .size)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +202,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                size = try container.decode(Int.self, forKey: .size)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,13 +225,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }

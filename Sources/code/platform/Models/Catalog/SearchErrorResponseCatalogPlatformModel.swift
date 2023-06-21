@@ -11,32 +11,30 @@ public extension PlatformClient.Catalog {
     class SearchErrorResponse: Codable {
         public var message: String
 
-        public var code: Int
-
         public var errors: [[String: Any]]?
+
+        public var code: Int
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case code
-
             case errors
+
+            case code
         }
 
         public init(code: Int, errors: [[String: Any]]? = nil, message: String) {
             self.message = message
 
-            self.code = code
-
             self.errors = errors
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             message = try container.decode(String.self, forKey: .message)
-
-            code = try container.decode(Int.self, forKey: .code)
 
             do {
                 errors = try container.decode([[String: Any]].self, forKey: .errors)
@@ -45,6 +43,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            code = try container.decode(Int.self, forKey: .code)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(code, forKey: .code)
-
             try? container.encode(errors, forKey: .errors)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }
@@ -68,32 +68,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class SearchErrorResponse: Codable {
         public var message: String
 
-        public var code: Int
-
         public var errors: [[String: Any]]?
+
+        public var code: Int
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case code
-
             case errors
+
+            case code
         }
 
         public init(code: Int, errors: [[String: Any]]? = nil, message: String) {
             self.message = message
 
-            self.code = code
-
             self.errors = errors
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             message = try container.decode(String.self, forKey: .message)
-
-            code = try container.decode(Int.self, forKey: .code)
 
             do {
                 errors = try container.decode([[String: Any]].self, forKey: .errors)
@@ -102,6 +100,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            code = try container.decode(Int.self, forKey: .code)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(code, forKey: .code)
-
             try? container.encode(errors, forKey: .errors)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }
