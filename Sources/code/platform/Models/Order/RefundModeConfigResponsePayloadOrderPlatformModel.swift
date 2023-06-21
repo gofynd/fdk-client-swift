@@ -9,7 +9,7 @@ public extension PlatformClient.Order {
      */
 
     class RefundModeConfigResponsePayload: Codable {
-        public var data: RefundModeInfo
+        public var data: [RefundModeInfo]
 
         public var success: Bool
 
@@ -19,7 +19,7 @@ public extension PlatformClient.Order {
             case success
         }
 
-        public init(data: RefundModeInfo, success: Bool) {
+        public init(data: [RefundModeInfo], success: Bool) {
             self.data = data
 
             self.success = success
@@ -28,7 +28,7 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            data = try container.decode(RefundModeInfo.self, forKey: .data)
+            data = try container.decode([RefundModeInfo].self, forKey: .data)
 
             success = try container.decode(Bool.self, forKey: .success)
         }
@@ -50,7 +50,7 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class RefundModeConfigResponsePayload: Codable {
-        public var data: RefundModeInfo
+        public var data: [RefundModeInfo]
 
         public var success: Bool
 
@@ -60,7 +60,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case success
         }
 
-        public init(data: RefundModeInfo, success: Bool) {
+        public init(data: [RefundModeInfo], success: Bool) {
             self.data = data
 
             self.success = success
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            data = try container.decode(RefundModeInfo.self, forKey: .data)
+            data = try container.decode([RefundModeInfo].self, forKey: .data)
 
             success = try container.decode(Bool.self, forKey: .success)
         }

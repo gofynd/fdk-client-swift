@@ -13,11 +13,11 @@ public extension PlatformClient.Catalog {
 
         public var transfer: Double
 
+        public var marked: Double
+
         public var effective: Double
 
         public var currency: String
-
-        public var marked: Double
 
         public var tpNotes: [String: Any]?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Catalog {
 
             case transfer
 
+            case marked
+
             case effective
 
             case currency
-
-            case marked
 
             case tpNotes = "tp_notes"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Catalog {
 
             self.transfer = transfer
 
+            self.marked = marked
+
             self.effective = effective
 
             self.currency = currency
-
-            self.marked = marked
 
             self.tpNotes = tpNotes
         }
@@ -62,11 +62,11 @@ public extension PlatformClient.Catalog {
 
             transfer = try container.decode(Double.self, forKey: .transfer)
 
+            marked = try container.decode(Double.self, forKey: .marked)
+
             effective = try container.decode(Double.self, forKey: .effective)
 
             currency = try container.decode(String.self, forKey: .currency)
-
-            marked = try container.decode(Double.self, forKey: .marked)
 
             do {
                 tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
@@ -84,11 +84,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
+            try? container.encodeIfPresent(marked, forKey: .marked)
+
             try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
         }
@@ -106,11 +106,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var transfer: Double
 
+        public var marked: Double
+
         public var effective: Double
 
         public var currency: String
-
-        public var marked: Double
 
         public var tpNotes: [String: Any]?
 
@@ -119,11 +119,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case transfer
 
+            case marked
+
             case effective
 
             case currency
-
-            case marked
 
             case tpNotes = "tp_notes"
         }
@@ -133,11 +133,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.transfer = transfer
 
+            self.marked = marked
+
             self.effective = effective
 
             self.currency = currency
-
-            self.marked = marked
 
             self.tpNotes = tpNotes
         }
@@ -155,11 +155,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             transfer = try container.decode(Double.self, forKey: .transfer)
 
+            marked = try container.decode(Double.self, forKey: .marked)
+
             effective = try container.decode(Double.self, forKey: .effective)
 
             currency = try container.decode(String.self, forKey: .currency)
-
-            marked = try container.decode(Double.self, forKey: .marked)
 
             do {
                 tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
@@ -177,11 +177,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(transfer, forKey: .transfer)
 
+            try? container.encodeIfPresent(marked, forKey: .marked)
+
             try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(marked, forKey: .marked)
 
             try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
         }

@@ -2,63 +2,39 @@
 
 import Foundation
 
-public extension PlatformClient.Webhook {
+public extension PlatformClient.Order {
     /*
-         Model: SubscriberConfigDetails
-         Used By: Webhook
+         Model: RefundOption
+         Used By: Order
      */
 
-    class SubscriberConfigDetails: Codable {
+    class RefundOption: Codable {
         public var name: String?
 
-        public var webhookUrl: String?
+        public var type: String?
 
-        public var association: Association?
+        public var value: String?
 
-        public var customHeaders: [String: Any]?
-
-        public var status: SubscriberStatus?
-
-        public var emailId: String?
-
-        public var authMeta: AuthMeta?
-
-        public var eventId: [Int]?
+        public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case webhookUrl = "webhook_url"
+            case type
 
-            case association
+            case value
 
-            case customHeaders = "custom_headers"
-
-            case status
-
-            case emailId = "email_id"
-
-            case authMeta = "auth_meta"
-
-            case eventId = "event_id"
+            case slug
         }
 
-        public init(association: Association? = nil, authMeta: AuthMeta? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, eventId: [Int]? = nil, name: String? = nil, status: SubscriberStatus? = nil, webhookUrl: String? = nil) {
+        public init(name: String? = nil, slug: String? = nil, type: String? = nil, value: String? = nil) {
             self.name = name
 
-            self.webhookUrl = webhookUrl
+            self.type = type
 
-            self.association = association
+            self.value = value
 
-            self.customHeaders = customHeaders
-
-            self.status = status
-
-            self.emailId = emailId
-
-            self.authMeta = authMeta
-
-            self.eventId = eventId
+            self.slug = slug
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +49,7 @@ public extension PlatformClient.Webhook {
             } catch {}
 
             do {
-                webhookUrl = try container.decode(String.self, forKey: .webhookUrl)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +57,7 @@ public extension PlatformClient.Webhook {
             } catch {}
 
             do {
-                association = try container.decode(Association.self, forKey: .association)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,39 +65,7 @@ public extension PlatformClient.Webhook {
             } catch {}
 
             do {
-                customHeaders = try container.decode([String: Any].self, forKey: .customHeaders)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                status = try container.decode(SubscriberStatus.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                emailId = try container.decode(String.self, forKey: .emailId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                authMeta = try container.decode(AuthMeta.self, forKey: .authMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                eventId = try container.decode([Int].self, forKey: .eventId)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,19 +78,96 @@ public extension PlatformClient.Webhook {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(webhookUrl, forKey: .webhookUrl)
+            try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(association, forKey: .association)
+            try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(customHeaders, forKey: .customHeaders)
+            try? container.encodeIfPresent(slug, forKey: .slug)
+        }
+    }
+}
 
-            try? container.encodeIfPresent(status, forKey: .status)
+public extension PlatformClient.ApplicationClient.Order {
+    /*
+         Model: RefundOption
+         Used By: Order
+     */
 
-            try? container.encodeIfPresent(emailId, forKey: .emailId)
+    class RefundOption: Codable {
+        public var name: String?
 
-            try? container.encodeIfPresent(authMeta, forKey: .authMeta)
+        public var type: String?
 
-            try? container.encodeIfPresent(eventId, forKey: .eventId)
+        public var value: String?
+
+        public var slug: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case name
+
+            case type
+
+            case value
+
+            case slug
+        }
+
+        public init(name: String? = nil, slug: String? = nil, type: String? = nil, value: String? = nil) {
+            self.name = name
+
+            self.type = type
+
+            self.value = value
+
+            self.slug = slug
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+        }
+
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
         }
     }
 }

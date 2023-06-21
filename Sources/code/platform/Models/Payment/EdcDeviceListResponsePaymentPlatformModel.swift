@@ -11,24 +11,24 @@ public extension PlatformClient.Payment {
     class EdcDeviceListResponse: Codable {
         public var items: [EdcDevice]
 
-        public var success: Bool
-
         public var page: Page
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case success
-
             case page
+
+            case success
         }
 
         public init(items: [EdcDevice], page: Page, success: Bool) {
             self.items = items
 
-            self.success = success
-
             self.page = page
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             items = try container.decode([EdcDevice].self, forKey: .items)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             page = try container.decode(Page.self, forKey: .page)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Payment {
     class EdcDeviceListResponse: Codable {
         public var items: [EdcDevice]
 
-        public var success: Bool
-
         public var page: Page
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case items
 
-            case success
-
             case page
+
+            case success
         }
 
         public init(items: [EdcDevice], page: Page, success: Bool) {
             self.items = items
 
-            self.success = success
-
             self.page = page
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             items = try container.decode([EdcDevice].self, forKey: .items)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             page = try container.decode(Page.self, forKey: .page)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

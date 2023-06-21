@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class CollectionListingFilterTag: Codable {
         public var name: String?
 
-        public var display: String?
-
         public var isSelected: Bool?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case display
-
             case isSelected = "is_selected"
+
+            case display
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, name: String? = nil) {
             self.name = name
 
-            self.display = display
-
             self.isSelected = isSelected
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionListingFilterTag: Codable {
         public var name: String?
 
-        public var display: String?
-
         public var isSelected: Bool?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case display
-
             case isSelected = "is_selected"
+
+            case display
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, name: String? = nil) {
             self.name = name
 
-            self.display = display
-
             self.isSelected = isSelected
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

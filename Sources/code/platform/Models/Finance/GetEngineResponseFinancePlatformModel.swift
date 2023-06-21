@@ -9,18 +9,18 @@ public extension PlatformClient.Finance {
      */
 
     class GetEngineResponse: Codable {
-        public var page: Page?
-
         public var success: Bool?
+
+        public var page: Page?
 
         public var itemCount: Int?
 
         public var items: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case page
-
             case success
+
+            case page
 
             case itemCount = "item_count"
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Finance {
         }
 
         public init(items: [[String: Any]]? = nil, itemCount: Int? = nil, page: Page? = nil, success: Bool? = nil) {
-            self.page = page
-
             self.success = success
+
+            self.page = page
 
             self.itemCount = itemCount
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(itemCount, forKey: .itemCount)
 
