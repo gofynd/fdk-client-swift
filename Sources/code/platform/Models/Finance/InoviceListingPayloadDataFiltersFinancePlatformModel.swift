@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class InoviceListingPayloadDataFilters: Codable {
         public var paymentStatus: [String]?
 
-        public var invoiceType: [String]?
-
         public var companyId: [String]?
+
+        public var invoiceType: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case paymentStatus = "payment_status"
 
-            case invoiceType = "invoice_type"
-
             case companyId = "company_id"
+
+            case invoiceType = "invoice_type"
         }
 
         public init(companyId: [String]? = nil, invoiceType: [String]? = nil, paymentStatus: [String]? = nil) {
             self.paymentStatus = paymentStatus
 
-            self.invoiceType = invoiceType
-
             self.companyId = companyId
+
+            self.invoiceType = invoiceType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                invoiceType = try container.decode([String].self, forKey: .invoiceType)
+                companyId = try container.decode([String].self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                companyId = try container.decode([String].self, forKey: .companyId)
+                invoiceType = try container.decode([String].self, forKey: .invoiceType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(paymentStatus, forKey: .paymentStatus)
 
-            try? container.encodeIfPresent(invoiceType, forKey: .invoiceType)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(invoiceType, forKey: .invoiceType)
         }
     }
 }

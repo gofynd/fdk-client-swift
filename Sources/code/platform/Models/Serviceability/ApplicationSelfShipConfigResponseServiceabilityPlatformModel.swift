@@ -9,51 +9,51 @@ public extension PlatformClient.Serviceability {
      */
 
     class ApplicationSelfShipConfigResponse: Codable {
-        public var id: String
-
         public var success: Bool
-
-        public var error: ServiceabilityErrorResponse?
 
         public var selfShip: ApplicationSelfShipConfig?
 
-        public enum CodingKeys: String, CodingKey {
-            case id
+        public var id: String
 
+        public var error: ServiceabilityErrorResponse?
+
+        public enum CodingKeys: String, CodingKey {
             case success
 
-            case error
-
             case selfShip = "self_ship"
+
+            case id
+
+            case error
         }
 
         public init(error: ServiceabilityErrorResponse? = nil, id: String, selfShip: ApplicationSelfShipConfig? = nil, success: Bool) {
-            self.id = id
-
             self.success = success
 
-            self.error = error
-
             self.selfShip = selfShip
+
+            self.id = id
+
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            id = try container.decode(String.self, forKey: .id)
-
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                error = try container.decode(ServiceabilityErrorResponse.self, forKey: .error)
+                selfShip = try container.decode(ApplicationSelfShipConfig.self, forKey: .selfShip)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            id = try container.decode(String.self, forKey: .id)
+
             do {
-                selfShip = try container.decode(ApplicationSelfShipConfig.self, forKey: .selfShip)
+                error = try container.decode(ServiceabilityErrorResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,13 +64,13 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(selfShip, forKey: .selfShip)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(error, forKey: .error)
         }
     }
 }
@@ -82,51 +82,51 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class ApplicationSelfShipConfigResponse: Codable {
-        public var id: String
-
         public var success: Bool
-
-        public var error: ServiceabilityErrorResponse?
 
         public var selfShip: ApplicationSelfShipConfig?
 
-        public enum CodingKeys: String, CodingKey {
-            case id
+        public var id: String
 
+        public var error: ServiceabilityErrorResponse?
+
+        public enum CodingKeys: String, CodingKey {
             case success
 
-            case error
-
             case selfShip = "self_ship"
+
+            case id
+
+            case error
         }
 
         public init(error: ServiceabilityErrorResponse? = nil, id: String, selfShip: ApplicationSelfShipConfig? = nil, success: Bool) {
-            self.id = id
-
             self.success = success
 
-            self.error = error
-
             self.selfShip = selfShip
+
+            self.id = id
+
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            id = try container.decode(String.self, forKey: .id)
-
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                error = try container.decode(ServiceabilityErrorResponse.self, forKey: .error)
+                selfShip = try container.decode(ApplicationSelfShipConfig.self, forKey: .selfShip)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            id = try container.decode(String.self, forKey: .id)
+
             do {
-                selfShip = try container.decode(ApplicationSelfShipConfig.self, forKey: .selfShip)
+                error = try container.decode(ServiceabilityErrorResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -137,13 +137,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(selfShip, forKey: .selfShip)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(error, forKey: .error)
         }
     }
 }

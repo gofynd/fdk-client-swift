@@ -15,9 +15,9 @@ public extension PlatformClient.Payment {
 
         public var data: [PaymentStatusObject]?
 
-        public var count: Int?
-
         public var status: Int
+
+        public var count: Int?
 
         public enum CodingKeys: String, CodingKey {
             case error
@@ -26,9 +26,9 @@ public extension PlatformClient.Payment {
 
             case data
 
-            case count
-
             case status
+
+            case count
         }
 
         public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Payment {
 
             self.data = data
 
-            self.count = count
-
             self.status = status
+
+            self.count = count
         }
 
         required public init(from decoder: Decoder) throws {
@@ -64,6 +64,8 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode(Int.self, forKey: .status)
+
             do {
                 count = try container.decode(Int.self, forKey: .count)
 
@@ -71,8 +73,6 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -84,9 +84,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(count, forKey: .count)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 }
@@ -104,9 +104,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var data: [PaymentStatusObject]?
 
-        public var count: Int?
-
         public var status: Int
+
+        public var count: Int?
 
         public enum CodingKeys: String, CodingKey {
             case error
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case data
 
-            case count
-
             case status
+
+            case count
         }
 
         public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.data = data
 
-            self.count = count
-
             self.status = status
+
+            self.count = count
         }
 
         required public init(from decoder: Decoder) throws {
@@ -153,6 +153,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode(Int.self, forKey: .status)
+
             do {
                 count = try container.decode(Int.self, forKey: .count)
 
@@ -160,8 +162,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -173,9 +173,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(count, forKey: .count)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 }

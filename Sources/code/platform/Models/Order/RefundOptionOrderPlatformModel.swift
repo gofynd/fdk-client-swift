@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class RefundOption: Codable {
         public var value: String?
 
-        public var name: String?
-
         public var type: String?
+
+        public var name: String?
 
         public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case name
-
             case type
+
+            case name
 
             case slug
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(name: String? = nil, slug: String? = nil, type: String? = nil, value: String? = nil) {
             self.value = value
 
-            self.name = name
-
             self.type = type
+
+            self.name = name
 
             self.slug = slug
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class RefundOption: Codable {
         public var value: String?
 
-        public var name: String?
-
         public var type: String?
+
+        public var name: String?
 
         public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case name
-
             case type
+
+            case name
 
             case slug
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(name: String? = nil, slug: String? = nil, type: String? = nil, value: String? = nil) {
             self.value = value
 
-            self.name = name
-
             self.type = type
+
+            self.name = name
 
             self.slug = slug
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }

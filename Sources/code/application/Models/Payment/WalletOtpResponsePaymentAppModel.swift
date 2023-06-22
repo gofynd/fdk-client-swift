@@ -7,30 +7,34 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class WalletOtpResponse: Codable {
-        public var success: Bool?
+        public var requestId: String
 
         public var isVerifiedFlag: String
 
-        public var requestId: String
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case requestId = "request_id"
 
             case isVerifiedFlag = "is_verified_flag"
 
-            case requestId = "request_id"
+            case success
         }
 
         public init(isVerifiedFlag: String, requestId: String, success: Bool? = nil) {
-            self.success = success
+            self.requestId = requestId
 
             self.isVerifiedFlag = isVerifiedFlag
 
-            self.requestId = requestId
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            requestId = try container.decode(String.self, forKey: .requestId)
+
+            isVerifiedFlag = try container.decode(String.self, forKey: .isVerifiedFlag)
 
             do {
                 success = try container.decode(Bool.self, forKey: .success)
@@ -39,20 +43,16 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            isVerifiedFlag = try container.decode(String.self, forKey: .isVerifiedFlag)
-
-            requestId = try container.decode(String.self, forKey: .requestId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

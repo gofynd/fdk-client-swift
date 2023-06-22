@@ -9,27 +9,27 @@ public extension PlatformClient.Order {
      */
 
     class TotalShipmentPricesCount: Codable {
-        public var totalPrice: Double?
-
         public var shipmentCount: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case totalPrice = "total_price"
+        public var totalPrice: Double?
 
+        public enum CodingKeys: String, CodingKey {
             case shipmentCount = "shipment_count"
+
+            case totalPrice = "total_price"
         }
 
         public init(shipmentCount: Int? = nil, totalPrice: Double? = nil) {
-            self.totalPrice = totalPrice
-
             self.shipmentCount = shipmentCount
+
+            self.totalPrice = totalPrice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
+                shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
+                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
-
             try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
+
+            try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class TotalShipmentPricesCount: Codable {
-        public var totalPrice: Double?
-
         public var shipmentCount: Int?
 
-        public enum CodingKeys: String, CodingKey {
-            case totalPrice = "total_price"
+        public var totalPrice: Double?
 
+        public enum CodingKeys: String, CodingKey {
             case shipmentCount = "shipment_count"
+
+            case totalPrice = "total_price"
         }
 
         public init(shipmentCount: Int? = nil, totalPrice: Double? = nil) {
-            self.totalPrice = totalPrice
-
             self.shipmentCount = shipmentCount
+
+            self.totalPrice = totalPrice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
+                shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
+                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
-
             try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
+
+            try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class VerifyOtpData: Codable {
         public var otpCode: Int
 
-        public var requestId: String
-
         public var mobile: String
+
+        public var requestId: String
 
         public enum CodingKeys: String, CodingKey {
             case otpCode = "otp_code"
 
-            case requestId = "request_id"
-
             case mobile
+
+            case requestId = "request_id"
         }
 
         public init(mobile: String, otpCode: Int, requestId: String) {
             self.otpCode = otpCode
 
-            self.requestId = requestId
-
             self.mobile = mobile
+
+            self.requestId = requestId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             otpCode = try container.decode(Int.self, forKey: .otpCode)
 
-            requestId = try container.decode(String.self, forKey: .requestId)
-
             mobile = try container.decode(String.self, forKey: .mobile)
+
+            requestId = try container.decode(String.self, forKey: .requestId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(otpCode, forKey: .otpCode)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class VerifyOtpData: Codable {
         public var otpCode: Int
 
-        public var requestId: String
-
         public var mobile: String
+
+        public var requestId: String
 
         public enum CodingKeys: String, CodingKey {
             case otpCode = "otp_code"
 
-            case requestId = "request_id"
-
             case mobile
+
+            case requestId = "request_id"
         }
 
         public init(mobile: String, otpCode: Int, requestId: String) {
             self.otpCode = otpCode
 
-            self.requestId = requestId
-
             self.mobile = mobile
+
+            self.requestId = requestId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             otpCode = try container.decode(Int.self, forKey: .otpCode)
 
-            requestId = try container.decode(String.self, forKey: .requestId)
-
             mobile = try container.decode(String.self, forKey: .mobile)
+
+            requestId = try container.decode(String.self, forKey: .requestId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(otpCode, forKey: .otpCode)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
         }
     }
 }
