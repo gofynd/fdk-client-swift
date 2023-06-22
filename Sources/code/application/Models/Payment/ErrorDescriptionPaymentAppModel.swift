@@ -11,15 +11,15 @@ public extension ApplicationClient.Payment {
 
         public var expired: Bool?
 
+        public var cancelled: Bool?
+
+        public var merchantName: String?
+
         public var amount: Double?
 
         public var merchantOrderId: String?
 
-        public var cancelled: Bool?
-
         public var paymentTransactionId: String?
-
-        public var merchantName: String?
 
         public var invalidId: Bool?
 
@@ -28,15 +28,15 @@ public extension ApplicationClient.Payment {
 
             case expired
 
+            case cancelled
+
+            case merchantName = "merchant_name"
+
             case amount
 
             case merchantOrderId = "merchant_order_id"
 
-            case cancelled
-
             case paymentTransactionId = "payment_transaction_id"
-
-            case merchantName = "merchant_name"
 
             case invalidId = "invalid_id"
         }
@@ -46,15 +46,15 @@ public extension ApplicationClient.Payment {
 
             self.expired = expired
 
+            self.cancelled = cancelled
+
+            self.merchantName = merchantName
+
             self.amount = amount
 
             self.merchantOrderId = merchantOrderId
 
-            self.cancelled = cancelled
-
             self.paymentTransactionId = paymentTransactionId
-
-            self.merchantName = merchantName
 
             self.invalidId = invalidId
         }
@@ -79,6 +79,22 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
+                cancelled = try container.decode(Bool.self, forKey: .cancelled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                merchantName = try container.decode(String.self, forKey: .merchantName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -95,23 +111,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                cancelled = try container.decode(Bool.self, forKey: .cancelled)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 paymentTransactionId = try container.decode(String.self, forKey: .paymentTransactionId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                merchantName = try container.decode(String.self, forKey: .merchantName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,15 +134,15 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(expired, forKey: .expired)
 
+            try? container.encode(cancelled, forKey: .cancelled)
+
+            try? container.encode(merchantName, forKey: .merchantName)
+
             try? container.encode(amount, forKey: .amount)
 
             try? container.encode(merchantOrderId, forKey: .merchantOrderId)
 
-            try? container.encode(cancelled, forKey: .cancelled)
-
             try? container.encode(paymentTransactionId, forKey: .paymentTransactionId)
-
-            try? container.encode(merchantName, forKey: .merchantName)
 
             try? container.encode(invalidId, forKey: .invalidId)
         }

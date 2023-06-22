@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: MarketPlacePdf
+         Model: ManifestList
          Used By: Order
      */
 
-    class MarketPlacePdf: Codable {
-        public var invoice: String?
+    class ManifestList: Codable {
+        public var items: [Manifest]?
 
-        public var label: String?
+        public var page: ManifestPageInfo?
 
         public enum CodingKeys: String, CodingKey {
-            case invoice
+            case items
 
-            case label
+            case page
         }
 
-        public init(invoice: String? = nil, label: String? = nil) {
-            self.invoice = invoice
+        public init(items: [Manifest]? = nil, page: ManifestPageInfo? = nil) {
+            self.items = items
 
-            self.label = label
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                invoice = try container.decode(String.self, forKey: .invoice)
+                items = try container.decode([Manifest].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                label = try container.decode(String.self, forKey: .label)
+                page = try container.decode(ManifestPageInfo.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(invoice, forKey: .invoice)
+            try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encode(label, forKey: .label)
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: MarketPlacePdf
+         Model: ManifestList
          Used By: Order
      */
 
-    class MarketPlacePdf: Codable {
-        public var invoice: String?
+    class ManifestList: Codable {
+        public var items: [Manifest]?
 
-        public var label: String?
+        public var page: ManifestPageInfo?
 
         public enum CodingKeys: String, CodingKey {
-            case invoice
+            case items
 
-            case label
+            case page
         }
 
-        public init(invoice: String? = nil, label: String? = nil) {
-            self.invoice = invoice
+        public init(items: [Manifest]? = nil, page: ManifestPageInfo? = nil) {
+            self.items = items
 
-            self.label = label
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                invoice = try container.decode(String.self, forKey: .invoice)
+                items = try container.decode([Manifest].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                label = try container.decode(String.self, forKey: .label)
+                page = try container.decode(ManifestPageInfo.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(invoice, forKey: .invoice)
+            try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encode(label, forKey: .label)
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

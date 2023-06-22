@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class UpdatePackagingDimensionsPayload: Codable {
         public var dimension: [Dimension]
 
-        public var currentStatus: String
-
         public var shipmentId: String
+
+        public var currentStatus: String
 
         public enum CodingKeys: String, CodingKey {
             case dimension
 
-            case currentStatus = "current_status"
-
             case shipmentId = "shipment_id"
+
+            case currentStatus = "current_status"
         }
 
         public init(currentStatus: String, dimension: [Dimension], shipmentId: String) {
             self.dimension = dimension
 
-            self.currentStatus = currentStatus
-
             self.shipmentId = shipmentId
+
+            self.currentStatus = currentStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             dimension = try container.decode([Dimension].self, forKey: .dimension)
 
-            currentStatus = try container.decode(String.self, forKey: .currentStatus)
-
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            currentStatus = try container.decode(String.self, forKey: .currentStatus)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class UpdatePackagingDimensionsPayload: Codable {
         public var dimension: [Dimension]
 
-        public var currentStatus: String
-
         public var shipmentId: String
+
+        public var currentStatus: String
 
         public enum CodingKeys: String, CodingKey {
             case dimension
 
-            case currentStatus = "current_status"
-
             case shipmentId = "shipment_id"
+
+            case currentStatus = "current_status"
         }
 
         public init(currentStatus: String, dimension: [Dimension], shipmentId: String) {
             self.dimension = dimension
 
-            self.currentStatus = currentStatus
-
             self.shipmentId = shipmentId
+
+            self.currentStatus = currentStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             dimension = try container.decode([Dimension].self, forKey: .dimension)
 
-            currentStatus = try container.decode(String.self, forKey: .currentStatus)
-
             shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
+            currentStatus = try container.decode(String.self, forKey: .currentStatus)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(dimension, forKey: .dimension)
 
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
-
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
         }
     }
 }

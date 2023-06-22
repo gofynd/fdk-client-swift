@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: AffiliateInventoryPaymentConfig
+         Model: TotalShipmentPricesCount
          Used By: Order
      */
 
-    class AffiliateInventoryPaymentConfig: Codable {
-        public var source: String?
+    class TotalShipmentPricesCount: Codable {
+        public var totalPrice: Double?
 
-        public var modeOfPayment: String?
+        public var shipmentCount: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case source
+            case totalPrice = "total_price"
 
-            case modeOfPayment = "mode_of_payment"
+            case shipmentCount = "shipment_count"
         }
 
-        public init(modeOfPayment: String? = nil, source: String? = nil) {
-            self.source = source
+        public init(shipmentCount: Int? = nil, totalPrice: Double? = nil) {
+            self.totalPrice = totalPrice
 
-            self.modeOfPayment = modeOfPayment
+            self.shipmentCount = shipmentCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                source = try container.decode(String.self, forKey: .source)
+                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
+                shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
 
-            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
+            try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: AffiliateInventoryPaymentConfig
+         Model: TotalShipmentPricesCount
          Used By: Order
      */
 
-    class AffiliateInventoryPaymentConfig: Codable {
-        public var source: String?
+    class TotalShipmentPricesCount: Codable {
+        public var totalPrice: Double?
 
-        public var modeOfPayment: String?
+        public var shipmentCount: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case source
+            case totalPrice = "total_price"
 
-            case modeOfPayment = "mode_of_payment"
+            case shipmentCount = "shipment_count"
         }
 
-        public init(modeOfPayment: String? = nil, source: String? = nil) {
-            self.source = source
+        public init(shipmentCount: Int? = nil, totalPrice: Double? = nil) {
+            self.totalPrice = totalPrice
 
-            self.modeOfPayment = modeOfPayment
+            self.shipmentCount = shipmentCount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                source = try container.decode(String.self, forKey: .source)
+                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
+                shipmentCount = try container.decode(Int.self, forKey: .shipmentCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
 
-            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
+            try? container.encodeIfPresent(shipmentCount, forKey: .shipmentCount)
         }
     }
 }

@@ -7,24 +7,24 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class TATLocationDetailsResponse: Codable {
-        public var fulfillmentId: Int?
-
         public var articles: [TATArticlesResponse]?
+
+        public var fulfillmentId: Int?
 
         public var fromPincode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case fulfillmentId = "fulfillment_id"
-
             case articles
+
+            case fulfillmentId = "fulfillment_id"
 
             case fromPincode = "from_pincode"
         }
 
         public init(articles: [TATArticlesResponse]? = nil, fromPincode: String? = nil, fulfillmentId: Int? = nil) {
-            self.fulfillmentId = fulfillmentId
-
             self.articles = articles
+
+            self.fulfillmentId = fulfillmentId
 
             self.fromPincode = fromPincode
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+                articles = try container.decode([TATArticlesResponse].self, forKey: .articles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                articles = try container.decode([TATArticlesResponse].self, forKey: .articles)
+                fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
-
             try? container.encodeIfPresent(articles, forKey: .articles)
+
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
             try? container.encodeIfPresent(fromPincode, forKey: .fromPincode)
         }

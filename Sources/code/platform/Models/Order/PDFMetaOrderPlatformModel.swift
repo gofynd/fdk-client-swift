@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: AffiliateConfig
+         Model: PDFMeta
          Used By: Order
      */
 
-    class AffiliateConfig: Codable {
-        public var inventory: AffiliateInventoryConfig?
+    class PDFMeta: Codable {
+        public var mediaUpdates: [ManifestMediaUpdate]?
 
-        public var app: AffiliateAppConfig?
+        public var consent: String?
 
         public enum CodingKeys: String, CodingKey {
-            case inventory
+            case mediaUpdates = "media_updates"
 
-            case app
+            case consent
         }
 
-        public init(app: AffiliateAppConfig? = nil, inventory: AffiliateInventoryConfig? = nil) {
-            self.inventory = inventory
+        public init(consent: String? = nil, mediaUpdates: [ManifestMediaUpdate]? = nil) {
+            self.mediaUpdates = mediaUpdates
 
-            self.app = app
+            self.consent = consent
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(AffiliateInventoryConfig.self, forKey: .inventory)
+                mediaUpdates = try container.decode([ManifestMediaUpdate].self, forKey: .mediaUpdates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                app = try container.decode(AffiliateAppConfig.self, forKey: .app)
+                consent = try container.decode(String.self, forKey: .consent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
+            try? container.encodeIfPresent(mediaUpdates, forKey: .mediaUpdates)
 
-            try? container.encodeIfPresent(app, forKey: .app)
+            try? container.encode(consent, forKey: .consent)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: AffiliateConfig
+         Model: PDFMeta
          Used By: Order
      */
 
-    class AffiliateConfig: Codable {
-        public var inventory: AffiliateInventoryConfig?
+    class PDFMeta: Codable {
+        public var mediaUpdates: [ManifestMediaUpdate]?
 
-        public var app: AffiliateAppConfig?
+        public var consent: String?
 
         public enum CodingKeys: String, CodingKey {
-            case inventory
+            case mediaUpdates = "media_updates"
 
-            case app
+            case consent
         }
 
-        public init(app: AffiliateAppConfig? = nil, inventory: AffiliateInventoryConfig? = nil) {
-            self.inventory = inventory
+        public init(consent: String? = nil, mediaUpdates: [ManifestMediaUpdate]? = nil) {
+            self.mediaUpdates = mediaUpdates
 
-            self.app = app
+            self.consent = consent
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                inventory = try container.decode(AffiliateInventoryConfig.self, forKey: .inventory)
+                mediaUpdates = try container.decode([ManifestMediaUpdate].self, forKey: .mediaUpdates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                app = try container.decode(AffiliateAppConfig.self, forKey: .app)
+                consent = try container.decode(String.self, forKey: .consent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(inventory, forKey: .inventory)
+            try? container.encodeIfPresent(mediaUpdates, forKey: .mediaUpdates)
 
-            try? container.encodeIfPresent(app, forKey: .app)
+            try? container.encode(consent, forKey: .consent)
         }
     }
 }

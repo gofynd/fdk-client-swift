@@ -13,15 +13,15 @@ public extension PlatformClient.Catalog {
 
         public var name: String?
 
-        public var valueConfig: ConfigurationListingFilterValue?
-
         public var priority: Int
-
-        public var isActive: Bool
 
         public var key: String
 
         public var displayName: String?
+
+        public var isActive: Bool
+
+        public var valueConfig: ConfigurationListingFilterValue?
 
         public var logo: String?
 
@@ -30,15 +30,15 @@ public extension PlatformClient.Catalog {
 
             case name
 
-            case valueConfig = "value_config"
-
             case priority
-
-            case isActive = "is_active"
 
             case key
 
             case displayName = "display_name"
+
+            case isActive = "is_active"
+
+            case valueConfig = "value_config"
 
             case logo
         }
@@ -48,15 +48,15 @@ public extension PlatformClient.Catalog {
 
             self.name = name
 
-            self.valueConfig = valueConfig
-
             self.priority = priority
-
-            self.isActive = isActive
 
             self.key = key
 
             self.displayName = displayName
+
+            self.isActive = isActive
+
+            self.valueConfig = valueConfig
 
             self.logo = logo
         }
@@ -74,22 +74,22 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            key = try container.decode(String.self, forKey: .key)
+
             do {
-                valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            priority = try container.decode(Int.self, forKey: .priority)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,15 +112,15 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
@@ -138,15 +138,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var name: String?
 
-        public var valueConfig: ConfigurationListingFilterValue?
-
         public var priority: Int
-
-        public var isActive: Bool
 
         public var key: String
 
         public var displayName: String?
+
+        public var isActive: Bool
+
+        public var valueConfig: ConfigurationListingFilterValue?
 
         public var logo: String?
 
@@ -155,15 +155,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case name
 
-            case valueConfig = "value_config"
-
             case priority
-
-            case isActive = "is_active"
 
             case key
 
             case displayName = "display_name"
+
+            case isActive = "is_active"
+
+            case valueConfig = "value_config"
 
             case logo
         }
@@ -173,15 +173,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.name = name
 
-            self.valueConfig = valueConfig
-
             self.priority = priority
-
-            self.isActive = isActive
 
             self.key = key
 
             self.displayName = displayName
+
+            self.isActive = isActive
+
+            self.valueConfig = valueConfig
 
             self.logo = logo
         }
@@ -199,22 +199,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            key = try container.decode(String.self, forKey: .key)
+
             do {
-                valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            priority = try container.decode(Int.self, forKey: .priority)
-
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
-            key = try container.decode(String.self, forKey: .key)
-
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                valueConfig = try container.decode(ConfigurationListingFilterValue.self, forKey: .valueConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -237,15 +237,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
-
             try? container.encodeIfPresent(priority, forKey: .priority)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(valueConfig, forKey: .valueConfig)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

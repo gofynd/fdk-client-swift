@@ -60,7 +60,7 @@ Application configuration apis
 
 
 #### getBuildConfig
-Get latest build config
+Get configuration of latest mobile build
 
 
 
@@ -77,11 +77,11 @@ platformClient.application("<APPLICATION_ID>").configuration.getBuildConfig(plat
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| platformType | String | yes | Current platform name |  
+| platformType | String | yes | The device platform for which the mobile app is built, e.g. android, ios. |  
 
 
 
-Get latest build config
+Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build.
 
 *Returned Response:*
 
@@ -133,7 +133,7 @@ Success
 
 
 #### updateBuildConfig
-Update build config for next build
+Update the configuration for next mobile build
 
 
 
@@ -150,11 +150,11 @@ platformClient.application("<APPLICATION_ID>").configuration.updateBuildConfig(p
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| platformType | String | yes | Current platform name |  
+| platformType | String | yes | The device platform for which the mobile app is built, e.g. android, ios. |  
 | body | MobileAppConfigRequest | yes | Request body |
 
 
-Update build config for next build
+Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build.
 
 *Returned Response:*
 
@@ -206,7 +206,7 @@ Success
 
 
 #### getPreviousVersions
-Get previous build versions
+Get details of previous mobile builds
 
 
 
@@ -223,11 +223,11 @@ platformClient.application("<APPLICATION_ID>").configuration.getPreviousVersions
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| platformType | String | yes | Current platform name |  
+| platformType | String | yes | The device platform for which the mobile app is built, e.g. android, ios. |  
 
 
 
-Get previous build versions
+Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
 
 *Returned Response:*
 
@@ -276,7 +276,7 @@ Success
 
 
 #### getAppFeatures
-Get features of application
+Get the sales channel configuration and features
 
 
 
@@ -292,7 +292,7 @@ platformClient.application("<APPLICATION_ID>").configuration.getAppFeatures() { 
 
 
 
-Get features of application
+Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
 
 *Returned Response:*
 
@@ -422,7 +422,7 @@ Success
 
 
 #### updateAppFeatures
-Update features of application
+Update the sales channel configuration and features
 
 
 
@@ -442,7 +442,7 @@ platformClient.application("<APPLICATION_ID>").configuration.updateAppFeatures(b
 | body | AppFeatureRequest | yes | Request body |
 
 
-Update features of application
+Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
 
 *Returned Response:*
 
@@ -701,7 +701,7 @@ Success
 
 
 #### getAppBasicDetails
-Get basic application details
+Get sales channel details
 
 
 
@@ -717,7 +717,7 @@ platformClient.application("<APPLICATION_ID>").configuration.getAppBasicDetails(
 
 
 
-Get basic application details like name
+Shows basic sales channel details like name, description, logo, domain, company ID, and other related information.
 
 *Returned Response:*
 
@@ -737,42 +737,43 @@ Success
 ```json
 {
   "name": "Uniket B2B",
-  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "description": "Uniket",
   "logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/9TiHPuNrQ-Uniket-B2B.png"
   },
   "mobile_logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/gWleT4PUn-Uniket-B2B.png"
   },
   "favicon": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/company/1/applications/000000000000000000000004/application/pictures/favicon/original/U-pbhmQ0n-Uniket-B2B.png"
   },
   "banner": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+    "secure_url": ""
   },
   "domain": {
     "verified": true,
     "is_primary": true,
-    "is_shortlink": false,
-    "_id": "5eb1177748312a3bd55d0f1e",
-    "name": "uniket.hostx0.de"
+    "is_shortlink": true,
+    "_id": "63a1586c57475b0b82154707",
+    "name": "uniket.hostx5.de"
   },
   "domains": [
     {
       "verified": true,
-      "is_primary": true,
+      "is_primary": false,
       "is_shortlink": false,
-      "_id": "5eb1177748312a3bd55d0f1e",
-      "name": "uniket.hostx0.de"
+      "_id": "63a06296820425006809fb44",
+      "name": "dbsfpkvtvh.hostx5.de"
     },
     {
       "verified": true,
-      "is_primary": false,
+      "is_primary": true,
       "is_shortlink": true,
-      "_id": "5f0858c5f86e00cd42dccc8d",
-      "name": "jd.hostx0.de"
+      "_id": "63a1586c57475b0b82154707",
+      "name": "uniket.hostx5.de"
     }
   ],
+  "slug": "Uniket-jb9-51",
   "company_id": 1,
   "_id": "000000000000000000000004"
 }
@@ -791,7 +792,7 @@ Success
 
 
 #### updateAppBasicDetails
-Add or update application's basic details
+Update sales channel details
 
 
 
@@ -811,7 +812,7 @@ platformClient.application("<APPLICATION_ID>").configuration.updateAppBasicDetai
 | body | ApplicationDetail | yes | Request body |
 
 
-Add or update application's basic details
+Modify sales channel details like name, description, logo, domain, company ID, and other related information.
 
 *Returned Response:*
 
@@ -883,7 +884,7 @@ Success
 
 
 #### getAppContactInfo
-Get application information
+Get current information of the sales channel
 
 
 
@@ -899,7 +900,7 @@ platformClient.application("<APPLICATION_ID>").configuration.getAppContactInfo()
 
 
 
-Get Application Current Information. This includes information about social links, address and contact information of company/seller/brand of the application.
+Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
 
 *Returned Response:*
 
@@ -928,7 +929,7 @@ Success
       "phone": [
         {
           "code": "+91",
-          "number": "9988776654"
+          "number": "9988998899"
         }
       ],
       "city": "Mumbai , Maharashtra , India",
@@ -1048,7 +1049,7 @@ Success
 
 
 #### updateAppContactInfo
-Get application information
+Save or update current information of the sales channel
 
 
 
@@ -1068,7 +1069,7 @@ platformClient.application("<APPLICATION_ID>").configuration.updateAppContactInf
 | body | ApplicationInformation | yes | Request body |
 
 
-Save Application Current Information. This includes information about social links, address and contact information of an application.
+Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
 
 *Returned Response:*
 
@@ -1096,7 +1097,7 @@ Success
     "phone": [
       {
         "code": "+91",
-        "number": "9988776654"
+        "number": "9988998899"
       }
     ],
     "city": "Mumbai , Maharashtra , India",
@@ -1210,7 +1211,7 @@ Success
 
 
 #### getAppApiTokens
-Get social tokens
+Get social tokens for the sales channel
 
 
 
@@ -1226,7 +1227,7 @@ platformClient.application("<APPLICATION_ID>").configuration.getAppApiTokens() {
 
 
 
-Get social tokens.
+Use this API to retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. **Note** - Token values are encrypted with AES encryption using a secret key.
 
 *Returned Response:*
 
@@ -1338,7 +1339,7 @@ Success
 
 
 #### updateAppApiTokens
-Add social tokens
+Add or update social tokens for the sales channel
 
 
 
@@ -1358,7 +1359,7 @@ platformClient.application("<APPLICATION_ID>").configuration.updateAppApiTokens(
 | body | TokenResponse | yes | Request body |
 
 
-Add social tokens.
+Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
 
 *Returned Response:*
 
@@ -1470,7 +1471,7 @@ Success
 
 
 #### getAppCompanies
-Application inventory enabled companies
+Get companies enabled in the sales channel inventory
 
 
 
@@ -1487,13 +1488,13 @@ platformClient.application("<APPLICATION_ID>").configuration.getAppCompanies(uid
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| uid | Int? | no | uid of companies to be fetched |   
-| pageNo | Int? | no | Current page no |   
-| pageSize | Int? | no | Current request items count |  
+| uid | Int? | no | UID of companies to be fetched |   
+| pageNo | Int? | no | The current page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |  
 
 
 
-Application inventory enabled companies.
+Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
 
 *Returned Response:*
 
@@ -1552,7 +1553,7 @@ Success
 
 
 #### getAppStores
-Application inventory enabled stores
+Get stores enabled in the sales channel inventory
 
 
 
@@ -1569,12 +1570,12 @@ platformClient.application("<APPLICATION_ID>").configuration.getAppStores(pageNo
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no | Current page no |   
-| pageSize | Int? | no | Current request items count |  
+| pageNo | Int? | no | The current page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |  
 
 
 
-Application inventory enabled stores.
+Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
 
 *Returned Response:*
 
@@ -1646,7 +1647,7 @@ Success
 
 
 #### getInventoryConfig
-Get application configuration
+Get sales channel configuration
 
 
 
@@ -1662,7 +1663,7 @@ platformClient.application("<APPLICATION_ID>").configuration.getInventoryConfig(
 
 
 
-Get application configuration for various features and data
+Use this API to fetch configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
 
 *Returned Response:*
 
@@ -1892,7 +1893,7 @@ Success
 
 
 #### updateInventoryConfig
-Update application configuration
+Update sales channel configuration
 
 
 
@@ -1912,7 +1913,7 @@ platformClient.application("<APPLICATION_ID>").configuration.updateInventoryConf
 | body | ApplicationInventory | yes | Request body |
 
 
-Update application configuration for various features and data
+Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
 
 *Returned Response:*
 
@@ -2142,7 +2143,7 @@ Success
 
 
 #### partiallyUpdateInventoryConfig
-Partially update application configuration
+Partially update sales channel configuration
 
 
 
@@ -2162,7 +2163,7 @@ platformClient.application("<APPLICATION_ID>").configuration.partiallyUpdateInve
 | body | AppInventoryPartialUpdate | yes | Request body |
 
 
-Partially update application configuration for various features and data
+Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
 
 *Returned Response:*
 
@@ -2392,7 +2393,7 @@ Success
 
 
 #### getAppCurrencyConfig
-Get application enabled currency list
+Get currencies supported in the application
 
 
 
@@ -2408,7 +2409,7 @@ platformClient.application("<APPLICATION_ID>").configuration.getAppCurrencyConfi
 
 
 
-Get application enabled currency list
+Get a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
 
 *Returned Response:*
 
@@ -2458,7 +2459,7 @@ Success
 
 
 #### updateAppCurrencyConfig
-Add initial application supported currency
+Update initial sales channel supported currency
 
 
 
@@ -2478,7 +2479,7 @@ platformClient.application("<APPLICATION_ID>").configuration.updateAppCurrencyCo
 | body | AppSupportedCurrency | yes | Request body |
 
 
-Add initial application supported currency for various features and data. Default INR will be enabled.
+Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default.
 
 *Returned Response:*
 
@@ -2613,12 +2614,12 @@ platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoresBy
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no | Current page no |   
-| pageSize | Int? | no | Current request items count |  
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |  
 | body | FilterOrderingStoreRequest | yes | Request body |
 
 
-Get ordering store by filter
+Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
 
 *Returned Response:*
 
@@ -2756,7 +2757,7 @@ platformClient.application("<APPLICATION_ID>").configuration.updateOrderingStore
 | body | OrderingStoreConfig | yes | Request body |
 
 
-Add/Update ordering store config.
+Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
 
 *Returned Response:*
 
@@ -2870,7 +2871,7 @@ Success. Check the example shown below or refer `OrderingStoresResponse` for mor
 
 
 #### getDomains
-Get attached domain list
+Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
 
 
 
@@ -2886,7 +2887,7 @@ platformClient.application("<APPLICATION_ID>").configuration.getDomains() { (res
 
 
 
-Get attached domain list.
+Get list of domains
 
 *Returned Response:*
 
@@ -2947,7 +2948,7 @@ Success
 
 
 #### addDomain
-Add new domain to application
+Add new domain to current sales channel
 
 
 
@@ -2967,7 +2968,7 @@ platformClient.application("<APPLICATION_ID>").configuration.addDomain(body: bod
 | body | DomainAddRequest | yes | Request body |
 
 
-Add new domain to application.
+Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
 
 *Returned Response:*
 
@@ -3009,7 +3010,7 @@ Success
 
 
 #### removeDomainById
-Remove attached domain
+Remove attached domain from current sales channel
 
 
 
@@ -3026,11 +3027,11 @@ platformClient.application("<APPLICATION_ID>").configuration.removeDomainById(id
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String | yes | Domain _id |  
+| id | String | yes | The unique identifier (24-digit Mongo Object ID) of the domain |  
 
 
 
-Remove attached domain.
+Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
 
 *Returned Response:*
 
@@ -3066,7 +3067,7 @@ Success
 
 
 #### changeDomainType
-Change domain type
+Change the type of domain in the current sales channel
 
 
 
@@ -3086,7 +3087,7 @@ platformClient.application("<APPLICATION_ID>").configuration.changeDomainType(bo
 | body | UpdateDomainTypeRequest | yes | Request body |
 
 
-Change a domain to Primary or Shortlink domain
+Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain.
 
 *Returned Response:*
 
@@ -3144,7 +3145,7 @@ Success
 
 
 #### getDomainStatus
-Get domain connected status.
+Get the status of connected domain
 
 
 
@@ -3164,7 +3165,7 @@ platformClient.application("<APPLICATION_ID>").configuration.getDomainStatus(bod
 | body | DomainStatusRequest | yes | Request body |
 
 
-Get domain connected status. Check if domain is live and mapped to appropriate IP to fynd servers.
+Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
 
 *Returned Response:*
 
@@ -3214,7 +3215,7 @@ Success
 
 
 #### createApplication
-Create application
+Create a new sales channel
 
 
 
@@ -3234,7 +3235,7 @@ platformClient.configuration.createApplication(body: body) { (response, error) i
 | body | CreateApplicationRequest | yes | Request body |
 
 
-Create new application
+Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
 
 *Returned Response:*
 
@@ -3268,7 +3269,7 @@ Success
 
 
 #### getApplications
-Get list of application under company
+Get list of registered sales channels under company
 
 
 
@@ -3291,7 +3292,7 @@ platformClient.configuration.getApplications(pageNo: pageNo, pageSize: pageSize,
 
 
 
-Get list of application under company
+Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
 
 *Returned Response:*
 
@@ -3309,7 +3310,82 @@ Success
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "items": [
+    {
+      "website": {
+        "enabled": true,
+        "basepath": "/"
+      },
+      "cors": {
+        "domains": []
+      },
+      "auth": {
+        "enabled": true
+      },
+      "_id": "6369fc8124ab1b2008130d8a",
+      "description": "shopsense_description",
+      "channel_type": "website-and-mobile-apps",
+      "cache_ttl": -1,
+      "internal": false,
+      "is_active": true,
+      "mode": "live",
+      "company_id": 1,
+      "name": "SHOPSENSE",
+      "owner": "f8a0be4408d00372226effa0",
+      "logo": {
+        "secure_url": "https://hdn-1.addsale.com/x0/company/164/applications/5efc9913f474c329718e3690/application/pictures/free-logo/original/olqHM8LNr-JioMart-Groceries.png"
+      },
+      "favicon": {
+        "secure_url": "https://hdn-1.addsale.com/x0/company/164/applications/5efc9913f474c329718e3690/application/pictures/free-logo/original/olqHM8LNr-JioMart-Groceries.png"
+      },
+      "banner": {
+        "secure_url": "https://hdn-1.addsale.com/x0/company/164/applications/5efc9913f474c329718e3690/application/pictures/landscape-banner/original/D2fr98CUH-JioMart-Groceries.png"
+      },
+      "domains": [
+        {
+          "verified": true,
+          "is_primary": true,
+          "is_shortlink": true,
+          "_id": "6369fc8124ab1b5b6a130d8b",
+          "name": "shopsenseretailtechnologies.hostx5.de"
+        }
+      ],
+      "token": "2Aj03u6rH",
+      "tokens": [
+        {
+          "token": "2Aj03u6rH",
+          "created_at": "2022-11-08T06:51:45.682Z"
+        }
+      ],
+      "redirections": [],
+      "meta": [],
+      "created_at": "2022-11-08T06:51:45.682Z",
+      "modified_at": "2023-05-26T06:04:32.907Z",
+      "slug": "SHOPSE-hgv-77",
+      "__v": 5,
+      "status": "active",
+      "mobile_logo": {
+        "secure_url": ""
+      },
+      "domain": {
+        "verified": true,
+        "is_primary": true,
+        "is_shortlink": true,
+        "_id": "6369fc8124ab1b5b6a130d8b",
+        "name": "shopsenseretailtechnologies.hostx5.de"
+      },
+      "id": "6369fc8124ab1b2008130d8a"
+    }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 100,
+    "item_total": 40,
+    "has_next": false
+  }
+}
 ```
 </details>
 
@@ -3325,7 +3401,7 @@ Success
 
 
 #### getApplicationById
-Get application data from id
+Get sales channel data by ID
 
 
 
@@ -3341,7 +3417,7 @@ platformClient.application("<APPLICATION_ID>").configuration.getApplicationById(
 
 
 
-Get application data from id
+Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
 
 *Returned Response:*
 
@@ -3391,7 +3467,7 @@ platformClient.configuration.getCurrencies() { (response, error) in
 
 
 
-Get all currencies
+Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
 
 *Returned Response:*
 
@@ -3438,7 +3514,7 @@ Currencies Success response
 
 
 #### getDomainAvailibility
-Check domain availibility before linking to application
+Check domain availability before linking to application
 
 
 
@@ -3458,7 +3534,7 @@ platformClient.configuration.getDomainAvailibility(body: body) { (response, erro
 | body | DomainSuggestionsRequest | yes | Request body |
 
 
-Check domain availibility before linking to application. Also sends domain suggestions with similar to queried domain. \ Custom domain search is currently powered by GoDaddy provider.
+Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
 
 *Returned Response:*
 
@@ -3536,7 +3612,7 @@ Success
 
 
 #### getIntegrationById
-Get integration data
+Get integration data by its ID
 
 
 
@@ -3557,7 +3633,7 @@ platformClient.configuration.getIntegrationById(id: id) { (response, error) in
 
 
 
-Get integration data
+Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID
 
 *Returned Response:*
 
@@ -3695,12 +3771,12 @@ platformClient.configuration.getAvailableOptIns(pageNo: pageNo, pageSize: pageSi
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no | Current page no |   
-| pageSize | Int? | no | Current request items count |  
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |  
 
 
 
-Get all available integration opt-ins
+Use this API to get a list of all available integrations in a company
 
 *Returned Response:*
 
@@ -3858,14 +3934,14 @@ platformClient.configuration.getSelectedOptIns(level: level, uid: uid, pageNo: p
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| level | String | yes | Integration level |   
-| uid | Int | yes | Integration level uid |   
-| pageNo | Int? | no | Current page no |   
-| pageSize | Int? | no | Current request items count |  
+| level | String | yes | store or company |   
+| uid | Int | yes | Unique identifier of the selected integration level. |   
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |  
 
 
 
-Get company/store level integration opt-ins
+Use this API to get the store-level/company-level integrations configured in a company
 
 *Returned Response:*
 
@@ -4023,14 +4099,14 @@ platformClient.configuration.getIntegrationLevelConfig(id: id, level: level, opt
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String | yes | Integration id |   
-| level | String | yes | Integration level |   
-| opted | Bool? | no | Filter on opted stores |   
-| checkPermission | Bool? | no | Filter on if permissions are present |  
+| id | String | yes | Integration ID (24-digit Mongo Object ID) |   
+| level | String | yes | store or company |   
+| opted | Bool? | no | True means get the opted stores. False means get the stores that aren't opted. |   
+| checkPermission | Bool? | no | Filter on if permissions (for inventory/order) are present |  
 
 
 
-Get integration/integration-opt-in level config
+Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc.
 
 *Returned Response:*
 
@@ -4085,7 +4161,7 @@ Success
 
 
 #### updateLevelIntegration
-Update a store level opt-in for integration
+Update a store level integration you opted
 
 
 
@@ -4102,12 +4178,12 @@ platformClient.configuration.updateLevelIntegration(id: id, level: level, body: 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String | yes | Integration id |   
-| level | String | yes | Integration level |  
+| id | String | yes | Integration ID (24-digit Mongo Object ID) |   
+| level | String | yes | Integration level, `store` or `company` |  
 | body | UpdateIntegrationLevelRequest | yes | Request body |
 
 
-Update a store level opt-in for integration
+Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
 
 *Returned Response:*
 
@@ -4158,7 +4234,7 @@ Success
 
 
 #### getIntegrationByLevelId
-Get level data for integration
+Get integration config at a particular level (store/company)
 
 
 
@@ -4175,13 +4251,13 @@ platformClient.configuration.getIntegrationByLevelId(id: id, level: level, uid: 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String | yes | Integration id |   
-| level | String | yes | Integration level |   
-| uid | Int | yes | Integration level uid |  
+| id | String | yes | Integration ID (24-digit Mongo Object ID) |   
+| level | String | yes | Integration level, `store` or `company` |   
+| uid | Int | yes | Unique identifier of integration level (store/company) |  
 
 
 
-Get level data for integration
+Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
 
 *Returned Response:*
 
@@ -4232,7 +4308,7 @@ Success
 
 
 #### updateLevelUidIntegration
-Update a store level opt-in for integration
+Update integration level by store UID
 
 
 
@@ -4249,13 +4325,13 @@ platformClient.configuration.updateLevelUidIntegration(id: id, level: level, uid
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String | yes | Integration id |   
-| level | String | yes | Integration level |   
-| uid | Int | yes | Integration level uid |  
+| id | String | yes | Integration ID (24-digit Mongo Object ID) |   
+| level | String | yes | Integration level, `store` or `company` |   
+| uid | Int | yes | Unique identifier of integration level (store/company) |  
 | body | IntegrationLevel | yes | Request body |
 
 
-Update a store level opt-in for integration
+Update the level of integration by store UID
 
 *Returned Response:*
 
@@ -4306,7 +4382,7 @@ Success
 
 
 #### getLevelActiveIntegrations
-Check store has active integration
+Check active integration at store
 
 
 
@@ -4323,14 +4399,14 @@ platformClient.configuration.getLevelActiveIntegrations(id: id, level: level, ui
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String | yes | Integration id |   
-| level | String | yes | Integration level |   
-| uid | Int | yes | Integration level uid |   
+| id | String | yes | Integration ID (24-digit Mongo Object ID) |   
+| level | String | yes | Integration level, `store` or `company` |   
+| uid | Int | yes | Unique identifier of integration level (store/company) |   
 | permission | String? | no | Check opt-in for specific integration permissions |  
 
 
 
-API checks if a store is already opted in any other integrations
+Use this API to check if a store is already opted-in for any integration
 
 *Returned Response:*
 
@@ -4381,7 +4457,7 @@ Success
 
 
 #### getBrandsByCompany
-Get brands by company
+Get brands by company.
 
 
 
@@ -4402,7 +4478,7 @@ platformClient.configuration.getBrandsByCompany(q: q) { (response, error) in
 
 
 
-Get brands by company
+Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
 
 *Returned Response:*
 
@@ -4470,12 +4546,12 @@ platformClient.configuration.getCompanyByBrands(pageNo: pageNo, pageSize: pageSi
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no | Current page no |   
-| pageSize | Int? | no | Current request items count |  
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |  
 | body | CompanyByBrandsRequest | yes | Request body |
 
 
-Get company by brand uids
+Use this API to get a list of companies by the brands they deal
 
 *Returned Response:*
 
@@ -4531,7 +4607,7 @@ Success
 
 
 #### getStoreByBrands
-Get stores by brand uids
+Get stores by brand uids for the current company
 
 
 
@@ -4548,12 +4624,12 @@ platformClient.configuration.getStoreByBrands(pageNo: pageNo, pageSize: pageSize
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no | Current page no |   
-| pageSize | Int? | no | Current request items count |  
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |  
 | body | StoreByBrandsRequest | yes | Request body |
 
 
-Get stores by brand uids
+Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
 
 *Returned Response:*
 
@@ -4648,7 +4724,7 @@ Success
 
 
 #### getOtherSellerApplications
-Get other seller applications
+Get other seller sales channels
 
 
 
@@ -4665,12 +4741,12 @@ platformClient.configuration.getOtherSellerApplications(pageNo: pageNo, pageSize
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| pageNo | Int? | no | Current page no |   
-| pageSize | Int? | no | Current request items count |  
+| pageNo | Int? | no | The page number to navigate through the given set of results. Default value is 1. |   
+| pageSize | Int? | no | The number of items to retrieve in each page. Default value is 10. |  
 
 
 
-Get other seller applications who has opted current company as inventory
+Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
 
 *Returned Response:*
 
@@ -4747,7 +4823,7 @@ Success
 
 
 #### getOtherSellerApplicationById
-Get other seller applications
+Get other seller's sales channel by ID
 
 
 
@@ -4768,7 +4844,7 @@ platformClient.configuration.getOtherSellerApplicationById(id: id) { (response, 
 
 
 
-Get other seller application
+Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory
 
 *Returned Response:*
 
@@ -4849,7 +4925,7 @@ Success
 
 
 #### optOutFromApplication
-Opt out company or store from other seller application
+Opt-out company or store from other seller application
 
 
 
@@ -4866,11 +4942,11 @@ platformClient.configuration.optOutFromApplication(id: id, body: body) { (respon
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String | yes | Application Id |  
+| id | String | yes | Alphanumeric ID allotted to an application (sales channel website) created within a business account. |  
 | body | OptOutInventory | yes | Request body |
 
 
-Opt out company or store from other seller application
+Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
 
 *Returned Response:*
 
@@ -4922,16 +4998,16 @@ Success
  | payment | [AppPaymentConfig](#AppPaymentConfig)? |  yes  |  |
  | order | [AppOrderConfig](#AppOrderConfig)? |  yes  |  |
  | logistics | [AppLogisticsConfig](#AppLogisticsConfig)? |  yes  |  |
- | business | String? |  yes  |  |
- | commsEnabled | Bool? |  yes  |  |
+ | business | String? |  yes  | Indicates the business type for sales channel e.g. retail or wholesale |
+ | commsEnabled | Bool? |  yes  | Shows communication(comms) is enabled or not for sales channel inventory |
  | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
  | platforms | [String]? |  yes  |  |
- | id | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the sales channel inventory |
  | loyaltyPoints | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
- | app | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | modifiedBy | String? |  yes  |  |
+ | app | String? |  yes  | Current sales channel ID |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel inventory creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel inventory updation |
+ | modifiedBy | String? |  yes  | User ID of the person who made the latest changes in the sales channel inventory |
 
 ---
 
@@ -4947,12 +5023,12 @@ Success
  | category | [InventoryCategory](#InventoryCategory)? |  yes  |  |
  | price | [InventoryPrice](#InventoryPrice)? |  yes  |  |
  | discount | [InventoryDiscount](#InventoryDiscount)? |  yes  |  |
- | outOfStock | Bool? |  yes  |  |
- | onlyVerifiedProducts | Bool? |  yes  |  |
- | franchiseEnabled | Bool? |  yes  |  |
- | excludeCategory | [[String: Any]]? |  yes  |  |
+ | outOfStock | Bool? |  yes  | Indicates whether out of stock products are allowed to show up on the website |
+ | onlyVerifiedProducts | Bool? |  yes  | Show only verified products (the ones whose data has been verified by the admin) |
+ | franchiseEnabled | Bool? |  yes  | Allow other businesses (companies) to consume the current sales channel's inventory and sell products |
+ | excludeCategory | [[String: Any]]? |  yes  | List of excluded brands category |
  | image | [String]? |  yes  |  |
- | companyStore | [[String: Any]]? |  yes  |  |
+ | companyStore | [[String: Any]]? |  yes  | List of selling locations whose inventory is available to the sales channel for displaying on the website |
 
 ---
 
@@ -4963,8 +5039,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | criteria | String? |  yes  |  |
- | brands | [[String: Any]]? |  yes  |  |
+ | criteria | String? |  yes  | All brands or specific (explicit) brands to be shown on the website |
+ | brands | [[String: Any]]? |  yes  | List of brands |
 
 ---
 
@@ -4975,8 +5051,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | criteria | String? |  yes  |  |
- | stores | [[String: Any]]? |  yes  |  |
+ | criteria | String? |  yes  | All stores or specific (explicit) stores to be shown on the website |
+ | stores | [[String: Any]]? |  yes  | List of stores |
  | rules | [AppStoreRules](#AppStoreRules)? |  yes  |  |
 
 ---
@@ -4988,8 +5064,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companies | [Int]? |  yes  |  |
- | brands | [[String: Any]]? |  yes  |  |
+ | companies | [Int]? |  yes  | List of companies whose inventory is available to the sales channel for displaying on the website |
+ | brands | [[String: Any]]? |  yes  | List of brands whose products will be shown on the website |
 
 ---
 
@@ -5001,7 +5077,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | criteria | String? |  yes  |  |
- | categories | [[String: Any]]? |  yes  |  |
+ | categories | [[String: Any]]? |  yes  | List of categories whose products will be shown on the website |
 
 ---
 
@@ -5012,8 +5088,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | Double? |  yes  |  |
- | max | Double? |  yes  |  |
+ | min | Double? |  yes  | Minimum inventory price |
+ | max | Double? |  yes  | Maximum inventory price |
 
 ---
 
@@ -5024,8 +5100,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | Double? |  yes  |  |
- | max | Double? |  yes  |  |
+ | min | Double? |  yes  | Minimum inventory discount |
+ | max | Double? |  yes  | Maximum inventory discount |
 
 ---
 
@@ -5036,8 +5112,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | required | Bool? |  yes  |  |
- | provider | String? |  yes  |  |
+ | required | Bool? |  yes  | Shows sales channel inventory authentication is required or not |
+ | provider | String? |  yes  | Shows inventory authentication provider |
 
 ---
 
@@ -5049,7 +5125,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | rules | [ArticleAssignmentRules](#ArticleAssignmentRules)? |  yes  |  |
- | postOrderReassignment | Bool? |  yes  |  |
+ | postOrderReassignment | Bool? |  yes  | Allow post order reassigment of article |
 
 ---
 
@@ -5071,8 +5147,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | storetypeOrder | [[String: Any]]? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows store priority is enabled or disabled for assignment of article |
+ | storetypeOrder | [[String: Any]]? |  yes  | List of store types for article assignment e.g. warehouse, mall, highstreet |
 
 ---
 
@@ -5084,11 +5160,11 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | deliveryCharges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | maxCartItems | Int? |  yes  |  |
- | minCartValue | Double? |  yes  |  |
- | bulkCoupons | Bool? |  yes  |  |
- | revenueEngineCoupon | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether cart configuration is enabled or not |
+ | maxCartItems | Int? |  yes  | Maximum number of items that can be added to cart by the customer |
+ | minCartValue | Double? |  yes  | Minimum cart value below which customer cannot place an order |
+ | bulkCoupons | Bool? |  yes  | Allow creation of bulk coupons |
+ | revenueEngineCoupon | Bool? |  yes  | Allow coupon apply and credits together. Default value is false. |
  | emptyCart | Bool? |  yes  | Enable/disable to allow adding cart items added before login to user's cart once user is logged in |
  | panCard | [PanCardConfig](#PanCardConfig)? |  yes  |  |
 
@@ -5101,7 +5177,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow delivery charges |
  | charges | [Charges](#Charges)? |  yes  |  |
 
 ---
@@ -5113,8 +5189,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | threshold | Double? |  yes  |  |
- | charges | Double? |  yes  |  |
+ | threshold | Double? |  yes  | The order value below which an extra delivery fee will be applicable |
+ | charges | Double? |  yes  | Delivery amount to be charged when order value is below the defined threshold value |
 
 ---
 
@@ -5128,11 +5204,12 @@ Success
  | callbackUrl | [CallbackUrl](#CallbackUrl)? |  yes  |  |
  | methods | [Methods](#Methods)? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | modeOfPayment | String? |  yes  |  |
- | source | String? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | codAmountLimit | Double? |  yes  |  |
- | codCharges | Double? |  yes  |  |
+ | modeOfPayment | String? |  yes  | Mode of payment for sales channel payment, e.g. 'ECOMM'. |
+ | source | String? |  yes  | Source of the payment mode, e.g. 'ECOMM'. Default value is FYND. |
+ | enabled | Bool? |  yes  | Allow payment option within sales channel |
+ | codAmountLimit | Double? |  yes  | Maximum amount allowed for COD order. Beyond this, customer cannot opt for COD. |
+ | codCharges | Double? |  yes  | Extra charge applicable for COD orders |
+ | anonymousCod | Bool? |  yes  | Allow cash on delivery for anonymous user |
 
 ---
 
@@ -5143,8 +5220,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | app | String? |  yes  |  |
- | web | String? |  yes  |  |
+ | app | String? |  yes  | Payment callback url for app |
+ | web | String? |  yes  | Payment callback url for web |
 
 ---
 
@@ -5184,7 +5261,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows if a given payment method is enabled or not, e.g. if 'nb' is enabled, customer can use NetBanking for payment. |
 
 ---
 
@@ -5195,9 +5272,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | defaultOptions | String? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether payment mode is restricted to a specific option, e.g. 'HDFC Netbanking' |
+ | defaultOptions | String? |  yes  | Shows default payment method, e.g. COD |
+ | paymentIdentifier | String? |  yes  | Payment method chosen from default options, e.g. COD |
 
 ---
 
@@ -5208,9 +5285,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | forceReassignment | Bool? |  yes  |  |
- | message | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Allow orders to be accepted from the sales channel |
+ | forceReassignment | Bool? |  yes  | Allow force reassigning of an order |
+ | message | String? |  yes  | Reason for reassigning an order |
 
 ---
 
@@ -5235,8 +5312,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | autoApply | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows loyalty points is enabled or not enabled |
+ | autoApply | Bool? |  yes  | Allow auto apply of loyalty points |
 
 ---
 
@@ -5251,7 +5328,7 @@ Success
  | cart | [AppCartConfig](#AppCartConfig)? |  yes  |  |
  | payment | [AppPaymentConfig](#AppPaymentConfig)? |  yes  |  |
  | loyaltyPoints | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
- | commsEnabled | Bool? |  yes  |  |
+ | commsEnabled | Bool? |  yes  | Shows communication (comms) is enabled or not for sales channel partial inventory update |
  | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
 
 ---
@@ -5263,8 +5340,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companyName | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
+ | companyName | String? |  yes  | Name of the company dealing with the brand |
+ | companyId | Int? |  yes  | Numeric ID allotted to a business account |
 
 ---
 
@@ -5275,8 +5352,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | Int |  no  | Brand uids |
- | searchText | String? |  yes  | Search company by name |
+ | brands | Int |  no  | Brand UID |
+ | searchText | String? |  yes  | A search field for finding a company by its name |
 
 ---
 
@@ -5299,9 +5376,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companyId | Int? |  yes  | Current company id for current company stores only. Don't send in case of cross selling enabled |
- | brands | Int |  no  | Brand uids |
- | searchText | String? |  yes  | Search store by name or store code |
+ | companyId | Int? |  yes  | Current company ID for current company stores only. Don't send in case cross-selling (franchise) is enabled. |
+ | brands | Int |  no  | Brand UID |
+ | searchText | String? |  yes  | Search store by its name or store code |
 
 ---
 
@@ -5324,10 +5401,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | storeName | String? |  yes  |  |
- | storeId | Int? |  yes  |  |
- | storeType | String? |  yes  |  |
- | storeCode | String? |  yes  |  |
+ | storeName | String? |  yes  | Name of the selling location (store) |
+ | storeId | Int? |  yes  | The unique identifier of the selling location (store) |
+ | storeType | String? |  yes  | Store type of the brand like warehouse, high_street, mall |
+ | storeCode | String? |  yes  | Store code of the brand. It is unique for every brand store. |
  | storeAddress | [OptedStoreAddress](#OptedStoreAddress)? |  yes  |  |
  | company | [OptedCompany](#OptedCompany)? |  yes  |  |
 
@@ -5340,11 +5417,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | value | Int? |  yes  |  |
- | brandLogoUrl | String? |  yes  |  |
- | brandBannerUrl | String? |  yes  |  |
- | brandBannerPortraitUrl | String? |  yes  |  |
+ | name | String? |  yes  | Brand name, e.g. Raymonds |
+ | value | Int? |  yes  | Brand UID for identifying the brand |
+ | brandLogoUrl | String? |  yes  | Hosted URL of the brand's logo |
+ | brandBannerUrl | String? |  yes  | Hosted URL of the brand's banner image |
+ | brandBannerPortraitUrl | String? |  yes  | Hosted URL of the brand's portrait banner |
 
 ---
 
@@ -5369,6 +5446,28 @@ Success
  | enabled | Bool? |  yes  | If pan card accepting is enabled on cart |
  | codThresholdAmount | Double? |  yes  | On which COD order amount pan card number is expected from customer for order |
  | onlineThresholdAmount | Double? |  yes  | On which online payment order amount pan card number is expected from customer for order |
+
+---
+
+
+ 
+ 
+ #### [ValidationFailedResponse](#ValidationFailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  | Response message for failed validation |
+
+---
+
+
+ 
+ 
+ #### [NotFound](#NotFound)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  | Response message for not found |
 
 ---
 
@@ -5440,17 +5539,17 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isActive | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | appName | String? |  yes  |  |
+ | isActive | Bool? |  yes  | Indicates the availability of the mobile build |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for mobile application configuration |
+ | appName | String? |  yes  | Name of the mobile app |
  | landingImage | [LandingImage](#LandingImage)? |  yes  |  |
  | splashImage | [SplashImage](#SplashImage)? |  yes  |  |
- | application | String? |  yes  |  |
- | platformType | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
- | packageName | String? |  yes  |  |
+ | application | String? |  yes  | Application ID of the current sales channel |
+ | platformType | String? |  yes  | Device platform for which the mobile app was built, e.g. android, ios. |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of application configuration creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the app build |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
+ | packageName | String? |  yes  | Shows bundle identifier if device platform is iOS, and directory of the app if device platform is Android |
 
 ---
 
@@ -5461,8 +5560,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspectRatio | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
+ | aspectRatio | String? |  yes  | Width-to-height ratio of landing image |
+ | secureUrl | String? |  yes  | URL where the landing image is hosted |
 
 ---
 
@@ -5473,8 +5572,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | aspectRatio | String? |  yes  |  |
- | secureUrl | String? |  yes  |  |
+ | aspectRatio | String? |  yes  | Width-to-height ratio of splash image |
+ | secureUrl | String? |  yes  | URL where the splash image is hosted |
 
 ---
 
@@ -5485,10 +5584,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | appName | String? |  yes  |  |
+ | appName | String? |  yes  | Name of the mobile app |
  | landingImage | [LandingImage](#LandingImage)? |  yes  |  |
  | splashImage | [SplashImage](#SplashImage)? |  yes  |  |
- | isActive | Bool? |  yes  |  |
+ | isActive | Bool? |  yes  | shows update in mobile app config is active or not |
 
 ---
 
@@ -5500,7 +5599,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | versions | [BuildVersion](#BuildVersion)? |  yes  |  |
- | latestAvailableVersionName | String? |  yes  |  |
+ | latestAvailableVersionName | String? |  yes  | Latest version number of the mobile build, in dot-decimal notation |
 
 ---
 
@@ -5511,15 +5610,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | application | String? |  yes  |  |
- | platformType | String? |  yes  |  |
- | buildStatus | String? |  yes  |  |
- | versionName | String? |  yes  |  |
- | versionCode | Int? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | id | String? |  yes  | 24-digit Mongo Object ID |
+ | application | String? |  yes  | Application ID of the sales channel |
+ | platformType | String? |  yes  | Device platform for which the mobile app was built, e.g. android, ios. |
+ | buildStatus | String? |  yes  | Current progress of the mobile build, e.g. pending, cancelled, failed, success |
+ | versionName | String? |  yes  | Version number of the mobile build, in dot-decimal notation |
+ | versionCode | Int? |  yes  | A positive integer used as an internal version number |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of app creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the app build |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
 
@@ -5530,12 +5629,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the currency configuration supported by the application |
  | supportedCurrency | [String]? |  yes  |  |
- | application | String? |  yes  |  |
+ | application | String? |  yes  | Alphanumeric ID allotted to an application (sales channel website) created within a business account. |
  | defaultCurrency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
+ | createdAt | String? |  yes  | ISO 8601 timestamp when currency was added in the list of currencies supported by the sales channel |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp when currency was updated in the list of currencies supported by the sales channel |
 
 ---
 
@@ -5546,8 +5645,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ref | String? |  yes  |  |
- | code | String? |  yes  |  |
+ | ref | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the default currency |
+ | code | String? |  yes  | 3-character code of the default currency, e.g. INR, EUR, USD |
 
 ---
 
@@ -5558,14 +5657,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | name | String? |  yes  |  |
- | code | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | decimalDigits | Int? |  yes  |  |
- | symbol | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of all the currency configuration |
+ | isActive | Bool? |  yes  | Currency is enabled or not for the current sales channel |
+ | name | String? |  yes  | Name of the currency, e.g Indian Rupee |
+ | code | String? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of a given currency creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of a given currency updation |
+ | decimalDigits | Int? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
+ | symbol | String? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
 
 ---
 
@@ -5576,7 +5675,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  | Full domain name |
+ | name | String? |  yes  | Full domain name, e.g. uniket.hostx0.de |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the domain |
+ | verified | Bool? |  yes  | Domain is verified or not (indicates if A records and TXT records are correct) |
+ | isPrimary | Bool? |  yes  | Domain is primary or not (indicates if the domain has been made the main URL of the sales channel) |
+ | isShortlink | Bool? |  yes  | Indicates if the domain is a short link domain (short URL e.g. bitly) |
+ | message | String? |  yes  | Shows the message shown after adding a domain successfully, e.g. 'New domain added successfully' |
+ | txtRecords | [String]? |  yes  |  |
 
 ---
 
@@ -5588,6 +5693,22 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | domain | [DomainAdd](#DomainAdd)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Domain](#Domain)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  | Full domain name, e.g. newton.com |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the sales channel domain |
+ | verified | Bool? |  yes  | Domain is verified or not. TXT and A records should propagate correctly. |
+ | isPrimary | Bool? |  yes  | Domain is primary or not. Primary domain is the default/main domain. |
+ | isShortlink | Bool? |  yes  | Shortlink is present or not for the domain |
+ | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
 
 ---
 
@@ -5609,7 +5730,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
+ | name | String? |  yes  | Full domain name, e.g. zenz.com |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the domain |
+ | verified | Bool? |  yes  | Domain is verified or not (indicates if A records and TXT records are correct) |
+ | isPrimary | Bool? |  yes  | Domain is primary or not (indicates if the domain has been made the main URL of the sales channel) |
+ | isShortlink | Bool? |  yes  | Indicates if the domain is a short link domain (short URL e.g. bit.ly) |
 
 ---
 
@@ -5621,7 +5746,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | domain | [UpdateDomain](#UpdateDomain)? |  yes  |  |
- | action | String? |  yes  |  |
+ | action | String? |  yes  | Shows domain is made primary domain for the sales channel or shorlink is created for the sales channel domain |
 
 ---
 
@@ -5632,7 +5757,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domainUrl | String? |  yes  | Domain url |
+ | domainUrl | String? |  yes  | URL of the domain, e.g. uniket.hostx0.de |
 
 ---
 
@@ -5643,8 +5768,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  |  |
- | status | Bool? |  yes  |  |
+ | display | String? |  yes  | Shows TXT record and A records for the domain |
+ | status | Bool? |  yes  | Shows whether TXT record or A records for the domain are correctly propagating via DNS servers |
 
 ---
 
@@ -5655,7 +5780,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | connected | Bool? |  yes  |  |
+ | connected | Bool? |  yes  | Check if domain is live and mapped to appropriate IP of Fynd Servers |
  | status | [[DomainStatus](#DomainStatus)]? |  yes  |  |
 
 ---
@@ -5668,7 +5793,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | domainUrl | String? |  yes  | Domain url |
- | custom | Bool? |  yes  | Get suggestion for custom domains or fynd domains |
+ | custom | Bool? |  yes  | Get suggestions for custom domains or Fynd domains |
 
 ---
 
@@ -5679,11 +5804,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String |  no  |  |
- | unsupported | Bool? |  yes  | Whether TLD domain is supported or not |
- | isAvailable | Bool |  no  |  |
- | price | Double? |  yes  | Price for purchasing a custom domain. Not present for fynd domain |
- | currency | String? |  yes  | Custom domain price currency. Not present for fynd domain |
+ | name | String |  no  | URL of the custom domain |
+ | unsupported | Bool? |  yes  | Shows whether TLD domain is supported or not |
+ | isAvailable | Bool |  no  | Shows whether the custom domain of your choice is available or not available |
+ | price | Double? |  yes  | Cost of purchasing a custom domain. Not present for Fynd domains. |
+ | currency | String? |  yes  | Custom domain currency. Not present for Fynd domains. |
 
 ---
 
@@ -5694,7 +5819,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | domains | [[DomainSuggestion](#DomainSuggestion)]? |  yes  | Domain url |
+ | domains | [[DomainSuggestion](#DomainSuggestion)]? |  yes  | Domain URL |
+
+---
+
+
+ 
+ 
+ #### [SuccessMessageResponse](#SuccessMessageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  | Shows whether domain was deleted successfully |
+ | message | String? |  yes  | Success message shown to the user (in a string format) |
 
 ---
 
@@ -5718,21 +5855,21 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | validators | [Validators](#Validators)? |  yes  |  |
- | description | String? |  yes  |  |
- | descriptionHtml | String? |  yes  |  |
+ | description | String? |  yes  | Basic description about the opted integration |
+ | descriptionHtml | String? |  yes  | Basic HTML description about the opted integration |
  | constants | String? |  yes  |  |
  | companies | [[String: Any]]? |  yes  |  |
  | support | [String]? |  yes  |  |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the opted integration |
+ | name | String? |  yes  | Nmae of the opted integration, e.g. SAP RBL Integration |
  | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
- | icon | String? |  yes  |  |
- | owner | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | token | String? |  yes  |  |
- | secret | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | icon | String? |  yes  | Hosted URL of the icon image |
+ | owner | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the user who created the integration |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of integration creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of integration updation |
+ | token | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
+ | secret | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
 
@@ -5758,7 +5895,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | jsonSchema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
- | browserScript | String? |  yes  |  |
+ | browserScript | String? |  yes  | Browser script for the company validator |
 
 ---
 
@@ -5769,10 +5906,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  |  |
- | key | String? |  yes  |  |
- | type | String? |  yes  |  |
- | tooltip | String? |  yes  |  |
+ | display | String? |  yes  | Display text of the validator JSON schema. It will show in the UI. |
+ | key | String? |  yes  | Key related to the display text of the validator JSON schema |
+ | type | String? |  yes  | Indicates the type of form field, e.g. Text, Dropdown. |
+ | tooltip | String? |  yes  | Tooltip text for the UI of the validator JSON schema. It will show in the UI. |
 
 ---
 
@@ -5784,7 +5921,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | jsonSchema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
- | browserScript | String? |  yes  |  |
+ | browserScript | String? |  yes  | Browser script for the store validator |
 
 ---
 
@@ -5796,7 +5933,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | jsonSchema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
- | browserScript | String? |  yes  |  |
+ | browserScript | String? |  yes  | Browser script for the inventory validator |
 
 ---
 
@@ -5808,7 +5945,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | jsonSchema | [[JsonSchema](#JsonSchema)]? |  yes  |  |
- | browserScript | String? |  yes  |  |
+ | browserScript | String? |  yes  | Browser script for the order validator |
 
 ---
 
@@ -5820,9 +5957,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | isPublic | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
- | value | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the integration meta |
+ | name | String? |  yes  | Nmae of integration meta, e.g. price_level |
+ | value | String? |  yes  | Value related to integration meta name, e.g. store |
 
 ---
 
@@ -5834,21 +5971,21 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | validators | [Validators](#Validators)? |  yes  |  |
- | description | String? |  yes  |  |
- | descriptionHtml | String? |  yes  |  |
+ | description | String? |  yes  | Basic description about the integration |
+ | descriptionHtml | String? |  yes  | Basic HTML description about the integration |
  | constants | [String: Any]? |  yes  |  |
  | companies | [[String: Any]]? |  yes  |  |
  | support | [String]? |  yes  |  |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the integration |
+ | name | String? |  yes  | Name of the integration, e.g. SAP RBL Integration |
  | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
- | icon | String? |  yes  |  |
- | owner | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | token | String? |  yes  |  |
- | secret | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | icon | String? |  yes  | Hosted URL of the icon image |
+ | owner | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the user who created the integration |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of integration creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of integration updation |
+ | token | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
+ | secret | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
 
@@ -5870,19 +6007,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | opted | Bool? |  yes  |  |
+ | opted | Bool? |  yes  | Shows this integration is opted or not opted for the current company |
  | permissions | [[String: Any]]? |  yes  |  |
  | lastPatch | [[LastPatch](#LastPatch)]? |  yes  |  |
- | id | String? |  yes  |  |
- | integration | String? |  yes  |  |
- | level | String? |  yes  |  |
- | uid | Int? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the integration config |
+ | integration | String? |  yes  | Integration id. Shows which integration you are enabling. |
+ | level | String? |  yes  | Shows for what level the integration is set up. It can be company level or store level. |
+ | uid | Int? |  yes  | It can be store uid or company uid. Depends on the level of integration. |
  | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
- | token | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
- | data | [String: Any]? |  yes  |  |
+ | token | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of integration config creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of integration config updation |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
+ | data | [String: Any]? |  yes  | Schema data of the integration stored in key-value pairs |
 
 ---
 
@@ -5904,7 +6041,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | otherOpted | Bool? |  yes  |  |
+ | otherOpted | Bool? |  yes  | Allow user to opt same store in other integration |
  | otherIntegration | [IntegrationOptIn](#IntegrationOptIn)? |  yes  |  |
  | otherEntity | [OtherEntity](#OtherEntity)? |  yes  |  |
 
@@ -5917,19 +6054,19 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | opted | Bool? |  yes  |  |
+ | opted | Bool? |  yes  | Allow other entity opted in integration |
  | permissions | [String]? |  yes  |  |
  | lastPatch | [[LastPatch](#LastPatch)]? |  yes  |  |
- | id | String? |  yes  |  |
- | integration | String? |  yes  |  |
- | level | String? |  yes  |  |
- | uid | Int? |  yes  |  |
+ | id | String? |  yes  | The unique identifier of the other entity for opted store integration |
+ | integration | String? |  yes  | Integration ID. Shows which integration you are enabling. |
+ | level | String? |  yes  | Indicates integration level. It can be company level or store level. |
+ | uid | Int? |  yes  | It can be store uid or company uid. Depends on the level of integration. |
  | data | [OtherEntityData](#OtherEntityData)? |  yes  |  |
  | meta | [[String: Any]]? |  yes  |  |
- | token | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | token | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of other entity creation for opted store integration |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of other entity updation for opted store integration |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
 
@@ -5942,7 +6079,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | op | String? |  yes  |  |
  | path | String? |  yes  |  |
- | value | String? |  yes  |  |
+ | value | String? |  yes  | It can be inventory level or order level |
 
 ---
 
@@ -5964,11 +6101,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companyId | String? |  yes  | Current company id |
- | channelType | String? |  yes  |  |
+ | companyId | String? |  yes  | Numeric ID allotted to a business account on Fynd Platform. |
+ | channelType | String? |  yes  | It indicates different channel types like store, website-and-mobile-apps. Default value is store |
  | auth | [ApplicationAuth](#ApplicationAuth)? |  yes  |  |
- | name | String? |  yes  | User friendly name for application |
- | desc | String? |  yes  | Basic description of application |
+ | name | String? |  yes  | User-friendly name for sales channel, e.g. Zenz Fashion |
+ | desc | String? |  yes  | Detailed description about the sales channel |
 
 ---
 
@@ -5982,9 +6119,9 @@ Success
  | brand | [InventoryBrandRule](#InventoryBrandRule)? |  yes  |  |
  | store | [InventoryStoreRule](#InventoryStoreRule)? |  yes  |  |
  | image | [String]? |  yes  |  |
- | franchiseEnabled | Bool? |  yes  |  |
- | outOfStock | Bool? |  yes  |  |
- | onlyVerifiedProducts | Bool? |  yes  |  |
+ | franchiseEnabled | Bool? |  yes  | Allow other businesses (companies) to consume the current sales channel's inventory and sell products |
+ | outOfStock | Bool? |  yes  | Indicates whether out of stock products are allowed to show up on the website. |
+ | onlyVerifiedProducts | Bool? |  yes  | Show only verified products (the ones whose data have been verified by the admin) |
  | payment | [InventoryPaymentConfig](#InventoryPaymentConfig)? |  yes  |  |
  | articleAssignment | [InventoryArticleAssignment](#InventoryArticleAssignment)? |  yes  |  |
 
@@ -5997,7 +6134,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
+ | name | String? |  yes  | Domain URL of current sales channel, e.g. zenz.com |
 
 ---
 
@@ -6020,9 +6157,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | companyType | String? |  yes  |  |
+ | uid | Int? |  yes  | UID of the company, e.g. 108 |
+ | name | String? |  yes  | Name of the company, e.g. Newton Traders |
+ | companyType | String? |  yes  | Indicates the type of the company, e.g. franchisee, distributor, etc. |
 
 ---
 
@@ -6045,14 +6182,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | storeType | String? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
+ | id | String? |  yes  | The unique identifier of the store (24-digit Mongo Object ID) in the sales channel inventory |
+ | modifiedOn | String? |  yes  | ISO 8601 timestamp of last known updation to the stores in sales channel inventory |
+ | uid | Int? |  yes  | Sales channel inventory store UID |
+ | name | String? |  yes  | Name of the store in the sales channel inventory, e.g. Reebok Mumbai |
+ | displayName | String? |  yes  | Display name of the sales channel inventory store (can be different than the actual store name), e.g. Reebok MUM |
+ | storeType | String? |  yes  | Store type of the sales channel inventory store, such as mall, warehouse, high_street |
+ | storeCode | String? |  yes  | Store code of the enabled inventory store, e.g. HS-c9bac. It is unique for every store. |
+ | companyId | Int? |  yes  | Company ID of the selling location (store) added to the sales channel's inventory |
 
 ---
 
@@ -6063,9 +6200,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allStores | Bool? |  yes  |  |
+ | allStores | Bool? |  yes  | Allow all stores from the ordering stores |
  | deployedStores | [Int]? |  yes  |  |
- | q | String? |  yes  |  |
+ | q | String? |  yes  | Store code or name of the ordering store |
  | onlyDeployed | Bool? |  yes  |  |
 
 ---
@@ -6078,11 +6215,11 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | deployedStores | [Int]? |  yes  |  |
- | allStores | Bool? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | type | String? |  yes  |  |
- | id | String? |  yes  |  |
- | app | String? |  yes  |  |
+ | allStores | Bool? |  yes  | Allow all stores from the ordering store |
+ | enabled | Bool? |  yes  | Allow ordering stores for current sales channel |
+ | type | String? |  yes  | Permitted values are 'hard' and 'soft'. For hard type delivery, store selection is compulsory. For soft type, delivery store selection is optional. |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the ordering stores |
+ | app | String? |  yes  | Alphanumeric ID allotted to an application (sales channel website) created within a business account |
 
 ---
 
@@ -6104,8 +6241,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
+ | uid | Int? |  yes  | Uid of the seller company |
+ | name | String? |  yes  | Name of the seller company |
 
 ---
 
@@ -6116,12 +6253,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | description | String? |  yes  |  |
- | id | String? |  yes  |  |
- | domain | String? |  yes  |  |
+ | name | String? |  yes  | Name of the other seller's sales channel |
+ | description | String? |  yes  | Basic details about the other seller's sales channel |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the other seller's sales channel |
+ | domain | String? |  yes  | Domain URL of the other seller's sales channel |
  | company | [OtherSellerCompany](#OtherSellerCompany)? |  yes  |  |
- | optType | String? |  yes  |  |
+ | optType | String? |  yes  | Inventory opted by the other seller's sales channel. It can be the current company or stores in the current company. |
 
 ---
 
@@ -6144,10 +6281,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | description | String? |  yes  |  |
- | id | String? |  yes  |  |
- | domain | String? |  yes  |  |
+ | name | String? |  yes  | Name of the other seller's sales channel |
+ | description | String? |  yes  | Basic details about the other seller's sales channel |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the other seller's sales channel |
+ | domain | String? |  yes  | Domain URL of the other seller's sales channel |
  | company | [OptedCompany](#OptedCompany)? |  yes  |  |
  | optedInventory | [OptedInventory](#OptedInventory)? |  yes  |  |
  | optOutInventory | [OptOutInventory](#OptOutInventory)? |  yes  |  |
@@ -6161,8 +6298,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
+ | uid | Int? |  yes  | Company UID opted by the other seller's sales channel in its inventory. It has unique value for the company. |
+ | name | String? |  yes  | Name of the company opted by the other seller's sales channel in its inventory |
 
 ---
 
@@ -6185,8 +6322,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | String? |  yes  |  |
- | display | String? |  yes  |  |
+ | key | String? |  yes  | Opted type of inventory store. It can be store or company. |
+ | display | String? |  yes  | Display text of opted type for inventory store |
 
 ---
 
@@ -6197,15 +6334,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | id | String? |  yes  |  |
- | modifiedOn | String? |  yes  |  |
- | uid | Int? |  yes  |  |
+ | name | String? |  yes  | Name of the inventory store opted by other seller's application |
+ | storeCode | String? |  yes  | Store code of the opted inventory store. It is unique for every store. |
+ | id | String? |  yes  | The unique identifier of the opted inventory store |
+ | modifiedOn | String? |  yes  | ISO 8601 timestamp of opted inventory store creation |
+ | uid | Int? |  yes  | UID of opted inventory store |
  | address | [OptedStoreAddress](#OptedStoreAddress)? |  yes  |  |
- | displayName | String? |  yes  |  |
- | storeType | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
+ | displayName | String? |  yes  | Display name of the opted inventory store |
+ | storeType | String? |  yes  | Store type of the opted inventory store like warehouse, high_street, mall. |
+ | companyId | Int? |  yes  | Company ID of the opted inventory store |
 
 ---
 
@@ -6216,8 +6353,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | store | [Int] |  no  |  |
- | company | [Int] |  no  |  |
+ | store | [Int] |  no  | List of selling locations (stores) opted out from the inventory of other seller's application |
+ | company | [Int] |  no  | List of companies opted out from the inventory of other seller's application |
 
 ---
 
@@ -6229,11 +6366,11 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | tokens | [Tokens](#Tokens)? |  yes  |  |
- | id | String? |  yes  |  |
- | application | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the token |
+ | application | String? |  yes  | Alphanumeric ID allotted to the current application created within the current business account |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of token creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of token updation |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
 
@@ -6263,7 +6400,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credentials | [Credentials](#Credentials)? |  yes  |  |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether Firebase integration is enabled or disabled for the sales channel |
 
 ---
 
@@ -6276,10 +6413,10 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | ios | [Ios](#Ios)? |  yes  |  |
  | android | [Android](#Android)? |  yes  |  |
- | projectId | String? |  yes  |  |
- | gcmSenderId | String? |  yes  |  |
- | applicationId | String? |  yes  |  |
- | apiKey | String? |  yes  |  |
+ | projectId | String? |  yes  | Project ID for Firebase integration. Project ID is a unique identifier for a project and is used only within the console. |
+ | gcmSenderId | String? |  yes  | Google Cloud Manager's Sender ID for Firebase. It is a unique numerical value which is created when you configure your project in the Google Developers Console/Google Cloud Console. |
+ | applicationId | String? |  yes  | Alphanumeric ID allotted to the current application created within the current business account |
+ | apiKey | String? |  yes  | An API key is a unique string that's used to route requests to your Firebase project when interacting with Firebase. |
 
 ---
 
@@ -6290,8 +6427,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applicationId | String? |  yes  |  |
- | apiKey | String? |  yes  |  |
+ | applicationId | String? |  yes  | Alphanumeric ID allotted to a sales channel application created within a business account |
+ | apiKey | String? |  yes  | Firebase secret credential API key for IOS |
 
 ---
 
@@ -6302,8 +6439,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applicationId | String? |  yes  |  |
- | apiKey | String? |  yes  |  |
+ | applicationId | String? |  yes  | Alphanumeric ID allotted to a sales channel application created within a business account |
+ | apiKey | String? |  yes  | Firebase secret credential API key for Android |
 
 ---
 
@@ -6315,7 +6452,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credentials | [MoengageCredentials](#MoengageCredentials)? |  yes  |  |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether MoEngage integation is enabled or disabled for the sales channel |
 
 ---
 
@@ -6326,7 +6463,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | appId | String? |  yes  |  |
+ | appId | String? |  yes  | APP ID provided by MoEngage to identify a specific app. The app_id for your MoEngage account is available on the MoEngage Dashboard. |
 
 ---
 
@@ -6338,7 +6475,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credentials | [SegmentCredentials](#SegmentCredentials)? |  yes  |  |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether Segment integration is enabled or disabled for the sales channel |
 
 ---
 
@@ -6349,7 +6486,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | writeKey | String? |  yes  |  |
+ | writeKey | String? |  yes  | The unique identifier for a source that tells Segment from which source data is coming from, to which workspace the data belongs, and which destinations should receive the data. |
 
 ---
 
@@ -6361,7 +6498,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credentials | [GtmCredentials](#GtmCredentials)? |  yes  |  |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether GTM integration is enabled or disabled for the sales channel |
 
 ---
 
@@ -6372,7 +6509,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | apiKey | String? |  yes  |  |
+ | apiKey | String? |  yes  | Secret credential API key for GTM |
 
 ---
 
@@ -6384,7 +6521,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credentials | [FreshchatCredentials](#FreshchatCredentials)? |  yes  |  |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether Freshchat integration is enabled or disabled for the sales channel |
 
 ---
 
@@ -6395,9 +6532,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | appId | String? |  yes  |  |
- | appKey | String? |  yes  |  |
- | webToken | String? |  yes  |  |
+ | appId | String? |  yes  | The unique app_id of your Freshchat account for integrating Freshchat with your sales channel |
+ | appKey | String? |  yes  | The unique app_key of your Freshchat account for integrating Freshchat with your sales channel |
+ | webToken | String? |  yes  | Web token used for accessing the Freshchat APIs |
 
 ---
 
@@ -6409,7 +6546,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credentials | [SafetynetCredentials](#SafetynetCredentials)? |  yes  |  |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether Safetynet integration is enabled or disabled for the sales channel |
 
 ---
 
@@ -6420,7 +6557,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | apiKey | String? |  yes  |  |
+ | apiKey | String? |  yes  | Secret credential API key for Safetynet. This API key is used for calling the methods of Safetynet APIs. |
 
 ---
 
@@ -6442,7 +6579,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | publicKey | String? |  yes  |  |
+ | publicKey | String? |  yes  | Public key for integrating with Fynd rewards. |
 
 ---
 
@@ -6464,7 +6601,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | apiKey | String? |  yes  |  |
+ | apiKey | String? |  yes  | Secret API key for Google Maps. A unique identifier that authenticates requests made to Google Maps API. |
 
 ---
 
@@ -6487,7 +6624,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether reward points should be credited |
 
 ---
 
@@ -6498,9 +6635,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | autoApply | Bool? |  yes  |  |
- | strategyChannel | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether reward points are available for debit |
+ | autoApply | Bool? |  yes  | Allow automatic debit of reward points |
+ | strategyChannel | String? |  yes  | Strategy channel for debiting reward points |
 
 ---
 
@@ -6511,10 +6648,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | similar | [String]? |  yes  |  |
- | sellerSelection | Bool? |  yes  |  |
- | updateProductMeta | Bool? |  yes  |  |
- | requestProduct | Bool? |  yes  |  |
+ | similar | [String]? |  yes  | Configuration to show similar products, other products from same seller, other products in same category, other products in same price range, etc. |
+ | sellerSelection | Bool? |  yes  | Shows whether the customers can choose the seller on PDP |
+ | updateProductMeta | Bool? |  yes  | Allow user to update product meta. Default value is true. |
+ | requestProduct | Bool? |  yes  | Indicates whether customers can request for a product. Default value is false. |
 
 ---
 
@@ -6525,9 +6662,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pageType | String? |  yes  |  |
- | params | [String: Any]? |  yes  |  |
- | query | [String: Any]? |  yes  |  |
+ | pageType | String? |  yes  | Type of the launch page |
+ | params | [String: Any]? |  yes  | Launch page params. It can be nullable. |
+ | query | [String: Any]? |  yes  | Query related to launch page. It can be nullable. |
 
 ---
 
@@ -6539,10 +6676,10 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | launchPage | [LaunchPage](#LaunchPage)? |  yes  |  |
- | continueAsGuest | Bool? |  yes  |  |
- | loginBtnText | String? |  yes  |  |
- | showDomainTextbox | Bool? |  yes  |  |
- | showRegisterBtn | Bool? |  yes  |  |
+ | continueAsGuest | Bool? |  yes  | Shows whether a guest can checkout from cart without logging in |
+ | loginBtnText | String? |  yes  | Shows the text displayed over the login button |
+ | showDomainTextbox | Bool? |  yes  | Shows whether a textbox for entering domain is available |
+ | showRegisterBtn | Bool? |  yes  | Shows whether register button is available in the login/landing page |
 
 ---
 
@@ -6553,7 +6690,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | askStoreAddress | Bool? |  yes  |  |
+ | askStoreAddress | Bool? |  yes  | Shows whether a form to collect the address of the store, should be displayed upon visiting the website |
 
 ---
 
@@ -6573,11 +6710,11 @@ Success
  | qr | [QrFeature](#QrFeature)? |  yes  |  |
  | pcr | [PcrFeature](#PcrFeature)? |  yes  |  |
  | order | [OrderFeature](#OrderFeature)? |  yes  |  |
- | id | String? |  yes  |  |
- | app | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel features |
+ | app | String? |  yes  | Application ID of the sales channel |
+ | createdAt | String? |  yes  | ISO 8601 timestamp showing the date when the features were configured |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the sales channel feature configuration |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero |
 
 ---
 
@@ -6588,7 +6725,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | orderProcessing | Bool? |  yes  |  |
+ | orderProcessing | Bool? |  yes  | Shows whether order processing is enabled or not enabled |
 
 ---
 
@@ -6617,7 +6754,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | visibility | Bool? |  yes  |  |
+ | visibility | Bool? |  yes  | Shows whether WhatsApp communication is enabled |
 
 ---
 
@@ -6628,8 +6765,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | type | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether selection of store (for deploying the application) is permitted |
+ | type | String? |  yes  | Permitted values are 'hard' and 'soft'. For hard type delivery, store selection is compulsory. For soft type, delivery store selection is optional. |
 
 ---
 
@@ -6640,7 +6777,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
+ | value | String? |  yes  | Shows which price to display on PLP if one product has multiple prices (for each size), valid values are 'min', 'max', 'range'. Default value is range. |
+ | sort | String? |  yes  | Sorting of listing price with min or max value. Default value is min. |
 
 ---
 
@@ -6651,9 +6789,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | [String]? |  yes  |  |
- | type | String? |  yes  |  |
- | defaultCurrency | String? |  yes  |  |
+ | value | [String]? |  yes  | 3-letter currency code |
+ | type | String? |  yes  | If 'explicit', currency formatting shows currency code with price. For explicit or all currency selection. |
+ | defaultCurrency | String? |  yes  | 3-letter code of the default currency used in the application. Default vaule is 'INR'. |
 
 ---
 
@@ -6664,7 +6802,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Enable revenue engine. Default value is false. |
 
 ---
 
@@ -6675,7 +6813,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether customer feedback is enabled on PDP. Default value is false. |
 
 ---
 
@@ -6686,7 +6824,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether product comparison feature is enabled on PDP |
 
 ---
 
@@ -6697,11 +6835,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | gstInput | Bool? |  yes  |  |
- | staffSelection | Bool? |  yes  |  |
- | placingForCustomer | Bool? |  yes  |  |
- | googleMap | Bool? |  yes  |  |
- | revenueEngineCoupon | Bool? |  yes  |  |
+ | gstInput | Bool? |  yes  | Shows whether customer is allowed to enter GST on the cart page for claiming input credits |
+ | staffSelection | Bool? |  yes  | Shows whether staff selection is enabled on cart page |
+ | placingForCustomer | Bool? |  yes  | Shows whether the staff is placing order on behalf of customer. Default value is true. |
+ | googleMap | Bool? |  yes  | Allow adding of Google Maps. Default value is true. |
+ | revenueEngineCoupon | Bool? |  yes  | Allow coupon apply and credits, together. Default value is false. |
 
 ---
 
@@ -6712,9 +6850,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | Bool? |  yes  |  |
- | products | Bool? |  yes  |  |
- | collections | Bool? |  yes  |  |
+ | application | Bool? |  yes  | Shows whether sharing of mobile app via QR code is allowed. Default value is false. |
+ | products | Bool? |  yes  | Shows whether sharing product via QR code is allowed. Default value is false. |
+ | collections | Bool? |  yes  | Shows whether sharing collection via QR code is allowed. Default value is false. |
 
 ---
 
@@ -6725,7 +6863,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | staffSelection | Bool? |  yes  |  |
+ | staffSelection | Bool? |  yes  | Allow staff selection. Default value is false. |
 
 ---
 
@@ -6736,7 +6874,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | buyAgain | Bool? |  yes  |  |
+ | buyAgain | Bool? |  yes  | Allow buy again option for order. Default value is false. |
 
 ---
 
@@ -6769,30 +6907,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | name | String? |  yes  |  |
- | code | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | decimalDigits | Int? |  yes  |  |
- | symbol | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Domain](#Domain)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | verified | Bool? |  yes  |  |
- | isPrimary | Bool? |  yes  |  |
- | isShortlink | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
- | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the current sales channel supported currency |
+ | isActive | Bool? |  yes  | Shows currency is enabled or not in current sales channel |
+ | name | String? |  yes  | Name of the currency, e.g Indian Rupee |
+ | code | String? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
+ | decimalDigits | Int? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
+ | symbol | String? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
 
 ---
 
@@ -6803,8 +6925,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | basepath | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether sales channel website URL is enabled or not |
+ | basepath | String? |  yes  | Base path for the current sales channel website |
 
 ---
 
@@ -6826,7 +6948,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows sales channel auth is enabled or not enabled. |
 
 ---
 
@@ -6837,9 +6959,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | redirectFrom | String? |  yes  |  |
- | redirectTo | String? |  yes  |  |
- | type | String? |  yes  |  |
+ | redirectFrom | String? |  yes  | Old domain url of the sales channel |
+ | redirectTo | String? |  yes  | New domain URL of the sales channel. Users will be automatically redirected from old domain to new domain. |
+ | type | String? |  yes  | It shows domain redirection type. Permanent redirection is for long time period redirection, and temporary redirection for a short time period. |
 
 ---
 
@@ -6850,8 +6972,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | value | String? |  yes  |  |
+ | name | String? |  yes  | Indicates to name of application meta |
+ | value | String? |  yes  | Value related to application meta name |
 
 ---
 
@@ -6862,7 +6984,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secureUrl | String? |  yes  |  |
+ | secureUrl | String? |  yes  | Hosted URL of the image |
 
 ---
 
@@ -6876,40 +6998,29 @@ Success
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
  | auth | [ApplicationAuth](#ApplicationAuth)? |  yes  |  |
- | description | String? |  yes  |  |
- | channelType | String? |  yes  |  |
- | cacheTtl | Int? |  yes  |  |
- | isInternal | Bool? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
- | owner | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | token | String? |  yes  |  |
+ | description | String? |  yes  | It contains detailed information about the sales channel. |
+ | channelType | String? |  yes  | It indicates different channel types like store, website-and-mobile-apps. Default value is store |
+ | cacheTtl | Int? |  yes  | An integer value that specifies the number of seconds until the key expires |
+ | isInternal | Bool? |  yes  | Indicates whether a sales channel is internal or not |
+ | isActive | Bool? |  yes  | Indicates sales channel is active or not active |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the sales channel |
+ | name | String? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
+ | owner | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
+ | companyId | Int? |  yes  | Numeric ID allotted to a business account where the sales channel exists |
+ | token | String? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
  | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel updation |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
- | appType | String? |  yes  |  |
+ | appType | String? |  yes  | It shows application is live or in development mode. |
  | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
  | slug | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [NotFound](#NotFound)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
 
 ---
 
@@ -6931,18 +7042,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [SuccessMessageResponse](#SuccessMessageResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
+ | message | String? |  yes  | Error message when request body payload is improper |
 
 ---
 
@@ -6953,8 +7053,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | criteria | String? |  yes  | Whether enable all or explicitly few brands as inventory |
- | brands | [Int]? |  yes  | Brand uids in case of explicit criteria |
+ | criteria | String? |  yes  | Whether all brands are enabled, or explicitly few brands in the inventory |
+ | brands | [Int]? |  yes  |  |
 
 ---
 
@@ -6965,8 +7065,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companies | [Int]? |  yes  | list of company uids |
- | brands | [Int]? |  yes  | list of brand uids |
+ | companies | [Int]? |  yes  | List of company UID |
+ | brands | [Int]? |  yes  | List of brand UID |
 
 ---
 
@@ -6977,9 +7077,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | criteria | String? |  yes  | Whether enable all or explicitly few stores or use filter of brands and company as inventory stores |
- | rules | [[StoreCriteriaRule](#StoreCriteriaRule)]? |  yes  | List of rules with company and brands uids. Used when critera is `filter` |
- | stores | [Int]? |  yes  | List of store uids. Used when critera is `explicit` |
+ | criteria | String? |  yes  | Whether all stores are enabled, or explicitly few stores in the inventory, or use brands and company filter. |
+ | rules | [[StoreCriteriaRule](#StoreCriteriaRule)]? |  yes  | List of rules with company and brands uids. Used when critera is `filter`. |
+ | stores | [Int]? |  yes  | List of store uids. Used when critera is `explicit`. |
 
 ---
 
@@ -6990,8 +7090,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | modeOfPayment | String? |  yes  |  |
- | source | String? |  yes  |  |
+ | modeOfPayment | String? |  yes  | Mode of payment for the inventory of sales channel. It is required and default value is null. |
+ | source | String? |  yes  | Source of the payment mode for the inventory payment of sales channel. Default value is FYND. |
 
 ---
 
@@ -7002,7 +7102,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows store priority is enabled or not enabled for the article assignment. |
  | storetypeOrder | [String]? |  yes  |  |
 
 ---
@@ -7025,7 +7125,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | postOrderReassignment | Bool? |  yes  |  |
+ | postOrderReassignment | Bool? |  yes  | Allow post order reassigment of article |
  | rules | [ArticleAssignmentRule](#ArticleAssignmentRule)? |  yes  |  |
 
 ---
@@ -7037,13 +7137,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | Int? |  yes  |  |
- | address1 | String? |  yes  |  |
- | address2 | String? |  yes  |  |
- | city | String? |  yes  |  |
- | state | String? |  yes  |  |
- | country | String? |  yes  |  |
- | addressType | String? |  yes  |  |
+ | pincode | Int? |  yes  | 6-digit PIN code of the city, e.g. 400001 |
+ | address1 | String? |  yes  | Primary address line of the company |
+ | address2 | String? |  yes  | Secondary address line of the company |
+ | city | String? |  yes  | City name, e.g. Mumbai |
+ | state | String? |  yes  | State name, e.g. Maharashtra |
+ | country | String? |  yes  | Country name, e.g. India |
+ | addressType | String? |  yes  | Indicates different office types like office, registered, and home. |
 
 ---
 
@@ -7054,10 +7154,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | Bool? |  yes  |  |
- | primary | Bool? |  yes  |  |
- | verified | Bool? |  yes  |  |
- | email | String? |  yes  |  |
+ | active | Bool? |  yes  | Current email is active or not active |
+ | primary | Bool? |  yes  | Indicates current email is primay email or not primary email of user |
+ | verified | Bool? |  yes  | Indicates current email is verified email or not verified email |
+ | email | String? |  yes  | Email address of the user |
 
 ---
 
@@ -7068,11 +7168,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | active | Bool? |  yes  |  |
- | primary | Bool? |  yes  |  |
- | verified | Bool? |  yes  |  |
- | countryCode | Int? |  yes  |  |
- | phone | String? |  yes  |  |
+ | active | Bool? |  yes  | Current phone number is active or not active |
+ | primary | Bool? |  yes  | Indicates current phone number is primay  or not primary of user |
+ | verified | Bool? |  yes  | Indicates current phone number is verified or not verified |
+ | countryCode | Int? |  yes  | Country code, e.g. +91 |
+ | phone | String? |  yes  | Phone number of the user |
 
 ---
 
@@ -7083,13 +7183,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
- | size | Int? |  yes  |  |
- | current | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | nextId | String? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
+ | type | String |  no  | Page type |
+ | size | Int? |  yes  | The number of items to retrieve in each page. Default value is 10. |
+ | current | Int? |  yes  | Current page number |
+ | hasNext | Bool? |  yes  | Next page is present or not |
+ | itemTotal | Int? |  yes  | Total number of items to retrieve |
+ | nextId | String? |  yes  | Next page ID |
+ | hasPrevious | Bool? |  yes  | Previous page is present or not |
 
 ---
 
@@ -7104,13 +7204,13 @@ Success
  | support | [InformationSupport](#InformationSupport)? |  yes  |  |
  | socialLinks | [SocialLinks](#SocialLinks)? |  yes  |  |
  | links | [Links](#Links)? |  yes  |  |
- | copyrightText | String? |  yes  |  |
- | id | String? |  yes  |  |
+ | copyrightText | String? |  yes  | Copyright statement usually seen at the site's footer |
+ | id | String? |  yes  | Unique identifier (24-digit Mongo Object ID) of the application information |
  | businessHighlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
- | application | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | application | String? |  yes  | Alphanumeric ID allotted to a sales channel application created within a business account |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of creation of the application information |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of updation of the application information |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
 
@@ -7121,12 +7221,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | loc | String? |  yes  |  |
- | addressLine | [String]? |  yes  |  |
+ | loc | String? |  yes  | Co-ordinates of the location |
+ | addressLine | [String]? |  yes  | Contact address of the sales channel |
  | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
- | city | String? |  yes  |  |
- | country | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
+ | city | String? |  yes  | Name of the city, e.g. Mumbai |
+ | country | String? |  yes  | Name of the country, e.g. India |
+ | pincode | Int? |  yes  | 6-digit PIN Code of the city, e.g. 400001 |
 
 ---
 
@@ -7137,8 +7237,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  |  |
- | number | String? |  yes  |  |
+ | code | String? |  yes  | Country code for contact number, e.g. +91 (for India) |
+ | number | String? |  yes  | 10-digit mobile number |
 
 ---
 
@@ -7151,7 +7251,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | phone | [String]? |  yes  |  |
  | email | [String]? |  yes  |  |
- | timing | String? |  yes  |  |
+ | timing | String? |  yes  | Working hours of support team, e.g. 9 AM to 9 PM |
 
 ---
 
@@ -7181,9 +7281,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platform, e.g. Facebook |
+ | icon | String? |  yes  | Hosted URL of social icon image shown on the website |
+ | link | String? |  yes  | Web URL of brand's Facebook page |
 
 ---
 
@@ -7194,9 +7294,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platform, e.g. Instagram |
+ | icon | String? |  yes  | Hosted URL of social icon image shown on the website |
+ | link | String? |  yes  | Web URL of brand's Instagram page |
 
 ---
 
@@ -7207,9 +7307,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platform, e.g. Twitter |
+ | icon | String? |  yes  | Hosted URL of social icon image shown on the website |
+ | link | String? |  yes  | Web URL of brand's Twitter account |
 
 ---
 
@@ -7220,9 +7320,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platform, e.g. Pinterest |
+ | icon | String? |  yes  | Hosted URL of social icon image shown on the website |
+ | link | String? |  yes  | Web URL of brand's Pinterest page |
 
 ---
 
@@ -7233,9 +7333,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platform, e.g. Google+ |
+ | icon | String? |  yes  | Hosted URL of social icon image shown on the website |
+ | link | String? |  yes  | Web URL of brand's Google+ account |
 
 ---
 
@@ -7246,9 +7346,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platform, e.g. YouTube |
+ | icon | String? |  yes  | Hosted URL of social icon image shown on the website |
+ | link | String? |  yes  | Web URL of brand's YouTube channel |
 
 ---
 
@@ -7259,9 +7359,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the social media platform, e.g. LinkedIn |
+ | icon | String? |  yes  | Hosted URL of social icon image shown on the website |
+ | link | String? |  yes  | Web URL of brand's LinkedIn channel |
 
 ---
 
@@ -7272,9 +7372,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the video hosting platform, e.g. Vimeo |
+ | icon | String? |  yes  | Hosted URL of social icon image shown on the website |
+ | link | String? |  yes  | Web URL of brand's Vimeo channel |
 
 ---
 
@@ -7285,9 +7385,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the brand's blog page |
+ | icon | String? |  yes  | Hosted URL of icon image shown on the website |
+ | link | String? |  yes  | Web URL of brand's blog page |
 
 ---
 
@@ -7298,8 +7398,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | link | String? |  yes  |  |
+ | title | String? |  yes  | Name of the related page or link |
+ | link | String? |  yes  | Web URL for redirecting to a related page |
 
 ---
 
@@ -7310,10 +7410,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | title | String? |  yes  |  |
- | icon | String? |  yes  |  |
- | subTitle | String? |  yes  |  |
+ | id | String? |  yes  | Unique identifier (24-digit Mongo Object ID) of the related business |
+ | title | String? |  yes  | Title of the business highlight, e.g. Superfast Delivery |
+ | icon | String? |  yes  | Hosted URL of icon image representing the business highlight |
+ | subTitle | String? |  yes  | Detailed information about the highlight |
 
 ---
 
@@ -7324,15 +7424,15 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | description | String? |  yes  |  |
- | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
- | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
- | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
- | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | name | String |  no  | Name of the sales channel. It is required. |
+ | description | String |  no  | It gives a detailed information about the sales channel. It is required. |
+ | logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | mobileLogo | [SecureUrl](#SecureUrl) |  no  |  |
+ | favicon | [SecureUrl](#SecureUrl) |  no  |  |
+ | banner | [SecureUrl](#SecureUrl) |  no  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
- | id | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |
  | slug | String? |  yes  |  |
 
 ---
@@ -7355,7 +7455,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | String? |  yes  |  |
+ | application | String? |  yes  | Alphanumeric ID allotted to an application (sales channel website) created within a business account |
  | defaultCurrency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
  | supportedCurrency | [[Currency](#Currency)]? |  yes  |  |
 
@@ -7368,7 +7468,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
+ | type | String? |  yes  | Coordinates type of the opted store |
  | coordinates | [Double]? |  yes  |  |
 
 ---
@@ -7380,13 +7480,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | state | String? |  yes  |  |
- | address1 | String? |  yes  |  |
+ | state | String? |  yes  | State of the opted store, e.g. Maharashtra |
+ | address1 | String? |  yes  | Address of the opted store |
  | latLong | [StoreLatLong](#StoreLatLong)? |  yes  |  |
- | address2 | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | country | String? |  yes  |  |
- | city | String? |  yes  |  |
+ | address2 | String? |  yes  | Address of the opted store |
+ | pincode | Int? |  yes  | 6-digit PIN code of the opted store location |
+ | country | String? |  yes  | Country of the opted store, e.g. India |
+ | city | String? |  yes  | City of the opted store, e.g. Mumbai |
 
 ---
 
@@ -7398,14 +7498,14 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | [OptedStoreAddress](#OptedStoreAddress)? |  yes  |  |
- | id | String? |  yes  |  |
- | uid | Int? |  yes  |  |
- | name | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | storeType | String? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | pincode | Int? |  yes  |  |
- | code | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the ordering store |
+ | uid | Int? |  yes  | Ordering store UID |
+ | name | String? |  yes  | Store name of the ordering store |
+ | displayName | String? |  yes  | Display name of the ordering store |
+ | storeType | String? |  yes  | Store type of the ordering store, e.g. high_street, mall, warehouse |
+ | storeCode | String? |  yes  | Store code of the ordering store, e.g. MUM-102 |
+ | pincode | Int? |  yes  | 6-digit PIN Code  of the ordering store, e.g. 400001 |
+ | code | String? |  yes  | Code of the ordering store (usually same as Store Code) |
 
 ---
 
@@ -7419,12 +7519,12 @@ Success
  | page | [Page](#Page)? |  yes  |  |
  | items | [[OrderingStore](#OrderingStore)]? |  yes  |  |
  | deployedStores | [Int]? |  yes  |  |
- | allStores | Bool? |  yes  |  |
- | enabled | Bool? |  yes  |  |
- | type | String? |  yes  |  |
- | id | String? |  yes  |  |
- | app | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | allStores | Bool? |  yes  | Allow all stores of the ordering stores |
+ | enabled | Bool? |  yes  | Allow ordering stores for current sales channel |
+ | type | String? |  yes  | For hard type delivery, store selection is compulsory. For soft type, delivery store selection is optional. |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the ordering store |
+ | app | String? |  yes  | Alphanumeric ID allotted to an application (sales channel website) created within a business account |
+ | v | Int? |  yes  | Version key for tracking ordering stores. Default value is zero. |
 
 ---
 

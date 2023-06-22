@@ -4,26 +4,26 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: AffiliateInventoryOrderConfig
+         Model: ProcessManifestItemResponse
          Used By: Order
      */
 
-    class AffiliateInventoryOrderConfig: Codable {
-        public var forceReassignment: Bool?
+    class ProcessManifestItemResponse: Codable {
+        public var items: ProcessManifestResponse?
 
         public enum CodingKeys: String, CodingKey {
-            case forceReassignment = "force_reassignment"
+            case items
         }
 
-        public init(forceReassignment: Bool? = nil) {
-            self.forceReassignment = forceReassignment
+        public init(items: ProcessManifestResponse? = nil) {
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                forceReassignment = try container.decode(Bool.self, forKey: .forceReassignment)
+                items = try container.decode(ProcessManifestResponse.self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -34,33 +34,33 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(forceReassignment, forKey: .forceReassignment)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: AffiliateInventoryOrderConfig
+         Model: ProcessManifestItemResponse
          Used By: Order
      */
 
-    class AffiliateInventoryOrderConfig: Codable {
-        public var forceReassignment: Bool?
+    class ProcessManifestItemResponse: Codable {
+        public var items: ProcessManifestResponse?
 
         public enum CodingKeys: String, CodingKey {
-            case forceReassignment = "force_reassignment"
+            case items
         }
 
-        public init(forceReassignment: Bool? = nil) {
-            self.forceReassignment = forceReassignment
+        public init(items: ProcessManifestResponse? = nil) {
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                forceReassignment = try container.decode(Bool.self, forKey: .forceReassignment)
+                items = try container.decode(ProcessManifestResponse.self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(forceReassignment, forKey: .forceReassignment)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

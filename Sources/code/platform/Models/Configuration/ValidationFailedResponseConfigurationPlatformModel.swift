@@ -2,28 +2,28 @@
 
 import Foundation
 
-public extension PlatformClient.Order {
+public extension PlatformClient.Configuration {
     /*
-         Model: AffiliateInventoryStoreConfig
-         Used By: Order
+         Model: ValidationFailedResponse
+         Used By: Configuration
      */
 
-    class AffiliateInventoryStoreConfig: Codable {
-        public var store: [String: Any]?
+    class ValidationFailedResponse: Codable {
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case store
+            case message
         }
 
-        public init(store: [String: Any]? = nil) {
-            self.store = store
+        public init(message: String? = nil) {
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                store = try container.decode([String: Any].self, forKey: .store)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -34,33 +34,33 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.Configuration {
     /*
-         Model: AffiliateInventoryStoreConfig
-         Used By: Order
+         Model: ValidationFailedResponse
+         Used By: Configuration
      */
 
-    class AffiliateInventoryStoreConfig: Codable {
-        public var store: [String: Any]?
+    class ValidationFailedResponse: Codable {
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case store
+            case message
         }
 
-        public init(store: [String: Any]? = nil) {
-            self.store = store
+        public init(message: String? = nil) {
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                store = try container.decode([String: Any].self, forKey: .store)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

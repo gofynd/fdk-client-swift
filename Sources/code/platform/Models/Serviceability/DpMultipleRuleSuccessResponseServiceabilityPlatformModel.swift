@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class DpMultipleRuleSuccessResponse: Codable {
         public var page: Page
 
-        public var items: [DpRule]
-
         public var success: Bool
+
+        public var items: [DpRule]
 
         public enum CodingKeys: String, CodingKey {
             case page
 
-            case items
-
             case success
+
+            case items
         }
 
         public init(items: [DpRule], page: Page, success: Bool) {
             self.page = page
 
-            self.items = items
-
             self.success = success
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Serviceability {
 
             page = try container.decode(Page.self, forKey: .page)
 
-            items = try container.decode([DpRule].self, forKey: .items)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            items = try container.decode([DpRule].self, forKey: .items)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class DpMultipleRuleSuccessResponse: Codable {
         public var page: Page
 
-        public var items: [DpRule]
-
         public var success: Bool
+
+        public var items: [DpRule]
 
         public enum CodingKeys: String, CodingKey {
             case page
 
-            case items
-
             case success
+
+            case items
         }
 
         public init(items: [DpRule], page: Page, success: Bool) {
             self.page = page
 
-            self.items = items
-
             self.success = success
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             page = try container.decode(Page.self, forKey: .page)
 
-            items = try container.decode([DpRule].self, forKey: .items)
-
             success = try container.decode(Bool.self, forKey: .success)
+
+            items = try container.decode([DpRule].self, forKey: .items)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

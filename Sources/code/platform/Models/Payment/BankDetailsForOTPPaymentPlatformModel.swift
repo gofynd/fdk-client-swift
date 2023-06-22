@@ -9,6 +9,8 @@ public extension PlatformClient.Payment {
      */
 
     class BankDetailsForOTP: Codable {
+        public var accountHolder: String
+
         public var accountNo: String
 
         public var branchName: String
@@ -17,9 +19,9 @@ public extension PlatformClient.Payment {
 
         public var ifscCode: String
 
-        public var accountHolder: String
-
         public enum CodingKeys: String, CodingKey {
+            case accountHolder = "account_holder"
+
             case accountNo = "account_no"
 
             case branchName = "branch_name"
@@ -27,11 +29,11 @@ public extension PlatformClient.Payment {
             case bankName = "bank_name"
 
             case ifscCode = "ifsc_code"
-
-            case accountHolder = "account_holder"
         }
 
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
+            self.accountHolder = accountHolder
+
             self.accountNo = accountNo
 
             self.branchName = branchName
@@ -39,12 +41,12 @@ public extension PlatformClient.Payment {
             self.bankName = bankName
 
             self.ifscCode = ifscCode
-
-            self.accountHolder = accountHolder
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
             accountNo = try container.decode(String.self, forKey: .accountNo)
 
@@ -53,12 +55,12 @@ public extension PlatformClient.Payment {
             bankName = try container.decode(String.self, forKey: .bankName)
 
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
-            accountHolder = try container.decode(String.self, forKey: .accountHolder)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
@@ -67,8 +69,6 @@ public extension PlatformClient.Payment {
             try? container.encodeIfPresent(bankName, forKey: .bankName)
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
         }
     }
 }
@@ -80,6 +80,8 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class BankDetailsForOTP: Codable {
+        public var accountHolder: String
+
         public var accountNo: String
 
         public var branchName: String
@@ -88,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var ifscCode: String
 
-        public var accountHolder: String
-
         public enum CodingKeys: String, CodingKey {
+            case accountHolder = "account_holder"
+
             case accountNo = "account_no"
 
             case branchName = "branch_name"
@@ -98,11 +100,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             case bankName = "bank_name"
 
             case ifscCode = "ifsc_code"
-
-            case accountHolder = "account_holder"
         }
 
         public init(accountHolder: String, accountNo: String, bankName: String, branchName: String, ifscCode: String) {
+            self.accountHolder = accountHolder
+
             self.accountNo = accountNo
 
             self.branchName = branchName
@@ -110,12 +112,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.bankName = bankName
 
             self.ifscCode = ifscCode
-
-            self.accountHolder = accountHolder
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            accountHolder = try container.decode(String.self, forKey: .accountHolder)
 
             accountNo = try container.decode(String.self, forKey: .accountNo)
 
@@ -124,12 +126,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             bankName = try container.decode(String.self, forKey: .bankName)
 
             ifscCode = try container.decode(String.self, forKey: .ifscCode)
-
-            accountHolder = try container.decode(String.self, forKey: .accountHolder)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
 
             try? container.encodeIfPresent(accountNo, forKey: .accountNo)
 
@@ -138,8 +140,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             try? container.encodeIfPresent(bankName, forKey: .bankName)
 
             try? container.encodeIfPresent(ifscCode, forKey: .ifscCode)
-
-            try? container.encodeIfPresent(accountHolder, forKey: .accountHolder)
         }
     }
 }

@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var priority: Int
 
-        public var isActive: Bool
-
         public var key: String
+
+        public var isActive: Bool
 
         public var logo: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case priority
 
-            case isActive = "is_active"
-
             case key
+
+            case isActive = "is_active"
 
             case logo
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.priority = priority
 
-            self.isActive = isActive
-
             self.key = key
+
+            self.isActive = isActive
 
             self.logo = logo
         }
@@ -56,9 +56,9 @@ public extension PlatformClient.Catalog {
 
             priority = try container.decode(Int.self, forKey: .priority)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             key = try container.decode(String.self, forKey: .key)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -76,9 +76,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
@@ -96,9 +96,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var priority: Int
 
-        public var isActive: Bool
-
         public var key: String
+
+        public var isActive: Bool
 
         public var logo: String?
 
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case priority
 
-            case isActive = "is_active"
-
             case key
+
+            case isActive = "is_active"
 
             case logo
         }
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.priority = priority
 
-            self.isActive = isActive
-
             self.key = key
+
+            self.isActive = isActive
 
             self.logo = logo
         }
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             priority = try container.decode(Int.self, forKey: .priority)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             key = try container.decode(String.self, forKey: .key)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -159,9 +159,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
