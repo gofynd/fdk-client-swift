@@ -7,6 +7,8 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class CartMetaRequest: Codable {
+        public var pickUpCustomerDetails: [String: Any]?
+
         public var deliverySlots: [String: Any]?
 
         public var comment: String?
@@ -15,9 +17,9 @@ public extension ApplicationClient.PosCart {
 
         public var checkoutMode: String?
 
-        public var pickUpCustomerDetails: [String: Any]?
-
         public enum CodingKeys: String, CodingKey {
+            case pickUpCustomerDetails = "pick_up_customer_details"
+
             case deliverySlots = "delivery_slots"
 
             case comment
@@ -25,11 +27,11 @@ public extension ApplicationClient.PosCart {
             case gstin
 
             case checkoutMode = "checkout_mode"
-
-            case pickUpCustomerDetails = "pick_up_customer_details"
         }
 
         public init(checkoutMode: String? = nil, comment: String? = nil, deliverySlots: [String: Any]? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
+            self.pickUpCustomerDetails = pickUpCustomerDetails
+
             self.deliverySlots = deliverySlots
 
             self.comment = comment
@@ -37,12 +39,18 @@ public extension ApplicationClient.PosCart {
             self.gstin = gstin
 
             self.checkoutMode = checkoutMode
-
-            self.pickUpCustomerDetails = pickUpCustomerDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 deliverySlots = try container.decode([String: Any].self, forKey: .deliverySlots)
@@ -75,18 +83,12 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
             try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
 
@@ -95,8 +97,6 @@ public extension ApplicationClient.PosCart {
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-
-            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
         }
     }
 }
