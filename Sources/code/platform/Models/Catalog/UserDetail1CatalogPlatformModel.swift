@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class UserDetail1: Codable {
         public var userId: String?
 
-        public var username: String?
-
         public var fullName: String?
+
+        public var username: String?
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
-            case username
-
             case fullName = "full_name"
+
+            case username
         }
 
         public init(fullName: String? = nil, username: String? = nil, userId: String? = nil) {
             self.userId = userId
 
-            self.username = username
-
             self.fullName = fullName
+
+            self.username = username
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                fullName = try container.decode(String.self, forKey: .fullName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                fullName = try container.decode(String.self, forKey: .fullName)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(fullName, forKey: .fullName)
+
+            try? container.encodeIfPresent(username, forKey: .username)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class UserDetail1: Codable {
         public var userId: String?
 
-        public var username: String?
-
         public var fullName: String?
+
+        public var username: String?
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
-            case username
-
             case fullName = "full_name"
+
+            case username
         }
 
         public init(fullName: String? = nil, username: String? = nil, userId: String? = nil) {
             self.userId = userId
 
-            self.username = username
-
             self.fullName = fullName
+
+            self.username = username
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                username = try container.decode(String.self, forKey: .username)
+                fullName = try container.decode(String.self, forKey: .fullName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                fullName = try container.decode(String.self, forKey: .fullName)
+                username = try container.decode(String.self, forKey: .username)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(fullName, forKey: .fullName)
+
+            try? container.encodeIfPresent(username, forKey: .username)
         }
     }
 }

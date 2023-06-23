@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Order {
     /*
-         Model: Options
+         Model: ShipmentResponseReasons
          Used By: Order
      */
 
-    class Options: Codable {
-        public var value: Int?
+    class ShipmentResponseReasons: Codable {
+        public var reason: String?
 
-        public var text: String?
+        public var reasonId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case value
+            case reason
 
-            case text
+            case reasonId = "reason_id"
         }
 
-        public init(text: String? = nil, value: Int? = nil) {
-            self.value = value
+        public init(reason: String? = nil, reasonId: Int? = nil) {
+            self.reason = reason
 
-            self.text = text
+            self.reasonId = reasonId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                reason = try container.decode(String.self, forKey: .reason)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
+                reasonId = try container.decode(Int.self, forKey: .reasonId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(reason, forKey: .reason)
 
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: Options
+         Model: ShipmentResponseReasons
          Used By: Order
      */
 
-    class Options: Codable {
-        public var value: Int?
+    class ShipmentResponseReasons: Codable {
+        public var reason: String?
 
-        public var text: String?
+        public var reasonId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case value
+            case reason
 
-            case text
+            case reasonId = "reason_id"
         }
 
-        public init(text: String? = nil, value: Int? = nil) {
-            self.value = value
+        public init(reason: String? = nil, reasonId: Int? = nil) {
+            self.reason = reason
 
-            self.text = text
+            self.reasonId = reasonId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(Int.self, forKey: .value)
+                reason = try container.decode(String.self, forKey: .reason)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
+                reasonId = try container.decode(Int.self, forKey: .reasonId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(reason, forKey: .reason)
 
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
         }
     }
 }

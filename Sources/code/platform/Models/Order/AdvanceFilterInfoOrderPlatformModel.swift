@@ -9,7 +9,7 @@ public extension PlatformClient.Order {
      */
 
     class AdvanceFilterInfo: Codable {
-        public var filters: [FiltersInfo]?
+        public var processed: [FiltersInfo]?
 
         public var appliedFilters: [String: Any]?
 
@@ -17,14 +17,14 @@ public extension PlatformClient.Order {
 
         public var returned: [FiltersInfo]?
 
-        public var actionCentre: [FiltersInfo]?
+        public var filters: [FiltersInfo]?
 
-        public var processed: [FiltersInfo]?
+        public var actionCentre: [FiltersInfo]?
 
         public var page: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case filters
+            case processed
 
             case appliedFilters = "applied_filters"
 
@@ -32,15 +32,15 @@ public extension PlatformClient.Order {
 
             case returned
 
-            case actionCentre = "action_centre"
+            case filters
 
-            case processed
+            case actionCentre = "action_centre"
 
             case page
         }
 
         public init(actionCentre: [FiltersInfo]? = nil, appliedFilters: [String: Any]? = nil, filters: [FiltersInfo]? = nil, page: [String: Any]? = nil, processed: [FiltersInfo]? = nil, returned: [FiltersInfo]? = nil, unfulfilled: [FiltersInfo]? = nil) {
-            self.filters = filters
+            self.processed = processed
 
             self.appliedFilters = appliedFilters
 
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
 
             self.returned = returned
 
-            self.actionCentre = actionCentre
+            self.filters = filters
 
-            self.processed = processed
+            self.actionCentre = actionCentre
 
             self.page = page
         }
@@ -59,7 +59,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                filters = try container.decode([FiltersInfo].self, forKey: .filters)
+                processed = try container.decode([FiltersInfo].self, forKey: .processed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                actionCentre = try container.decode([FiltersInfo].self, forKey: .actionCentre)
+                filters = try container.decode([FiltersInfo].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,7 +99,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                processed = try container.decode([FiltersInfo].self, forKey: .processed)
+                actionCentre = try container.decode([FiltersInfo].self, forKey: .actionCentre)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,7 +118,7 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(processed, forKey: .processed)
 
             try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
 
@@ -126,9 +126,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(returned, forKey: .returned)
 
-            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(processed, forKey: .processed)
+            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
 
             try? container.encodeIfPresent(page, forKey: .page)
         }
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AdvanceFilterInfo: Codable {
-        public var filters: [FiltersInfo]?
+        public var processed: [FiltersInfo]?
 
         public var appliedFilters: [String: Any]?
 
@@ -150,14 +150,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var returned: [FiltersInfo]?
 
-        public var actionCentre: [FiltersInfo]?
+        public var filters: [FiltersInfo]?
 
-        public var processed: [FiltersInfo]?
+        public var actionCentre: [FiltersInfo]?
 
         public var page: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case filters
+            case processed
 
             case appliedFilters = "applied_filters"
 
@@ -165,15 +165,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case returned
 
-            case actionCentre = "action_centre"
+            case filters
 
-            case processed
+            case actionCentre = "action_centre"
 
             case page
         }
 
         public init(actionCentre: [FiltersInfo]? = nil, appliedFilters: [String: Any]? = nil, filters: [FiltersInfo]? = nil, page: [String: Any]? = nil, processed: [FiltersInfo]? = nil, returned: [FiltersInfo]? = nil, unfulfilled: [FiltersInfo]? = nil) {
-            self.filters = filters
+            self.processed = processed
 
             self.appliedFilters = appliedFilters
 
@@ -181,9 +181,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.returned = returned
 
-            self.actionCentre = actionCentre
+            self.filters = filters
 
-            self.processed = processed
+            self.actionCentre = actionCentre
 
             self.page = page
         }
@@ -192,7 +192,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                filters = try container.decode([FiltersInfo].self, forKey: .filters)
+                processed = try container.decode([FiltersInfo].self, forKey: .processed)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -224,7 +224,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                actionCentre = try container.decode([FiltersInfo].self, forKey: .actionCentre)
+                filters = try container.decode([FiltersInfo].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -232,7 +232,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                processed = try container.decode([FiltersInfo].self, forKey: .processed)
+                actionCentre = try container.decode([FiltersInfo].self, forKey: .actionCentre)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,7 +251,7 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(processed, forKey: .processed)
 
             try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
 
@@ -259,9 +259,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(returned, forKey: .returned)
 
-            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(processed, forKey: .processed)
+            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
 
             try? container.encodeIfPresent(page, forKey: .page)
         }

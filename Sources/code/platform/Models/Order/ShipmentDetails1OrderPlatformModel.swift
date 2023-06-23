@@ -9,13 +9,11 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentDetails1: Codable {
-        public var fulfillmentId: Int
-
         public var articles: [ArticleDetails1]
 
-        public var boxType: String?
-
         public var affiliateShipmentId: String
+
+        public var boxType: String?
 
         public var dpId: Int?
 
@@ -23,44 +21,46 @@ public extension PlatformClient.Order {
 
         public var shipments: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case fulfillmentId = "fulfillment_id"
+        public var fulfillmentId: Int
 
+        public enum CodingKeys: String, CodingKey {
             case articles
 
-            case boxType = "box_type"
-
             case affiliateShipmentId = "affiliate_shipment_id"
+
+            case boxType = "box_type"
 
             case dpId = "dp_id"
 
             case meta
 
             case shipments
+
+            case fulfillmentId = "fulfillment_id"
         }
 
         public init(affiliateShipmentId: String, articles: [ArticleDetails1], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, meta: [String: Any]? = nil, shipments: Int) {
-            self.fulfillmentId = fulfillmentId
-
             self.articles = articles
 
-            self.boxType = boxType
-
             self.affiliateShipmentId = affiliateShipmentId
+
+            self.boxType = boxType
 
             self.dpId = dpId
 
             self.meta = meta
 
             self.shipments = shipments
+
+            self.fulfillmentId = fulfillmentId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
-
             articles = try container.decode([ArticleDetails1].self, forKey: .articles)
+
+            affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
             do {
                 boxType = try container.decode(String.self, forKey: .boxType)
@@ -69,8 +69,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
             do {
                 dpId = try container.decode(Int.self, forKey: .dpId)
@@ -89,24 +87,26 @@ public extension PlatformClient.Order {
             } catch {}
 
             shipments = try container.decode(Int.self, forKey: .shipments)
+
+            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
-
             try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encode(boxType, forKey: .boxType)
-
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+
+            try? container.encode(boxType, forKey: .boxType)
 
             try? container.encode(dpId, forKey: .dpId)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
         }
     }
 }
@@ -118,13 +118,11 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentDetails1: Codable {
-        public var fulfillmentId: Int
-
         public var articles: [ArticleDetails1]
 
-        public var boxType: String?
-
         public var affiliateShipmentId: String
+
+        public var boxType: String?
 
         public var dpId: Int?
 
@@ -132,44 +130,46 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var shipments: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case fulfillmentId = "fulfillment_id"
+        public var fulfillmentId: Int
 
+        public enum CodingKeys: String, CodingKey {
             case articles
 
-            case boxType = "box_type"
-
             case affiliateShipmentId = "affiliate_shipment_id"
+
+            case boxType = "box_type"
 
             case dpId = "dp_id"
 
             case meta
 
             case shipments
+
+            case fulfillmentId = "fulfillment_id"
         }
 
         public init(affiliateShipmentId: String, articles: [ArticleDetails1], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, meta: [String: Any]? = nil, shipments: Int) {
-            self.fulfillmentId = fulfillmentId
-
             self.articles = articles
 
-            self.boxType = boxType
-
             self.affiliateShipmentId = affiliateShipmentId
+
+            self.boxType = boxType
 
             self.dpId = dpId
 
             self.meta = meta
 
             self.shipments = shipments
+
+            self.fulfillmentId = fulfillmentId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
-
             articles = try container.decode([ArticleDetails1].self, forKey: .articles)
+
+            affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
             do {
                 boxType = try container.decode(String.self, forKey: .boxType)
@@ -178,8 +178,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
 
             do {
                 dpId = try container.decode(Int.self, forKey: .dpId)
@@ -198,24 +196,26 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             shipments = try container.decode(Int.self, forKey: .shipments)
+
+            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
-
             try? container.encodeIfPresent(articles, forKey: .articles)
 
-            try? container.encode(boxType, forKey: .boxType)
-
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
+
+            try? container.encode(boxType, forKey: .boxType)
 
             try? container.encode(dpId, forKey: .dpId)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
         }
     }
 }

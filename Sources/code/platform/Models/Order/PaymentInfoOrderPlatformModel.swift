@@ -9,7 +9,7 @@ public extension PlatformClient.Order {
      */
 
     class PaymentInfo: Codable {
-        public var paymentMethods: [PaymentMethod1]?
+        public var paymentMethods: [PaymentMethod]?
 
         public var primaryMode: String
 
@@ -19,7 +19,7 @@ public extension PlatformClient.Order {
             case primaryMode = "primary_mode"
         }
 
-        public init(paymentMethods: [PaymentMethod1]? = nil, primaryMode: String) {
+        public init(paymentMethods: [PaymentMethod]? = nil, primaryMode: String) {
             self.paymentMethods = paymentMethods
 
             self.primaryMode = primaryMode
@@ -29,7 +29,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentMethods = try container.decode([PaymentMethod1].self, forKey: .paymentMethods)
+                paymentMethods = try container.decode([PaymentMethod].self, forKey: .paymentMethods)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PaymentInfo: Codable {
-        public var paymentMethods: [PaymentMethod1]?
+        public var paymentMethods: [PaymentMethod]?
 
         public var primaryMode: String
 
@@ -66,7 +66,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case primaryMode = "primary_mode"
         }
 
-        public init(paymentMethods: [PaymentMethod1]? = nil, primaryMode: String) {
+        public init(paymentMethods: [PaymentMethod]? = nil, primaryMode: String) {
             self.paymentMethods = paymentMethods
 
             self.primaryMode = primaryMode
@@ -76,7 +76,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentMethods = try container.decode([PaymentMethod1].self, forKey: .paymentMethods)
+                paymentMethods = try container.decode([PaymentMethod].self, forKey: .paymentMethods)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

@@ -9,9 +9,9 @@ public extension ApplicationClient.Logistic {
     class ReAssignStoreRequest: Codable {
         public var identifier: String
 
-        public var toPincode: String
-
         public var ignoredLocations: [String]
+
+        public var toPincode: String
 
         public var articles: [[String: Any]]
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Logistic {
         public enum CodingKeys: String, CodingKey {
             case identifier
 
-            case toPincode = "to_pincode"
-
             case ignoredLocations = "ignored_locations"
+
+            case toPincode = "to_pincode"
 
             case articles
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Logistic {
         public init(articles: [[String: Any]], configuration: [String: Any], identifier: String, ignoredLocations: [String], toPincode: String) {
             self.identifier = identifier
 
-            self.toPincode = toPincode
-
             self.ignoredLocations = ignoredLocations
+
+            self.toPincode = toPincode
 
             self.articles = articles
 
@@ -46,9 +46,9 @@ public extension ApplicationClient.Logistic {
 
             identifier = try container.decode(String.self, forKey: .identifier)
 
-            toPincode = try container.decode(String.self, forKey: .toPincode)
-
             ignoredLocations = try container.decode([String].self, forKey: .ignoredLocations)
+
+            toPincode = try container.decode(String.self, forKey: .toPincode)
 
             articles = try container.decode([[String: Any]].self, forKey: .articles)
 
@@ -60,9 +60,9 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
-
             try? container.encodeIfPresent(ignoredLocations, forKey: .ignoredLocations)
+
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
             try? container.encodeIfPresent(articles, forKey: .articles)
 

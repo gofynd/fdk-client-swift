@@ -11,42 +11,42 @@ public extension PlatformClient.Catalog {
     class OptInPostRequest: Codable {
         public var brandIds: [Int]?
 
+        public var optLevel: String
+
+        public var enabled: Bool?
+
+        public var companyId: Int?
+
         public var storeIds: [Int]?
 
         public var platform: String?
 
-        public var optLevel: String
-
-        public var companyId: Int?
-
-        public var enabled: Bool?
-
         public enum CodingKeys: String, CodingKey {
             case brandIds = "brand_ids"
+
+            case optLevel = "opt_level"
+
+            case enabled
+
+            case companyId = "company_id"
 
             case storeIds = "store_ids"
 
             case platform
-
-            case optLevel = "opt_level"
-
-            case companyId = "company_id"
-
-            case enabled
         }
 
         public init(brandIds: [Int]? = nil, companyId: Int? = nil, enabled: Bool? = nil, optLevel: String, platform: String? = nil, storeIds: [Int]? = nil) {
             self.brandIds = brandIds
 
-            self.storeIds = storeIds
-
-            self.platform = platform
-
             self.optLevel = optLevel
+
+            self.enabled = enabled
 
             self.companyId = companyId
 
-            self.enabled = enabled
+            self.storeIds = storeIds
+
+            self.platform = platform
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,6 +54,24 @@ public extension PlatformClient.Catalog {
 
             do {
                 brandIds = try container.decode([Int].self, forKey: .brandIds)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            optLevel = try container.decode(String.self, forKey: .optLevel)
+
+            do {
+                enabled = try container.decode(Bool.self, forKey: .enabled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,24 +93,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            optLevel = try container.decode(String.self, forKey: .optLevel)
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -100,15 +100,15 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
-            try? container.encodeIfPresent(platform, forKey: .platform)
-
             try? container.encodeIfPresent(optLevel, forKey: .optLevel)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+
+            try? container.encodeIfPresent(platform, forKey: .platform)
         }
     }
 }
@@ -122,42 +122,42 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class OptInPostRequest: Codable {
         public var brandIds: [Int]?
 
+        public var optLevel: String
+
+        public var enabled: Bool?
+
+        public var companyId: Int?
+
         public var storeIds: [Int]?
 
         public var platform: String?
 
-        public var optLevel: String
-
-        public var companyId: Int?
-
-        public var enabled: Bool?
-
         public enum CodingKeys: String, CodingKey {
             case brandIds = "brand_ids"
+
+            case optLevel = "opt_level"
+
+            case enabled
+
+            case companyId = "company_id"
 
             case storeIds = "store_ids"
 
             case platform
-
-            case optLevel = "opt_level"
-
-            case companyId = "company_id"
-
-            case enabled
         }
 
         public init(brandIds: [Int]? = nil, companyId: Int? = nil, enabled: Bool? = nil, optLevel: String, platform: String? = nil, storeIds: [Int]? = nil) {
             self.brandIds = brandIds
 
-            self.storeIds = storeIds
-
-            self.platform = platform
-
             self.optLevel = optLevel
+
+            self.enabled = enabled
 
             self.companyId = companyId
 
-            self.enabled = enabled
+            self.storeIds = storeIds
+
+            self.platform = platform
         }
 
         required public init(from decoder: Decoder) throws {
@@ -165,6 +165,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 brandIds = try container.decode([Int].self, forKey: .brandIds)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            optLevel = try container.decode(String.self, forKey: .optLevel)
+
+            do {
+                enabled = try container.decode(Bool.self, forKey: .enabled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -186,24 +204,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            optLevel = try container.decode(String.self, forKey: .optLevel)
-
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -211,15 +211,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(brandIds, forKey: .brandIds)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-
-            try? container.encodeIfPresent(platform, forKey: .platform)
-
             try? container.encodeIfPresent(optLevel, forKey: .optLevel)
+
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+
+            try? container.encodeIfPresent(platform, forKey: .platform)
         }
     }
 }
