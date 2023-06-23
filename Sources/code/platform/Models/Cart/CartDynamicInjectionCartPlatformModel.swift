@@ -4,11 +4,11 @@ import Foundation
 
 public extension PlatformClient.ApplicationClient.Cart {
     /*
-         Model: CartDynamicInjectionAdd
+         Model: CartDynamicInjection
          Used By: Cart
      */
 
-    class CartDynamicInjectionAdd: Codable {
+    class CartDynamicInjection: Codable {
         public var articleLevelDistribution: Bool
 
         public var userType: String
@@ -16,6 +16,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         public var message: String
 
         public var allowedRefund: Bool?
+
+        public var injectionId: String?
 
         public var cartId: String
 
@@ -42,6 +44,8 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case allowedRefund = "allowed_refund"
 
+            case injectionId = "injection_id"
+
             case cartId = "cart_id"
 
             case collection
@@ -59,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             case articleIds = "article_ids"
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collecttion, message: String, meta: [String: Any]? = nil, type: String, userId: String? = nil, userType: String, value: Double? = nil) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collecttion, injectionId: String? = nil, message: String, meta: [String: Any]? = nil, type: String, userId: String? = nil, userType: String, value: Double? = nil) {
             self.articleLevelDistribution = articleLevelDistribution
 
             self.userType = userType
@@ -67,6 +71,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.message = message
 
             self.allowedRefund = allowedRefund
+
+            self.injectionId = injectionId
 
             self.cartId = cartId
 
@@ -96,6 +102,14 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 allowedRefund = try container.decode(Bool.self, forKey: .allowedRefund)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                injectionId = try container.decode(String.self, forKey: .injectionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,9 +164,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(userType, forKey: .userType)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
 
             try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
+
+            try? container.encodeIfPresent(injectionId, forKey: .injectionId)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
@@ -166,7 +182,7 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encode(meta, forKey: .meta)
 
             try? container.encodeIfPresent(articleIds, forKey: .articleIds)
         }

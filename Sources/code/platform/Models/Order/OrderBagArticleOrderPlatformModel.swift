@@ -9,44 +9,36 @@ public extension PlatformClient.Order {
      */
 
     class OrderBagArticle: Codable {
-        public var uid: String?
-
         public var size: String?
 
         public var returnConfig: ReturnConfig1?
 
         public var identifiers: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case uid
+        public var uid: String?
 
+        public enum CodingKeys: String, CodingKey {
             case size
 
             case returnConfig = "return_config"
 
             case identifiers
+
+            case uid
         }
 
         public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, size: String? = nil, uid: String? = nil) {
-            self.uid = uid
-
             self.size = size
 
             self.returnConfig = returnConfig
 
             self.identifiers = identifiers
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 size = try container.decode(String.self, forKey: .size)
@@ -71,18 +63,26 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
 
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }
@@ -94,44 +94,36 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderBagArticle: Codable {
-        public var uid: String?
-
         public var size: String?
 
         public var returnConfig: ReturnConfig1?
 
         public var identifiers: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case uid
+        public var uid: String?
 
+        public enum CodingKeys: String, CodingKey {
             case size
 
             case returnConfig = "return_config"
 
             case identifiers
+
+            case uid
         }
 
         public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, size: String? = nil, uid: String? = nil) {
-            self.uid = uid
-
             self.size = size
 
             self.returnConfig = returnConfig
 
             self.identifiers = identifiers
+
+            self.uid = uid
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 size = try container.decode(String.self, forKey: .size)
@@ -156,18 +148,26 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
 
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
         }
     }
 }

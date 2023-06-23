@@ -9,18 +9,18 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CartBreakup: Codable {
-        public var loyaltyPoints: LoyaltyPoints?
-
         public var display: [DisplayBreakup]?
+
+        public var loyaltyPoints: LoyaltyPoints?
 
         public var raw: RawBreakup?
 
         public var coupon: CouponBreakup?
 
         public enum CodingKeys: String, CodingKey {
-            case loyaltyPoints = "loyalty_points"
-
             case display
+
+            case loyaltyPoints = "loyalty_points"
 
             case raw
 
@@ -28,9 +28,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(coupon: CouponBreakup? = nil, display: [DisplayBreakup]? = nil, loyaltyPoints: LoyaltyPoints? = nil, raw: RawBreakup? = nil) {
-            self.loyaltyPoints = loyaltyPoints
-
             self.display = display
+
+            self.loyaltyPoints = loyaltyPoints
 
             self.raw = raw
 
@@ -41,7 +41,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                loyaltyPoints = try container.decode(LoyaltyPoints.self, forKey: .loyaltyPoints)
+                display = try container.decode([DisplayBreakup].self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                display = try container.decode([DisplayBreakup].self, forKey: .display)
+                loyaltyPoints = try container.decode(LoyaltyPoints.self, forKey: .loyaltyPoints)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(loyaltyPoints, forKey: .loyaltyPoints)
 
             try? container.encodeIfPresent(raw, forKey: .raw)
 
