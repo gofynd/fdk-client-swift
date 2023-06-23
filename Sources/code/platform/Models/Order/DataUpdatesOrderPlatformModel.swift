@@ -13,16 +13,22 @@ public extension PlatformClient.Order {
 
         public var entities: [EntitiesDataUpdates]?
 
+        public var orderItemStatus: [OrderItemDataUpdates]?
+
         public enum CodingKeys: String, CodingKey {
             case products
 
             case entities
+
+            case orderItemStatus = "order_item_status"
         }
 
-        public init(entities: [EntitiesDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
+        public init(entities: [EntitiesDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
             self.products = products
 
             self.entities = entities
+
+            self.orderItemStatus = orderItemStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,6 +49,14 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                orderItemStatus = try container.decode([OrderItemDataUpdates].self, forKey: .orderItemStatus)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -51,6 +65,8 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(products, forKey: .products)
 
             try? container.encodeIfPresent(entities, forKey: .entities)
+
+            try? container.encodeIfPresent(orderItemStatus, forKey: .orderItemStatus)
         }
     }
 }
@@ -66,16 +82,22 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var entities: [EntitiesDataUpdates]?
 
+        public var orderItemStatus: [OrderItemDataUpdates]?
+
         public enum CodingKeys: String, CodingKey {
             case products
 
             case entities
+
+            case orderItemStatus = "order_item_status"
         }
 
-        public init(entities: [EntitiesDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
+        public init(entities: [EntitiesDataUpdates]? = nil, orderItemStatus: [OrderItemDataUpdates]? = nil, products: [ProductsDataUpdates]? = nil) {
             self.products = products
 
             self.entities = entities
+
+            self.orderItemStatus = orderItemStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -96,6 +118,14 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                orderItemStatus = try container.decode([OrderItemDataUpdates].self, forKey: .orderItemStatus)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -104,6 +134,8 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(products, forKey: .products)
 
             try? container.encodeIfPresent(entities, forKey: .entities)
+
+            try? container.encodeIfPresent(orderItemStatus, forKey: .orderItemStatus)
         }
     }
 }

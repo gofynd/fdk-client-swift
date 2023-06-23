@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class ManifestFile: Codable {
         public var region: String?
 
-        public var bucket: String?
-
         public var key: String?
+
+        public var bucket: String?
 
         public enum CodingKeys: String, CodingKey {
             case region
 
-            case bucket
-
             case key
+
+            case bucket
         }
 
         public init(bucket: String? = nil, key: String? = nil, region: String? = nil) {
             self.region = region
 
-            self.bucket = bucket
-
             self.key = key
+
+            self.bucket = bucket
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                bucket = try container.decode(String.self, forKey: .bucket)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                bucket = try container.decode(String.self, forKey: .bucket)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(region, forKey: .region)
 
-            try? container.encodeIfPresent(bucket, forKey: .bucket)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(bucket, forKey: .bucket)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class ManifestFile: Codable {
         public var region: String?
 
-        public var bucket: String?
-
         public var key: String?
+
+        public var bucket: String?
 
         public enum CodingKeys: String, CodingKey {
             case region
 
-            case bucket
-
             case key
+
+            case bucket
         }
 
         public init(bucket: String? = nil, key: String? = nil, region: String? = nil) {
             self.region = region
 
-            self.bucket = bucket
-
             self.key = key
+
+            self.bucket = bucket
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                bucket = try container.decode(String.self, forKey: .bucket)
+                key = try container.decode(String.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                key = try container.decode(String.self, forKey: .key)
+                bucket = try container.decode(String.self, forKey: .bucket)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(region, forKey: .region)
 
-            try? container.encodeIfPresent(bucket, forKey: .bucket)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(bucket, forKey: .bucket)
         }
     }
 }

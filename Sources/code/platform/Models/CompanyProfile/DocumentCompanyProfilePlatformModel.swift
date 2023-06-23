@@ -9,42 +9,44 @@ public extension PlatformClient.CompanyProfile {
      */
 
     class Document: Codable {
-        public var url: String?
-
         public var value: String
+
+        public var url: String?
 
         public var legalName: String?
 
-        public var type: String
-
         public var verified: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case url
+        public var type: String
 
+        public enum CodingKeys: String, CodingKey {
             case value
+
+            case url
 
             case legalName = "legal_name"
 
-            case type
-
             case verified
+
+            case type
         }
 
         public init(legalName: String? = nil, type: String, url: String? = nil, value: String, verified: Bool? = nil) {
-            self.url = url
-
             self.value = value
+
+            self.url = url
 
             self.legalName = legalName
 
-            self.type = type
-
             self.verified = verified
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            value = try container.decode(String.self, forKey: .value)
 
             do {
                 url = try container.decode(String.self, forKey: .url)
@@ -54,8 +56,6 @@ public extension PlatformClient.CompanyProfile {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            value = try container.decode(String.self, forKey: .value)
-
             do {
                 legalName = try container.decode(String.self, forKey: .legalName)
 
@@ -64,8 +64,6 @@ public extension PlatformClient.CompanyProfile {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            type = try container.decode(String.self, forKey: .type)
-
             do {
                 verified = try container.decode(Bool.self, forKey: .verified)
 
@@ -73,20 +71,22 @@ public extension PlatformClient.CompanyProfile {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(verified, forKey: .verified)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

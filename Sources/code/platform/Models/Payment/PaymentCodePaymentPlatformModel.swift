@@ -9,18 +9,18 @@ public extension PlatformClient.Payment {
      */
 
     class PaymentCode: Codable {
-        public var types: String
-
         public var name: String
+
+        public var types: String
 
         public var codes: Code
 
         public var networks: String
 
         public enum CodingKeys: String, CodingKey {
-            case types
-
             case name
+
+            case types
 
             case codes
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Payment {
         }
 
         public init(codes: Code, name: String, networks: String, types: String) {
-            self.types = types
-
             self.name = name
+
+            self.types = types
 
             self.codes = codes
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            types = try container.decode(String.self, forKey: .types)
-
             name = try container.decode(String.self, forKey: .name)
+
+            types = try container.decode(String.self, forKey: .types)
 
             codes = try container.decode(Code.self, forKey: .codes)
 
@@ -52,9 +52,9 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(types, forKey: .types)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(types, forKey: .types)
 
             try? container.encodeIfPresent(codes, forKey: .codes)
 
@@ -70,18 +70,18 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class PaymentCode: Codable {
-        public var types: String
-
         public var name: String
+
+        public var types: String
 
         public var codes: Code
 
         public var networks: String
 
         public enum CodingKeys: String, CodingKey {
-            case types
-
             case name
+
+            case types
 
             case codes
 
@@ -89,9 +89,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         }
 
         public init(codes: Code, name: String, networks: String, types: String) {
-            self.types = types
-
             self.name = name
+
+            self.types = types
 
             self.codes = codes
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            types = try container.decode(String.self, forKey: .types)
-
             name = try container.decode(String.self, forKey: .name)
+
+            types = try container.decode(String.self, forKey: .types)
 
             codes = try container.decode(Code.self, forKey: .codes)
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(types, forKey: .types)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(types, forKey: .types)
 
             try? container.encodeIfPresent(codes, forKey: .codes)
 

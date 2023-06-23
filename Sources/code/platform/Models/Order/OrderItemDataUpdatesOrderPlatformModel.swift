@@ -2,28 +2,28 @@
 
 import Foundation
 
-public extension PlatformClient.Serviceability {
+public extension PlatformClient.Order {
     /*
-         Model: ApplicationSelfShipConfig
-         Used By: Serviceability
+         Model: OrderItemDataUpdates
+         Used By: Order
      */
 
-    class ApplicationSelfShipConfig: Codable {
-        public var selfShip: SelfShipResponse?
+    class OrderItemDataUpdates: Codable {
+        public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case selfShip = "self_ship"
+            case data
         }
 
-        public init(selfShip: SelfShipResponse? = nil) {
-            self.selfShip = selfShip
+        public init(data: [String: Any]? = nil) {
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                selfShip = try container.decode(SelfShipResponse.self, forKey: .selfShip)
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -34,33 +34,33 @@ public extension PlatformClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(selfShip, forKey: .selfShip)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Serviceability {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-         Model: ApplicationSelfShipConfig
-         Used By: Serviceability
+         Model: OrderItemDataUpdates
+         Used By: Order
      */
 
-    class ApplicationSelfShipConfig: Codable {
-        public var selfShip: SelfShipResponse?
+    class OrderItemDataUpdates: Codable {
+        public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case selfShip = "self_ship"
+            case data
         }
 
-        public init(selfShip: SelfShipResponse? = nil) {
-            self.selfShip = selfShip
+        public init(data: [String: Any]? = nil) {
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                selfShip = try container.decode(SelfShipResponse.self, forKey: .selfShip)
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(selfShip, forKey: .selfShip)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

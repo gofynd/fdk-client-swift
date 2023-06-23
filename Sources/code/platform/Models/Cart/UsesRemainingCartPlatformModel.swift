@@ -9,33 +9,33 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class UsesRemaining: Codable {
-        public var app: Int?
+        public var total: Int?
 
         public var user: Int?
 
-        public var total: Int?
+        public var app: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case app
+            case total
 
             case user
 
-            case total
+            case app
         }
 
         public init(app: Int? = nil, total: Int? = nil, user: Int? = nil) {
-            self.app = app
+            self.total = total
 
             self.user = user
 
-            self.total = total
+            self.app = app
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                app = try container.decode(Int.self, forKey: .app)
+                total = try container.decode(Int.self, forKey: .total)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                total = try container.decode(Int.self, forKey: .total)
+                app = try container.decode(Int.self, forKey: .app)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(app, forKey: .app)
+            try? container.encodeIfPresent(total, forKey: .total)
 
             try? container.encodeIfPresent(user, forKey: .user)
 
-            try? container.encodeIfPresent(total, forKey: .total)
+            try? container.encodeIfPresent(app, forKey: .app)
         }
     }
 }

@@ -9,27 +9,27 @@ public extension PlatformClient.Order {
      */
 
     class PDFMeta: Codable {
-        public var consent: String?
-
         public var mediaUpdates: [ManifestMediaUpdate]?
 
-        public enum CodingKeys: String, CodingKey {
-            case consent
+        public var consent: String?
 
+        public enum CodingKeys: String, CodingKey {
             case mediaUpdates = "media_updates"
+
+            case consent
         }
 
         public init(consent: String? = nil, mediaUpdates: [ManifestMediaUpdate]? = nil) {
-            self.consent = consent
-
             self.mediaUpdates = mediaUpdates
+
+            self.consent = consent
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                consent = try container.decode(String.self, forKey: .consent)
+                mediaUpdates = try container.decode([ManifestMediaUpdate].self, forKey: .mediaUpdates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                mediaUpdates = try container.decode([ManifestMediaUpdate].self, forKey: .mediaUpdates)
+                consent = try container.decode(String.self, forKey: .consent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(consent, forKey: .consent)
-
             try? container.encodeIfPresent(mediaUpdates, forKey: .mediaUpdates)
+
+            try? container.encode(consent, forKey: .consent)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PDFMeta: Codable {
-        public var consent: String?
-
         public var mediaUpdates: [ManifestMediaUpdate]?
 
-        public enum CodingKeys: String, CodingKey {
-            case consent
+        public var consent: String?
 
+        public enum CodingKeys: String, CodingKey {
             case mediaUpdates = "media_updates"
+
+            case consent
         }
 
         public init(consent: String? = nil, mediaUpdates: [ManifestMediaUpdate]? = nil) {
-            self.consent = consent
-
             self.mediaUpdates = mediaUpdates
+
+            self.consent = consent
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                consent = try container.decode(String.self, forKey: .consent)
+                mediaUpdates = try container.decode([ManifestMediaUpdate].self, forKey: .mediaUpdates)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                mediaUpdates = try container.decode([ManifestMediaUpdate].self, forKey: .mediaUpdates)
+                consent = try container.decode(String.self, forKey: .consent)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(consent, forKey: .consent)
-
             try? container.encodeIfPresent(mediaUpdates, forKey: .mediaUpdates)
+
+            try? container.encode(consent, forKey: .consent)
         }
     }
 }

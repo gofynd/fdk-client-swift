@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class ZoneMappingType: Codable {
         public var pincode: [String]?
 
-        public var state: [String]?
-
         public var country: String
+
+        public var state: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case pincode
 
-            case state
-
             case country
+
+            case state
         }
 
         public init(country: String, pincode: [String]? = nil, state: [String]? = nil) {
             self.pincode = pincode
 
-            self.state = state
-
             self.country = country
+
+            self.state = state
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,8 @@ public extension PlatformClient.Serviceability {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            country = try container.decode(String.self, forKey: .country)
+
             do {
                 state = try container.decode([String].self, forKey: .state)
 
@@ -49,8 +51,6 @@ public extension PlatformClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            country = try container.decode(String.self, forKey: .country)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
             try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(state, forKey: .state)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ZoneMappingType: Codable {
         public var pincode: [String]?
 
-        public var state: [String]?
-
         public var country: String
+
+        public var state: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case pincode
 
-            case state
-
             case country
+
+            case state
         }
 
         public init(country: String, pincode: [String]? = nil, state: [String]? = nil) {
             self.pincode = pincode
 
-            self.state = state
-
             self.country = country
+
+            self.state = state
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,6 +105,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            country = try container.decode(String.self, forKey: .country)
+
             do {
                 state = try container.decode([String].self, forKey: .state)
 
@@ -112,8 +114,6 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            country = try container.decode(String.self, forKey: .country)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(state, forKey: .state)
-
             try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(state, forKey: .state)
         }
     }
 }

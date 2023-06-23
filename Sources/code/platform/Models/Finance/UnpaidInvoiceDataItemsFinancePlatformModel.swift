@@ -9,24 +9,24 @@ public extension PlatformClient.Finance {
      */
 
     class UnpaidInvoiceDataItems: Codable {
-        public var totalUnpaidAmount: Double?
-
         public var totalUnpaidInvoiceCount: Int?
+
+        public var totalUnpaidAmount: Double?
 
         public var currency: String?
 
         public enum CodingKeys: String, CodingKey {
-            case totalUnpaidAmount = "total_unpaid_amount"
-
             case totalUnpaidInvoiceCount = "total_unpaid_invoice_count"
+
+            case totalUnpaidAmount = "total_unpaid_amount"
 
             case currency
         }
 
         public init(currency: String? = nil, totalUnpaidAmount: Double? = nil, totalUnpaidInvoiceCount: Int? = nil) {
-            self.totalUnpaidAmount = totalUnpaidAmount
-
             self.totalUnpaidInvoiceCount = totalUnpaidInvoiceCount
+
+            self.totalUnpaidAmount = totalUnpaidAmount
 
             self.currency = currency
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                totalUnpaidAmount = try container.decode(Double.self, forKey: .totalUnpaidAmount)
+                totalUnpaidInvoiceCount = try container.decode(Int.self, forKey: .totalUnpaidInvoiceCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                totalUnpaidInvoiceCount = try container.decode(Int.self, forKey: .totalUnpaidInvoiceCount)
+                totalUnpaidAmount = try container.decode(Double.self, forKey: .totalUnpaidAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalUnpaidAmount, forKey: .totalUnpaidAmount)
-
             try? container.encodeIfPresent(totalUnpaidInvoiceCount, forKey: .totalUnpaidInvoiceCount)
+
+            try? container.encodeIfPresent(totalUnpaidAmount, forKey: .totalUnpaidAmount)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
         }

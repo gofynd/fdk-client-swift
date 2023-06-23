@@ -9,45 +9,53 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class OpenApiCartServiceabilityResponse: Codable {
-        public var breakupValues: CartBreakup?
-
-        public var items: [CartProductInfo]?
-
         public var message: String?
-
-        public var isValid: Bool?
 
         public var deliveryPromise: ShipmentPromise?
 
+        public var items: [CartProductInfo]?
+
+        public var breakupValues: CartBreakup?
+
+        public var isValid: Bool?
+
         public enum CodingKeys: String, CodingKey {
-            case breakupValues = "breakup_values"
+            case message
+
+            case deliveryPromise = "delivery_promise"
 
             case items
 
-            case message
+            case breakupValues = "breakup_values"
 
             case isValid = "is_valid"
-
-            case deliveryPromise = "delivery_promise"
         }
 
         public init(breakupValues: CartBreakup? = nil, deliveryPromise: ShipmentPromise? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
-            self.breakupValues = breakupValues
+            self.message = message
+
+            self.deliveryPromise = deliveryPromise
 
             self.items = items
 
-            self.message = message
+            self.breakupValues = breakupValues
 
             self.isValid = isValid
-
-            self.deliveryPromise = deliveryPromise
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                deliveryPromise = try container.decode(ShipmentPromise.self, forKey: .deliveryPromise)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,28 +85,20 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                deliveryPromise = try container.decode(ShipmentPromise.self, forKey: .deliveryPromise)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
-
-            try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
         }
     }
 }

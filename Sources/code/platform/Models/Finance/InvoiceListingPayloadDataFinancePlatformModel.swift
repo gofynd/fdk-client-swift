@@ -11,42 +11,42 @@ public extension PlatformClient.Finance {
     class InvoiceListingPayloadData: Codable {
         public var pageSize: Int?
 
-        public var filters: InoviceListingPayloadDataFilters?
-
-        public var endDate: String?
-
-        public var startDate: String?
+        public var search: String?
 
         public var page: Int?
 
-        public var search: String?
+        public var filters: InoviceListingPayloadDataFilters?
+
+        public var startDate: String?
+
+        public var endDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case pageSize = "page_size"
 
-            case filters
-
-            case endDate = "end_date"
-
-            case startDate = "start_date"
+            case search
 
             case page
 
-            case search
+            case filters
+
+            case startDate = "start_date"
+
+            case endDate = "end_date"
         }
 
         public init(endDate: String? = nil, filters: InoviceListingPayloadDataFilters? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, startDate: String? = nil) {
             self.pageSize = pageSize
 
-            self.filters = filters
-
-            self.endDate = endDate
-
-            self.startDate = startDate
+            self.search = search
 
             self.page = page
 
-            self.search = search
+            self.filters = filters
+
+            self.startDate = startDate
+
+            self.endDate = endDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,23 +61,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                filters = try container.decode(InoviceListingPayloadDataFilters.self, forKey: .filters)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                endDate = try container.decode(String.self, forKey: .endDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                startDate = try container.decode(String.self, forKey: .startDate)
+                search = try container.decode(String.self, forKey: .search)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +77,23 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                search = try container.decode(String.self, forKey: .search)
+                filters = try container.decode(InoviceListingPayloadDataFilters.self, forKey: .filters)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                startDate = try container.decode(String.self, forKey: .startDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                endDate = try container.decode(String.self, forKey: .endDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,15 +106,15 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(pageSize, forKey: .pageSize)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
-
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
+            try? container.encodeIfPresent(search, forKey: .search)
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(search, forKey: .search)
+            try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
+
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
         }
     }
 }

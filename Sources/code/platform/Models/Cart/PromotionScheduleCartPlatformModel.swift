@@ -11,26 +11,26 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PromotionSchedule: Codable {
         public var cron: String?
 
-        public var start: String
-
         public var end: String
 
-        public var published: Bool
-
         public var nextSchedule: [[String: Any]]?
+
+        public var start: String
+
+        public var published: Bool
 
         public var duration: Int?
 
         public enum CodingKeys: String, CodingKey {
             case cron
 
-            case start
-
             case end
 
-            case published
-
             case nextSchedule = "next_schedule"
+
+            case start
+
+            case published
 
             case duration
         }
@@ -38,13 +38,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(cron: String? = nil, duration: Int? = nil, end: String, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
             self.cron = cron
 
-            self.start = start
-
             self.end = end
 
-            self.published = published
-
             self.nextSchedule = nextSchedule
+
+            self.start = start
+
+            self.published = published
 
             self.duration = duration
         }
@@ -60,11 +60,7 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            start = try container.decode(String.self, forKey: .start)
-
             end = try container.decode(String.self, forKey: .end)
-
-            published = try container.decode(Bool.self, forKey: .published)
 
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
@@ -73,6 +69,10 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            start = try container.decode(String.self, forKey: .start)
+
+            published = try container.decode(Bool.self, forKey: .published)
 
             do {
                 duration = try container.decode(Int.self, forKey: .duration)
@@ -88,13 +88,13 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encode(cron, forKey: .cron)
 
-            try? container.encodeIfPresent(start, forKey: .start)
-
             try? container.encodeIfPresent(end, forKey: .end)
 
-            try? container.encodeIfPresent(published, forKey: .published)
-
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+
+            try? container.encodeIfPresent(start, forKey: .start)
+
+            try? container.encodeIfPresent(published, forKey: .published)
 
             try? container.encode(duration, forKey: .duration)
         }

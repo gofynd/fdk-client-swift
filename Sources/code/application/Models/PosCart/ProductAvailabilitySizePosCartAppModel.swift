@@ -7,50 +7,42 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class ProductAvailabilitySize: Codable {
-        public var customJson: [String: Any]?
-
         public var display: String?
 
-        public var value: String?
+        public var customJson: [String: Any]?
 
         public var isAvailable: Bool?
 
         public var meta: [String: Any]?
 
-        public enum CodingKeys: String, CodingKey {
-            case customJson = "_custom_json"
+        public var value: String?
 
+        public enum CodingKeys: String, CodingKey {
             case display
 
-            case value
+            case customJson = "_custom_json"
 
             case isAvailable = "is_available"
 
             case meta
+
+            case value
         }
 
         public init(display: String? = nil, isAvailable: Bool? = nil, meta: [String: Any]? = nil, value: String? = nil, customJson: [String: Any]? = nil) {
-            self.customJson = customJson
-
             self.display = display
 
-            self.value = value
+            self.customJson = customJson
 
             self.isAvailable = isAvailable
 
             self.meta = meta
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 display = try container.decode(String.self, forKey: .display)
@@ -61,7 +53,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,20 +75,28 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(display, forKey: .display)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
