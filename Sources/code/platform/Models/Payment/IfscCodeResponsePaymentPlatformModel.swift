@@ -11,32 +11,30 @@ public extension PlatformClient.Payment {
     class IfscCodeResponse: Codable {
         public var bankName: String
 
-        public var branchName: String
-
         public var success: Bool?
+
+        public var branchName: String
 
         public enum CodingKeys: String, CodingKey {
             case bankName = "bank_name"
 
-            case branchName = "branch_name"
-
             case success
+
+            case branchName = "branch_name"
         }
 
         public init(bankName: String, branchName: String, success: Bool? = nil) {
             self.bankName = bankName
 
-            self.branchName = branchName
-
             self.success = success
+
+            self.branchName = branchName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             bankName = try container.decode(String.self, forKey: .bankName)
-
-            branchName = try container.decode(String.self, forKey: .branchName)
 
             do {
                 success = try container.decode(Bool.self, forKey: .success)
@@ -45,6 +43,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            branchName = try container.decode(String.self, forKey: .branchName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(bankName, forKey: .bankName)
 
-            try? container.encodeIfPresent(branchName, forKey: .branchName)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(branchName, forKey: .branchName)
         }
     }
 }
@@ -68,32 +68,30 @@ public extension PlatformClient.ApplicationClient.Payment {
     class IfscCodeResponse: Codable {
         public var bankName: String
 
-        public var branchName: String
-
         public var success: Bool?
+
+        public var branchName: String
 
         public enum CodingKeys: String, CodingKey {
             case bankName = "bank_name"
 
-            case branchName = "branch_name"
-
             case success
+
+            case branchName = "branch_name"
         }
 
         public init(bankName: String, branchName: String, success: Bool? = nil) {
             self.bankName = bankName
 
-            self.branchName = branchName
-
             self.success = success
+
+            self.branchName = branchName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             bankName = try container.decode(String.self, forKey: .bankName)
-
-            branchName = try container.decode(String.self, forKey: .branchName)
 
             do {
                 success = try container.decode(Bool.self, forKey: .success)
@@ -102,6 +100,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            branchName = try container.decode(String.self, forKey: .branchName)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(bankName, forKey: .bankName)
 
-            try? container.encodeIfPresent(branchName, forKey: .branchName)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(branchName, forKey: .branchName)
         }
     }
 }

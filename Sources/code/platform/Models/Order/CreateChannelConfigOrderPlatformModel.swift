@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var lockStates: [String]?
 
-        public var shipmentAssignment: String?
-
         public var dpConfiguration: DpConfiguration?
+
+        public var shipmentAssignment: String?
 
         public var logoUrl: [String: Any]?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case lockStates = "lock_states"
 
-            case shipmentAssignment = "shipment_assignment"
-
             case dpConfiguration = "dp_configuration"
+
+            case shipmentAssignment = "shipment_assignment"
 
             case logoUrl = "logo_url"
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Order {
 
             self.lockStates = lockStates
 
-            self.shipmentAssignment = shipmentAssignment
-
             self.dpConfiguration = dpConfiguration
+
+            self.shipmentAssignment = shipmentAssignment
 
             self.logoUrl = logoUrl
 
@@ -69,7 +69,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
+                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
+                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(lockStates, forKey: .lockStates)
 
-            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
-
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
+
+            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
 
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 
@@ -130,9 +130,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var lockStates: [String]?
 
-        public var shipmentAssignment: String?
-
         public var dpConfiguration: DpConfiguration?
+
+        public var shipmentAssignment: String?
 
         public var logoUrl: [String: Any]?
 
@@ -143,9 +143,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case lockStates = "lock_states"
 
-            case shipmentAssignment = "shipment_assignment"
-
             case dpConfiguration = "dp_configuration"
+
+            case shipmentAssignment = "shipment_assignment"
 
             case logoUrl = "logo_url"
 
@@ -157,9 +157,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.lockStates = lockStates
 
-            self.shipmentAssignment = shipmentAssignment
-
             self.dpConfiguration = dpConfiguration
+
+            self.shipmentAssignment = shipmentAssignment
 
             self.logoUrl = logoUrl
 
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
+                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                dpConfiguration = try container.decode(DpConfiguration.self, forKey: .dpConfiguration)
+                shipmentAssignment = try container.decode(String.self, forKey: .shipmentAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,9 +225,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(lockStates, forKey: .lockStates)
 
-            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
-
             try? container.encodeIfPresent(dpConfiguration, forKey: .dpConfiguration)
+
+            try? container.encodeIfPresent(shipmentAssignment, forKey: .shipmentAssignment)
 
             try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
 

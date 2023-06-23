@@ -11,18 +11,18 @@ public extension PlatformClient.Serviceability {
     class EntityRegionView_Response: Codable {
         public var data: [EntityRegionView_Items]
 
-        public var page: EntityRegionView_page
-
         public var error: EntityRegionView_Error
+
+        public var page: EntityRegionView_page
 
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case page
-
             case error
+
+            case page
 
             case success
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Serviceability {
         public init(data: [EntityRegionView_Items], error: EntityRegionView_Error, page: EntityRegionView_page, success: Bool) {
             self.data = data
 
-            self.page = page
-
             self.error = error
+
+            self.page = page
 
             self.success = success
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Serviceability {
 
             data = try container.decode([EntityRegionView_Items].self, forKey: .data)
 
-            page = try container.decode(EntityRegionView_page.self, forKey: .page)
-
             error = try container.decode(EntityRegionView_Error.self, forKey: .error)
+
+            page = try container.decode(EntityRegionView_page.self, forKey: .page)
 
             success = try container.decode(Bool.self, forKey: .success)
         }
@@ -54,9 +54,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }
@@ -72,18 +72,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class EntityRegionView_Response: Codable {
         public var data: [EntityRegionView_Items]
 
-        public var page: EntityRegionView_page
-
         public var error: EntityRegionView_Error
+
+        public var page: EntityRegionView_page
 
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case page
-
             case error
+
+            case page
 
             case success
         }
@@ -91,9 +91,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         public init(data: [EntityRegionView_Items], error: EntityRegionView_Error, page: EntityRegionView_page, success: Bool) {
             self.data = data
 
-            self.page = page
-
             self.error = error
+
+            self.page = page
 
             self.success = success
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             data = try container.decode([EntityRegionView_Items].self, forKey: .data)
 
-            page = try container.decode(EntityRegionView_page.self, forKey: .page)
-
             error = try container.decode(EntityRegionView_Error.self, forKey: .error)
+
+            page = try container.decode(EntityRegionView_page.self, forKey: .page)
 
             success = try container.decode(Bool.self, forKey: .success)
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

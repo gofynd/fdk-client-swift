@@ -9,36 +9,36 @@ public extension PlatformClient.Serviceability {
      */
 
     class GetZoneFromPincodeViewResponse: Codable {
+        public var zones: [String]
+
         public var serviceabilityType: String
 
-        public var zones: [Zone]
-
         public enum CodingKeys: String, CodingKey {
-            case serviceabilityType = "serviceability_type"
-
             case zones
+
+            case serviceabilityType = "serviceability_type"
         }
 
-        public init(serviceabilityType: String, zones: [Zone]) {
-            self.serviceabilityType = serviceabilityType
-
+        public init(serviceabilityType: String, zones: [String]) {
             self.zones = zones
+
+            self.serviceabilityType = serviceabilityType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
+            zones = try container.decode([String].self, forKey: .zones)
 
-            zones = try container.decode([Zone].self, forKey: .zones)
+            serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(serviceabilityType, forKey: .serviceabilityType)
-
             try? container.encodeIfPresent(zones, forKey: .zones)
+
+            try? container.encodeIfPresent(serviceabilityType, forKey: .serviceabilityType)
         }
     }
 }
@@ -50,36 +50,36 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class GetZoneFromPincodeViewResponse: Codable {
+        public var zones: [String]
+
         public var serviceabilityType: String
 
-        public var zones: [Zone]
-
         public enum CodingKeys: String, CodingKey {
-            case serviceabilityType = "serviceability_type"
-
             case zones
+
+            case serviceabilityType = "serviceability_type"
         }
 
-        public init(serviceabilityType: String, zones: [Zone]) {
-            self.serviceabilityType = serviceabilityType
-
+        public init(serviceabilityType: String, zones: [String]) {
             self.zones = zones
+
+            self.serviceabilityType = serviceabilityType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
+            zones = try container.decode([String].self, forKey: .zones)
 
-            zones = try container.decode([Zone].self, forKey: .zones)
+            serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(serviceabilityType, forKey: .serviceabilityType)
-
             try? container.encodeIfPresent(zones, forKey: .zones)
+
+            try? container.encodeIfPresent(serviceabilityType, forKey: .serviceabilityType)
         }
     }
 }

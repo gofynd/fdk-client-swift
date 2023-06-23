@@ -9,87 +9,115 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CartDynamicInjectionUpdate: Codable {
-        public var message: String?
+        public var message: String
 
-        public var allowedRefund: Bool?
+        public var articleIds: [Article]
 
-        public var type: String?
-
-        public var applyExpiry: String?
-
-        public var meta: Collecttion?
-
-        public var amountValue: Double?
-
-        public var userType: String
-
-        public var articleIds: [Article]?
-
-        public var collection: [String: Any]?
-
-        public var userId: String?
+        public var meta: [String: Any]?
 
         public var cartId: String
 
-        public var articleLevelDistribution: Bool?
+        public var collection: Collecttion
+
+        public var articleLevelDistribution: Bool
+
+        public var value: Double?
+
+        public var userType: String
+
+        public var userId: String?
+
+        public var allowedRefund: Bool?
+
+        public var applyExpiry: String?
+
+        public var type: String
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case allowedRefund = "allowed_refund"
-
-            case type
-
-            case applyExpiry = "apply_expiry"
+            case articleIds = "article_ids"
 
             case meta
 
-            case amountValue = "amount_value"
-
-            case userType = "user_type"
-
-            case articleIds = "article_ids"
+            case cartId = "cart_id"
 
             case collection
 
+            case articleLevelDistribution = "article_level_distribution"
+
+            case value
+
+            case userType = "user_type"
+
             case userId = "user_id"
 
-            case cartId = "cart_id"
+            case allowedRefund = "allowed_refund"
 
-            case articleLevelDistribution = "article_level_distribution"
+            case applyExpiry = "apply_expiry"
+
+            case type
         }
 
-        public init(allowedRefund: Bool? = nil, amountValue: Double? = nil, applyExpiry: String? = nil, articleIds: [Article]? = nil, articleLevelDistribution: Bool? = nil, cartId: String, collection: [String: Any]? = nil, message: String? = nil, meta: Collecttion? = nil, type: String? = nil, userId: String? = nil, userType: String) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collecttion, message: String, meta: [String: Any]? = nil, type: String, userId: String? = nil, userType: String, value: Double? = nil) {
             self.message = message
-
-            self.allowedRefund = allowedRefund
-
-            self.type = type
-
-            self.applyExpiry = applyExpiry
-
-            self.meta = meta
-
-            self.amountValue = amountValue
-
-            self.userType = userType
 
             self.articleIds = articleIds
 
-            self.collection = collection
-
-            self.userId = userId
+            self.meta = meta
 
             self.cartId = cartId
 
+            self.collection = collection
+
             self.articleLevelDistribution = articleLevelDistribution
+
+            self.value = value
+
+            self.userType = userType
+
+            self.userId = userId
+
+            self.allowedRefund = allowedRefund
+
+            self.applyExpiry = applyExpiry
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            message = try container.decode(String.self, forKey: .message)
+
+            articleIds = try container.decode([Article].self, forKey: .articleIds)
+
             do {
-                message = try container.decode(String.self, forKey: .message)
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            cartId = try container.decode(String.self, forKey: .cartId)
+
+            collection = try container.decode(Collecttion.self, forKey: .collection)
+
+            articleLevelDistribution = try container.decode(Bool.self, forKey: .articleLevelDistribution)
+
+            do {
+                value = try container.decode(Double.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            userType = try container.decode(String.self, forKey: .userType)
+
+            do {
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,14 +133,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 applyExpiry = try container.decode(String.self, forKey: .applyExpiry)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -120,85 +140,35 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                meta = try container.decode(Collecttion.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                amountValue = try container.decode(Double.self, forKey: .amountValue)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            userType = try container.decode(String.self, forKey: .userType)
-
-            do {
-                articleIds = try container.decode([Article].self, forKey: .articleIds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                collection = try container.decode([String: Any].self, forKey: .collection)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                userId = try container.decode(String.self, forKey: .userId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            cartId = try container.decode(String.self, forKey: .cartId)
-
-            do {
-                articleLevelDistribution = try container.decode(Bool.self, forKey: .articleLevelDistribution)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(message, forKey: .message)
-
-            try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
-
-            try? container.encode(type, forKey: .type)
-
-            try? container.encodeIfPresent(applyExpiry, forKey: .applyExpiry)
-
-            try? container.encode(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(amountValue, forKey: .amountValue)
-
-            try? container.encodeIfPresent(userType, forKey: .userType)
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(articleIds, forKey: .articleIds)
 
-            try? container.encode(collection, forKey: .collection)
-
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
+            try? container.encodeIfPresent(collection, forKey: .collection)
+
             try? container.encodeIfPresent(articleLevelDistribution, forKey: .articleLevelDistribution)
+
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(userType, forKey: .userType)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
+
+            try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
+
+            try? container.encodeIfPresent(applyExpiry, forKey: .applyExpiry)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

@@ -13,11 +13,11 @@ public extension ApplicationClient.Payment {
 
         public var description: String?
 
-        public var amount: Double
-
         public var email: String
 
         public var mobileNumber: String
+
+        public var amount: Double
 
         public enum CodingKeys: String, CodingKey {
             case externalOrderId = "external_order_id"
@@ -26,11 +26,11 @@ public extension ApplicationClient.Payment {
 
             case description
 
-            case amount
-
             case email
 
             case mobileNumber = "mobile_number"
+
+            case amount
         }
 
         public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
@@ -40,11 +40,11 @@ public extension ApplicationClient.Payment {
 
             self.description = description
 
-            self.amount = amount
-
             self.email = email
 
             self.mobileNumber = mobileNumber
+
+            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -62,11 +62,11 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            amount = try container.decode(Double.self, forKey: .amount)
-
             email = try container.decode(String.self, forKey: .email)
 
             mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
+
+            amount = try container.decode(Double.self, forKey: .amount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(description, forKey: .description)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }

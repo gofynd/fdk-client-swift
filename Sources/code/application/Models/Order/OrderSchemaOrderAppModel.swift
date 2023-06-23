@@ -7,30 +7,30 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class OrderSchema: Codable {
-        public var breakupValues: [BreakupValues]?
-
-        public var shipments: [Shipments]?
-
-        public var bagsForReorder: [BagsForReorder]?
-
         public var orderId: String?
 
         public var totalShipmentsInOrder: Int?
+
+        public var bagsForReorder: [BagsForReorder]?
+
+        public var shipments: [Shipments]?
+
+        public var breakupValues: [BreakupValues]?
 
         public var orderCreatedTime: String?
 
         public var userInfo: UserInfo?
 
         public enum CodingKeys: String, CodingKey {
-            case breakupValues = "breakup_values"
-
-            case shipments
-
-            case bagsForReorder = "bags_for_reorder"
-
             case orderId = "order_id"
 
             case totalShipmentsInOrder = "total_shipments_in_order"
+
+            case bagsForReorder = "bags_for_reorder"
+
+            case shipments
+
+            case breakupValues = "breakup_values"
 
             case orderCreatedTime = "order_created_time"
 
@@ -38,15 +38,15 @@ public extension ApplicationClient.Order {
         }
 
         public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, orderCreatedTime: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
-            self.breakupValues = breakupValues
-
-            self.shipments = shipments
-
-            self.bagsForReorder = bagsForReorder
-
             self.orderId = orderId
 
             self.totalShipmentsInOrder = totalShipmentsInOrder
+
+            self.bagsForReorder = bagsForReorder
+
+            self.shipments = shipments
+
+            self.breakupValues = breakupValues
 
             self.orderCreatedTime = orderCreatedTime
 
@@ -57,7 +57,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                breakupValues = try container.decode([BreakupValues].self, forKey: .breakupValues)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                shipments = try container.decode([Shipments].self, forKey: .shipments)
+                totalShipmentsInOrder = try container.decode(Int.self, forKey: .totalShipmentsInOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,7 +81,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                shipments = try container.decode([Shipments].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                totalShipmentsInOrder = try container.decode(Int.self, forKey: .totalShipmentsInOrder)
+                breakupValues = try container.decode([BreakupValues].self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,15 +116,15 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
-
-            try? container.encodeIfPresent(bagsForReorder, forKey: .bagsForReorder)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(totalShipmentsInOrder, forKey: .totalShipmentsInOrder)
+
+            try? container.encodeIfPresent(bagsForReorder, forKey: .bagsForReorder)
+
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
 
             try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
 
