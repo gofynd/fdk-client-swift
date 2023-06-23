@@ -9,7 +9,7 @@ public extension PlatformClient.Order {
      */
 
     class ProcessingDates: Codable {
-        public var dpPickupSlot: [String: Any]?
+        public var packByDate: String?
 
         public var dispatchByDate: String?
 
@@ -19,10 +19,10 @@ public extension PlatformClient.Order {
 
         public var customerPickupSlot: [String: Any]?
 
-        public var packByDate: String?
+        public var dpPickupSlot: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case dpPickupSlot = "dp_pickup_slot"
+            case packByDate = "pack_by_date"
 
             case dispatchByDate = "dispatch_by_date"
 
@@ -32,11 +32,11 @@ public extension PlatformClient.Order {
 
             case customerPickupSlot = "customer_pickup_slot"
 
-            case packByDate = "pack_by_date"
+            case dpPickupSlot = "dp_pickup_slot"
         }
 
         public init(confirmByDate: String? = nil, customerPickupSlot: [String: Any]? = nil, dispatchAfterDate: String? = nil, dispatchByDate: String? = nil, dpPickupSlot: [String: Any]? = nil, packByDate: String? = nil) {
-            self.dpPickupSlot = dpPickupSlot
+            self.packByDate = packByDate
 
             self.dispatchByDate = dispatchByDate
 
@@ -46,14 +46,14 @@ public extension PlatformClient.Order {
 
             self.customerPickupSlot = customerPickupSlot
 
-            self.packByDate = packByDate
+            self.dpPickupSlot = dpPickupSlot
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                dpPickupSlot = try container.decode([String: Any].self, forKey: .dpPickupSlot)
+                packByDate = try container.decode(String.self, forKey: .packByDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                packByDate = try container.decode(String.self, forKey: .packByDate)
+                dpPickupSlot = try container.decode([String: Any].self, forKey: .dpPickupSlot)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(dpPickupSlot, forKey: .dpPickupSlot)
+            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
 
             try? container.encodeIfPresent(dispatchByDate, forKey: .dispatchByDate)
 
@@ -114,7 +114,7 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(customerPickupSlot, forKey: .customerPickupSlot)
 
-            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
+            try? container.encodeIfPresent(dpPickupSlot, forKey: .dpPickupSlot)
         }
     }
 }
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ProcessingDates: Codable {
-        public var dpPickupSlot: [String: Any]?
+        public var packByDate: String?
 
         public var dispatchByDate: String?
 
@@ -136,10 +136,10 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var customerPickupSlot: [String: Any]?
 
-        public var packByDate: String?
+        public var dpPickupSlot: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case dpPickupSlot = "dp_pickup_slot"
+            case packByDate = "pack_by_date"
 
             case dispatchByDate = "dispatch_by_date"
 
@@ -149,11 +149,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case customerPickupSlot = "customer_pickup_slot"
 
-            case packByDate = "pack_by_date"
+            case dpPickupSlot = "dp_pickup_slot"
         }
 
         public init(confirmByDate: String? = nil, customerPickupSlot: [String: Any]? = nil, dispatchAfterDate: String? = nil, dispatchByDate: String? = nil, dpPickupSlot: [String: Any]? = nil, packByDate: String? = nil) {
-            self.dpPickupSlot = dpPickupSlot
+            self.packByDate = packByDate
 
             self.dispatchByDate = dispatchByDate
 
@@ -163,14 +163,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.customerPickupSlot = customerPickupSlot
 
-            self.packByDate = packByDate
+            self.dpPickupSlot = dpPickupSlot
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                dpPickupSlot = try container.decode([String: Any].self, forKey: .dpPickupSlot)
+                packByDate = try container.decode(String.self, forKey: .packByDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                packByDate = try container.decode(String.self, forKey: .packByDate)
+                dpPickupSlot = try container.decode([String: Any].self, forKey: .dpPickupSlot)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,7 +221,7 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(dpPickupSlot, forKey: .dpPickupSlot)
+            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
 
             try? container.encodeIfPresent(dispatchByDate, forKey: .dispatchByDate)
 
@@ -231,7 +231,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(customerPickupSlot, forKey: .customerPickupSlot)
 
-            try? container.encodeIfPresent(packByDate, forKey: .packByDate)
+            try? container.encodeIfPresent(dpPickupSlot, forKey: .dpPickupSlot)
         }
     }
 }

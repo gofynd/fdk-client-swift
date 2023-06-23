@@ -23,6 +23,8 @@ public extension ApplicationClient.Lead {
 
         public var integration: [String: Any]?
 
+        public var type: String?
+
         public enum CodingKeys: String, CodingKey {
             case id = "_id"
 
@@ -39,9 +41,11 @@ public extension ApplicationClient.Lead {
             case showSupportDris = "show_support_dris"
 
             case integration
+
+            case type
         }
 
-        public init(integration: [String: Any]? = nil, showCommunicationInfo: Bool? = nil, showSupportDris: Bool? = nil, supportCommunication: CommunicationDetails? = nil, supportEmail: CommunicationDetails? = nil, supportFaq: CommunicationDetails? = nil, supportPhone: CommunicationDetails? = nil, id: String? = nil) {
+        public init(integration: [String: Any]? = nil, showCommunicationInfo: Bool? = nil, showSupportDris: Bool? = nil, supportCommunication: CommunicationDetails? = nil, supportEmail: CommunicationDetails? = nil, supportFaq: CommunicationDetails? = nil, supportPhone: CommunicationDetails? = nil, type: String? = nil, id: String? = nil) {
             self.id = id
 
             self.supportEmail = supportEmail
@@ -57,6 +61,8 @@ public extension ApplicationClient.Lead {
             self.showSupportDris = showSupportDris
 
             self.integration = integration
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -125,6 +131,14 @@ public extension ApplicationClient.Lead {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -145,6 +159,8 @@ public extension ApplicationClient.Lead {
             try? container.encodeIfPresent(showSupportDris, forKey: .showSupportDris)
 
             try? container.encodeIfPresent(integration, forKey: .integration)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

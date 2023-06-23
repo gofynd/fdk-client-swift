@@ -17,13 +17,13 @@ public extension PlatformClient.Order {
 
         public var brandName: String?
 
-        public var essential: String?
-
         public var gender: [String]?
 
-        public var name: String?
+        public var essential: String?
 
         public var primaryColorHex: String?
+
+        public var name: String?
 
         public var marketerAddress: String?
 
@@ -36,13 +36,13 @@ public extension PlatformClient.Order {
 
             case brandName = "brand_name"
 
-            case essential
-
             case gender
 
-            case name
+            case essential
 
             case primaryColorHex = "primary_color_hex"
+
+            case name
 
             case marketerAddress = "marketer_address"
         }
@@ -56,13 +56,13 @@ public extension PlatformClient.Order {
 
             self.brandName = brandName
 
-            self.essential = essential
-
             self.gender = gender
 
-            self.name = name
+            self.essential = essential
 
             self.primaryColorHex = primaryColorHex
+
+            self.name = name
 
             self.marketerAddress = marketerAddress
         }
@@ -103,14 +103,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                essential = try container.decode(String.self, forKey: .essential)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 gender = try container.decode([String].self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -119,7 +111,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                essential = try container.decode(String.self, forKey: .essential)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,6 +120,14 @@ public extension PlatformClient.Order {
 
             do {
                 primaryColorHex = try container.decode(String.self, forKey: .primaryColorHex)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -154,13 +154,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
-            try? container.encodeIfPresent(essential, forKey: .essential)
-
             try? container.encodeIfPresent(gender, forKey: .gender)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(essential, forKey: .essential)
 
             try? container.encodeIfPresent(primaryColorHex, forKey: .primaryColorHex)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(marketerAddress, forKey: .marketerAddress)
         }
@@ -182,13 +182,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var brandName: String?
 
-        public var essential: String?
-
         public var gender: [String]?
 
-        public var name: String?
+        public var essential: String?
 
         public var primaryColorHex: String?
+
+        public var name: String?
 
         public var marketerAddress: String?
 
@@ -201,13 +201,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case brandName = "brand_name"
 
-            case essential
-
             case gender
 
-            case name
+            case essential
 
             case primaryColorHex = "primary_color_hex"
+
+            case name
 
             case marketerAddress = "marketer_address"
         }
@@ -221,13 +221,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.brandName = brandName
 
-            self.essential = essential
-
             self.gender = gender
 
-            self.name = name
+            self.essential = essential
 
             self.primaryColorHex = primaryColorHex
+
+            self.name = name
 
             self.marketerAddress = marketerAddress
         }
@@ -268,14 +268,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                essential = try container.decode(String.self, forKey: .essential)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 gender = try container.decode([String].self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -284,7 +276,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                essential = try container.decode(String.self, forKey: .essential)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -293,6 +285,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 primaryColorHex = try container.decode(String.self, forKey: .primaryColorHex)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -319,13 +319,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(brandName, forKey: .brandName)
 
-            try? container.encodeIfPresent(essential, forKey: .essential)
-
             try? container.encodeIfPresent(gender, forKey: .gender)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(essential, forKey: .essential)
 
             try? container.encodeIfPresent(primaryColorHex, forKey: .primaryColorHex)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(marketerAddress, forKey: .marketerAddress)
         }

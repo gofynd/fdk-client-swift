@@ -7,24 +7,30 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class StatuesRequest: Codable {
-        public var excludeBagsNextState: String?
-
         public var status: String?
+
+        public var splitShipment: Bool?
+
+        public var excludeBagsNextState: String?
 
         public var shipments: [ShipmentsRequest]?
 
         public enum CodingKeys: String, CodingKey {
-            case excludeBagsNextState = "exclude_bags_next_state"
-
             case status
+
+            case splitShipment = "split_shipment"
+
+            case excludeBagsNextState = "exclude_bags_next_state"
 
             case shipments
         }
 
-        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
-            self.excludeBagsNextState = excludeBagsNextState
-
+        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, splitShipment: Bool? = nil, status: String? = nil) {
             self.status = status
+
+            self.splitShipment = splitShipment
+
+            self.excludeBagsNextState = excludeBagsNextState
 
             self.shipments = shipments
         }
@@ -33,7 +39,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +47,15 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                splitShipment = try container.decode(Bool.self, forKey: .splitShipment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +74,11 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
-
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(splitShipment, forKey: .splitShipment)
+
+            try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
         }

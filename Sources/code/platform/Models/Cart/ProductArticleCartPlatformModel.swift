@@ -9,7 +9,17 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class ProductArticle: Codable {
-        public var size: String?
+        public var sellerIdentifier: String?
+
+        public var seller: BaseInfo?
+
+        public var giftCard: [String: Any]?
+
+        public var store: BaseInfo?
+
+        public var identifier: [String: Any]?
+
+        public var quantity: Int?
 
         public var parentItemIdentifiers: [String: Any]?
 
@@ -19,18 +29,32 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var productGroupTags: [String]?
 
-        public var extraMeta: [String: Any]?
+        public var customJson: [String: Any]?
 
         public var type: String?
 
-        public var store: BaseInfo?
+        public var isGiftVisible: Bool?
 
-        public var quantity: Int?
+        public var cartItemMeta: [String: Any]?
 
-        public var seller: BaseInfo?
+        public var size: String?
+
+        public var meta: [String: Any]?
+
+        public var extraMeta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case size
+            case sellerIdentifier = "seller_identifier"
+
+            case seller
+
+            case giftCard = "gift_card"
+
+            case store
+
+            case identifier
+
+            case quantity
 
             case parentItemIdentifiers = "parent_item_identifiers"
 
@@ -40,19 +64,33 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case productGroupTags = "product_group_tags"
 
-            case extraMeta = "extra_meta"
+            case customJson = "_custom_json"
 
             case type
 
-            case store
+            case isGiftVisible = "is_gift_visible"
 
-            case quantity
+            case cartItemMeta = "cart_item_meta"
 
-            case seller
+            case size
+
+            case meta
+
+            case extraMeta = "extra_meta"
         }
 
-        public init(extraMeta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, size: String? = nil, store: BaseInfo? = nil, type: String? = nil, uid: String? = nil) {
-            self.size = size
+        public init(cartItemMeta: [String: Any]? = nil, extraMeta: [String: Any]? = nil, giftCard: [String: Any]? = nil, identifier: [String: Any]? = nil, isGiftVisible: Bool? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [String: Any]? = nil, price: ArticlePriceInfo? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, seller: BaseInfo? = nil, sellerIdentifier: String? = nil, size: String? = nil, store: BaseInfo? = nil, type: String? = nil, uid: String? = nil, customJson: [String: Any]? = nil) {
+            self.sellerIdentifier = sellerIdentifier
+
+            self.seller = seller
+
+            self.giftCard = giftCard
+
+            self.store = store
+
+            self.identifier = identifier
+
+            self.quantity = quantity
 
             self.parentItemIdentifiers = parentItemIdentifiers
 
@@ -62,22 +100,66 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.productGroupTags = productGroupTags
 
-            self.extraMeta = extraMeta
+            self.customJson = customJson
 
             self.type = type
 
-            self.store = store
+            self.isGiftVisible = isGiftVisible
 
-            self.quantity = quantity
+            self.cartItemMeta = cartItemMeta
 
-            self.seller = seller
+            self.size = size
+
+            self.meta = meta
+
+            self.extraMeta = extraMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                seller = try container.decode(BaseInfo.self, forKey: .seller)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                giftCard = try container.decode([String: Any].self, forKey: .giftCard)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                store = try container.decode(BaseInfo.self, forKey: .store)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                identifier = try container.decode([String: Any].self, forKey: .identifier)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +199,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,7 +215,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                store = try container.decode(BaseInfo.self, forKey: .store)
+                isGiftVisible = try container.decode(Bool.self, forKey: .isGiftVisible)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,7 +223,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                cartItemMeta = try container.decode([String: Any].self, forKey: .cartItemMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,7 +231,23 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                seller = try container.decode(BaseInfo.self, forKey: .seller)
+                size = try container.decode(String.self, forKey: .size)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,7 +258,17 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encodeIfPresent(seller, forKey: .seller)
+
+            try? container.encodeIfPresent(giftCard, forKey: .giftCard)
+
+            try? container.encodeIfPresent(store, forKey: .store)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
 
             try? container.encodeIfPresent(parentItemIdentifiers, forKey: .parentItemIdentifiers)
 
@@ -170,15 +278,19 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(productGroupTags, forKey: .productGroupTags)
 
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(store, forKey: .store)
+            try? container.encodeIfPresent(isGiftVisible, forKey: .isGiftVisible)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(cartItemMeta, forKey: .cartItemMeta)
 
-            try? container.encodeIfPresent(seller, forKey: .seller)
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
         }
     }
 }

@@ -1019,6 +1019,7 @@ public extension ApplicationClient {
             pageNo: Int?,
             pageSize: Int?,
             tag: [String]?,
+            q: String?,
 
             onResponse: @escaping (_ response: GetCollectionListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1034,6 +1035,10 @@ public extension ApplicationClient {
 
             if let value = tag {
                 xQuery["tag"] = value
+            }
+
+            if let value = q {
+                xQuery["q"] = value
             }
 
             let fullUrl = relativeUrls["getCollections"] ?? ""
@@ -1074,7 +1079,8 @@ public extension ApplicationClient {
          **/
         public func getCollectionsPaginator(
             pageSize: Int?,
-            tag: [String]?
+            tag: [String]?,
+            q: String?
 
         ) -> Paginator<GetCollectionListingResponse> {
             let pageSize = pageSize ?? 20
@@ -1085,7 +1091,8 @@ public extension ApplicationClient {
 
                     pageSize: paginator.pageSize,
 
-                    tag: tag
+                    tag: tag,
+                    q: q
                 ) { response, error in
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false
@@ -1105,10 +1112,13 @@ public extension ApplicationClient {
         public func getCollectionItemsBySlug(
             slug: String,
             f: String?,
+            q: String?,
             filters: Bool?,
             sortOn: String?,
             pageId: String?,
             pageSize: Int?,
+            pageNo: Int?,
+            pageType: String?,
 
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1116,6 +1126,10 @@ public extension ApplicationClient {
 
             if let value = f {
                 xQuery["f"] = value
+            }
+
+            if let value = q {
+                xQuery["q"] = value
             }
 
             if let value = filters {
@@ -1132,6 +1146,14 @@ public extension ApplicationClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
+            }
+
+            if let value = pageNo {
+                xQuery["page_no"] = value
+            }
+
+            if let value = pageType {
+                xQuery["page_type"] = value
             }
 
             var fullUrl = relativeUrls["getCollectionItemsBySlug"] ?? ""
@@ -1175,6 +1197,7 @@ public extension ApplicationClient {
         public func getCollectionItemsBySlugPaginator(
             slug: String,
             f: String?,
+            q: String?,
             filters: Bool?,
             sortOn: String?,
             pageSize: Int?
@@ -1186,11 +1209,16 @@ public extension ApplicationClient {
                 self.getCollectionItemsBySlug(
                     slug: slug,
                     f: f,
+                    q: q,
                     filters: filters,
                     sortOn: sortOn,
                     pageId: paginator.pageId,
 
-                    pageSize: paginator.pageSize
+                    pageSize: paginator.pageSize,
+
+                    pageNo: paginator.pageNo,
+
+                    pageType: paginator.type
 
                 ) { response, error in
                     if let response = response {

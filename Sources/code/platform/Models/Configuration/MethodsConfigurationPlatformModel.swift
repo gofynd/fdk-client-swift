@@ -35,8 +35,6 @@ public extension PlatformClient.Configuration {
 
         public var jiopp: PaymentModeConfig?
 
-        public var jiopplink: PaymentModeConfig?
-
         public var stripepg: PaymentModeConfig?
 
         public var juspaypg: PaymentModeConfig?
@@ -76,8 +74,6 @@ public extension PlatformClient.Configuration {
 
             case jiopp
 
-            case jiopplink
-
             case stripepg
 
             case juspaypg
@@ -91,7 +87,7 @@ public extension PlatformClient.Configuration {
             case simpl
         }
 
-        public init(card: PaymentModeConfig? = nil, cod: PaymentModeConfig? = nil, fc: PaymentModeConfig? = nil, jiopp: PaymentModeConfig? = nil, jiopplink: PaymentModeConfig? = nil, jp: PaymentModeConfig? = nil, juspaypg: PaymentModeConfig? = nil, nb: PaymentModeConfig? = nil, pac: PaymentModeConfig? = nil, payubizpg: PaymentModeConfig? = nil, payumoneypg: PaymentModeConfig? = nil, pl: PaymentModeConfig? = nil, pp: PaymentModeConfig? = nil, ps: PaymentModeConfig? = nil, qr: PaymentModeConfig? = nil, rupifipg: PaymentModeConfig? = nil, simpl: PaymentModeConfig? = nil, stripepg: PaymentModeConfig? = nil, upi: PaymentModeConfig? = nil, wl: PaymentModeConfig? = nil) {
+        public init(card: PaymentModeConfig? = nil, cod: PaymentModeConfig? = nil, fc: PaymentModeConfig? = nil, jiopp: PaymentModeConfig? = nil, jp: PaymentModeConfig? = nil, juspaypg: PaymentModeConfig? = nil, nb: PaymentModeConfig? = nil, pac: PaymentModeConfig? = nil, payubizpg: PaymentModeConfig? = nil, payumoneypg: PaymentModeConfig? = nil, pl: PaymentModeConfig? = nil, pp: PaymentModeConfig? = nil, ps: PaymentModeConfig? = nil, qr: PaymentModeConfig? = nil, rupifipg: PaymentModeConfig? = nil, simpl: PaymentModeConfig? = nil, stripepg: PaymentModeConfig? = nil, upi: PaymentModeConfig? = nil, wl: PaymentModeConfig? = nil) {
             self.pl = pl
 
             self.card = card
@@ -117,8 +113,6 @@ public extension PlatformClient.Configuration {
             self.fc = fc
 
             self.jiopp = jiopp
-
-            self.jiopplink = jiopplink
 
             self.stripepg = stripepg
 
@@ -241,14 +235,6 @@ public extension PlatformClient.Configuration {
             } catch {}
 
             do {
-                jiopplink = try container.decode(PaymentModeConfig.self, forKey: .jiopplink)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 stripepg = try container.decode(PaymentModeConfig.self, forKey: .stripepg)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -325,8 +311,6 @@ public extension PlatformClient.Configuration {
             try? container.encodeIfPresent(fc, forKey: .fc)
 
             try? container.encodeIfPresent(jiopp, forKey: .jiopp)
-
-            try? container.encodeIfPresent(jiopplink, forKey: .jiopplink)
 
             try? container.encodeIfPresent(stripepg, forKey: .stripepg)
 
@@ -376,8 +360,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         public var jiopp: PaymentModeConfig?
 
-        public var jiopplink: PaymentModeConfig?
-
         public var stripepg: PaymentModeConfig?
 
         public var juspaypg: PaymentModeConfig?
@@ -417,8 +399,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
             case jiopp
 
-            case jiopplink
-
             case stripepg
 
             case juspaypg
@@ -432,7 +412,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             case simpl
         }
 
-        public init(card: PaymentModeConfig? = nil, cod: PaymentModeConfig? = nil, fc: PaymentModeConfig? = nil, jiopp: PaymentModeConfig? = nil, jiopplink: PaymentModeConfig? = nil, jp: PaymentModeConfig? = nil, juspaypg: PaymentModeConfig? = nil, nb: PaymentModeConfig? = nil, pac: PaymentModeConfig? = nil, payubizpg: PaymentModeConfig? = nil, payumoneypg: PaymentModeConfig? = nil, pl: PaymentModeConfig? = nil, pp: PaymentModeConfig? = nil, ps: PaymentModeConfig? = nil, qr: PaymentModeConfig? = nil, rupifipg: PaymentModeConfig? = nil, simpl: PaymentModeConfig? = nil, stripepg: PaymentModeConfig? = nil, upi: PaymentModeConfig? = nil, wl: PaymentModeConfig? = nil) {
+        public init(card: PaymentModeConfig? = nil, cod: PaymentModeConfig? = nil, fc: PaymentModeConfig? = nil, jiopp: PaymentModeConfig? = nil, jp: PaymentModeConfig? = nil, juspaypg: PaymentModeConfig? = nil, nb: PaymentModeConfig? = nil, pac: PaymentModeConfig? = nil, payubizpg: PaymentModeConfig? = nil, payumoneypg: PaymentModeConfig? = nil, pl: PaymentModeConfig? = nil, pp: PaymentModeConfig? = nil, ps: PaymentModeConfig? = nil, qr: PaymentModeConfig? = nil, rupifipg: PaymentModeConfig? = nil, simpl: PaymentModeConfig? = nil, stripepg: PaymentModeConfig? = nil, upi: PaymentModeConfig? = nil, wl: PaymentModeConfig? = nil) {
             self.pl = pl
 
             self.card = card
@@ -458,8 +438,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.fc = fc
 
             self.jiopp = jiopp
-
-            self.jiopplink = jiopplink
 
             self.stripepg = stripepg
 
@@ -582,14 +560,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             } catch {}
 
             do {
-                jiopplink = try container.decode(PaymentModeConfig.self, forKey: .jiopplink)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 stripepg = try container.decode(PaymentModeConfig.self, forKey: .stripepg)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -666,8 +636,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             try? container.encodeIfPresent(fc, forKey: .fc)
 
             try? container.encodeIfPresent(jiopp, forKey: .jiopp)
-
-            try? container.encodeIfPresent(jiopplink, forKey: .jiopplink)
 
             try? container.encodeIfPresent(stripepg, forKey: .stripepg)
 

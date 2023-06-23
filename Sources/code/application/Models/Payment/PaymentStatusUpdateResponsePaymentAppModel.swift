@@ -9,22 +9,22 @@ public extension ApplicationClient.Payment {
     class PaymentStatusUpdateResponse: Codable {
         public var redirectUrl: String?
 
-        public var success: Bool?
+        public var retry: Bool
 
         public var status: String
 
-        public var retry: Bool
+        public var success: Bool?
 
         public var aggregatorName: String
 
         public enum CodingKeys: String, CodingKey {
             case redirectUrl = "redirect_url"
 
-            case success
+            case retry
 
             case status
 
-            case retry
+            case success
 
             case aggregatorName = "aggregator_name"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Payment {
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
             self.redirectUrl = redirectUrl
 
-            self.success = success
+            self.retry = retry
 
             self.status = status
 
-            self.retry = retry
+            self.success = success
 
             self.aggregatorName = aggregatorName
         }
@@ -52,6 +52,10 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            retry = try container.decode(Bool.self, forKey: .retry)
+
+            status = try container.decode(String.self, forKey: .status)
+
             do {
                 success = try container.decode(Bool.self, forKey: .success)
 
@@ -59,10 +63,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(String.self, forKey: .status)
-
-            retry = try container.decode(Bool.self, forKey: .retry)
 
             aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
         }
@@ -72,11 +72,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(redirectUrl, forKey: .redirectUrl)
 
-            try? container.encode(success, forKey: .success)
+            try? container.encodeIfPresent(retry, forKey: .retry)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(retry, forKey: .retry)
+            try? container.encode(success, forKey: .success)
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
         }
