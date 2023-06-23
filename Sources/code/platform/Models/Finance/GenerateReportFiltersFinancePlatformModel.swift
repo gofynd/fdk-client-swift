@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class GenerateReportFilters: Codable {
         public var brand: [String]?
 
-        public var channel: [String]?
-
         public var company: [String]?
+
+        public var channel: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case brand
 
-            case channel
-
             case company
+
+            case channel
         }
 
         public init(brand: [String]? = nil, channel: [String]? = nil, company: [String]? = nil) {
             self.brand = brand
 
-            self.channel = channel
-
             self.company = company
+
+            self.channel = channel
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                channel = try container.decode([String].self, forKey: .channel)
+                company = try container.decode([String].self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                company = try container.decode([String].self, forKey: .company)
+                channel = try container.decode([String].self, forKey: .channel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(brand, forKey: .brand)
 
-            try? container.encodeIfPresent(channel, forKey: .channel)
-
             try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(channel, forKey: .channel)
         }
     }
 }

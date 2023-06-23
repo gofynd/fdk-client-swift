@@ -36026,8 +36026,31 @@ Successful response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  |  |
+ | themes | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  |  |
  | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ArrayOfMarketplaceTheme](#ArrayOfMarketplaceTheme)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | body | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  | An array containing the latest version of theme |
+
+---
+
+
+ 
+ 
+ #### [ThemeCreateRequest](#ThemeCreateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | src | String? |  yes  | The source URL of the theme file |
+ | release | [Release](#Release)? |  yes  |  |
 
 ---
 
@@ -36048,7 +36071,7 @@ Successful response
  | tagline | String? |  yes  | Theme tagline |
  | description | String? |  yes  | Theme description |
  | catalogSize | [CatalogSize](#CatalogSize)? |  yes  |  |
- | images | [Images](#Images)? |  yes  |  |
+ | images | [MarketplaceThemeImages](#MarketplaceThemeImages)? |  yes  |  |
  | carousel | [[CarouselItem](#CarouselItem)]? |  yes  |  |
  | src | String? |  yes  | Theme source URL |
  | explore | [ExploreInfo](#ExploreInfo)? |  yes  |  |
@@ -36108,15 +36131,12 @@ Successful response
 
  
  
- #### [Images](#Images)
+ #### [MarketplaceThemeImages](#MarketplaceThemeImages)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | desktop | [String]? |  yes  | Desktop theme image URL |
+ | desktop | String? |  yes  | Desktop theme image URL |
  | mobile | String? |  yes  | Mobile theme image URL |
- | android | [String]? |  yes  |  |
- | ios | [String]? |  yes  |  |
- | thumbnail | [String]? |  yes  |  |
 
 ---
 
@@ -36191,7 +36211,7 @@ Successful response
  | name | String? |  yes  | Variation name |
  | color | String? |  yes  | Variation color |
  | demoUrl | String? |  yes  | Variation demo URL |
- | images | [Images](#Images)? |  yes  |  |
+ | images | [MarketplaceThemeImages](#MarketplaceThemeImages)? |  yes  |  |
 
 ---
 
@@ -36324,6 +36344,59 @@ Successful response
  | ---------- | ---- | -------- | ----------- |
  | themes | [[MarketplaceTheme](#MarketplaceTheme)]? |  yes  | List of themes |
  | user | [[ThemeCreator](#ThemeCreator)]? |  yes  | List of users |
+
+---
+
+
+ 
+ 
+ #### [ThemeRejectionReasons](#ThemeRejectionReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String |  no  | The ID of the theme rejection reasons object |
+ | message | String? |  yes  | A general message about the rejection reasons |
+ | themeId | String |  no  | The ID of the rejected theme |
+ | organizationId | String |  no  | The ID of the organization |
+ | adminId | String |  no  | The ID of the admin who rejected the theme |
+ | userId | String |  no  | The ID of the user who submitted the theme |
+ | status | String |  no  | The status of the theme (e.g., rejected) |
+ | rejectionReasons | [String: Any] |  no  |  |
+ | createdAt | String? |  yes  | The date and time when the theme rejection reasons object was created |
+ | updatedAt | String? |  yes  | The date and time when the theme rejection reasons object was last updated |
+
+---
+
+
+ 
+ 
+ #### [RejectionReason](#RejectionReason)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String |  no  | The reason for rejecting the theme |
+
+---
+
+
+ 
+ 
+ #### [ThemeReviewRequest](#ThemeReviewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dynamicProperties | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UpdateReviewStatusRequest](#UpdateReviewStatusRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | String |  no  | The new status of the theme review |
 
 ---
 
@@ -36521,6 +36594,20 @@ Successful response
  | features | [String]? |  yes  |  |
  | name | String? |  yes  |  |
  | description | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Images](#Images)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | desktop | [String]? |  yes  |  |
+ | android | [String]? |  yes  |  |
+ | ios | [String]? |  yes  |  |
+ | thumbnail | [String]? |  yes  |  |
 
 ---
 

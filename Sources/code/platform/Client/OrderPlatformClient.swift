@@ -37,7 +37,6 @@ public extension PlatformClient {
             customMeta: String?,
             orderingChannel: String?,
             companyAffiliateTag: String?,
-            platformUserId: String?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -125,10 +124,6 @@ public extension PlatformClient {
 
             if let value = companyAffiliateTag {
                 xQuery["company_affiliate_tag"] = value
-            }
-
-            if let value = platformUserId {
-                xQuery["platform_user_id"] = value
             }
 
             PlatformAPIClient.execute(
@@ -438,7 +433,7 @@ public extension PlatformClient {
             pageSize: Int?,
             isPrioritySort: Bool?,
             customMeta: String?,
-            platformUserId: String?,
+            myOrders: Bool?,
 
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -508,8 +503,8 @@ public extension PlatformClient {
                 xQuery["custom_meta"] = value
             }
 
-            if let value = platformUserId {
-                xQuery["platform_user_id"] = value
+            if let value = myOrders {
+                xQuery["my_orders"] = value
             }
 
             PlatformAPIClient.execute(
@@ -1128,57 +1123,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(GetBagsPlatformResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
-         * Description:
-         **/
-        public func generatePOSReceiptByOrderId(
-            orderId: String,
-            shipmentId: String?,
-            documentType: String?,
-
-            onResponse: @escaping (_ response: GeneratePosOrderReceiptResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = shipmentId {
-                xQuery["shipment_id"] = value
-            }
-
-            if let value = documentType {
-                xQuery["document_type"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/orders/\(orderId)/generate/pos-receipt",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GeneratePosOrderReceiptResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

@@ -11,22 +11,22 @@ public extension PlatformClient.ApplicationClient.Cart {
     class CompareObject: Codable {
         public var lessThanEquals: Double?
 
-        public var greaterThan: Double?
+        public var lessThan: Double?
 
         public var greaterThanEquals: Double?
 
-        public var lessThan: Double?
+        public var greaterThan: Double?
 
         public var equals: Double?
 
         public enum CodingKeys: String, CodingKey {
             case lessThanEquals = "less_than_equals"
 
-            case greaterThan = "greater_than"
+            case lessThan = "less_than"
 
             case greaterThanEquals = "greater_than_equals"
 
-            case lessThan = "less_than"
+            case greaterThan = "greater_than"
 
             case equals
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(equals: Double? = nil, greaterThan: Double? = nil, greaterThanEquals: Double? = nil, lessThan: Double? = nil, lessThanEquals: Double? = nil) {
             self.lessThanEquals = lessThanEquals
 
-            self.greaterThan = greaterThan
+            self.lessThan = lessThan
 
             self.greaterThanEquals = greaterThanEquals
 
-            self.lessThan = lessThan
+            self.greaterThan = greaterThan
 
             self.equals = equals
         }
@@ -55,7 +55,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                greaterThan = try container.decode(Double.self, forKey: .greaterThan)
+                lessThan = try container.decode(Double.self, forKey: .lessThan)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                lessThan = try container.decode(Double.self, forKey: .lessThan)
+                greaterThan = try container.decode(Double.self, forKey: .greaterThan)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(lessThanEquals, forKey: .lessThanEquals)
 
-            try? container.encodeIfPresent(greaterThan, forKey: .greaterThan)
+            try? container.encodeIfPresent(lessThan, forKey: .lessThan)
 
             try? container.encodeIfPresent(greaterThanEquals, forKey: .greaterThanEquals)
 
-            try? container.encodeIfPresent(lessThan, forKey: .lessThan)
+            try? container.encodeIfPresent(greaterThan, forKey: .greaterThan)
 
             try? container.encodeIfPresent(equals, forKey: .equals)
         }

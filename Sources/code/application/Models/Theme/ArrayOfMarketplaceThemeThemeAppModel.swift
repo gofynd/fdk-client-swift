@@ -1,29 +1,27 @@
 
 
 import Foundation
-
-public extension PlatformClient.Finance {
+public extension ApplicationClient.Theme {
     /*
-         Model: GetInvoiceListRequest
-         Used By: Finance
+         Model: ArrayOfMarketplaceTheme
+         Used By: Theme
      */
-
-    class GetInvoiceListRequest: Codable {
-        public var data: GetInvoiceListPayloadData?
+    class ArrayOfMarketplaceTheme: Codable {
+        public var body: [MarketplaceTheme]?
 
         public enum CodingKeys: String, CodingKey {
-            case data
+            case body
         }
 
-        public init(data: GetInvoiceListPayloadData? = nil) {
-            self.data = data
+        public init(body: [MarketplaceTheme]? = nil) {
+            self.body = body
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                data = try container.decode(GetInvoiceListPayloadData.self, forKey: .data)
+                body = try container.decode([MarketplaceTheme].self, forKey: .body)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -34,7 +32,7 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(body, forKey: .body)
         }
     }
 }

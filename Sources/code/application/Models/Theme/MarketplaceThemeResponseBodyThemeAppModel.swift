@@ -7,18 +7,18 @@ public extension ApplicationClient.Theme {
          Used By: Theme
      */
     class MarketplaceThemeResponseBody: Codable {
-        public var items: [MarketplaceTheme]?
+        public var themes: [MarketplaceTheme]?
 
         public var page: PaginationSchema?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case themes
 
             case page
         }
 
-        public init(items: [MarketplaceTheme]? = nil, page: PaginationSchema? = nil) {
-            self.items = items
+        public init(page: PaginationSchema? = nil, themes: [MarketplaceTheme]? = nil) {
+            self.themes = themes
 
             self.page = page
         }
@@ -27,7 +27,7 @@ public extension ApplicationClient.Theme {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([MarketplaceTheme].self, forKey: .items)
+                themes = try container.decode([MarketplaceTheme].self, forKey: .themes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,7 +46,7 @@ public extension ApplicationClient.Theme {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(themes, forKey: .themes)
 
             try? container.encodeIfPresent(page, forKey: .page)
         }

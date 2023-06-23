@@ -29,7 +29,7 @@ public extension PlatformClient.Theme {
 
         public var catalogSize: CatalogSize?
 
-        public var images: Images?
+        public var images: MarketplaceThemeImages?
 
         public var carousel: [CarouselItem]?
 
@@ -123,7 +123,7 @@ public extension PlatformClient.Theme {
             case templateThemeId = "template_theme_id"
         }
 
-        public init(carousel: [CarouselItem]? = nil, catalogSize: CatalogSize? = nil, comments: Comments? = nil, contact: ContactInfo? = nil, createdAt: String? = nil, description: String? = nil, documentation: Documentation? = nil, explore: ExploreInfo? = nil, features: [Feature]? = nil, highlights: [Highlight]? = nil, images: Images? = nil, industry: [String]? = nil, isDefault: Bool? = nil, isUpdate: Bool? = nil, name: String? = nil, organizationId: String? = nil, payment: PaymentInfo? = nil, release: Release? = nil, slug: String? = nil, src: String? = nil, status: String? = nil, step: Int? = nil, tagline: String? = nil, templateThemeId: String? = nil, updatedAt: String? = nil, userId: String? = nil, variations: [Variation]? = nil, id: String? = nil) {
+        public init(carousel: [CarouselItem]? = nil, catalogSize: CatalogSize? = nil, comments: Comments? = nil, contact: ContactInfo? = nil, createdAt: String? = nil, description: String? = nil, documentation: Documentation? = nil, explore: ExploreInfo? = nil, features: [Feature]? = nil, highlights: [Highlight]? = nil, images: MarketplaceThemeImages? = nil, industry: [String]? = nil, isDefault: Bool? = nil, isUpdate: Bool? = nil, name: String? = nil, organizationId: String? = nil, payment: PaymentInfo? = nil, release: Release? = nil, slug: String? = nil, src: String? = nil, status: String? = nil, step: Int? = nil, tagline: String? = nil, templateThemeId: String? = nil, updatedAt: String? = nil, userId: String? = nil, variations: [Variation]? = nil, id: String? = nil) {
             self.id = id
 
             self.payment = payment
@@ -265,7 +265,7 @@ public extension PlatformClient.Theme {
             } catch {}
 
             do {
-                images = try container.decode(Images.self, forKey: .images)
+                images = try container.decode(MarketplaceThemeImages.self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -498,7 +498,7 @@ public extension PlatformClient.ApplicationClient.Theme {
 
         public var catalogSize: CatalogSize?
 
-        public var images: Images?
+        public var images: MarketplaceThemeImages?
 
         public var carousel: [CarouselItem]?
 
@@ -592,7 +592,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             case templateThemeId = "template_theme_id"
         }
 
-        public init(carousel: [CarouselItem]? = nil, catalogSize: CatalogSize? = nil, comments: Comments? = nil, contact: ContactInfo? = nil, createdAt: String? = nil, description: String? = nil, documentation: Documentation? = nil, explore: ExploreInfo? = nil, features: [Feature]? = nil, highlights: [Highlight]? = nil, images: Images? = nil, industry: [String]? = nil, isDefault: Bool? = nil, isUpdate: Bool? = nil, name: String? = nil, organizationId: String? = nil, payment: PaymentInfo? = nil, release: Release? = nil, slug: String? = nil, src: String? = nil, status: String? = nil, step: Int? = nil, tagline: String? = nil, templateThemeId: String? = nil, updatedAt: String? = nil, userId: String? = nil, variations: [Variation]? = nil, id: String? = nil) {
+        public init(carousel: [CarouselItem]? = nil, catalogSize: CatalogSize? = nil, comments: Comments? = nil, contact: ContactInfo? = nil, createdAt: String? = nil, description: String? = nil, documentation: Documentation? = nil, explore: ExploreInfo? = nil, features: [Feature]? = nil, highlights: [Highlight]? = nil, images: MarketplaceThemeImages? = nil, industry: [String]? = nil, isDefault: Bool? = nil, isUpdate: Bool? = nil, name: String? = nil, organizationId: String? = nil, payment: PaymentInfo? = nil, release: Release? = nil, slug: String? = nil, src: String? = nil, status: String? = nil, step: Int? = nil, tagline: String? = nil, templateThemeId: String? = nil, updatedAt: String? = nil, userId: String? = nil, variations: [Variation]? = nil, id: String? = nil) {
             self.id = id
 
             self.payment = payment
@@ -734,7 +734,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             } catch {}
 
             do {
-                images = try container.decode(Images.self, forKey: .images)
+                images = try container.decode(MarketplaceThemeImages.self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

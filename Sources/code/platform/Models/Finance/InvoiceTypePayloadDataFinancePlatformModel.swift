@@ -4,11 +4,11 @@ import Foundation
 
 public extension PlatformClient.Finance {
     /*
-         Model: GetInvoiceListPayloadData
+         Model: InvoiceTypePayloadData
          Used By: Finance
      */
 
-    class GetInvoiceListPayloadData: Codable {
+    class InvoiceTypePayloadData: Codable {
         public var isActive: Bool?
 
         public enum CodingKeys: String, CodingKey {

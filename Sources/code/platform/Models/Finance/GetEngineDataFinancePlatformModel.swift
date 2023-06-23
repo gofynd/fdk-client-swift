@@ -9,24 +9,24 @@ public extension PlatformClient.Finance {
      */
 
     class GetEngineData: Codable {
-        public var project: [String]?
-
         public var tableName: String?
+
+        public var project: [String]?
 
         public var filters: GetEngineFilters?
 
         public enum CodingKeys: String, CodingKey {
-            case project
-
             case tableName = "table_name"
+
+            case project
 
             case filters
         }
 
         public init(filters: GetEngineFilters? = nil, project: [String]? = nil, tableName: String? = nil) {
-            self.project = project
-
             self.tableName = tableName
+
+            self.project = project
 
             self.filters = filters
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                project = try container.decode([String].self, forKey: .project)
+                tableName = try container.decode(String.self, forKey: .tableName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                tableName = try container.decode(String.self, forKey: .tableName)
+                project = try container.decode([String].self, forKey: .project)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(project, forKey: .project)
-
             try? container.encodeIfPresent(tableName, forKey: .tableName)
+
+            try? container.encodeIfPresent(project, forKey: .project)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
         }

@@ -7,7 +7,7 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class OfferPrice: Codable {
-        public var marked: Int?
+        public var currencyCode: String?
 
         public var effective: Int?
 
@@ -15,10 +15,10 @@ public extension ApplicationClient.Cart {
 
         public var bulkEffective: Double?
 
-        public var currencyCode: String?
+        public var marked: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case marked
+            case currencyCode = "currency_code"
 
             case effective
 
@@ -26,11 +26,11 @@ public extension ApplicationClient.Cart {
 
             case bulkEffective = "bulk_effective"
 
-            case currencyCode = "currency_code"
+            case marked
         }
 
         public init(bulkEffective: Double? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil) {
-            self.marked = marked
+            self.currencyCode = currencyCode
 
             self.effective = effective
 
@@ -38,14 +38,14 @@ public extension ApplicationClient.Cart {
 
             self.bulkEffective = bulkEffective
 
-            self.currencyCode = currencyCode
+            self.marked = marked
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                marked = try container.decode(Int.self, forKey: .marked)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                marked = try container.decode(Int.self, forKey: .marked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(marked, forKey: .marked)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
@@ -96,7 +96,7 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(bulkEffective, forKey: .bulkEffective)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(marked, forKey: .marked)
         }
     }
 }

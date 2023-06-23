@@ -11,36 +11,36 @@ public extension PlatformClient.Finance {
     class GenerateReportPlatform: Codable {
         public var reportId: String?
 
-        public var meta: GenerateReportMeta?
+        public var endDate: String?
 
-        public var filters: GenerateReportFilters?
+        public var meta: GenerateReportMeta?
 
         public var startDate: String?
 
-        public var endDate: String?
+        public var filters: GenerateReportFilters?
 
         public enum CodingKeys: String, CodingKey {
             case reportId = "report_id"
 
-            case meta
+            case endDate = "end_date"
 
-            case filters
+            case meta
 
             case startDate = "start_date"
 
-            case endDate = "end_date"
+            case filters
         }
 
         public init(endDate: String? = nil, filters: GenerateReportFilters? = nil, meta: GenerateReportMeta? = nil, reportId: String? = nil, startDate: String? = nil) {
             self.reportId = reportId
 
-            self.meta = meta
+            self.endDate = endDate
 
-            self.filters = filters
+            self.meta = meta
 
             self.startDate = startDate
 
-            self.endDate = endDate
+            self.filters = filters
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,6 +48,14 @@ public extension PlatformClient.Finance {
 
             do {
                 reportId = try container.decode(String.self, forKey: .reportId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                endDate = try container.decode(String.self, forKey: .endDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,14 +71,6 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                filters = try container.decode(GenerateReportFilters.self, forKey: .filters)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 startDate = try container.decode(String.self, forKey: .startDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -79,7 +79,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                endDate = try container.decode(String.self, forKey: .endDate)
+                filters = try container.decode(GenerateReportFilters.self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,13 +92,13 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(reportId, forKey: .reportId)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(startDate, forKey: .startDate)
 
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            try? container.encodeIfPresent(filters, forKey: .filters)
         }
     }
 }

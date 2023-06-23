@@ -11,60 +11,60 @@ public extension PlatformClient.ApplicationClient.Cart {
     class UserInfo: Codable {
         public var modifiedOn: String?
 
-        public var firstName: String?
-
-        public var id: String?
-
         public var createdAt: String?
-
-        public var gender: String?
 
         public var externalId: String?
 
-        public var lastName: String?
-
         public var mobile: String?
 
+        public var lastName: String?
+
+        public var firstName: String?
+
         public var uid: String?
+
+        public var id: String?
+
+        public var gender: String?
 
         public enum CodingKeys: String, CodingKey {
             case modifiedOn = "modified_on"
 
-            case firstName = "first_name"
-
-            case id = "_id"
-
             case createdAt = "created_at"
-
-            case gender
 
             case externalId = "external_id"
 
-            case lastName = "last_name"
-
             case mobile
 
+            case lastName = "last_name"
+
+            case firstName = "first_name"
+
             case uid
+
+            case id = "_id"
+
+            case gender
         }
 
         public init(createdAt: String? = nil, externalId: String? = nil, firstName: String? = nil, gender: String? = nil, lastName: String? = nil, mobile: String? = nil, modifiedOn: String? = nil, uid: String? = nil, id: String? = nil) {
             self.modifiedOn = modifiedOn
 
-            self.firstName = firstName
-
-            self.id = id
-
             self.createdAt = createdAt
-
-            self.gender = gender
 
             self.externalId = externalId
 
-            self.lastName = lastName
-
             self.mobile = mobile
 
+            self.lastName = lastName
+
+            self.firstName = firstName
+
             self.uid = uid
+
+            self.id = id
+
+            self.gender = gender
         }
 
         required public init(from decoder: Decoder) throws {
@@ -72,22 +72,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                firstName = try container.decode(String.self, forKey: .firstName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,23 +87,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                gender = try container.decode(String.self, forKey: .gender)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 externalId = try container.decode(String.self, forKey: .externalId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                lastName = try container.decode(String.self, forKey: .lastName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -135,7 +103,39 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
+                lastName = try container.decode(String.self, forKey: .lastName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                firstName = try container.decode(String.self, forKey: .firstName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,21 +148,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
-            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(externalId, forKey: .externalId)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(gender, forKey: .gender)
         }
     }
 }

@@ -15,7 +15,7 @@ public extension PlatformClient.Theme {
 
         public var demoUrl: String?
 
-        public var images: Images?
+        public var images: MarketplaceThemeImages?
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -27,7 +27,7 @@ public extension PlatformClient.Theme {
             case images
         }
 
-        public init(color: String? = nil, demoUrl: String? = nil, images: Images? = nil, name: String? = nil) {
+        public init(color: String? = nil, demoUrl: String? = nil, images: MarketplaceThemeImages? = nil, name: String? = nil) {
             self.name = name
 
             self.color = color
@@ -65,7 +65,7 @@ public extension PlatformClient.Theme {
             } catch {}
 
             do {
-                images = try container.decode(Images.self, forKey: .images)
+                images = try container.decode(MarketplaceThemeImages.self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Theme {
 
         public var demoUrl: String?
 
-        public var images: Images?
+        public var images: MarketplaceThemeImages?
 
         public enum CodingKeys: String, CodingKey {
             case name
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             case images
         }
 
-        public init(color: String? = nil, demoUrl: String? = nil, images: Images? = nil, name: String? = nil) {
+        public init(color: String? = nil, demoUrl: String? = nil, images: MarketplaceThemeImages? = nil, name: String? = nil) {
             self.name = name
 
             self.color = color
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             } catch {}
 
             do {
-                images = try container.decode(Images.self, forKey: .images)
+                images = try container.decode(MarketplaceThemeImages.self, forKey: .images)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

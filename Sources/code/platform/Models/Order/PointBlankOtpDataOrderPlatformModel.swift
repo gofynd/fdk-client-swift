@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class PointBlankOtpData: Codable {
         public var resendTimer: Int?
 
-        public var message: String?
+        public var requestId: String?
 
         public var mobile: Int?
 
-        public var requestId: String?
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case resendTimer = "resend_timer"
 
-            case message
+            case requestId = "request_id"
 
             case mobile
 
-            case requestId = "request_id"
+            case message
         }
 
         public init(message: String? = nil, mobile: Int? = nil, requestId: String? = nil, resendTimer: Int? = nil) {
             self.resendTimer = resendTimer
 
-            self.message = message
+            self.requestId = requestId
 
             self.mobile = mobile
 
-            self.requestId = requestId
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class PointBlankOtpData: Codable {
         public var resendTimer: Int?
 
-        public var message: String?
+        public var requestId: String?
 
         public var mobile: Int?
 
-        public var requestId: String?
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case resendTimer = "resend_timer"
 
-            case message
+            case requestId = "request_id"
 
             case mobile
 
-            case requestId = "request_id"
+            case message
         }
 
         public init(message: String? = nil, mobile: Int? = nil, requestId: String? = nil, resendTimer: Int? = nil) {
             self.resendTimer = resendTimer
 
-            self.message = message
+            self.requestId = requestId
 
             self.mobile = mobile
 
-            self.requestId = requestId
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(mobile, forKey: .mobile)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
