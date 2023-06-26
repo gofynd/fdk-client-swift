@@ -11,9 +11,9 @@ public extension PlatformClient.Catalog {
     class DimensionResponse: Codable {
         public var height: Double
 
-        public var unit: String
-
         public var width: Double
+
+        public var unit: String
 
         public var isDefault: Bool
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case height
 
-            case unit
-
             case width
+
+            case unit
 
             case isDefault = "is_default"
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Catalog {
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.height = height
 
-            self.unit = unit
-
             self.width = width
+
+            self.unit = unit
 
             self.isDefault = isDefault
 
@@ -48,9 +48,9 @@ public extension PlatformClient.Catalog {
 
             height = try container.decode(Double.self, forKey: .height)
 
-            unit = try container.decode(String.self, forKey: .unit)
-
             width = try container.decode(Double.self, forKey: .width)
+
+            unit = try container.decode(String.self, forKey: .unit)
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(height, forKey: .height)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(width, forKey: .width)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
@@ -82,9 +82,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class DimensionResponse: Codable {
         public var height: Double
 
-        public var unit: String
-
         public var width: Double
+
+        public var unit: String
 
         public var isDefault: Bool
 
@@ -93,9 +93,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case height
 
-            case unit
-
             case width
+
+            case unit
 
             case isDefault = "is_default"
 
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.height = height
 
-            self.unit = unit
-
             self.width = width
+
+            self.unit = unit
 
             self.isDefault = isDefault
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             height = try container.decode(Double.self, forKey: .height)
 
-            unit = try container.decode(String.self, forKey: .unit)
-
             width = try container.decode(Double.self, forKey: .width)
+
+            unit = try container.decode(String.self, forKey: .unit)
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(height, forKey: .height)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
-
             try? container.encodeIfPresent(width, forKey: .width)
+
+            try? container.encodeIfPresent(unit, forKey: .unit)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 

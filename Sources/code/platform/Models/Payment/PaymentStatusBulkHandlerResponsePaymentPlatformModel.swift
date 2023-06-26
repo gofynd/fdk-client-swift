@@ -13,9 +13,9 @@ public extension PlatformClient.Payment {
 
         public var data: [PaymentStatusObject]?
 
-        public var success: String
-
         public var count: Int?
+
+        public var success: String
 
         public var status: Int
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Payment {
 
             case data
 
-            case success
-
             case count
+
+            case success
 
             case status
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             self.data = data
 
-            self.success = success
-
             self.count = count
+
+            self.success = success
 
             self.status = status
         }
@@ -62,8 +62,6 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(String.self, forKey: .success)
-
             do {
                 count = try container.decode(Int.self, forKey: .count)
 
@@ -71,6 +69,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            success = try container.decode(String.self, forKey: .success)
 
             status = try container.decode(Int.self, forKey: .status)
         }
@@ -82,9 +82,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(count, forKey: .count)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }
@@ -102,9 +102,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var data: [PaymentStatusObject]?
 
-        public var success: String
-
         public var count: Int?
+
+        public var success: String
 
         public var status: Int
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case data
 
-            case success
-
             case count
+
+            case success
 
             case status
         }
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.data = data
 
-            self.success = success
-
             self.count = count
+
+            self.success = success
 
             self.status = status
         }
@@ -151,8 +151,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(String.self, forKey: .success)
-
             do {
                 count = try container.decode(Int.self, forKey: .count)
 
@@ -160,6 +158,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            success = try container.decode(String.self, forKey: .success)
 
             status = try container.decode(Int.self, forKey: .status)
         }
@@ -171,9 +171,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(count, forKey: .count)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }

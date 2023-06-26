@@ -11,22 +11,22 @@ public extension PlatformClient.Payment {
     class MerchantOnBoardingRequest: Codable {
         public var aggregator: String
 
+        public var creditLineId: String
+
         public var userId: String
 
         public var appId: String
-
-        public var creditLineId: String
 
         public var status: String
 
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
+            case creditLineId = "credit_line_id"
+
             case userId = "user_id"
 
             case appId = "app_id"
-
-            case creditLineId = "credit_line_id"
 
             case status
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.Payment {
         public init(aggregator: String, appId: String, creditLineId: String, status: String, userId: String) {
             self.aggregator = aggregator
 
+            self.creditLineId = creditLineId
+
             self.userId = userId
 
             self.appId = appId
-
-            self.creditLineId = creditLineId
 
             self.status = status
         }
@@ -48,11 +48,11 @@ public extension PlatformClient.Payment {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
+            creditLineId = try container.decode(String.self, forKey: .creditLineId)
+
             userId = try container.decode(String.self, forKey: .userId)
 
             appId = try container.decode(String.self, forKey: .appId)
-
-            creditLineId = try container.decode(String.self, forKey: .creditLineId)
 
             status = try container.decode(String.self, forKey: .status)
         }
@@ -62,11 +62,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
+            try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
+
             try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }
@@ -82,22 +82,22 @@ public extension PlatformClient.ApplicationClient.Payment {
     class MerchantOnBoardingRequest: Codable {
         public var aggregator: String
 
+        public var creditLineId: String
+
         public var userId: String
 
         public var appId: String
-
-        public var creditLineId: String
 
         public var status: String
 
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
+            case creditLineId = "credit_line_id"
+
             case userId = "user_id"
 
             case appId = "app_id"
-
-            case creditLineId = "credit_line_id"
 
             case status
         }
@@ -105,11 +105,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(aggregator: String, appId: String, creditLineId: String, status: String, userId: String) {
             self.aggregator = aggregator
 
+            self.creditLineId = creditLineId
+
             self.userId = userId
 
             self.appId = appId
-
-            self.creditLineId = creditLineId
 
             self.status = status
         }
@@ -119,11 +119,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
+            creditLineId = try container.decode(String.self, forKey: .creditLineId)
+
             userId = try container.decode(String.self, forKey: .userId)
 
             appId = try container.decode(String.self, forKey: .appId)
-
-            creditLineId = try container.decode(String.self, forKey: .creditLineId)
 
             status = try container.decode(String.self, forKey: .status)
         }
@@ -133,11 +133,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
+            try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
+
             try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
 
             try? container.encodeIfPresent(status, forKey: .status)
         }

@@ -11,9 +11,9 @@ public extension PlatformClient.Payment {
     class PaymentGatewayConfig: Codable {
         public var isActive: Bool?
 
-        public var key: String
-
         public var configType: String
+
+        public var key: String
 
         public var secret: String
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case key
-
             case configType = "config_type"
+
+            case key
 
             case secret
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.isActive = isActive
 
-            self.key = key
-
             self.configType = configType
+
+            self.key = key
 
             self.secret = secret
 
@@ -54,9 +54,9 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
             configType = try container.decode(String.self, forKey: .configType)
+
+            key = try container.decode(String.self, forKey: .key)
 
             secret = try container.decode(String.self, forKey: .secret)
 
@@ -68,9 +68,9 @@ public extension PlatformClient.Payment {
 
             try? container.encode(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(configType, forKey: .configType)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 
@@ -88,9 +88,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentGatewayConfig: Codable {
         public var isActive: Bool?
 
-        public var key: String
-
         public var configType: String
+
+        public var key: String
 
         public var secret: String
 
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public enum CodingKeys: String, CodingKey {
             case isActive = "is_active"
 
-            case key
-
             case configType = "config_type"
+
+            case key
 
             case secret
 
@@ -111,9 +111,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public init(configType: String, isActive: Bool? = nil, key: String, merchantSalt: String, secret: String) {
             self.isActive = isActive
 
-            self.key = key
-
             self.configType = configType
+
+            self.key = key
 
             self.secret = secret
 
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            key = try container.decode(String.self, forKey: .key)
-
             configType = try container.decode(String.self, forKey: .configType)
+
+            key = try container.decode(String.self, forKey: .key)
 
             secret = try container.decode(String.self, forKey: .secret)
 
@@ -145,9 +145,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(isActive, forKey: .isActive)
 
-            try? container.encodeIfPresent(key, forKey: .key)
-
             try? container.encodeIfPresent(configType, forKey: .configType)
+
+            try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(secret, forKey: .secret)
 

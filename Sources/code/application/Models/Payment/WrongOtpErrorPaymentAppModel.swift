@@ -9,24 +9,24 @@ public extension ApplicationClient.Payment {
     class WrongOtpError: Codable {
         public var success: String
 
-        public var description: String
-
         public var isVerifiedFlag: Bool
+
+        public var description: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case description
-
             case isVerifiedFlag = "is_verified_flag"
+
+            case description
         }
 
         public init(description: String, isVerifiedFlag: Bool, success: String) {
             self.success = success
 
-            self.description = description
-
             self.isVerifiedFlag = isVerifiedFlag
+
+            self.description = description
         }
 
         required public init(from decoder: Decoder) throws {
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             success = try container.decode(String.self, forKey: .success)
 
-            description = try container.decode(String.self, forKey: .description)
-
             isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
+
+            description = try container.decode(String.self, forKey: .description)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -44,9 +44,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
+
+            try? container.encodeIfPresent(description, forKey: .description)
         }
     }
 }

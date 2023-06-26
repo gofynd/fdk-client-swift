@@ -9,42 +9,42 @@ public extension ApplicationClient.Cart {
     class CouponValidity: Codable {
         public var title: String?
 
+        public var nextValidationRequired: Bool?
+
+        public var displayMessageEn: String?
+
+        public var discount: Double?
+
         public var code: String?
 
         public var valid: Bool?
 
-        public var discount: Double?
-
-        public var displayMessageEn: String?
-
-        public var nextValidationRequired: Bool?
-
         public enum CodingKeys: String, CodingKey {
             case title
+
+            case nextValidationRequired = "next_validation_required"
+
+            case displayMessageEn = "display_message_en"
+
+            case discount
 
             case code
 
             case valid
-
-            case discount
-
-            case displayMessageEn = "display_message_en"
-
-            case nextValidationRequired = "next_validation_required"
         }
 
         public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, nextValidationRequired: Bool? = nil, title: String? = nil, valid: Bool? = nil) {
             self.title = title
 
-            self.code = code
-
-            self.valid = valid
-
-            self.discount = discount
+            self.nextValidationRequired = nextValidationRequired
 
             self.displayMessageEn = displayMessageEn
 
-            self.nextValidationRequired = nextValidationRequired
+            self.discount = discount
+
+            self.code = code
+
+            self.valid = valid
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,6 +52,30 @@ public extension ApplicationClient.Cart {
 
             do {
                 title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                nextValidationRequired = try container.decode(Bool.self, forKey: .nextValidationRequired)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discount = try container.decode(Double.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,30 +97,6 @@ public extension ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                discount = try container.decode(Double.self, forKey: .discount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                displayMessageEn = try container.decode(String.self, forKey: .displayMessageEn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                nextValidationRequired = try container.decode(Bool.self, forKey: .nextValidationRequired)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -104,15 +104,15 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encode(code, forKey: .code)
-
-            try? container.encodeIfPresent(valid, forKey: .valid)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encode(nextValidationRequired, forKey: .nextValidationRequired)
 
             try? container.encode(displayMessageEn, forKey: .displayMessageEn)
 
-            try? container.encode(nextValidationRequired, forKey: .nextValidationRequired)
+            try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encode(code, forKey: .code)
+
+            try? container.encodeIfPresent(valid, forKey: .valid)
         }
     }
 }
