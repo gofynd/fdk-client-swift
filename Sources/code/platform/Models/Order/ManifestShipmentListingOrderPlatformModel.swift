@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class ManifestShipmentListing: Codable {
         public var lane: String?
 
-        public var items: [ManifestItemDetails]?
+        public var status: Int
 
-        public var message: String?
+        public var items: [ManifestItemDetails]?
 
         public var totalCount: Int
 
-        public var status: Int
-
         public var page: ManifestPageInfo
+
+        public var message: String?
 
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case lane
 
-            case items
+            case status
 
-            case message
+            case items
 
             case totalCount = "total_count"
 
-            case status
-
             case page
+
+            case message
 
             case success
         }
@@ -42,15 +42,15 @@ public extension PlatformClient.Order {
         public init(items: [ManifestItemDetails]? = nil, lane: String? = nil, message: String? = nil, page: ManifestPageInfo, status: Int, success: Bool, totalCount: Int) {
             self.lane = lane
 
-            self.items = items
+            self.status = status
 
-            self.message = message
+            self.items = items
 
             self.totalCount = totalCount
 
-            self.status = status
-
             self.page = page
+
+            self.message = message
 
             self.success = success
         }
@@ -66,6 +66,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode(Int.self, forKey: .status)
+
             do {
                 items = try container.decode([ManifestItemDetails].self, forKey: .items)
 
@@ -73,6 +75,10 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            totalCount = try container.decode(Int.self, forKey: .totalCount)
+
+            page = try container.decode(ManifestPageInfo.self, forKey: .page)
 
             do {
                 message = try container.decode(String.self, forKey: .message)
@@ -82,12 +88,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            totalCount = try container.decode(Int.self, forKey: .totalCount)
-
-            status = try container.decode(Int.self, forKey: .status)
-
-            page = try container.decode(ManifestPageInfo.self, forKey: .page)
-
             success = try container.decode(Bool.self, forKey: .success)
         }
 
@@ -96,15 +96,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(lane, forKey: .lane)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }
@@ -120,30 +120,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class ManifestShipmentListing: Codable {
         public var lane: String?
 
-        public var items: [ManifestItemDetails]?
+        public var status: Int
 
-        public var message: String?
+        public var items: [ManifestItemDetails]?
 
         public var totalCount: Int
 
-        public var status: Int
-
         public var page: ManifestPageInfo
+
+        public var message: String?
 
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case lane
 
-            case items
+            case status
 
-            case message
+            case items
 
             case totalCount = "total_count"
 
-            case status
-
             case page
+
+            case message
 
             case success
         }
@@ -151,15 +151,15 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(items: [ManifestItemDetails]? = nil, lane: String? = nil, message: String? = nil, page: ManifestPageInfo, status: Int, success: Bool, totalCount: Int) {
             self.lane = lane
 
-            self.items = items
+            self.status = status
 
-            self.message = message
+            self.items = items
 
             self.totalCount = totalCount
 
-            self.status = status
-
             self.page = page
+
+            self.message = message
 
             self.success = success
         }
@@ -175,6 +175,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            status = try container.decode(Int.self, forKey: .status)
+
             do {
                 items = try container.decode([ManifestItemDetails].self, forKey: .items)
 
@@ -182,6 +184,10 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            totalCount = try container.decode(Int.self, forKey: .totalCount)
+
+            page = try container.decode(ManifestPageInfo.self, forKey: .page)
 
             do {
                 message = try container.decode(String.self, forKey: .message)
@@ -191,12 +197,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            totalCount = try container.decode(Int.self, forKey: .totalCount)
-
-            status = try container.decode(Int.self, forKey: .status)
-
-            page = try container.decode(ManifestPageInfo.self, forKey: .page)
-
             success = try container.decode(Bool.self, forKey: .success)
         }
 
@@ -205,15 +205,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(lane, forKey: .lane)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

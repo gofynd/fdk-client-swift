@@ -9,137 +9,129 @@ public extension PlatformClient.Order {
      */
 
     class OrderMeta: Codable {
-        public var staff: [String: Any]?
-
-        public var cartId: Int?
+        public var currencySymbol: String?
 
         public var customerNote: String?
 
-        public var mongoCartId: Int?
+        public var transactionData: TransactionData?
 
-        public var files: [[String: Any]]?
+        public var orderType: String?
+
+        public var orderTags: [[String: Any]]?
 
         public var billingStaffDetails: BillingStaffDetails?
 
         public var employeeId: Int?
 
-        public var transactionData: TransactionData?
-
-        public var orderPlatform: String?
-
-        public var currencySymbol: String?
-
-        public var platformUserDetails: PlatformUserDetails?
-
-        public var orderChildEntities: [String]?
-
-        public var paymentType: String?
-
-        public var comment: String?
+        public var staff: [String: Any]?
 
         public var companyLogo: String?
 
-        public var orderingStore: Int?
+        public var cartId: Int?
 
-        public var orderTags: [[String: Any]]?
+        public var paymentType: String?
+
+        public var orderPlatform: String?
+
+        public var files: [[String: Any]]?
 
         public var extraMeta: [String: Any]?
 
-        public var orderType: String?
+        public var orderChildEntities: [String]?
+
+        public var comment: String?
+
+        public var orderingStore: Int?
+
+        public var mongoCartId: Int?
+
+        public var platformUserDetails: PlatformUserDetails?
 
         public enum CodingKeys: String, CodingKey {
-            case staff
-
-            case cartId = "cart_id"
+            case currencySymbol = "currency_symbol"
 
             case customerNote = "customer_note"
 
-            case mongoCartId = "mongo_cart_id"
+            case transactionData = "transaction_data"
 
-            case files
+            case orderType = "order_type"
+
+            case orderTags = "order_tags"
 
             case billingStaffDetails = "billing_staff_details"
 
             case employeeId = "employee_id"
 
-            case transactionData = "transaction_data"
-
-            case orderPlatform = "order_platform"
-
-            case currencySymbol = "currency_symbol"
-
-            case platformUserDetails = "platform_user_details"
-
-            case orderChildEntities = "order_child_entities"
-
-            case paymentType = "payment_type"
-
-            case comment
+            case staff
 
             case companyLogo = "company_logo"
 
-            case orderingStore = "ordering_store"
+            case cartId = "cart_id"
 
-            case orderTags = "order_tags"
+            case paymentType = "payment_type"
+
+            case orderPlatform = "order_platform"
+
+            case files
 
             case extraMeta = "extra_meta"
 
-            case orderType = "order_type"
+            case orderChildEntities = "order_child_entities"
+
+            case comment
+
+            case orderingStore = "ordering_store"
+
+            case mongoCartId = "mongo_cart_id"
+
+            case platformUserDetails = "platform_user_details"
         }
 
         public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: Int? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
-            self.staff = staff
-
-            self.cartId = cartId
+            self.currencySymbol = currencySymbol
 
             self.customerNote = customerNote
 
-            self.mongoCartId = mongoCartId
+            self.transactionData = transactionData
 
-            self.files = files
+            self.orderType = orderType
+
+            self.orderTags = orderTags
 
             self.billingStaffDetails = billingStaffDetails
 
             self.employeeId = employeeId
 
-            self.transactionData = transactionData
-
-            self.orderPlatform = orderPlatform
-
-            self.currencySymbol = currencySymbol
-
-            self.platformUserDetails = platformUserDetails
-
-            self.orderChildEntities = orderChildEntities
-
-            self.paymentType = paymentType
-
-            self.comment = comment
+            self.staff = staff
 
             self.companyLogo = companyLogo
 
-            self.orderingStore = orderingStore
+            self.cartId = cartId
 
-            self.orderTags = orderTags
+            self.paymentType = paymentType
+
+            self.orderPlatform = orderPlatform
+
+            self.files = files
 
             self.extraMeta = extraMeta
 
-            self.orderType = orderType
+            self.orderChildEntities = orderChildEntities
+
+            self.comment = comment
+
+            self.orderingStore = orderingStore
+
+            self.mongoCartId = mongoCartId
+
+            self.platformUserDetails = platformUserDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                staff = try container.decode([String: Any].self, forKey: .staff)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cartId = try container.decode(Int.self, forKey: .cartId)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -155,7 +147,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                mongoCartId = try container.decode(Int.self, forKey: .mongoCartId)
+                transactionData = try container.decode(TransactionData.self, forKey: .transactionData)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,7 +155,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                files = try container.decode([[String: Any]].self, forKey: .files)
+                orderType = try container.decode(String.self, forKey: .orderType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderTags = try container.decode([[String: Any]].self, forKey: .orderTags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,55 +187,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                transactionData = try container.decode(TransactionData.self, forKey: .transactionData)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderPlatform = try container.decode(String.self, forKey: .orderPlatform)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                platformUserDetails = try container.decode(PlatformUserDetails.self, forKey: .platformUserDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderChildEntities = try container.decode([String].self, forKey: .orderChildEntities)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentType = try container.decode(String.self, forKey: .paymentType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                comment = try container.decode(String.self, forKey: .comment)
+                staff = try container.decode([String: Any].self, forKey: .staff)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,7 +203,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                orderingStore = try container.decode(Int.self, forKey: .orderingStore)
+                cartId = try container.decode(Int.self, forKey: .cartId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -259,7 +211,23 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                orderTags = try container.decode([[String: Any]].self, forKey: .orderTags)
+                paymentType = try container.decode(String.self, forKey: .paymentType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderPlatform = try container.decode(String.self, forKey: .orderPlatform)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                files = try container.decode([[String: Any]].self, forKey: .files)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -275,7 +243,39 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                orderType = try container.decode(String.self, forKey: .orderType)
+                orderChildEntities = try container.decode([String].self, forKey: .orderChildEntities)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                comment = try container.decode(String.self, forKey: .comment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderingStore = try container.decode(Int.self, forKey: .orderingStore)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mongoCartId = try container.decode(Int.self, forKey: .mongoCartId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                platformUserDetails = try container.decode(PlatformUserDetails.self, forKey: .platformUserDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -286,43 +286,43 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(staff, forKey: .staff)
-
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(customerNote, forKey: .customerNote)
 
-            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
+            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
 
-            try? container.encodeIfPresent(files, forKey: .files)
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
+
+            try? container.encode(orderTags, forKey: .orderTags)
 
             try? container.encodeIfPresent(billingStaffDetails, forKey: .billingStaffDetails)
 
             try? container.encode(employeeId, forKey: .employeeId)
 
-            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
-
-            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
-
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-
-            try? container.encodeIfPresent(platformUserDetails, forKey: .platformUserDetails)
-
-            try? container.encodeIfPresent(orderChildEntities, forKey: .orderChildEntities)
-
-            try? container.encodeIfPresent(paymentType, forKey: .paymentType)
-
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encodeIfPresent(staff, forKey: .staff)
 
             try? container.encodeIfPresent(companyLogo, forKey: .companyLogo)
 
-            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
 
-            try? container.encode(orderTags, forKey: .orderTags)
+            try? container.encodeIfPresent(paymentType, forKey: .paymentType)
+
+            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
+
+            try? container.encodeIfPresent(files, forKey: .files)
 
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(orderChildEntities, forKey: .orderChildEntities)
+
+            try? container.encodeIfPresent(comment, forKey: .comment)
+
+            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
+
+            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
+
+            try? container.encodeIfPresent(platformUserDetails, forKey: .platformUserDetails)
         }
     }
 }
@@ -334,137 +334,129 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderMeta: Codable {
-        public var staff: [String: Any]?
-
-        public var cartId: Int?
+        public var currencySymbol: String?
 
         public var customerNote: String?
 
-        public var mongoCartId: Int?
+        public var transactionData: TransactionData?
 
-        public var files: [[String: Any]]?
+        public var orderType: String?
+
+        public var orderTags: [[String: Any]]?
 
         public var billingStaffDetails: BillingStaffDetails?
 
         public var employeeId: Int?
 
-        public var transactionData: TransactionData?
-
-        public var orderPlatform: String?
-
-        public var currencySymbol: String?
-
-        public var platformUserDetails: PlatformUserDetails?
-
-        public var orderChildEntities: [String]?
-
-        public var paymentType: String?
-
-        public var comment: String?
+        public var staff: [String: Any]?
 
         public var companyLogo: String?
 
-        public var orderingStore: Int?
+        public var cartId: Int?
 
-        public var orderTags: [[String: Any]]?
+        public var paymentType: String?
+
+        public var orderPlatform: String?
+
+        public var files: [[String: Any]]?
 
         public var extraMeta: [String: Any]?
 
-        public var orderType: String?
+        public var orderChildEntities: [String]?
+
+        public var comment: String?
+
+        public var orderingStore: Int?
+
+        public var mongoCartId: Int?
+
+        public var platformUserDetails: PlatformUserDetails?
 
         public enum CodingKeys: String, CodingKey {
-            case staff
-
-            case cartId = "cart_id"
+            case currencySymbol = "currency_symbol"
 
             case customerNote = "customer_note"
 
-            case mongoCartId = "mongo_cart_id"
+            case transactionData = "transaction_data"
 
-            case files
+            case orderType = "order_type"
+
+            case orderTags = "order_tags"
 
             case billingStaffDetails = "billing_staff_details"
 
             case employeeId = "employee_id"
 
-            case transactionData = "transaction_data"
-
-            case orderPlatform = "order_platform"
-
-            case currencySymbol = "currency_symbol"
-
-            case platformUserDetails = "platform_user_details"
-
-            case orderChildEntities = "order_child_entities"
-
-            case paymentType = "payment_type"
-
-            case comment
+            case staff
 
             case companyLogo = "company_logo"
 
-            case orderingStore = "ordering_store"
+            case cartId = "cart_id"
 
-            case orderTags = "order_tags"
+            case paymentType = "payment_type"
+
+            case orderPlatform = "order_platform"
+
+            case files
 
             case extraMeta = "extra_meta"
 
-            case orderType = "order_type"
+            case orderChildEntities = "order_child_entities"
+
+            case comment
+
+            case orderingStore = "ordering_store"
+
+            case mongoCartId = "mongo_cart_id"
+
+            case platformUserDetails = "platform_user_details"
         }
 
         public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: Int? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
-            self.staff = staff
-
-            self.cartId = cartId
+            self.currencySymbol = currencySymbol
 
             self.customerNote = customerNote
 
-            self.mongoCartId = mongoCartId
+            self.transactionData = transactionData
 
-            self.files = files
+            self.orderType = orderType
+
+            self.orderTags = orderTags
 
             self.billingStaffDetails = billingStaffDetails
 
             self.employeeId = employeeId
 
-            self.transactionData = transactionData
-
-            self.orderPlatform = orderPlatform
-
-            self.currencySymbol = currencySymbol
-
-            self.platformUserDetails = platformUserDetails
-
-            self.orderChildEntities = orderChildEntities
-
-            self.paymentType = paymentType
-
-            self.comment = comment
+            self.staff = staff
 
             self.companyLogo = companyLogo
 
-            self.orderingStore = orderingStore
+            self.cartId = cartId
 
-            self.orderTags = orderTags
+            self.paymentType = paymentType
+
+            self.orderPlatform = orderPlatform
+
+            self.files = files
 
             self.extraMeta = extraMeta
 
-            self.orderType = orderType
+            self.orderChildEntities = orderChildEntities
+
+            self.comment = comment
+
+            self.orderingStore = orderingStore
+
+            self.mongoCartId = mongoCartId
+
+            self.platformUserDetails = platformUserDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                staff = try container.decode([String: Any].self, forKey: .staff)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cartId = try container.decode(Int.self, forKey: .cartId)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -480,7 +472,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                mongoCartId = try container.decode(Int.self, forKey: .mongoCartId)
+                transactionData = try container.decode(TransactionData.self, forKey: .transactionData)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -488,7 +480,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                files = try container.decode([[String: Any]].self, forKey: .files)
+                orderType = try container.decode(String.self, forKey: .orderType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderTags = try container.decode([[String: Any]].self, forKey: .orderTags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -512,55 +512,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                transactionData = try container.decode(TransactionData.self, forKey: .transactionData)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderPlatform = try container.decode(String.self, forKey: .orderPlatform)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                platformUserDetails = try container.decode(PlatformUserDetails.self, forKey: .platformUserDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderChildEntities = try container.decode([String].self, forKey: .orderChildEntities)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentType = try container.decode(String.self, forKey: .paymentType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                comment = try container.decode(String.self, forKey: .comment)
+                staff = try container.decode([String: Any].self, forKey: .staff)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -576,7 +528,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                orderingStore = try container.decode(Int.self, forKey: .orderingStore)
+                cartId = try container.decode(Int.self, forKey: .cartId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -584,7 +536,23 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                orderTags = try container.decode([[String: Any]].self, forKey: .orderTags)
+                paymentType = try container.decode(String.self, forKey: .paymentType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderPlatform = try container.decode(String.self, forKey: .orderPlatform)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                files = try container.decode([[String: Any]].self, forKey: .files)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -600,7 +568,39 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                orderType = try container.decode(String.self, forKey: .orderType)
+                orderChildEntities = try container.decode([String].self, forKey: .orderChildEntities)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                comment = try container.decode(String.self, forKey: .comment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                orderingStore = try container.decode(Int.self, forKey: .orderingStore)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mongoCartId = try container.decode(Int.self, forKey: .mongoCartId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                platformUserDetails = try container.decode(PlatformUserDetails.self, forKey: .platformUserDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -611,43 +611,43 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(staff, forKey: .staff)
-
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
             try? container.encodeIfPresent(customerNote, forKey: .customerNote)
 
-            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
+            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
 
-            try? container.encodeIfPresent(files, forKey: .files)
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
+
+            try? container.encode(orderTags, forKey: .orderTags)
 
             try? container.encodeIfPresent(billingStaffDetails, forKey: .billingStaffDetails)
 
             try? container.encode(employeeId, forKey: .employeeId)
 
-            try? container.encodeIfPresent(transactionData, forKey: .transactionData)
-
-            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
-
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-
-            try? container.encodeIfPresent(platformUserDetails, forKey: .platformUserDetails)
-
-            try? container.encodeIfPresent(orderChildEntities, forKey: .orderChildEntities)
-
-            try? container.encodeIfPresent(paymentType, forKey: .paymentType)
-
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encodeIfPresent(staff, forKey: .staff)
 
             try? container.encodeIfPresent(companyLogo, forKey: .companyLogo)
 
-            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
 
-            try? container.encode(orderTags, forKey: .orderTags)
+            try? container.encodeIfPresent(paymentType, forKey: .paymentType)
+
+            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
+
+            try? container.encodeIfPresent(files, forKey: .files)
 
             try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(orderChildEntities, forKey: .orderChildEntities)
+
+            try? container.encodeIfPresent(comment, forKey: .comment)
+
+            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
+
+            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
+
+            try? container.encodeIfPresent(platformUserDetails, forKey: .platformUserDetails)
         }
     }
 }

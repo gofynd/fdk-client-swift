@@ -13,9 +13,9 @@ public extension ApplicationClient.Cart {
 
         public var maxQuantity: Int?
 
-        public var margin: Int?
-
         public var minQuantity: Int?
+
+        public var margin: Int?
 
         public enum CodingKeys: String, CodingKey {
             case type
@@ -24,9 +24,9 @@ public extension ApplicationClient.Cart {
 
             case maxQuantity = "max_quantity"
 
-            case margin
-
             case minQuantity = "min_quantity"
+
+            case margin
         }
 
         public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.Cart {
 
             self.maxQuantity = maxQuantity
 
-            self.margin = margin
-
             self.minQuantity = minQuantity
+
+            self.margin = margin
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                margin = try container.decode(Int.self, forKey: .margin)
+                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+                margin = try container.decode(Int.self, forKey: .margin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
-            try? container.encodeIfPresent(margin, forKey: .margin)
-
             try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
+
+            try? container.encodeIfPresent(margin, forKey: .margin)
         }
     }
 }

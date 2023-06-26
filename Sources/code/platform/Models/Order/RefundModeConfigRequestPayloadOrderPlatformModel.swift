@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class RefundModeConfigRequestPayload: Codable {
         public var sellerId: String
 
-        public var affiliateId: String
-
         public var fyndOrderId: String
+
+        public var affiliateId: String
 
         public var customerMobileNumber: String?
 
         public enum CodingKeys: String, CodingKey {
             case sellerId = "seller_id"
 
-            case affiliateId = "affiliate_id"
-
             case fyndOrderId = "fynd_order_id"
+
+            case affiliateId = "affiliate_id"
 
             case customerMobileNumber = "customer_mobile_number"
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, sellerId: String) {
             self.sellerId = sellerId
 
-            self.affiliateId = affiliateId
-
             self.fyndOrderId = fyndOrderId
+
+            self.affiliateId = affiliateId
 
             self.customerMobileNumber = customerMobileNumber
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Order {
 
             sellerId = try container.decode(String.self, forKey: .sellerId)
 
-            affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             do {
                 customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
@@ -60,9 +60,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
             try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
         }
@@ -78,18 +78,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class RefundModeConfigRequestPayload: Codable {
         public var sellerId: String
 
-        public var affiliateId: String
-
         public var fyndOrderId: String
+
+        public var affiliateId: String
 
         public var customerMobileNumber: String?
 
         public enum CodingKeys: String, CodingKey {
             case sellerId = "seller_id"
 
-            case affiliateId = "affiliate_id"
-
             case fyndOrderId = "fynd_order_id"
+
+            case affiliateId = "affiliate_id"
 
             case customerMobileNumber = "customer_mobile_number"
         }
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(affiliateId: String, customerMobileNumber: String? = nil, fyndOrderId: String, sellerId: String) {
             self.sellerId = sellerId
 
-            self.affiliateId = affiliateId
-
             self.fyndOrderId = fyndOrderId
+
+            self.affiliateId = affiliateId
 
             self.customerMobileNumber = customerMobileNumber
         }
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             sellerId = try container.decode(String.self, forKey: .sellerId)
 
-            affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
+
+            affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             do {
                 customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
             try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
         }

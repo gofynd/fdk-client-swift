@@ -9,9 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class ProductFiltersKey: Codable {
-        public var kind: String?
-
         public var operators: [String]?
+
+        public var kind: String?
 
         public var logo: String?
 
@@ -20,9 +20,9 @@ public extension PlatformClient.Catalog {
         public var display: String
 
         public enum CodingKeys: String, CodingKey {
-            case kind
-
             case operators
+
+            case kind
 
             case logo
 
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
-            self.kind = kind
-
             self.operators = operators
+
+            self.kind = kind
 
             self.logo = logo
 
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                kind = try container.decode(String.self, forKey: .kind)
+                operators = try container.decode([String].self, forKey: .operators)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                operators = try container.decode([String].self, forKey: .operators)
+                kind = try container.decode(String.self, forKey: .kind)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(kind, forKey: .kind)
-
             try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(kind, forKey: .kind)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
@@ -98,9 +98,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProductFiltersKey: Codable {
-        public var kind: String?
-
         public var operators: [String]?
+
+        public var kind: String?
 
         public var logo: String?
 
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public var display: String
 
         public enum CodingKeys: String, CodingKey {
-            case kind
-
             case operators
+
+            case kind
 
             case logo
 
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(display: String, kind: String? = nil, logo: String? = nil, name: String, operators: [String]? = nil) {
-            self.kind = kind
-
             self.operators = operators
+
+            self.kind = kind
 
             self.logo = logo
 
@@ -136,7 +136,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                kind = try container.decode(String.self, forKey: .kind)
+                operators = try container.decode([String].self, forKey: .operators)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -144,7 +144,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                operators = try container.decode([String].self, forKey: .operators)
+                kind = try container.decode(String.self, forKey: .kind)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,9 +167,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(kind, forKey: .kind)
-
             try? container.encodeIfPresent(operators, forKey: .operators)
+
+            try? container.encodeIfPresent(kind, forKey: .kind)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 

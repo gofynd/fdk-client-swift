@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class AttachOrderUser: Codable {
         public var fyndOrderId: String
 
-        public var userInfo: AttachUserInfo
-
         public var otpData: AttachUserOtpData
+
+        public var userInfo: AttachUserInfo
 
         public enum CodingKeys: String, CodingKey {
             case fyndOrderId = "fynd_order_id"
 
-            case userInfo = "user_info"
-
             case otpData = "otp_data"
+
+            case userInfo = "user_info"
         }
 
         public init(fyndOrderId: String, otpData: AttachUserOtpData, userInfo: AttachUserInfo) {
             self.fyndOrderId = fyndOrderId
 
-            self.userInfo = userInfo
-
             self.otpData = otpData
+
+            self.userInfo = userInfo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
 
-            userInfo = try container.decode(AttachUserInfo.self, forKey: .userInfo)
-
             otpData = try container.decode(AttachUserOtpData.self, forKey: .otpData)
+
+            userInfo = try container.decode(AttachUserInfo.self, forKey: .userInfo)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
 
-            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
-
             try? container.encodeIfPresent(otpData, forKey: .otpData)
+
+            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class AttachOrderUser: Codable {
         public var fyndOrderId: String
 
-        public var userInfo: AttachUserInfo
-
         public var otpData: AttachUserOtpData
+
+        public var userInfo: AttachUserInfo
 
         public enum CodingKeys: String, CodingKey {
             case fyndOrderId = "fynd_order_id"
 
-            case userInfo = "user_info"
-
             case otpData = "otp_data"
+
+            case userInfo = "user_info"
         }
 
         public init(fyndOrderId: String, otpData: AttachUserOtpData, userInfo: AttachUserInfo) {
             self.fyndOrderId = fyndOrderId
 
-            self.userInfo = userInfo
-
             self.otpData = otpData
+
+            self.userInfo = userInfo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
 
-            userInfo = try container.decode(AttachUserInfo.self, forKey: .userInfo)
-
             otpData = try container.decode(AttachUserOtpData.self, forKey: .otpData)
+
+            userInfo = try container.decode(AttachUserInfo.self, forKey: .userInfo)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
 
-            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
-
             try? container.encodeIfPresent(otpData, forKey: .otpData)
+
+            try? container.encodeIfPresent(userInfo, forKey: .userInfo)
         }
     }
 }

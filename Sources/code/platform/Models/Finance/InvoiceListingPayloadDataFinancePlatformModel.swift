@@ -9,11 +9,11 @@ public extension PlatformClient.Finance {
      */
 
     class InvoiceListingPayloadData: Codable {
-        public var page: Int?
-
         public var pageSize: Int?
 
         public var endDate: String?
+
+        public var page: Int?
 
         public var search: String?
 
@@ -22,11 +22,11 @@ public extension PlatformClient.Finance {
         public var filters: InoviceListingPayloadDataFilters?
 
         public enum CodingKeys: String, CodingKey {
-            case page
-
             case pageSize = "page_size"
 
             case endDate = "end_date"
+
+            case page
 
             case search
 
@@ -36,11 +36,11 @@ public extension PlatformClient.Finance {
         }
 
         public init(endDate: String? = nil, filters: InoviceListingPayloadDataFilters? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, startDate: String? = nil) {
-            self.page = page
-
             self.pageSize = pageSize
 
             self.endDate = endDate
+
+            self.page = page
 
             self.search = search
 
@@ -53,14 +53,6 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                page = try container.decode(Int.self, forKey: .page)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 pageSize = try container.decode(Int.self, forKey: .pageSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -70,6 +62,14 @@ public extension PlatformClient.Finance {
 
             do {
                 endDate = try container.decode(String.self, forKey: .endDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                page = try container.decode(Int.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,11 +104,11 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(pageSize, forKey: .pageSize)
 
             try? container.encodeIfPresent(endDate, forKey: .endDate)
+
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(search, forKey: .search)
 

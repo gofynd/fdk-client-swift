@@ -9,51 +9,51 @@ public extension PlatformClient.Order {
      */
 
     class B2BPODetails: Codable {
-        public var totalGstPercentage: Double?
-
-        public var poTaxAmount: Double?
-
-        public var partialCanRet: Bool?
-
         public var docketNumber: String?
-
-        public var poLineAmount: Double?
 
         public var itemBasePrice: Double?
 
-        public enum CodingKeys: String, CodingKey {
-            case totalGstPercentage = "total_gst_percentage"
+        public var partialCanRet: Bool?
 
-            case poTaxAmount = "po_tax_amount"
+        public var poTaxAmount: Double?
+
+        public var totalGstPercentage: Double?
+
+        public var poLineAmount: Double?
+
+        public enum CodingKeys: String, CodingKey {
+            case docketNumber = "docket_number"
+
+            case itemBasePrice = "item_base_price"
 
             case partialCanRet = "partial_can_ret"
 
-            case docketNumber = "docket_number"
+            case poTaxAmount = "po_tax_amount"
+
+            case totalGstPercentage = "total_gst_percentage"
 
             case poLineAmount = "po_line_amount"
-
-            case itemBasePrice = "item_base_price"
         }
 
         public init(docketNumber: String? = nil, itemBasePrice: Double? = nil, partialCanRet: Bool? = nil, poLineAmount: Double? = nil, poTaxAmount: Double? = nil, totalGstPercentage: Double? = nil) {
-            self.totalGstPercentage = totalGstPercentage
+            self.docketNumber = docketNumber
 
-            self.poTaxAmount = poTaxAmount
+            self.itemBasePrice = itemBasePrice
 
             self.partialCanRet = partialCanRet
 
-            self.docketNumber = docketNumber
+            self.poTaxAmount = poTaxAmount
+
+            self.totalGstPercentage = totalGstPercentage
 
             self.poLineAmount = poLineAmount
-
-            self.itemBasePrice = itemBasePrice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                totalGstPercentage = try container.decode(Double.self, forKey: .totalGstPercentage)
+                docketNumber = try container.decode(String.self, forKey: .docketNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
+                itemBasePrice = try container.decode(Double.self, forKey: .itemBasePrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                docketNumber = try container.decode(String.self, forKey: .docketNumber)
+                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                totalGstPercentage = try container.decode(Double.self, forKey: .totalGstPercentage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,30 +99,22 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                itemBasePrice = try container.decode(Double.self, forKey: .itemBasePrice)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
+            try? container.encodeIfPresent(docketNumber, forKey: .docketNumber)
 
-            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
+            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
 
             try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
 
-            try? container.encodeIfPresent(docketNumber, forKey: .docketNumber)
+            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
+
+            try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
 
             try? container.encodeIfPresent(poLineAmount, forKey: .poLineAmount)
-
-            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
         }
     }
 }
@@ -126,51 +126,51 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class B2BPODetails: Codable {
-        public var totalGstPercentage: Double?
-
-        public var poTaxAmount: Double?
-
-        public var partialCanRet: Bool?
-
         public var docketNumber: String?
-
-        public var poLineAmount: Double?
 
         public var itemBasePrice: Double?
 
-        public enum CodingKeys: String, CodingKey {
-            case totalGstPercentage = "total_gst_percentage"
+        public var partialCanRet: Bool?
 
-            case poTaxAmount = "po_tax_amount"
+        public var poTaxAmount: Double?
+
+        public var totalGstPercentage: Double?
+
+        public var poLineAmount: Double?
+
+        public enum CodingKeys: String, CodingKey {
+            case docketNumber = "docket_number"
+
+            case itemBasePrice = "item_base_price"
 
             case partialCanRet = "partial_can_ret"
 
-            case docketNumber = "docket_number"
+            case poTaxAmount = "po_tax_amount"
+
+            case totalGstPercentage = "total_gst_percentage"
 
             case poLineAmount = "po_line_amount"
-
-            case itemBasePrice = "item_base_price"
         }
 
         public init(docketNumber: String? = nil, itemBasePrice: Double? = nil, partialCanRet: Bool? = nil, poLineAmount: Double? = nil, poTaxAmount: Double? = nil, totalGstPercentage: Double? = nil) {
-            self.totalGstPercentage = totalGstPercentage
+            self.docketNumber = docketNumber
 
-            self.poTaxAmount = poTaxAmount
+            self.itemBasePrice = itemBasePrice
 
             self.partialCanRet = partialCanRet
 
-            self.docketNumber = docketNumber
+            self.poTaxAmount = poTaxAmount
+
+            self.totalGstPercentage = totalGstPercentage
 
             self.poLineAmount = poLineAmount
-
-            self.itemBasePrice = itemBasePrice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                totalGstPercentage = try container.decode(Double.self, forKey: .totalGstPercentage)
+                docketNumber = try container.decode(String.self, forKey: .docketNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
+                itemBasePrice = try container.decode(Double.self, forKey: .itemBasePrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                docketNumber = try container.decode(String.self, forKey: .docketNumber)
+                poTaxAmount = try container.decode(Double.self, forKey: .poTaxAmount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                totalGstPercentage = try container.decode(Double.self, forKey: .totalGstPercentage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -208,30 +216,22 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                itemBasePrice = try container.decode(Double.self, forKey: .itemBasePrice)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
+            try? container.encodeIfPresent(docketNumber, forKey: .docketNumber)
 
-            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
+            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
 
             try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
 
-            try? container.encodeIfPresent(docketNumber, forKey: .docketNumber)
+            try? container.encodeIfPresent(poTaxAmount, forKey: .poTaxAmount)
+
+            try? container.encodeIfPresent(totalGstPercentage, forKey: .totalGstPercentage)
 
             try? container.encodeIfPresent(poLineAmount, forKey: .poLineAmount)
-
-            try? container.encodeIfPresent(itemBasePrice, forKey: .itemBasePrice)
         }
     }
 }

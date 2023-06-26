@@ -13,13 +13,13 @@ public extension PlatformClient.Order {
 
         public var stores: Int
 
-        public var dpIds: Int
+        public var logo: String?
 
         public var dpName: String
 
-        public var storeName: String
+        public var dpIds: Int
 
-        public var logo: String?
+        public var storeName: String
 
         public var dateRange: DateRange?
 
@@ -28,13 +28,13 @@ public extension PlatformClient.Order {
 
             case stores
 
-            case dpIds = "dp_ids"
+            case logo
 
             case dpName = "dp_name"
 
-            case storeName = "store_name"
+            case dpIds = "dp_ids"
 
-            case logo
+            case storeName = "store_name"
 
             case dateRange = "date_range"
         }
@@ -44,13 +44,13 @@ public extension PlatformClient.Order {
 
             self.stores = stores
 
-            self.dpIds = dpIds
+            self.logo = logo
 
             self.dpName = dpName
 
-            self.storeName = storeName
+            self.dpIds = dpIds
 
-            self.logo = logo
+            self.storeName = storeName
 
             self.dateRange = dateRange
         }
@@ -62,12 +62,6 @@ public extension PlatformClient.Order {
 
             stores = try container.decode(Int.self, forKey: .stores)
 
-            dpIds = try container.decode(Int.self, forKey: .dpIds)
-
-            dpName = try container.decode(String.self, forKey: .dpName)
-
-            storeName = try container.decode(String.self, forKey: .storeName)
-
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -75,6 +69,12 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            dpName = try container.decode(String.self, forKey: .dpName)
+
+            dpIds = try container.decode(Int.self, forKey: .dpIds)
+
+            storeName = try container.decode(String.self, forKey: .storeName)
 
             do {
                 dateRange = try container.decode(DateRange.self, forKey: .dateRange)
@@ -92,13 +92,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
-            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(dpName, forKey: .dpName)
 
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
+            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
 
             try? container.encodeIfPresent(dateRange, forKey: .dateRange)
         }
@@ -116,13 +116,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var stores: Int
 
-        public var dpIds: Int
+        public var logo: String?
 
         public var dpName: String
 
-        public var storeName: String
+        public var dpIds: Int
 
-        public var logo: String?
+        public var storeName: String
 
         public var dateRange: DateRange?
 
@@ -131,13 +131,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case stores
 
-            case dpIds = "dp_ids"
+            case logo
 
             case dpName = "dp_name"
 
-            case storeName = "store_name"
+            case dpIds = "dp_ids"
 
-            case logo
+            case storeName = "store_name"
 
             case dateRange = "date_range"
         }
@@ -147,13 +147,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.stores = stores
 
-            self.dpIds = dpIds
+            self.logo = logo
 
             self.dpName = dpName
 
-            self.storeName = storeName
+            self.dpIds = dpIds
 
-            self.logo = logo
+            self.storeName = storeName
 
             self.dateRange = dateRange
         }
@@ -165,12 +165,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             stores = try container.decode(Int.self, forKey: .stores)
 
-            dpIds = try container.decode(Int.self, forKey: .dpIds)
-
-            dpName = try container.decode(String.self, forKey: .dpName)
-
-            storeName = try container.decode(String.self, forKey: .storeName)
-
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -178,6 +172,12 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            dpName = try container.decode(String.self, forKey: .dpName)
+
+            dpIds = try container.decode(Int.self, forKey: .dpIds)
+
+            storeName = try container.decode(String.self, forKey: .storeName)
 
             do {
                 dateRange = try container.decode(DateRange.self, forKey: .dateRange)
@@ -195,13 +195,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
-            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(dpName, forKey: .dpName)
 
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
+            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
 
             try? container.encodeIfPresent(dateRange, forKey: .dateRange)
         }

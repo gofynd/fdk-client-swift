@@ -9,30 +9,30 @@ public extension ApplicationClient.Catalog {
     class ProductStockPriceV3: Codable {
         public var marked: Double?
 
+        public var selling: Double?
+
         public var effective: Double?
 
         public var currency: String?
 
-        public var selling: Double?
-
         public enum CodingKeys: String, CodingKey {
             case marked
+
+            case selling
 
             case effective
 
             case currency
-
-            case selling
         }
 
         public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
             self.marked = marked
 
+            self.selling = selling
+
             self.effective = effective
 
             self.currency = currency
-
-            self.selling = selling
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,14 @@ public extension ApplicationClient.Catalog {
 
             do {
                 marked = try container.decode(Double.self, forKey: .marked)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                selling = try container.decode(Double.self, forKey: .selling)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,14 +69,6 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                selling = try container.decode(Double.self, forKey: .selling)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
+            try? container.encodeIfPresent(selling, forKey: .selling)
+
             try? container.encodeIfPresent(effective, forKey: .effective)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(selling, forKey: .selling)
         }
     }
 }

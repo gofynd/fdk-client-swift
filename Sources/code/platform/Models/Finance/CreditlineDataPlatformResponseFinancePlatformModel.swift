@@ -9,30 +9,30 @@ public extension PlatformClient.Finance {
      */
 
     class CreditlineDataPlatformResponse: Codable {
-        public var message: String?
-
-        public var headers: [String]?
-
-        public var page: [String: Any]?
+        public var code: Int?
 
         public var items: [[String: Any]]?
 
-        public var code: Int?
+        public var page: [String: Any]?
+
+        public var headers: [String]?
+
+        public var message: String?
 
         public var showMr: Bool?
 
         public var itemCount: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case message
-
-            case headers
-
-            case page
+            case code
 
             case items
 
-            case code
+            case page
+
+            case headers
+
+            case message
 
             case showMr = "show_mr"
 
@@ -40,15 +40,15 @@ public extension PlatformClient.Finance {
         }
 
         public init(code: Int? = nil, headers: [String]? = nil, items: [[String: Any]]? = nil, itemCount: Int? = nil, message: String? = nil, page: [String: Any]? = nil, showMr: Bool? = nil) {
-            self.message = message
-
-            self.headers = headers
-
-            self.page = page
+            self.code = code
 
             self.items = items
 
-            self.code = code
+            self.page = page
+
+            self.headers = headers
+
+            self.message = message
 
             self.showMr = showMr
 
@@ -59,23 +59,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                headers = try container.decode([String].self, forKey: .headers)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                page = try container.decode([String: Any].self, forKey: .page)
+                code = try container.decode(Int.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +75,23 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                code = try container.decode(Int.self, forKey: .code)
+                page = try container.decode([String: Any].self, forKey: .page)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                headers = try container.decode([String].self, forKey: .headers)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,15 +118,15 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(headers, forKey: .headers)
-
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(code, forKey: .code)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(headers, forKey: .headers)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(showMr, forKey: .showMr)
 
