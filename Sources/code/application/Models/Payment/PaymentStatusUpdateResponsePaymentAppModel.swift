@@ -7,6 +7,8 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class PaymentStatusUpdateResponse: Codable {
+        public var aggregatorName: String
+
         public var retry: Bool
 
         public var redirectUrl: String?
@@ -15,9 +17,9 @@ public extension ApplicationClient.Payment {
 
         public var status: String
 
-        public var aggregatorName: String
-
         public enum CodingKeys: String, CodingKey {
+            case aggregatorName = "aggregator_name"
+
             case retry
 
             case redirectUrl = "redirect_url"
@@ -25,11 +27,11 @@ public extension ApplicationClient.Payment {
             case success
 
             case status
-
-            case aggregatorName = "aggregator_name"
         }
 
         public init(aggregatorName: String, redirectUrl: String? = nil, retry: Bool, status: String, success: Bool? = nil) {
+            self.aggregatorName = aggregatorName
+
             self.retry = retry
 
             self.redirectUrl = redirectUrl
@@ -37,12 +39,12 @@ public extension ApplicationClient.Payment {
             self.success = success
 
             self.status = status
-
-            self.aggregatorName = aggregatorName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
             retry = try container.decode(Bool.self, forKey: .retry)
 
@@ -63,12 +65,12 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             status = try container.decode(String.self, forKey: .status)
-
-            aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
             try? container.encodeIfPresent(retry, forKey: .retry)
 
@@ -77,8 +79,6 @@ public extension ApplicationClient.Payment {
             try? container.encode(success, forKey: .success)
 
             try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
         }
     }
 }

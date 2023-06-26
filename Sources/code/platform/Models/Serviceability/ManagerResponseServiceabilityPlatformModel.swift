@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class ManagerResponse: Codable {
         public var name: String?
 
-        public var email: String?
-
         public var mobileNo: MobileNo?
+
+        public var email: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case email
-
             case mobileNo = "mobile_no"
+
+            case email
         }
 
         public init(email: String? = nil, mobileNo: MobileNo? = nil, name: String? = nil) {
             self.name = name
 
-            self.email = email
-
             self.mobileNo = mobileNo
+
+            self.email = email
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                mobileNo = try container.decode(MobileNo.self, forKey: .mobileNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                mobileNo = try container.decode(MobileNo.self, forKey: .mobileNo)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
             try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
+
+            try? container.encodeIfPresent(email, forKey: .email)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ManagerResponse: Codable {
         public var name: String?
 
-        public var email: String?
-
         public var mobileNo: MobileNo?
+
+        public var email: String?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case email
-
             case mobileNo = "mobile_no"
+
+            case email
         }
 
         public init(email: String? = nil, mobileNo: MobileNo? = nil, name: String? = nil) {
             self.name = name
 
-            self.email = email
-
             self.mobileNo = mobileNo
+
+            self.email = email
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                email = try container.decode(String.self, forKey: .email)
+                mobileNo = try container.decode(MobileNo.self, forKey: .mobileNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                mobileNo = try container.decode(MobileNo.self, forKey: .mobileNo)
+                email = try container.decode(String.self, forKey: .email)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(email, forKey: .email)
-
             try? container.encodeIfPresent(mobileNo, forKey: .mobileNo)
+
+            try? container.encodeIfPresent(email, forKey: .email)
         }
     }
 }

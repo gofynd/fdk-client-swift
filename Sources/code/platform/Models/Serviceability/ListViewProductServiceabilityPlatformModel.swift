@@ -9,36 +9,36 @@ public extension PlatformClient.Serviceability {
      */
 
     class ListViewProduct: Codable {
-        public var type: String
-
         public var count: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case type
+        public var type: String
 
+        public enum CodingKeys: String, CodingKey {
             case count
+
+            case type
         }
 
         public init(count: Int, type: String) {
-            self.type = type
-
             self.count = count
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            type = try container.decode(String.self, forKey: .type)
-
             count = try container.decode(Int.self, forKey: .count)
+
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(count, forKey: .count)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -50,36 +50,36 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class ListViewProduct: Codable {
-        public var type: String
-
         public var count: Int
 
-        public enum CodingKeys: String, CodingKey {
-            case type
+        public var type: String
 
+        public enum CodingKeys: String, CodingKey {
             case count
+
+            case type
         }
 
         public init(count: Int, type: String) {
-            self.type = type
-
             self.count = count
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            type = try container.decode(String.self, forKey: .type)
-
             count = try container.decode(Int.self, forKey: .count)
+
+            type = try container.decode(String.self, forKey: .type)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(count, forKey: .count)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

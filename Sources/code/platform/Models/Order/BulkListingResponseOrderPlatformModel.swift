@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class BulkListingResponse: Codable {
         public var data: [bulkListingData]?
 
-        public var success: Bool?
+        public var page: BulkListingPage?
 
         public var error: String?
 
-        public var page: BulkListingPage?
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case success
+            case page
 
             case error
 
-            case page
+            case success
         }
 
         public init(data: [bulkListingData]? = nil, error: String? = nil, page: BulkListingPage? = nil, success: Bool? = nil) {
             self.data = data
 
-            self.success = success
+            self.page = page
 
             self.error = error
 
-            self.page = page
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                page = try container.decode(BulkListingPage.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                page = try container.decode(BulkListingPage.self, forKey: .page)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class BulkListingResponse: Codable {
         public var data: [bulkListingData]?
 
-        public var success: Bool?
+        public var page: BulkListingPage?
 
         public var error: String?
 
-        public var page: BulkListingPage?
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case data
 
-            case success
+            case page
 
             case error
 
-            case page
+            case success
         }
 
         public init(data: [bulkListingData]? = nil, error: String? = nil, page: BulkListingPage? = nil, success: Bool? = nil) {
             self.data = data
 
-            self.success = success
+            self.page = page
 
             self.error = error
 
-            self.page = page
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                page = try container.decode(BulkListingPage.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                page = try container.decode(BulkListingPage.self, forKey: .page)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

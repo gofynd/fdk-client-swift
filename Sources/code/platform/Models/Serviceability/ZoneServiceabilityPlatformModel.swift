@@ -11,54 +11,54 @@ public extension PlatformClient.Serviceability {
     class Zone: Codable {
         public var type: String
 
-        public var name: String
+        public var isActive: Bool
+
+        public var storeIds: [Int]
+
+        public var tags: [String]
 
         public var zoneId: String
 
         public var slug: String
 
-        public var storeIds: [Int]
+        public var name: String
 
         public var assignmentPreference: String
-
-        public var isActive: Bool
-
-        public var tags: [String]
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case name
+            case isActive = "is_active"
+
+            case storeIds = "store_ids"
+
+            case tags
 
             case zoneId = "zone_id"
 
             case slug
 
-            case storeIds = "store_ids"
+            case name
 
             case assignmentPreference = "assignment_preference"
-
-            case isActive = "is_active"
-
-            case tags
         }
 
         public init(assignmentPreference: String, isActive: Bool, name: String, slug: String, storeIds: [Int], tags: [String], type: String, zoneId: String) {
             self.type = type
 
-            self.name = name
+            self.isActive = isActive
+
+            self.storeIds = storeIds
+
+            self.tags = tags
 
             self.zoneId = zoneId
 
             self.slug = slug
 
-            self.storeIds = storeIds
+            self.name = name
 
             self.assignmentPreference = assignmentPreference
-
-            self.isActive = isActive
-
-            self.tags = tags
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,19 +66,19 @@ public extension PlatformClient.Serviceability {
 
             type = try container.decode(String.self, forKey: .type)
 
-            name = try container.decode(String.self, forKey: .name)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            storeIds = try container.decode([Int].self, forKey: .storeIds)
+
+            tags = try container.decode([String].self, forKey: .tags)
 
             zoneId = try container.decode(String.self, forKey: .zoneId)
 
             slug = try container.decode(String.self, forKey: .slug)
 
-            storeIds = try container.decode([Int].self, forKey: .storeIds)
+            name = try container.decode(String.self, forKey: .name)
 
             assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            tags = try container.decode([String].self, forKey: .tags)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -86,19 +86,19 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+
+            try? container.encodeIfPresent(tags, forKey: .tags)
 
             try? container.encodeIfPresent(zoneId, forKey: .zoneId)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(tags, forKey: .tags)
         }
     }
 }
@@ -112,54 +112,54 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class Zone: Codable {
         public var type: String
 
-        public var name: String
+        public var isActive: Bool
+
+        public var storeIds: [Int]
+
+        public var tags: [String]
 
         public var zoneId: String
 
         public var slug: String
 
-        public var storeIds: [Int]
+        public var name: String
 
         public var assignmentPreference: String
-
-        public var isActive: Bool
-
-        public var tags: [String]
 
         public enum CodingKeys: String, CodingKey {
             case type
 
-            case name
+            case isActive = "is_active"
+
+            case storeIds = "store_ids"
+
+            case tags
 
             case zoneId = "zone_id"
 
             case slug
 
-            case storeIds = "store_ids"
+            case name
 
             case assignmentPreference = "assignment_preference"
-
-            case isActive = "is_active"
-
-            case tags
         }
 
         public init(assignmentPreference: String, isActive: Bool, name: String, slug: String, storeIds: [Int], tags: [String], type: String, zoneId: String) {
             self.type = type
 
-            self.name = name
+            self.isActive = isActive
+
+            self.storeIds = storeIds
+
+            self.tags = tags
 
             self.zoneId = zoneId
 
             self.slug = slug
 
-            self.storeIds = storeIds
+            self.name = name
 
             self.assignmentPreference = assignmentPreference
-
-            self.isActive = isActive
-
-            self.tags = tags
         }
 
         required public init(from decoder: Decoder) throws {
@@ -167,19 +167,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             type = try container.decode(String.self, forKey: .type)
 
-            name = try container.decode(String.self, forKey: .name)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            storeIds = try container.decode([Int].self, forKey: .storeIds)
+
+            tags = try container.decode([String].self, forKey: .tags)
 
             zoneId = try container.decode(String.self, forKey: .zoneId)
 
             slug = try container.decode(String.self, forKey: .slug)
 
-            storeIds = try container.decode([Int].self, forKey: .storeIds)
+            name = try container.decode(String.self, forKey: .name)
 
             assignmentPreference = try container.decode(String.self, forKey: .assignmentPreference)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            tags = try container.decode([String].self, forKey: .tags)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -187,19 +187,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+
+            try? container.encodeIfPresent(tags, forKey: .tags)
 
             try? container.encodeIfPresent(zoneId, forKey: .zoneId)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(assignmentPreference, forKey: .assignmentPreference)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(tags, forKey: .tags)
         }
     }
 }

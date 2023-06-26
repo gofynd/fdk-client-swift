@@ -13,18 +13,18 @@ public extension PlatformClient.Payment {
 
         public var success: Bool
 
-        public var data: [String: Any]?
-
         public var isVerifiedFlag: Bool?
+
+        public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case success
 
-            case data
-
             case isVerifiedFlag = "is_verified_flag"
+
+            case data
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Payment {
 
             self.success = success
 
-            self.data = data
-
             self.isVerifiedFlag = isVerifiedFlag
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -45,7 +45,7 @@ public extension PlatformClient.Payment {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,9 +68,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -86,18 +86,18 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var success: Bool
 
-        public var data: [String: Any]?
-
         public var isVerifiedFlag: Bool?
+
+        public var data: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
             case success
 
-            case data
-
             case isVerifiedFlag = "is_verified_flag"
+
+            case data
         }
 
         public init(data: [String: Any]? = nil, isVerifiedFlag: Bool? = nil, message: String, success: Bool) {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.success = success
 
-            self.data = data
-
             self.isVerifiedFlag = isVerifiedFlag
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -118,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                data = try container.decode([String: Any].self, forKey: .data)
+                isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                isVerifiedFlag = try container.decode(Bool.self, forKey: .isVerifiedFlag)
+                data = try container.decode([String: Any].self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
