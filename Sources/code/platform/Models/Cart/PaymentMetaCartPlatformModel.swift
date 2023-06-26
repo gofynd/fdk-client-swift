@@ -9,18 +9,18 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PaymentMeta: Codable {
-        public var paymentGateway: String?
-
         public var paymentIdentifier: String?
+
+        public var paymentGateway: String?
 
         public var type: String?
 
         public var merchantCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case paymentGateway = "payment_gateway"
-
             case paymentIdentifier = "payment_identifier"
+
+            case paymentGateway = "payment_gateway"
 
             case type
 
@@ -28,9 +28,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(merchantCode: String? = nil, paymentGateway: String? = nil, paymentIdentifier: String? = nil, type: String? = nil) {
-            self.paymentGateway = paymentGateway
-
             self.paymentIdentifier = paymentIdentifier
+
+            self.paymentGateway = paymentGateway
 
             self.type = type
 
@@ -41,7 +41,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                paymentGateway = try container.decode(String.self, forKey: .paymentGateway)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
-
             try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+
+            try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

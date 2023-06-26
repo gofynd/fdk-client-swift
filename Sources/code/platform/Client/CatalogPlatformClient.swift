@@ -3093,7 +3093,7 @@ public extension PlatformClient {
         public func deleteRealtimeInventory(
             itemId: Int,
             sellerIdentifier: String,
-            body: InventoryRequestSchemaV2,
+
             onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
@@ -3101,7 +3101,7 @@ public extension PlatformClient {
                 method: "delete",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)/",
                 query: nil,
-                body: body.dictionary,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in

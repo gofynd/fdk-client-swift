@@ -9,24 +9,24 @@ public extension ApplicationClient.Cart {
     class CustomerDetails: Codable {
         public var email: String?
 
-        public var name: String?
-
         public var mobile: String
+
+        public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case email
 
-            case name
-
             case mobile
+
+            case name
         }
 
         public init(email: String? = nil, mobile: String, name: String? = nil) {
             self.email = email
 
-            self.name = name
-
             self.mobile = mobile
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,8 @@ public extension ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            mobile = try container.decode(String.self, forKey: .mobile)
+
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -47,8 +49,6 @@ public extension ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mobile = try container.decode(String.self, forKey: .mobile)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -56,9 +56,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encode(email, forKey: .email)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

@@ -13,18 +13,18 @@ public extension PlatformClient.Payment {
 
         public var message: String
 
-        public var error: ErrorDescription?
-
         public var statusCode: Int
+
+        public var error: ErrorDescription?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case message
 
-            case error
-
             case statusCode = "status_code"
+
+            case error
         }
 
         public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Payment {
 
             self.message = message
 
-            self.error = error
-
             self.statusCode = statusCode
+
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,6 +44,8 @@ public extension PlatformClient.Payment {
 
             message = try container.decode(String.self, forKey: .message)
 
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
+
             do {
                 error = try container.decode(ErrorDescription.self, forKey: .error)
 
@@ -51,8 +53,6 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encode(error, forKey: .error)
-
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+
+            try? container.encode(error, forKey: .error)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var message: String
 
-        public var error: ErrorDescription?
-
         public var statusCode: Int
+
+        public var error: ErrorDescription?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
             case message
 
-            case error
-
             case statusCode = "status_code"
+
+            case error
         }
 
         public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.message = message
 
-            self.error = error
-
             self.statusCode = statusCode
+
+            self.error = error
         }
 
         required public init(from decoder: Decoder) throws {
@@ -111,6 +111,8 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             message = try container.decode(String.self, forKey: .message)
 
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
+
             do {
                 error = try container.decode(ErrorDescription.self, forKey: .error)
 
@@ -118,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encode(error, forKey: .error)
-
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+
+            try? container.encode(error, forKey: .error)
         }
     }
 }

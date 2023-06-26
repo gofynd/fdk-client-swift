@@ -9,27 +9,27 @@ public extension PlatformClient.Order {
      */
 
     class BuyRules: Codable {
-        public var cartConditions: [String: Any]?
-
         public var itemCriteria: ItemCriterias?
 
-        public enum CodingKeys: String, CodingKey {
-            case cartConditions = "cart_conditions"
+        public var cartConditions: [String: Any]?
 
+        public enum CodingKeys: String, CodingKey {
             case itemCriteria = "item_criteria"
+
+            case cartConditions = "cart_conditions"
         }
 
         public init(cartConditions: [String: Any]? = nil, itemCriteria: ItemCriterias? = nil) {
-            self.cartConditions = cartConditions
-
             self.itemCriteria = itemCriteria
+
+            self.cartConditions = cartConditions
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cartConditions = try container.decode([String: Any].self, forKey: .cartConditions)
+                itemCriteria = try container.decode(ItemCriterias.self, forKey: .itemCriteria)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                itemCriteria = try container.decode(ItemCriterias.self, forKey: .itemCriteria)
+                cartConditions = try container.decode([String: Any].self, forKey: .cartConditions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(cartConditions, forKey: .cartConditions)
-
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
+
+            try? container.encodeIfPresent(cartConditions, forKey: .cartConditions)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class BuyRules: Codable {
-        public var cartConditions: [String: Any]?
-
         public var itemCriteria: ItemCriterias?
 
-        public enum CodingKeys: String, CodingKey {
-            case cartConditions = "cart_conditions"
+        public var cartConditions: [String: Any]?
 
+        public enum CodingKeys: String, CodingKey {
             case itemCriteria = "item_criteria"
+
+            case cartConditions = "cart_conditions"
         }
 
         public init(cartConditions: [String: Any]? = nil, itemCriteria: ItemCriterias? = nil) {
-            self.cartConditions = cartConditions
-
             self.itemCriteria = itemCriteria
+
+            self.cartConditions = cartConditions
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                cartConditions = try container.decode([String: Any].self, forKey: .cartConditions)
+                itemCriteria = try container.decode(ItemCriterias.self, forKey: .itemCriteria)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                itemCriteria = try container.decode(ItemCriterias.self, forKey: .itemCriteria)
+                cartConditions = try container.decode([String: Any].self, forKey: .cartConditions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(cartConditions, forKey: .cartConditions)
-
             try? container.encodeIfPresent(itemCriteria, forKey: .itemCriteria)
+
+            try? container.encodeIfPresent(cartConditions, forKey: .cartConditions)
         }
     }
 }

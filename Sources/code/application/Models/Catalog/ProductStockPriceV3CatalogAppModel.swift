@@ -11,18 +11,18 @@ public extension ApplicationClient.Catalog {
 
         public var selling: Double?
 
-        public var effective: Double?
-
         public var currency: String?
+
+        public var effective: Double?
 
         public enum CodingKeys: String, CodingKey {
             case marked
 
             case selling
 
-            case effective
-
             case currency
+
+            case effective
         }
 
         public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
@@ -30,9 +30,9 @@ public extension ApplicationClient.Catalog {
 
             self.selling = selling
 
-            self.effective = effective
-
             self.currency = currency
+
+            self.effective = effective
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                effective = try container.decode(Double.self, forKey: .effective)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                effective = try container.decode(Double.self, forKey: .effective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(selling, forKey: .selling)
 
-            try? container.encodeIfPresent(effective, forKey: .effective)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(effective, forKey: .effective)
         }
     }
 }
