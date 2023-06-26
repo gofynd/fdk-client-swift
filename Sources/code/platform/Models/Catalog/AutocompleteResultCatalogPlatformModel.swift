@@ -9,39 +9,39 @@ public extension PlatformClient.Catalog {
      */
 
     class AutocompleteResult: Codable {
-        public var display: String?
+        public var logo: AutoCompleteMedia?
 
         public var customJson: [String: Any]?
 
-        public var logo: AutoCompleteMedia?
-
         public var action: AutocompleteAction?
 
+        public var display: String?
+
         public enum CodingKeys: String, CodingKey {
-            case display
+            case logo
 
             case customJson = "_custom_json"
 
-            case logo
-
             case action
+
+            case display
         }
 
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: AutoCompleteMedia? = nil, customJson: [String: Any]? = nil) {
-            self.display = display
+            self.logo = logo
 
             self.customJson = customJson
 
-            self.logo = logo
-
             self.action = action
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                logo = try container.decode(AutoCompleteMedia.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(AutoCompleteMedia.self, forKey: .logo)
+                action = try container.decode(AutocompleteAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(AutocompleteAction.self, forKey: .action)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,13 +76,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }
@@ -94,39 +94,39 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class AutocompleteResult: Codable {
-        public var display: String?
+        public var logo: AutoCompleteMedia?
 
         public var customJson: [String: Any]?
 
-        public var logo: AutoCompleteMedia?
-
         public var action: AutocompleteAction?
 
+        public var display: String?
+
         public enum CodingKeys: String, CodingKey {
-            case display
+            case logo
 
             case customJson = "_custom_json"
 
-            case logo
-
             case action
+
+            case display
         }
 
         public init(action: AutocompleteAction? = nil, display: String? = nil, logo: AutoCompleteMedia? = nil, customJson: [String: Any]? = nil) {
-            self.display = display
+            self.logo = logo
 
             self.customJson = customJson
 
-            self.logo = logo
-
             self.action = action
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                logo = try container.decode(AutoCompleteMedia.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(AutoCompleteMedia.self, forKey: .logo)
+                action = try container.decode(AutocompleteAction.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                action = try container.decode(AutocompleteAction.self, forKey: .action)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

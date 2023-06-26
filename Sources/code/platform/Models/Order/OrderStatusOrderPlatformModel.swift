@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var startDate: String
 
-        public var orderDetails: [FyndOrderIdList]?
-
         public var endDate: String
+
+        public var orderDetails: [FyndOrderIdList]?
 
         public enum CodingKeys: String, CodingKey {
             case mobile
 
             case startDate = "start_date"
 
-            case orderDetails = "order_details"
-
             case endDate = "end_date"
+
+            case orderDetails = "order_details"
         }
 
         public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.startDate = startDate
 
-            self.orderDetails = orderDetails
-
             self.endDate = endDate
+
+            self.orderDetails = orderDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -44,6 +44,8 @@ public extension PlatformClient.Order {
 
             startDate = try container.decode(String.self, forKey: .startDate)
 
+            endDate = try container.decode(String.self, forKey: .endDate)
+
             do {
                 orderDetails = try container.decode([FyndOrderIdList].self, forKey: .orderDetails)
 
@@ -51,8 +53,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            endDate = try container.decode(String.self, forKey: .endDate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(startDate, forKey: .startDate)
 
-            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
-
             try? container.encodeIfPresent(endDate, forKey: .endDate)
+
+            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var startDate: String
 
-        public var orderDetails: [FyndOrderIdList]?
-
         public var endDate: String
+
+        public var orderDetails: [FyndOrderIdList]?
 
         public enum CodingKeys: String, CodingKey {
             case mobile
 
             case startDate = "start_date"
 
-            case orderDetails = "order_details"
-
             case endDate = "end_date"
+
+            case orderDetails = "order_details"
         }
 
         public init(endDate: String, mobile: Int, orderDetails: [FyndOrderIdList]? = nil, startDate: String) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.startDate = startDate
 
-            self.orderDetails = orderDetails
-
             self.endDate = endDate
+
+            self.orderDetails = orderDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -111,6 +111,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             startDate = try container.decode(String.self, forKey: .startDate)
 
+            endDate = try container.decode(String.self, forKey: .endDate)
+
             do {
                 orderDetails = try container.decode([FyndOrderIdList].self, forKey: .orderDetails)
 
@@ -118,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            endDate = try container.decode(String.self, forKey: .endDate)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(startDate, forKey: .startDate)
 
-            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
-
             try? container.encodeIfPresent(endDate, forKey: .endDate)
+
+            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
         }
     }
 }

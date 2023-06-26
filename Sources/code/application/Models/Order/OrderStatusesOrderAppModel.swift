@@ -9,24 +9,24 @@ public extension ApplicationClient.Order {
     class OrderStatuses: Codable {
         public var value: Int?
 
-        public var isSelected: Bool?
-
         public var display: String?
+
+        public var isSelected: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case isSelected = "is_selected"
-
             case display
+
+            case isSelected = "is_selected"
         }
 
         public init(display: String? = nil, isSelected: Bool? = nil, value: Int? = nil) {
             self.value = value
 
-            self.isSelected = isSelected
-
             self.display = display
+
+            self.isSelected = isSelected
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                isSelected = try container.decode(Bool.self, forKey: .isSelected)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                isSelected = try container.decode(Bool.self, forKey: .isSelected)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
         }
     }
 }

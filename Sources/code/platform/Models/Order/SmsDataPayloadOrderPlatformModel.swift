@@ -9,79 +9,77 @@ public extension PlatformClient.Order {
      */
 
     class SmsDataPayload: Codable {
+        public var amountPaid: Int?
+
         public var brandName: String?
-
-        public var orderId: String
-
-        public var paymentMode: String?
 
         public var customerName: String?
 
-        public var amountPaid: Int?
+        public var countryCode: String
 
-        public var message: String
+        public var paymentMode: String?
 
         public var phoneNumber: Int
 
         public var shipmentId: Int
 
-        public var countryCode: String
+        public var message: String
+
+        public var orderId: String
 
         public enum CodingKeys: String, CodingKey {
+            case amountPaid = "amount_paid"
+
             case brandName = "brand_name"
-
-            case orderId = "order_id"
-
-            case paymentMode = "payment_mode"
 
             case customerName = "customer_name"
 
-            case amountPaid = "amount_paid"
+            case countryCode = "country_code"
 
-            case message
+            case paymentMode = "payment_mode"
 
             case phoneNumber = "phone_number"
 
             case shipmentId = "shipment_id"
 
-            case countryCode = "country_code"
+            case message
+
+            case orderId = "order_id"
         }
 
         public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: Int, shipmentId: Int) {
+            self.amountPaid = amountPaid
+
             self.brandName = brandName
-
-            self.orderId = orderId
-
-            self.paymentMode = paymentMode
 
             self.customerName = customerName
 
-            self.amountPaid = amountPaid
+            self.countryCode = countryCode
 
-            self.message = message
+            self.paymentMode = paymentMode
 
             self.phoneNumber = phoneNumber
 
             self.shipmentId = shipmentId
 
-            self.countryCode = countryCode
+            self.message = message
+
+            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandName = try container.decode(String.self, forKey: .brandName)
+                amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderId = try container.decode(String.self, forKey: .orderId)
-
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                brandName = try container.decode(String.self, forKey: .brandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,43 +94,45 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            countryCode = try container.decode(String.self, forKey: .countryCode)
+
             do {
-                amountPaid = try container.decode(Int.self, forKey: .amountPaid)
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            message = try container.decode(String.self, forKey: .message)
-
             phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
             shipmentId = try container.decode(Int.self, forKey: .shipmentId)
 
-            countryCode = try container.decode(String.self, forKey: .countryCode)
+            message = try container.decode(String.self, forKey: .message)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+
             try? container.encodeIfPresent(brandName, forKey: .brandName)
-
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
     }
 }
@@ -144,79 +144,77 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class SmsDataPayload: Codable {
+        public var amountPaid: Int?
+
         public var brandName: String?
-
-        public var orderId: String
-
-        public var paymentMode: String?
 
         public var customerName: String?
 
-        public var amountPaid: Int?
+        public var countryCode: String
 
-        public var message: String
+        public var paymentMode: String?
 
         public var phoneNumber: Int
 
         public var shipmentId: Int
 
-        public var countryCode: String
+        public var message: String
+
+        public var orderId: String
 
         public enum CodingKeys: String, CodingKey {
+            case amountPaid = "amount_paid"
+
             case brandName = "brand_name"
-
-            case orderId = "order_id"
-
-            case paymentMode = "payment_mode"
 
             case customerName = "customer_name"
 
-            case amountPaid = "amount_paid"
+            case countryCode = "country_code"
 
-            case message
+            case paymentMode = "payment_mode"
 
             case phoneNumber = "phone_number"
 
             case shipmentId = "shipment_id"
 
-            case countryCode = "country_code"
+            case message
+
+            case orderId = "order_id"
         }
 
         public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: Int, shipmentId: Int) {
+            self.amountPaid = amountPaid
+
             self.brandName = brandName
-
-            self.orderId = orderId
-
-            self.paymentMode = paymentMode
 
             self.customerName = customerName
 
-            self.amountPaid = amountPaid
+            self.countryCode = countryCode
 
-            self.message = message
+            self.paymentMode = paymentMode
 
             self.phoneNumber = phoneNumber
 
             self.shipmentId = shipmentId
 
-            self.countryCode = countryCode
+            self.message = message
+
+            self.orderId = orderId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brandName = try container.decode(String.self, forKey: .brandName)
+                amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            orderId = try container.decode(String.self, forKey: .orderId)
-
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                brandName = try container.decode(String.self, forKey: .brandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -231,43 +229,45 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            countryCode = try container.decode(String.self, forKey: .countryCode)
+
             do {
-                amountPaid = try container.decode(Int.self, forKey: .amountPaid)
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            message = try container.decode(String.self, forKey: .message)
-
             phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
 
             shipmentId = try container.decode(Int.self, forKey: .shipmentId)
 
-            countryCode = try container.decode(String.self, forKey: .countryCode)
+            message = try container.decode(String.self, forKey: .message)
+
+            orderId = try container.decode(String.self, forKey: .orderId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+
             try? container.encodeIfPresent(brandName, forKey: .brandName)
-
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
-
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+            try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
         }
     }
 }
