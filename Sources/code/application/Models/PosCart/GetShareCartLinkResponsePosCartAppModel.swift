@@ -7,27 +7,27 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class GetShareCartLinkResponse: Codable {
-        public var shareUrl: String?
-
         public var token: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case shareUrl = "share_url"
+        public var shareUrl: String?
 
+        public enum CodingKeys: String, CodingKey {
             case token
+
+            case shareUrl = "share_url"
         }
 
         public init(shareUrl: String? = nil, token: String? = nil) {
-            self.shareUrl = shareUrl
-
             self.token = token
+
+            self.shareUrl = shareUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shareUrl = try container.decode(String.self, forKey: .shareUrl)
+                token = try container.decode(String.self, forKey: .token)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -35,7 +35,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                token = try container.decode(String.self, forKey: .token)
+                shareUrl = try container.decode(String.self, forKey: .shareUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -46,9 +46,9 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shareUrl, forKey: .shareUrl)
-
             try? container.encodeIfPresent(token, forKey: .token)
+
+            try? container.encodeIfPresent(shareUrl, forKey: .shareUrl)
         }
     }
 }

@@ -9,29 +9,27 @@ public extension ApplicationClient {
             self.config = config
             var ulrs = [String: String]()
 
-            ulrs["getOrders"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders")
+            ulrs["getOrders"] = config.domain.appendAsPath("/service/application/order/v1.0/orders")
 
-            ulrs["getOrderById"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}")
+            ulrs["getOrderById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}")
 
-            ulrs["getPosOrderById"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/pos-order/{order_id}")
+            ulrs["getPosOrderById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/pos-order/{order_id}")
 
-            ulrs["getShipmentById"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}")
+            ulrs["getShipmentById"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}")
 
-            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/invoice")
+            ulrs["getInvoiceByShipmentId"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/invoice")
 
-            ulrs["trackShipment"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/track")
+            ulrs["trackShipment"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/track")
 
-            ulrs["getCustomerDetailsByShipmentId"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details")
+            ulrs["getCustomerDetailsByShipmentId"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/customer-details")
 
-            ulrs["sendOtpToShipmentCustomer"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/")
+            ulrs["sendOtpToShipmentCustomer"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/send/")
 
-            ulrs["verifyOtpShipmentCustomer"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/")
+            ulrs["verifyOtpShipmentCustomer"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/{order_id}/shipments/{shipment_id}/otp/verify/")
 
-            ulrs["getShipmentBagReasons"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons")
+            ulrs["getShipmentBagReasons"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/bags/{bag_id}/reasons")
 
-            ulrs["getShipmentReasons"] = config.domain.appendAsPath("/service/application/orders/v1.0/orders/shipments/{shipment_id}/reasons")
-
-            ulrs["updateShipmentStatus"] = config.domain.appendAsPath("/service/application/order-manage/v1.0/orders/shipments/{shipment_id}/status")
+            ulrs["getShipmentReasons"] = config.domain.appendAsPath("/service/application/order/v1.0/orders/shipments/{shipment_id}/reasons")
 
             self.relativeUrls = ulrs
         }
@@ -544,49 +542,6 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ShipmentReasons.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
-         * Description: updateShipmentStatus
-         **/
-        public func updateShipmentStatus(
-            shipmentId: String,
-            body: UpdateShipmentStatusRequest,
-            onResponse: @escaping (_ response: ShipmentApplicationStatusResponse?, _ error: FDKError?) -> Void
-        ) {
-            var fullUrl = relativeUrls["updateShipmentStatus"] ?? ""
-
-            fullUrl = fullUrl.replacingOccurrences(of: "{" + "shipment_id" + "}", with: "\(shipmentId)")
-
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "put",
-                url: fullUrl,
-                query: nil,
-                extraHeaders: [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ShipmentApplicationStatusResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

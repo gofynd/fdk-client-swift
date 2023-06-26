@@ -9,24 +9,24 @@ public extension ApplicationClient.Payment {
     class WalletOtpResponse: Codable {
         public var success: Bool?
 
-        public var requestId: String
-
         public var isVerifiedFlag: String
+
+        public var requestId: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case requestId = "request_id"
-
             case isVerifiedFlag = "is_verified_flag"
+
+            case requestId = "request_id"
         }
 
         public init(isVerifiedFlag: String, requestId: String, success: Bool? = nil) {
             self.success = success
 
-            self.requestId = requestId
-
             self.isVerifiedFlag = isVerifiedFlag
+
+            self.requestId = requestId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,9 +40,9 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            requestId = try container.decode(String.self, forKey: .requestId)
-
             isVerifiedFlag = try container.decode(String.self, forKey: .isVerifiedFlag)
+
+            requestId = try container.decode(String.self, forKey: .requestId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
-
             try? container.encodeIfPresent(isVerifiedFlag, forKey: .isVerifiedFlag)
+
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
         }
     }
 }

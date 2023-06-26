@@ -9,36 +9,38 @@ public extension ApplicationClient.Logistic {
     class ReAssignStoreResponse: Codable {
         public var error: [String: Any]
 
+        public var success: Bool
+
         public var toPincode: String
 
         public var articles: [[String: Any]]?
 
-        public var success: Bool
-
         public enum CodingKeys: String, CodingKey {
             case error
+
+            case success
 
             case toPincode = "to_pincode"
 
             case articles
-
-            case success
         }
 
         public init(articles: [[String: Any]]? = nil, error: [String: Any], success: Bool, toPincode: String) {
             self.error = error
 
+            self.success = success
+
             self.toPincode = toPincode
 
             self.articles = articles
-
-            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             error = try container.decode([String: Any].self, forKey: .error)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
@@ -49,8 +51,6 @@ public extension ApplicationClient.Logistic {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,11 +58,11 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
+            try? container.encodeIfPresent(success, forKey: .success)
+
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
             try? container.encodeIfPresent(articles, forKey: .articles)
-
-            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
