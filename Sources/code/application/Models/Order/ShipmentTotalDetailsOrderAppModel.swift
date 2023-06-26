@@ -9,24 +9,24 @@ public extension ApplicationClient.Order {
     class ShipmentTotalDetails: Codable {
         public var sizes: Int?
 
-        public var pieces: Int?
-
         public var totalPrice: Double?
+
+        public var pieces: Int?
 
         public enum CodingKeys: String, CodingKey {
             case sizes
 
-            case pieces
-
             case totalPrice = "total_price"
+
+            case pieces
         }
 
         public init(pieces: Int? = nil, sizes: Int? = nil, totalPrice: Double? = nil) {
             self.sizes = sizes
 
-            self.pieces = pieces
-
             self.totalPrice = totalPrice
+
+            self.pieces = pieces
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                pieces = try container.decode(Int.self, forKey: .pieces)
+                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                totalPrice = try container.decode(Double.self, forKey: .totalPrice)
+                pieces = try container.decode(Int.self, forKey: .pieces)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
 
-            try? container.encodeIfPresent(pieces, forKey: .pieces)
-
             try? container.encodeIfPresent(totalPrice, forKey: .totalPrice)
+
+            try? container.encodeIfPresent(pieces, forKey: .pieces)
         }
     }
 }

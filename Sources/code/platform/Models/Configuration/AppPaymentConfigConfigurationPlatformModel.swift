@@ -25,6 +25,8 @@ public extension PlatformClient.Configuration {
 
         public var codCharges: Double?
 
+        public var anonymousCod: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case callbackUrl = "callback_url"
 
@@ -41,9 +43,11 @@ public extension PlatformClient.Configuration {
             case codAmountLimit = "cod_amount_limit"
 
             case codCharges = "cod_charges"
+
+            case anonymousCod = "anonymous_cod"
         }
 
-        public init(callbackUrl: CallbackUrl? = nil, codAmountLimit: Double? = nil, codCharges: Double? = nil, enabled: Bool? = nil, methods: Methods? = nil, modeOfPayment: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, source: String? = nil) {
+        public init(anonymousCod: Bool? = nil, callbackUrl: CallbackUrl? = nil, codAmountLimit: Double? = nil, codCharges: Double? = nil, enabled: Bool? = nil, methods: Methods? = nil, modeOfPayment: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, source: String? = nil) {
             self.callbackUrl = callbackUrl
 
             self.methods = methods
@@ -59,6 +63,8 @@ public extension PlatformClient.Configuration {
             self.codAmountLimit = codAmountLimit
 
             self.codCharges = codCharges
+
+            self.anonymousCod = anonymousCod
         }
 
         required public init(from decoder: Decoder) throws {
@@ -127,6 +133,14 @@ public extension PlatformClient.Configuration {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -147,6 +161,8 @@ public extension PlatformClient.Configuration {
             try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
 
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
+            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
         }
     }
 }
@@ -174,6 +190,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         public var codCharges: Double?
 
+        public var anonymousCod: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case callbackUrl = "callback_url"
 
@@ -190,9 +208,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             case codAmountLimit = "cod_amount_limit"
 
             case codCharges = "cod_charges"
+
+            case anonymousCod = "anonymous_cod"
         }
 
-        public init(callbackUrl: CallbackUrl? = nil, codAmountLimit: Double? = nil, codCharges: Double? = nil, enabled: Bool? = nil, methods: Methods? = nil, modeOfPayment: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, source: String? = nil) {
+        public init(anonymousCod: Bool? = nil, callbackUrl: CallbackUrl? = nil, codAmountLimit: Double? = nil, codCharges: Double? = nil, enabled: Bool? = nil, methods: Methods? = nil, modeOfPayment: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, source: String? = nil) {
             self.callbackUrl = callbackUrl
 
             self.methods = methods
@@ -208,6 +228,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.codAmountLimit = codAmountLimit
 
             self.codCharges = codCharges
+
+            self.anonymousCod = anonymousCod
         }
 
         required public init(from decoder: Decoder) throws {
@@ -276,6 +298,14 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                anonymousCod = try container.decode(Bool.self, forKey: .anonymousCod)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -296,6 +326,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             try? container.encodeIfPresent(codAmountLimit, forKey: .codAmountLimit)
 
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
+            try? container.encodeIfPresent(anonymousCod, forKey: .anonymousCod)
         }
     }
 }

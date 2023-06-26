@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var fromDate: String?
 
-        public var brands: [String]?
-
         public var catalogueTypes: [String]
+
+        public var brands: [String]?
 
         public var toDate: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case fromDate = "from_date"
 
-            case brands
-
             case catalogueTypes = "catalogue_types"
+
+            case brands
 
             case toDate = "to_date"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.fromDate = fromDate
 
-            self.brands = brands
-
             self.catalogueTypes = catalogueTypes
+
+            self.brands = brands
 
             self.toDate = toDate
         }
@@ -56,6 +56,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
+
             do {
                 brands = try container.decode([String].self, forKey: .brands)
 
@@ -63,8 +65,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
 
             do {
                 toDate = try container.decode(String.self, forKey: .toDate)
@@ -82,9 +82,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 
-            try? container.encodeIfPresent(brands, forKey: .brands)
-
             try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
+
+            try? container.encodeIfPresent(brands, forKey: .brands)
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
         }
@@ -102,9 +102,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var fromDate: String?
 
-        public var brands: [String]?
-
         public var catalogueTypes: [String]
+
+        public var brands: [String]?
 
         public var toDate: String?
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case fromDate = "from_date"
 
-            case brands
-
             case catalogueTypes = "catalogue_types"
+
+            case brands
 
             case toDate = "to_date"
         }
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.fromDate = fromDate
 
-            self.brands = brands
-
             self.catalogueTypes = catalogueTypes
+
+            self.brands = brands
 
             self.toDate = toDate
         }
@@ -145,6 +145,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
+
             do {
                 brands = try container.decode([String].self, forKey: .brands)
 
@@ -152,8 +154,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
 
             do {
                 toDate = try container.decode(String.self, forKey: .toDate)
@@ -171,9 +171,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 
-            try? container.encodeIfPresent(brands, forKey: .brands)
-
             try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
+
+            try? container.encodeIfPresent(brands, forKey: .brands)
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
         }

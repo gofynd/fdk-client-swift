@@ -2,25 +2,31 @@
 
 import Foundation
 
-public extension PlatformClient.Order {
+public extension PlatformClient.Catalog {
     /*
-         Model: FileUploadResponse
-         Used By: Order
+         Model: AutoCompleteMedia
+         Used By: Catalog
      */
 
-    class FileUploadResponse: Codable {
-        public var expiry: Int?
+    class AutoCompleteMedia: Codable {
+        public var aspectRatio: String?
+
+        public var type: String?
 
         public var url: String?
 
         public enum CodingKeys: String, CodingKey {
-            case expiry
+            case aspectRatio = "aspect_ratio"
+
+            case type
 
             case url
         }
 
-        public init(expiry: Int? = nil, url: String? = nil) {
-            self.expiry = expiry
+        public init(aspectRatio: String? = nil, type: String? = nil, url: String? = nil) {
+            self.aspectRatio = aspectRatio
+
+            self.type = type
 
             self.url = url
         }
@@ -29,7 +35,15 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                expiry = try container.decode(Int.self, forKey: .expiry)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,32 +62,40 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(expiry, forKey: .expiry)
+            try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.Catalog {
     /*
-         Model: FileUploadResponse
-         Used By: Order
+         Model: AutoCompleteMedia
+         Used By: Catalog
      */
 
-    class FileUploadResponse: Codable {
-        public var expiry: Int?
+    class AutoCompleteMedia: Codable {
+        public var aspectRatio: String?
+
+        public var type: String?
 
         public var url: String?
 
         public enum CodingKeys: String, CodingKey {
-            case expiry
+            case aspectRatio = "aspect_ratio"
+
+            case type
 
             case url
         }
 
-        public init(expiry: Int? = nil, url: String? = nil) {
-            self.expiry = expiry
+        public init(aspectRatio: String? = nil, type: String? = nil, url: String? = nil) {
+            self.aspectRatio = aspectRatio
+
+            self.type = type
 
             self.url = url
         }
@@ -82,7 +104,15 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                expiry = try container.decode(Int.self, forKey: .expiry)
+                aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,7 +131,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(expiry, forKey: .expiry)
+            try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(url, forKey: .url)
         }

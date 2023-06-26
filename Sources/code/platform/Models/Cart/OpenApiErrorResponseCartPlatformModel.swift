@@ -11,24 +11,24 @@ public extension PlatformClient.ApplicationClient.Cart {
     class OpenApiErrorResponse: Codable {
         public var success: Bool?
 
-        public var message: String?
-
         public var errors: [String: Any]?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case message
-
             case errors
+
+            case message
         }
 
         public init(errors: [String: Any]? = nil, message: String? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.message = message
-
             self.errors = errors
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                errors = try container.decode([String: Any].self, forKey: .errors)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                errors = try container.decode([String: Any].self, forKey: .errors)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(errors, forKey: .errors)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

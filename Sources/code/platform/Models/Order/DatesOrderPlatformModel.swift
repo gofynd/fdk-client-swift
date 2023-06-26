@@ -11,7 +11,7 @@ public extension PlatformClient.Order {
     class Dates: Codable {
         public var orderCreated: String?
 
-        public var deliveryDate: [String: Any]?
+        public var deliveryDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case orderCreated = "order_created"
@@ -19,7 +19,7 @@ public extension PlatformClient.Order {
             case deliveryDate = "delivery_date"
         }
 
-        public init(deliveryDate: [String: Any]? = nil, orderCreated: String? = nil) {
+        public init(deliveryDate: String? = nil, orderCreated: String? = nil) {
             self.orderCreated = orderCreated
 
             self.deliveryDate = deliveryDate
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                deliveryDate = try container.decode([String: Any].self, forKey: .deliveryDate)
+                deliveryDate = try container.decode(String.self, forKey: .deliveryDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,7 +64,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class Dates: Codable {
         public var orderCreated: String?
 
-        public var deliveryDate: [String: Any]?
+        public var deliveryDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case orderCreated = "order_created"
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case deliveryDate = "delivery_date"
         }
 
-        public init(deliveryDate: [String: Any]? = nil, orderCreated: String? = nil) {
+        public init(deliveryDate: String? = nil, orderCreated: String? = nil) {
             self.orderCreated = orderCreated
 
             self.deliveryDate = deliveryDate
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                deliveryDate = try container.decode([String: Any].self, forKey: .deliveryDate)
+                deliveryDate = try container.decode(String.self, forKey: .deliveryDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
