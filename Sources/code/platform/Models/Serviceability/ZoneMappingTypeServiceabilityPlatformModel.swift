@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class ZoneMappingType: Codable {
         public var country: String
 
-        public var pincode: [String]?
-
         public var state: [String]?
+
+        public var pincode: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case country
 
-            case pincode
-
             case state
+
+            case pincode
         }
 
         public init(country: String, pincode: [String]? = nil, state: [String]? = nil) {
             self.country = country
 
-            self.pincode = pincode
-
             self.state = state
+
+            self.pincode = pincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.Serviceability {
             country = try container.decode(String.self, forKey: .country)
 
             do {
-                pincode = try container.decode([String].self, forKey: .pincode)
+                state = try container.decode([String].self, forKey: .state)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -45,7 +45,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                state = try container.decode([String].self, forKey: .state)
+                pincode = try container.decode([String].self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -58,9 +58,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ZoneMappingType: Codable {
         public var country: String
 
-        public var pincode: [String]?
-
         public var state: [String]?
+
+        public var pincode: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case country
 
-            case pincode
-
             case state
+
+            case pincode
         }
 
         public init(country: String, pincode: [String]? = nil, state: [String]? = nil) {
             self.country = country
 
-            self.pincode = pincode
-
             self.state = state
+
+            self.pincode = pincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -100,7 +100,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             country = try container.decode(String.self, forKey: .country)
 
             do {
-                pincode = try container.decode([String].self, forKey: .pincode)
+                state = try container.decode([String].self, forKey: .state)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                state = try container.decode([String].self, forKey: .state)
+                pincode = try container.decode([String].self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(country, forKey: .country)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
         }
     }
 }

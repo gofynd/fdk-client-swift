@@ -9,114 +9,98 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CartDynamicInjection: Codable {
-        public var collection: Collecttion
-
-        public var allowedRefund: Bool?
-
-        public var applyExpiry: String
-
-        public var cartValue: Double
-
-        public var type: String
-
-        public var userType: String
+        public var isAuthenticated: Bool
 
         public var value: Double
 
         public var meta: [String: Any]?
 
-        public var articleLevelDistribution: Bool
+        public var injectionId: String?
 
-        public var message: String
+        public var type: String
 
         public var userId: String?
 
+        public var collection: Collecttion
+
+        public var message: String
+
+        public var cartValue: Double
+
         public var articleIds: [Article]
+
+        public var applyExpiry: String
 
         public var cartId: String
 
-        public var injectionId: String?
+        public var allowedRefund: Bool?
+
+        public var articleLevelDistribution: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case collection
-
-            case allowedRefund = "allowed_refund"
-
-            case applyExpiry = "apply_expiry"
-
-            case cartValue = "cart_value"
-
-            case type
-
-            case userType = "user_type"
+            case isAuthenticated = "is_authenticated"
 
             case value
 
             case meta
 
-            case articleLevelDistribution = "article_level_distribution"
+            case injectionId = "injection_id"
 
-            case message
+            case type
 
             case userId = "user_id"
 
+            case collection
+
+            case message
+
+            case cartValue = "cart_value"
+
             case articleIds = "article_ids"
+
+            case applyExpiry = "apply_expiry"
 
             case cartId = "cart_id"
 
-            case injectionId = "injection_id"
+            case allowedRefund = "allowed_refund"
+
+            case articleLevelDistribution = "article_level_distribution"
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, cartValue: Double, collection: Collecttion, injectionId: String? = nil, message: String, meta: [String: Any]? = nil, type: String, userId: String? = nil, userType: String, value: Double) {
-            self.collection = collection
-
-            self.allowedRefund = allowedRefund
-
-            self.applyExpiry = applyExpiry
-
-            self.cartValue = cartValue
-
-            self.type = type
-
-            self.userType = userType
+        public init(allowedRefund: Bool? = nil, applyExpiry: String, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, cartValue: Double, collection: Collecttion, injectionId: String? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, type: String, userId: String? = nil, value: Double) {
+            self.isAuthenticated = isAuthenticated
 
             self.value = value
 
             self.meta = meta
 
-            self.articleLevelDistribution = articleLevelDistribution
+            self.injectionId = injectionId
 
-            self.message = message
+            self.type = type
 
             self.userId = userId
 
+            self.collection = collection
+
+            self.message = message
+
+            self.cartValue = cartValue
+
             self.articleIds = articleIds
+
+            self.applyExpiry = applyExpiry
 
             self.cartId = cartId
 
-            self.injectionId = injectionId
+            self.allowedRefund = allowedRefund
+
+            self.articleLevelDistribution = articleLevelDistribution
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            collection = try container.decode(Collecttion.self, forKey: .collection)
-
-            do {
-                allowedRefund = try container.decode(Bool.self, forKey: .allowedRefund)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            applyExpiry = try container.decode(String.self, forKey: .applyExpiry)
-
-            cartValue = try container.decode(Double.self, forKey: .cartValue)
-
-            type = try container.decode(String.self, forKey: .type)
-
-            userType = try container.decode(String.self, forKey: .userType)
+            isAuthenticated = try container.decode(Bool.self, forKey: .isAuthenticated)
 
             value = try container.decode(Double.self, forKey: .value)
 
@@ -128,9 +112,15 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            articleLevelDistribution = try container.decode(Bool.self, forKey: .articleLevelDistribution)
+            do {
+                injectionId = try container.decode(String.self, forKey: .injectionId)
 
-            message = try container.decode(String.self, forKey: .message)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            type = try container.decode(String.self, forKey: .type)
 
             do {
                 userId = try container.decode(String.self, forKey: .userId)
@@ -140,49 +130,59 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            collection = try container.decode(Collecttion.self, forKey: .collection)
+
+            message = try container.decode(String.self, forKey: .message)
+
+            cartValue = try container.decode(Double.self, forKey: .cartValue)
+
             articleIds = try container.decode([Article].self, forKey: .articleIds)
+
+            applyExpiry = try container.decode(String.self, forKey: .applyExpiry)
 
             cartId = try container.decode(String.self, forKey: .cartId)
 
             do {
-                injectionId = try container.decode(String.self, forKey: .injectionId)
+                allowedRefund = try container.decode(Bool.self, forKey: .allowedRefund)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            articleLevelDistribution = try container.decode(Bool.self, forKey: .articleLevelDistribution)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(collection, forKey: .collection)
-
-            try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
-
-            try? container.encodeIfPresent(applyExpiry, forKey: .applyExpiry)
-
-            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
-
-            try? container.encodeIfPresent(type, forKey: .type)
-
-            try? container.encodeIfPresent(userType, forKey: .userType)
+            try? container.encodeIfPresent(isAuthenticated, forKey: .isAuthenticated)
 
             try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encode(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(articleLevelDistribution, forKey: .articleLevelDistribution)
+            try? container.encodeIfPresent(injectionId, forKey: .injectionId)
 
-            try? container.encode(message, forKey: .message)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
+            try? container.encodeIfPresent(collection, forKey: .collection)
+
+            try? container.encode(message, forKey: .message)
+
+            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
+
             try? container.encodeIfPresent(articleIds, forKey: .articleIds)
+
+            try? container.encodeIfPresent(applyExpiry, forKey: .applyExpiry)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
-            try? container.encodeIfPresent(injectionId, forKey: .injectionId)
+            try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
+
+            try? container.encodeIfPresent(articleLevelDistribution, forKey: .articleLevelDistribution)
         }
     }
 }

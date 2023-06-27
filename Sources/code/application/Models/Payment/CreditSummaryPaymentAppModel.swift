@@ -9,48 +9,48 @@ public extension ApplicationClient.Payment {
     class CreditSummary: Codable {
         public var balance: BalanceDetails?
 
-        public var buyerStatus: String?
+        public var creditLineId: String?
+
+        public var status: String?
 
         public var statusMessage: String?
-
-        public var creditLineId: String?
 
         public var merchantCustomerRefId: String?
 
         public var amountAvailable: BalanceDetails?
 
-        public var status: String?
+        public var buyerStatus: String?
 
         public enum CodingKeys: String, CodingKey {
             case balance
 
-            case buyerStatus = "buyer_status"
+            case creditLineId = "credit_line_id"
+
+            case status
 
             case statusMessage = "status_message"
-
-            case creditLineId = "credit_line_id"
 
             case merchantCustomerRefId = "merchant_customer_ref_id"
 
             case amountAvailable = "amount_available"
 
-            case status
+            case buyerStatus = "buyer_status"
         }
 
         public init(amountAvailable: BalanceDetails? = nil, balance: BalanceDetails? = nil, buyerStatus: String? = nil, creditLineId: String? = nil, merchantCustomerRefId: String? = nil, status: String? = nil, statusMessage: String? = nil) {
             self.balance = balance
 
-            self.buyerStatus = buyerStatus
+            self.creditLineId = creditLineId
+
+            self.status = status
 
             self.statusMessage = statusMessage
-
-            self.creditLineId = creditLineId
 
             self.merchantCustomerRefId = merchantCustomerRefId
 
             self.amountAvailable = amountAvailable
 
-            self.status = status
+            self.buyerStatus = buyerStatus
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,7 +65,15 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                buyerStatus = try container.decode(String.self, forKey: .buyerStatus)
+                creditLineId = try container.decode(String.self, forKey: .creditLineId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,14 +82,6 @@ public extension ApplicationClient.Payment {
 
             do {
                 statusMessage = try container.decode(String.self, forKey: .statusMessage)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                creditLineId = try container.decode(String.self, forKey: .creditLineId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                buyerStatus = try container.decode(String.self, forKey: .buyerStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,17 +118,17 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(balance, forKey: .balance)
 
-            try? container.encode(buyerStatus, forKey: .buyerStatus)
+            try? container.encode(creditLineId, forKey: .creditLineId)
+
+            try? container.encode(status, forKey: .status)
 
             try? container.encode(statusMessage, forKey: .statusMessage)
-
-            try? container.encode(creditLineId, forKey: .creditLineId)
 
             try? container.encode(merchantCustomerRefId, forKey: .merchantCustomerRefId)
 
             try? container.encodeIfPresent(amountAvailable, forKey: .amountAvailable)
 
-            try? container.encode(status, forKey: .status)
+            try? container.encode(buyerStatus, forKey: .buyerStatus)
         }
     }
 }
