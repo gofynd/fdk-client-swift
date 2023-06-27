@@ -9,47 +9,39 @@ public extension PlatformClient.Catalog {
      */
 
     class Price1: Codable {
-        public var min: Double?
-
-        public var max: Double?
+        public var currencyCode: String?
 
         public var currencySymbol: String?
 
-        public var currencyCode: String?
+        public var max: Double?
+
+        public var min: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case min
-
-            case max
+            case currencyCode = "currency_code"
 
             case currencySymbol = "currency_symbol"
 
-            case currencyCode = "currency_code"
+            case max
+
+            case min
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
-            self.min = min
-
-            self.max = max
+            self.currencyCode = currencyCode
 
             self.currencySymbol = currencySymbol
 
-            self.currencyCode = currencyCode
+            self.max = max
+
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                max = try container.decode(Double.self, forKey: .max)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +57,15 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                max = try container.decode(Double.self, forKey: .max)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,13 +76,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }
@@ -94,47 +94,39 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Price1: Codable {
-        public var min: Double?
-
-        public var max: Double?
+        public var currencyCode: String?
 
         public var currencySymbol: String?
 
-        public var currencyCode: String?
+        public var max: Double?
+
+        public var min: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case min
-
-            case max
+            case currencyCode = "currency_code"
 
             case currencySymbol = "currency_symbol"
 
-            case currencyCode = "currency_code"
+            case max
+
+            case min
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, max: Double? = nil, min: Double? = nil) {
-            self.min = min
-
-            self.max = max
+            self.currencyCode = currencyCode
 
             self.currencySymbol = currencySymbol
 
-            self.currencyCode = currencyCode
+            self.max = max
+
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                min = try container.decode(Double.self, forKey: .min)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                max = try container.decode(Double.self, forKey: .max)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +142,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                max = try container.decode(Double.self, forKey: .max)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                min = try container.decode(Double.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }

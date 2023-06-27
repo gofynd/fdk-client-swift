@@ -9,53 +9,45 @@ public extension PlatformClient.Order {
      */
 
     class Dimension: Codable {
-        public var width: Double?
-
-        public var packagingType: String?
+        public var height: String?
 
         public var length: Double?
 
         public var weight: String?
 
-        public var height: String?
+        public var packagingType: String?
+
+        public var width: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case width
-
-            case packagingType = "packaging_type"
+            case height
 
             case length
 
             case weight
 
-            case height
+            case packagingType = "packaging_type"
+
+            case width
         }
 
         public init(height: String? = nil, length: Double? = nil, packagingType: String? = nil, weight: String? = nil, width: Double? = nil) {
-            self.width = width
-
-            self.packagingType = packagingType
+            self.height = height
 
             self.length = length
 
             self.weight = weight
 
-            self.height = height
+            self.packagingType = packagingType
+
+            self.width = width
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                width = try container.decode(Double.self, forKey: .width)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                packagingType = try container.decode(String.self, forKey: .packagingType)
+                height = try container.decode(String.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +71,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                height = try container.decode(String.self, forKey: .height)
+                packagingType = try container.decode(String.self, forKey: .packagingType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                width = try container.decode(Double.self, forKey: .width)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,15 +90,15 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(width, forKey: .width)
-
-            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
+            try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
-            try? container.encodeIfPresent(height, forKey: .height)
+            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
+
+            try? container.encodeIfPresent(width, forKey: .width)
         }
     }
 }
@@ -110,53 +110,45 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Dimension: Codable {
-        public var width: Double?
-
-        public var packagingType: String?
+        public var height: String?
 
         public var length: Double?
 
         public var weight: String?
 
-        public var height: String?
+        public var packagingType: String?
+
+        public var width: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case width
-
-            case packagingType = "packaging_type"
+            case height
 
             case length
 
             case weight
 
-            case height
+            case packagingType = "packaging_type"
+
+            case width
         }
 
         public init(height: String? = nil, length: Double? = nil, packagingType: String? = nil, weight: String? = nil, width: Double? = nil) {
-            self.width = width
-
-            self.packagingType = packagingType
+            self.height = height
 
             self.length = length
 
             self.weight = weight
 
-            self.height = height
+            self.packagingType = packagingType
+
+            self.width = width
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                width = try container.decode(Double.self, forKey: .width)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                packagingType = try container.decode(String.self, forKey: .packagingType)
+                height = try container.decode(String.self, forKey: .height)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +172,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                height = try container.decode(String.self, forKey: .height)
+                packagingType = try container.decode(String.self, forKey: .packagingType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                width = try container.decode(Double.self, forKey: .width)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,15 +191,15 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(width, forKey: .width)
-
-            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
+            try? container.encodeIfPresent(height, forKey: .height)
 
             try? container.encodeIfPresent(length, forKey: .length)
 
             try? container.encodeIfPresent(weight, forKey: .weight)
 
-            try? container.encodeIfPresent(height, forKey: .height)
+            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
+
+            try? container.encodeIfPresent(width, forKey: .width)
         }
     }
 }
