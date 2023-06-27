@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var displayText: String?
 
-        public var giftMessage: String?
-
         public var giftPrice: Int?
+
+        public var giftMessage: String?
 
         public enum CodingKeys: String, CodingKey {
             case isGiftApplied = "is_gift_applied"
 
             case displayText = "display_text"
 
-            case giftMessage = "gift_message"
-
             case giftPrice = "gift_price"
+
+            case giftMessage = "gift_message"
         }
 
         public init(displayText: String? = nil, giftMessage: String? = nil, giftPrice: Int? = nil, isGiftApplied: Bool? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.displayText = displayText
 
-            self.giftMessage = giftMessage
-
             self.giftPrice = giftPrice
+
+            self.giftMessage = giftMessage
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                giftMessage = try container.decode(String.self, forKey: .giftMessage)
+                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
+                giftMessage = try container.decode(String.self, forKey: .giftMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(displayText, forKey: .displayText)
 
-            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
-
             try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
+
+            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var displayText: String?
 
-        public var giftMessage: String?
-
         public var giftPrice: Int?
+
+        public var giftMessage: String?
 
         public enum CodingKeys: String, CodingKey {
             case isGiftApplied = "is_gift_applied"
 
             case displayText = "display_text"
 
-            case giftMessage = "gift_message"
-
             case giftPrice = "gift_price"
+
+            case giftMessage = "gift_message"
         }
 
         public init(displayText: String? = nil, giftMessage: String? = nil, giftPrice: Int? = nil, isGiftApplied: Bool? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.displayText = displayText
 
-            self.giftMessage = giftMessage
-
             self.giftPrice = giftPrice
+
+            self.giftMessage = giftMessage
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                giftMessage = try container.decode(String.self, forKey: .giftMessage)
+                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
+                giftMessage = try container.decode(String.self, forKey: .giftMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(displayText, forKey: .displayText)
 
-            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
-
             try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
+
+            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
         }
     }
 }

@@ -9,6 +9,8 @@ public extension PlatformClient.Payment {
      */
 
     class MerchantOnBoardingRequest: Codable {
+        public var status: String
+
         public var userId: String
 
         public var aggregator: String
@@ -17,9 +19,9 @@ public extension PlatformClient.Payment {
 
         public var appId: String
 
-        public var status: String
-
         public enum CodingKeys: String, CodingKey {
+            case status
+
             case userId = "user_id"
 
             case aggregator
@@ -27,11 +29,11 @@ public extension PlatformClient.Payment {
             case creditLineId = "credit_line_id"
 
             case appId = "app_id"
-
-            case status
         }
 
         public init(aggregator: String, appId: String, creditLineId: String, status: String, userId: String) {
+            self.status = status
+
             self.userId = userId
 
             self.aggregator = aggregator
@@ -39,12 +41,12 @@ public extension PlatformClient.Payment {
             self.creditLineId = creditLineId
 
             self.appId = appId
-
-            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            status = try container.decode(String.self, forKey: .status)
 
             userId = try container.decode(String.self, forKey: .userId)
 
@@ -53,12 +55,12 @@ public extension PlatformClient.Payment {
             creditLineId = try container.decode(String.self, forKey: .creditLineId)
 
             appId = try container.decode(String.self, forKey: .appId)
-
-            status = try container.decode(String.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
@@ -67,8 +69,6 @@ public extension PlatformClient.Payment {
             try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
@@ -80,6 +80,8 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class MerchantOnBoardingRequest: Codable {
+        public var status: String
+
         public var userId: String
 
         public var aggregator: String
@@ -88,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var appId: String
 
-        public var status: String
-
         public enum CodingKeys: String, CodingKey {
+            case status
+
             case userId = "user_id"
 
             case aggregator
@@ -98,11 +100,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             case creditLineId = "credit_line_id"
 
             case appId = "app_id"
-
-            case status
         }
 
         public init(aggregator: String, appId: String, creditLineId: String, status: String, userId: String) {
+            self.status = status
+
             self.userId = userId
 
             self.aggregator = aggregator
@@ -110,12 +112,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.creditLineId = creditLineId
 
             self.appId = appId
-
-            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            status = try container.decode(String.self, forKey: .status)
 
             userId = try container.decode(String.self, forKey: .userId)
 
@@ -124,12 +126,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             creditLineId = try container.decode(String.self, forKey: .creditLineId)
 
             appId = try container.decode(String.self, forKey: .appId)
-
-            status = try container.decode(String.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
@@ -138,8 +140,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
 
             try? container.encodeIfPresent(appId, forKey: .appId)
-
-            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

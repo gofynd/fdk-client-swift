@@ -7,57 +7,65 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class TATArticlesResponse: Codable {
-        public var category: TATCategoryRequest?
+        public var manufacturingTimeSeconds: Int?
+
+        public var error: TATErrorSchemaResponse?
 
         public var manufacturingTimeUnit: String?
 
         public var isCodAvailable: Bool?
 
-        public var promise: TATPromiseResponse?
-
-        public var manufacturingTimeSeconds: Int?
-
-        public var error: TATErrorSchemaResponse?
+        public var category: TATCategoryRequest?
 
         public var manufacturingTime: Int?
 
+        public var promise: TATPromiseResponse?
+
         public enum CodingKeys: String, CodingKey {
-            case category
+            case manufacturingTimeSeconds = "_manufacturing_time_seconds"
+
+            case error
 
             case manufacturingTimeUnit = "manufacturing_time_unit"
 
             case isCodAvailable = "is_cod_available"
 
-            case promise
-
-            case manufacturingTimeSeconds = "_manufacturing_time_seconds"
-
-            case error
+            case category
 
             case manufacturingTime = "manufacturing_time"
+
+            case promise
         }
 
         public init(category: TATCategoryRequest? = nil, error: TATErrorSchemaResponse? = nil, isCodAvailable: Bool? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil, promise: TATPromiseResponse? = nil, manufacturingTimeSeconds: Int? = nil) {
-            self.category = category
+            self.manufacturingTimeSeconds = manufacturingTimeSeconds
+
+            self.error = error
 
             self.manufacturingTimeUnit = manufacturingTimeUnit
 
             self.isCodAvailable = isCodAvailable
 
-            self.promise = promise
-
-            self.manufacturingTimeSeconds = manufacturingTimeSeconds
-
-            self.error = error
+            self.category = category
 
             self.manufacturingTime = manufacturingTime
+
+            self.promise = promise
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                category = try container.decode(TATCategoryRequest.self, forKey: .category)
+                manufacturingTimeSeconds = try container.decode(Int.self, forKey: .manufacturingTimeSeconds)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                error = try container.decode(TATErrorSchemaResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,23 +89,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                promise = try container.decode(TATPromiseResponse.self, forKey: .promise)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                manufacturingTimeSeconds = try container.decode(Int.self, forKey: .manufacturingTimeSeconds)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                error = try container.decode(TATErrorSchemaResponse.self, forKey: .error)
+                category = try container.decode(TATCategoryRequest.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,24 +103,32 @@ public extension ApplicationClient.Logistic {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                promise = try container.decode(TATPromiseResponse.self, forKey: .promise)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(category, forKey: .category)
+            try? container.encodeIfPresent(manufacturingTimeSeconds, forKey: .manufacturingTimeSeconds)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
 
             try? container.encodeIfPresent(isCodAvailable, forKey: .isCodAvailable)
 
-            try? container.encodeIfPresent(promise, forKey: .promise)
-
-            try? container.encodeIfPresent(manufacturingTimeSeconds, forKey: .manufacturingTimeSeconds)
-
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(category, forKey: .category)
 
             try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
+
+            try? container.encodeIfPresent(promise, forKey: .promise)
         }
     }
 }

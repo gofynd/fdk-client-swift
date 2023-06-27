@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var isDefault: Bool?
 
-        public var width: Double?
-
         public var unit: String?
+
+        public var width: Double?
 
         public var height: Double?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case isDefault = "is_default"
 
-            case width
-
             case unit
+
+            case width
 
             case height
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.isDefault = isDefault
 
-            self.width = width
-
             self.unit = unit
+
+            self.width = width
 
             self.height = height
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                width = try container.decode(Double.self, forKey: .width)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                width = try container.decode(Double.self, forKey: .width)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(width, forKey: .width)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(height, forKey: .height)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var isDefault: Bool?
 
-        public var width: Double?
-
         public var unit: String?
+
+        public var width: Double?
 
         public var height: Double?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case isDefault = "is_default"
 
-            case width
-
             case unit
+
+            case width
 
             case height
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.isDefault = isDefault
 
-            self.width = width
-
             self.unit = unit
+
+            self.width = width
 
             self.height = height
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                width = try container.decode(Double.self, forKey: .width)
+                unit = try container.decode(String.self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                width = try container.decode(Double.self, forKey: .width)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(width, forKey: .width)
-
             try? container.encodeIfPresent(unit, forKey: .unit)
+
+            try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(height, forKey: .height)
         }

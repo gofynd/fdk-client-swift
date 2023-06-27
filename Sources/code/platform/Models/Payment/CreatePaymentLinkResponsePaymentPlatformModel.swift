@@ -11,42 +11,42 @@ public extension PlatformClient.Payment {
     class CreatePaymentLinkResponse: Codable {
         public var pollingTimeout: Int?
 
-        public var paymentLinkUrl: String?
+        public var paymentLinkId: String?
+
+        public var message: String
 
         public var statusCode: Int
 
-        public var paymentLinkId: String?
+        public var paymentLinkUrl: String?
 
         public var success: Bool
-
-        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case pollingTimeout = "polling_timeout"
 
-            case paymentLinkUrl = "payment_link_url"
+            case paymentLinkId = "payment_link_id"
+
+            case message
 
             case statusCode = "status_code"
 
-            case paymentLinkId = "payment_link_id"
+            case paymentLinkUrl = "payment_link_url"
 
             case success
-
-            case message
         }
 
         public init(message: String, paymentLinkId: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
             self.pollingTimeout = pollingTimeout
 
-            self.paymentLinkUrl = paymentLinkUrl
+            self.paymentLinkId = paymentLinkId
+
+            self.message = message
 
             self.statusCode = statusCode
 
-            self.paymentLinkId = paymentLinkId
+            self.paymentLinkUrl = paymentLinkUrl
 
             self.success = success
-
-            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,16 +61,6 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                paymentLinkUrl = try container.decode(String.self, forKey: .paymentLinkUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
-
-            do {
                 paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -78,9 +68,19 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             message = try container.decode(String.self, forKey: .message)
+
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
+
+            do {
+                paymentLinkUrl = try container.decode(String.self, forKey: .paymentLinkUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -88,15 +88,15 @@ public extension PlatformClient.Payment {
 
             try? container.encode(pollingTimeout, forKey: .pollingTimeout)
 
-            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
+            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
 
             try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -110,42 +110,42 @@ public extension PlatformClient.ApplicationClient.Payment {
     class CreatePaymentLinkResponse: Codable {
         public var pollingTimeout: Int?
 
-        public var paymentLinkUrl: String?
+        public var paymentLinkId: String?
+
+        public var message: String
 
         public var statusCode: Int
 
-        public var paymentLinkId: String?
+        public var paymentLinkUrl: String?
 
         public var success: Bool
-
-        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case pollingTimeout = "polling_timeout"
 
-            case paymentLinkUrl = "payment_link_url"
+            case paymentLinkId = "payment_link_id"
+
+            case message
 
             case statusCode = "status_code"
 
-            case paymentLinkId = "payment_link_id"
+            case paymentLinkUrl = "payment_link_url"
 
             case success
-
-            case message
         }
 
         public init(message: String, paymentLinkId: String? = nil, paymentLinkUrl: String? = nil, pollingTimeout: Int? = nil, statusCode: Int, success: Bool) {
             self.pollingTimeout = pollingTimeout
 
-            self.paymentLinkUrl = paymentLinkUrl
+            self.paymentLinkId = paymentLinkId
+
+            self.message = message
 
             self.statusCode = statusCode
 
-            self.paymentLinkId = paymentLinkId
+            self.paymentLinkUrl = paymentLinkUrl
 
             self.success = success
-
-            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -160,16 +160,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                paymentLinkUrl = try container.decode(String.self, forKey: .paymentLinkUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
-
-            do {
                 paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -177,9 +167,19 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             message = try container.decode(String.self, forKey: .message)
+
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
+
+            do {
+                paymentLinkUrl = try container.decode(String.self, forKey: .paymentLinkUrl)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -187,15 +187,15 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(pollingTimeout, forKey: .pollingTimeout)
 
-            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
+            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+            try? container.encode(paymentLinkUrl, forKey: .paymentLinkUrl)
 
             try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

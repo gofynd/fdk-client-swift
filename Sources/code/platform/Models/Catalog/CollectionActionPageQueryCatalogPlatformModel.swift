@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class CollectionActionPageQuery: Codable {
         public var op: String?
 
-        public var value: [String]?
-
         public var attribute: String?
+
+        public var value: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case op
 
-            case value
-
             case attribute
+
+            case value
         }
 
         public init(attribute: String? = nil, op: String? = nil, value: [String]? = nil) {
             self.op = op
 
-            self.value = value
-
             self.attribute = attribute
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode([String].self, forKey: .value)
+                attribute = try container.decode(String.self, forKey: .attribute)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                attribute = try container.decode(String.self, forKey: .attribute)
+                value = try container.decode([String].self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(op, forKey: .op)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(attribute, forKey: .attribute)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionActionPageQuery: Codable {
         public var op: String?
 
-        public var value: [String]?
-
         public var attribute: String?
+
+        public var value: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case op
 
-            case value
-
             case attribute
+
+            case value
         }
 
         public init(attribute: String? = nil, op: String? = nil, value: [String]? = nil) {
             self.op = op
 
-            self.value = value
-
             self.attribute = attribute
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode([String].self, forKey: .value)
+                attribute = try container.decode(String.self, forKey: .attribute)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                attribute = try container.decode(String.self, forKey: .attribute)
+                value = try container.decode([String].self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(op, forKey: .op)
 
-            try? container.encodeIfPresent(value, forKey: .value)
-
             try? container.encodeIfPresent(attribute, forKey: .attribute)
+
+            try? container.encodeIfPresent(value, forKey: .value)
         }
     }
 }

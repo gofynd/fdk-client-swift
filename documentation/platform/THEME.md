@@ -47,6 +47,7 @@ Responsible for themes
 * [getThemePreviewByIdV2](#getthemepreviewbyidv2)
 * [getThemeLastModifiedV2](#getthemelastmodifiedv2)
 * [checkThemeUpgradableV2](#checkthemeupgradablev2)
+* [upgradeApplicationV2](#upgradeapplicationv2)
 
 
 
@@ -35792,6 +35793,61 @@ This API endpoint checks if the theme is upgradable for a specific company and a
 [ThemeUpgradableResponseV2](#ThemeUpgradableResponseV2)
 
 Successful response
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### upgradeApplicationV2
+Upgrade an application
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").theme.upgradeApplicationV2(themeId: themeId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| themeId | String | yes | The ID of the upgrade |  
+
+
+
+This endpoint allows you to upgrade an application.
+
+*Returned Response:*
+
+
+
+
+[AllThemesApplicationResponseV2](#AllThemesApplicationResponseV2)
+
+Successful upgrade
 
 
 

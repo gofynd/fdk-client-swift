@@ -9,9 +9,9 @@ public extension PlatformClient.Payment {
      */
 
     class ExtensionPaymentUpdateRequestSerializer: Codable {
-        public var gid: String
+        public var status: String
 
-        public var paymentDetails: [String: Any]
+        public var gid: String
 
         public var orderDetails: [String: Any]
 
@@ -19,12 +19,12 @@ public extension PlatformClient.Payment {
 
         public var currency: String
 
-        public var status: String
+        public var paymentDetails: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
-            case gid
+            case status
 
-            case paymentDetails = "payment_details"
+            case gid
 
             case orderDetails = "order_details"
 
@@ -32,13 +32,13 @@ public extension PlatformClient.Payment {
 
             case currency
 
-            case status
+            case paymentDetails = "payment_details"
         }
 
         public init(currency: String, gid: String, orderDetails: [String: Any], paymentDetails: [String: Any], status: String, totalAmount: Int) {
-            self.gid = gid
+            self.status = status
 
-            self.paymentDetails = paymentDetails
+            self.gid = gid
 
             self.orderDetails = orderDetails
 
@@ -46,15 +46,15 @@ public extension PlatformClient.Payment {
 
             self.currency = currency
 
-            self.status = status
+            self.paymentDetails = paymentDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            gid = try container.decode(String.self, forKey: .gid)
+            status = try container.decode(String.self, forKey: .status)
 
-            paymentDetails = try container.decode([String: Any].self, forKey: .paymentDetails)
+            gid = try container.decode(String.self, forKey: .gid)
 
             orderDetails = try container.decode([String: Any].self, forKey: .orderDetails)
 
@@ -62,15 +62,15 @@ public extension PlatformClient.Payment {
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            status = try container.decode(String.self, forKey: .status)
+            paymentDetails = try container.decode([String: Any].self, forKey: .paymentDetails)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(gid, forKey: .gid)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
+            try? container.encodeIfPresent(gid, forKey: .gid)
 
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
 
@@ -78,7 +78,7 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
         }
     }
 }
@@ -90,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class ExtensionPaymentUpdateRequestSerializer: Codable {
-        public var gid: String
+        public var status: String
 
-        public var paymentDetails: [String: Any]
+        public var gid: String
 
         public var orderDetails: [String: Any]
 
@@ -100,12 +100,12 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var currency: String
 
-        public var status: String
+        public var paymentDetails: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
-            case gid
+            case status
 
-            case paymentDetails = "payment_details"
+            case gid
 
             case orderDetails = "order_details"
 
@@ -113,13 +113,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case currency
 
-            case status
+            case paymentDetails = "payment_details"
         }
 
         public init(currency: String, gid: String, orderDetails: [String: Any], paymentDetails: [String: Any], status: String, totalAmount: Int) {
-            self.gid = gid
+            self.status = status
 
-            self.paymentDetails = paymentDetails
+            self.gid = gid
 
             self.orderDetails = orderDetails
 
@@ -127,15 +127,15 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.currency = currency
 
-            self.status = status
+            self.paymentDetails = paymentDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            gid = try container.decode(String.self, forKey: .gid)
+            status = try container.decode(String.self, forKey: .status)
 
-            paymentDetails = try container.decode([String: Any].self, forKey: .paymentDetails)
+            gid = try container.decode(String.self, forKey: .gid)
 
             orderDetails = try container.decode([String: Any].self, forKey: .orderDetails)
 
@@ -143,15 +143,15 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            status = try container.decode(String.self, forKey: .status)
+            paymentDetails = try container.decode([String: Any].self, forKey: .paymentDetails)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(gid, forKey: .gid)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
+            try? container.encodeIfPresent(gid, forKey: .gid)
 
             try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
 
@@ -159,7 +159,7 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
         }
     }
 }
