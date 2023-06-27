@@ -7,7 +7,7 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class Department: Codable {
-        public var priorityOrder: Int?
+        public var name: String?
 
         public var logo: Media?
 
@@ -15,10 +15,10 @@ public extension ApplicationClient.Catalog {
 
         public var slug: String?
 
-        public var name: String?
+        public var priorityOrder: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case priorityOrder = "priority_order"
+            case name
 
             case logo
 
@@ -26,11 +26,11 @@ public extension ApplicationClient.Catalog {
 
             case slug
 
-            case name
+            case priorityOrder = "priority_order"
         }
 
         public init(logo: Media? = nil, name: String? = nil, priorityOrder: Int? = nil, slug: String? = nil, uid: Int? = nil) {
-            self.priorityOrder = priorityOrder
+            self.name = name
 
             self.logo = logo
 
@@ -38,14 +38,14 @@ public extension ApplicationClient.Catalog {
 
             self.slug = slug
 
-            self.name = name
+            self.priorityOrder = priorityOrder
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                priorityOrder = try container.decode(Int.self, forKey: .priorityOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
@@ -96,7 +96,7 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(priorityOrder, forKey: .priorityOrder)
         }
     }
 }

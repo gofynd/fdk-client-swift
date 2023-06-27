@@ -7,18 +7,18 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class PincodeParentsResponse: Codable {
-        public var displayName: String?
-
         public var subType: String?
+
+        public var displayName: String?
 
         public var name: String?
 
         public var uid: String?
 
         public enum CodingKeys: String, CodingKey {
-            case displayName = "display_name"
-
             case subType = "sub_type"
+
+            case displayName = "display_name"
 
             case name
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Logistic {
         }
 
         public init(displayName: String? = nil, name: String? = nil, subType: String? = nil, uid: String? = nil) {
-            self.displayName = displayName
-
             self.subType = subType
+
+            self.displayName = displayName
 
             self.name = name
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                subType = try container.decode(String.self, forKey: .subType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                subType = try container.decode(String.self, forKey: .subType)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
-
             try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(name, forKey: .name)
 

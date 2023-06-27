@@ -17,6 +17,8 @@ public extension PlatformClient.Discount {
 
         public var companyId: Int
 
+        public var id: String
+
         public var body: [String: Any]?
 
         public var type: String
@@ -32,6 +34,8 @@ public extension PlatformClient.Discount {
 
             case companyId = "company_id"
 
+            case id = "_id"
+
             case body
 
             case type
@@ -39,7 +43,7 @@ public extension PlatformClient.Discount {
             case fileType = "file_type"
         }
 
-        public init(body: [String: Any]? = nil, companyId: Int, failed: Int, fileType: String, stage: String, total: Int, type: String) {
+        public init(body: [String: Any]? = nil, companyId: Int, failed: Int, fileType: String, stage: String, total: Int, type: String, id: String) {
             self.stage = stage
 
             self.total = total
@@ -47,6 +51,8 @@ public extension PlatformClient.Discount {
             self.failed = failed
 
             self.companyId = companyId
+
+            self.id = id
 
             self.body = body
 
@@ -65,6 +71,8 @@ public extension PlatformClient.Discount {
             failed = try container.decode(Int.self, forKey: .failed)
 
             companyId = try container.decode(Int.self, forKey: .companyId)
+
+            id = try container.decode(String.self, forKey: .id)
 
             do {
                 body = try container.decode([String: Any].self, forKey: .body)
@@ -89,6 +97,8 @@ public extension PlatformClient.Discount {
             try? container.encodeIfPresent(failed, forKey: .failed)
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(body, forKey: .body)
 

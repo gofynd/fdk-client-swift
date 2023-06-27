@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class UnpaidInvoiceDataItems: Codable {
         public var totalUnpaidInvoiceCount: Int?
 
-        public var currency: String?
-
         public var totalUnpaidAmount: Double?
+
+        public var currency: String?
 
         public enum CodingKeys: String, CodingKey {
             case totalUnpaidInvoiceCount = "total_unpaid_invoice_count"
 
-            case currency
-
             case totalUnpaidAmount = "total_unpaid_amount"
+
+            case currency
         }
 
         public init(currency: String? = nil, totalUnpaidAmount: Double? = nil, totalUnpaidInvoiceCount: Int? = nil) {
             self.totalUnpaidInvoiceCount = totalUnpaidInvoiceCount
 
-            self.currency = currency
-
             self.totalUnpaidAmount = totalUnpaidAmount
+
+            self.currency = currency
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                totalUnpaidAmount = try container.decode(Double.self, forKey: .totalUnpaidAmount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                totalUnpaidAmount = try container.decode(Double.self, forKey: .totalUnpaidAmount)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(totalUnpaidInvoiceCount, forKey: .totalUnpaidInvoiceCount)
 
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
             try? container.encodeIfPresent(totalUnpaidAmount, forKey: .totalUnpaidAmount)
+
+            try? container.encodeIfPresent(currency, forKey: .currency)
         }
     }
 }

@@ -9,42 +9,42 @@ public extension ApplicationClient.Cart {
     class CouponValidity: Codable {
         public var valid: Bool?
 
-        public var discount: Double?
+        public var code: String?
 
         public var nextValidationRequired: Bool?
 
         public var displayMessageEn: String?
 
-        public var code: String?
-
         public var title: String?
+
+        public var discount: Double?
 
         public enum CodingKeys: String, CodingKey {
             case valid
 
-            case discount
+            case code
 
             case nextValidationRequired = "next_validation_required"
 
             case displayMessageEn = "display_message_en"
 
-            case code
-
             case title
+
+            case discount
         }
 
         public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, nextValidationRequired: Bool? = nil, title: String? = nil, valid: Bool? = nil) {
             self.valid = valid
 
-            self.discount = discount
+            self.code = code
 
             self.nextValidationRequired = nextValidationRequired
 
             self.displayMessageEn = displayMessageEn
 
-            self.code = code
-
             self.title = title
+
+            self.discount = discount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,7 +59,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                discount = try container.decode(Double.self, forKey: .discount)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                discount = try container.decode(Double.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,15 +104,15 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(valid, forKey: .valid)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encode(code, forKey: .code)
 
             try? container.encode(nextValidationRequired, forKey: .nextValidationRequired)
 
             try? container.encode(displayMessageEn, forKey: .displayMessageEn)
 
-            try? container.encode(code, forKey: .code)
-
             try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
         }
     }
 }

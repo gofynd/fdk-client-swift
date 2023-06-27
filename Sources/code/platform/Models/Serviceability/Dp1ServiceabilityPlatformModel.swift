@@ -9,9 +9,9 @@ public extension PlatformClient.Serviceability {
      */
 
     class Dp1: Codable {
-        public var isSelfShip: Bool
+        public var stage: String
 
-        public var planRules: [String: Any]
+        public var isSelfShip: Bool
 
         public var dpId: String
 
@@ -19,14 +19,14 @@ public extension PlatformClient.Serviceability {
 
         public var planId: String
 
-        public var stage: String
-
         public var name: String
 
-        public enum CodingKeys: String, CodingKey {
-            case isSelfShip = "is_self_ship"
+        public var planRules: [String: Any]
 
-            case planRules = "plan_rules"
+        public enum CodingKeys: String, CodingKey {
+            case stage
+
+            case isSelfShip = "is_self_ship"
 
             case dpId = "dp_id"
 
@@ -34,15 +34,15 @@ public extension PlatformClient.Serviceability {
 
             case planId = "plan_id"
 
-            case stage
-
             case name
+
+            case planRules = "plan_rules"
         }
 
         public init(accountId: String, dpId: String, isSelfShip: Bool, name: String, planId: String, planRules: [String: Any], stage: String) {
-            self.isSelfShip = isSelfShip
+            self.stage = stage
 
-            self.planRules = planRules
+            self.isSelfShip = isSelfShip
 
             self.dpId = dpId
 
@@ -50,17 +50,17 @@ public extension PlatformClient.Serviceability {
 
             self.planId = planId
 
-            self.stage = stage
-
             self.name = name
+
+            self.planRules = planRules
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
+            stage = try container.decode(String.self, forKey: .stage)
 
-            planRules = try container.decode([String: Any].self, forKey: .planRules)
+            isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
 
             dpId = try container.decode(String.self, forKey: .dpId)
 
@@ -68,17 +68,17 @@ public extension PlatformClient.Serviceability {
 
             planId = try container.decode(String.self, forKey: .planId)
 
-            stage = try container.decode(String.self, forKey: .stage)
-
             name = try container.decode(String.self, forKey: .name)
+
+            planRules = try container.decode([String: Any].self, forKey: .planRules)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
+            try? container.encodeIfPresent(stage, forKey: .stage)
 
-            try? container.encodeIfPresent(planRules, forKey: .planRules)
+            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
 
             try? container.encodeIfPresent(dpId, forKey: .dpId)
 
@@ -86,9 +86,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(planId, forKey: .planId)
 
-            try? container.encodeIfPresent(stage, forKey: .stage)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(planRules, forKey: .planRules)
         }
     }
 }
@@ -100,9 +100,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class Dp1: Codable {
-        public var isSelfShip: Bool
+        public var stage: String
 
-        public var planRules: [String: Any]
+        public var isSelfShip: Bool
 
         public var dpId: String
 
@@ -110,14 +110,14 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public var planId: String
 
-        public var stage: String
-
         public var name: String
 
-        public enum CodingKeys: String, CodingKey {
-            case isSelfShip = "is_self_ship"
+        public var planRules: [String: Any]
 
-            case planRules = "plan_rules"
+        public enum CodingKeys: String, CodingKey {
+            case stage
+
+            case isSelfShip = "is_self_ship"
 
             case dpId = "dp_id"
 
@@ -125,15 +125,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             case planId = "plan_id"
 
-            case stage
-
             case name
+
+            case planRules = "plan_rules"
         }
 
         public init(accountId: String, dpId: String, isSelfShip: Bool, name: String, planId: String, planRules: [String: Any], stage: String) {
-            self.isSelfShip = isSelfShip
+            self.stage = stage
 
-            self.planRules = planRules
+            self.isSelfShip = isSelfShip
 
             self.dpId = dpId
 
@@ -141,17 +141,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             self.planId = planId
 
-            self.stage = stage
-
             self.name = name
+
+            self.planRules = planRules
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
+            stage = try container.decode(String.self, forKey: .stage)
 
-            planRules = try container.decode([String: Any].self, forKey: .planRules)
+            isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
 
             dpId = try container.decode(String.self, forKey: .dpId)
 
@@ -159,17 +159,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             planId = try container.decode(String.self, forKey: .planId)
 
-            stage = try container.decode(String.self, forKey: .stage)
-
             name = try container.decode(String.self, forKey: .name)
+
+            planRules = try container.decode([String: Any].self, forKey: .planRules)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
+            try? container.encodeIfPresent(stage, forKey: .stage)
 
-            try? container.encodeIfPresent(planRules, forKey: .planRules)
+            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
 
             try? container.encodeIfPresent(dpId, forKey: .dpId)
 
@@ -177,9 +177,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(planId, forKey: .planId)
 
-            try? container.encodeIfPresent(stage, forKey: .stage)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(planRules, forKey: .planRules)
         }
     }
 }

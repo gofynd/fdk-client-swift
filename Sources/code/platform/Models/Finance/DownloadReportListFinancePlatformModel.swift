@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class DownloadReportList: Codable {
         public var page: Page?
 
-        public var items: [DownloadReportItems]?
-
         public var itemCount: Int?
+
+        public var items: [DownloadReportItems]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
-            case items
-
             case itemCount = "item_count"
+
+            case items
         }
 
         public init(items: [DownloadReportItems]? = nil, itemCount: Int? = nil, page: Page? = nil) {
             self.page = page
 
-            self.items = items
-
             self.itemCount = itemCount
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                items = try container.decode([DownloadReportItems].self, forKey: .items)
+                itemCount = try container.decode(Int.self, forKey: .itemCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                itemCount = try container.decode(Int.self, forKey: .itemCount)
+                items = try container.decode([DownloadReportItems].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(itemCount, forKey: .itemCount)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

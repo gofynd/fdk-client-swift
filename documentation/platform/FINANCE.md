@@ -859,26 +859,26 @@ Success
 
  
  
- #### [GenerateReportFilters](#GenerateReportFilters)
+ #### [GenerateReportMeta](#GenerateReportMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company | [String]? |  yes  |  |
- | channel | [String]? |  yes  |  |
- | brand | [String]? |  yes  |  |
+ | channel | String? |  yes  |  |
+ | company | String? |  yes  |  |
+ | brand | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [GenerateReportMeta](#GenerateReportMeta)
+ #### [GenerateReportFilters](#GenerateReportFilters)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | company | String? |  yes  |  |
- | channel | String? |  yes  |  |
- | brand | String? |  yes  |  |
+ | channel | [String]? |  yes  |  |
+ | company | [String]? |  yes  |  |
+ | brand | [String]? |  yes  |  |
 
 ---
 
@@ -889,11 +889,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [GenerateReportFilters](#GenerateReportFilters)? |  yes  |  |
- | meta | [GenerateReportMeta](#GenerateReportMeta)? |  yes  |  |
- | startDate | String? |  yes  |  |
- | endDate | String? |  yes  |  |
  | reportId | String? |  yes  |  |
+ | startDate | String? |  yes  |  |
+ | meta | [GenerateReportMeta](#GenerateReportMeta)? |  yes  |  |
+ | endDate | String? |  yes  |  |
+ | filters | [GenerateReportFilters](#GenerateReportFilters)? |  yes  |  |
 
 ---
 
@@ -915,10 +915,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemTotal | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
  | size | Int? |  yes  |  |
  | current | Int? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
  | type | String? |  yes  |  |
 
 ---
@@ -930,12 +930,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | startDate | String? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  | itemCount | Int? |  yes  |  |
+ | endDate | String? |  yes  |  |
  | items | [[String]]? |  yes  |  |
  | headers | [String]? |  yes  |  |
- | startDate | String? |  yes  |  |
- | endDate | String? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
 
 ---
 
@@ -946,8 +946,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | reason | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -958,10 +958,10 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | endDate | String? |  yes  |  |
- | page | Int? |  yes  |  |
  | pagesize | Int? |  yes  |  |
  | startDate | String? |  yes  |  |
+ | page | Int? |  yes  |  |
+ | endDate | String? |  yes  |  |
 
 ---
 
@@ -972,12 +972,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | filters | [GenerateReportFilters](#GenerateReportFilters)? |  yes  |  |
- | meta | [GenerateReportMeta](#GenerateReportMeta)? |  yes  |  |
- | typeOfRequest | String? |  yes  |  |
- | startDate | String? |  yes  |  |
- | endDate | String? |  yes  |  |
  | reportId | String? |  yes  |  |
+ | startDate | String? |  yes  |  |
+ | meta | [GenerateReportMeta](#GenerateReportMeta)? |  yes  |  |
+ | endDate | String? |  yes  |  |
+ | filters | [GenerateReportFilters](#GenerateReportFilters)? |  yes  |  |
+ | typeOfRequest | String? |  yes  |  |
 
 ---
 
@@ -989,8 +989,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [Page](#Page)? |  yes  |  |
- | items | [[DownloadReportItems](#DownloadReportItems)]? |  yes  |  |
  | itemCount | Int? |  yes  |  |
+ | items | [[DownloadReportItems](#DownloadReportItems)]? |  yes  |  |
 
 ---
 
@@ -1037,9 +1037,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [Page](#Page)? |  yes  |  |
- | success | Bool? |  yes  |  |
  | items | [[String: Any]]? |  yes  |  |
  | itemCount | Int? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -1084,8 +1084,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | data | [GetDocs](#GetDocs)? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -1130,8 +1130,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | docs | [[String: Any]]? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -1164,8 +1164,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
  | pdfS3Url | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -1176,8 +1176,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | data | [[DownloadCreditDebitNoteResponseData](#DownloadCreditDebitNoteResponseData)]? |  yes  |  |
+ | success | Bool? |  yes  |  |
 
 ---
 
@@ -1188,16 +1188,16 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | totalAmount | String? |  yes  |  |
- | modeOfPayment | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
  | sourceReference | String? |  yes  |  |
- | amount | String? |  yes  |  |
+ | transactionType | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | totalAmount | String? |  yes  |  |
  | invoiceNumber | String? |  yes  |  |
  | platform | String? |  yes  |  |
- | transactionType | String? |  yes  |  |
- | currency | String? |  yes  |  |
+ | modeOfPayment | String? |  yes  |  |
  | sellerId | String? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | amount | String? |  yes  |  |
 
 ---
 
@@ -1219,11 +1219,11 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | code | Int? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
- | transactionId | String? |  yes  |  |
+ | message | String? |  yes  |  |
  | redirectUrl | String? |  yes  |  |
+ | code | Int? |  yes  |  |
+ | transactionId | String? |  yes  |  |
 
 ---
 
@@ -1234,9 +1234,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | endEnd | String? |  yes  |  |
  | startEnd | String? |  yes  |  |
  | page | Int? |  yes  |  |
+ | endEnd | String? |  yes  |  |
  | pagesize | Int? |  yes  |  |
  | sellerId | String? |  yes  |  |
 
@@ -1260,13 +1260,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | code | Int? |  yes  |  |
- | itemCount | Int? |  yes  |  |
- | items | [[String: Any]]? |  yes  |  |
- | showMr | Bool? |  yes  |  |
- | headers | [String]? |  yes  |  |
  | page | [String: Any]? |  yes  |  |
+ | itemCount | Int? |  yes  |  |
+ | message | String? |  yes  |  |
+ | items | [[String: Any]]? |  yes  |  |
+ | headers | [String]? |  yes  |  |
+ | code | Int? |  yes  |  |
+ | showMr | Bool? |  yes  |  |
 
 ---
 
@@ -1345,9 +1345,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentStatusList | [[InvoiceTypeResponseItems](#InvoiceTypeResponseItems)]? |  yes  |  |
- | success | Bool? |  yes  |  |
  | invoiceTypeList | [[InvoiceTypeResponseItems](#InvoiceTypeResponseItems)]? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | paymentStatusList | [[InvoiceTypeResponseItems](#InvoiceTypeResponseItems)]? |  yes  |  |
 
 ---
 
@@ -1358,8 +1358,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companyId | [String]? |  yes  |  |
  | invoiceType | [String]? |  yes  |  |
+ | companyId | [String]? |  yes  |  |
  | paymentStatus | [String]? |  yes  |  |
 
 ---
@@ -1372,11 +1372,11 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | search | String? |  yes  |  |
- | filters | [InoviceListingPayloadDataFilters](#InoviceListingPayloadDataFilters)? |  yes  |  |
- | pageSize | Int? |  yes  |  |
  | startDate | String? |  yes  |  |
- | endDate | String? |  yes  |  |
  | page | Int? |  yes  |  |
+ | endDate | String? |  yes  |  |
+ | pageSize | Int? |  yes  |  |
+ | filters | [InoviceListingPayloadDataFilters](#InoviceListingPayloadDataFilters)? |  yes  |  |
 
 ---
 
@@ -1394,33 +1394,33 @@ Success
 
  
  
- #### [InvoiceListingResponseItems](#InvoiceListingResponseItems)
+ #### [UnpaidInvoiceDataItems](#UnpaidInvoiceDataItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | period | String? |  yes  |  |
- | invoiceDate | String? |  yes  |  |
- | amount | String? |  yes  |  |
- | dueDate | String? |  yes  |  |
- | isDownloadable | Bool? |  yes  |  |
- | invoiceNumber | String? |  yes  |  |
- | invoiceId | String? |  yes  |  |
- | company | String? |  yes  |  |
- | invoiceType | String? |  yes  |  |
- | status | String? |  yes  |  |
+ | totalUnpaidInvoiceCount | Int? |  yes  |  |
+ | totalUnpaidAmount | Double? |  yes  |  |
+ | currency | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [UnpaidInvoiceDataItems](#UnpaidInvoiceDataItems)
+ #### [InvoiceListingResponseItems](#InvoiceListingResponseItems)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | totalUnpaidInvoiceCount | Int? |  yes  |  |
- | currency | String? |  yes  |  |
- | totalUnpaidAmount | Double? |  yes  |  |
+ | dueDate | String? |  yes  |  |
+ | period | String? |  yes  |  |
+ | isDownloadable | Bool? |  yes  |  |
+ | invoiceType | String? |  yes  |  |
+ | company | String? |  yes  |  |
+ | invoiceNumber | String? |  yes  |  |
+ | status | String? |  yes  |  |
+ | invoiceId | String? |  yes  |  |
+ | invoiceDate | String? |  yes  |  |
+ | amount | String? |  yes  |  |
 
 ---
 
@@ -1432,9 +1432,9 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [Page](#Page)? |  yes  |  |
- | items | [[InvoiceListingResponseItems](#InvoiceListingResponseItems)]? |  yes  |  |
  | unpaidInvoiceData | [UnpaidInvoiceDataItems](#UnpaidInvoiceDataItems)? |  yes  |  |
  | itemCount | Int? |  yes  |  |
+ | items | [[InvoiceListingResponseItems](#InvoiceListingResponseItems)]? |  yes  |  |
 
 ---
 
@@ -1467,9 +1467,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | data | [String]? |  yes  |  |
  | error | [String]? |  yes  |  |
  | success | Bool? |  yes  |  |
- | data | [String]? |  yes  |  |
 
 ---
 

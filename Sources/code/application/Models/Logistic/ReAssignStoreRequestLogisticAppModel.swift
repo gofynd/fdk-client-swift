@@ -9,22 +9,22 @@ public extension ApplicationClient.Logistic {
     class ReAssignStoreRequest: Codable {
         public var identifier: String
 
-        public var configuration: [String: Any]
-
         public var articles: [[String: Any]]
 
         public var ignoredLocations: [Int]
+
+        public var configuration: [String: Any]
 
         public var toPincode: String
 
         public enum CodingKeys: String, CodingKey {
             case identifier
 
-            case configuration
-
             case articles
 
             case ignoredLocations = "ignored_locations"
+
+            case configuration
 
             case toPincode = "to_pincode"
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Logistic {
         public init(articles: [[String: Any]], configuration: [String: Any], identifier: String, ignoredLocations: [Int], toPincode: String) {
             self.identifier = identifier
 
-            self.configuration = configuration
-
             self.articles = articles
 
             self.ignoredLocations = ignoredLocations
+
+            self.configuration = configuration
 
             self.toPincode = toPincode
         }
@@ -46,11 +46,11 @@ public extension ApplicationClient.Logistic {
 
             identifier = try container.decode(String.self, forKey: .identifier)
 
-            configuration = try container.decode([String: Any].self, forKey: .configuration)
-
             articles = try container.decode([[String: Any]].self, forKey: .articles)
 
             ignoredLocations = try container.decode([Int].self, forKey: .ignoredLocations)
+
+            configuration = try container.decode([String: Any].self, forKey: .configuration)
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
         }
@@ -60,11 +60,11 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(configuration, forKey: .configuration)
-
             try? container.encodeIfPresent(articles, forKey: .articles)
 
             try? container.encodeIfPresent(ignoredLocations, forKey: .ignoredLocations)
+
+            try? container.encodeIfPresent(configuration, forKey: .configuration)
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
         }

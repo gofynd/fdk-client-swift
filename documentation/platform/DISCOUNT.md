@@ -763,6 +763,7 @@ Success
  | total | Int |  no  |  |
  | failed | Int |  no  |  |
  | companyId | Int |  no  |  |
+ | id | String |  no  |  |
  | body | [String: Any]? |  yes  |  |
  | type | String |  no  |  |
  | fileType | String |  no  |  |

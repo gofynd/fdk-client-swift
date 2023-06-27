@@ -11,24 +11,24 @@ public extension PlatformClient.Payment {
     class Code: Codable {
         public var merchantCode: String
 
-        public var name: String
-
         public var code: String
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case merchantCode = "merchant_code"
 
-            case name
-
             case code
+
+            case name
         }
 
         public init(code: String, merchantCode: String, name: String) {
             self.merchantCode = merchantCode
 
-            self.name = name
-
             self.code = code
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
-            name = try container.decode(String.self, forKey: .name)
-
             code = try container.decode(String.self, forKey: .code)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Payment {
     class Code: Codable {
         public var merchantCode: String
 
-        public var name: String
-
         public var code: String
+
+        public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case merchantCode = "merchant_code"
 
-            case name
-
             case code
+
+            case name
         }
 
         public init(code: String, merchantCode: String, name: String) {
             self.merchantCode = merchantCode
 
-            self.name = name
-
             self.code = code
+
+            self.name = name
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
-            name = try container.decode(String.self, forKey: .name)
-
             code = try container.decode(String.self, forKey: .code)
+
+            name = try container.decode(String.self, forKey: .name)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(name, forKey: .name)
         }
     }
 }

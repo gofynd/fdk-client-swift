@@ -9,30 +9,30 @@ public extension PlatformClient.Order {
      */
 
     class UpdateShipmentLockPayload: Codable {
-        public var entityType: String
-
         public var actionType: String
 
         public var action: String
 
+        public var entityType: String
+
         public var entities: [Entities]
 
         public enum CodingKeys: String, CodingKey {
-            case entityType = "entity_type"
-
             case actionType = "action_type"
 
             case action
+
+            case entityType = "entity_type"
 
             case entities
         }
 
         public init(action: String, actionType: String, entities: [Entities], entityType: String) {
-            self.entityType = entityType
-
             self.actionType = actionType
 
             self.action = action
+
+            self.entityType = entityType
 
             self.entities = entities
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            entityType = try container.decode(String.self, forKey: .entityType)
-
             actionType = try container.decode(String.self, forKey: .actionType)
 
             action = try container.decode(String.self, forKey: .action)
+
+            entityType = try container.decode(String.self, forKey: .entityType)
 
             entities = try container.decode([Entities].self, forKey: .entities)
         }
@@ -52,11 +52,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
-
             try? container.encodeIfPresent(actionType, forKey: .actionType)
 
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
 
             try? container.encodeIfPresent(entities, forKey: .entities)
         }
@@ -70,30 +70,30 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class UpdateShipmentLockPayload: Codable {
-        public var entityType: String
-
         public var actionType: String
 
         public var action: String
 
+        public var entityType: String
+
         public var entities: [Entities]
 
         public enum CodingKeys: String, CodingKey {
-            case entityType = "entity_type"
-
             case actionType = "action_type"
 
             case action
+
+            case entityType = "entity_type"
 
             case entities
         }
 
         public init(action: String, actionType: String, entities: [Entities], entityType: String) {
-            self.entityType = entityType
-
             self.actionType = actionType
 
             self.action = action
+
+            self.entityType = entityType
 
             self.entities = entities
         }
@@ -101,11 +101,11 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            entityType = try container.decode(String.self, forKey: .entityType)
-
             actionType = try container.decode(String.self, forKey: .actionType)
 
             action = try container.decode(String.self, forKey: .action)
+
+            entityType = try container.decode(String.self, forKey: .entityType)
 
             entities = try container.decode([Entities].self, forKey: .entities)
         }
@@ -113,11 +113,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
-
             try? container.encodeIfPresent(actionType, forKey: .actionType)
 
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
 
             try? container.encodeIfPresent(entities, forKey: .entities)
         }

@@ -9,9 +9,9 @@ public extension ApplicationClient.Logistic {
     class ReAssignStoreResponse: Codable {
         public var pystormbreakerUuid: String
 
-        public var error: [String: Any]
-
         public var assignedStores: [[String: Any]]?
+
+        public var error: [String: Any]
 
         public var success: Bool
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Logistic {
         public enum CodingKeys: String, CodingKey {
             case pystormbreakerUuid = "pystormbreaker_uuid"
 
-            case error
-
             case assignedStores = "assigned_stores"
+
+            case error
 
             case success
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Logistic {
         public init(assignedStores: [[String: Any]]? = nil, error: [String: Any], pystormbreakerUuid: String, success: Bool, toPincode: String) {
             self.pystormbreakerUuid = pystormbreakerUuid
 
-            self.error = error
-
             self.assignedStores = assignedStores
+
+            self.error = error
 
             self.success = success
 
@@ -46,8 +46,6 @@ public extension ApplicationClient.Logistic {
 
             pystormbreakerUuid = try container.decode(String.self, forKey: .pystormbreakerUuid)
 
-            error = try container.decode([String: Any].self, forKey: .error)
-
             do {
                 assignedStores = try container.decode([[String: Any]].self, forKey: .assignedStores)
 
@@ -55,6 +53,8 @@ public extension ApplicationClient.Logistic {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            error = try container.decode([String: Any].self, forKey: .error)
 
             success = try container.decode(Bool.self, forKey: .success)
 
@@ -66,9 +66,9 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(pystormbreakerUuid, forKey: .pystormbreakerUuid)
 
-            try? container.encodeIfPresent(error, forKey: .error)
-
             try? container.encodeIfPresent(assignedStores, forKey: .assignedStores)
+
+            try? container.encodeIfPresent(error, forKey: .error)
 
             try? container.encodeIfPresent(success, forKey: .success)
 

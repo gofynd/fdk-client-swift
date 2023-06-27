@@ -15,9 +15,9 @@ public extension ApplicationClient.Order {
 
         public var storeId: Int?
 
-        public var quantity: Int?
-
         public var articleAssignment: BagsForReorderArticleAssignment?
+
+        public var quantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case itemId = "item_id"
@@ -28,9 +28,9 @@ public extension ApplicationClient.Order {
 
             case storeId = "store_id"
 
-            case quantity
-
             case articleAssignment = "article_assignment"
+
+            case quantity
         }
 
         public init(articleAssignment: BagsForReorderArticleAssignment? = nil, itemId: Int? = nil, itemSize: String? = nil, quantity: Int? = nil, sellerId: Int? = nil, storeId: Int? = nil) {
@@ -42,9 +42,9 @@ public extension ApplicationClient.Order {
 
             self.storeId = storeId
 
-            self.quantity = quantity
-
             self.articleAssignment = articleAssignment
+
+            self.quantity = quantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                articleAssignment = try container.decode(BagsForReorderArticleAssignment.self, forKey: .articleAssignment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                articleAssignment = try container.decode(BagsForReorderArticleAssignment.self, forKey: .articleAssignment)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,9 +110,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
             try? container.encodeIfPresent(articleAssignment, forKey: .articleAssignment)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
         }
     }
 }

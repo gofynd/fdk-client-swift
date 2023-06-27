@@ -11,9 +11,9 @@ public extension PlatformClient.Catalog {
     class PTErrorResponse: Codable {
         public var status: Int?
 
-        public var message: String?
-
         public var errors: [String: Any]?
+
+        public var message: String?
 
         public var meta: [String: Any]?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case message
-
             case errors
+
+            case message
 
             case meta
 
@@ -34,9 +34,9 @@ public extension PlatformClient.Catalog {
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             self.status = status
 
-            self.message = message
-
             self.errors = errors
+
+            self.message = message
 
             self.meta = meta
 
@@ -55,7 +55,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                errors = try container.decode([String: Any].self, forKey: .errors)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                errors = try container.decode([String: Any].self, forKey: .errors)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(errors, forKey: .errors)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class PTErrorResponse: Codable {
         public var status: Int?
 
-        public var message: String?
-
         public var errors: [String: Any]?
+
+        public var message: String?
 
         public var meta: [String: Any]?
 
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case message
-
             case errors
+
+            case message
 
             case meta
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(code: String? = nil, errors: [String: Any]? = nil, message: String? = nil, meta: [String: Any]? = nil, status: Int? = nil) {
             self.status = status
 
-            self.message = message
-
             self.errors = errors
+
+            self.message = message
 
             self.meta = meta
 
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                errors = try container.decode([String: Any].self, forKey: .errors)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                errors = try container.decode([String: Any].self, forKey: .errors)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,9 +193,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(errors, forKey: .errors)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
