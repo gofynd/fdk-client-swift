@@ -13,9 +13,9 @@ public extension ApplicationClient.Cart {
 
         public var isAvailable: Bool?
 
-        public var display: String?
-
         public var value: String?
+
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case customJson = "_custom_json"
@@ -24,9 +24,9 @@ public extension ApplicationClient.Cart {
 
             case isAvailable = "is_available"
 
-            case display
-
             case value
+
+            case display
         }
 
         public init(display: String? = nil, isAvailable: Bool? = nil, meta: [String: Any]? = nil, value: String? = nil, customJson: [String: Any]? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.Cart {
 
             self.isAvailable = isAvailable
 
-            self.display = display
-
             self.value = value
+
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
-            try? container.encodeIfPresent(display, forKey: .display)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

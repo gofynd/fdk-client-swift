@@ -9,30 +9,30 @@ public extension ApplicationClient.Cart {
     class PaymentMeta: Codable {
         public var paymentGateway: String?
 
-        public var type: String?
+        public var paymentIdentifier: String?
 
         public var merchantCode: String?
 
-        public var paymentIdentifier: String?
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case paymentGateway = "payment_gateway"
 
-            case type
+            case paymentIdentifier = "payment_identifier"
 
             case merchantCode = "merchant_code"
 
-            case paymentIdentifier = "payment_identifier"
+            case type
         }
 
         public init(merchantCode: String? = nil, paymentGateway: String? = nil, paymentIdentifier: String? = nil, type: String? = nil) {
             self.paymentGateway = paymentGateway
 
-            self.type = type
+            self.paymentIdentifier = paymentIdentifier
 
             self.merchantCode = merchantCode
 
-            self.paymentIdentifier = paymentIdentifier
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

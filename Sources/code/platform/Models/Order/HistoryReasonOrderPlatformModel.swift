@@ -9,26 +9,26 @@ public extension PlatformClient.Order {
      */
 
     class HistoryReason: Codable {
-        public var quantity: Int?
+        public var category: String?
 
         public var state: String?
 
         public var text: String?
 
-        public var category: String?
+        public var quantity: Int?
 
         public var dislayName: String?
 
         public var code: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case quantity
+            case category
 
             case state
 
             case text
 
-            case category
+            case quantity
 
             case dislayName = "dislay_name"
 
@@ -36,13 +36,13 @@ public extension PlatformClient.Order {
         }
 
         public init(category: String? = nil, code: Int? = nil, dislayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
-            self.quantity = quantity
+            self.category = category
 
             self.state = state
 
             self.text = text
 
-            self.category = category
+            self.quantity = quantity
 
             self.dislayName = dislayName
 
@@ -53,7 +53,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                category = try container.decode(String.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                category = try container.decode(String.self, forKey: .category)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,13 +104,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(quantity, forKey: .quantity)
+            try? container.encode(category, forKey: .category)
 
             try? container.encode(state, forKey: .state)
 
             try? container.encode(text, forKey: .text)
 
-            try? container.encode(category, forKey: .category)
+            try? container.encode(quantity, forKey: .quantity)
 
             try? container.encode(dislayName, forKey: .dislayName)
 
@@ -126,26 +126,26 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class HistoryReason: Codable {
-        public var quantity: Int?
+        public var category: String?
 
         public var state: String?
 
         public var text: String?
 
-        public var category: String?
+        public var quantity: Int?
 
         public var dislayName: String?
 
         public var code: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case quantity
+            case category
 
             case state
 
             case text
 
-            case category
+            case quantity
 
             case dislayName = "dislay_name"
 
@@ -153,13 +153,13 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(category: String? = nil, code: Int? = nil, dislayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
-            self.quantity = quantity
+            self.category = category
 
             self.state = state
 
             self.text = text
 
-            self.category = category
+            self.quantity = quantity
 
             self.dislayName = dislayName
 
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                category = try container.decode(String.self, forKey: .category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                category = try container.decode(String.self, forKey: .category)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,13 +221,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(quantity, forKey: .quantity)
+            try? container.encode(category, forKey: .category)
 
             try? container.encode(state, forKey: .state)
 
             try? container.encode(text, forKey: .text)
 
-            try? container.encode(category, forKey: .category)
+            try? container.encode(quantity, forKey: .quantity)
 
             try? container.encode(dislayName, forKey: .dislayName)
 
