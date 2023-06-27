@@ -13,13 +13,13 @@ public extension PlatformClient.Payment {
 
         public var transferType: String
 
-        public var isActive: Bool
-
-        public var payoutsAggregators: [PayoutAggregator]?
-
         public var moreAttributes: PayoutMoreAttributes
 
         public var isDefault: Bool
+
+        public var payoutsAggregators: [PayoutAggregator]?
+
+        public var isActive: Bool
 
         public var customers: PayoutCustomer
 
@@ -28,13 +28,13 @@ public extension PlatformClient.Payment {
 
             case transferType = "transfer_type"
 
-            case isActive = "is_active"
-
-            case payoutsAggregators = "payouts_aggregators"
-
             case moreAttributes = "more_attributes"
 
             case isDefault = "is_default"
+
+            case payoutsAggregators = "payouts_aggregators"
+
+            case isActive = "is_active"
 
             case customers
         }
@@ -44,13 +44,13 @@ public extension PlatformClient.Payment {
 
             self.transferType = transferType
 
-            self.isActive = isActive
-
-            self.payoutsAggregators = payoutsAggregators
-
             self.moreAttributes = moreAttributes
 
             self.isDefault = isDefault
+
+            self.payoutsAggregators = payoutsAggregators
+
+            self.isActive = isActive
 
             self.customers = customers
         }
@@ -62,7 +62,9 @@ public extension PlatformClient.Payment {
 
             transferType = try container.decode(String.self, forKey: .transferType)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            moreAttributes = try container.decode(PayoutMoreAttributes.self, forKey: .moreAttributes)
+
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             do {
                 payoutsAggregators = try container.decode([PayoutAggregator].self, forKey: .payoutsAggregators)
@@ -72,9 +74,7 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            moreAttributes = try container.decode(PayoutMoreAttributes.self, forKey: .moreAttributes)
-
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             customers = try container.decode(PayoutCustomer.self, forKey: .customers)
         }
@@ -86,13 +86,13 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(transferType, forKey: .transferType)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(payoutsAggregators, forKey: .payoutsAggregators)
-
             try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(payoutsAggregators, forKey: .payoutsAggregators)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(customers, forKey: .customers)
         }
@@ -110,13 +110,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var transferType: String
 
-        public var isActive: Bool
-
-        public var payoutsAggregators: [PayoutAggregator]?
-
         public var moreAttributes: PayoutMoreAttributes
 
         public var isDefault: Bool
+
+        public var payoutsAggregators: [PayoutAggregator]?
+
+        public var isActive: Bool
 
         public var customers: PayoutCustomer
 
@@ -125,13 +125,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case transferType = "transfer_type"
 
-            case isActive = "is_active"
-
-            case payoutsAggregators = "payouts_aggregators"
-
             case moreAttributes = "more_attributes"
 
             case isDefault = "is_default"
+
+            case payoutsAggregators = "payouts_aggregators"
+
+            case isActive = "is_active"
 
             case customers
         }
@@ -141,13 +141,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.transferType = transferType
 
-            self.isActive = isActive
-
-            self.payoutsAggregators = payoutsAggregators
-
             self.moreAttributes = moreAttributes
 
             self.isDefault = isDefault
+
+            self.payoutsAggregators = payoutsAggregators
+
+            self.isActive = isActive
 
             self.customers = customers
         }
@@ -159,7 +159,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             transferType = try container.decode(String.self, forKey: .transferType)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            moreAttributes = try container.decode(PayoutMoreAttributes.self, forKey: .moreAttributes)
+
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             do {
                 payoutsAggregators = try container.decode([PayoutAggregator].self, forKey: .payoutsAggregators)
@@ -169,9 +171,7 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            moreAttributes = try container.decode(PayoutMoreAttributes.self, forKey: .moreAttributes)
-
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             customers = try container.decode(PayoutCustomer.self, forKey: .customers)
         }
@@ -183,13 +183,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(transferType, forKey: .transferType)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(payoutsAggregators, forKey: .payoutsAggregators)
-
             try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(payoutsAggregators, forKey: .payoutsAggregators)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(customers, forKey: .customers)
         }

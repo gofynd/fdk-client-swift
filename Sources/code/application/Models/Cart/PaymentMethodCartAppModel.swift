@@ -9,22 +9,22 @@ public extension ApplicationClient.Cart {
     class PaymentMethod: Codable {
         public var amount: Double?
 
-        public var name: String?
-
         public var paymentMeta: PaymentMeta
 
         public var payment: String?
+
+        public var name: String?
 
         public var mode: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case name
-
             case paymentMeta = "payment_meta"
 
             case payment
+
+            case name
 
             case mode
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Cart {
         public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentMeta: PaymentMeta) {
             self.amount = amount
 
-            self.name = name
-
             self.paymentMeta = paymentMeta
 
             self.payment = payment
+
+            self.name = name
 
             self.mode = mode
         }
@@ -46,14 +46,6 @@ public extension ApplicationClient.Cart {
 
             do {
                 amount = try container.decode(Double.self, forKey: .amount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,6 +62,14 @@ public extension ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             mode = try container.decode(String.self, forKey: .mode)
         }
 
@@ -78,11 +78,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encode(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
 
             try? container.encodeIfPresent(payment, forKey: .payment)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
         }

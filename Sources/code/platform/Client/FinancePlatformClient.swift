@@ -395,9 +395,9 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func getInvoiceType(
-            body: GetInvoiceListRequest,
-            onResponse: @escaping (_ response: GetInvoiceListResponse?, _ error: FDKError?) -> Void
+        public func invoiceType(
+            body: InvoiceTypeRequest,
+            onResponse: @escaping (_ response: InvoiceTypeResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -415,7 +415,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(GetInvoiceListResponse.self, from: data)
+                        let response = Utility.decode(InvoiceTypeResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

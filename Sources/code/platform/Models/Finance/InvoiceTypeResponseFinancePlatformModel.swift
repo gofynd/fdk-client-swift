@@ -4,14 +4,14 @@ import Foundation
 
 public extension PlatformClient.Finance {
     /*
-         Model: GetInvoiceListResponse
+         Model: InvoiceTypeResponse
          Used By: Finance
      */
 
-    class GetInvoiceListResponse: Codable {
-        public var invoiceTypeList: [[String: Any]]?
+    class InvoiceTypeResponse: Codable {
+        public var invoiceTypeList: [InvoiceTypeResponseItems]?
 
-        public var paymentStatusList: [[String: Any]]?
+        public var paymentStatusList: [InvoiceTypeResponseItems]?
 
         public var success: Bool?
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Finance {
             case success
         }
 
-        public init(invoiceTypeList: [[String: Any]]? = nil, paymentStatusList: [[String: Any]]? = nil, success: Bool? = nil) {
+        public init(invoiceTypeList: [InvoiceTypeResponseItems]? = nil, paymentStatusList: [InvoiceTypeResponseItems]? = nil, success: Bool? = nil) {
             self.invoiceTypeList = invoiceTypeList
 
             self.paymentStatusList = paymentStatusList
@@ -35,7 +35,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                invoiceTypeList = try container.decode([[String: Any]].self, forKey: .invoiceTypeList)
+                invoiceTypeList = try container.decode([InvoiceTypeResponseItems].self, forKey: .invoiceTypeList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                paymentStatusList = try container.decode([[String: Any]].self, forKey: .paymentStatusList)
+                paymentStatusList = try container.decode([InvoiceTypeResponseItems].self, forKey: .paymentStatusList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

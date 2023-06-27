@@ -9,7 +9,7 @@ public extension PlatformClient.Serviceability {
      */
 
     class ApplicationServiceabilityConfigResponse: Codable {
-        public var error: ServiceabilityrErrorResponse?
+        public var error: ServiceabilityErrorResponse?
 
         public var data: ApplicationServiceabilityConfig?
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Serviceability {
             case success
         }
 
-        public init(data: ApplicationServiceabilityConfig? = nil, error: ServiceabilityrErrorResponse? = nil, success: Bool) {
+        public init(data: ApplicationServiceabilityConfig? = nil, error: ServiceabilityErrorResponse? = nil, success: Bool) {
             self.error = error
 
             self.data = data
@@ -35,7 +35,7 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                error = try container.decode(ServiceabilityrErrorResponse.self, forKey: .error)
+                error = try container.decode(ServiceabilityErrorResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class ApplicationServiceabilityConfigResponse: Codable {
-        public var error: ServiceabilityrErrorResponse?
+        public var error: ServiceabilityErrorResponse?
 
         public var data: ApplicationServiceabilityConfig?
 
@@ -86,7 +86,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             case success
         }
 
-        public init(data: ApplicationServiceabilityConfig? = nil, error: ServiceabilityrErrorResponse? = nil, success: Bool) {
+        public init(data: ApplicationServiceabilityConfig? = nil, error: ServiceabilityErrorResponse? = nil, success: Bool) {
             self.error = error
 
             self.data = data
@@ -98,7 +98,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                error = try container.decode(ServiceabilityrErrorResponse.self, forKey: .error)
+                error = try container.decode(ServiceabilityErrorResponse.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

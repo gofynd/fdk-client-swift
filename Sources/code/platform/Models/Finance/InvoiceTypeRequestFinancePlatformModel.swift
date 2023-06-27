@@ -4,26 +4,26 @@ import Foundation
 
 public extension PlatformClient.Finance {
     /*
-         Model: GetInvoiceListPayloadData
+         Model: InvoiceTypeRequest
          Used By: Finance
      */
 
-    class GetInvoiceListPayloadData: Codable {
-        public var isActive: Bool?
+    class InvoiceTypeRequest: Codable {
+        public var data: InvoiceTypePayloadData?
 
         public enum CodingKeys: String, CodingKey {
-            case isActive = "is_active"
+            case data
         }
 
-        public init(isActive: Bool? = nil) {
-            self.isActive = isActive
+        public init(data: InvoiceTypePayloadData? = nil) {
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                data = try container.decode(InvoiceTypePayloadData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -34,7 +34,7 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

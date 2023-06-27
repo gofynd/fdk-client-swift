@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class CommonError: Codable {
         public var statusCode: String?
 
-        public var success: String?
-
         public var error: [String: Any]?
+
+        public var success: String?
 
         public enum CodingKeys: String, CodingKey {
             case statusCode = "status_code"
 
-            case success
-
             case error
+
+            case success
         }
 
         public init(error: [String: Any]? = nil, statusCode: String? = nil, success: String? = nil) {
             self.statusCode = statusCode
 
-            self.success = success
-
             self.error = error
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                success = try container.decode(String.self, forKey: .success)
+                error = try container.decode([String: Any].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                error = try container.decode([String: Any].self, forKey: .error)
+                success = try container.decode(String.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class CommonError: Codable {
         public var statusCode: String?
 
-        public var success: String?
-
         public var error: [String: Any]?
+
+        public var success: String?
 
         public enum CodingKeys: String, CodingKey {
             case statusCode = "status_code"
 
-            case success
-
             case error
+
+            case success
         }
 
         public init(error: [String: Any]? = nil, statusCode: String? = nil, success: String? = nil) {
             self.statusCode = statusCode
 
-            self.success = success
-
             self.error = error
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                success = try container.decode(String.self, forKey: .success)
+                error = try container.decode([String: Any].self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                error = try container.decode([String: Any].self, forKey: .error)
+                success = try container.decode(String.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

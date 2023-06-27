@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var url: String?
 
-        public var dsType: String
-
         public var verified: Bool
+
+        public var dsType: String
 
         public var legalName: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case url
 
-            case dsType = "ds_type"
-
             case verified
+
+            case dsType = "ds_type"
 
             case legalName = "legal_name"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.url = url
 
-            self.dsType = dsType
-
             self.verified = verified
+
+            self.dsType = dsType
 
             self.legalName = legalName
         }
@@ -56,9 +56,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            dsType = try container.decode(String.self, forKey: .dsType)
-
             verified = try container.decode(Bool.self, forKey: .verified)
+
+            dsType = try container.decode(String.self, forKey: .dsType)
 
             legalName = try container.decode(String.self, forKey: .legalName)
         }
@@ -70,9 +70,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
-
             try? container.encodeIfPresent(verified, forKey: .verified)
+
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
         }
@@ -90,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var url: String?
 
-        public var dsType: String
-
         public var verified: Bool
+
+        public var dsType: String
 
         public var legalName: String
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case url
 
-            case dsType = "ds_type"
-
             case verified
+
+            case dsType = "ds_type"
 
             case legalName = "legal_name"
         }
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.url = url
 
-            self.dsType = dsType
-
             self.verified = verified
+
+            self.dsType = dsType
 
             self.legalName = legalName
         }
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            dsType = try container.decode(String.self, forKey: .dsType)
-
             verified = try container.decode(Bool.self, forKey: .verified)
+
+            dsType = try container.decode(String.self, forKey: .dsType)
 
             legalName = try container.decode(String.self, forKey: .legalName)
         }
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(dsType, forKey: .dsType)
-
             try? container.encodeIfPresent(verified, forKey: .verified)
+
+            try? container.encodeIfPresent(dsType, forKey: .dsType)
 
             try? container.encodeIfPresent(legalName, forKey: .legalName)
         }
