@@ -9,24 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class CollectionSchedule: Codable {
-        public var start: String?
-
         public var nextSchedule: [CollectionScheduleStartEnd]?
+
+        public var start: String?
 
         public var end: String?
 
         public enum CodingKeys: String, CodingKey {
-            case start
-
             case nextSchedule = "next_schedule"
+
+            case start
 
             case end
         }
 
         public init(end: String? = nil, nextSchedule: [CollectionScheduleStartEnd]? = nil, start: String? = nil) {
-            self.start = start
-
             self.nextSchedule = nextSchedule
+
+            self.start = start
 
             self.end = end
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                nextSchedule = try container.decode([CollectionScheduleStartEnd].self, forKey: .nextSchedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                nextSchedule = try container.decode([CollectionScheduleStartEnd].self, forKey: .nextSchedule)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(start, forKey: .start)
-
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(end, forKey: .end)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class CollectionSchedule: Codable {
-        public var start: String?
-
         public var nextSchedule: [CollectionScheduleStartEnd]?
+
+        public var start: String?
 
         public var end: String?
 
         public enum CodingKeys: String, CodingKey {
-            case start
-
             case nextSchedule = "next_schedule"
+
+            case start
 
             case end
         }
 
         public init(end: String? = nil, nextSchedule: [CollectionScheduleStartEnd]? = nil, start: String? = nil) {
-            self.start = start
-
             self.nextSchedule = nextSchedule
+
+            self.start = start
 
             self.end = end
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                nextSchedule = try container.decode([CollectionScheduleStartEnd].self, forKey: .nextSchedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                nextSchedule = try container.decode([CollectionScheduleStartEnd].self, forKey: .nextSchedule)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(start, forKey: .start)
-
             try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(end, forKey: .end)
         }

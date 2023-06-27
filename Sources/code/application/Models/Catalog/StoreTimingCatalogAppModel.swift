@@ -9,30 +9,30 @@ public extension ApplicationClient.Catalog {
     class StoreTiming: Codable {
         public var weekday: String?
 
+        public var open: Bool?
+
         public var closing: Time?
 
         public var opening: Time?
 
-        public var open: Bool?
-
         public enum CodingKeys: String, CodingKey {
             case weekday
+
+            case open
 
             case closing
 
             case opening
-
-            case open
         }
 
         public init(closing: Time? = nil, open: Bool? = nil, opening: Time? = nil, weekday: String? = nil) {
             self.weekday = weekday
 
+            self.open = open
+
             self.closing = closing
 
             self.opening = opening
-
-            self.open = open
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,6 +40,14 @@ public extension ApplicationClient.Catalog {
 
             do {
                 weekday = try container.decode(String.self, forKey: .weekday)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                open = try container.decode(Bool.self, forKey: .open)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,14 +69,6 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                open = try container.decode(Bool.self, forKey: .open)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -76,11 +76,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(weekday, forKey: .weekday)
 
+            try? container.encodeIfPresent(open, forKey: .open)
+
             try? container.encodeIfPresent(closing, forKey: .closing)
 
             try? container.encodeIfPresent(opening, forKey: .opening)
-
-            try? container.encodeIfPresent(open, forKey: .open)
         }
     }
 }

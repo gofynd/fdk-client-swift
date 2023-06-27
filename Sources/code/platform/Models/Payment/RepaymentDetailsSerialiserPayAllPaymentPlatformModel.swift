@@ -9,46 +9,42 @@ public extension PlatformClient.Payment {
      */
 
     class RepaymentDetailsSerialiserPayAll: Codable {
-        public var aggregatorTransactionId: String
-
-        public var aggregatorOrderId: String
-
         public var shipmentDetails: [RepaymentRequestDetails]?
-
-        public var extensionOrderId: String
 
         public var totalAmount: Double
 
+        public var aggregatorOrderId: String
+
+        public var extensionOrderId: String
+
+        public var aggregatorTransactionId: String
+
         public enum CodingKeys: String, CodingKey {
-            case aggregatorTransactionId = "aggregator_transaction_id"
+            case shipmentDetails = "shipment_details"
+
+            case totalAmount = "total_amount"
 
             case aggregatorOrderId = "aggregator_order_id"
 
-            case shipmentDetails = "shipment_details"
-
             case extensionOrderId = "extension_order_id"
 
-            case totalAmount = "total_amount"
+            case aggregatorTransactionId = "aggregator_transaction_id"
         }
 
         public init(aggregatorOrderId: String, aggregatorTransactionId: String, extensionOrderId: String, shipmentDetails: [RepaymentRequestDetails]? = nil, totalAmount: Double) {
-            self.aggregatorTransactionId = aggregatorTransactionId
+            self.shipmentDetails = shipmentDetails
+
+            self.totalAmount = totalAmount
 
             self.aggregatorOrderId = aggregatorOrderId
 
-            self.shipmentDetails = shipmentDetails
-
             self.extensionOrderId = extensionOrderId
 
-            self.totalAmount = totalAmount
+            self.aggregatorTransactionId = aggregatorTransactionId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            aggregatorTransactionId = try container.decode(String.self, forKey: .aggregatorTransactionId)
-
-            aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
 
             do {
                 shipmentDetails = try container.decode([RepaymentRequestDetails].self, forKey: .shipmentDetails)
@@ -58,23 +54,27 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            totalAmount = try container.decode(Double.self, forKey: .totalAmount)
+
+            aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
+
             extensionOrderId = try container.decode(String.self, forKey: .extensionOrderId)
 
-            totalAmount = try container.decode(Double.self, forKey: .totalAmount)
+            aggregatorTransactionId = try container.decode(String.self, forKey: .aggregatorTransactionId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(aggregatorTransactionId, forKey: .aggregatorTransactionId)
+            try? container.encodeIfPresent(shipmentDetails, forKey: .shipmentDetails)
+
+            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
 
             try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
 
-            try? container.encodeIfPresent(shipmentDetails, forKey: .shipmentDetails)
-
             try? container.encode(extensionOrderId, forKey: .extensionOrderId)
 
-            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
+            try? container.encodeIfPresent(aggregatorTransactionId, forKey: .aggregatorTransactionId)
         }
     }
 }
@@ -86,46 +86,42 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class RepaymentDetailsSerialiserPayAll: Codable {
-        public var aggregatorTransactionId: String
-
-        public var aggregatorOrderId: String
-
         public var shipmentDetails: [RepaymentRequestDetails]?
-
-        public var extensionOrderId: String
 
         public var totalAmount: Double
 
+        public var aggregatorOrderId: String
+
+        public var extensionOrderId: String
+
+        public var aggregatorTransactionId: String
+
         public enum CodingKeys: String, CodingKey {
-            case aggregatorTransactionId = "aggregator_transaction_id"
+            case shipmentDetails = "shipment_details"
+
+            case totalAmount = "total_amount"
 
             case aggregatorOrderId = "aggregator_order_id"
 
-            case shipmentDetails = "shipment_details"
-
             case extensionOrderId = "extension_order_id"
 
-            case totalAmount = "total_amount"
+            case aggregatorTransactionId = "aggregator_transaction_id"
         }
 
         public init(aggregatorOrderId: String, aggregatorTransactionId: String, extensionOrderId: String, shipmentDetails: [RepaymentRequestDetails]? = nil, totalAmount: Double) {
-            self.aggregatorTransactionId = aggregatorTransactionId
+            self.shipmentDetails = shipmentDetails
+
+            self.totalAmount = totalAmount
 
             self.aggregatorOrderId = aggregatorOrderId
 
-            self.shipmentDetails = shipmentDetails
-
             self.extensionOrderId = extensionOrderId
 
-            self.totalAmount = totalAmount
+            self.aggregatorTransactionId = aggregatorTransactionId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            aggregatorTransactionId = try container.decode(String.self, forKey: .aggregatorTransactionId)
-
-            aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
 
             do {
                 shipmentDetails = try container.decode([RepaymentRequestDetails].self, forKey: .shipmentDetails)
@@ -135,23 +131,27 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            totalAmount = try container.decode(Double.self, forKey: .totalAmount)
+
+            aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
+
             extensionOrderId = try container.decode(String.self, forKey: .extensionOrderId)
 
-            totalAmount = try container.decode(Double.self, forKey: .totalAmount)
+            aggregatorTransactionId = try container.decode(String.self, forKey: .aggregatorTransactionId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(aggregatorTransactionId, forKey: .aggregatorTransactionId)
+            try? container.encodeIfPresent(shipmentDetails, forKey: .shipmentDetails)
+
+            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
 
             try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
 
-            try? container.encodeIfPresent(shipmentDetails, forKey: .shipmentDetails)
-
             try? container.encode(extensionOrderId, forKey: .extensionOrderId)
 
-            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
+            try? container.encodeIfPresent(aggregatorTransactionId, forKey: .aggregatorTransactionId)
         }
     }
 }

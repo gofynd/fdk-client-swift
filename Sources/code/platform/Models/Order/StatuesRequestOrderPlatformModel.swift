@@ -11,8 +11,6 @@ public extension PlatformClient.Order {
     class StatuesRequest: Codable {
         public var status: String?
 
-        public var splitShipment: Bool?
-
         public var shipments: [ShipmentsRequest]?
 
         public var excludeBagsNextState: String?
@@ -20,17 +18,13 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case splitShipment = "split_shipment"
-
             case shipments
 
             case excludeBagsNextState = "exclude_bags_next_state"
         }
 
-        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, splitShipment: Bool? = nil, status: String? = nil) {
+        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
             self.status = status
-
-            self.splitShipment = splitShipment
 
             self.shipments = shipments
 
@@ -42,14 +36,6 @@ public extension PlatformClient.Order {
 
             do {
                 status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                splitShipment = try container.decode(Bool.self, forKey: .splitShipment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,8 +63,6 @@ public extension PlatformClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(splitShipment, forKey: .splitShipment)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 
@@ -96,8 +80,6 @@ public extension PlatformClient.ApplicationClient.Order {
     class StatuesRequest: Codable {
         public var status: String?
 
-        public var splitShipment: Bool?
-
         public var shipments: [ShipmentsRequest]?
 
         public var excludeBagsNextState: String?
@@ -105,17 +87,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case splitShipment = "split_shipment"
-
             case shipments
 
             case excludeBagsNextState = "exclude_bags_next_state"
         }
 
-        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, splitShipment: Bool? = nil, status: String? = nil) {
+        public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, status: String? = nil) {
             self.status = status
-
-            self.splitShipment = splitShipment
 
             self.shipments = shipments
 
@@ -127,14 +105,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 status = try container.decode(String.self, forKey: .status)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                splitShipment = try container.decode(Bool.self, forKey: .splitShipment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,8 +132,6 @@ public extension PlatformClient.ApplicationClient.Order {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(status, forKey: .status)
-
-            try? container.encodeIfPresent(splitShipment, forKey: .splitShipment)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
 

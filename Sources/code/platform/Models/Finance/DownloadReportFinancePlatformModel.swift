@@ -13,18 +13,18 @@ public extension PlatformClient.Finance {
 
         public var startDate: String?
 
-        public var page: Int?
-
         public var endDate: String?
+
+        public var page: Int?
 
         public enum CodingKeys: String, CodingKey {
             case pagesize
 
             case startDate = "start_date"
 
-            case page
-
             case endDate = "end_date"
+
+            case page
         }
 
         public init(endDate: String? = nil, page: Int? = nil, pagesize: Int? = nil, startDate: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Finance {
 
             self.startDate = startDate
 
-            self.page = page
-
             self.endDate = endDate
+
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                page = try container.decode(Int.self, forKey: .page)
+                endDate = try container.decode(String.self, forKey: .endDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                endDate = try container.decode(String.self, forKey: .endDate)
+                page = try container.decode(Int.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(startDate, forKey: .startDate)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(endDate, forKey: .endDate)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

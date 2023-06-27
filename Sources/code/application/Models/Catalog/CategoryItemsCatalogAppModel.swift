@@ -7,7 +7,11 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class CategoryItems: Codable {
+        public var action: ProductListingAction
+
         public var name: String
+
+        public var banners: CategoryBanner
 
         public var uid: Int
 
@@ -15,42 +19,42 @@ public extension ApplicationClient.Catalog {
 
         public var slug: String
 
-        public var action: ProductListingAction
-
-        public var banners: CategoryBanner
-
         public enum CodingKeys: String, CodingKey {
+            case action
+
             case name
+
+            case banners
 
             case uid
 
             case childs
 
             case slug
-
-            case action
-
-            case banners
         }
 
         public init(action: ProductListingAction, banners: CategoryBanner, childs: [Child]? = nil, name: String, slug: String, uid: Int) {
+            self.action = action
+
             self.name = name
+
+            self.banners = banners
 
             self.uid = uid
 
             self.childs = childs
 
             self.slug = slug
-
-            self.action = action
-
-            self.banners = banners
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            action = try container.decode(ProductListingAction.self, forKey: .action)
+
             name = try container.decode(String.self, forKey: .name)
+
+            banners = try container.decode(CategoryBanner.self, forKey: .banners)
 
             uid = try container.decode(Int.self, forKey: .uid)
 
@@ -63,26 +67,22 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             slug = try container.decode(String.self, forKey: .slug)
-
-            action = try container.decode(ProductListingAction.self, forKey: .action)
-
-            banners = try container.decode(CategoryBanner.self, forKey: .banners)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(action, forKey: .action)
+
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(childs, forKey: .childs)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
-
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(banners, forKey: .banners)
         }
     }
 }
