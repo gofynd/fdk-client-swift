@@ -11,13 +11,9 @@ public extension PlatformClient.Payment {
     class RootPaymentMode: Codable {
         public var name: String
 
-        public var anonymousEnable: Bool?
+        public var isPayByCardPl: Bool?
 
         public var list: [PaymentModeList]?
-
-        public var addCardEnabled: Bool?
-
-        public var isPayByCardPl: Bool?
 
         public var saveCard: Bool?
 
@@ -25,18 +21,18 @@ public extension PlatformClient.Payment {
 
         public var aggregatorName: String?
 
+        public var addCardEnabled: Bool?
+
         public var displayPriority: Int
+
+        public var anonymousEnable: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case anonymousEnable = "anonymous_enable"
+            case isPayByCardPl = "is_pay_by_card_pl"
 
             case list
-
-            case addCardEnabled = "add_card_enabled"
-
-            case isPayByCardPl = "is_pay_by_card_pl"
 
             case saveCard = "save_card"
 
@@ -44,19 +40,19 @@ public extension PlatformClient.Payment {
 
             case aggregatorName = "aggregator_name"
 
+            case addCardEnabled = "add_card_enabled"
+
             case displayPriority = "display_priority"
+
+            case anonymousEnable = "anonymous_enable"
         }
 
         public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, name: String, saveCard: Bool? = nil) {
             self.name = name
 
-            self.anonymousEnable = anonymousEnable
+            self.isPayByCardPl = isPayByCardPl
 
             self.list = list
-
-            self.addCardEnabled = addCardEnabled
-
-            self.isPayByCardPl = isPayByCardPl
 
             self.saveCard = saveCard
 
@@ -64,7 +60,11 @@ public extension PlatformClient.Payment {
 
             self.aggregatorName = aggregatorName
 
+            self.addCardEnabled = addCardEnabled
+
             self.displayPriority = displayPriority
+
+            self.anonymousEnable = anonymousEnable
         }
 
         required public init(from decoder: Decoder) throws {
@@ -73,7 +73,7 @@ public extension PlatformClient.Payment {
             name = try container.decode(String.self, forKey: .name)
 
             do {
-                anonymousEnable = try container.decode(Bool.self, forKey: .anonymousEnable)
+                isPayByCardPl = try container.decode(Bool.self, forKey: .isPayByCardPl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,22 +82,6 @@ public extension PlatformClient.Payment {
 
             do {
                 list = try container.decode([PaymentModeList].self, forKey: .list)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                addCardEnabled = try container.decode(Bool.self, forKey: .addCardEnabled)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isPayByCardPl = try container.decode(Bool.self, forKey: .isPayByCardPl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +106,23 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                addCardEnabled = try container.decode(Bool.self, forKey: .addCardEnabled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             displayPriority = try container.decode(Int.self, forKey: .displayPriority)
+
+            do {
+                anonymousEnable = try container.decode(Bool.self, forKey: .anonymousEnable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -130,13 +130,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encode(anonymousEnable, forKey: .anonymousEnable)
+            try? container.encode(isPayByCardPl, forKey: .isPayByCardPl)
 
             try? container.encodeIfPresent(list, forKey: .list)
-
-            try? container.encode(addCardEnabled, forKey: .addCardEnabled)
-
-            try? container.encode(isPayByCardPl, forKey: .isPayByCardPl)
 
             try? container.encode(saveCard, forKey: .saveCard)
 
@@ -144,7 +140,11 @@ public extension PlatformClient.Payment {
 
             try? container.encode(aggregatorName, forKey: .aggregatorName)
 
+            try? container.encode(addCardEnabled, forKey: .addCardEnabled)
+
             try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
+
+            try? container.encode(anonymousEnable, forKey: .anonymousEnable)
         }
     }
 }
@@ -158,13 +158,9 @@ public extension PlatformClient.ApplicationClient.Payment {
     class RootPaymentMode: Codable {
         public var name: String
 
-        public var anonymousEnable: Bool?
+        public var isPayByCardPl: Bool?
 
         public var list: [PaymentModeList]?
-
-        public var addCardEnabled: Bool?
-
-        public var isPayByCardPl: Bool?
 
         public var saveCard: Bool?
 
@@ -172,18 +168,18 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var aggregatorName: String?
 
+        public var addCardEnabled: Bool?
+
         public var displayPriority: Int
+
+        public var anonymousEnable: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
-            case anonymousEnable = "anonymous_enable"
+            case isPayByCardPl = "is_pay_by_card_pl"
 
             case list
-
-            case addCardEnabled = "add_card_enabled"
-
-            case isPayByCardPl = "is_pay_by_card_pl"
 
             case saveCard = "save_card"
 
@@ -191,19 +187,19 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case aggregatorName = "aggregator_name"
 
+            case addCardEnabled = "add_card_enabled"
+
             case displayPriority = "display_priority"
+
+            case anonymousEnable = "anonymous_enable"
         }
 
         public init(addCardEnabled: Bool? = nil, aggregatorName: String? = nil, anonymousEnable: Bool? = nil, displayName: String, displayPriority: Int, isPayByCardPl: Bool? = nil, list: [PaymentModeList]? = nil, name: String, saveCard: Bool? = nil) {
             self.name = name
 
-            self.anonymousEnable = anonymousEnable
+            self.isPayByCardPl = isPayByCardPl
 
             self.list = list
-
-            self.addCardEnabled = addCardEnabled
-
-            self.isPayByCardPl = isPayByCardPl
 
             self.saveCard = saveCard
 
@@ -211,7 +207,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.aggregatorName = aggregatorName
 
+            self.addCardEnabled = addCardEnabled
+
             self.displayPriority = displayPriority
+
+            self.anonymousEnable = anonymousEnable
         }
 
         required public init(from decoder: Decoder) throws {
@@ -220,7 +220,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             name = try container.decode(String.self, forKey: .name)
 
             do {
-                anonymousEnable = try container.decode(Bool.self, forKey: .anonymousEnable)
+                isPayByCardPl = try container.decode(Bool.self, forKey: .isPayByCardPl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -229,22 +229,6 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             do {
                 list = try container.decode([PaymentModeList].self, forKey: .list)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                addCardEnabled = try container.decode(Bool.self, forKey: .addCardEnabled)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isPayByCardPl = try container.decode(Bool.self, forKey: .isPayByCardPl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -269,7 +253,23 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                addCardEnabled = try container.decode(Bool.self, forKey: .addCardEnabled)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             displayPriority = try container.decode(Int.self, forKey: .displayPriority)
+
+            do {
+                anonymousEnable = try container.decode(Bool.self, forKey: .anonymousEnable)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -277,13 +277,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encode(anonymousEnable, forKey: .anonymousEnable)
+            try? container.encode(isPayByCardPl, forKey: .isPayByCardPl)
 
             try? container.encodeIfPresent(list, forKey: .list)
-
-            try? container.encode(addCardEnabled, forKey: .addCardEnabled)
-
-            try? container.encode(isPayByCardPl, forKey: .isPayByCardPl)
 
             try? container.encode(saveCard, forKey: .saveCard)
 
@@ -291,7 +287,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(aggregatorName, forKey: .aggregatorName)
 
+            try? container.encode(addCardEnabled, forKey: .addCardEnabled)
+
             try? container.encodeIfPresent(displayPriority, forKey: .displayPriority)
+
+            try? container.encode(anonymousEnable, forKey: .anonymousEnable)
         }
     }
 }
