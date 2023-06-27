@@ -11,26 +11,36 @@ public extension PlatformClient.Order {
     class Filters: Codable {
         public var dpName: String?
 
+        public var dateRange: DateRange?
+
+        public var storeName: String?
+
+        public var selectedShipments: String?
+
+        public var dpIds: Int?
+
+        public var logo: String?
+
         public var fromDate: String?
 
         public var stores: Int?
 
         public var toDate: String?
 
-        public var storeName: String?
-
         public var lane: String?
-
-        public var logo: String?
-
-        public var dateRange: DateRange?
-
-        public var selectedShipments: String?
-
-        public var dpIds: Int?
 
         public enum CodingKeys: String, CodingKey {
             case dpName = "dp_name"
+
+            case dateRange = "date_range"
+
+            case storeName = "store_name"
+
+            case selectedShipments = "selected_shipments"
+
+            case dpIds = "dp_ids"
+
+            case logo
 
             case fromDate = "from_date"
 
@@ -38,21 +48,21 @@ public extension PlatformClient.Order {
 
             case toDate = "to_date"
 
-            case storeName = "store_name"
-
             case lane
-
-            case logo
-
-            case dateRange = "date_range"
-
-            case selectedShipments = "selected_shipments"
-
-            case dpIds = "dp_ids"
         }
 
         public init(dateRange: DateRange? = nil, dpIds: Int? = nil, dpName: String? = nil, fromDate: String? = nil, lane: String? = nil, logo: String? = nil, selectedShipments: String? = nil, stores: Int? = nil, storeName: String? = nil, toDate: String? = nil) {
             self.dpName = dpName
+
+            self.dateRange = dateRange
+
+            self.storeName = storeName
+
+            self.selectedShipments = selectedShipments
+
+            self.dpIds = dpIds
+
+            self.logo = logo
 
             self.fromDate = fromDate
 
@@ -60,17 +70,7 @@ public extension PlatformClient.Order {
 
             self.toDate = toDate
 
-            self.storeName = storeName
-
             self.lane = lane
-
-            self.logo = logo
-
-            self.dateRange = dateRange
-
-            self.selectedShipments = selectedShipments
-
-            self.dpIds = dpIds
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,6 +78,46 @@ public extension PlatformClient.Order {
 
             do {
                 dpName = try container.decode(String.self, forKey: .dpName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dateRange = try container.decode(DateRange.self, forKey: .dateRange)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeName = try container.decode(String.self, forKey: .storeName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                selectedShipments = try container.decode(String.self, forKey: .selectedShipments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dpIds = try container.decode(Int.self, forKey: .dpIds)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,47 +149,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                storeName = try container.decode(String.self, forKey: .storeName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 lane = try container.decode(String.self, forKey: .lane)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dateRange = try container.decode(DateRange.self, forKey: .dateRange)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                selectedShipments = try container.decode(String.self, forKey: .selectedShipments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dpIds = try container.decode(Int.self, forKey: .dpIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -162,23 +162,23 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(dpName, forKey: .dpName)
 
+            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
+
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
+
+            try? container.encodeIfPresent(selectedShipments, forKey: .selectedShipments)
+
+            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
 
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
-
             try? container.encodeIfPresent(lane, forKey: .lane)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
-
-            try? container.encodeIfPresent(selectedShipments, forKey: .selectedShipments)
-
-            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
         }
     }
 }
@@ -192,26 +192,36 @@ public extension PlatformClient.ApplicationClient.Order {
     class Filters: Codable {
         public var dpName: String?
 
+        public var dateRange: DateRange?
+
+        public var storeName: String?
+
+        public var selectedShipments: String?
+
+        public var dpIds: Int?
+
+        public var logo: String?
+
         public var fromDate: String?
 
         public var stores: Int?
 
         public var toDate: String?
 
-        public var storeName: String?
-
         public var lane: String?
-
-        public var logo: String?
-
-        public var dateRange: DateRange?
-
-        public var selectedShipments: String?
-
-        public var dpIds: Int?
 
         public enum CodingKeys: String, CodingKey {
             case dpName = "dp_name"
+
+            case dateRange = "date_range"
+
+            case storeName = "store_name"
+
+            case selectedShipments = "selected_shipments"
+
+            case dpIds = "dp_ids"
+
+            case logo
 
             case fromDate = "from_date"
 
@@ -219,21 +229,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case toDate = "to_date"
 
-            case storeName = "store_name"
-
             case lane
-
-            case logo
-
-            case dateRange = "date_range"
-
-            case selectedShipments = "selected_shipments"
-
-            case dpIds = "dp_ids"
         }
 
         public init(dateRange: DateRange? = nil, dpIds: Int? = nil, dpName: String? = nil, fromDate: String? = nil, lane: String? = nil, logo: String? = nil, selectedShipments: String? = nil, stores: Int? = nil, storeName: String? = nil, toDate: String? = nil) {
             self.dpName = dpName
+
+            self.dateRange = dateRange
+
+            self.storeName = storeName
+
+            self.selectedShipments = selectedShipments
+
+            self.dpIds = dpIds
+
+            self.logo = logo
 
             self.fromDate = fromDate
 
@@ -241,17 +251,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.toDate = toDate
 
-            self.storeName = storeName
-
             self.lane = lane
-
-            self.logo = logo
-
-            self.dateRange = dateRange
-
-            self.selectedShipments = selectedShipments
-
-            self.dpIds = dpIds
         }
 
         required public init(from decoder: Decoder) throws {
@@ -259,6 +259,46 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 dpName = try container.decode(String.self, forKey: .dpName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dateRange = try container.decode(DateRange.self, forKey: .dateRange)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeName = try container.decode(String.self, forKey: .storeName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                selectedShipments = try container.decode(String.self, forKey: .selectedShipments)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dpIds = try container.decode(Int.self, forKey: .dpIds)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -290,47 +330,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                storeName = try container.decode(String.self, forKey: .storeName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 lane = try container.decode(String.self, forKey: .lane)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                logo = try container.decode(String.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dateRange = try container.decode(DateRange.self, forKey: .dateRange)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                selectedShipments = try container.decode(String.self, forKey: .selectedShipments)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dpIds = try container.decode(Int.self, forKey: .dpIds)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -343,23 +343,23 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(dpName, forKey: .dpName)
 
+            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
+
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
+
+            try? container.encodeIfPresent(selectedShipments, forKey: .selectedShipments)
+
+            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
             try? container.encodeIfPresent(toDate, forKey: .toDate)
 
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
-
             try? container.encodeIfPresent(lane, forKey: .lane)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
-
-            try? container.encodeIfPresent(selectedShipments, forKey: .selectedShipments)
-
-            try? container.encodeIfPresent(dpIds, forKey: .dpIds)
         }
     }
 }

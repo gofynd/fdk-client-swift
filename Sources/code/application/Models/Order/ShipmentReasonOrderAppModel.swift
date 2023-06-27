@@ -7,42 +7,42 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class ShipmentReason: Codable {
-        public var flow: String?
+        public var reasonId: Int?
+
+        public var showTextArea: Bool?
 
         public var reasonText: String?
 
-        public var reasonId: Int?
+        public var flow: String?
 
         public var priority: Int?
-
-        public var showTextArea: Bool?
 
         public var feedbackType: String?
 
         public enum CodingKeys: String, CodingKey {
-            case flow
+            case reasonId = "reason_id"
+
+            case showTextArea = "show_text_area"
 
             case reasonText = "reason_text"
 
-            case reasonId = "reason_id"
+            case flow
 
             case priority
-
-            case showTextArea = "show_text_area"
 
             case feedbackType = "feedback_type"
         }
 
         public init(feedbackType: String? = nil, flow: String? = nil, priority: Int? = nil, reasonId: Int? = nil, reasonText: String? = nil, showTextArea: Bool? = nil) {
-            self.flow = flow
+            self.reasonId = reasonId
+
+            self.showTextArea = showTextArea
 
             self.reasonText = reasonText
 
-            self.reasonId = reasonId
+            self.flow = flow
 
             self.priority = priority
-
-            self.showTextArea = showTextArea
 
             self.feedbackType = feedbackType
         }
@@ -51,7 +51,15 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                flow = try container.decode(String.self, forKey: .flow)
+                reasonId = try container.decode(Int.self, forKey: .reasonId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +75,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                reasonId = try container.decode(Int.self, forKey: .reasonId)
+                flow = try container.decode(String.self, forKey: .flow)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,14 +84,6 @@ public extension ApplicationClient.Order {
 
             do {
                 priority = try container.decode(Int.self, forKey: .priority)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,15 +102,15 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(flow, forKey: .flow)
+            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
+
+            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
 
             try? container.encodeIfPresent(reasonText, forKey: .reasonText)
 
-            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
+            try? container.encodeIfPresent(flow, forKey: .flow)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
-
-            try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
 
             try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
         }

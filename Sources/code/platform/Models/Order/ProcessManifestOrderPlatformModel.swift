@@ -11,36 +11,38 @@ public extension PlatformClient.Order {
     class ProcessManifest: Codable {
         public var filters: FiltersRequest
 
+        public var action: String
+
         public var manifestId: String?
 
         public var uniqueId: String
 
-        public var action: String
-
         public enum CodingKeys: String, CodingKey {
             case filters
+
+            case action
 
             case manifestId = "manifest_id"
 
             case uniqueId = "unique_id"
-
-            case action
         }
 
         public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
             self.filters = filters
 
+            self.action = action
+
             self.manifestId = manifestId
 
             self.uniqueId = uniqueId
-
-            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             filters = try container.decode(FiltersRequest.self, forKey: .filters)
+
+            action = try container.decode(String.self, forKey: .action)
 
             do {
                 manifestId = try container.decode(String.self, forKey: .manifestId)
@@ -51,8 +53,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             uniqueId = try container.decode(String.self, forKey: .uniqueId)
-
-            action = try container.decode(String.self, forKey: .action)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -60,11 +60,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
+            try? container.encodeIfPresent(action, forKey: .action)
+
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
             try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
-
-            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }
@@ -78,36 +78,38 @@ public extension PlatformClient.ApplicationClient.Order {
     class ProcessManifest: Codable {
         public var filters: FiltersRequest
 
+        public var action: String
+
         public var manifestId: String?
 
         public var uniqueId: String
 
-        public var action: String
-
         public enum CodingKeys: String, CodingKey {
             case filters
+
+            case action
 
             case manifestId = "manifest_id"
 
             case uniqueId = "unique_id"
-
-            case action
         }
 
         public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
             self.filters = filters
 
+            self.action = action
+
             self.manifestId = manifestId
 
             self.uniqueId = uniqueId
-
-            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             filters = try container.decode(FiltersRequest.self, forKey: .filters)
+
+            action = try container.decode(String.self, forKey: .action)
 
             do {
                 manifestId = try container.decode(String.self, forKey: .manifestId)
@@ -118,8 +120,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             uniqueId = try container.decode(String.self, forKey: .uniqueId)
-
-            action = try container.decode(String.self, forKey: .action)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
+            try? container.encodeIfPresent(action, forKey: .action)
+
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
             try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
-
-            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

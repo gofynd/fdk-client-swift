@@ -9,45 +9,45 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PaymentMethod: Codable {
-        public var name: String?
+        public var payment: String?
 
         public var mode: String
 
-        public var payment: String?
+        public var paymentMeta: PaymentMeta
+
+        public var name: String?
 
         public var amount: Double?
 
-        public var paymentMeta: PaymentMeta
-
         public enum CodingKeys: String, CodingKey {
-            case name
+            case payment
 
             case mode
 
-            case payment
+            case paymentMeta = "payment_meta"
+
+            case name
 
             case amount
-
-            case paymentMeta = "payment_meta"
         }
 
         public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentMeta: PaymentMeta) {
-            self.name = name
+            self.payment = payment
 
             self.mode = mode
 
-            self.payment = payment
+            self.paymentMeta = paymentMeta
+
+            self.name = name
 
             self.amount = amount
-
-            self.paymentMeta = paymentMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                payment = try container.decode(String.self, forKey: .payment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,8 +56,10 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             mode = try container.decode(String.self, forKey: .mode)
 
+            paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
+
             do {
-                payment = try container.decode(String.self, forKey: .payment)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,22 +73,20 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(payment, forKey: .payment)
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(payment, forKey: .payment)
+            try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encode(amount, forKey: .amount)
-
-            try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
         }
     }
 }

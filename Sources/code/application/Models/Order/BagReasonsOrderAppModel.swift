@@ -9,7 +9,7 @@ public extension ApplicationClient.Order {
     class BagReasons: Codable {
         public var qcType: [String]?
 
-        public var meta: BagReasonMeta?
+        public var id: Int?
 
         public var questionSet: [QuestionSet]?
 
@@ -17,12 +17,12 @@ public extension ApplicationClient.Order {
 
         public var reasons: [BagReasons]?
 
-        public var id: Int?
+        public var meta: BagReasonMeta?
 
         public enum CodingKeys: String, CodingKey {
             case qcType = "qc_type"
 
-            case meta
+            case id
 
             case questionSet = "question_set"
 
@@ -30,13 +30,13 @@ public extension ApplicationClient.Order {
 
             case reasons
 
-            case id
+            case meta
         }
 
         public init(displayName: String? = nil, id: Int? = nil, meta: BagReasonMeta? = nil, qcType: [String]? = nil, questionSet: [QuestionSet]? = nil, reasons: [BagReasons]? = nil) {
             self.qcType = qcType
 
-            self.meta = meta
+            self.id = id
 
             self.questionSet = questionSet
 
@@ -44,7 +44,7 @@ public extension ApplicationClient.Order {
 
             self.reasons = reasons
 
-            self.id = id
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -59,7 +59,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                meta = try container.decode(BagReasonMeta.self, forKey: .meta)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                meta = try container.decode(BagReasonMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(qcType, forKey: .qcType)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(questionSet, forKey: .questionSet)
 
@@ -112,7 +112,7 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(reasons, forKey: .reasons)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

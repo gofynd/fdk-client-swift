@@ -9,108 +9,92 @@ public extension PlatformClient.Order {
      */
 
     class Manifest: Codable {
-        public var manifestId: String
-
         public var uid: String
-
-        public var companyId: Int
-
-        public var meta: ManifestMeta?
 
         public var userId: String
 
-        public var filters: Filters?
-
-        public var pdfMeta: PDFMeta?
-
-        public var isActive: Bool
-
-        public var createdBy: String
-
-        public var status: String
+        public var companyId: Int
 
         public var createdAt: String
 
+        public var pdfMeta: PDFMeta?
+
+        public var meta: ManifestMeta?
+
+        public var status: String
+
         public var id: Int
 
+        public var createdBy: String
+
+        public var filters: Filters?
+
+        public var manifestId: String
+
+        public var isActive: Bool
+
         public enum CodingKeys: String, CodingKey {
-            case manifestId = "manifest_id"
-
             case uid
-
-            case companyId = "company_id"
-
-            case meta
 
             case userId = "user_id"
 
-            case filters
-
-            case pdfMeta = "pdf_meta"
-
-            case isActive = "is_active"
-
-            case createdBy = "created_by"
-
-            case status
+            case companyId = "company_id"
 
             case createdAt = "created_at"
 
+            case pdfMeta = "pdf_meta"
+
+            case meta
+
+            case status
+
             case id
+
+            case createdBy = "created_by"
+
+            case filters
+
+            case manifestId = "manifest_id"
+
+            case isActive = "is_active"
         }
 
         public init(companyId: Int, createdAt: String, createdBy: String, filters: Filters? = nil, id: Int, isActive: Bool, manifestId: String, meta: ManifestMeta? = nil, pdfMeta: PDFMeta? = nil, status: String, uid: String, userId: String) {
-            self.manifestId = manifestId
-
             self.uid = uid
-
-            self.companyId = companyId
-
-            self.meta = meta
 
             self.userId = userId
 
-            self.filters = filters
-
-            self.pdfMeta = pdfMeta
-
-            self.isActive = isActive
-
-            self.createdBy = createdBy
-
-            self.status = status
+            self.companyId = companyId
 
             self.createdAt = createdAt
 
+            self.pdfMeta = pdfMeta
+
+            self.meta = meta
+
+            self.status = status
+
             self.id = id
+
+            self.createdBy = createdBy
+
+            self.filters = filters
+
+            self.manifestId = manifestId
+
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            manifestId = try container.decode(String.self, forKey: .manifestId)
-
             uid = try container.decode(String.self, forKey: .uid)
-
-            companyId = try container.decode(Int.self, forKey: .companyId)
-
-            do {
-                meta = try container.decode(ManifestMeta.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             userId = try container.decode(String.self, forKey: .userId)
 
-            do {
-                filters = try container.decode(Filters.self, forKey: .filters)
+            companyId = try container.decode(Int.self, forKey: .companyId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            createdAt = try container.decode(String.self, forKey: .createdAt)
 
             do {
                 pdfMeta = try container.decode(PDFMeta.self, forKey: .pdfMeta)
@@ -120,43 +104,59 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            do {
+                meta = try container.decode(ManifestMeta.self, forKey: .meta)
 
-            createdBy = try container.decode(String.self, forKey: .createdBy)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             status = try container.decode(String.self, forKey: .status)
 
-            createdAt = try container.decode(String.self, forKey: .createdAt)
-
             id = try container.decode(Int.self, forKey: .id)
+
+            createdBy = try container.decode(String.self, forKey: .createdBy)
+
+            do {
+                filters = try container.decode(Filters.self, forKey: .filters)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            manifestId = try container.decode(String.self, forKey: .manifestId)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(pdfMeta, forKey: .pdfMeta)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
+            try? container.encodeIfPresent(pdfMeta, forKey: .pdfMeta)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }
@@ -168,108 +168,92 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Manifest: Codable {
-        public var manifestId: String
-
         public var uid: String
-
-        public var companyId: Int
-
-        public var meta: ManifestMeta?
 
         public var userId: String
 
-        public var filters: Filters?
-
-        public var pdfMeta: PDFMeta?
-
-        public var isActive: Bool
-
-        public var createdBy: String
-
-        public var status: String
+        public var companyId: Int
 
         public var createdAt: String
 
+        public var pdfMeta: PDFMeta?
+
+        public var meta: ManifestMeta?
+
+        public var status: String
+
         public var id: Int
 
+        public var createdBy: String
+
+        public var filters: Filters?
+
+        public var manifestId: String
+
+        public var isActive: Bool
+
         public enum CodingKeys: String, CodingKey {
-            case manifestId = "manifest_id"
-
             case uid
-
-            case companyId = "company_id"
-
-            case meta
 
             case userId = "user_id"
 
-            case filters
-
-            case pdfMeta = "pdf_meta"
-
-            case isActive = "is_active"
-
-            case createdBy = "created_by"
-
-            case status
+            case companyId = "company_id"
 
             case createdAt = "created_at"
 
+            case pdfMeta = "pdf_meta"
+
+            case meta
+
+            case status
+
             case id
+
+            case createdBy = "created_by"
+
+            case filters
+
+            case manifestId = "manifest_id"
+
+            case isActive = "is_active"
         }
 
         public init(companyId: Int, createdAt: String, createdBy: String, filters: Filters? = nil, id: Int, isActive: Bool, manifestId: String, meta: ManifestMeta? = nil, pdfMeta: PDFMeta? = nil, status: String, uid: String, userId: String) {
-            self.manifestId = manifestId
-
             self.uid = uid
-
-            self.companyId = companyId
-
-            self.meta = meta
 
             self.userId = userId
 
-            self.filters = filters
-
-            self.pdfMeta = pdfMeta
-
-            self.isActive = isActive
-
-            self.createdBy = createdBy
-
-            self.status = status
+            self.companyId = companyId
 
             self.createdAt = createdAt
 
+            self.pdfMeta = pdfMeta
+
+            self.meta = meta
+
+            self.status = status
+
             self.id = id
+
+            self.createdBy = createdBy
+
+            self.filters = filters
+
+            self.manifestId = manifestId
+
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            manifestId = try container.decode(String.self, forKey: .manifestId)
-
             uid = try container.decode(String.self, forKey: .uid)
-
-            companyId = try container.decode(Int.self, forKey: .companyId)
-
-            do {
-                meta = try container.decode(ManifestMeta.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             userId = try container.decode(String.self, forKey: .userId)
 
-            do {
-                filters = try container.decode(Filters.self, forKey: .filters)
+            companyId = try container.decode(Int.self, forKey: .companyId)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            createdAt = try container.decode(String.self, forKey: .createdAt)
 
             do {
                 pdfMeta = try container.decode(PDFMeta.self, forKey: .pdfMeta)
@@ -279,43 +263,59 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
+            do {
+                meta = try container.decode(ManifestMeta.self, forKey: .meta)
 
-            createdBy = try container.decode(String.self, forKey: .createdBy)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             status = try container.decode(String.self, forKey: .status)
 
-            createdAt = try container.decode(String.self, forKey: .createdAt)
-
             id = try container.decode(Int.self, forKey: .id)
+
+            createdBy = try container.decode(String.self, forKey: .createdBy)
+
+            do {
+                filters = try container.decode(Filters.self, forKey: .filters)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            manifestId = try container.decode(String.self, forKey: .manifestId)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
-            try? container.encodeIfPresent(pdfMeta, forKey: .pdfMeta)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
-
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
 
+            try? container.encodeIfPresent(pdfMeta, forKey: .pdfMeta)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encodeIfPresent(status, forKey: .status)
+
             try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }
