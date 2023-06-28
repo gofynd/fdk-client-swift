@@ -9,33 +9,33 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentDetails: Codable {
-        public var lockMessage: String?
+        public var lockStatus: Bool?
 
         public var actionToStatus: [String: Any]?
 
-        public var lockStatus: Bool?
+        public var lockMessage: String?
 
         public enum CodingKeys: String, CodingKey {
-            case lockMessage = "lock_message"
+            case lockStatus = "lock_status"
 
             case actionToStatus = "action_to_status"
 
-            case lockStatus = "lock_status"
+            case lockMessage = "lock_message"
         }
 
         public init(actionToStatus: [String: Any]? = nil, lockMessage: String? = nil, lockStatus: Bool? = nil) {
-            self.lockMessage = lockMessage
+            self.lockStatus = lockStatus
 
             self.actionToStatus = actionToStatus
 
-            self.lockStatus = lockStatus
+            self.lockMessage = lockMessage
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
+                lockMessage = try container.decode(String.self, forKey: .lockMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
+            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
 
             try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
 
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
         }
     }
 }
@@ -78,33 +78,33 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentDetails: Codable {
-        public var lockMessage: String?
+        public var lockStatus: Bool?
 
         public var actionToStatus: [String: Any]?
 
-        public var lockStatus: Bool?
+        public var lockMessage: String?
 
         public enum CodingKeys: String, CodingKey {
-            case lockMessage = "lock_message"
+            case lockStatus = "lock_status"
 
             case actionToStatus = "action_to_status"
 
-            case lockStatus = "lock_status"
+            case lockMessage = "lock_message"
         }
 
         public init(actionToStatus: [String: Any]? = nil, lockMessage: String? = nil, lockStatus: Bool? = nil) {
-            self.lockMessage = lockMessage
+            self.lockStatus = lockStatus
 
             self.actionToStatus = actionToStatus
 
-            self.lockStatus = lockStatus
+            self.lockMessage = lockMessage
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
+                lockMessage = try container.decode(String.self, forKey: .lockMessage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
+            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
 
             try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
 
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
         }
     }
 }

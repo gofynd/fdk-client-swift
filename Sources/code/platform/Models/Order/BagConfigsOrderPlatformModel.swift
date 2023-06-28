@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class BagConfigs: Codable {
         public var canBeCancelled: Bool
 
-        public var isActive: Bool
-
         public var allowForceReturn: Bool
+
+        public var isActive: Bool
 
         public var enableTracking: Bool
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case canBeCancelled = "can_be_cancelled"
 
-            case isActive = "is_active"
-
             case allowForceReturn = "allow_force_return"
+
+            case isActive = "is_active"
 
             case enableTracking = "enable_tracking"
 
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
         public init(allowForceReturn: Bool, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
             self.canBeCancelled = canBeCancelled
 
-            self.isActive = isActive
-
             self.allowForceReturn = allowForceReturn
+
+            self.isActive = isActive
 
             self.enableTracking = enableTracking
 
@@ -54,9 +54,9 @@ public extension PlatformClient.Order {
 
             canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
 
@@ -70,9 +70,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
 
@@ -92,9 +92,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class BagConfigs: Codable {
         public var canBeCancelled: Bool
 
-        public var isActive: Bool
-
         public var allowForceReturn: Bool
+
+        public var isActive: Bool
 
         public var enableTracking: Bool
 
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case canBeCancelled = "can_be_cancelled"
 
-            case isActive = "is_active"
-
             case allowForceReturn = "allow_force_return"
+
+            case isActive = "is_active"
 
             case enableTracking = "enable_tracking"
 
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(allowForceReturn: Bool, canBeCancelled: Bool, enableTracking: Bool, isActive: Bool, isCustomerReturnAllowed: Bool, isReturnable: Bool) {
             self.canBeCancelled = canBeCancelled
 
-            self.isActive = isActive
-
             self.allowForceReturn = allowForceReturn
+
+            self.isActive = isActive
 
             self.enableTracking = enableTracking
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             canBeCancelled = try container.decode(Bool.self, forKey: .canBeCancelled)
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
             allowForceReturn = try container.decode(Bool.self, forKey: .allowForceReturn)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             enableTracking = try container.decode(Bool.self, forKey: .enableTracking)
 
@@ -151,9 +151,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(canBeCancelled, forKey: .canBeCancelled)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(allowForceReturn, forKey: .allowForceReturn)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(enableTracking, forKey: .enableTracking)
 

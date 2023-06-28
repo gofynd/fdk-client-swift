@@ -11,36 +11,36 @@ public extension PlatformClient.Catalog {
     class DimensionResponse: Codable {
         public var unit: String
 
-        public var isDefault: Bool
-
         public var length: Double
 
-        public var width: Double
-
         public var height: Double
+
+        public var isDefault: Bool
+
+        public var width: Double
 
         public enum CodingKeys: String, CodingKey {
             case unit
 
-            case isDefault = "is_default"
-
             case length
 
-            case width
-
             case height
+
+            case isDefault = "is_default"
+
+            case width
         }
 
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.unit = unit
 
-            self.isDefault = isDefault
-
             self.length = length
 
-            self.width = width
-
             self.height = height
+
+            self.isDefault = isDefault
+
+            self.width = width
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,13 +48,13 @@ public extension PlatformClient.Catalog {
 
             unit = try container.decode(String.self, forKey: .unit)
 
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
-
             length = try container.decode(Double.self, forKey: .length)
 
-            width = try container.decode(Double.self, forKey: .width)
-
             height = try container.decode(Double.self, forKey: .height)
+
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            width = try container.decode(Double.self, forKey: .width)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,13 +62,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
             try? container.encodeIfPresent(length, forKey: .length)
 
-            try? container.encodeIfPresent(width, forKey: .width)
-
             try? container.encodeIfPresent(height, forKey: .height)
+
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(width, forKey: .width)
         }
     }
 }
@@ -82,36 +82,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class DimensionResponse: Codable {
         public var unit: String
 
-        public var isDefault: Bool
-
         public var length: Double
 
-        public var width: Double
-
         public var height: Double
+
+        public var isDefault: Bool
+
+        public var width: Double
 
         public enum CodingKeys: String, CodingKey {
             case unit
 
-            case isDefault = "is_default"
-
             case length
 
-            case width
-
             case height
+
+            case isDefault = "is_default"
+
+            case width
         }
 
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.unit = unit
 
-            self.isDefault = isDefault
-
             self.length = length
 
-            self.width = width
-
             self.height = height
+
+            self.isDefault = isDefault
+
+            self.width = width
         }
 
         required public init(from decoder: Decoder) throws {
@@ -119,13 +119,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             unit = try container.decode(String.self, forKey: .unit)
 
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
-
             length = try container.decode(Double.self, forKey: .length)
 
-            width = try container.decode(Double.self, forKey: .width)
-
             height = try container.decode(Double.self, forKey: .height)
+
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
+            width = try container.decode(Double.self, forKey: .width)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -133,13 +133,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
             try? container.encodeIfPresent(length, forKey: .length)
 
-            try? container.encodeIfPresent(width, forKey: .width)
-
             try? container.encodeIfPresent(height, forKey: .height)
+
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
+            try? container.encodeIfPresent(width, forKey: .width)
         }
     }
 }

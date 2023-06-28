@@ -9,42 +9,42 @@ public extension PlatformClient.Order {
      */
 
     class OrderConfig: Codable {
-        public var storeLookup: String?
-
-        public var articleLookup: String?
+        public var bagEndState: String?
 
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
-        public var affiliate: Affiliate
+        public var articleLookup: String?
 
-        public var bagEndState: String?
+        public var storeLookup: String?
+
+        public var affiliate: Affiliate
 
         public var createUser: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case storeLookup = "store_lookup"
-
-            case articleLookup = "article_lookup"
+            case bagEndState = "bag_end_state"
 
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
 
-            case affiliate
+            case articleLookup = "article_lookup"
 
-            case bagEndState = "bag_end_state"
+            case storeLookup = "store_lookup"
+
+            case affiliate
 
             case createUser = "create_user"
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
-            self.storeLookup = storeLookup
-
-            self.articleLookup = articleLookup
+            self.bagEndState = bagEndState
 
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
 
-            self.affiliate = affiliate
+            self.articleLookup = articleLookup
 
-            self.bagEndState = bagEndState
+            self.storeLookup = storeLookup
+
+            self.affiliate = affiliate
 
             self.createUser = createUser
         }
@@ -53,12 +53,14 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeLookup = try container.decode(String.self, forKey: .storeLookup)
+                bagEndState = try container.decode(String.self, forKey: .bagEndState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
 
             do {
                 articleLookup = try container.decode(String.self, forKey: .articleLookup)
@@ -68,17 +70,15 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
-
-            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
-
             do {
-                bagEndState = try container.decode(String.self, forKey: .bagEndState)
+                storeLookup = try container.decode(String.self, forKey: .storeLookup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
 
             do {
                 createUser = try container.decode(Bool.self, forKey: .createUser)
@@ -92,15 +92,15 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
-
-            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
+            try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
 
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
 
-            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
+            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
 
-            try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
+            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
+
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
             try? container.encodeIfPresent(createUser, forKey: .createUser)
         }
@@ -114,42 +114,42 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderConfig: Codable {
-        public var storeLookup: String?
-
-        public var articleLookup: String?
+        public var bagEndState: String?
 
         public var affiliateStoreIdMapping: [AffiliateStoreIdMapping]
 
-        public var affiliate: Affiliate
+        public var articleLookup: String?
 
-        public var bagEndState: String?
+        public var storeLookup: String?
+
+        public var affiliate: Affiliate
 
         public var createUser: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case storeLookup = "store_lookup"
-
-            case articleLookup = "article_lookup"
+            case bagEndState = "bag_end_state"
 
             case affiliateStoreIdMapping = "affiliate_store_id_mapping"
 
-            case affiliate
+            case articleLookup = "article_lookup"
 
-            case bagEndState = "bag_end_state"
+            case storeLookup = "store_lookup"
+
+            case affiliate
 
             case createUser = "create_user"
         }
 
         public init(affiliate: Affiliate, affiliateStoreIdMapping: [AffiliateStoreIdMapping], articleLookup: String? = nil, bagEndState: String? = nil, createUser: Bool? = nil, storeLookup: String? = nil) {
-            self.storeLookup = storeLookup
-
-            self.articleLookup = articleLookup
+            self.bagEndState = bagEndState
 
             self.affiliateStoreIdMapping = affiliateStoreIdMapping
 
-            self.affiliate = affiliate
+            self.articleLookup = articleLookup
 
-            self.bagEndState = bagEndState
+            self.storeLookup = storeLookup
+
+            self.affiliate = affiliate
 
             self.createUser = createUser
         }
@@ -158,12 +158,14 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeLookup = try container.decode(String.self, forKey: .storeLookup)
+                bagEndState = try container.decode(String.self, forKey: .bagEndState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
 
             do {
                 articleLookup = try container.decode(String.self, forKey: .articleLookup)
@@ -173,17 +175,15 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            affiliateStoreIdMapping = try container.decode([AffiliateStoreIdMapping].self, forKey: .affiliateStoreIdMapping)
-
-            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
-
             do {
-                bagEndState = try container.decode(String.self, forKey: .bagEndState)
+                storeLookup = try container.decode(String.self, forKey: .storeLookup)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            affiliate = try container.decode(Affiliate.self, forKey: .affiliate)
 
             do {
                 createUser = try container.decode(Bool.self, forKey: .createUser)
@@ -197,15 +197,15 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
-
-            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
+            try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
 
             try? container.encodeIfPresent(affiliateStoreIdMapping, forKey: .affiliateStoreIdMapping)
 
-            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
+            try? container.encodeIfPresent(articleLookup, forKey: .articleLookup)
 
-            try? container.encodeIfPresent(bagEndState, forKey: .bagEndState)
+            try? container.encodeIfPresent(storeLookup, forKey: .storeLookup)
+
+            try? container.encodeIfPresent(affiliate, forKey: .affiliate)
 
             try? container.encodeIfPresent(createUser, forKey: .createUser)
         }
