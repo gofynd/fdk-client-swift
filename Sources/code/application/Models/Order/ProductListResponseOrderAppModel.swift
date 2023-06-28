@@ -9,22 +9,22 @@ public extension ApplicationClient.Order {
     class ProductListResponse: Codable {
         public var message: String?
 
-        public var success: Bool?
+        public var items: [Product]?
 
         public var page: OrderPage?
 
-        public var items: [Product]?
+        public var success: Bool?
 
         public var filters: OrderFilters?
 
         public enum CodingKeys: String, CodingKey {
             case message
 
-            case success
+            case items
 
             case page
 
-            case items
+            case success
 
             case filters
         }
@@ -32,11 +32,11 @@ public extension ApplicationClient.Order {
         public init(filters: OrderFilters? = nil, items: [Product]? = nil, message: String? = nil, page: OrderPage? = nil, success: Bool? = nil) {
             self.message = message
 
-            self.success = success
+            self.items = items
 
             self.page = page
 
-            self.items = items
+            self.success = success
 
             self.filters = filters
         }
@@ -53,7 +53,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                items = try container.decode([Product].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                items = try container.decode([Product].self, forKey: .items)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
         }

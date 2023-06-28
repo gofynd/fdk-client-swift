@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var manifestId: String?
 
-        public var action: String
-
         public var uniqueId: String
+
+        public var action: String
 
         public enum CodingKeys: String, CodingKey {
             case filters
 
             case manifestId = "manifest_id"
 
-            case action
-
             case uniqueId = "unique_id"
+
+            case action
         }
 
         public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.manifestId = manifestId
 
-            self.action = action
-
             self.uniqueId = uniqueId
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            action = try container.decode(String.self, forKey: .action)
-
             uniqueId = try container.decode(String.self, forKey: .uniqueId)
+
+            action = try container.decode(String.self, forKey: .action)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var manifestId: String?
 
-        public var action: String
-
         public var uniqueId: String
+
+        public var action: String
 
         public enum CodingKeys: String, CodingKey {
             case filters
 
             case manifestId = "manifest_id"
 
-            case action
-
             case uniqueId = "unique_id"
+
+            case action
         }
 
         public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.manifestId = manifestId
 
-            self.action = action
-
             self.uniqueId = uniqueId
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            action = try container.decode(String.self, forKey: .action)
-
             uniqueId = try container.decode(String.self, forKey: .uniqueId)
+
+            action = try container.decode(String.self, forKey: .action)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

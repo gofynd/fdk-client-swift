@@ -1709,28 +1709,16 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func getShipmentHistory(
-            shipmentId: String?,
-            bagId: Int?,
-
+        public func postShipmentHistory(
+            body: PostShipmentHistory,
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = shipmentId {
-                xQuery["shipment_id"] = value
-            }
-
-            if let value = bagId {
-                xQuery["bag_id"] = value
-            }
-
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "post",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/history",
-                query: xQuery,
-                body: nil,
+                query: nil,
+                body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in
@@ -1759,16 +1747,28 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func postShipmentHistory(
-            body: PostShipmentHistory,
+        public func getShipmentHistory(
+            shipmentId: String?,
+            bagId: Int?,
+
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = shipmentId {
+                xQuery["shipment_id"] = value
+            }
+
+            if let value = bagId {
+                xQuery["bag_id"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "get",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/history",
-                query: nil,
-                body: body.dictionary,
+                query: xQuery,
+                body: nil,
                 headers: [],
                 responseType: "application/json",
                 onResponse: { responseData, error, responseCode in

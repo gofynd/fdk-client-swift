@@ -15,11 +15,11 @@ public extension PlatformClient.Order {
 
         public var code: Int?
 
-        public var entity: String?
+        public var mediaType: String?
 
         public var status: Bool?
 
-        public var mediaType: String?
+        public var entity: String?
 
         public enum CodingKeys: String, CodingKey {
             case file
@@ -28,11 +28,11 @@ public extension PlatformClient.Order {
 
             case code
 
-            case entity
+            case mediaType = "media_type"
 
             case status
 
-            case mediaType = "media_type"
+            case entity
         }
 
         public init(code: Int? = nil, entity: String? = nil, file: ManifestFile? = nil, link: String? = nil, mediaType: String? = nil, status: Bool? = nil) {
@@ -42,11 +42,11 @@ public extension PlatformClient.Order {
 
             self.code = code
 
-            self.entity = entity
+            self.mediaType = mediaType
 
             self.status = status
 
-            self.mediaType = mediaType
+            self.entity = entity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,7 +77,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                entity = try container.decode(String.self, forKey: .entity)
+                mediaType = try container.decode(String.self, forKey: .mediaType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                mediaType = try container.decode(String.self, forKey: .mediaType)
+                entity = try container.decode(String.self, forKey: .entity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,11 +110,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(entity, forKey: .entity)
+            try? container.encodeIfPresent(mediaType, forKey: .mediaType)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(mediaType, forKey: .mediaType)
+            try? container.encodeIfPresent(entity, forKey: .entity)
         }
     }
 }
@@ -132,11 +132,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var code: Int?
 
-        public var entity: String?
+        public var mediaType: String?
 
         public var status: Bool?
 
-        public var mediaType: String?
+        public var entity: String?
 
         public enum CodingKeys: String, CodingKey {
             case file
@@ -145,11 +145,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case code
 
-            case entity
+            case mediaType = "media_type"
 
             case status
 
-            case mediaType = "media_type"
+            case entity
         }
 
         public init(code: Int? = nil, entity: String? = nil, file: ManifestFile? = nil, link: String? = nil, mediaType: String? = nil, status: Bool? = nil) {
@@ -159,11 +159,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.code = code
 
-            self.entity = entity
+            self.mediaType = mediaType
 
             self.status = status
 
-            self.mediaType = mediaType
+            self.entity = entity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                entity = try container.decode(String.self, forKey: .entity)
+                mediaType = try container.decode(String.self, forKey: .mediaType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +210,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                mediaType = try container.decode(String.self, forKey: .mediaType)
+                entity = try container.decode(String.self, forKey: .entity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -227,11 +227,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(entity, forKey: .entity)
+            try? container.encodeIfPresent(mediaType, forKey: .mediaType)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(mediaType, forKey: .mediaType)
+            try? container.encodeIfPresent(entity, forKey: .entity)
         }
     }
 }

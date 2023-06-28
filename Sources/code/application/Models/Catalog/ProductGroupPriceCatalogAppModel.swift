@@ -11,9 +11,9 @@ public extension ApplicationClient.Catalog {
 
         public var maxMarked: Double?
 
-        public var minEffective: Double?
-
         public var currency: String?
+
+        public var minEffective: Double?
 
         public var minMarked: Double?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Catalog {
 
             case maxMarked = "max_marked"
 
-            case minEffective = "min_effective"
-
             case currency
+
+            case minEffective = "min_effective"
 
             case minMarked = "min_marked"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Catalog {
 
             self.maxMarked = maxMarked
 
-            self.minEffective = minEffective
-
             self.currency = currency
+
+            self.minEffective = minEffective
 
             self.minMarked = minMarked
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                minEffective = try container.decode(Double.self, forKey: .minEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
 
-            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
 
             try? container.encodeIfPresent(minMarked, forKey: .minMarked)
         }

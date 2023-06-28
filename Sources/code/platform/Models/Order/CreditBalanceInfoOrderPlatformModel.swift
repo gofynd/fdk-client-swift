@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class CreditBalanceInfo: Codable {
         public var reason: String?
 
-        public var customerMobileNumber: String?
-
         public var totalCreditedBalance: String?
+
+        public var customerMobileNumber: String?
 
         public enum CodingKeys: String, CodingKey {
             case reason
 
-            case customerMobileNumber = "customer_mobile_number"
-
             case totalCreditedBalance = "total_credited_balance"
+
+            case customerMobileNumber = "customer_mobile_number"
         }
 
         public init(customerMobileNumber: String? = nil, reason: String? = nil, totalCreditedBalance: String? = nil) {
             self.reason = reason
 
-            self.customerMobileNumber = customerMobileNumber
-
             self.totalCreditedBalance = totalCreditedBalance
+
+            self.customerMobileNumber = customerMobileNumber
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
+                totalCreditedBalance = try container.decode(String.self, forKey: .totalCreditedBalance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                totalCreditedBalance = try container.decode(String.self, forKey: .totalCreditedBalance)
+                customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(reason, forKey: .reason)
 
-            try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
-
             try? container.encodeIfPresent(totalCreditedBalance, forKey: .totalCreditedBalance)
+
+            try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreditBalanceInfo: Codable {
         public var reason: String?
 
-        public var customerMobileNumber: String?
-
         public var totalCreditedBalance: String?
+
+        public var customerMobileNumber: String?
 
         public enum CodingKeys: String, CodingKey {
             case reason
 
-            case customerMobileNumber = "customer_mobile_number"
-
             case totalCreditedBalance = "total_credited_balance"
+
+            case customerMobileNumber = "customer_mobile_number"
         }
 
         public init(customerMobileNumber: String? = nil, reason: String? = nil, totalCreditedBalance: String? = nil) {
             self.reason = reason
 
-            self.customerMobileNumber = customerMobileNumber
-
             self.totalCreditedBalance = totalCreditedBalance
+
+            self.customerMobileNumber = customerMobileNumber
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
+                totalCreditedBalance = try container.decode(String.self, forKey: .totalCreditedBalance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                totalCreditedBalance = try container.decode(String.self, forKey: .totalCreditedBalance)
+                customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(reason, forKey: .reason)
 
-            try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
-
             try? container.encodeIfPresent(totalCreditedBalance, forKey: .totalCreditedBalance)
+
+            try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
         }
     }
 }

@@ -9,57 +9,57 @@ public extension PlatformClient.Order {
      */
 
     class ProcessManifestResponse: Codable {
-        public var manifestId: String?
+        public var uid: String?
 
         public var userId: String?
 
-        public var action: String?
+        public var manifestId: String?
 
         public var createdBy: String?
 
-        public var companyId: Int?
+        public var action: String?
 
         public var filters: Filters?
 
-        public var uid: String?
+        public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case manifestId = "manifest_id"
+            case uid
 
             case userId = "user_id"
 
-            case action
+            case manifestId = "manifest_id"
 
             case createdBy = "created_by"
 
-            case companyId = "company_id"
+            case action
 
             case filters
 
-            case uid
+            case companyId = "company_id"
         }
 
         public init(action: String? = nil, companyId: Int? = nil, createdBy: String? = nil, filters: Filters? = nil, manifestId: String? = nil, uid: String? = nil, userId: String? = nil) {
-            self.manifestId = manifestId
+            self.uid = uid
 
             self.userId = userId
 
-            self.action = action
+            self.manifestId = manifestId
 
             self.createdBy = createdBy
 
-            self.companyId = companyId
+            self.action = action
 
             self.filters = filters
 
-            self.uid = uid
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                manifestId = try container.decode(String.self, forKey: .manifestId)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                action = try container.decode(String.self, forKey: .action)
+                manifestId = try container.decode(String.self, forKey: .manifestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                action = try container.decode(String.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,7 +107,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,19 +118,19 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }
@@ -142,57 +142,57 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ProcessManifestResponse: Codable {
-        public var manifestId: String?
+        public var uid: String?
 
         public var userId: String?
 
-        public var action: String?
+        public var manifestId: String?
 
         public var createdBy: String?
 
-        public var companyId: Int?
+        public var action: String?
 
         public var filters: Filters?
 
-        public var uid: String?
+        public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case manifestId = "manifest_id"
+            case uid
 
             case userId = "user_id"
 
-            case action
+            case manifestId = "manifest_id"
 
             case createdBy = "created_by"
 
-            case companyId = "company_id"
+            case action
 
             case filters
 
-            case uid
+            case companyId = "company_id"
         }
 
         public init(action: String? = nil, companyId: Int? = nil, createdBy: String? = nil, filters: Filters? = nil, manifestId: String? = nil, uid: String? = nil, userId: String? = nil) {
-            self.manifestId = manifestId
+            self.uid = uid
 
             self.userId = userId
 
-            self.action = action
+            self.manifestId = manifestId
 
             self.createdBy = createdBy
 
-            self.companyId = companyId
+            self.action = action
 
             self.filters = filters
 
-            self.uid = uid
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                manifestId = try container.decode(String.self, forKey: .manifestId)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -208,7 +208,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                action = try container.decode(String.self, forKey: .action)
+                manifestId = try container.decode(String.self, forKey: .manifestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -224,7 +224,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                action = try container.decode(String.self, forKey: .action)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -240,7 +240,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                companyId = try container.decode(Int.self, forKey: .companyId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,19 +251,19 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(manifestId, forKey: .manifestId)
 
             try? container.encodeIfPresent(createdBy, forKey: .createdBy)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(action, forKey: .action)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }
