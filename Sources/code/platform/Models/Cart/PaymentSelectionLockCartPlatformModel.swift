@@ -9,33 +9,33 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PaymentSelectionLock: Codable {
-        public var enabled: Bool?
+        public var defaultOptions: String?
 
         public var paymentIdentifier: String?
 
-        public var defaultOptions: String?
+        public var enabled: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case enabled
+            case defaultOptions = "default_options"
 
             case paymentIdentifier = "payment_identifier"
 
-            case defaultOptions = "default_options"
+            case enabled
         }
 
         public init(defaultOptions: String? = nil, enabled: Bool? = nil, paymentIdentifier: String? = nil) {
-            self.enabled = enabled
+            self.defaultOptions = defaultOptions
 
             self.paymentIdentifier = paymentIdentifier
 
-            self.defaultOptions = defaultOptions
+            self.enabled = enabled
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                enabled = try container.decode(Bool.self, forKey: .enabled)
+                defaultOptions = try container.decode(String.self, forKey: .defaultOptions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                defaultOptions = try container.decode(String.self, forKey: .defaultOptions)
+                enabled = try container.decode(Bool.self, forKey: .enabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +62,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(defaultOptions, forKey: .defaultOptions)
 
             try? container.encodeIfPresent(paymentIdentifier, forKey: .paymentIdentifier)
 
-            try? container.encodeIfPresent(defaultOptions, forKey: .defaultOptions)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
         }
     }
 }

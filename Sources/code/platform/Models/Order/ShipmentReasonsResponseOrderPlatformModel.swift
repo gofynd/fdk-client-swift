@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class ShipmentReasonsResponse: Codable {
         public var success: Bool
 
-        public var message: String
-
         public var reasons: [ShipmentResponseReasons]
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case message
-
             case reasons
+
+            case message
         }
 
         public init(message: String, reasons: [ShipmentResponseReasons], success: Bool) {
             self.success = success
 
-            self.message = message
-
             self.reasons = reasons
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            message = try container.decode(String.self, forKey: .message)
-
             reasons = try container.decode([ShipmentResponseReasons].self, forKey: .reasons)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(reasons, forKey: .reasons)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentReasonsResponse: Codable {
         public var success: Bool
 
-        public var message: String
-
         public var reasons: [ShipmentResponseReasons]
+
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case message
-
             case reasons
+
+            case message
         }
 
         public init(message: String, reasons: [ShipmentResponseReasons], success: Bool) {
             self.success = success
 
-            self.message = message
-
             self.reasons = reasons
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            message = try container.decode(String.self, forKey: .message)
-
             reasons = try container.decode([ShipmentResponseReasons].self, forKey: .reasons)
+
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(reasons, forKey: .reasons)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

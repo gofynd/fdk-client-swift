@@ -9,9 +9,9 @@ public extension ApplicationClient.PosCart {
     class ShipmentResponse: Codable {
         public var dpId: String?
 
-        public var boxType: String?
-
         public var shipments: Int?
+
+        public var fulfillmentType: String?
 
         public var promise: ShipmentPromise?
 
@@ -19,20 +19,20 @@ public extension ApplicationClient.PosCart {
 
         public var fulfillmentId: Int?
 
-        public var dpOptions: [String: Any]?
+        public var boxType: String?
 
         public var items: [CartProductInfo]?
 
         public var orderType: String?
 
-        public var fulfillmentType: String?
+        public var dpOptions: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case dpId = "dp_id"
 
-            case boxType = "box_type"
-
             case shipments
+
+            case fulfillmentType = "fulfillment_type"
 
             case promise
 
@@ -40,21 +40,21 @@ public extension ApplicationClient.PosCart {
 
             case fulfillmentId = "fulfillment_id"
 
-            case dpOptions = "dp_options"
+            case boxType = "box_type"
 
             case items
 
             case orderType = "order_type"
 
-            case fulfillmentType = "fulfillment_type"
+            case dpOptions = "dp_options"
         }
 
         public init(boxType: String? = nil, dpId: String? = nil, dpOptions: [String: Any]? = nil, fulfillmentId: Int? = nil, fulfillmentType: String? = nil, items: [CartProductInfo]? = nil, orderType: String? = nil, promise: ShipmentPromise? = nil, shipments: Int? = nil, shipmentType: String? = nil) {
             self.dpId = dpId
 
-            self.boxType = boxType
-
             self.shipments = shipments
+
+            self.fulfillmentType = fulfillmentType
 
             self.promise = promise
 
@@ -62,13 +62,13 @@ public extension ApplicationClient.PosCart {
 
             self.fulfillmentId = fulfillmentId
 
-            self.dpOptions = dpOptions
+            self.boxType = boxType
 
             self.items = items
 
             self.orderType = orderType
 
-            self.fulfillmentType = fulfillmentType
+            self.dpOptions = dpOptions
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,7 +83,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                boxType = try container.decode(String.self, forKey: .boxType)
+                shipments = try container.decode(Int.self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                shipments = try container.decode(Int.self, forKey: .shipments)
+                fulfillmentType = try container.decode(String.self, forKey: .fulfillmentType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,7 +123,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
+                boxType = try container.decode(String.self, forKey: .boxType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -147,7 +147,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                fulfillmentType = try container.decode(String.self, forKey: .fulfillmentType)
+                dpOptions = try container.decode([String: Any].self, forKey: .dpOptions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,9 +160,9 @@ public extension ApplicationClient.PosCart {
 
             try? container.encode(dpId, forKey: .dpId)
 
-            try? container.encode(boxType, forKey: .boxType)
-
             try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
 
             try? container.encodeIfPresent(promise, forKey: .promise)
 
@@ -170,13 +170,13 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encode(dpOptions, forKey: .dpOptions)
+            try? container.encode(boxType, forKey: .boxType)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(orderType, forKey: .orderType)
 
-            try? container.encodeIfPresent(fulfillmentType, forKey: .fulfillmentType)
+            try? container.encode(dpOptions, forKey: .dpOptions)
         }
     }
 }

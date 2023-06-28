@@ -15,9 +15,9 @@ public extension PlatformClient.Order {
 
         public var itemTotal: Int
 
-        public var current: Int
-
         public var hasNext: Bool
+
+        public var current: Int
 
         public enum CodingKeys: String, CodingKey {
             case size
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case itemTotal = "item_total"
 
-            case current
-
             case hasNext = "has_next"
+
+            case current
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
 
             self.itemTotal = itemTotal
 
-            self.current = current
-
             self.hasNext = hasNext
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Order {
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            current = try container.decode(Int.self, forKey: .current)
-
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            current = try container.decode(Int.self, forKey: .current)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,9 +66,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }
@@ -86,9 +86,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var itemTotal: Int
 
-        public var current: Int
-
         public var hasNext: Bool
+
+        public var current: Int
 
         public enum CodingKeys: String, CodingKey {
             case size
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case itemTotal = "item_total"
 
-            case current
-
             case hasNext = "has_next"
+
+            case current
         }
 
         public init(current: Int, hasNext: Bool, itemTotal: Int, pageType: String, size: Int) {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.itemTotal = itemTotal
 
-            self.current = current
-
             self.hasNext = hasNext
+
+            self.current = current
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,9 +123,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
-            current = try container.decode(Int.self, forKey: .current)
-
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
+
+            current = try container.decode(Int.self, forKey: .current)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
-            try? container.encodeIfPresent(current, forKey: .current)
-
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+
+            try? container.encodeIfPresent(current, forKey: .current)
         }
     }
 }

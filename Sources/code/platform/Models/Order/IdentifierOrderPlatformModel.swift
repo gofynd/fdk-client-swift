@@ -9,36 +9,36 @@ public extension PlatformClient.Order {
      */
 
     class Identifier: Codable {
-        public var isbn: String?
+        public var alu: String?
 
         public var skuCode: String?
 
-        public var alu: String?
-
         public var upc: String?
+
+        public var isbn: String?
 
         public var ean: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isbn
+            case alu
 
             case skuCode = "sku_code"
 
-            case alu
-
             case upc
+
+            case isbn
 
             case ean
         }
 
         public init(alu: String? = nil, ean: String? = nil, isbn: String? = nil, skuCode: String? = nil, upc: String? = nil) {
-            self.isbn = isbn
+            self.alu = alu
 
             self.skuCode = skuCode
 
-            self.alu = alu
-
             self.upc = upc
+
+            self.isbn = isbn
 
             self.ean = ean
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isbn = try container.decode(String.self, forKey: .isbn)
+                alu = try container.decode(String.self, forKey: .alu)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                alu = try container.decode(String.self, forKey: .alu)
+                upc = try container.decode(String.self, forKey: .upc)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                upc = try container.decode(String.self, forKey: .upc)
+                isbn = try container.decode(String.self, forKey: .isbn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isbn, forKey: .isbn)
+            try? container.encodeIfPresent(alu, forKey: .alu)
 
             try? container.encodeIfPresent(skuCode, forKey: .skuCode)
 
-            try? container.encodeIfPresent(alu, forKey: .alu)
-
             try? container.encodeIfPresent(upc, forKey: .upc)
+
+            try? container.encodeIfPresent(isbn, forKey: .isbn)
 
             try? container.encodeIfPresent(ean, forKey: .ean)
         }
@@ -110,36 +110,36 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Identifier: Codable {
-        public var isbn: String?
+        public var alu: String?
 
         public var skuCode: String?
 
-        public var alu: String?
-
         public var upc: String?
+
+        public var isbn: String?
 
         public var ean: String?
 
         public enum CodingKeys: String, CodingKey {
-            case isbn
+            case alu
 
             case skuCode = "sku_code"
 
-            case alu
-
             case upc
+
+            case isbn
 
             case ean
         }
 
         public init(alu: String? = nil, ean: String? = nil, isbn: String? = nil, skuCode: String? = nil, upc: String? = nil) {
-            self.isbn = isbn
+            self.alu = alu
 
             self.skuCode = skuCode
 
-            self.alu = alu
-
             self.upc = upc
+
+            self.isbn = isbn
 
             self.ean = ean
         }
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isbn = try container.decode(String.self, forKey: .isbn)
+                alu = try container.decode(String.self, forKey: .alu)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                alu = try container.decode(String.self, forKey: .alu)
+                upc = try container.decode(String.self, forKey: .upc)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                upc = try container.decode(String.self, forKey: .upc)
+                isbn = try container.decode(String.self, forKey: .isbn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,13 +191,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isbn, forKey: .isbn)
+            try? container.encodeIfPresent(alu, forKey: .alu)
 
             try? container.encodeIfPresent(skuCode, forKey: .skuCode)
 
-            try? container.encodeIfPresent(alu, forKey: .alu)
-
             try? container.encodeIfPresent(upc, forKey: .upc)
+
+            try? container.encodeIfPresent(isbn, forKey: .isbn)
 
             try? container.encodeIfPresent(ean, forKey: .ean)
         }

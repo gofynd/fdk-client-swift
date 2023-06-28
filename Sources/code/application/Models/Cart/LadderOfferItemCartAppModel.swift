@@ -11,22 +11,22 @@ public extension ApplicationClient.Cart {
 
         public var margin: Int?
 
-        public var price: LadderPrice?
+        public var minQuantity: Int?
 
         public var type: String?
 
-        public var minQuantity: Int?
+        public var price: LadderPrice?
 
         public enum CodingKeys: String, CodingKey {
             case maxQuantity = "max_quantity"
 
             case margin
 
-            case price
+            case minQuantity = "min_quantity"
 
             case type
 
-            case minQuantity = "min_quantity"
+            case price
         }
 
         public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Cart {
 
             self.margin = margin
 
-            self.price = price
+            self.minQuantity = minQuantity
 
             self.type = type
 
-            self.minQuantity = minQuantity
+            self.price = price
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                price = try container.decode(LadderPrice.self, forKey: .price)
+                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+                price = try container.decode(LadderPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(margin, forKey: .margin)
 
-            try? container.encodeIfPresent(price, forKey: .price)
+            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
+            try? container.encodeIfPresent(price, forKey: .price)
         }
     }
 }

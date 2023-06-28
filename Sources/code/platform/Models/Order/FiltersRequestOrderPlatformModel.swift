@@ -9,62 +9,56 @@ public extension PlatformClient.Order {
      */
 
     class FiltersRequest: Codable {
+        public var storeName: String
+
+        public var logo: String?
+
         public var stores: Int
 
         public var lane: String
+
+        public var dateRange: DateRange?
 
         public var dpIds: Int
 
         public var dpName: String
 
-        public var logo: String?
-
-        public var storeName: String
-
-        public var dateRange: DateRange?
-
         public enum CodingKeys: String, CodingKey {
+            case storeName = "store_name"
+
+            case logo
+
             case stores
 
             case lane
 
+            case dateRange = "date_range"
+
             case dpIds = "dp_ids"
 
             case dpName = "dp_name"
-
-            case logo
-
-            case storeName = "store_name"
-
-            case dateRange = "date_range"
         }
 
         public init(dateRange: DateRange? = nil, dpIds: Int, dpName: String, lane: String, logo: String? = nil, stores: Int, storeName: String) {
+            self.storeName = storeName
+
+            self.logo = logo
+
             self.stores = stores
 
             self.lane = lane
 
+            self.dateRange = dateRange
+
             self.dpIds = dpIds
 
             self.dpName = dpName
-
-            self.logo = logo
-
-            self.storeName = storeName
-
-            self.dateRange = dateRange
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            stores = try container.decode(Int.self, forKey: .stores)
-
-            lane = try container.decode(String.self, forKey: .lane)
-
-            dpIds = try container.decode(Int.self, forKey: .dpIds)
-
-            dpName = try container.decode(String.self, forKey: .dpName)
+            storeName = try container.decode(String.self, forKey: .storeName)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -74,7 +68,9 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            storeName = try container.decode(String.self, forKey: .storeName)
+            stores = try container.decode(Int.self, forKey: .stores)
+
+            lane = try container.decode(String.self, forKey: .lane)
 
             do {
                 dateRange = try container.decode(DateRange.self, forKey: .dateRange)
@@ -83,24 +79,28 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            dpIds = try container.decode(Int.self, forKey: .dpIds)
+
+            dpName = try container.decode(String.self, forKey: .dpName)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
             try? container.encodeIfPresent(stores, forKey: .stores)
 
             try? container.encodeIfPresent(lane, forKey: .lane)
 
+            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
+
             try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
             try? container.encodeIfPresent(dpName, forKey: .dpName)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
-
-            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
         }
     }
 }
@@ -112,62 +112,56 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class FiltersRequest: Codable {
+        public var storeName: String
+
+        public var logo: String?
+
         public var stores: Int
 
         public var lane: String
+
+        public var dateRange: DateRange?
 
         public var dpIds: Int
 
         public var dpName: String
 
-        public var logo: String?
-
-        public var storeName: String
-
-        public var dateRange: DateRange?
-
         public enum CodingKeys: String, CodingKey {
+            case storeName = "store_name"
+
+            case logo
+
             case stores
 
             case lane
 
+            case dateRange = "date_range"
+
             case dpIds = "dp_ids"
 
             case dpName = "dp_name"
-
-            case logo
-
-            case storeName = "store_name"
-
-            case dateRange = "date_range"
         }
 
         public init(dateRange: DateRange? = nil, dpIds: Int, dpName: String, lane: String, logo: String? = nil, stores: Int, storeName: String) {
+            self.storeName = storeName
+
+            self.logo = logo
+
             self.stores = stores
 
             self.lane = lane
 
+            self.dateRange = dateRange
+
             self.dpIds = dpIds
 
             self.dpName = dpName
-
-            self.logo = logo
-
-            self.storeName = storeName
-
-            self.dateRange = dateRange
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            stores = try container.decode(Int.self, forKey: .stores)
-
-            lane = try container.decode(String.self, forKey: .lane)
-
-            dpIds = try container.decode(Int.self, forKey: .dpIds)
-
-            dpName = try container.decode(String.self, forKey: .dpName)
+            storeName = try container.decode(String.self, forKey: .storeName)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -177,7 +171,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            storeName = try container.decode(String.self, forKey: .storeName)
+            stores = try container.decode(Int.self, forKey: .stores)
+
+            lane = try container.decode(String.self, forKey: .lane)
 
             do {
                 dateRange = try container.decode(DateRange.self, forKey: .dateRange)
@@ -186,24 +182,28 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            dpIds = try container.decode(Int.self, forKey: .dpIds)
+
+            dpName = try container.decode(String.self, forKey: .dpName)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(storeName, forKey: .storeName)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
             try? container.encodeIfPresent(stores, forKey: .stores)
 
             try? container.encodeIfPresent(lane, forKey: .lane)
 
+            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
+
             try? container.encodeIfPresent(dpIds, forKey: .dpIds)
 
             try? container.encodeIfPresent(dpName, forKey: .dpName)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
-
-            try? container.encodeIfPresent(dateRange, forKey: .dateRange)
         }
     }
 }
