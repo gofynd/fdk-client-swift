@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var giftPrice: Int?
 
-        public var displayText: String?
-
         public var isGiftApplied: Bool?
+
+        public var displayText: String?
 
         public enum CodingKeys: String, CodingKey {
             case giftMessage = "gift_message"
 
             case giftPrice = "gift_price"
 
-            case displayText = "display_text"
-
             case isGiftApplied = "is_gift_applied"
+
+            case displayText = "display_text"
         }
 
         public init(displayText: String? = nil, giftMessage: String? = nil, giftPrice: Int? = nil, isGiftApplied: Bool? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.giftPrice = giftPrice
 
-            self.displayText = displayText
-
             self.isGiftApplied = isGiftApplied
+
+            self.displayText = displayText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                displayText = try container.decode(String.self, forKey: .displayText)
+                isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
+                displayText = try container.decode(String.self, forKey: .displayText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
 
-            try? container.encodeIfPresent(displayText, forKey: .displayText)
-
             try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
+
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var giftPrice: Int?
 
-        public var displayText: String?
-
         public var isGiftApplied: Bool?
+
+        public var displayText: String?
 
         public enum CodingKeys: String, CodingKey {
             case giftMessage = "gift_message"
 
             case giftPrice = "gift_price"
 
-            case displayText = "display_text"
-
             case isGiftApplied = "is_gift_applied"
+
+            case displayText = "display_text"
         }
 
         public init(displayText: String? = nil, giftMessage: String? = nil, giftPrice: Int? = nil, isGiftApplied: Bool? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.giftPrice = giftPrice
 
-            self.displayText = displayText
-
             self.isGiftApplied = isGiftApplied
+
+            self.displayText = displayText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                displayText = try container.decode(String.self, forKey: .displayText)
+                isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
+                displayText = try container.decode(String.self, forKey: .displayText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
 
-            try? container.encodeIfPresent(displayText, forKey: .displayText)
-
             try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
+
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
         }
     }
 }

@@ -9,27 +9,27 @@ public extension PlatformClient.Payment {
      */
 
     class OrderBeneficiaryResponse: Codable {
-        public var showBeneficiaryDetails: Bool?
-
         public var beneficiaries: [OrderBeneficiaryDetails]?
 
-        public enum CodingKeys: String, CodingKey {
-            case showBeneficiaryDetails = "show_beneficiary_details"
+        public var showBeneficiaryDetails: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case beneficiaries
+
+            case showBeneficiaryDetails = "show_beneficiary_details"
         }
 
         public init(beneficiaries: [OrderBeneficiaryDetails]? = nil, showBeneficiaryDetails: Bool? = nil) {
-            self.showBeneficiaryDetails = showBeneficiaryDetails
-
             self.beneficiaries = beneficiaries
+
+            self.showBeneficiaryDetails = showBeneficiaryDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                showBeneficiaryDetails = try container.decode(Bool.self, forKey: .showBeneficiaryDetails)
+                beneficiaries = try container.decode([OrderBeneficiaryDetails].self, forKey: .beneficiaries)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                beneficiaries = try container.decode([OrderBeneficiaryDetails].self, forKey: .beneficiaries)
+                showBeneficiaryDetails = try container.decode(Bool.self, forKey: .showBeneficiaryDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(showBeneficiaryDetails, forKey: .showBeneficiaryDetails)
-
             try? container.encode(beneficiaries, forKey: .beneficiaries)
+
+            try? container.encodeIfPresent(showBeneficiaryDetails, forKey: .showBeneficiaryDetails)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class OrderBeneficiaryResponse: Codable {
-        public var showBeneficiaryDetails: Bool?
-
         public var beneficiaries: [OrderBeneficiaryDetails]?
 
-        public enum CodingKeys: String, CodingKey {
-            case showBeneficiaryDetails = "show_beneficiary_details"
+        public var showBeneficiaryDetails: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case beneficiaries
+
+            case showBeneficiaryDetails = "show_beneficiary_details"
         }
 
         public init(beneficiaries: [OrderBeneficiaryDetails]? = nil, showBeneficiaryDetails: Bool? = nil) {
-            self.showBeneficiaryDetails = showBeneficiaryDetails
-
             self.beneficiaries = beneficiaries
+
+            self.showBeneficiaryDetails = showBeneficiaryDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                showBeneficiaryDetails = try container.decode(Bool.self, forKey: .showBeneficiaryDetails)
+                beneficiaries = try container.decode([OrderBeneficiaryDetails].self, forKey: .beneficiaries)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                beneficiaries = try container.decode([OrderBeneficiaryDetails].self, forKey: .beneficiaries)
+                showBeneficiaryDetails = try container.decode(Bool.self, forKey: .showBeneficiaryDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(showBeneficiaryDetails, forKey: .showBeneficiaryDetails)
-
             try? container.encode(beneficiaries, forKey: .beneficiaries)
+
+            try? container.encodeIfPresent(showBeneficiaryDetails, forKey: .showBeneficiaryDetails)
         }
     }
 }

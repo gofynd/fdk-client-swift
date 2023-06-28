@@ -9,19 +9,7 @@ public extension PlatformClient.Catalog {
      */
 
     class StoreDetail: Codable {
-        public var storeCode: String?
-
-        public var modifiedOn: String?
-
-        public var storeType: String?
-
-        public var name: String?
-
         public var companyId: Int?
-
-        public var address: [String: Any]?
-
-        public var uid: Int?
 
         public var documents: [[String: Any]]?
 
@@ -29,26 +17,26 @@ public extension PlatformClient.Catalog {
 
         public var createdOn: String?
 
-        public var manager: [String: Any]?
-
         public var additionalContacts: [[String: Any]]?
+
+        public var uid: Int?
+
+        public var name: String?
 
         public var timing: [String: Any]?
 
+        public var address: [String: Any]?
+
+        public var manager: [String: Any]?
+
+        public var storeCode: String?
+
+        public var modifiedOn: String?
+
+        public var storeType: String?
+
         public enum CodingKeys: String, CodingKey {
-            case storeCode = "store_code"
-
-            case modifiedOn = "modified_on"
-
-            case storeType = "store_type"
-
-            case name
-
             case companyId = "company_id"
-
-            case address
-
-            case uid
 
             case documents
 
@@ -56,27 +44,27 @@ public extension PlatformClient.Catalog {
 
             case createdOn = "created_on"
 
-            case manager
-
             case additionalContacts = "additional_contacts"
 
+            case uid
+
+            case name
+
             case timing
+
+            case address
+
+            case manager
+
+            case storeCode = "store_code"
+
+            case modifiedOn = "modified_on"
+
+            case storeType = "store_type"
         }
 
         public init(additionalContacts: [[String: Any]]? = nil, address: [String: Any]? = nil, companyId: Int? = nil, createdOn: String? = nil, displayName: String? = nil, documents: [[String: Any]]? = nil, manager: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, timing: [String: Any]? = nil, uid: Int? = nil) {
-            self.storeCode = storeCode
-
-            self.modifiedOn = modifiedOn
-
-            self.storeType = storeType
-
-            self.name = name
-
             self.companyId = companyId
-
-            self.address = address
-
-            self.uid = uid
 
             self.documents = documents
 
@@ -84,66 +72,30 @@ public extension PlatformClient.Catalog {
 
             self.createdOn = createdOn
 
-            self.manager = manager
-
             self.additionalContacts = additionalContacts
 
+            self.uid = uid
+
+            self.name = name
+
             self.timing = timing
+
+            self.address = address
+
+            self.manager = manager
+
+            self.storeCode = storeCode
+
+            self.modifiedOn = modifiedOn
+
+            self.storeType = storeType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                storeType = try container.decode(String.self, forKey: .storeType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode([String: Any].self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -175,7 +127,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                manager = try container.decode([String: Any].self, forKey: .manager)
+                additionalContacts = try container.decode([[String: Any]].self, forKey: .additionalContacts)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,7 +135,15 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                additionalContacts = try container.decode([[String: Any]].self, forKey: .additionalContacts)
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,24 +157,52 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                address = try container.decode([String: Any].self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                manager = try container.decode([String: Any].self, forKey: .manager)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeCode = try container.decode(String.self, forKey: .storeCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeType = try container.decode(String.self, forKey: .storeType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
@@ -222,11 +210,23 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(manager, forKey: .manager)
-
             try? container.encodeIfPresent(additionalContacts, forKey: .additionalContacts)
 
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(timing, forKey: .timing)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(manager, forKey: .manager)
+
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
         }
     }
 }
@@ -238,19 +238,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class StoreDetail: Codable {
-        public var storeCode: String?
-
-        public var modifiedOn: String?
-
-        public var storeType: String?
-
-        public var name: String?
-
         public var companyId: Int?
-
-        public var address: [String: Any]?
-
-        public var uid: Int?
 
         public var documents: [[String: Any]]?
 
@@ -258,26 +246,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var createdOn: String?
 
-        public var manager: [String: Any]?
-
         public var additionalContacts: [[String: Any]]?
+
+        public var uid: Int?
+
+        public var name: String?
 
         public var timing: [String: Any]?
 
+        public var address: [String: Any]?
+
+        public var manager: [String: Any]?
+
+        public var storeCode: String?
+
+        public var modifiedOn: String?
+
+        public var storeType: String?
+
         public enum CodingKeys: String, CodingKey {
-            case storeCode = "store_code"
-
-            case modifiedOn = "modified_on"
-
-            case storeType = "store_type"
-
-            case name
-
             case companyId = "company_id"
-
-            case address
-
-            case uid
 
             case documents
 
@@ -285,27 +273,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case createdOn = "created_on"
 
-            case manager
-
             case additionalContacts = "additional_contacts"
 
+            case uid
+
+            case name
+
             case timing
+
+            case address
+
+            case manager
+
+            case storeCode = "store_code"
+
+            case modifiedOn = "modified_on"
+
+            case storeType = "store_type"
         }
 
         public init(additionalContacts: [[String: Any]]? = nil, address: [String: Any]? = nil, companyId: Int? = nil, createdOn: String? = nil, displayName: String? = nil, documents: [[String: Any]]? = nil, manager: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, storeCode: String? = nil, storeType: String? = nil, timing: [String: Any]? = nil, uid: Int? = nil) {
-            self.storeCode = storeCode
-
-            self.modifiedOn = modifiedOn
-
-            self.storeType = storeType
-
-            self.name = name
-
             self.companyId = companyId
-
-            self.address = address
-
-            self.uid = uid
 
             self.documents = documents
 
@@ -313,66 +301,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.createdOn = createdOn
 
-            self.manager = manager
-
             self.additionalContacts = additionalContacts
 
+            self.uid = uid
+
+            self.name = name
+
             self.timing = timing
+
+            self.address = address
+
+            self.manager = manager
+
+            self.storeCode = storeCode
+
+            self.modifiedOn = modifiedOn
+
+            self.storeType = storeType
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                storeCode = try container.decode(String.self, forKey: .storeCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                storeType = try container.decode(String.self, forKey: .storeType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address = try container.decode([String: Any].self, forKey: .address)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -404,7 +356,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                manager = try container.decode([String: Any].self, forKey: .manager)
+                additionalContacts = try container.decode([[String: Any]].self, forKey: .additionalContacts)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -412,7 +364,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                additionalContacts = try container.decode([[String: Any]].self, forKey: .additionalContacts)
+                uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -426,24 +386,52 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                address = try container.decode([String: Any].self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                manager = try container.decode([String: Any].self, forKey: .manager)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeCode = try container.decode(String.self, forKey: .storeCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeType = try container.decode(String.self, forKey: .storeType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
-
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-
-            try? container.encodeIfPresent(storeType, forKey: .storeType)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(address, forKey: .address)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(documents, forKey: .documents)
 
@@ -451,11 +439,23 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(manager, forKey: .manager)
-
             try? container.encodeIfPresent(additionalContacts, forKey: .additionalContacts)
 
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(timing, forKey: .timing)
+
+            try? container.encodeIfPresent(address, forKey: .address)
+
+            try? container.encodeIfPresent(manager, forKey: .manager)
+
+            try? container.encodeIfPresent(storeCode, forKey: .storeCode)
+
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+
+            try? container.encodeIfPresent(storeType, forKey: .storeType)
         }
     }
 }

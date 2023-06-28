@@ -9,26 +9,24 @@ public extension PlatformClient.Serviceability {
      */
 
     class GetStoresViewResponse: Codable {
-        public var page: ServiceabilityPageResponse
-
         public var items: [ItemResponse]?
 
-        public enum CodingKeys: String, CodingKey {
-            case page
+        public var page: PageResponse
 
+        public enum CodingKeys: String, CodingKey {
             case items
+
+            case page
         }
 
-        public init(items: [ItemResponse]? = nil, page: ServiceabilityPageResponse) {
-            self.page = page
-
+        public init(items: [ItemResponse]? = nil, page: PageResponse) {
             self.items = items
+
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            page = try container.decode(ServiceabilityPageResponse.self, forKey: .page)
 
             do {
                 items = try container.decode([ItemResponse].self, forKey: .items)
@@ -37,14 +35,16 @@ public extension PlatformClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            page = try container.decode(PageResponse.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }
@@ -56,26 +56,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class GetStoresViewResponse: Codable {
-        public var page: ServiceabilityPageResponse
-
         public var items: [ItemResponse]?
 
-        public enum CodingKeys: String, CodingKey {
-            case page
+        public var page: PageResponse
 
+        public enum CodingKeys: String, CodingKey {
             case items
+
+            case page
         }
 
-        public init(items: [ItemResponse]? = nil, page: ServiceabilityPageResponse) {
-            self.page = page
-
+        public init(items: [ItemResponse]? = nil, page: PageResponse) {
             self.items = items
+
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            page = try container.decode(ServiceabilityPageResponse.self, forKey: .page)
 
             do {
                 items = try container.decode([ItemResponse].self, forKey: .items)
@@ -84,14 +82,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            page = try container.decode(PageResponse.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

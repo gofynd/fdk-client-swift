@@ -4,43 +4,43 @@ import Foundation
 
 public extension PlatformClient.Serviceability {
     /*
-         Model: ServiceabilityPageResponse
+         Model: PageResponse
          Used By: Serviceability
      */
 
-    class ServiceabilityPageResponse: Codable {
+    class PageResponse: Codable {
         public var hasNext: Bool?
 
-        public var size: Int?
+        public var itemTotal: Int?
 
         public var current: Int?
 
         public var type: String?
 
-        public var itemTotal: Int?
+        public var size: Int?
 
         public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
 
-            case size
+            case itemTotal = "item_total"
 
             case current
 
             case type
 
-            case itemTotal = "item_total"
+            case size
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
             self.hasNext = hasNext
 
-            self.size = size
+            self.itemTotal = itemTotal
 
             self.current = current
 
             self.type = type
 
-            self.itemTotal = itemTotal
+            self.size = size
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,56 +92,56 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
             try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(size, forKey: .size)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-         Model: ServiceabilityPageResponse
+         Model: PageResponse
          Used By: Serviceability
      */
 
-    class ServiceabilityPageResponse: Codable {
+    class PageResponse: Codable {
         public var hasNext: Bool?
 
-        public var size: Int?
+        public var itemTotal: Int?
 
         public var current: Int?
 
         public var type: String?
 
-        public var itemTotal: Int?
+        public var size: Int?
 
         public enum CodingKeys: String, CodingKey {
             case hasNext = "has_next"
 
-            case size
+            case itemTotal = "item_total"
 
             case current
 
             case type
 
-            case itemTotal = "item_total"
+            case size
         }
 
         public init(current: Int? = nil, hasNext: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
             self.hasNext = hasNext
 
-            self.size = size
+            self.itemTotal = itemTotal
 
             self.current = current
 
             self.type = type
 
-            self.itemTotal = itemTotal
+            self.size = size
         }
 
         required public init(from decoder: Decoder) throws {
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                size = try container.decode(Int.self, forKey: .size)
+                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                size = try container.decode(Int.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,13 +193,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
 
             try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(size, forKey: .size)
         }
     }
 }

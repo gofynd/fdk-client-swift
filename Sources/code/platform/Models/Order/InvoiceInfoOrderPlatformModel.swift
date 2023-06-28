@@ -9,9 +9,11 @@ public extension PlatformClient.Order {
      */
 
     class InvoiceInfo: Codable {
-        public var creditNoteId: String?
-
         public var labelUrl: String?
+
+        public var updatedDate: String?
+
+        public var creditNoteId: String?
 
         public var externalInvoiceId: String?
 
@@ -19,41 +21,39 @@ public extension PlatformClient.Order {
 
         public var storeInvoiceId: String?
 
-        public var updatedDate: String?
-
         public enum CodingKeys: String, CodingKey {
-            case creditNoteId = "credit_note_id"
-
             case labelUrl = "label_url"
+
+            case updatedDate = "updated_date"
+
+            case creditNoteId = "credit_note_id"
 
             case externalInvoiceId = "external_invoice_id"
 
             case invoiceUrl = "invoice_url"
 
             case storeInvoiceId = "store_invoice_id"
-
-            case updatedDate = "updated_date"
         }
 
         public init(creditNoteId: String? = nil, externalInvoiceId: String? = nil, invoiceUrl: String? = nil, labelUrl: String? = nil, storeInvoiceId: String? = nil, updatedDate: String? = nil) {
-            self.creditNoteId = creditNoteId
-
             self.labelUrl = labelUrl
+
+            self.updatedDate = updatedDate
+
+            self.creditNoteId = creditNoteId
 
             self.externalInvoiceId = externalInvoiceId
 
             self.invoiceUrl = invoiceUrl
 
             self.storeInvoiceId = storeInvoiceId
-
-            self.updatedDate = updatedDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
+                labelUrl = try container.decode(String.self, forKey: .labelUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                labelUrl = try container.decode(String.self, forKey: .labelUrl)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,30 +99,22 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                updatedDate = try container.decode(String.self, forKey: .updatedDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(creditNoteId, forKey: .creditNoteId)
-
             try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+
+            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
+
+            try? container.encode(creditNoteId, forKey: .creditNoteId)
 
             try? container.encodeIfPresent(externalInvoiceId, forKey: .externalInvoiceId)
 
             try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
 
             try? container.encode(storeInvoiceId, forKey: .storeInvoiceId)
-
-            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
         }
     }
 }
@@ -126,9 +126,11 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class InvoiceInfo: Codable {
-        public var creditNoteId: String?
-
         public var labelUrl: String?
+
+        public var updatedDate: String?
+
+        public var creditNoteId: String?
 
         public var externalInvoiceId: String?
 
@@ -136,41 +138,39 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var storeInvoiceId: String?
 
-        public var updatedDate: String?
-
         public enum CodingKeys: String, CodingKey {
-            case creditNoteId = "credit_note_id"
-
             case labelUrl = "label_url"
+
+            case updatedDate = "updated_date"
+
+            case creditNoteId = "credit_note_id"
 
             case externalInvoiceId = "external_invoice_id"
 
             case invoiceUrl = "invoice_url"
 
             case storeInvoiceId = "store_invoice_id"
-
-            case updatedDate = "updated_date"
         }
 
         public init(creditNoteId: String? = nil, externalInvoiceId: String? = nil, invoiceUrl: String? = nil, labelUrl: String? = nil, storeInvoiceId: String? = nil, updatedDate: String? = nil) {
-            self.creditNoteId = creditNoteId
-
             self.labelUrl = labelUrl
+
+            self.updatedDate = updatedDate
+
+            self.creditNoteId = creditNoteId
 
             self.externalInvoiceId = externalInvoiceId
 
             self.invoiceUrl = invoiceUrl
 
             self.storeInvoiceId = storeInvoiceId
-
-            self.updatedDate = updatedDate
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
+                labelUrl = try container.decode(String.self, forKey: .labelUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,7 +178,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                labelUrl = try container.decode(String.self, forKey: .labelUrl)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -208,30 +216,22 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                updatedDate = try container.decode(String.self, forKey: .updatedDate)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(creditNoteId, forKey: .creditNoteId)
-
             try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+
+            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
+
+            try? container.encode(creditNoteId, forKey: .creditNoteId)
 
             try? container.encodeIfPresent(externalInvoiceId, forKey: .externalInvoiceId)
 
             try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
 
             try? container.encode(storeInvoiceId, forKey: .storeInvoiceId)
-
-            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
         }
     }
 }
