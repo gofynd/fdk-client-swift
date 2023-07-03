@@ -13,26 +13,26 @@ public extension PlatformClient.Payment {
 
         public var edcModel: String
 
-        public var deviceTag: String?
-
         public var aggregatorId: Int
 
-        public var storeId: Int
-
         public var terminalSerialNo: String
+
+        public var deviceTag: String?
+
+        public var storeId: Int
 
         public enum CodingKeys: String, CodingKey {
             case edcDeviceSerialNo = "edc_device_serial_no"
 
             case edcModel = "edc_model"
 
-            case deviceTag = "device_tag"
-
             case aggregatorId = "aggregator_id"
 
-            case storeId = "store_id"
-
             case terminalSerialNo = "terminal_serial_no"
+
+            case deviceTag = "device_tag"
+
+            case storeId = "store_id"
         }
 
         public init(aggregatorId: Int, deviceTag: String? = nil, edcDeviceSerialNo: String, edcModel: String, storeId: Int, terminalSerialNo: String) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Payment {
 
             self.edcModel = edcModel
 
-            self.deviceTag = deviceTag
-
             self.aggregatorId = aggregatorId
 
-            self.storeId = storeId
-
             self.terminalSerialNo = terminalSerialNo
+
+            self.deviceTag = deviceTag
+
+            self.storeId = storeId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -56,6 +56,10 @@ public extension PlatformClient.Payment {
 
             edcModel = try container.decode(String.self, forKey: .edcModel)
 
+            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
+
+            terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
+
             do {
                 deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
@@ -64,11 +68,7 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
-
             storeId = try container.decode(Int.self, forKey: .storeId)
-
-            terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,13 +78,13 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(edcModel, forKey: .edcModel)
 
-            try? container.encode(deviceTag, forKey: .deviceTag)
-
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
             try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
+
+            try? container.encode(deviceTag, forKey: .deviceTag)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
         }
     }
 }
@@ -100,26 +100,26 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var edcModel: String
 
-        public var deviceTag: String?
-
         public var aggregatorId: Int
 
-        public var storeId: Int
-
         public var terminalSerialNo: String
+
+        public var deviceTag: String?
+
+        public var storeId: Int
 
         public enum CodingKeys: String, CodingKey {
             case edcDeviceSerialNo = "edc_device_serial_no"
 
             case edcModel = "edc_model"
 
-            case deviceTag = "device_tag"
-
             case aggregatorId = "aggregator_id"
 
-            case storeId = "store_id"
-
             case terminalSerialNo = "terminal_serial_no"
+
+            case deviceTag = "device_tag"
+
+            case storeId = "store_id"
         }
 
         public init(aggregatorId: Int, deviceTag: String? = nil, edcDeviceSerialNo: String, edcModel: String, storeId: Int, terminalSerialNo: String) {
@@ -127,13 +127,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.edcModel = edcModel
 
-            self.deviceTag = deviceTag
-
             self.aggregatorId = aggregatorId
 
-            self.storeId = storeId
-
             self.terminalSerialNo = terminalSerialNo
+
+            self.deviceTag = deviceTag
+
+            self.storeId = storeId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -143,6 +143,10 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             edcModel = try container.decode(String.self, forKey: .edcModel)
 
+            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
+
+            terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
+
             do {
                 deviceTag = try container.decode(String.self, forKey: .deviceTag)
 
@@ -151,11 +155,7 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
-
             storeId = try container.decode(Int.self, forKey: .storeId)
-
-            terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -165,13 +165,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(edcModel, forKey: .edcModel)
 
-            try? container.encode(deviceTag, forKey: .deviceTag)
-
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
             try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
+
+            try? container.encode(deviceTag, forKey: .deviceTag)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
         }
     }
 }

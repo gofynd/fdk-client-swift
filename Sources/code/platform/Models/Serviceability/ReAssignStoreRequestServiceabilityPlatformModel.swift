@@ -13,9 +13,9 @@ public extension PlatformClient.Serviceability {
 
         public var toPincode: String
 
-        public var identifier: String
-
         public var articles: [[String: Any]]
+
+        public var identifier: String
 
         public var configuration: [String: Any]
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Serviceability {
 
             case toPincode = "to_pincode"
 
-            case identifier
-
             case articles
+
+            case identifier
 
             case configuration
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Serviceability {
 
             self.toPincode = toPincode
 
-            self.identifier = identifier
-
             self.articles = articles
+
+            self.identifier = identifier
 
             self.configuration = configuration
         }
@@ -50,9 +50,9 @@ public extension PlatformClient.Serviceability {
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
-            identifier = try container.decode(String.self, forKey: .identifier)
-
             articles = try container.decode([[String: Any]].self, forKey: .articles)
+
+            identifier = try container.decode(String.self, forKey: .identifier)
 
             configuration = try container.decode([String: Any].self, forKey: .configuration)
         }
@@ -64,9 +64,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
             try? container.encodeIfPresent(articles, forKey: .articles)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(configuration, forKey: .configuration)
         }
@@ -84,9 +84,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public var toPincode: String
 
-        public var identifier: String
-
         public var articles: [[String: Any]]
+
+        public var identifier: String
 
         public var configuration: [String: Any]
 
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             case toPincode = "to_pincode"
 
-            case identifier
-
             case articles
+
+            case identifier
 
             case configuration
         }
@@ -107,9 +107,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             self.toPincode = toPincode
 
-            self.identifier = identifier
-
             self.articles = articles
+
+            self.identifier = identifier
 
             self.configuration = configuration
         }
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
-            identifier = try container.decode(String.self, forKey: .identifier)
-
             articles = try container.decode([[String: Any]].self, forKey: .articles)
+
+            identifier = try container.decode(String.self, forKey: .identifier)
 
             configuration = try container.decode([String: Any].self, forKey: .configuration)
         }
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
-            try? container.encodeIfPresent(identifier, forKey: .identifier)
-
             try? container.encodeIfPresent(articles, forKey: .articles)
+
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
             try? container.encodeIfPresent(configuration, forKey: .configuration)
         }

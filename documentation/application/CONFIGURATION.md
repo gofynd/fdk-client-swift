@@ -2375,7 +2375,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | criteria | String? |  yes  | Whether all brands are enabled, or explicitly few brands in the inventory |
- | brands | [Int]? |  yes  |  |
+ | brands | [Int]? |  yes  | Brand uids in case of explicit criteria |
 
 ---
 
@@ -2386,8 +2386,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | companies | [Int]? |  yes  | List of company UID |
- | brands | [Int]? |  yes  | List of brand UID |
+ | companies | [Int]? |  yes  | list of company uids |
+ | brands | [Int]? |  yes  | list of brand uids |
 
 ---
 
@@ -2398,9 +2398,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | criteria | String? |  yes  | Whether all stores are enabled, or explicitly few stores in the inventory, or use brands and company filter. |
- | rules | [[StoreCriteriaRule](#StoreCriteriaRule)]? |  yes  | List of rules with company and brands uids. Used when critera is `filter`. |
- | stores | [Int]? |  yes  | List of store uids. Used when critera is `explicit`. |
+ | criteria | String? |  yes  | Whether enable all or explicitly few stores or use filter of brands and company as inventory stores |
+ | rules | [[StoreCriteriaRule](#StoreCriteriaRule)]? |  yes  | List of rules with company and brands uids. Used when critera is `filter` |
+ | stores | [Int]? |  yes  | List of store uids. Used when critera is `explicit` |
 
 ---
 
@@ -2746,11 +2746,11 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | String |  no  | Name of the sales channel. It is required. |
- | description | String |  no  | It gives a detailed information about the sales channel. It is required. |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | mobileLogo | [SecureUrl](#SecureUrl) |  no  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
+ | description | String? |  yes  | It gives a detailed information about the sales channel. It is required. |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |

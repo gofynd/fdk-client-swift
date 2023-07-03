@@ -9,30 +9,32 @@ public extension PlatformClient.Serviceability {
      */
 
     class GetBulkRegionJobResponse: Codable {
+        public var data: [BulkRegionData]
+
         public var batchId: String?
 
         public var currentPageNumber: Int?
 
-        public var data: [BulkRegionData]
-
         public enum CodingKeys: String, CodingKey {
+            case data
+
             case batchId = "batch_id"
 
             case currentPageNumber = "current_page_number"
-
-            case data
         }
 
         public init(batchId: String? = nil, currentPageNumber: Int? = nil, data: [BulkRegionData]) {
+            self.data = data
+
             self.batchId = batchId
 
             self.currentPageNumber = currentPageNumber
-
-            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            data = try container.decode([BulkRegionData].self, forKey: .data)
 
             do {
                 batchId = try container.decode(String.self, forKey: .batchId)
@@ -49,18 +51,16 @@ public extension PlatformClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            data = try container.decode([BulkRegionData].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(data, forKey: .data)
+
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
             try? container.encodeIfPresent(currentPageNumber, forKey: .currentPageNumber)
-
-            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -72,30 +72,32 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class GetBulkRegionJobResponse: Codable {
+        public var data: [BulkRegionData]
+
         public var batchId: String?
 
         public var currentPageNumber: Int?
 
-        public var data: [BulkRegionData]
-
         public enum CodingKeys: String, CodingKey {
+            case data
+
             case batchId = "batch_id"
 
             case currentPageNumber = "current_page_number"
-
-            case data
         }
 
         public init(batchId: String? = nil, currentPageNumber: Int? = nil, data: [BulkRegionData]) {
+            self.data = data
+
             self.batchId = batchId
 
             self.currentPageNumber = currentPageNumber
-
-            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            data = try container.decode([BulkRegionData].self, forKey: .data)
 
             do {
                 batchId = try container.decode(String.self, forKey: .batchId)
@@ -112,18 +114,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            data = try container.decode([BulkRegionData].self, forKey: .data)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(data, forKey: .data)
+
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
             try? container.encodeIfPresent(currentPageNumber, forKey: .currentPageNumber)
-
-            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

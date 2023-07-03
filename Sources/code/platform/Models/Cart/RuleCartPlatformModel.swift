@@ -13,9 +13,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var discountQty: Double?
 
-        public var max: Double?
-
         public var key: Double?
+
+        public var max: Double?
 
         public var min: Double?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case discountQty = "discount_qty"
 
-            case max
-
             case key
+
+            case max
 
             case min
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.discountQty = discountQty
 
-            self.max = max
-
             self.key = key
+
+            self.max = max
 
             self.min = min
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                max = try container.decode(Double.self, forKey: .max)
+                key = try container.decode(Double.self, forKey: .key)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                key = try container.decode(Double.self, forKey: .key)
+                max = try container.decode(Double.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(discountQty, forKey: .discountQty)
 
-            try? container.encodeIfPresent(max, forKey: .max)
-
             try? container.encodeIfPresent(key, forKey: .key)
+
+            try? container.encodeIfPresent(max, forKey: .max)
 
             try? container.encodeIfPresent(min, forKey: .min)
         }

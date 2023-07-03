@@ -9,9 +9,9 @@ public extension ApplicationClient.Cart {
     class LadderOfferItem: Codable {
         public var maxQuantity: Int?
 
-        public var minQuantity: Int?
-
         public var price: LadderPrice?
+
+        public var minQuantity: Int?
 
         public var type: String?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case maxQuantity = "max_quantity"
 
-            case minQuantity = "min_quantity"
-
             case price
+
+            case minQuantity = "min_quantity"
 
             case type
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Cart {
         public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
             self.maxQuantity = maxQuantity
 
-            self.minQuantity = minQuantity
-
             self.price = price
+
+            self.minQuantity = minQuantity
 
             self.type = type
 
@@ -53,7 +53,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
+                price = try container.decode(LadderPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                price = try container.decode(LadderPrice.self, forKey: .price)
+                minQuantity = try container.decode(Int.self, forKey: .minQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
 
-            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
-
             try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(minQuantity, forKey: .minQuantity)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

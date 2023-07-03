@@ -458,11 +458,77 @@ Success. Check the example shown below or refer `PushtokenRes` for more details.
 
  
  
+ #### [GenericPage](#GenericPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | size | Int? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [GenericSuccess](#GenericSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenericError](#GenericError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | [Message](#Message)? |  yes  |  |
+ | sentry | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenericDelete](#GenericDelete)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | acknowledged | Bool? |  yes  |  |
+ | affected | Int? |  yes  |  |
+ | operation | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Message](#Message)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | info | String? |  yes  |  |
+ | operation | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EnabledObj](#EnabledObj)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
 
 ---
 

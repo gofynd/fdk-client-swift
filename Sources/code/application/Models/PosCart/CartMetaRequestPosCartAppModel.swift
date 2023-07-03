@@ -7,48 +7,56 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class CartMetaRequest: Codable {
+        public var checkoutMode: String?
+
         public var giftDetails: ArticleGiftDetail?
 
         public var pickUpCustomerDetails: [String: Any]?
 
-        public var comment: String?
-
         public var gstin: String?
+
+        public var comment: String?
 
         public var deliverySlots: [String: Any]?
 
-        public var checkoutMode: String?
-
         public enum CodingKeys: String, CodingKey {
+            case checkoutMode = "checkout_mode"
+
             case giftDetails = "gift_details"
 
             case pickUpCustomerDetails = "pick_up_customer_details"
 
-            case comment
-
             case gstin
 
-            case deliverySlots = "delivery_slots"
+            case comment
 
-            case checkoutMode = "checkout_mode"
+            case deliverySlots = "delivery_slots"
         }
 
         public init(checkoutMode: String? = nil, comment: String? = nil, deliverySlots: [String: Any]? = nil, giftDetails: ArticleGiftDetail? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil) {
+            self.checkoutMode = checkoutMode
+
             self.giftDetails = giftDetails
 
             self.pickUpCustomerDetails = pickUpCustomerDetails
 
-            self.comment = comment
-
             self.gstin = gstin
 
-            self.deliverySlots = deliverySlots
+            self.comment = comment
 
-            self.checkoutMode = checkoutMode
+            self.deliverySlots = deliverySlots
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 giftDetails = try container.decode(ArticleGiftDetail.self, forKey: .giftDetails)
@@ -67,7 +75,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                comment = try container.decode(String.self, forKey: .comment)
+                gstin = try container.decode(String.self, forKey: .gstin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +83,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
+                comment = try container.decode(String.self, forKey: .comment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,30 +97,22 @@ public extension ApplicationClient.PosCart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+
             try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
 
             try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
-            try? container.encodeIfPresent(comment, forKey: .comment)
-
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 
-            try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
+            try? container.encodeIfPresent(comment, forKey: .comment)
 
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+            try? container.encodeIfPresent(deliverySlots, forKey: .deliverySlots)
         }
     }
 }

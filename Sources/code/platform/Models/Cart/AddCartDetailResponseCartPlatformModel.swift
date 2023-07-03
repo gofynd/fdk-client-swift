@@ -11,18 +11,18 @@ public extension PlatformClient.ApplicationClient.Cart {
     class AddCartDetailResponse: Codable {
         public var partial: Bool?
 
-        public var cart: CartDetailResponse?
-
         public var message: String?
+
+        public var cart: CartDetailResponse?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case partial
 
-            case cart
-
             case message
+
+            case cart
 
             case success
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(cart: CartDetailResponse? = nil, message: String? = nil, partial: Bool? = nil, success: Bool? = nil) {
             self.partial = partial
 
-            self.cart = cart
-
             self.message = message
+
+            self.cart = cart
 
             self.success = success
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                cart = try container.decode(CartDetailResponse.self, forKey: .cart)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                cart = try container.decode(CartDetailResponse.self, forKey: .cart)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(partial, forKey: .partial)
 
-            try? container.encodeIfPresent(cart, forKey: .cart)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(cart, forKey: .cart)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

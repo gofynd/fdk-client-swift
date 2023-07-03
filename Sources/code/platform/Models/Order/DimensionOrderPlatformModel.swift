@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var packagingType: String?
 
-        public var weight: String?
-
         public var length: Double?
+
+        public var weight: String?
 
         public var width: Double?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
 
             case packagingType = "packaging_type"
 
-            case weight
-
             case length
+
+            case weight
 
             case width
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             self.packagingType = packagingType
 
-            self.weight = weight
-
             self.length = length
+
+            self.weight = weight
 
             self.width = width
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                weight = try container.decode(String.self, forKey: .weight)
+                length = try container.decode(Double.self, forKey: .length)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                length = try container.decode(Double.self, forKey: .length)
+                weight = try container.decode(String.self, forKey: .weight)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(packagingType, forKey: .packagingType)
 
-            try? container.encodeIfPresent(weight, forKey: .weight)
-
             try? container.encodeIfPresent(length, forKey: .length)
+
+            try? container.encodeIfPresent(weight, forKey: .weight)
 
             try? container.encodeIfPresent(width, forKey: .width)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var packagingType: String?
 
-        public var weight: String?
-
         public var length: Double?
+
+        public var weight: String?
 
         public var width: Double?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case packagingType = "packaging_type"
 
-            case weight
-
             case length
+
+            case weight
 
             case width
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.packagingType = packagingType
 
-            self.weight = weight
-
             self.length = length
+
+            self.weight = weight
 
             self.width = width
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                weight = try container.decode(String.self, forKey: .weight)
+                length = try container.decode(Double.self, forKey: .length)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                length = try container.decode(Double.self, forKey: .length)
+                weight = try container.decode(String.self, forKey: .weight)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(packagingType, forKey: .packagingType)
 
-            try? container.encodeIfPresent(weight, forKey: .weight)
-
             try? container.encodeIfPresent(length, forKey: .length)
+
+            try? container.encodeIfPresent(weight, forKey: .weight)
 
             try? container.encodeIfPresent(width, forKey: .width)
         }

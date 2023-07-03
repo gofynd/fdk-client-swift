@@ -13,42 +13,42 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var type: String?
 
-        public var modifiedOn: String?
+        public var entityType: String?
+
+        public var example: String?
 
         public var createdOn: String?
 
-        public var entitySlug: String?
-
         public var isHidden: Bool?
 
-        public var entityType: String?
+        public var modifiedOn: String?
 
         public var description: String?
 
-        public var subtitle: String?
+        public var entitySlug: String?
 
-        public var example: String?
+        public var subtitle: String?
 
         public enum CodingKeys: String, CodingKey {
             case title
 
             case type
 
-            case modifiedOn = "modified_on"
+            case entityType = "entity_type"
+
+            case example
 
             case createdOn = "created_on"
 
-            case entitySlug = "entity_slug"
-
             case isHidden = "is_hidden"
 
-            case entityType = "entity_type"
+            case modifiedOn = "modified_on"
 
             case description
 
-            case subtitle
+            case entitySlug = "entity_slug"
 
-            case example
+            case subtitle
         }
 
         public init(createdOn: String? = nil, description: String? = nil, entitySlug: String? = nil, entityType: String? = nil, example: String? = nil, isHidden: Bool? = nil, modifiedOn: String? = nil, subtitle: String? = nil, title: String? = nil, type: String? = nil) {
@@ -56,21 +56,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.type = type
 
-            self.modifiedOn = modifiedOn
+            self.entityType = entityType
+
+            self.example = example
 
             self.createdOn = createdOn
 
-            self.entitySlug = entitySlug
-
             self.isHidden = isHidden
 
-            self.entityType = entityType
+            self.modifiedOn = modifiedOn
 
             self.description = description
 
-            self.subtitle = subtitle
+            self.entitySlug = entitySlug
 
-            self.example = example
+            self.subtitle = subtitle
         }
 
         required public init(from decoder: Decoder) throws {
@@ -93,7 +93,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                entityType = try container.decode(String.self, forKey: .entityType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                example = try container.decode(String.self, forKey: .example)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,14 +117,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                entitySlug = try container.decode(String.self, forKey: .entitySlug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 isHidden = try container.decode(Bool.self, forKey: .isHidden)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -125,7 +125,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                entityType = try container.decode(String.self, forKey: .entityType)
+                modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -141,7 +141,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                subtitle = try container.decode(String.self, forKey: .subtitle)
+                entitySlug = try container.decode(String.self, forKey: .entitySlug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -149,7 +149,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                example = try container.decode(String.self, forKey: .example)
+                subtitle = try container.decode(String.self, forKey: .subtitle)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,21 +164,21 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
+
+            try? container.encodeIfPresent(example, forKey: .example)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(entitySlug, forKey: .entitySlug)
-
             try? container.encodeIfPresent(isHidden, forKey: .isHidden)
 
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
+            try? container.encodeIfPresent(entitySlug, forKey: .entitySlug)
 
-            try? container.encodeIfPresent(example, forKey: .example)
+            try? container.encodeIfPresent(subtitle, forKey: .subtitle)
         }
     }
 }

@@ -7,33 +7,33 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class PincodeErrorSchemaResponse: Codable {
-        public var value: String?
+        public var type: String?
 
         public var message: String?
 
-        public var type: String?
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
-            case value
+            case type
 
             case message
 
-            case type
+            case value
         }
 
         public init(message: String? = nil, type: String? = nil, value: String? = nil) {
-            self.value = value
+            self.type = type
 
             self.message = message
 
-            self.type = type
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,11 +60,11 @@ public extension ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(value, forKey: .value)
+            try? container.encode(type, forKey: .type)
 
             try? container.encode(message, forKey: .message)
 
-            try? container.encode(type, forKey: .type)
+            try? container.encode(value, forKey: .value)
         }
     }
 }

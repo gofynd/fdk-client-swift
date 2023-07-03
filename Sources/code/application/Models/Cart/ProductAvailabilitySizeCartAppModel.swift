@@ -11,22 +11,22 @@ public extension ApplicationClient.Cart {
 
         public var isAvailable: Bool?
 
-        public var display: String?
+        public var meta: [String: Any]?
 
         public var customJson: [String: Any]?
 
-        public var meta: [String: Any]?
+        public var display: String?
 
         public enum CodingKeys: String, CodingKey {
             case value
 
             case isAvailable = "is_available"
 
-            case display
+            case meta
 
             case customJson = "_custom_json"
 
-            case meta
+            case display
         }
 
         public init(display: String? = nil, isAvailable: Bool? = nil, meta: [String: Any]? = nil, value: String? = nil, customJson: [String: Any]? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Cart {
 
             self.isAvailable = isAvailable
 
-            self.display = display
+            self.meta = meta
 
             self.customJson = customJson
 
-            self.meta = meta
+            self.display = display
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                display = try container.decode(String.self, forKey: .display)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                display = try container.decode(String.self, forKey: .display)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,11 +92,11 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
-            try? container.encodeIfPresent(display, forKey: .display)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(display, forKey: .display)
         }
     }
 }

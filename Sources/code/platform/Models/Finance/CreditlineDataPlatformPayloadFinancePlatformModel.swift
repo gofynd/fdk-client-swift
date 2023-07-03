@@ -9,36 +9,36 @@ public extension PlatformClient.Finance {
      */
 
     class CreditlineDataPlatformPayload: Codable {
-        public var endEnd: String?
+        public var startEnd: String?
 
         public var pagesize: Int?
 
-        public var startEnd: String?
-
         public var sellerId: String?
+
+        public var endEnd: String?
 
         public var page: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case endEnd = "end_end"
+            case startEnd = "start_end"
 
             case pagesize
 
-            case startEnd = "start_end"
-
             case sellerId = "seller_id"
+
+            case endEnd = "end_end"
 
             case page
         }
 
         public init(endEnd: String? = nil, page: Int? = nil, pagesize: Int? = nil, sellerId: String? = nil, startEnd: String? = nil) {
-            self.endEnd = endEnd
+            self.startEnd = startEnd
 
             self.pagesize = pagesize
 
-            self.startEnd = startEnd
-
             self.sellerId = sellerId
+
+            self.endEnd = endEnd
 
             self.page = page
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                endEnd = try container.decode(String.self, forKey: .endEnd)
+                startEnd = try container.decode(String.self, forKey: .startEnd)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                startEnd = try container.decode(String.self, forKey: .startEnd)
+                sellerId = try container.decode(String.self, forKey: .sellerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                sellerId = try container.decode(String.self, forKey: .sellerId)
+                endEnd = try container.decode(String.self, forKey: .endEnd)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(endEnd, forKey: .endEnd)
+            try? container.encodeIfPresent(startEnd, forKey: .startEnd)
 
             try? container.encodeIfPresent(pagesize, forKey: .pagesize)
 
-            try? container.encodeIfPresent(startEnd, forKey: .startEnd)
-
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(endEnd, forKey: .endEnd)
 
             try? container.encodeIfPresent(page, forKey: .page)
         }

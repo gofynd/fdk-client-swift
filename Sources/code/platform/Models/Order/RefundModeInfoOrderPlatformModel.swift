@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class RefundModeInfo: Codable {
         public var options: [RefundOption]?
 
-        public var isActive: Bool?
+        public var displayName: String?
 
         public var slug: String?
 
-        public var displayName: String?
+        public var isActive: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case options
 
-            case isActive = "is_active"
+            case displayName = "display_name"
 
             case slug
 
-            case displayName = "display_name"
+            case isActive = "is_active"
         }
 
         public init(displayName: String? = nil, isActive: Bool? = nil, options: [RefundOption]? = nil, slug: String? = nil) {
             self.options = options
 
-            self.isActive = isActive
+            self.displayName = displayName
 
             self.slug = slug
 
-            self.displayName = displayName
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(options, forKey: .options)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class RefundModeInfo: Codable {
         public var options: [RefundOption]?
 
-        public var isActive: Bool?
+        public var displayName: String?
 
         public var slug: String?
 
-        public var displayName: String?
+        public var isActive: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case options
 
-            case isActive = "is_active"
+            case displayName = "display_name"
 
             case slug
 
-            case displayName = "display_name"
+            case isActive = "is_active"
         }
 
         public init(displayName: String? = nil, isActive: Bool? = nil, options: [RefundOption]? = nil, slug: String? = nil) {
             self.options = options
 
-            self.isActive = isActive
+            self.displayName = displayName
 
             self.slug = slug
 
-            self.displayName = displayName
+            self.isActive = isActive
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(options, forKey: .options)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
         }
     }
 }

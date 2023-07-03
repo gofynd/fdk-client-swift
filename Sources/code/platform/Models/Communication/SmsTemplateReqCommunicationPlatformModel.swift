@@ -9,56 +9,62 @@ public extension PlatformClient.Communication {
      */
 
     class SmsTemplateReq: Codable {
-        public var name: String?
+        public var name: String
 
         public var description: String?
 
-        public var message: SmsTemplateMessage?
+        public var priority: String?
+
+        public var templateId: String?
+
+        public var meta: metaObj?
 
         public var templateVariables: [String: Any]?
 
-        public var attachments: [[String: Any]]?
+        public var published: Bool?
 
-        public var priority: String?
+        public var message: SmsTemplateMessage?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case description
 
-            case message
+            case priority
+
+            case templateId = "template_id"
+
+            case meta
 
             case templateVariables = "template_variables"
 
-            case attachments
+            case published
 
-            case priority
+            case message
         }
 
-        public init(attachments: [[String: Any]]? = nil, description: String? = nil, message: SmsTemplateMessage? = nil, name: String? = nil, priority: String? = nil, templateVariables: [String: Any]? = nil) {
+        public init(description: String? = nil, message: SmsTemplateMessage? = nil, meta: metaObj? = nil, name: String, priority: String? = nil, published: Bool? = nil, templateId: String? = nil, templateVariables: [String: Any]? = nil) {
             self.name = name
 
             self.description = description
 
-            self.message = message
+            self.priority = priority
+
+            self.templateId = templateId
+
+            self.meta = meta
 
             self.templateVariables = templateVariables
 
-            self.attachments = attachments
+            self.published = published
 
-            self.priority = priority
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 description = try container.decode(String.self, forKey: .description)
@@ -69,7 +75,23 @@ public extension PlatformClient.Communication {
             } catch {}
 
             do {
-                message = try container.decode(SmsTemplateMessage.self, forKey: .message)
+                priority = try container.decode(String.self, forKey: .priority)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                templateId = try container.decode(String.self, forKey: .templateId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode(metaObj.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +107,7 @@ public extension PlatformClient.Communication {
             } catch {}
 
             do {
-                attachments = try container.decode([[String: Any]].self, forKey: .attachments)
+                published = try container.decode(Bool.self, forKey: .published)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +115,7 @@ public extension PlatformClient.Communication {
             } catch {}
 
             do {
-                priority = try container.decode(String.self, forKey: .priority)
+                message = try container.decode(SmsTemplateMessage.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,13 +130,17 @@ public extension PlatformClient.Communication {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(templateId, forKey: .templateId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(templateVariables, forKey: .templateVariables)
 
-            try? container.encodeIfPresent(attachments, forKey: .attachments)
+            try? container.encodeIfPresent(published, forKey: .published)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -126,56 +152,62 @@ public extension PlatformClient.ApplicationClient.Communication {
      */
 
     class SmsTemplateReq: Codable {
-        public var name: String?
+        public var name: String
 
         public var description: String?
 
-        public var message: SmsTemplateMessage?
+        public var priority: String?
+
+        public var templateId: String?
+
+        public var meta: metaObj?
 
         public var templateVariables: [String: Any]?
 
-        public var attachments: [[String: Any]]?
+        public var published: Bool?
 
-        public var priority: String?
+        public var message: SmsTemplateMessage?
 
         public enum CodingKeys: String, CodingKey {
             case name
 
             case description
 
-            case message
+            case priority
+
+            case templateId = "template_id"
+
+            case meta
 
             case templateVariables = "template_variables"
 
-            case attachments
+            case published
 
-            case priority
+            case message
         }
 
-        public init(attachments: [[String: Any]]? = nil, description: String? = nil, message: SmsTemplateMessage? = nil, name: String? = nil, priority: String? = nil, templateVariables: [String: Any]? = nil) {
+        public init(description: String? = nil, message: SmsTemplateMessage? = nil, meta: metaObj? = nil, name: String, priority: String? = nil, published: Bool? = nil, templateId: String? = nil, templateVariables: [String: Any]? = nil) {
             self.name = name
 
             self.description = description
 
-            self.message = message
+            self.priority = priority
+
+            self.templateId = templateId
+
+            self.meta = meta
 
             self.templateVariables = templateVariables
 
-            self.attachments = attachments
+            self.published = published
 
-            self.priority = priority
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            name = try container.decode(String.self, forKey: .name)
 
             do {
                 description = try container.decode(String.self, forKey: .description)
@@ -186,7 +218,23 @@ public extension PlatformClient.ApplicationClient.Communication {
             } catch {}
 
             do {
-                message = try container.decode(SmsTemplateMessage.self, forKey: .message)
+                priority = try container.decode(String.self, forKey: .priority)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                templateId = try container.decode(String.self, forKey: .templateId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode(metaObj.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +250,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             } catch {}
 
             do {
-                attachments = try container.decode([[String: Any]].self, forKey: .attachments)
+                published = try container.decode(Bool.self, forKey: .published)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +258,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             } catch {}
 
             do {
-                priority = try container.decode(String.self, forKey: .priority)
+                message = try container.decode(SmsTemplateMessage.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,13 +273,17 @@ public extension PlatformClient.ApplicationClient.Communication {
 
             try? container.encodeIfPresent(description, forKey: .description)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(templateId, forKey: .templateId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(templateVariables, forKey: .templateVariables)
 
-            try? container.encodeIfPresent(attachments, forKey: .attachments)
+            try? container.encodeIfPresent(published, forKey: .published)
 
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

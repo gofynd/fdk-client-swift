@@ -9,9 +9,9 @@ public extension ApplicationClient.Catalog {
     class Dimension: Codable {
         public var height: Double
 
-        public var isDefault: Bool
-
         public var length: Double
+
+        public var isDefault: Bool
 
         public var unit: String
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case height
 
-            case isDefault = "is_default"
-
             case length
+
+            case isDefault = "is_default"
 
             case unit
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Catalog {
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
             self.height = height
 
-            self.isDefault = isDefault
-
             self.length = length
+
+            self.isDefault = isDefault
 
             self.unit = unit
 
@@ -46,9 +46,9 @@ public extension ApplicationClient.Catalog {
 
             height = try container.decode(Double.self, forKey: .height)
 
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
-
             length = try container.decode(Double.self, forKey: .length)
+
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
             unit = try container.decode(String.self, forKey: .unit)
 
@@ -60,9 +60,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(height, forKey: .height)
 
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-
             try? container.encodeIfPresent(length, forKey: .length)
+
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
 

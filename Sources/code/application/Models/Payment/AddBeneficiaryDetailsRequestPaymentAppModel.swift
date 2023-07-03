@@ -11,30 +11,30 @@ public extension ApplicationClient.Payment {
 
         public var transferMode: String
 
+        public var shipmentId: String
+
         public var details: BeneficiaryModeDetails
+
+        public var requestId: String?
 
         public var delights: Bool
 
         public var otp: String?
-
-        public var requestId: String?
-
-        public var shipmentId: String
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
 
             case transferMode = "transfer_mode"
 
+            case shipmentId = "shipment_id"
+
             case details
+
+            case requestId = "request_id"
 
             case delights
 
             case otp
-
-            case requestId = "request_id"
-
-            case shipmentId = "shipment_id"
         }
 
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
@@ -42,15 +42,15 @@ public extension ApplicationClient.Payment {
 
             self.transferMode = transferMode
 
+            self.shipmentId = shipmentId
+
             self.details = details
+
+            self.requestId = requestId
 
             self.delights = delights
 
             self.otp = otp
-
-            self.requestId = requestId
-
-            self.shipmentId = shipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,7 +60,17 @@ public extension ApplicationClient.Payment {
 
             transferMode = try container.decode(String.self, forKey: .transferMode)
 
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
+
             details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
+
+            do {
+                requestId = try container.decode(String.self, forKey: .requestId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             delights = try container.decode(Bool.self, forKey: .delights)
 
@@ -71,16 +81,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                requestId = try container.decode(String.self, forKey: .requestId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -90,15 +90,15 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(transferMode, forKey: .transferMode)
 
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+
             try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(delights, forKey: .delights)
 
             try? container.encodeIfPresent(otp, forKey: .otp)
-
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
-
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
         }
     }
 }

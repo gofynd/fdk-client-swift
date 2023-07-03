@@ -4,32 +4,32 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-         Model: EmailTemplateDeleteSuccessRes
+         Model: SmsTemplatesAdmin
          Used By: Communication
      */
 
-    class EmailTemplateDeleteSuccessRes: Codable {
-        public var success: Bool?
+    class SmsTemplatesAdmin: Codable {
+        public var items: [SmsTemplateAdmin]?
 
-        public var message: String?
+        public var page: Page?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case items
 
-            case message
+            case page
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
-            self.success = success
+        public init(items: [SmsTemplateAdmin]? = nil, page: Page? = nil) {
+            self.items = items
 
-            self.message = message
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                items = try container.decode([SmsTemplateAdmin].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Communication {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Communication {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-         Model: EmailTemplateDeleteSuccessRes
+         Model: SmsTemplatesAdmin
          Used By: Communication
      */
 
-    class EmailTemplateDeleteSuccessRes: Codable {
-        public var success: Bool?
+    class SmsTemplatesAdmin: Codable {
+        public var items: [SmsTemplateAdmin]?
 
-        public var message: String?
+        public var page: Page?
 
         public enum CodingKeys: String, CodingKey {
-            case success
+            case items
 
-            case message
+            case page
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
-            self.success = success
+        public init(items: [SmsTemplateAdmin]? = nil, page: Page? = nil) {
+            self.items = items
 
-            self.message = message
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                items = try container.decode([SmsTemplateAdmin].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Communication {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }
