@@ -38,7 +38,7 @@ Get live announcements
 
 
 ```swift
-content.getAnnouncements() { (response, error) in
+applicationClient.content.getAnnouncements() { (response, error) in
     // Use response
 }
 ```
@@ -123,7 +123,7 @@ Get a blog
 
 
 ```swift
-content.getBlog(slug: slug, rootId: rootId) { (response, error) in
+applicationClient.content.getBlog(slug: slug, rootId: rootId) { (response, error) in
     // Use response
 }
 ```
@@ -224,7 +224,7 @@ Get a list of blogs
 
 
 ```swift
-content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+applicationClient.content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -329,7 +329,7 @@ Get the data loaders associated with an application
 
 
 ```swift
-content.getDataLoaders() { (response, error) in
+applicationClient.content.getDataLoaders() { (response, error) in
     // Use response
 }
 ```
@@ -400,7 +400,7 @@ Get a list of FAQs
 
 
 ```swift
-content.getFaqs() { (response, error) in
+applicationClient.content.getFaqs() { (response, error) in
     // Use response
 }
 ```
@@ -468,7 +468,7 @@ Get a list of FAQ categories
 
 
 ```swift
-content.getFaqCategories() { (response, error) in
+applicationClient.content.getFaqCategories() { (response, error) in
     // Use response
 }
 ```
@@ -531,7 +531,7 @@ Get an FAQ
 
 
 ```swift
-content.getFaqBySlug(slug: slug) { (response, error) in
+applicationClient.content.getFaqBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -592,7 +592,7 @@ Get the FAQ category
 
 
 ```swift
-content.getFaqCategoryBySlug(slug: slug) { (response, error) in
+applicationClient.content.getFaqCategoryBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -664,7 +664,7 @@ Get FAQs using the slug of FAQ category
 
 
 ```swift
-content.getFaqsByCategorySlug(slug: slug) { (response, error) in
+applicationClient.content.getFaqsByCategorySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -729,7 +729,7 @@ Get the landing page
 
 
 ```swift
-content.getLandingPage() { (response, error) in
+applicationClient.content.getLandingPage() { (response, error) in
     // Use response
 }
 ```
@@ -810,7 +810,7 @@ Get legal information
 
 
 ```swift
-content.getLegalInformation() { (response, error) in
+applicationClient.content.getLegalInformation() { (response, error) in
     // Use response
 }
 ```
@@ -900,7 +900,7 @@ Get the navigation
 
 
 ```swift
-content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+applicationClient.content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -1151,7 +1151,7 @@ Get the SEO of an application
 
 
 ```swift
-content.getSEOConfiguration() { (response, error) in
+applicationClient.content.getSEOConfiguration() { (response, error) in
     // Use response
 }
 ```
@@ -1191,6 +1191,7 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
+      "cannonical_enabled": false,
       "_id": "6009819ee463ad40de397eb2",
       "app": "000000000000000000000001",
       "created_at": "2021-01-21T13:29:02.543Z",
@@ -1234,7 +1235,7 @@ Get the slideshows
 
 
 ```swift
-content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+applicationClient.content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -1349,7 +1350,7 @@ Get a slideshow
 
 
 ```swift
-content.getSlideshow(slug: slug) { (response, error) in
+applicationClient.content.getSlideshow(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -1451,7 +1452,7 @@ Get the support information
 
 
 ```swift
-content.getSupportInformation() { (response, error) in
+applicationClient.content.getSupportInformation() { (response, error) in
     // Use response
 }
 ```
@@ -1532,7 +1533,7 @@ Get the tags associated with an application
 
 
 ```swift
-content.getTags() { (response, error) in
+applicationClient.content.getTags() { (response, error) in
     // Use response
 }
 ```
@@ -1598,7 +1599,7 @@ Get a page
 
 
 ```swift
-content.getPage(slug: slug, rootId: rootId) { (response, error) in
+applicationClient.content.getPage(slug: slug, rootId: rootId) { (response, error) in
     // Use response
 }
 ```
@@ -1702,7 +1703,7 @@ Get all pages
 
 
 ```swift
-content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+applicationClient.content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -1850,7 +1851,19 @@ Success. Returns a list of pages along with their details. Check the example sho
  | redirectTo | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
- | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
+ | source | [PathSourceSchema](#PathSourceSchema)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PathSourceSchema](#PathSourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | id | String? |  yes  |  |
 
 ---
 
@@ -1876,6 +1889,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | id | String? |  yes  |  |
  | robotsTxt | String? |  yes  |  |
  | sitemapEnabled | Bool? |  yes  |  |
+ | cannonicalEnabled | Bool? |  yes  |  |
  | customMetaTags | [[CustomMetaTag](#CustomMetaTag)]? |  yes  |  |
  | details | [Detail](#Detail)? |  yes  |  |
  | createdAt | String? |  yes  |  |
@@ -2293,26 +2307,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | active | Bool? |  yes  |  |
  | display | String? |  yes  |  |
  | sortOrder | Int? |  yes  |  |
- | subNavigation | [[SubNavigationReference](#SubNavigationReference)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [SubNavigationReference](#SubNavigationReference)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | acl | [String]? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | localeLanguage | [LocaleLanguage](#LocaleLanguage)? |  yes  |  |
- | image | String? |  yes  |  |
- | type | String? |  yes  |  |
- | action | [Action](#Action)? |  yes  |  |
- | active | Bool? |  yes  |  |
- | display | String? |  yes  |  |
- | sortOrder | Int? |  yes  |  |
  | subNavigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
 
 ---
@@ -2448,6 +2442,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | url | String? |  yes  |  |
  | position | String? |  yes  |  |
  | attributes | [String: Any]? |  yes  |  |
+ | pages | [[String: Any]]? |  yes  |  |
  | content | String? |  yes  |  |
 
 ---
@@ -3233,6 +3228,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | position | String? |  yes  |  |
  | attributes | [String: Any]? |  yes  |  |
  | content | String? |  yes  |  |
+ | pages | [[String: Any]]? |  yes  |  |
  | source | [TagSourceSchema](#TagSourceSchema)? |  yes  |  |
 
 ---
@@ -3284,11 +3280,10 @@ Success. Returns a list of pages along with their details. Check the example sho
  | page | page | Symbolic link for Page: /page/:slug |
  | policy | policy | Symbolic link for Privacy Policy: /privacy-policy |
  | product | product | Symbolic link for Product: /product/:slug |
- | productReviews | product-reviews | Symbolic link for Product Reviews: /product/:slug/reviews |
- | addProductReview | add-product-review | Symbolic link for Add Product review: /product/:slug/add-review |
  | productRequest | product-request | Symbolic link for Product Request: /product-request/ |
  | products | products | Symbolic link for Products: /products/ |
  | profile | profile | Symbolic link for Profile: /profile |
+ | profileOrderShipment | profile-order-shipment | Symbolic link for profile orders shipment: /profile/orders/shipment/:shipmentid |
  | profileBasic | profile-basic | Symbolic link for Basic Profile: /profile/details |
  | profileCompany | profile-company | Symbolic link for Profile Company: /profile/company |
  | profileEmails | profile-emails | Symbolic link for Profile Emails: /profile/email |

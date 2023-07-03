@@ -29,7 +29,7 @@ List of giveaways of the current application.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getGiveaways(pageId: pageId, pageSize: pageSize) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getGiveaways(pageId: pageId, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -85,7 +85,7 @@ Adds a new giveaway.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.createGiveaway(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.createGiveaway(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -139,7 +139,7 @@ Get giveaway by ID.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getGiveawayByID(id: id) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getGiveawayByID(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -194,7 +194,7 @@ Updates the giveaway by it's ID.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.updateGiveaway(id: id, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.updateGiveaway(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -249,7 +249,7 @@ List of offer of the current application.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getOffers() { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getOffers() { (response, error) in
     // Use response
 }
 ```
@@ -299,7 +299,7 @@ Get offer by name.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getOfferByName(cookie: cookie, name: name) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getOfferByName(cookie: cookie, name: name) { (response, error) in
     // Use response
 }
 ```
@@ -355,7 +355,7 @@ Updates the offer by name.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.updateOfferByName(name: name, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.updateOfferByName(name: name, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -410,7 +410,7 @@ User's reward details.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getUserAvailablePoints(userId: userId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getUserAvailablePoints(userId: userId) { (response, error) in
     // Use response
 }
 ```
@@ -465,7 +465,7 @@ Update User status
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.updateUserStatus(userId: userId, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.updateUserStatus(userId: userId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -520,7 +520,7 @@ Get list of points transactions.
 
 
 ```swift
-client.application("<APPLICATION_ID>").rewards.getUserPointsHistory(userId: userId, pageId: pageId, pageLimit: pageLimit, pageSize: pageSize) { (response, error) in
+platformClient.application("<APPLICATION_ID>").rewards.getUserPointsHistory(userId: userId, pageId: pageId, pageLimit: pageLimit, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```

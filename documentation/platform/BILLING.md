@@ -31,7 +31,7 @@ Check coupon validity
 
 
 ```swift
-client.billing.checkCouponValidity(plan: plan, couponCode: couponCode) { (response, error) in
+platformClient.billing.checkCouponValidity(plan: plan, couponCode: couponCode) { (response, error) in
     // Use response
 }
 ```
@@ -87,7 +87,7 @@ Create subscription charge
 
 
 ```swift
-client.billing.createSubscriptionCharge(extensionId: extensionId, body: body) { (response, error) in
+platformClient.billing.createSubscriptionCharge(extensionId: extensionId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -142,7 +142,7 @@ Get subscription charge details
 
 
 ```swift
-client.billing.getSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
+platformClient.billing.getSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
     // Use response
 }
 ```
@@ -198,7 +198,7 @@ Cancel subscription charge
 
 
 ```swift
-client.billing.cancelSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
+platformClient.billing.cancelSubscriptionCharge(extensionId: extensionId, subscriptionId: subscriptionId) { (response, error) in
     // Use response
 }
 ```
@@ -254,7 +254,7 @@ Get invoices
 
 
 ```swift
-client.billing.getInvoices() { (response, error) in
+platformClient.billing.getInvoices() { (response, error) in
     // Use response
 }
 ```
@@ -544,7 +544,7 @@ Get invoice by id
 
 
 ```swift
-client.billing.getInvoiceById(invoiceId: invoiceId) { (response, error) in
+platformClient.billing.getInvoiceById(invoiceId: invoiceId) { (response, error) in
     // Use response
 }
 ```
@@ -832,7 +832,7 @@ Get subscription customer detail
 
 
 ```swift
-client.billing.getCustomerDetail() { (response, error) in
+platformClient.billing.getCustomerDetail() { (response, error) in
     // Use response
 }
 ```
@@ -914,7 +914,7 @@ Upsert subscription customer detail
 
 
 ```swift
-client.billing.upsertCustomerDetail(body: body) { (response, error) in
+platformClient.billing.upsertCustomerDetail(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1000,7 +1000,7 @@ Get current subscription detail
 
 
 ```swift
-client.billing.getSubscription() { (response, error) in
+platformClient.billing.getSubscription() { (response, error) in
     // Use response
 }
 ```
@@ -1121,7 +1121,7 @@ Get subscription subscription limits
 
 
 ```swift
-client.billing.getFeatureLimitConfig() { (response, error) in
+platformClient.billing.getFeatureLimitConfig() { (response, error) in
     // Use response
 }
 ```
@@ -1207,7 +1207,7 @@ Activate subscription
 
 
 ```swift
-client.billing.activateSubscriptionPlan(body: body) { (response, error) in
+platformClient.billing.activateSubscriptionPlan(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1317,7 +1317,7 @@ Cancel subscription
 
 
 ```swift
-client.billing.cancelSubscriptionPlan(body: body) { (response, error) in
+platformClient.billing.cancelSubscriptionPlan(body: body) { (response, error) in
     // Use response
 }
 ```
