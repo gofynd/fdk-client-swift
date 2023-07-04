@@ -7,81 +7,119 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class CartProduct: Codable {
-        public var tags: [String]?
+        public var slug: String?
+
+        public var categories: [CategoryInfo]?
+
+        public var action: ProductAction?
+
+        public var brand: BaseInfo?
+
+        public var uid: Int?
 
         public var images: [ProductImage]?
 
         public var name: String?
 
-        public var teaserTag: Tags?
-
-        public var categories: [CategoryInfo]?
-
-        public var slug: String?
-
         public var customJson: [String: Any]?
 
         public var type: String?
 
-        public var brand: BaseInfo?
+        public var tags: [String]?
 
-        public var action: ProductAction?
+        public var teaserTag: Tags?
 
-        public var uid: Int?
+        public var itemCode: String?
 
         public enum CodingKeys: String, CodingKey {
-            case tags
+            case slug
+
+            case categories
+
+            case action
+
+            case brand
+
+            case uid
 
             case images
 
             case name
 
-            case teaserTag = "teaser_tag"
-
-            case categories
-
-            case slug
-
             case customJson = "_custom_json"
 
             case type
 
-            case brand
+            case tags
 
-            case action
+            case teaserTag = "teaser_tag"
 
-            case uid
+            case itemCode = "item_code"
         }
 
-        public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, name: String? = nil, slug: String? = nil, tags: [String]? = nil, teaserTag: Tags? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.tags = tags
+        public init(action: ProductAction? = nil, brand: BaseInfo? = nil, categories: [CategoryInfo]? = nil, images: [ProductImage]? = nil, itemCode: String? = nil, name: String? = nil, slug: String? = nil, tags: [String]? = nil, teaserTag: Tags? = nil, type: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
+            self.slug = slug
+
+            self.categories = categories
+
+            self.action = action
+
+            self.brand = brand
+
+            self.uid = uid
 
             self.images = images
 
             self.name = name
 
-            self.teaserTag = teaserTag
-
-            self.categories = categories
-
-            self.slug = slug
-
             self.customJson = customJson
 
             self.type = type
 
-            self.brand = brand
+            self.tags = tags
 
-            self.action = action
+            self.teaserTag = teaserTag
 
-            self.uid = uid
+            self.itemCode = itemCode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                tags = try container.decode([String].self, forKey: .tags)
+                slug = try container.decode(String.self, forKey: .slug)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                categories = try container.decode([CategoryInfo].self, forKey: .categories)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                action = try container.decode(ProductAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(BaseInfo.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                uid = try container.decode(Int.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,30 +143,6 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                teaserTag = try container.decode(Tags.self, forKey: .teaserTag)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                categories = try container.decode([CategoryInfo].self, forKey: .categories)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -145,7 +159,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                brand = try container.decode(BaseInfo.self, forKey: .brand)
+                tags = try container.decode([String].self, forKey: .tags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,7 +167,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                action = try container.decode(ProductAction.self, forKey: .action)
+                teaserTag = try container.decode(Tags.self, forKey: .teaserTag)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,7 +175,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                uid = try container.decode(Int.self, forKey: .uid)
+                itemCode = try container.decode(String.self, forKey: .itemCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,27 +186,29 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(tags, forKey: .tags)
+            try? container.encodeIfPresent(slug, forKey: .slug)
+
+            try? container.encodeIfPresent(categories, forKey: .categories)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(images, forKey: .images)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
-
-            try? container.encodeIfPresent(categories, forKey: .categories)
-
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(tags, forKey: .tags)
 
-            try? container.encodeIfPresent(action, forKey: .action)
+            try? container.encodeIfPresent(teaserTag, forKey: .teaserTag)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encode(itemCode, forKey: .itemCode)
         }
     }
 }

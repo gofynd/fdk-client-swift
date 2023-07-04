@@ -9,24 +9,24 @@ public extension ApplicationClient.Logistic {
     class TATLocationDetailsResponse: Codable {
         public var fulfillmentId: Int?
 
-        public var fromPincode: String?
-
         public var articles: [TATArticlesResponse]?
+
+        public var fromPincode: String?
 
         public enum CodingKeys: String, CodingKey {
             case fulfillmentId = "fulfillment_id"
 
-            case fromPincode = "from_pincode"
-
             case articles
+
+            case fromPincode = "from_pincode"
         }
 
         public init(articles: [TATArticlesResponse]? = nil, fromPincode: String? = nil, fulfillmentId: Int? = nil) {
             self.fulfillmentId = fulfillmentId
 
-            self.fromPincode = fromPincode
-
             self.articles = articles
+
+            self.fromPincode = fromPincode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                fromPincode = try container.decode(String.self, forKey: .fromPincode)
+                articles = try container.decode([TATArticlesResponse].self, forKey: .articles)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                articles = try container.decode([TATArticlesResponse].self, forKey: .articles)
+                fromPincode = try container.decode(String.self, forKey: .fromPincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Logistic {
 
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
-            try? container.encodeIfPresent(fromPincode, forKey: .fromPincode)
-
             try? container.encodeIfPresent(articles, forKey: .articles)
+
+            try? container.encodeIfPresent(fromPincode, forKey: .fromPincode)
         }
     }
 }

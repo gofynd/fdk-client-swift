@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class PhoneDetails: Codable {
         public var countryCode: Int?
 
-        public var mobileNumber: String?
+        public var number: String?
 
         public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
 
-            case mobileNumber = "mobile_number"
+            case number
         }
 
-        public init(countryCode: Int? = nil, mobileNumber: String? = nil) {
+        public init(countryCode: Int? = nil, number: String? = nil) {
             self.countryCode = countryCode
 
-            self.mobileNumber = mobileNumber
+            self.number = number
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
+                number = try container.decode(String.self, forKey: .number)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
+            try? container.encodeIfPresent(number, forKey: .number)
         }
     }
 }
@@ -64,18 +64,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class PhoneDetails: Codable {
         public var countryCode: Int?
 
-        public var mobileNumber: String?
+        public var number: String?
 
         public enum CodingKeys: String, CodingKey {
             case countryCode = "country_code"
 
-            case mobileNumber = "mobile_number"
+            case number
         }
 
-        public init(countryCode: Int? = nil, mobileNumber: String? = nil) {
+        public init(countryCode: Int? = nil, number: String? = nil) {
             self.countryCode = countryCode
 
-            self.mobileNumber = mobileNumber
+            self.number = number
         }
 
         required public init(from decoder: Decoder) throws {
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
+                number = try container.decode(String.self, forKey: .number)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,7 +103,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
+            try? container.encodeIfPresent(number, forKey: .number)
         }
     }
 }

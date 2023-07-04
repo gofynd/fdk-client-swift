@@ -9,36 +9,36 @@ public extension PlatformClient.Catalog {
      */
 
     class GetConfigResponse: Codable {
-        public var page: PageResponseType
-
         public var data: [[String: Any]]
 
-        public enum CodingKeys: String, CodingKey {
-            case page
+        public var page: PageResponseType
 
+        public enum CodingKeys: String, CodingKey {
             case data
+
+            case page
         }
 
         public init(data: [[String: Any]], page: PageResponseType) {
-            self.page = page
-
             self.data = data
+
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            page = try container.decode(PageResponseType.self, forKey: .page)
-
             data = try container.decode([[String: Any]].self, forKey: .data)
+
+            page = try container.decode(PageResponseType.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }
@@ -50,36 +50,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class GetConfigResponse: Codable {
-        public var page: PageResponseType
-
         public var data: [[String: Any]]
 
-        public enum CodingKeys: String, CodingKey {
-            case page
+        public var page: PageResponseType
 
+        public enum CodingKeys: String, CodingKey {
             case data
+
+            case page
         }
 
         public init(data: [[String: Any]], page: PageResponseType) {
-            self.page = page
-
             self.data = data
+
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            page = try container.decode(PageResponseType.self, forKey: .page)
-
             data = try container.decode([[String: Any]].self, forKey: .data)
+
+            page = try container.decode(PageResponseType.self, forKey: .page)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

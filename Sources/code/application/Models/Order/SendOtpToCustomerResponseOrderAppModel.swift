@@ -7,18 +7,18 @@ public extension ApplicationClient.Order {
          Used By: Order
      */
     class SendOtpToCustomerResponse: Codable {
-        public var requestId: String?
-
         public var success: Bool?
+
+        public var requestId: String?
 
         public var resendTimer: Int?
 
         public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case requestId = "request_id"
-
             case success
+
+            case requestId = "request_id"
 
             case resendTimer = "resend_timer"
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Order {
         }
 
         public init(message: String? = nil, requestId: String? = nil, resendTimer: Int? = nil, success: Bool? = nil) {
-            self.requestId = requestId
-
             self.success = success
+
+            self.requestId = requestId
 
             self.resendTimer = resendTimer
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                requestId = try container.decode(String.self, forKey: .requestId)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                requestId = try container.decode(String.self, forKey: .requestId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
-
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
 
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
 

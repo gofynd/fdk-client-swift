@@ -7,48 +7,42 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class ReAssignStoreResponse: Codable {
-        public var pystormbreakerUuid: String
-
-        public var toPincode: String
+        public var assignedStores: [[String: Any]]?
 
         public var error: [String: Any]
 
-        public var assignedStores: [[String: Any]]?
+        public var pystormbreakerUuid: String
 
         public var success: Bool
 
-        public enum CodingKeys: String, CodingKey {
-            case pystormbreakerUuid = "pystormbreaker_uuid"
+        public var toPincode: String
 
-            case toPincode = "to_pincode"
+        public enum CodingKeys: String, CodingKey {
+            case assignedStores = "assigned_stores"
 
             case error
 
-            case assignedStores = "assigned_stores"
+            case pystormbreakerUuid = "pystormbreaker_uuid"
 
             case success
+
+            case toPincode = "to_pincode"
         }
 
         public init(assignedStores: [[String: Any]]? = nil, error: [String: Any], pystormbreakerUuid: String, success: Bool, toPincode: String) {
-            self.pystormbreakerUuid = pystormbreakerUuid
-
-            self.toPincode = toPincode
+            self.assignedStores = assignedStores
 
             self.error = error
 
-            self.assignedStores = assignedStores
+            self.pystormbreakerUuid = pystormbreakerUuid
 
             self.success = success
+
+            self.toPincode = toPincode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            pystormbreakerUuid = try container.decode(String.self, forKey: .pystormbreakerUuid)
-
-            toPincode = try container.decode(String.self, forKey: .toPincode)
-
-            error = try container.decode([String: Any].self, forKey: .error)
 
             do {
                 assignedStores = try container.decode([[String: Any]].self, forKey: .assignedStores)
@@ -58,21 +52,27 @@ public extension ApplicationClient.Logistic {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            error = try container.decode([String: Any].self, forKey: .error)
+
+            pystormbreakerUuid = try container.decode(String.self, forKey: .pystormbreakerUuid)
+
             success = try container.decode(Bool.self, forKey: .success)
+
+            toPincode = try container.decode(String.self, forKey: .toPincode)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(pystormbreakerUuid, forKey: .pystormbreakerUuid)
-
-            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
+            try? container.encodeIfPresent(assignedStores, forKey: .assignedStores)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(assignedStores, forKey: .assignedStores)
+            try? container.encodeIfPresent(pystormbreakerUuid, forKey: .pystormbreakerUuid)
 
             try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(toPincode, forKey: .toPincode)
         }
     }
 }

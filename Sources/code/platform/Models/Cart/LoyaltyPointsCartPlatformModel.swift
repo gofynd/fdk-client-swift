@@ -9,18 +9,18 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class LoyaltyPoints: Codable {
-        public var description: String?
-
         public var applicable: Double?
+
+        public var description: String?
 
         public var isApplied: Bool?
 
         public var total: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case description
-
             case applicable
+
+            case description
 
             case isApplied = "is_applied"
 
@@ -28,9 +28,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(applicable: Double? = nil, description: String? = nil, isApplied: Bool? = nil, total: Double? = nil) {
-            self.description = description
-
             self.applicable = applicable
+
+            self.description = description
 
             self.isApplied = isApplied
 
@@ -41,7 +41,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                applicable = try container.decode(Double.self, forKey: .applicable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                applicable = try container.decode(Double.self, forKey: .applicable)
+                description = try container.decode(String.self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(description, forKey: .description)
-
             try? container.encodeIfPresent(applicable, forKey: .applicable)
+
+            try? container.encodeIfPresent(description, forKey: .description)
 
             try? container.encodeIfPresent(isApplied, forKey: .isApplied)
 

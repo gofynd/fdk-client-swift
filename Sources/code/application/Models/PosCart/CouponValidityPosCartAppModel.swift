@@ -9,26 +9,26 @@ public extension ApplicationClient.PosCart {
     class CouponValidity: Codable {
         public var title: String?
 
-        public var nextValidationRequired: Bool?
-
-        public var valid: Bool?
-
         public var code: String?
 
         public var displayMessageEn: String?
+
+        public var nextValidationRequired: Bool?
+
+        public var valid: Bool?
 
         public var discount: Double?
 
         public enum CodingKeys: String, CodingKey {
             case title
 
-            case nextValidationRequired = "next_validation_required"
-
-            case valid
-
             case code
 
             case displayMessageEn = "display_message_en"
+
+            case nextValidationRequired = "next_validation_required"
+
+            case valid
 
             case discount
         }
@@ -36,13 +36,13 @@ public extension ApplicationClient.PosCart {
         public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, nextValidationRequired: Bool? = nil, title: String? = nil, valid: Bool? = nil) {
             self.title = title
 
-            self.nextValidationRequired = nextValidationRequired
-
-            self.valid = valid
-
             self.code = code
 
             self.displayMessageEn = displayMessageEn
+
+            self.nextValidationRequired = nextValidationRequired
+
+            self.valid = valid
 
             self.discount = discount
         }
@@ -52,22 +52,6 @@ public extension ApplicationClient.PosCart {
 
             do {
                 title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                nextValidationRequired = try container.decode(Bool.self, forKey: .nextValidationRequired)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                valid = try container.decode(Bool.self, forKey: .valid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,6 +75,22 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
+                nextValidationRequired = try container.decode(Bool.self, forKey: .nextValidationRequired)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                valid = try container.decode(Bool.self, forKey: .valid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 discount = try container.decode(Double.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -104,13 +104,13 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(title, forKey: .title)
 
-            try? container.encode(nextValidationRequired, forKey: .nextValidationRequired)
-
-            try? container.encodeIfPresent(valid, forKey: .valid)
-
             try? container.encode(code, forKey: .code)
 
             try? container.encode(displayMessageEn, forKey: .displayMessageEn)
+
+            try? container.encode(nextValidationRequired, forKey: .nextValidationRequired)
+
+            try? container.encodeIfPresent(valid, forKey: .valid)
 
             try? container.encodeIfPresent(discount, forKey: .discount)
         }

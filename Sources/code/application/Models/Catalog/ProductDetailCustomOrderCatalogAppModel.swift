@@ -9,24 +9,24 @@ public extension ApplicationClient.Catalog {
     class ProductDetailCustomOrder: Codable {
         public var manufacturingTimeUnit: String?
 
-        public var manufacturingTime: Int?
-
         public var isCustomOrder: Bool?
+
+        public var manufacturingTime: Int?
 
         public enum CodingKeys: String, CodingKey {
             case manufacturingTimeUnit = "manufacturing_time_unit"
 
-            case manufacturingTime = "manufacturing_time"
-
             case isCustomOrder = "is_custom_order"
+
+            case manufacturingTime = "manufacturing_time"
         }
 
         public init(isCustomOrder: Bool? = nil, manufacturingTime: Int? = nil, manufacturingTimeUnit: String? = nil) {
             self.manufacturingTimeUnit = manufacturingTimeUnit
 
-            self.manufacturingTime = manufacturingTime
-
             self.isCustomOrder = isCustomOrder
+
+            self.manufacturingTime = manufacturingTime
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
+                isCustomOrder = try container.decode(Bool.self, forKey: .isCustomOrder)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isCustomOrder = try container.decode(Bool.self, forKey: .isCustomOrder)
+                manufacturingTime = try container.decode(Int.self, forKey: .manufacturingTime)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(manufacturingTimeUnit, forKey: .manufacturingTimeUnit)
 
-            try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
-
             try? container.encodeIfPresent(isCustomOrder, forKey: .isCustomOrder)
+
+            try? container.encodeIfPresent(manufacturingTime, forKey: .manufacturingTime)
         }
     }
 }

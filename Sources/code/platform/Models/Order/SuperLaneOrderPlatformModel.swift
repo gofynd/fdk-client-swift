@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class SuperLane: Codable {
-        public var text: String
-
         public var value: String
+
+        public var text: String
 
         public var options: [SubLane]?
 
         public var totalItems: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case text
-
             case value
+
+            case text
 
             case options
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
-            self.text = text
-
             self.value = value
+
+            self.text = text
 
             self.options = options
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            text = try container.decode(String.self, forKey: .text)
-
             value = try container.decode(String.self, forKey: .value)
+
+            text = try container.decode(String.self, forKey: .text)
 
             do {
                 options = try container.decode([SubLane].self, forKey: .options)
@@ -64,9 +64,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(text, forKey: .text)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(options, forKey: .options)
 
@@ -82,18 +82,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class SuperLane: Codable {
-        public var text: String
-
         public var value: String
+
+        public var text: String
 
         public var options: [SubLane]?
 
         public var totalItems: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case text
-
             case value
+
+            case text
 
             case options
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(options: [SubLane]? = nil, text: String, totalItems: Int? = nil, value: String) {
-            self.text = text
-
             self.value = value
+
+            self.text = text
 
             self.options = options
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            text = try container.decode(String.self, forKey: .text)
-
             value = try container.decode(String.self, forKey: .value)
+
+            text = try container.decode(String.self, forKey: .text)
 
             do {
                 options = try container.decode([SubLane].self, forKey: .options)
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(text, forKey: .text)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(text, forKey: .text)
 
             try? container.encodeIfPresent(options, forKey: .options)
 

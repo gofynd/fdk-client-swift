@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class ArticleQuery: Codable {
         public var ignoredStores: [Int]?
 
-        public var itemId: Int
-
         public var size: String
+
+        public var itemId: Int
 
         public enum CodingKeys: String, CodingKey {
             case ignoredStores = "ignored_stores"
 
-            case itemId = "item_id"
-
             case size
+
+            case itemId = "item_id"
         }
 
         public init(ignoredStores: [Int]? = nil, itemId: Int, size: String) {
             self.ignoredStores = ignoredStores
 
-            self.itemId = itemId
-
             self.size = size
+
+            self.itemId = itemId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,9 +42,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            itemId = try container.decode(Int.self, forKey: .itemId)
-
             size = try container.decode(String.self, forKey: .size)
+
+            itemId = try container.decode(Int.self, forKey: .itemId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
         }
     }
 }
@@ -68,24 +68,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ArticleQuery: Codable {
         public var ignoredStores: [Int]?
 
-        public var itemId: Int
-
         public var size: String
+
+        public var itemId: Int
 
         public enum CodingKeys: String, CodingKey {
             case ignoredStores = "ignored_stores"
 
-            case itemId = "item_id"
-
             case size
+
+            case itemId = "item_id"
         }
 
         public init(ignoredStores: [Int]? = nil, itemId: Int, size: String) {
             self.ignoredStores = ignoredStores
 
-            self.itemId = itemId
-
             self.size = size
+
+            self.itemId = itemId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            itemId = try container.decode(Int.self, forKey: .itemId)
-
             size = try container.decode(String.self, forKey: .size)
+
+            itemId = try container.decode(Int.self, forKey: .itemId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
 
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-
             try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
         }
     }
 }
