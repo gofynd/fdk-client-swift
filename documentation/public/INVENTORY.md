@@ -25,7 +25,7 @@ Find all the JobCodes from Metrics Collection based on the field Values
 
 
 ```swift
-publicClient.inventory.getJobCodesMetrics(dailyJob: dailyJob, jobCode: jobCode) { (response, error) in
+inventory.getJobCodesMetrics(dailyJob: dailyJob, jobCode: jobCode) { (response, error) in
     // Use response
 }
 ```
@@ -81,7 +81,7 @@ Save JobCode Metrics
 
 
 ```swift
-publicClient.inventory.saveJobCodesMetrics(body: body) { (response, error) in
+inventory.saveJobCodesMetrics(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -135,7 +135,7 @@ Get Slingshot Configuration Of  A Company using API key
 
 
 ```swift
-publicClient.inventory.getConfigByApiKey(apikey: apikey) { (response, error) in
+inventory.getConfigByApiKey(apikey: apikey) { (response, error) in
     // Use response
 }
 ```
@@ -190,7 +190,7 @@ Get apikey  for  Company  to call other Slingshot Configuration APIs
 
 
 ```swift
-publicClient.inventory.getApiKey(userName: userName, password: password) { (response, error) in
+inventory.getApiKey(userName: userName, password: password) { (response, error) in
     // Use response
 }
 ```
@@ -246,7 +246,7 @@ Get Job Config By Code
 
 
 ```swift
-publicClient.inventory.getJobByCode(code: code) { (response, error) in
+inventory.getJobByCode(code: code) { (response, error) in
     // Use response
 }
 ```
@@ -301,7 +301,7 @@ Get Job Configs By Integration Type
 
 
 ```swift
-publicClient.inventory.getJobConfigByIntegrationType(integrationType: integrationType, disable: disable) { (response, error) in
+inventory.getJobConfigByIntegrationType(integrationType: integrationType, disable: disable) { (response, error) in
     // Use response
 }
 ```

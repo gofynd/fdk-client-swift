@@ -38,7 +38,7 @@ Get live announcements
 
 
 ```swift
-applicationClient.content.getAnnouncements() { (response, error) in
+content.getAnnouncements() { (response, error) in
     // Use response
 }
 ```
@@ -123,7 +123,7 @@ Get a blog
 
 
 ```swift
-applicationClient.content.getBlog(slug: slug, rootId: rootId) { (response, error) in
+content.getBlog(slug: slug, rootId: rootId) { (response, error) in
     // Use response
 }
 ```
@@ -224,7 +224,7 @@ Get a list of blogs
 
 
 ```swift
-applicationClient.content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -329,7 +329,7 @@ Get the data loaders associated with an application
 
 
 ```swift
-applicationClient.content.getDataLoaders() { (response, error) in
+content.getDataLoaders() { (response, error) in
     // Use response
 }
 ```
@@ -400,7 +400,7 @@ Get a list of FAQs
 
 
 ```swift
-applicationClient.content.getFaqs() { (response, error) in
+content.getFaqs() { (response, error) in
     // Use response
 }
 ```
@@ -468,7 +468,7 @@ Get a list of FAQ categories
 
 
 ```swift
-applicationClient.content.getFaqCategories() { (response, error) in
+content.getFaqCategories() { (response, error) in
     // Use response
 }
 ```
@@ -531,7 +531,7 @@ Get an FAQ
 
 
 ```swift
-applicationClient.content.getFaqBySlug(slug: slug) { (response, error) in
+content.getFaqBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -592,7 +592,7 @@ Get the FAQ category
 
 
 ```swift
-applicationClient.content.getFaqCategoryBySlug(slug: slug) { (response, error) in
+content.getFaqCategoryBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -664,7 +664,7 @@ Get FAQs using the slug of FAQ category
 
 
 ```swift
-applicationClient.content.getFaqsByCategorySlug(slug: slug) { (response, error) in
+content.getFaqsByCategorySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -729,7 +729,7 @@ Get the landing page
 
 
 ```swift
-applicationClient.content.getLandingPage() { (response, error) in
+content.getLandingPage() { (response, error) in
     // Use response
 }
 ```
@@ -810,7 +810,7 @@ Get legal information
 
 
 ```swift
-applicationClient.content.getLegalInformation() { (response, error) in
+content.getLegalInformation() { (response, error) in
     // Use response
 }
 ```
@@ -900,7 +900,7 @@ Get the navigation
 
 
 ```swift
-applicationClient.content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -1151,7 +1151,7 @@ Get the SEO of an application
 
 
 ```swift
-applicationClient.content.getSEOConfiguration() { (response, error) in
+content.getSEOConfiguration() { (response, error) in
     // Use response
 }
 ```
@@ -1187,7 +1187,9 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
   "value": {
     "seo": {
       "details": {
-        "title": "Zyosa Zyosa"
+        "title": "Zyosa Zyosa",
+        "description": "",
+        "image_url": ""
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
@@ -1235,7 +1237,7 @@ Get the slideshows
 
 
 ```swift
-applicationClient.content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+content.getSlideshows(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -1350,7 +1352,7 @@ Get a slideshow
 
 
 ```swift
-applicationClient.content.getSlideshow(slug: slug) { (response, error) in
+content.getSlideshow(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -1452,7 +1454,7 @@ Get the support information
 
 
 ```swift
-applicationClient.content.getSupportInformation() { (response, error) in
+content.getSupportInformation() { (response, error) in
     // Use response
 }
 ```
@@ -1533,7 +1535,7 @@ Get the tags associated with an application
 
 
 ```swift
-applicationClient.content.getTags() { (response, error) in
+content.getTags() { (response, error) in
     // Use response
 }
 ```
@@ -1599,7 +1601,7 @@ Get a page
 
 
 ```swift
-applicationClient.content.getPage(slug: slug, rootId: rootId) { (response, error) in
+content.getPage(slug: slug, rootId: rootId) { (response, error) in
     // Use response
 }
 ```
@@ -1703,7 +1705,7 @@ Get all pages
 
 
 ```swift
-applicationClient.content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -1919,6 +1921,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | ---------- | ---- | -------- | ----------- |
  | title | String? |  yes  |  |
  | description | String? |  yes  |  |
+ | imageUrl | String? |  yes  |  |
 
 ---
 

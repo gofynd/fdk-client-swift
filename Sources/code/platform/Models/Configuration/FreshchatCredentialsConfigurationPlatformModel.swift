@@ -37,6 +37,12 @@ public extension PlatformClient.Configuration {
             do {
                 appId = try container.decode(String.self, forKey: .appId)
 
+                if let strong_appId = appId,
+                   let appIdData = Data(base64Encoded: strong_appId)
+                {
+                    appId = String(data: appIdData, encoding: .utf8) ?? appId
+                }
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -45,6 +51,12 @@ public extension PlatformClient.Configuration {
             do {
                 appKey = try container.decode(String.self, forKey: .appKey)
 
+                if let strong_appKey = appKey,
+                   let appKeyData = Data(base64Encoded: strong_appKey)
+                {
+                    appKey = String(data: appKeyData, encoding: .utf8) ?? appKey
+                }
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -52,6 +64,12 @@ public extension PlatformClient.Configuration {
 
             do {
                 webToken = try container.decode(String.self, forKey: .webToken)
+
+                if let strong_webToken = webToken,
+                   let webTokenData = Data(base64Encoded: strong_webToken)
+                {
+                    webToken = String(data: webTokenData, encoding: .utf8) ?? webToken
+                }
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,11 +80,11 @@ public extension PlatformClient.Configuration {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(appId?.asBase64, forKey: .appId)
 
-            try? container.encodeIfPresent(appKey, forKey: .appKey)
+            try? container.encodeIfPresent(appKey?.asBase64, forKey: .appKey)
 
-            try? container.encodeIfPresent(webToken, forKey: .webToken)
+            try? container.encodeIfPresent(webToken?.asBase64, forKey: .webToken)
         }
     }
 }
@@ -106,6 +124,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             do {
                 appId = try container.decode(String.self, forKey: .appId)
 
+                if let strong_appId = appId,
+                   let appIdData = Data(base64Encoded: strong_appId)
+                {
+                    appId = String(data: appIdData, encoding: .utf8) ?? appId
+                }
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -114,6 +138,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             do {
                 appKey = try container.decode(String.self, forKey: .appKey)
 
+                if let strong_appKey = appKey,
+                   let appKeyData = Data(base64Encoded: strong_appKey)
+                {
+                    appKey = String(data: appKeyData, encoding: .utf8) ?? appKey
+                }
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -121,6 +151,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
             do {
                 webToken = try container.decode(String.self, forKey: .webToken)
+
+                if let strong_webToken = webToken,
+                   let webTokenData = Data(base64Encoded: strong_webToken)
+                {
+                    webToken = String(data: webTokenData, encoding: .utf8) ?? webToken
+                }
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +167,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(appId?.asBase64, forKey: .appId)
 
-            try? container.encodeIfPresent(appKey, forKey: .appKey)
+            try? container.encodeIfPresent(appKey?.asBase64, forKey: .appKey)
 
-            try? container.encodeIfPresent(webToken, forKey: .webToken)
+            try? container.encodeIfPresent(webToken?.asBase64, forKey: .webToken)
         }
     }
 }

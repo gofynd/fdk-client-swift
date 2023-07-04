@@ -21,7 +21,7 @@ Search Application
 
 
 ```swift
-platformClient.common.searchApplication(authorization: authorization, query: query) { (response, error) in
+common.searchApplication(authorization: authorization, query: query) { (response, error) in
     // Use response
 }
 ```
@@ -138,7 +138,7 @@ Get countries, states, cities
 
 
 ```swift
-platformClient.common.getLocations(locationType: locationType, id: id) { (response, error) in
+common.getLocations(locationType: locationType, id: id) { (response, error) in
     // Use response
 }
 ```
@@ -207,14 +207,14 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | name | String? |  yes  |  |
- | code | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | decimalDigits | Int? |  yes  |  |
- | symbol | String? |  yes  |  |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the current sales channel supported currency |
+ | isActive | Bool? |  yes  | Shows currency is enabled or not in current sales channel |
+ | name | String? |  yes  | Name of the currency, e.g. Indian Rupee |
+ | code | String? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
+ | decimalDigits | Int? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
+ | symbol | String? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
 
 ---
 
@@ -225,12 +225,12 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | verified | Bool? |  yes  |  |
- | isPrimary | Bool? |  yes  |  |
- | isShortlink | Bool? |  yes  |  |
- | id | String? |  yes  |  |
+ | verified | Bool? |  yes  | Indicates domain is verified or not. TXT and A records should propagate correctly. |
+ | isPrimary | Bool? |  yes  | Indicates domain is primary or not. Primary domain is the default/main domain. |
+ | isShortlink | Bool? |  yes  | Shortlink is present or not for the domain |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the domain |
  | name | String? |  yes  |  |
- | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
+ | isPredefined | Bool? |  yes  | Domain is hosting domain or not |
 
 ---
 
@@ -241,8 +241,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
- | basepath | String? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows whether sales channel website URL is enabled or not |
+ | basepath | String? |  yes  | Base path for the current sales channel website |
 
 ---
 
@@ -264,7 +264,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
+ | enabled | Bool? |  yes  | Shows sales channel auth is enabled or not enabled. |
 
 ---
 
@@ -275,9 +275,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | redirectFrom | String? |  yes  |  |
- | redirectTo | String? |  yes  |  |
- | type | String? |  yes  |  |
+ | redirectFrom | String? |  yes  | Old domain URL of the sales channel |
+ | redirectTo | String? |  yes  | New domain URL of the sales channel. Users will be automatically redirected from old domain to new domain. |
+ | type | String? |  yes  | It shows domain redirection type. Permanent redirection is for long time period redirection, and temporary redirection for a short time period. |
 
 ---
 
@@ -288,8 +288,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | value | String? |  yes  |  |
+ | name | String? |  yes  | Indicates the name of application meta |
+ | value | String? |  yes  | Value related to application meta name |
 
 ---
 
@@ -300,7 +300,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | secureUrl | String? |  yes  |  |
+ | secureUrl | String? |  yes  | Hosted URL of the image |
 
 ---
 
@@ -314,26 +314,26 @@ Success
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
  | auth | [ApplicationAuth](#ApplicationAuth)? |  yes  |  |
- | description | String? |  yes  |  |
- | channelType | String? |  yes  |  |
- | cacheTtl | Int? |  yes  |  |
- | isInternal | Bool? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
- | owner | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
- | token | String? |  yes  |  |
+ | description | String? |  yes  | It contains detailed information about the sales channel |
+ | channelType | String? |  yes  | It indicates different channel types like store, website-and-mobile-apps. Default value is store. |
+ | cacheTtl | Int? |  yes  | An integer value that specifies the number of seconds until the key expires |
+ | isInternal | Bool? |  yes  | Indicates whether a sales channel is internal or not |
+ | isActive | Bool? |  yes  | Indicates whether a sales channel is active or not active |
+ | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the sales channel |
+ | name | String? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
+ | owner | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
+ | companyId | Int? |  yes  | Numeric ID allotted to a business account where the sales channel exists |
+ | token | String? |  yes  | Randomly generated fixed-length string for sales channel. It is required and auto-generated. |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
  | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | v | Int? |  yes  |  |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel creation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel updation |
+ | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
- | appType | String? |  yes  |  |
+ | appType | String? |  yes  | It shows whether application is live or in development mode |
  | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
 
@@ -346,7 +346,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
+ | message | String? |  yes  | Response message for not found |
 
 ---
 
@@ -357,7 +357,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  | Failure message. |
+ | message | String? |  yes  | Failure message (in a string format) |
 
 ---
 
@@ -368,13 +368,13 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | type | String |  no  |  |
- | size | Int? |  yes  |  |
- | current | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | nextId | String? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
+ | type | String |  no  | Page type |
+ | size | Int? |  yes  | The number of items to retrieve in each page. Default value is 10. |
+ | current | Int? |  yes  | Current page number |
+ | hasNext | Bool? |  yes  | Next page is present or not |
+ | itemTotal | Int? |  yes  | Total number of items to retrieve |
+ | nextId | String? |  yes  | Next page ID |
+ | hasPrevious | Bool? |  yes  | Previous page is present or not |
 
 ---
 

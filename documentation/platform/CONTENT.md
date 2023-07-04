@@ -71,6 +71,7 @@ Content System
 * [addInjectableTag](#addinjectabletag)
 * [removeInjectableTag](#removeinjectabletag)
 * [editInjectableTag](#editinjectabletag)
+* [getBlogBySlug](#getblogbyslug)
 * [createPage](#createpage)
 * [getPages](#getpages)
 * [updatePage](#updatepage)
@@ -88,7 +89,7 @@ Get a list of announcements
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getAnnouncementsList(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getAnnouncementsList(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -205,7 +206,7 @@ Create an announcement
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.createAnnouncement(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createAnnouncement(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -313,7 +314,7 @@ Get announcement by ID
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getAnnouncementById(announcementId: announcementId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getAnnouncementById(announcementId: announcementId) { (response, error) in
     // Use response
 }
 ```
@@ -417,7 +418,7 @@ Update an announcement
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateAnnouncement(announcementId: announcementId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateAnnouncement(announcementId: announcementId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -526,7 +527,7 @@ Update the schedule and the publish status of an announcement
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateAnnouncementSchedule(announcementId: announcementId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateAnnouncementSchedule(announcementId: announcementId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -635,7 +636,7 @@ Delete announcement by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deleteAnnouncement(announcementId: announcementId) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteAnnouncement(announcementId: announcementId) { (response, error) in
     // Use response
 }
 ```
@@ -744,7 +745,7 @@ Create a blog
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.createBlog(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createBlog(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -843,7 +844,7 @@ Get blogs
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getBlogs(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -948,7 +949,7 @@ Update a blog
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateBlog(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateBlog(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1048,7 +1049,7 @@ Delete blogs
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deleteBlog(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteBlog(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1148,7 +1149,7 @@ Get components of a blog
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getComponentById(slug: slug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getComponentById(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -1248,7 +1249,7 @@ Adds a data loader
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.addDataLoader(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.addDataLoader(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1310,7 +1311,7 @@ Get all the data loaders in an application
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getDataLoaders() { (response, error) in
+client.application("<APPLICATION_ID>").content.getDataLoaders() { (response, error) in
     // Use response
 }
 ```
@@ -1393,7 +1394,7 @@ Delete data loader in application
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deleteDataLoader(dataLoaderId: dataLoaderId) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteDataLoader(dataLoaderId: dataLoaderId) { (response, error) in
     // Use response
 }
 ```
@@ -1456,7 +1457,7 @@ Edit a data loader by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.editDataLoader(dataLoaderId: dataLoaderId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.editDataLoader(dataLoaderId: dataLoaderId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1519,7 +1520,7 @@ Select a data loader by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.selectDataLoader(dataLoaderId: dataLoaderId) { (response, error) in
+client.application("<APPLICATION_ID>").content.selectDataLoader(dataLoaderId: dataLoaderId) { (response, error) in
     // Use response
 }
 ```
@@ -1582,7 +1583,7 @@ Reset a data loader by serive name and operation Id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.resetDataLoader(service: service, operationId: operationId) { (response, error) in
+client.application("<APPLICATION_ID>").content.resetDataLoader(service: service, operationId: operationId) { (response, error) in
     // Use response
 }
 ```
@@ -1640,7 +1641,7 @@ Get a list of FAQ categories
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getFaqCategories() { (response, error) in
+client.application("<APPLICATION_ID>").content.getFaqCategories() { (response, error) in
     // Use response
 }
 ```
@@ -1703,7 +1704,7 @@ Get an FAQ category by slug or id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getFaqCategoryBySlugOrId(idOrSlug: idOrSlug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getFaqCategoryBySlugOrId(idOrSlug: idOrSlug) { (response, error) in
     // Use response
 }
 ```
@@ -1775,7 +1776,7 @@ Create an FAQ category
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.createFaqCategory(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createFaqCategory(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1838,7 +1839,7 @@ Update an FAQ category
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateFaqCategory(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateFaqCategory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1902,7 +1903,7 @@ Delete an FAQ category
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deleteFaqCategory(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteFaqCategory(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1967,7 +1968,7 @@ Get question and answers within an FAQ category
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getFaqsByCategoryIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getFaqsByCategoryIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
     // Use response
 }
 ```
@@ -2032,7 +2033,7 @@ Create an FAQ
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.addFaq(categoryId: categoryId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.addFaq(categoryId: categoryId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2095,7 +2096,7 @@ Update an FAQ
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateFaq(categoryId: categoryId, faqId: faqId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateFaq(categoryId: categoryId, faqId: faqId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2159,7 +2160,7 @@ Delete an FAQ
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deleteFaq(categoryId: categoryId, faqId: faqId) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteFaq(categoryId: categoryId, faqId: faqId) { (response, error) in
     // Use response
 }
 ```
@@ -2223,7 +2224,7 @@ Get an FAQ
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getFaqByIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getFaqByIdOrSlug(idOrSlug: idOrSlug) { (response, error) in
     // Use response
 }
 ```
@@ -2286,7 +2287,7 @@ Get SEO meta tag title for content
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.generateSEOTitle(type: type, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.generateSEOTitle(type: type, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2352,7 +2353,7 @@ Get landing pages
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getLandingPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getLandingPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -2448,7 +2449,7 @@ Create a landing page
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.createLandingPage(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createLandingPage(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2533,7 +2534,7 @@ Update a landing page
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateLandingPage(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateLandingPage(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2619,7 +2620,7 @@ Delete a landing page
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deleteLandingPage(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteLandingPage(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -2705,7 +2706,7 @@ Get legal information
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getLegalInformation() { (response, error) in
+client.application("<APPLICATION_ID>").content.getLegalInformation() { (response, error) in
     // Use response
 }
 ```
@@ -2795,7 +2796,7 @@ Save legal information
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateLegalInformation(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateLegalInformation(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2858,7 +2859,7 @@ Get navigations
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getNavigations(devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getNavigations(devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -3110,7 +3111,7 @@ Create a navigation
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.createNavigation(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createNavigation(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3355,7 +3356,7 @@ Get default navigations
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getDefaultNavigations() { (response, error) in
+client.application("<APPLICATION_ID>").content.getDefaultNavigations() { (response, error) in
     // Use response
 }
 ```
@@ -4075,7 +4076,7 @@ Get a navigation by slug
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getNavigationBySlug(slug: slug, devicePlatform: devicePlatform) { (response, error) in
+client.application("<APPLICATION_ID>").content.getNavigationBySlug(slug: slug, devicePlatform: devicePlatform) { (response, error) in
     // Use response
 }
 ```
@@ -4322,7 +4323,7 @@ Update a navigation
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateNavigation(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateNavigation(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4568,7 +4569,7 @@ Delete a navigation
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deleteNavigation(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteNavigation(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -4811,7 +4812,7 @@ Get page meta
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getPageMeta() { (response, error) in
+client.application("<APPLICATION_ID>").content.getPageMeta() { (response, error) in
     // Use response
 }
 ```
@@ -4923,7 +4924,7 @@ Get page spec
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getPageSpec() { (response, error) in
+client.application("<APPLICATION_ID>").content.getPageSpec() { (response, error) in
     // Use response
 }
 ```
@@ -5007,7 +5008,7 @@ Create a page preview
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.createPagePreview(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createPagePreview(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5123,7 +5124,7 @@ Change the publish status of a page
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updatePagePreview(slug: slug, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updatePagePreview(slug: slug, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5240,7 +5241,7 @@ Delete a page
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deletePage(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deletePage(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -5357,7 +5358,7 @@ Save path based redirection rules
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.addPathRedirectionRules(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.addPathRedirectionRules(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5426,7 +5427,7 @@ Get path based redirection rules
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRules(pageSize: pageSize, pageNo: pageNo) { (response, error) in
+client.application("<APPLICATION_ID>").content.getPathRedirectionRules(pageSize: pageSize, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -5497,7 +5498,7 @@ Get path based redirection rule
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getPathRedirectionRule(pathId: pathId) { (response, error) in
+client.application("<APPLICATION_ID>").content.getPathRedirectionRule(pathId: pathId) { (response, error) in
     // Use response
 }
 ```
@@ -5567,7 +5568,7 @@ Update path based redirection rules
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updatePathRedirectionRules(pathId: pathId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updatePathRedirectionRules(pathId: pathId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5637,7 +5638,7 @@ Delete path based redirection rules
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deletePathRedirectionRules(pathId: pathId) { (response, error) in
+client.application("<APPLICATION_ID>").content.deletePathRedirectionRules(pathId: pathId) { (response, error) in
     // Use response
 }
 ```
@@ -5694,7 +5695,7 @@ Get SEO configuration of an application
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getSEOConfiguration() { (response, error) in
+client.application("<APPLICATION_ID>").content.getSEOConfiguration() { (response, error) in
     // Use response
 }
 ```
@@ -5730,7 +5731,9 @@ Success. Refer `SeoComponent` for more details.
   "value": {
     "seo": {
       "details": {
-        "title": "Zyosa Zyosa"
+        "title": "Zyosa Zyosa",
+        "description": "",
+        "image_url": ""
       },
       "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
       "sitemap_enabled": false,
@@ -5778,7 +5781,7 @@ Update SEO of application
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateSEOConfiguration(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateSEOConfiguration(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5817,7 +5820,9 @@ Success. Refer `SeoSchema` for more details.
 {
   "value": {
     "details": {
-      "title": "Zyosa Zyosa"
+      "title": "Zyosa Zyosa",
+      "description": "",
+      "image_url": ""
     },
     "robots_txt": "User-agent: * \nAllow: / \nsancisciasn xwsaixjowqnxwsiwjs",
     "sitemap_enabled": false,
@@ -5863,7 +5868,7 @@ Get slideshows
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getSlideshows(devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getSlideshows(devicePlatform: devicePlatform, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -5979,7 +5984,7 @@ Create a slideshow
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.createSlideshow(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createSlideshow(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6080,7 +6085,7 @@ Get slideshow by slug
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getSlideshowBySlug(slug: slug, devicePlatform: devicePlatform) { (response, error) in
+client.application("<APPLICATION_ID>").content.getSlideshowBySlug(slug: slug, devicePlatform: devicePlatform) { (response, error) in
     // Use response
 }
 ```
@@ -6183,7 +6188,7 @@ Update a slideshow
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateSlideshow(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateSlideshow(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6285,7 +6290,7 @@ Delete a slideshow
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deleteSlideshow(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteSlideshow(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -6387,7 +6392,7 @@ Get support information
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getSupportInformation() { (response, error) in
+client.application("<APPLICATION_ID>").content.getSupportInformation() { (response, error) in
     // Use response
 }
 ```
@@ -6468,7 +6473,7 @@ Update the support data of an application
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateSupportInformation(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateSupportInformation(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6553,7 +6558,7 @@ Update a tag
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updateInjectableTag(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updateInjectableTag(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6629,7 +6634,7 @@ Delete tags in application
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.deleteAllInjectableTags() { (response, error) in
+client.application("<APPLICATION_ID>").content.deleteAllInjectableTags() { (response, error) in
     // Use response
 }
 ```
@@ -6701,7 +6706,7 @@ Get all the tags in an application
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getInjectableTags() { (response, error) in
+client.application("<APPLICATION_ID>").content.getInjectableTags() { (response, error) in
     // Use response
 }
 ```
@@ -6773,7 +6778,7 @@ Add a tag
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.addInjectableTag(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.addInjectableTag(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6841,7 +6846,7 @@ Remove a tag
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.removeInjectableTag(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.removeInjectableTag(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6897,7 +6902,7 @@ Edit a tag by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.editInjectableTag(tagId: tagId, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.editInjectableTag(tagId: tagId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -6959,6 +6964,106 @@ Success.
 ---
 
 
+#### getBlogBySlug
+Get blog by slug
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").content.getBlogBySlug(slug: slug) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| slug | String | yes | A short, human-readable, URL-friendly identifier of a blog page. You can get slug value of a blog from `getBlogs` API. |  
+
+
+
+Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
+
+*Returned Response:*
+
+
+
+
+[BlogSchema](#BlogSchema)
+
+Success. Returns a a JSON object with components. Refer `BlogSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "5eaa451a21a4dd75f0fd96c5",
+    "application": "5d3ebd89f540e7506b8b3548",
+    "tags": [
+      "abhinav"
+    ],
+    "title": "my first blog",
+    "slug": "1st_blog",
+    "feature_image": {
+      "secure_url": "https://google.com"
+    },
+    "content": [
+      {
+        "type": "html",
+        "value": "<p>hey there!</p>"
+      }
+    ],
+    "_schedule": {
+      "cron": "* 10 * * *",
+      "start": "2021-03-31T23:30:00.000Z",
+      "end": "2021-03-31T23:55:00.000Z",
+      "duration": 1000,
+      "next_schedule": [
+        {
+          "start": "2021-03-17T04:30:00.000Z",
+          "end": "2021-03-17T04:46:40.000Z"
+        }
+      ]
+    },
+    "published": true,
+    "author": {
+      "name": "Fynd App"
+    },
+    "date_meta": {
+      "created_on": "2021-03-14T06:49:03.945Z",
+      "modified_on": "2021-03-14T06:49:03.945Z"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### createPage
 Create a page
 
@@ -6966,7 +7071,7 @@ Create a page
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.createPage(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.createPage(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7082,7 +7187,7 @@ Get a list of pages
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").content.getPages(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -7191,7 +7296,7 @@ Update a page
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.updatePage(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").content.updatePage(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -7302,13 +7407,13 @@ Success. Refer `PageSchema` for more details.
 
 
 #### getPageBySlug
-Get pages by component Id
+Get page by slug
 
 
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getPageBySlug(slug: slug) { (response, error) in
+client.application("<APPLICATION_ID>").content.getPageBySlug(slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -7558,6 +7663,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | ---------- | ---- | -------- | ----------- |
  | title | String? |  yes  |  |
  | description | String? |  yes  |  |
+ | imageUrl | String? |  yes  |  |
 
 ---
 

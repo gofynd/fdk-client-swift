@@ -7,7 +7,7 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class CategoryMetaResponse: Codable {
-        public var banners: ImageUrls?
+        public var logo: Media?
 
         public var name: String?
 
@@ -15,10 +15,10 @@ public extension ApplicationClient.Catalog {
 
         public var uid: Int?
 
-        public var logo: Media?
+        public var banners: ImageUrls?
 
         public enum CodingKeys: String, CodingKey {
-            case banners
+            case logo
 
             case name
 
@@ -26,11 +26,11 @@ public extension ApplicationClient.Catalog {
 
             case uid
 
-            case logo
+            case banners
         }
 
         public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
-            self.banners = banners
+            self.logo = logo
 
             self.name = name
 
@@ -38,14 +38,14 @@ public extension ApplicationClient.Catalog {
 
             self.uid = uid
 
-            self.logo = logo
+            self.banners = banners
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                banners = try container.decode(ImageUrls.self, forKey: .banners)
+                logo = try container.decode(Media.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                logo = try container.decode(Media.self, forKey: .logo)
+                banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,7 +88,7 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(banners, forKey: .banners)
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
@@ -96,7 +96,7 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(banners, forKey: .banners)
         }
     }
 }

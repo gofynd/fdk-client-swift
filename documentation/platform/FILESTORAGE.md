@@ -14,7 +14,7 @@ File Storage
 * [copyFiles](#copyfiles)
 * [appCopyFiles](#appcopyfiles)
 * [browse](#browse)
-* [browse](#browse)
+* [appbrowse](#appbrowse)
 * [proxy](#proxy)
 
 
@@ -29,7 +29,7 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 
 ```swift
-platformClient.filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
+client.filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -40,7 +40,7 @@ platformClient.filestorage.startUpload(namespace: namespace, body: body) { (resp
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | bucket name |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartRequest | yes | Request body |
 
 
@@ -102,7 +102,7 @@ This will complete the upload process. After successfully uploading file, you ca
 
 
 ```swift
-platformClient.filestorage.completeUpload(namespace: namespace, body: body) { (response, error) in
+client.filestorage.completeUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -113,7 +113,7 @@ platformClient.filestorage.completeUpload(namespace: namespace, body: body) { (r
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | bucket name |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartResponse | yes | Request body |
 
 
@@ -175,7 +175,7 @@ This operation initiates upload and returns storage link which is valid for 30 M
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").filestorage.appStartUpload(namespace: namespace, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").filestorage.appStartUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -186,7 +186,7 @@ platformClient.application("<APPLICATION_ID>").filestorage.appStartUpload(namesp
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | bucket name |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartRequest | yes | Request body |
 
 
@@ -248,7 +248,7 @@ This will complete the upload process. After successfully uploading file, you ca
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").filestorage.appCompleteUpload(namespace: namespace, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").filestorage.appCompleteUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -259,7 +259,7 @@ platformClient.application("<APPLICATION_ID>").filestorage.appCompleteUpload(nam
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | bucket name |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartResponse | yes | Request body |
 
 
@@ -321,7 +321,7 @@ Gives signed urls to access private files
 
 
 ```swift
-platformClient.filestorage.getSignUrls(body: body) { (response, error) in
+client.filestorage.getSignUrls(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -375,7 +375,7 @@ Copy Files
 
 
 ```swift
-platformClient.filestorage.copyFiles(sync: sync, body: body) { (response, error) in
+client.filestorage.copyFiles(sync: sync, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -457,7 +457,7 @@ Copy Files
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").filestorage.appCopyFiles(sync: sync, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").filestorage.appCopyFiles(sync: sync, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -539,7 +539,7 @@ Browse Files
 
 
 ```swift
-platformClient.filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
+client.filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -588,14 +588,14 @@ Success
 ---
 
 
-#### browse
+#### appbrowse
 Browse Files
 
 
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
+client.application("<APPLICATION_ID>").filestorage.appbrowse(namespace: namespace, pageNo: pageNo) { (response, error) in
     // Use response
 }
 ```
@@ -651,7 +651,7 @@ Proxy
 
 
 ```swift
-platformClient.filestorage.proxy(url: url) { (response, error) in
+client.filestorage.proxy(url: url) { (response, error) in
     // Use response
 }
 ```
@@ -720,8 +720,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | url | String |  no  |  |
- | absoluteUrl | String? |  yes  |  |
- | relativeUrl | String? |  yes  |  |
+ | absoluteUrl | String |  no  |  |
+ | relativeUrl | String |  no  |  |
 
 ---
 

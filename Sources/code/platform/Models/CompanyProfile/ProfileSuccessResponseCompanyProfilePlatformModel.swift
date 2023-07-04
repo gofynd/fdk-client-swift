@@ -11,16 +11,22 @@ public extension PlatformClient.CompanyProfile {
     class ProfileSuccessResponse: Codable {
         public var uid: Int?
 
+        public var message: String?
+
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
+            case message
+
             case success
         }
 
-        public init(success: Bool? = nil, uid: Int? = nil) {
+        public init(message: String? = nil, success: Bool? = nil, uid: Int? = nil) {
             self.uid = uid
+
+            self.message = message
 
             self.success = success
         }
@@ -30,6 +36,14 @@ public extension PlatformClient.CompanyProfile {
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,6 +63,8 @@ public extension PlatformClient.CompanyProfile {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

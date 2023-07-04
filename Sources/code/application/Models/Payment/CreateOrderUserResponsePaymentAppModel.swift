@@ -7,9 +7,9 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class CreateOrderUserResponse: Codable {
-        public var callbackUrl: String?
+        public var orderId: String?
 
-        public var message: String
+        public var statusCode: Int
 
         public var success: Bool
 
@@ -17,14 +17,14 @@ public extension ApplicationClient.Payment {
 
         public var data: CreateOrderUserData?
 
-        public var orderId: String?
+        public var callbackUrl: String?
 
-        public var statusCode: Int
+        public var message: String
 
         public enum CodingKeys: String, CodingKey {
-            case callbackUrl = "callback_url"
+            case orderId = "order_id"
 
-            case message
+            case statusCode = "status_code"
 
             case success
 
@@ -32,15 +32,15 @@ public extension ApplicationClient.Payment {
 
             case data
 
-            case orderId = "order_id"
+            case callbackUrl = "callback_url"
 
-            case statusCode = "status_code"
+            case message
         }
 
         public init(callbackUrl: String? = nil, data: CreateOrderUserData? = nil, message: String, orderId: String? = nil, paymentConfirmUrl: String? = nil, statusCode: Int, success: Bool) {
-            self.callbackUrl = callbackUrl
+            self.orderId = orderId
 
-            self.message = message
+            self.statusCode = statusCode
 
             self.success = success
 
@@ -48,23 +48,23 @@ public extension ApplicationClient.Payment {
 
             self.data = data
 
-            self.orderId = orderId
+            self.callbackUrl = callbackUrl
 
-            self.statusCode = statusCode
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            message = try container.decode(String.self, forKey: .message)
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
 
             success = try container.decode(Bool.self, forKey: .success)
 
@@ -85,22 +85,22 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
+            message = try container.decode(String.self, forKey: .message)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(callbackUrl, forKey: .callbackUrl)
+            try? container.encode(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
 
             try? container.encodeIfPresent(success, forKey: .success)
 
@@ -108,9 +108,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(data, forKey: .data)
 
-            try? container.encode(orderId, forKey: .orderId)
+            try? container.encode(callbackUrl, forKey: .callbackUrl)
 
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

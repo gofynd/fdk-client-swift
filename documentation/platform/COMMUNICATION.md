@@ -60,7 +60,7 @@ Get campaigns
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getCampaigns(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getCampaigns(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -189,7 +189,7 @@ Create campaign
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.createCampaign(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createCampaign(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -278,7 +278,7 @@ Get campaign by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getCampaignById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getCampaignById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -368,7 +368,7 @@ Update campaign by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.updateCampaignById(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateCampaignById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -458,7 +458,7 @@ Get stats of campaign by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getStatsOfCampaignById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getStatsOfCampaignById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -540,7 +540,7 @@ Get audiences
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getAudiences(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getAudiences(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -639,7 +639,7 @@ Create audience
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.createAudience(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createAudience(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -724,7 +724,7 @@ Get bigquery headers
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getBigqueryHeaders(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getBigqueryHeaders(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -813,7 +813,7 @@ Get audience by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getAudienceById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getAudienceById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -899,7 +899,7 @@ Update audience by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.updateAudienceById(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateAudienceById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -985,7 +985,7 @@ Get n sample records from csv
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getNSampleRecordsFromCsv(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1055,7 +1055,7 @@ Get email providers
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getEmailProviders(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEmailProviders(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -1150,7 +1150,7 @@ Create email provider
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.createEmailProvider(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createEmailProvider(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1231,7 +1231,7 @@ Get email provider by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getEmailProviderById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEmailProviderById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1313,7 +1313,7 @@ Update email provider by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.updateEmailProviderById(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateEmailProviderById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1395,7 +1395,7 @@ Get email templates
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getEmailTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEmailTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -1502,7 +1502,7 @@ Create email template
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.createEmailTemplate(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createEmailTemplate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1609,7 +1609,7 @@ Get system email templates
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getSystemEmailTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSystemEmailTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -1716,7 +1716,7 @@ Get email template by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getEmailTemplateById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEmailTemplateById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1810,7 +1810,7 @@ Update email template by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.updateEmailTemplateById(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateEmailTemplateById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1918,7 +1918,7 @@ Delete email template by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.deleteEmailTemplateById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.deleteEmailTemplateById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1984,7 +1984,7 @@ Send email or sms synchronously
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.sendCommunicationSynchronously(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2048,7 +2048,7 @@ Send email or sms asynchronously
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.sendCommunicationAsynchronously(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2112,7 +2112,7 @@ Get event subscriptions
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptions(pageNo: pageNo, pageSize: pageSize, populate: populate) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getEventSubscriptions(pageNo: pageNo, pageSize: pageSize, populate: populate) { (response, error) in
     // Use response
 }
 ```
@@ -2747,7 +2747,7 @@ Get jobs
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getJobs(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getJobs(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -2832,7 +2832,7 @@ Trigger campaign job
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.triggerCampaignJob(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.triggerCampaignJob(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2896,7 +2896,7 @@ Get job logs
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getJobLogs(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getJobLogs(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -2994,7 +2994,7 @@ Get communication logs
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getCommunicationLogs(pageId: pageId, pageSize: pageSize, sort: sort, query: query) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getCommunicationLogs(pageId: pageId, pageSize: pageSize, sort: sort, query: query) { (response, error) in
     // Use response
 }
 ```
@@ -3094,7 +3094,7 @@ Get system notifications
 
 
 ```swift
-platformClient.communication.getSystemNotifications(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.communication.getSystemNotifications(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -3191,7 +3191,7 @@ Send OTP using email and sms
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.sendOtp(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.sendOtp(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3269,7 +3269,7 @@ Verify OTP sent via email and sms
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.verfiyOtp(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.verfiyOtp(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3336,7 +3336,7 @@ Get sms providers
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getSmsProviders(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSmsProviders(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -3427,7 +3427,7 @@ Create sms provider
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.createSmsProvider(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createSmsProvider(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3504,7 +3504,7 @@ Get sms provider by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getSmsProviderById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSmsProviderById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3582,7 +3582,7 @@ Update sms provider by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.updateSmsProviderById(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateSmsProviderById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3660,7 +3660,7 @@ Get sms templates
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getSmsTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSmsTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -3756,7 +3756,7 @@ Create sms template
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.createSmsTemplate(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.createSmsTemplate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3838,7 +3838,7 @@ Get sms template by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getSmsTemplateById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSmsTemplateById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3921,7 +3921,7 @@ Update sms template by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.updateSmsTemplateById(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").communication.updateSmsTemplateById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -4004,7 +4004,7 @@ Delete sms template by id
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.deleteSmsTemplateById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").communication.deleteSmsTemplateById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -4070,7 +4070,7 @@ Get system sms templates
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getSystemSystemTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
+client.application("<APPLICATION_ID>").communication.getSystemSystemTemplates(pageNo: pageNo, pageSize: pageSize, sort: sort) { (response, error) in
     // Use response
 }
 ```

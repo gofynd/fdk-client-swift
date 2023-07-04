@@ -9,10 +9,6 @@ public extension PlatformClient.Catalog {
      */
 
     class InventoryExportJob: Codable {
-        public var taskId: String
-
-        public var sellerId: Int
-
         public var completedOn: String?
 
         public var type: String
@@ -21,15 +17,15 @@ public extension PlatformClient.Catalog {
 
         public var notificationEmails: [String]?
 
+        public var sellerId: Int
+
         public var filters: InventoryExportAdvanceOption?
 
         public var url: String?
 
+        public var taskId: String
+
         public enum CodingKeys: String, CodingKey {
-            case taskId = "task_id"
-
-            case sellerId = "seller_id"
-
             case completedOn = "completed_on"
 
             case type
@@ -38,16 +34,16 @@ public extension PlatformClient.Catalog {
 
             case notificationEmails = "notification_emails"
 
+            case sellerId = "seller_id"
+
             case filters
 
             case url
+
+            case taskId = "task_id"
         }
 
         public init(completedOn: String? = nil, filters: InventoryExportAdvanceOption? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, type: String, url: String? = nil) {
-            self.taskId = taskId
-
-            self.sellerId = sellerId
-
             self.completedOn = completedOn
 
             self.type = type
@@ -56,17 +52,17 @@ public extension PlatformClient.Catalog {
 
             self.notificationEmails = notificationEmails
 
+            self.sellerId = sellerId
+
             self.filters = filters
 
             self.url = url
+
+            self.taskId = taskId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            taskId = try container.decode(String.self, forKey: .taskId)
-
-            sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             do {
                 completedOn = try container.decode(String.self, forKey: .completedOn)
@@ -94,6 +90,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            sellerId = try container.decode(Int.self, forKey: .sellerId)
+
             do {
                 filters = try container.decode(InventoryExportAdvanceOption.self, forKey: .filters)
 
@@ -109,14 +107,12 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            taskId = try container.decode(String.self, forKey: .taskId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(taskId, forKey: .taskId)
-
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(completedOn, forKey: .completedOn)
 
@@ -126,9 +122,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
             try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
         }
     }
 }
@@ -140,10 +140,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class InventoryExportJob: Codable {
-        public var taskId: String
-
-        public var sellerId: Int
-
         public var completedOn: String?
 
         public var type: String
@@ -152,15 +148,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var notificationEmails: [String]?
 
+        public var sellerId: Int
+
         public var filters: InventoryExportAdvanceOption?
 
         public var url: String?
 
+        public var taskId: String
+
         public enum CodingKeys: String, CodingKey {
-            case taskId = "task_id"
-
-            case sellerId = "seller_id"
-
             case completedOn = "completed_on"
 
             case type
@@ -169,16 +165,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case notificationEmails = "notification_emails"
 
+            case sellerId = "seller_id"
+
             case filters
 
             case url
+
+            case taskId = "task_id"
         }
 
         public init(completedOn: String? = nil, filters: InventoryExportAdvanceOption? = nil, notificationEmails: [String]? = nil, sellerId: Int, status: String? = nil, taskId: String, type: String, url: String? = nil) {
-            self.taskId = taskId
-
-            self.sellerId = sellerId
-
             self.completedOn = completedOn
 
             self.type = type
@@ -187,17 +183,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.notificationEmails = notificationEmails
 
+            self.sellerId = sellerId
+
             self.filters = filters
 
             self.url = url
+
+            self.taskId = taskId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            taskId = try container.decode(String.self, forKey: .taskId)
-
-            sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             do {
                 completedOn = try container.decode(String.self, forKey: .completedOn)
@@ -225,6 +221,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            sellerId = try container.decode(Int.self, forKey: .sellerId)
+
             do {
                 filters = try container.decode(InventoryExportAdvanceOption.self, forKey: .filters)
 
@@ -240,14 +238,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            taskId = try container.decode(String.self, forKey: .taskId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(taskId, forKey: .taskId)
-
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(completedOn, forKey: .completedOn)
 
@@ -257,9 +253,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
 
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
             try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(url, forKey: .url)
+
+            try? container.encodeIfPresent(taskId, forKey: .taskId)
         }
     }
 }

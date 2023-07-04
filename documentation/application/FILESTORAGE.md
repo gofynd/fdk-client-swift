@@ -22,7 +22,7 @@ Initiates an upload and returns a storage link that is valid for 30 minutes. You
 
 
 ```swift
-applicationClient.filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
+filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -33,7 +33,7 @@ applicationClient.filestorage.startUpload(namespace: namespace, body: body) { (r
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | Name of the bucket created for storing objects. |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartRequest | yes | Request body |
 
 
@@ -95,7 +95,7 @@ Completes the upload process. After successfully uploading a file, call this API
 
 
 ```swift
-applicationClient.filestorage.completeUpload(namespace: namespace, body: body) { (response, error) in
+filestorage.completeUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -106,7 +106,7 @@ applicationClient.filestorage.completeUpload(namespace: namespace, body: body) {
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | Name of the bucket created for storing objects. |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
 | body | StartResponse | yes | Request body |
 
 
@@ -168,7 +168,7 @@ Explain here
 
 
 ```swift
-applicationClient.filestorage.signUrls(body: body) { (response, error) in
+filestorage.signUrls(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -236,8 +236,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | url | String |  no  |  |
- | absoluteUrl | String? |  yes  |  |
- | relativeUrl | String? |  yes  |  |
+ | absoluteUrl | String |  no  |  |
+ | relativeUrl | String |  no  |  |
 
 ---
 

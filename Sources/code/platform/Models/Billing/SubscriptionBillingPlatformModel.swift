@@ -41,6 +41,8 @@ public extension PlatformClient.Billing {
 
         public var latestInvoice: String?
 
+        public var channelType: String?
+
         public enum CodingKeys: String, CodingKey {
             case currentPeriod = "current_period"
 
@@ -73,9 +75,11 @@ public extension PlatformClient.Billing {
             case modifiedAt = "modified_at"
 
             case latestInvoice = "latest_invoice"
+
+            case channelType = "channel_type"
         }
 
-        public init(cancelAtPeriodEnd: Bool? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currentPeriod: SubscriptionCurrentPeriod? = nil, currentStatus: String? = nil, invoiceSettings: SubscriptionInvoiceSettings? = nil, isActive: Bool? = nil, latestInvoice: String? = nil, modifiedAt: String? = nil, pauseCollection: SubscriptionPauseCollection? = nil, planData: Plan? = nil, planId: String? = nil, productSuiteId: String? = nil, subscriberId: String? = nil, trial: SubscriptionTrial? = nil, id: String? = nil) {
+        public init(cancelAtPeriodEnd: Bool? = nil, channelType: String? = nil, collectionMethod: String? = nil, createdAt: String? = nil, currentPeriod: SubscriptionCurrentPeriod? = nil, currentStatus: String? = nil, invoiceSettings: SubscriptionInvoiceSettings? = nil, isActive: Bool? = nil, latestInvoice: String? = nil, modifiedAt: String? = nil, pauseCollection: SubscriptionPauseCollection? = nil, planData: Plan? = nil, planId: String? = nil, productSuiteId: String? = nil, subscriberId: String? = nil, trial: SubscriptionTrial? = nil, id: String? = nil) {
             self.currentPeriod = currentPeriod
 
             self.pauseCollection = pauseCollection
@@ -107,6 +111,8 @@ public extension PlatformClient.Billing {
             self.modifiedAt = modifiedAt
 
             self.latestInvoice = latestInvoice
+
+            self.channelType = channelType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -239,6 +245,14 @@ public extension PlatformClient.Billing {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                channelType = try container.decode(String.self, forKey: .channelType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -275,6 +289,8 @@ public extension PlatformClient.Billing {
             try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
 
             try? container.encodeIfPresent(latestInvoice, forKey: .latestInvoice)
+
+            try? container.encodeIfPresent(channelType, forKey: .channelType)
         }
     }
 }

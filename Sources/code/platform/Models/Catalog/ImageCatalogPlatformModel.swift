@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var aspectRatioF: Double?
 
-        public var url: String?
-
         public var secureUrl: String?
+
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case aspectRatio = "aspect_ratio"
 
             case aspectRatioF = "aspect_ratio_f"
 
-            case url
-
             case secureUrl = "secure_url"
+
+            case url
         }
 
         public init(aspectRatio: String? = nil, aspectRatioF: Double? = nil, secureUrl: String? = nil, url: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.aspectRatioF = aspectRatioF
 
-            self.url = url
-
             self.secureUrl = secureUrl
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                secureUrl = try container.decode(String.self, forKey: .secureUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                secureUrl = try container.decode(String.self, forKey: .secureUrl)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(aspectRatioF, forKey: .aspectRatioF)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var aspectRatioF: Double?
 
-        public var url: String?
-
         public var secureUrl: String?
+
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case aspectRatio = "aspect_ratio"
 
             case aspectRatioF = "aspect_ratio_f"
 
-            case url
-
             case secureUrl = "secure_url"
+
+            case url
         }
 
         public init(aspectRatio: String? = nil, aspectRatioF: Double? = nil, secureUrl: String? = nil, url: String? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.aspectRatioF = aspectRatioF
 
-            self.url = url
-
             self.secureUrl = secureUrl
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                secureUrl = try container.decode(String.self, forKey: .secureUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                secureUrl = try container.decode(String.self, forKey: .secureUrl)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(aspectRatioF, forKey: .aspectRatioF)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(secureUrl, forKey: .secureUrl)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
