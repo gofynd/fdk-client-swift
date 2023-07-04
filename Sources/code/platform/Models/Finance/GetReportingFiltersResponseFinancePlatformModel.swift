@@ -9,24 +9,24 @@ public extension PlatformClient.Finance {
      */
 
     class GetReportingFiltersResponse: Codable {
-        public var status: GetReportingFilters?
-
         public var search: GetReportingFilters?
+
+        public var status: GetReportingFilters?
 
         public var filters: [GetReportingNestedFilters]?
 
         public enum CodingKeys: String, CodingKey {
-            case status
-
             case search
+
+            case status
 
             case filters
         }
 
         public init(filters: [GetReportingNestedFilters]? = nil, search: GetReportingFilters? = nil, status: GetReportingFilters? = nil) {
-            self.status = status
-
             self.search = search
+
+            self.status = status
 
             self.filters = filters
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                status = try container.decode(GetReportingFilters.self, forKey: .status)
+                search = try container.decode(GetReportingFilters.self, forKey: .search)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                search = try container.decode(GetReportingFilters.self, forKey: .search)
+                status = try container.decode(GetReportingFilters.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(search, forKey: .search)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
         }

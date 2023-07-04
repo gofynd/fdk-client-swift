@@ -2697,7 +2697,7 @@ Get event subscriptions
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptions(pageNo: pageNo, pageSize: pageSize, populate: populate) { (response, error) in
+platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptions(pageNo: pageNo, pageSize: pageSize, populate: populate, query: query) { (response, error) in
     // Use response
 }
 ```
@@ -2710,7 +2710,8 @@ platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptio
 | -------- | ---- | -------- | ----------- | 
 | pageNo | Int? | no | Current page no |   
 | pageSize | Int? | no | Current request items count |   
-| populate | String? | no | populate fields |  
+| populate | [String]? | no | populate fields |   
+| query | String? | no | Current request items count |  
 
 
 

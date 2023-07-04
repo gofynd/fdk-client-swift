@@ -11,9 +11,9 @@ public extension PlatformClient.Order {
     class OrderData: Codable {
         public var meta: OrderMeta?
 
-        public var prices: Prices?
-
         public var orderDate: String
+
+        public var prices: Prices?
 
         public var taxDetails: TaxDetails?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Order {
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case prices
-
             case orderDate = "order_date"
+
+            case prices
 
             case taxDetails = "tax_details"
 
@@ -38,9 +38,9 @@ public extension PlatformClient.Order {
         public init(fyndOrderId: String, meta: OrderMeta? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
             self.meta = meta
 
-            self.prices = prices
-
             self.orderDate = orderDate
+
+            self.prices = prices
 
             self.taxDetails = taxDetails
 
@@ -60,6 +60,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            orderDate = try container.decode(String.self, forKey: .orderDate)
+
             do {
                 prices = try container.decode(Prices.self, forKey: .prices)
 
@@ -67,8 +69,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            orderDate = try container.decode(String.self, forKey: .orderDate)
 
             do {
                 taxDetails = try container.decode(TaxDetails.self, forKey: .taxDetails)
@@ -94,9 +94,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(prices, forKey: .prices)
-
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+
+            try? container.encodeIfPresent(prices, forKey: .prices)
 
             try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
 
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Order {
     class OrderData: Codable {
         public var meta: OrderMeta?
 
-        public var prices: Prices?
-
         public var orderDate: String
+
+        public var prices: Prices?
 
         public var taxDetails: TaxDetails?
 
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case prices
-
             case orderDate = "order_date"
+
+            case prices
 
             case taxDetails = "tax_details"
 
@@ -143,9 +143,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(fyndOrderId: String, meta: OrderMeta? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
             self.meta = meta
 
-            self.prices = prices
-
             self.orderDate = orderDate
+
+            self.prices = prices
 
             self.taxDetails = taxDetails
 
@@ -165,6 +165,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            orderDate = try container.decode(String.self, forKey: .orderDate)
+
             do {
                 prices = try container.decode(Prices.self, forKey: .prices)
 
@@ -172,8 +174,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            orderDate = try container.decode(String.self, forKey: .orderDate)
 
             do {
                 taxDetails = try container.decode(TaxDetails.self, forKey: .taxDetails)
@@ -199,9 +199,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(prices, forKey: .prices)
-
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+
+            try? container.encodeIfPresent(prices, forKey: .prices)
 
             try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
 

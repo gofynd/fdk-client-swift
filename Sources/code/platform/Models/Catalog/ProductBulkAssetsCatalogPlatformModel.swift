@@ -13,18 +13,18 @@ public extension PlatformClient.Catalog {
 
         public var batchId: String?
 
-        public var companyId: Int?
-
         public var user: [String: Any]
+
+        public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case url
 
             case batchId = "batch_id"
 
-            case companyId = "company_id"
-
             case user
+
+            case companyId = "company_id"
         }
 
         public init(batchId: String? = nil, companyId: Int? = nil, url: String, user: [String: Any]) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Catalog {
 
             self.batchId = batchId
 
-            self.companyId = companyId
-
             self.user = user
+
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,6 +50,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            user = try container.decode([String: Any].self, forKey: .user)
+
             do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
 
@@ -57,8 +59,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            user = try container.decode([String: Any].self, forKey: .user)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,9 +68,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }
@@ -86,18 +86,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var batchId: String?
 
-        public var companyId: Int?
-
         public var user: [String: Any]
+
+        public var companyId: Int?
 
         public enum CodingKeys: String, CodingKey {
             case url
 
             case batchId = "batch_id"
 
-            case companyId = "company_id"
-
             case user
+
+            case companyId = "company_id"
         }
 
         public init(batchId: String? = nil, companyId: Int? = nil, url: String, user: [String: Any]) {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.batchId = batchId
 
-            self.companyId = companyId
-
             self.user = user
+
+            self.companyId = companyId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,6 +123,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            user = try container.decode([String: Any].self, forKey: .user)
+
             do {
                 companyId = try container.decode(Int.self, forKey: .companyId)
 
@@ -130,8 +132,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            user = try container.decode([String: Any].self, forKey: .user)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(batchId, forKey: .batchId)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
         }
     }
 }

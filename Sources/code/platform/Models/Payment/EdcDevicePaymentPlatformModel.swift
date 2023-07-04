@@ -9,80 +9,80 @@ public extension PlatformClient.Payment {
      */
 
     class EdcDevice: Codable {
-        public var terminalUniqueIdentifier: String
+        public var isActive: Bool
 
         public var merchantStorePosCode: String?
 
-        public var aggregatorName: String?
-
         public var edcDeviceSerialNo: String
 
-        public var edcModel: String?
+        public var terminalUniqueIdentifier: String
+
+        public var storeId: Int
 
         public var terminalSerialNo: String
+
+        public var aggregatorName: String?
+
+        public var applicationId: String
+
+        public var edcModel: String?
 
         public var aggregatorId: Int
 
         public var deviceTag: String
 
-        public var storeId: Int
-
-        public var isActive: Bool
-
-        public var applicationId: String
-
         public enum CodingKeys: String, CodingKey {
-            case terminalUniqueIdentifier = "terminal_unique_identifier"
+            case isActive = "is_active"
 
             case merchantStorePosCode = "merchant_store_pos_code"
 
-            case aggregatorName = "aggregator_name"
-
             case edcDeviceSerialNo = "edc_device_serial_no"
 
-            case edcModel = "edc_model"
+            case terminalUniqueIdentifier = "terminal_unique_identifier"
+
+            case storeId = "store_id"
 
             case terminalSerialNo = "terminal_serial_no"
+
+            case aggregatorName = "aggregator_name"
+
+            case applicationId = "application_id"
+
+            case edcModel = "edc_model"
 
             case aggregatorId = "aggregator_id"
 
             case deviceTag = "device_tag"
-
-            case storeId = "store_id"
-
-            case isActive = "is_active"
-
-            case applicationId = "application_id"
         }
 
         public init(aggregatorId: Int, aggregatorName: String? = nil, applicationId: String, deviceTag: String, edcDeviceSerialNo: String, edcModel: String? = nil, isActive: Bool, merchantStorePosCode: String? = nil, storeId: Int, terminalSerialNo: String, terminalUniqueIdentifier: String) {
-            self.terminalUniqueIdentifier = terminalUniqueIdentifier
+            self.isActive = isActive
 
             self.merchantStorePosCode = merchantStorePosCode
 
-            self.aggregatorName = aggregatorName
-
             self.edcDeviceSerialNo = edcDeviceSerialNo
 
-            self.edcModel = edcModel
+            self.terminalUniqueIdentifier = terminalUniqueIdentifier
+
+            self.storeId = storeId
 
             self.terminalSerialNo = terminalSerialNo
+
+            self.aggregatorName = aggregatorName
+
+            self.applicationId = applicationId
+
+            self.edcModel = edcModel
 
             self.aggregatorId = aggregatorId
 
             self.deviceTag = deviceTag
-
-            self.storeId = storeId
-
-            self.isActive = isActive
-
-            self.applicationId = applicationId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            terminalUniqueIdentifier = try container.decode(String.self, forKey: .terminalUniqueIdentifier)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 merchantStorePosCode = try container.decode(String.self, forKey: .merchantStorePosCode)
@@ -92,6 +92,14 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            edcDeviceSerialNo = try container.decode(String.self, forKey: .edcDeviceSerialNo)
+
+            terminalUniqueIdentifier = try container.decode(String.self, forKey: .terminalUniqueIdentifier)
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
+
+            terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
+
             do {
                 aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
@@ -100,7 +108,7 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            edcDeviceSerialNo = try container.decode(String.self, forKey: .edcDeviceSerialNo)
+            applicationId = try container.decode(String.self, forKey: .applicationId)
 
             do {
                 edcModel = try container.decode(String.self, forKey: .edcModel)
@@ -110,43 +118,35 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
-
             aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
             deviceTag = try container.decode(String.self, forKey: .deviceTag)
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            applicationId = try container.decode(String.self, forKey: .applicationId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(terminalUniqueIdentifier, forKey: .terminalUniqueIdentifier)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encode(merchantStorePosCode, forKey: .merchantStorePosCode)
 
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-
             try? container.encodeIfPresent(edcDeviceSerialNo, forKey: .edcDeviceSerialNo)
 
-            try? container.encodeIfPresent(edcModel, forKey: .edcModel)
+            try? container.encodeIfPresent(terminalUniqueIdentifier, forKey: .terminalUniqueIdentifier)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
 
             try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
+
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+
+            try? container.encodeIfPresent(edcModel, forKey: .edcModel)
 
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
             try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
         }
     }
 }
@@ -158,80 +158,80 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class EdcDevice: Codable {
-        public var terminalUniqueIdentifier: String
+        public var isActive: Bool
 
         public var merchantStorePosCode: String?
 
-        public var aggregatorName: String?
-
         public var edcDeviceSerialNo: String
 
-        public var edcModel: String?
+        public var terminalUniqueIdentifier: String
+
+        public var storeId: Int
 
         public var terminalSerialNo: String
+
+        public var aggregatorName: String?
+
+        public var applicationId: String
+
+        public var edcModel: String?
 
         public var aggregatorId: Int
 
         public var deviceTag: String
 
-        public var storeId: Int
-
-        public var isActive: Bool
-
-        public var applicationId: String
-
         public enum CodingKeys: String, CodingKey {
-            case terminalUniqueIdentifier = "terminal_unique_identifier"
+            case isActive = "is_active"
 
             case merchantStorePosCode = "merchant_store_pos_code"
 
-            case aggregatorName = "aggregator_name"
-
             case edcDeviceSerialNo = "edc_device_serial_no"
 
-            case edcModel = "edc_model"
+            case terminalUniqueIdentifier = "terminal_unique_identifier"
+
+            case storeId = "store_id"
 
             case terminalSerialNo = "terminal_serial_no"
+
+            case aggregatorName = "aggregator_name"
+
+            case applicationId = "application_id"
+
+            case edcModel = "edc_model"
 
             case aggregatorId = "aggregator_id"
 
             case deviceTag = "device_tag"
-
-            case storeId = "store_id"
-
-            case isActive = "is_active"
-
-            case applicationId = "application_id"
         }
 
         public init(aggregatorId: Int, aggregatorName: String? = nil, applicationId: String, deviceTag: String, edcDeviceSerialNo: String, edcModel: String? = nil, isActive: Bool, merchantStorePosCode: String? = nil, storeId: Int, terminalSerialNo: String, terminalUniqueIdentifier: String) {
-            self.terminalUniqueIdentifier = terminalUniqueIdentifier
+            self.isActive = isActive
 
             self.merchantStorePosCode = merchantStorePosCode
 
-            self.aggregatorName = aggregatorName
-
             self.edcDeviceSerialNo = edcDeviceSerialNo
 
-            self.edcModel = edcModel
+            self.terminalUniqueIdentifier = terminalUniqueIdentifier
+
+            self.storeId = storeId
 
             self.terminalSerialNo = terminalSerialNo
+
+            self.aggregatorName = aggregatorName
+
+            self.applicationId = applicationId
+
+            self.edcModel = edcModel
 
             self.aggregatorId = aggregatorId
 
             self.deviceTag = deviceTag
-
-            self.storeId = storeId
-
-            self.isActive = isActive
-
-            self.applicationId = applicationId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            terminalUniqueIdentifier = try container.decode(String.self, forKey: .terminalUniqueIdentifier)
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             do {
                 merchantStorePosCode = try container.decode(String.self, forKey: .merchantStorePosCode)
@@ -241,6 +241,14 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            edcDeviceSerialNo = try container.decode(String.self, forKey: .edcDeviceSerialNo)
+
+            terminalUniqueIdentifier = try container.decode(String.self, forKey: .terminalUniqueIdentifier)
+
+            storeId = try container.decode(Int.self, forKey: .storeId)
+
+            terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
+
             do {
                 aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
@@ -249,7 +257,7 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            edcDeviceSerialNo = try container.decode(String.self, forKey: .edcDeviceSerialNo)
+            applicationId = try container.decode(String.self, forKey: .applicationId)
 
             do {
                 edcModel = try container.decode(String.self, forKey: .edcModel)
@@ -259,43 +267,35 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            terminalSerialNo = try container.decode(String.self, forKey: .terminalSerialNo)
-
             aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
             deviceTag = try container.decode(String.self, forKey: .deviceTag)
-
-            storeId = try container.decode(Int.self, forKey: .storeId)
-
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            applicationId = try container.decode(String.self, forKey: .applicationId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(terminalUniqueIdentifier, forKey: .terminalUniqueIdentifier)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encode(merchantStorePosCode, forKey: .merchantStorePosCode)
 
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-
             try? container.encodeIfPresent(edcDeviceSerialNo, forKey: .edcDeviceSerialNo)
 
-            try? container.encodeIfPresent(edcModel, forKey: .edcModel)
+            try? container.encodeIfPresent(terminalUniqueIdentifier, forKey: .terminalUniqueIdentifier)
+
+            try? container.encodeIfPresent(storeId, forKey: .storeId)
 
             try? container.encodeIfPresent(terminalSerialNo, forKey: .terminalSerialNo)
+
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+
+            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
+
+            try? container.encodeIfPresent(edcModel, forKey: .edcModel)
 
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
             try? container.encodeIfPresent(deviceTag, forKey: .deviceTag)
-
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(applicationId, forKey: .applicationId)
         }
     }
 }

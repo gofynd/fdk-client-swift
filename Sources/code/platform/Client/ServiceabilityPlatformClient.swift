@@ -480,133 +480,6 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: This Api creates a Bulk Job for region tat data upsert
-         * Description: This API takes request body, validates it and sends it to kafka topic
-         **/
-        public func postRegionJobBulk(
-            body: BulkRegionJobSerializer,
-            onResponse: @escaping (_ response: PostBulkRegionJobResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/tat/bulk",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(PostBulkRegionJobResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Get bulk_export_job collection all records
-         * Description: This API takes gives all the records of bulk_export_job collection
-         **/
-        public func getRegionJobBulk(
-            currentPageNumber: Int?,
-            pageSize: Int?,
-
-            onResponse: @escaping (_ response: GetBulkRegionJobResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = currentPageNumber {
-                xQuery["current_page_number"] = value
-            }
-
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/tat/bulk",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GetBulkRegionJobResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Get bulk_export_job data for a given batch_id
-         * Description: This API takes batch_id and gives the detail of bulk_export_job collection for the batch_id
-         **/
-        public func getRegionJobBulkBatchId(
-            batchId: String,
-
-            onResponse: @escaping (_ response: GetBulkRegionJobResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/tat/bulk/\(batchId)",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(GetBulkRegionJobResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
          * Summary: Upsertion of DpAccount in database.
          * Description: This API returns response of upsertion of DpAccount in mongo database.
          **/
@@ -648,7 +521,7 @@ public extension PlatformClient {
          * Summary: Getting DpAccount of a company from database.
          * Description: This API returns response DpAccount of a company from mongo database.
          **/
-        public func getDpAccountList(
+        public func getDpAccount(
             pageNumber: Int?,
             pageSize: Int?,
             stage: String?,
@@ -713,7 +586,7 @@ public extension PlatformClient {
          * Summary: Fetching of DpRules from database.
          * Description: This API returns response of DpRules from mongo database.
          **/
-        public func getDpRule(
+        public func getDpRules(
             ruleUid: String,
 
             onResponse: @escaping (_ response: DpRuleSuccessResponse?, _ error: FDKError?) -> Void
@@ -791,7 +664,7 @@ public extension PlatformClient {
          * Summary: Upsert of DpRules in database.
          * Description: This API returns response of upsert of DpRules in mongo database.
          **/
-        public func createDpRule(
+        public func upsertDpRules(
             body: DpRuleRequest,
             onResponse: @escaping (_ response: DpRuleSuccessResponse?, _ error: FDKError?) -> Void
         ) {
@@ -829,7 +702,7 @@ public extension PlatformClient {
          * Summary: Fetching of DpRules from database.
          * Description: This API returns response of DpRules from mongo database.
          **/
-        public func getDpRuleList(
+        public func getDpRuleInsert(
             pageNumber: Int?,
             pageSize: Int?,
 
@@ -879,7 +752,7 @@ public extension PlatformClient {
          * Summary: Get All DpCompanyRules applied to company from database.
          * Description: This API returns response of all DpCompanyRules from mongo database.
          **/
-        public func getDpCompanyRulePriority(
+        public func getDpCompanyRules(
             onResponse: @escaping (_ response: DPCompanyRuleResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
@@ -916,7 +789,7 @@ public extension PlatformClient {
          * Summary: Upsert of DpCompanyRules in database.
          * Description: This API returns response of upsert of DpCompanyRules in mongo database.
          **/
-        public func upsertDpCompanyRulePriority(
+        public func upsertDpCompanyRules(
             body: DPCompanyRuleRequest,
             onResponse: @escaping (_ response: DPCompanyRuleResponse?, _ error: FDKError?) -> Void
         ) {

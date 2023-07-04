@@ -9,30 +9,30 @@ public extension ApplicationClient.Order {
     class AppliedPromos: Codable {
         public var mrpPromotion: Bool?
 
-        public var promotionName: String?
+        public var articleQuantity: Double?
 
-        public var promoId: String?
+        public var promotionName: String?
 
         public var appliedFreeArticles: [AppliedFreeArticles]?
 
-        public var articleQuantity: Double?
-
         public var amount: Double?
+
+        public var promoId: String?
 
         public var promotionType: String?
 
         public enum CodingKeys: String, CodingKey {
             case mrpPromotion = "mrp_promotion"
 
-            case promotionName = "promotion_name"
+            case articleQuantity = "article_quantity"
 
-            case promoId = "promo_id"
+            case promotionName = "promotion_name"
 
             case appliedFreeArticles = "applied_free_articles"
 
-            case articleQuantity = "article_quantity"
-
             case amount
+
+            case promoId = "promo_id"
 
             case promotionType = "promotion_type"
         }
@@ -40,15 +40,15 @@ public extension ApplicationClient.Order {
         public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Double? = nil, mrpPromotion: Bool? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             self.mrpPromotion = mrpPromotion
 
-            self.promotionName = promotionName
+            self.articleQuantity = articleQuantity
 
-            self.promoId = promoId
+            self.promotionName = promotionName
 
             self.appliedFreeArticles = appliedFreeArticles
 
-            self.articleQuantity = articleQuantity
-
             self.amount = amount
+
+            self.promoId = promoId
 
             self.promotionType = promotionType
         }
@@ -65,7 +65,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                promotionName = try container.decode(String.self, forKey: .promotionName)
+                articleQuantity = try container.decode(Double.self, forKey: .articleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +73,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                promoId = try container.decode(String.self, forKey: .promoId)
+                promotionName = try container.decode(String.self, forKey: .promotionName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                articleQuantity = try container.decode(Double.self, forKey: .articleQuantity)
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +97,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
+                promoId = try container.decode(String.self, forKey: .promoId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,15 +118,15 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(mrpPromotion, forKey: .mrpPromotion)
 
-            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
+            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
 
-            try? container.encodeIfPresent(promoId, forKey: .promoId)
+            try? container.encodeIfPresent(promotionName, forKey: .promotionName)
 
             try? container.encodeIfPresent(appliedFreeArticles, forKey: .appliedFreeArticles)
 
-            try? container.encodeIfPresent(articleQuantity, forKey: .articleQuantity)
-
             try? container.encodeIfPresent(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(promotionType, forKey: .promotionType)
         }

@@ -7,18 +7,18 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class DiscountMeta: Codable {
-        public var timer: Bool?
-
         public var end: String?
+
+        public var timer: Bool?
 
         public var start: String?
 
         public var numberOfMinutes: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case timer
-
             case end
+
+            case timer
 
             case start
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Catalog {
         }
 
         public init(end: String? = nil, numberOfMinutes: Int? = nil, start: String? = nil, timer: Bool? = nil) {
-            self.timer = timer
-
             self.end = end
+
+            self.timer = timer
 
             self.start = start
 
@@ -39,7 +39,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                timer = try container.decode(Bool.self, forKey: .timer)
+                end = try container.decode(String.self, forKey: .end)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                end = try container.decode(String.self, forKey: .end)
+                timer = try container.decode(Bool.self, forKey: .timer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(timer, forKey: .timer)
-
             try? container.encodeIfPresent(end, forKey: .end)
+
+            try? container.encodeIfPresent(timer, forKey: .timer)
 
             try? container.encodeIfPresent(start, forKey: .start)
 
