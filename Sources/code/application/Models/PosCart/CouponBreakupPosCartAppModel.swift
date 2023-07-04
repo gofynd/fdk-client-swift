@@ -7,7 +7,7 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class CouponBreakup: Codable {
-        public var code: String?
+        public var uid: String?
 
         public var message: String?
 
@@ -17,10 +17,10 @@ public extension ApplicationClient.PosCart {
 
         public var type: String?
 
-        public var uid: String?
+        public var code: String?
 
         public enum CodingKeys: String, CodingKey {
-            case code
+            case uid
 
             case message
 
@@ -30,11 +30,11 @@ public extension ApplicationClient.PosCart {
 
             case type
 
-            case uid
+            case code
         }
 
         public init(code: String? = nil, isApplied: Bool? = nil, message: String? = nil, type: String? = nil, uid: String? = nil, value: Double? = nil) {
-            self.code = code
+            self.uid = uid
 
             self.message = message
 
@@ -44,14 +44,14 @@ public extension ApplicationClient.PosCart {
 
             self.type = type
 
-            self.uid = uid
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,7 +102,7 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(message, forKey: .message)
 
@@ -112,7 +112,7 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }

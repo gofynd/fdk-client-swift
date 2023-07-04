@@ -11,6 +11,7 @@ Application configuration apis
 * [getPreviousVersions](#getpreviousversions)
 * [getAppFeatures](#getappfeatures)
 * [updateAppFeatures](#updateappfeatures)
+* [modifyAppFeatures](#modifyappfeatures)
 * [getAppBasicDetails](#getappbasicdetails)
 * [updateAppBasicDetails](#updateappbasicdetails)
 * [getAppContactInfo](#getappcontactinfo)
@@ -492,6 +493,147 @@ Success
     "order_processing": true
   },
   "common": {
+    "communication_optin_dialog": {
+      "visibility": true
+    },
+    "deployment_store_selection": {
+      "enabled": true,
+      "type": "hard"
+    },
+    "listing_price": {
+      "value": "min",
+      "sort": "min"
+    },
+    "currency": {
+      "value": [
+        "INR"
+      ],
+      "type": "explicit",
+      "default_currency": "INR"
+    },
+    "revenue_engine": {
+      "enabled": false
+    },
+    "feedback": {
+      "enabled": true
+    },
+    "compare_products": {
+      "enabled": true
+    }
+  },
+  "cart": {
+    "gst_input": true,
+    "staff_selection": true,
+    "placing_for_customer": true,
+    "google_map": true,
+    "revenue_engine_coupon": false
+  },
+  "qr": {
+    "application": true,
+    "products": true,
+    "collections": true
+  },
+  "pcr": {
+    "staff_selection": true
+  },
+  "order": {
+    "buy_again": true
+  },
+  "_id": "5e57643c986e4119c973df7d",
+  "app": "000000000000000000000004",
+  "created_at": "2020-02-27T06:39:56.088Z",
+  "modified_at": "2021-03-09T15:40:29.188Z",
+  "__v": 1
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### modifyAppFeatures
+Update features of application
+
+
+
+
+```swift
+client.application("<APPLICATION_ID>").configuration.modifyAppFeatures(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | AppFeatureRequest | yes | Request body |
+
+
+Update features of application
+
+*Returned Response:*
+
+
+
+
+[AppFeature](#AppFeature)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "product_detail": {
+    "similar": [
+      "basic",
+      "visual",
+      "brand",
+      "category",
+      "seller",
+      "price",
+      "specs"
+    ],
+    "seller_selection": true,
+    "update_product_meta": true,
+    "request_product": true
+  },
+  "landing_page": {
+    "launch_page": {
+      "page_type": "home",
+      "params": null,
+      "query": null
+    },
+    "continue_as_guest": true,
+    "login_btn_text": "Click here to sign-in",
+    "show_domain_textbox": true,
+    "show_register_btn": true
+  },
+  "registration_page": {
+    "ask_store_address": false
+  },
+  "home_page": {
+    "order_processing": true
+  },
+  "common": {
+    "international_shipping": {
+      "enabled": true
+    },
     "communication_optin_dialog": {
       "visibility": true
     },
@@ -1710,6 +1852,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -1949,6 +2102,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -2188,6 +2352,17 @@ Success
   },
   "business": "retail",
   "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
   "platforms": [
     "uniket_wholesale"
   ],
@@ -2736,21 +2911,24 @@ Success
       "verified": true,
       "name": "uniket.hostx0.de",
       "is_primary": true,
-      "is_shortlink": false
+      "is_shortlink": false,
+      "is_predefined": true
     },
     {
       "verified": true,
       "is_primary": false,
       "is_shortlink": true,
       "_id": "5f0858c5f86e00cd42dccc8d",
-      "name": "jd.hostx0.de"
+      "name": "jd.hostx0.de",
+      "is_predefined": true
     },
     {
       "verified": true,
       "is_primary": false,
       "is_shortlink": false,
       "_id": "6048497e87f5730423149190",
-      "name": "testdm.hostx0.de"
+      "name": "testdm.hostx0.de",
+      "is_predefined": true
     }
   ]
 }
@@ -3109,7 +3287,7 @@ client.configuration.getApplications(pageNo: pageNo, pageSize: pageSize, q: q) {
 | -------- | ---- | -------- | ----------- | 
 | pageNo | Int? | no |  |   
 | pageSize | Int? | no |  |   
-| q | String? | no | Url encoded object used as mongodb query |  
+| q | String? | no | Search param by name or domain |  
 
 
 
@@ -4746,6 +4924,7 @@ Success
  | logistics | [AppLogisticsConfig](#AppLogisticsConfig)? |  yes  |  |
  | business | String? |  yes  |  |
  | commsEnabled | Bool? |  yes  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
  | platforms | [String]? |  yes  |  |
  | id | String? |  yes  |  |
  | loyaltyPoints | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
@@ -5071,6 +5250,7 @@ Success
  | payment | [AppPaymentConfig](#AppPaymentConfig)? |  yes  |  |
  | loyaltyPoints | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
  | commsEnabled | Bool? |  yes  |  |
+ | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
 
 ---
 
@@ -5174,6 +5354,30 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brands | [CompanyBrandInfo](#CompanyBrandInfo)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CommunicationConfig](#CommunicationConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [CommsConfig](#CommsConfig)? |  yes  |  |
+ | sms | [CommsConfig](#CommsConfig)? |  yes  |  |
+ | voice | [CommsConfig](#CommsConfig)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CommsConfig](#CommsConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  | Check current communication channel is enabled |
 
 ---
 
@@ -6572,6 +6776,7 @@ Success
  | isShortlink | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
+ | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
 
 ---
 

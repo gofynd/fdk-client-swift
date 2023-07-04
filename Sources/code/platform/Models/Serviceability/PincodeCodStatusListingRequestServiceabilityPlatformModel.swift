@@ -15,7 +15,7 @@ public extension PlatformClient.Serviceability {
 
         public var pincode: Int?
 
-        public var currentPageNumber: Int?
+        public var current: Int?
 
         public var pageSize: Int?
 
@@ -26,19 +26,19 @@ public extension PlatformClient.Serviceability {
 
             case pincode
 
-            case currentPageNumber = "current_page_number"
+            case current
 
             case pageSize = "page_size"
         }
 
-        public init(country: String? = nil, currentPageNumber: Int? = nil, isActive: Bool? = nil, pageSize: Int? = nil, pincode: Int? = nil) {
+        public init(country: String? = nil, current: Int? = nil, isActive: Bool? = nil, pageSize: Int? = nil, pincode: Int? = nil) {
             self.country = country
 
             self.isActive = isActive
 
             self.pincode = pincode
 
-            self.currentPageNumber = currentPageNumber
+            self.current = current
 
             self.pageSize = pageSize
         }
@@ -71,7 +71,7 @@ public extension PlatformClient.Serviceability {
             } catch {}
 
             do {
-                currentPageNumber = try container.decode(Int.self, forKey: .currentPageNumber)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,7 +96,7 @@ public extension PlatformClient.Serviceability {
 
             try? container.encode(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(currentPageNumber, forKey: .currentPageNumber)
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(pageSize, forKey: .pageSize)
         }
@@ -116,7 +116,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public var pincode: Int?
 
-        public var currentPageNumber: Int?
+        public var current: Int?
 
         public var pageSize: Int?
 
@@ -127,19 +127,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             case pincode
 
-            case currentPageNumber = "current_page_number"
+            case current
 
             case pageSize = "page_size"
         }
 
-        public init(country: String? = nil, currentPageNumber: Int? = nil, isActive: Bool? = nil, pageSize: Int? = nil, pincode: Int? = nil) {
+        public init(country: String? = nil, current: Int? = nil, isActive: Bool? = nil, pageSize: Int? = nil, pincode: Int? = nil) {
             self.country = country
 
             self.isActive = isActive
 
             self.pincode = pincode
 
-            self.currentPageNumber = currentPageNumber
+            self.current = current
 
             self.pageSize = pageSize
         }
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             } catch {}
 
             do {
-                currentPageNumber = try container.decode(Int.self, forKey: .currentPageNumber)
+                current = try container.decode(Int.self, forKey: .current)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,7 +197,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encode(pincode, forKey: .pincode)
 
-            try? container.encodeIfPresent(currentPageNumber, forKey: .currentPageNumber)
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(pageSize, forKey: .pageSize)
         }

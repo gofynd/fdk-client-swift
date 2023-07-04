@@ -16,5 +16,3 @@ public extension PublicClient.Webhook {
         case blocked
     }
 }
-
-public extension PublicClient.Inventory {}

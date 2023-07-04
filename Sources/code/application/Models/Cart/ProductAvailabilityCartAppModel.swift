@@ -11,9 +11,9 @@ public extension ApplicationClient.Cart {
 
         public var isValid: Bool?
 
-        public var deliverable: Bool?
-
         public var outOfStock: Bool?
+
+        public var deliverable: Bool?
 
         public var sizes: [String]?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
 
             case isValid = "is_valid"
 
-            case deliverable
-
             case outOfStock = "out_of_stock"
+
+            case deliverable
 
             case sizes
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Cart {
 
             self.isValid = isValid
 
-            self.deliverable = deliverable
-
             self.outOfStock = outOfStock
+
+            self.deliverable = deliverable
 
             self.sizes = sizes
         }
@@ -61,7 +61,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                deliverable = try container.decode(Bool.self, forKey: .deliverable)
+                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                outOfStock = try container.decode(Bool.self, forKey: .outOfStock)
+                deliverable = try container.decode(Bool.self, forKey: .deliverable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,9 +92,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
-            try? container.encodeIfPresent(deliverable, forKey: .deliverable)
-
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
+
+            try? container.encodeIfPresent(deliverable, forKey: .deliverable)
 
             try? container.encodeIfPresent(sizes, forKey: .sizes)
         }

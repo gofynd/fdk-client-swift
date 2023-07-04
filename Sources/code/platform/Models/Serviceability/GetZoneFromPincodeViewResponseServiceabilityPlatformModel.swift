@@ -11,7 +11,7 @@ public extension PlatformClient.Serviceability {
     class GetZoneFromPincodeViewResponse: Codable {
         public var serviceabilityType: String
 
-        public var zones: [String]
+        public var zones: [Zone]
 
         public enum CodingKeys: String, CodingKey {
             case serviceabilityType = "serviceability_type"
@@ -19,7 +19,7 @@ public extension PlatformClient.Serviceability {
             case zones
         }
 
-        public init(serviceabilityType: String, zones: [String]) {
+        public init(serviceabilityType: String, zones: [Zone]) {
             self.serviceabilityType = serviceabilityType
 
             self.zones = zones
@@ -30,7 +30,7 @@ public extension PlatformClient.Serviceability {
 
             serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
 
-            zones = try container.decode([String].self, forKey: .zones)
+            zones = try container.decode([Zone].self, forKey: .zones)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,7 +52,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class GetZoneFromPincodeViewResponse: Codable {
         public var serviceabilityType: String
 
-        public var zones: [String]
+        public var zones: [Zone]
 
         public enum CodingKeys: String, CodingKey {
             case serviceabilityType = "serviceability_type"
@@ -60,7 +60,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             case zones
         }
 
-        public init(serviceabilityType: String, zones: [String]) {
+        public init(serviceabilityType: String, zones: [Zone]) {
             self.serviceabilityType = serviceabilityType
 
             self.zones = zones
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             serviceabilityType = try container.decode(String.self, forKey: .serviceabilityType)
 
-            zones = try container.decode([String].self, forKey: .zones)
+            zones = try container.decode([Zone].self, forKey: .zones)
         }
 
         public func encode(to encoder: Encoder) throws {

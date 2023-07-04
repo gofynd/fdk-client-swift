@@ -15,7 +15,7 @@ public extension PlatformClient.Serviceability {
 
         public var slug: String
 
-        public var companyId: Int
+        public var companyId: Int?
 
         public var isActive: Bool
 
@@ -63,7 +63,7 @@ public extension PlatformClient.Serviceability {
             case pincodesCount = "pincodes_count"
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, pincodesCount: Int, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, pincodesCount: Int, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
             self.zoneId = zoneId
 
             self.name = name
@@ -100,7 +100,13 @@ public extension PlatformClient.Serviceability {
 
             slug = try container.decode(String.self, forKey: .slug)
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
@@ -172,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public var slug: String
 
-        public var companyId: Int
+        public var companyId: Int?
 
         public var isActive: Bool
 
@@ -220,7 +226,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             case pincodesCount = "pincodes_count"
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, pincodesCount: Int, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, pincodesCount: Int, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
             self.zoneId = zoneId
 
             self.name = name
@@ -257,7 +263,13 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             slug = try container.decode(String.self, forKey: .slug)
 
-            companyId = try container.decode(Int.self, forKey: .companyId)
+            do {
+                companyId = try container.decode(Int.self, forKey: .companyId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             isActive = try container.decode(Bool.self, forKey: .isActive)
 
