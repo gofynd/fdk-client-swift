@@ -9,212 +9,210 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class AbandonedCart: Codable {
-        public var id: String
-
         public var codCharges: [String: Any]?
 
-        public var buyNow: Bool?
-
-        public var gstin: String?
-
-        public var paymentMode: String?
+        public var shipments: [[String: Any]]?
 
         public var userId: String
 
-        public var comment: String?
-
-        public var payments: [String: Any]?
-
-        public var pickUpCustomerDetails: [String: Any]?
-
-        public var paymentMethods: [[String: Any]]?
-
-        public var cartValue: Double?
-
-        public var fyndCredits: [String: Any]?
-
-        public var bulkCouponDiscount: Double?
-
-        public var articles: [[String: Any]]
+        public var orderId: String?
 
         public var isDefault: Bool
 
-        public var isArchive: Bool?
-
         public var lastModified: String
 
-        public var fcIndexMap: [Int]?
+        public var mergeQty: Bool?
 
-        public var isActive: Bool?
+        public var paymentMethods: [[String: Any]]?
 
-        public var appId: String?
+        public var expireAt: String
+
+        public var meta: [String: Any]?
 
         public var deliveryCharges: [String: Any]?
 
         public var promotion: [String: Any]?
 
-        public var orderId: String?
+        public var gstin: String?
+
+        public var buyNow: Bool?
+
+        public var isArchive: Bool?
+
+        public var articles: [[String: Any]]
 
         public var uid: Int
 
-        public var expireAt: String
-
-        public var mergeQty: Bool?
-
-        public var cashback: [String: Any]
-
-        public var checkoutMode: String?
-
-        public var meta: [String: Any]?
+        public var payments: [String: Any]?
 
         public var createdOn: String
 
-        public var shipments: [[String: Any]]?
+        public var cashback: [String: Any]
 
-        public var coupon: [String: Any]?
+        public var comment: String?
+
+        public var appId: String?
 
         public var discount: Double?
 
-        public enum CodingKeys: String, CodingKey {
-            case id = "_id"
+        public var id: String
 
+        public var cartValue: Double?
+
+        public var coupon: [String: Any]?
+
+        public var fcIndexMap: [Int]?
+
+        public var paymentMode: String?
+
+        public var isActive: Bool?
+
+        public var pickUpCustomerDetails: [String: Any]?
+
+        public var fyndCredits: [String: Any]?
+
+        public var bulkCouponDiscount: Double?
+
+        public var checkoutMode: String?
+
+        public enum CodingKeys: String, CodingKey {
             case codCharges = "cod_charges"
 
-            case buyNow = "buy_now"
-
-            case gstin
-
-            case paymentMode = "payment_mode"
+            case shipments
 
             case userId = "user_id"
 
-            case comment
-
-            case payments
-
-            case pickUpCustomerDetails = "pick_up_customer_details"
-
-            case paymentMethods = "payment_methods"
-
-            case cartValue = "cart_value"
-
-            case fyndCredits = "fynd_credits"
-
-            case bulkCouponDiscount = "bulk_coupon_discount"
-
-            case articles
+            case orderId = "order_id"
 
             case isDefault = "is_default"
 
-            case isArchive = "is_archive"
-
             case lastModified = "last_modified"
 
-            case fcIndexMap = "fc_index_map"
+            case mergeQty = "merge_qty"
 
-            case isActive = "is_active"
+            case paymentMethods = "payment_methods"
 
-            case appId = "app_id"
+            case expireAt = "expire_at"
+
+            case meta
 
             case deliveryCharges = "delivery_charges"
 
             case promotion
 
-            case orderId = "order_id"
+            case gstin
+
+            case buyNow = "buy_now"
+
+            case isArchive = "is_archive"
+
+            case articles
 
             case uid
 
-            case expireAt = "expire_at"
-
-            case mergeQty = "merge_qty"
-
-            case cashback
-
-            case checkoutMode = "checkout_mode"
-
-            case meta
+            case payments
 
             case createdOn = "created_on"
 
-            case shipments
+            case cashback
+
+            case comment
+
+            case appId = "app_id"
+
+            case discount
+
+            case id = "_id"
+
+            case cartValue = "cart_value"
 
             case coupon
 
-            case discount
+            case fcIndexMap = "fc_index_map"
+
+            case paymentMode = "payment_mode"
+
+            case isActive = "is_active"
+
+            case pickUpCustomerDetails = "pick_up_customer_details"
+
+            case fyndCredits = "fynd_credits"
+
+            case bulkCouponDiscount = "bulk_coupon_discount"
+
+            case checkoutMode = "checkout_mode"
         }
 
         public init(appId: String? = nil, articles: [[String: Any]], bulkCouponDiscount: Double? = nil, buyNow: Bool? = nil, cartValue: Double? = nil, cashback: [String: Any], checkoutMode: String? = nil, codCharges: [String: Any]? = nil, comment: String? = nil, coupon: [String: Any]? = nil, createdOn: String, deliveryCharges: [String: Any]? = nil, discount: Double? = nil, expireAt: String, fcIndexMap: [Int]? = nil, fyndCredits: [String: Any]? = nil, gstin: String? = nil, isActive: Bool? = nil, isArchive: Bool? = nil, isDefault: Bool, lastModified: String, mergeQty: Bool? = nil, meta: [String: Any]? = nil, orderId: String? = nil, payments: [String: Any]? = nil, paymentMethods: [[String: Any]]? = nil, paymentMode: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, promotion: [String: Any]? = nil, shipments: [[String: Any]]? = nil, uid: Int, userId: String, id: String) {
-            self.id = id
-
             self.codCharges = codCharges
 
-            self.buyNow = buyNow
-
-            self.gstin = gstin
-
-            self.paymentMode = paymentMode
+            self.shipments = shipments
 
             self.userId = userId
 
-            self.comment = comment
-
-            self.payments = payments
-
-            self.pickUpCustomerDetails = pickUpCustomerDetails
-
-            self.paymentMethods = paymentMethods
-
-            self.cartValue = cartValue
-
-            self.fyndCredits = fyndCredits
-
-            self.bulkCouponDiscount = bulkCouponDiscount
-
-            self.articles = articles
+            self.orderId = orderId
 
             self.isDefault = isDefault
 
-            self.isArchive = isArchive
-
             self.lastModified = lastModified
 
-            self.fcIndexMap = fcIndexMap
+            self.mergeQty = mergeQty
 
-            self.isActive = isActive
+            self.paymentMethods = paymentMethods
 
-            self.appId = appId
+            self.expireAt = expireAt
+
+            self.meta = meta
 
             self.deliveryCharges = deliveryCharges
 
             self.promotion = promotion
 
-            self.orderId = orderId
+            self.gstin = gstin
+
+            self.buyNow = buyNow
+
+            self.isArchive = isArchive
+
+            self.articles = articles
 
             self.uid = uid
 
-            self.expireAt = expireAt
-
-            self.mergeQty = mergeQty
-
-            self.cashback = cashback
-
-            self.checkoutMode = checkoutMode
-
-            self.meta = meta
+            self.payments = payments
 
             self.createdOn = createdOn
 
-            self.shipments = shipments
+            self.cashback = cashback
+
+            self.comment = comment
+
+            self.appId = appId
+
+            self.discount = discount
+
+            self.id = id
+
+            self.cartValue = cartValue
 
             self.coupon = coupon
 
-            self.discount = discount
+            self.fcIndexMap = fcIndexMap
+
+            self.paymentMode = paymentMode
+
+            self.isActive = isActive
+
+            self.pickUpCustomerDetails = pickUpCustomerDetails
+
+            self.fyndCredits = fyndCredits
+
+            self.bulkCouponDiscount = bulkCouponDiscount
+
+            self.checkoutMode = checkoutMode
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            id = try container.decode(String.self, forKey: .id)
 
             do {
                 codCharges = try container.decode([String: Any].self, forKey: .codCharges)
@@ -225,23 +223,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                buyNow = try container.decode(Bool.self, forKey: .buyNow)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                gstin = try container.decode(String.self, forKey: .gstin)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                shipments = try container.decode([[String: Any]].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,23 +233,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             userId = try container.decode(String.self, forKey: .userId)
 
             do {
-                comment = try container.decode(String.self, forKey: .comment)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                payments = try container.decode([String: Any].self, forKey: .payments)
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            lastModified = try container.decode(String.self, forKey: .lastModified)
 
             do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+                mergeQty = try container.decode(Bool.self, forKey: .mergeQty)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -282,62 +260,10 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                cartValue = try container.decode(Double.self, forKey: .cartValue)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            expireAt = try container.decode(String.self, forKey: .expireAt)
 
             do {
-                fyndCredits = try container.decode([String: Any].self, forKey: .fyndCredits)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                bulkCouponDiscount = try container.decode(Double.self, forKey: .bulkCouponDiscount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            articles = try container.decode([[String: Any]].self, forKey: .articles)
-
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
-
-            do {
-                isArchive = try container.decode(Bool.self, forKey: .isArchive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            lastModified = try container.decode(String.self, forKey: .lastModified)
-
-            do {
-                fcIndexMap = try container.decode([Int].self, forKey: .fcIndexMap)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                appId = try container.decode(String.self, forKey: .appId)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -361,37 +287,35 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                gstin = try container.decode(String.self, forKey: .gstin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                buyNow = try container.decode(Bool.self, forKey: .buyNow)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isArchive = try container.decode(Bool.self, forKey: .isArchive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            articles = try container.decode([[String: Any]].self, forKey: .articles)
 
             uid = try container.decode(Int.self, forKey: .uid)
 
-            expireAt = try container.decode(String.self, forKey: .expireAt)
-
             do {
-                mergeQty = try container.decode(Bool.self, forKey: .mergeQty)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            cashback = try container.decode([String: Any].self, forKey: .cashback)
-
-            do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                payments = try container.decode([String: Any].self, forKey: .payments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -400,8 +324,36 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             createdOn = try container.decode(String.self, forKey: .createdOn)
 
+            cashback = try container.decode([String: Any].self, forKey: .cashback)
+
             do {
-                shipments = try container.decode([[String: Any]].self, forKey: .shipments)
+                comment = try container.decode(String.self, forKey: .comment)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                appId = try container.decode(String.self, forKey: .appId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discount = try container.decode(Double.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            id = try container.decode(String.self, forKey: .id)
+
+            do {
+                cartValue = try container.decode(Double.self, forKey: .cartValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -417,7 +369,55 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                discount = try container.decode(Double.self, forKey: .discount)
+                fcIndexMap = try container.decode([Int].self, forKey: .fcIndexMap)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                fyndCredits = try container.decode([String: Any].self, forKey: .fyndCredits)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                bulkCouponDiscount = try container.decode(Double.self, forKey: .bulkCouponDiscount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -428,71 +428,71 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(codCharges, forKey: .codCharges)
 
-            try? container.encodeIfPresent(buyNow, forKey: .buyNow)
-
-            try? container.encode(gstin, forKey: .gstin)
-
-            try? container.encode(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(shipments, forKey: .shipments)
 
             try? container.encodeIfPresent(userId, forKey: .userId)
 
-            try? container.encode(comment, forKey: .comment)
-
-            try? container.encode(payments, forKey: .payments)
-
-            try? container.encode(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
-
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
-
-            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
-
-            try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
-
-            try? container.encode(bulkCouponDiscount, forKey: .bulkCouponDiscount)
-
-            try? container.encodeIfPresent(articles, forKey: .articles)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(isArchive, forKey: .isArchive)
-
             try? container.encodeIfPresent(lastModified, forKey: .lastModified)
 
-            try? container.encodeIfPresent(fcIndexMap, forKey: .fcIndexMap)
+            try? container.encode(mergeQty, forKey: .mergeQty)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
+            try? container.encodeIfPresent(expireAt, forKey: .expireAt)
+
+            try? container.encode(meta, forKey: .meta)
 
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
 
             try? container.encodeIfPresent(promotion, forKey: .promotion)
 
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encode(gstin, forKey: .gstin)
+
+            try? container.encodeIfPresent(buyNow, forKey: .buyNow)
+
+            try? container.encodeIfPresent(isArchive, forKey: .isArchive)
+
+            try? container.encodeIfPresent(articles, forKey: .articles)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
-            try? container.encodeIfPresent(expireAt, forKey: .expireAt)
-
-            try? container.encode(mergeQty, forKey: .mergeQty)
-
-            try? container.encodeIfPresent(cashback, forKey: .cashback)
-
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
-
-            try? container.encode(meta, forKey: .meta)
+            try? container.encode(payments, forKey: .payments)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
-            try? container.encodeIfPresent(shipments, forKey: .shipments)
+            try? container.encodeIfPresent(cashback, forKey: .cashback)
+
+            try? container.encode(comment, forKey: .comment)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
 
             try? container.encode(coupon, forKey: .coupon)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encodeIfPresent(fcIndexMap, forKey: .fcIndexMap)
+
+            try? container.encode(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encode(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
+
+            try? container.encodeIfPresent(fyndCredits, forKey: .fyndCredits)
+
+            try? container.encode(bulkCouponDiscount, forKey: .bulkCouponDiscount)
+
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
         }
     }
 }

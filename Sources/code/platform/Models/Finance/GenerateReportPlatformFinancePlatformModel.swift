@@ -11,36 +11,36 @@ public extension PlatformClient.Finance {
     class GenerateReportPlatform: Codable {
         public var meta: GenerateReportMeta?
 
-        public var endDate: String?
+        public var startDate: String?
 
         public var reportId: String?
 
         public var filters: GenerateReportFilters?
 
-        public var startDate: String?
+        public var endDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
-            case endDate = "end_date"
+            case startDate = "start_date"
 
             case reportId = "report_id"
 
             case filters
 
-            case startDate = "start_date"
+            case endDate = "end_date"
         }
 
         public init(endDate: String? = nil, filters: GenerateReportFilters? = nil, meta: GenerateReportMeta? = nil, reportId: String? = nil, startDate: String? = nil) {
             self.meta = meta
 
-            self.endDate = endDate
+            self.startDate = startDate
 
             self.reportId = reportId
 
             self.filters = filters
 
-            self.startDate = startDate
+            self.endDate = endDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -55,7 +55,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                endDate = try container.decode(String.self, forKey: .endDate)
+                startDate = try container.decode(String.self, forKey: .startDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                startDate = try container.decode(String.self, forKey: .startDate)
+                endDate = try container.decode(String.self, forKey: .endDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,13 +92,13 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
 
             try? container.encodeIfPresent(reportId, forKey: .reportId)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
         }
     }
 }

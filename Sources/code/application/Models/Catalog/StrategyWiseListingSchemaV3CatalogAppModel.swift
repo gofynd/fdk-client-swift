@@ -9,18 +9,18 @@ public extension ApplicationClient.Catalog {
     class StrategyWiseListingSchemaV3: Codable {
         public var distance: Int?
 
-        public var tat: Int?
-
         public var quantity: Int?
+
+        public var tat: Int?
 
         public var pincode: Int?
 
         public enum CodingKeys: String, CodingKey {
             case distance
 
-            case tat
-
             case quantity
+
+            case tat
 
             case pincode
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Catalog {
         public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
             self.distance = distance
 
-            self.tat = tat
-
             self.quantity = quantity
+
+            self.tat = tat
 
             self.pincode = pincode
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                tat = try container.decode(Int.self, forKey: .tat)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                tat = try container.decode(Int.self, forKey: .tat)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(distance, forKey: .distance)
 
-            try? container.encodeIfPresent(tat, forKey: .tat)
-
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(tat, forKey: .tat)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
         }

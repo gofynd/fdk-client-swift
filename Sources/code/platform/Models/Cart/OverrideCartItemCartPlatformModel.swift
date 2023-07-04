@@ -9,81 +9,83 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class OverrideCartItem: Codable {
-        public var size: String
-
-        public var priceMarked: Double
-
-        public var priceEffective: Double
-
-        public var quantity: Int?
-
-        public var sellerIdentifier: String?
+        public var extraMeta: [String: Any]?
 
         public var promoList: [OverrideCartItemPromo]?
 
+        public var sellerIdentifier: String?
+
+        public var quantity: Int?
+
         public var amountPaid: Double
 
-        public var discount: Double
+        public var priceMarked: Double
+
+        public var size: String
 
         public var itemId: Int
 
-        public var extraMeta: [String: Any]?
+        public var priceEffective: Double
+
+        public var discount: Double
 
         public enum CodingKeys: String, CodingKey {
-            case size
-
-            case priceMarked = "price_marked"
-
-            case priceEffective = "price_effective"
-
-            case quantity
-
-            case sellerIdentifier = "seller_identifier"
+            case extraMeta = "extra_meta"
 
             case promoList = "promo_list"
 
+            case sellerIdentifier = "seller_identifier"
+
+            case quantity
+
             case amountPaid = "amount_paid"
 
-            case discount
+            case priceMarked = "price_marked"
+
+            case size
 
             case itemId = "item_id"
 
-            case extraMeta = "extra_meta"
+            case priceEffective = "price_effective"
+
+            case discount
         }
 
         public init(amountPaid: Double, discount: Double, extraMeta: [String: Any]? = nil, itemId: Int, priceEffective: Double, priceMarked: Double, promoList: [OverrideCartItemPromo]? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil, size: String) {
-            self.size = size
-
-            self.priceMarked = priceMarked
-
-            self.priceEffective = priceEffective
-
-            self.quantity = quantity
-
-            self.sellerIdentifier = sellerIdentifier
+            self.extraMeta = extraMeta
 
             self.promoList = promoList
 
+            self.sellerIdentifier = sellerIdentifier
+
+            self.quantity = quantity
+
             self.amountPaid = amountPaid
 
-            self.discount = discount
+            self.priceMarked = priceMarked
+
+            self.size = size
 
             self.itemId = itemId
 
-            self.extraMeta = extraMeta
+            self.priceEffective = priceEffective
+
+            self.discount = discount
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            size = try container.decode(String.self, forKey: .size)
+            do {
+                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
 
-            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
-
-            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
+                promoList = try container.decode([OverrideCartItemPromo].self, forKey: .promoList)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,7 +101,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                promoList = try container.decode([OverrideCartItemPromo].self, forKey: .promoList)
+                quantity = try container.decode(Int.self, forKey: .quantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,41 +110,39 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             amountPaid = try container.decode(Double.self, forKey: .amountPaid)
 
-            discount = try container.decode(Double.self, forKey: .discount)
+            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
+
+            size = try container.decode(String.self, forKey: .size)
 
             itemId = try container.decode(Int.self, forKey: .itemId)
 
-            do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            discount = try container.decode(Double.self, forKey: .discount)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
 
             try? container.encodeIfPresent(promoList, forKey: .promoList)
 
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(discount, forKey: .discount)
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(itemId, forKey: .itemId)
 
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
         }
     }
 }

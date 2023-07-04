@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var totalArticles: Int?
 
-        public var availableSizes: Int?
-
         public var totalSizes: Int?
+
+        public var availableSizes: Int?
 
         public var articleFreshness: Int?
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Catalog {
 
             case totalArticles = "total_articles"
 
-            case availableSizes = "available_sizes"
-
             case totalSizes = "total_sizes"
+
+            case availableSizes = "available_sizes"
 
             case articleFreshness = "article_freshness"
         }
@@ -42,9 +42,9 @@ public extension PlatformClient.Catalog {
 
             self.totalArticles = totalArticles
 
-            self.availableSizes = availableSizes
-
             self.totalSizes = totalSizes
+
+            self.availableSizes = availableSizes
 
             self.articleFreshness = articleFreshness
         }
@@ -77,7 +77,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                availableSizes = try container.decode(Int.self, forKey: .availableSizes)
+                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
+                availableSizes = try container.decode(Int.self, forKey: .availableSizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,9 +110,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
 
-            try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
-
             try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
+
+            try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
             try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
         }
@@ -132,9 +132,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var totalArticles: Int?
 
-        public var availableSizes: Int?
-
         public var totalSizes: Int?
+
+        public var availableSizes: Int?
 
         public var articleFreshness: Int?
 
@@ -145,9 +145,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case totalArticles = "total_articles"
 
-            case availableSizes = "available_sizes"
-
             case totalSizes = "total_sizes"
+
+            case availableSizes = "available_sizes"
 
             case articleFreshness = "article_freshness"
         }
@@ -159,9 +159,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.totalArticles = totalArticles
 
-            self.availableSizes = availableSizes
-
             self.totalSizes = totalSizes
+
+            self.availableSizes = availableSizes
 
             self.articleFreshness = articleFreshness
         }
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                availableSizes = try container.decode(Int.self, forKey: .availableSizes)
+                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +202,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                totalSizes = try container.decode(Int.self, forKey: .totalSizes)
+                availableSizes = try container.decode(Int.self, forKey: .availableSizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -227,9 +227,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(totalArticles, forKey: .totalArticles)
 
-            try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
-
             try? container.encodeIfPresent(totalSizes, forKey: .totalSizes)
+
+            try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
             try? container.encodeIfPresent(articleFreshness, forKey: .articleFreshness)
         }
