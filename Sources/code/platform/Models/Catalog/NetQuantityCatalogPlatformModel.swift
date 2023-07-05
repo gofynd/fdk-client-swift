@@ -9,7 +9,7 @@ public extension PlatformClient.Catalog {
      */
 
     class NetQuantity: Codable {
-        public var unit: String?
+        public var unit: [String: Any]?
 
         public var value: Double?
 
@@ -19,7 +19,7 @@ public extension PlatformClient.Catalog {
             case value
         }
 
-        public init(unit: String? = nil, value: Double? = nil) {
+        public init(unit: [String: Any]? = nil, value: Double? = nil) {
             self.unit = unit
 
             self.value = value
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                unit = try container.decode([String: Any].self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,7 +62,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class NetQuantity: Codable {
-        public var unit: String?
+        public var unit: [String: Any]?
 
         public var value: Double?
 
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case value
         }
 
-        public init(unit: String? = nil, value: Double? = nil) {
+        public init(unit: [String: Any]? = nil, value: Double? = nil) {
             self.unit = unit
 
             self.value = value
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                unit = try container.decode([String: Any].self, forKey: .unit)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

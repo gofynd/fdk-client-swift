@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var value: String?
 
-        public var showUi: Bool?
-
         public var placeholderText: String?
+
+        public var showUi: Bool?
 
         public var text: String?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case value
 
-            case showUi = "show_ui"
-
             case placeholderText = "placeholder_text"
+
+            case showUi = "show_ui"
 
             case text
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Order {
 
             self.value = value
 
-            self.showUi = showUi
-
             self.placeholderText = placeholderText
+
+            self.showUi = showUi
 
             self.text = text
 
@@ -69,7 +69,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                showUi = try container.decode(Bool.self, forKey: .showUi)
+                placeholderText = try container.decode(String.self, forKey: .placeholderText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                placeholderText = try container.decode(String.self, forKey: .placeholderText)
+                showUi = try container.decode(Bool.self, forKey: .showUi)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension PlatformClient.Order {
 
             try? container.encode(value, forKey: .value)
 
-            try? container.encodeIfPresent(showUi, forKey: .showUi)
-
             try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+
+            try? container.encodeIfPresent(showUi, forKey: .showUi)
 
             try? container.encode(text, forKey: .text)
 
@@ -130,9 +130,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var value: String?
 
-        public var showUi: Bool?
-
         public var placeholderText: String?
+
+        public var showUi: Bool?
 
         public var text: String?
 
@@ -143,9 +143,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case value
 
-            case showUi = "show_ui"
-
             case placeholderText = "placeholder_text"
+
+            case showUi = "show_ui"
 
             case text
 
@@ -157,9 +157,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.value = value
 
-            self.showUi = showUi
-
             self.placeholderText = placeholderText
+
+            self.showUi = showUi
 
             self.text = text
 
@@ -186,7 +186,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                showUi = try container.decode(Bool.self, forKey: .showUi)
+                placeholderText = try container.decode(String.self, forKey: .placeholderText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                placeholderText = try container.decode(String.self, forKey: .placeholderText)
+                showUi = try container.decode(Bool.self, forKey: .showUi)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,9 +225,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(value, forKey: .value)
 
-            try? container.encodeIfPresent(showUi, forKey: .showUi)
-
             try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+
+            try? container.encodeIfPresent(showUi, forKey: .showUi)
 
             try? container.encode(text, forKey: .text)
 

@@ -13,11 +13,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var aggregatorName: String?
 
-        public var paymentIdentifier: String?
+        public var id: String?
 
         public var merchantCode: String?
 
-        public var id: String?
+        public var paymentIdentifier: String?
 
         public var addressId: String?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case aggregatorName = "aggregator_name"
 
-            case paymentIdentifier = "payment_identifier"
+            case id
 
             case merchantCode = "merchant_code"
 
-            case id
+            case paymentIdentifier = "payment_identifier"
 
             case addressId = "address_id"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.aggregatorName = aggregatorName
 
-            self.paymentIdentifier = paymentIdentifier
+            self.id = id
 
             self.merchantCode = merchantCode
 
-            self.id = id
+            self.paymentIdentifier = paymentIdentifier
 
             self.addressId = addressId
         }
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+                id = try container.decode(String.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                id = try container.decode(String.self, forKey: .id)
+                paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,11 +108,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 
             try? container.encodeIfPresent(addressId, forKey: .addressId)
         }

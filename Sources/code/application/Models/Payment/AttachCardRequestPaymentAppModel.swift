@@ -9,18 +9,18 @@ public extension ApplicationClient.Payment {
     class AttachCardRequest: Codable {
         public var cardId: String
 
-        public var refresh: Bool?
-
         public var nickname: String?
+
+        public var refresh: Bool?
 
         public var nameOnCard: String?
 
         public enum CodingKeys: String, CodingKey {
             case cardId = "card_id"
 
-            case refresh
-
             case nickname
+
+            case refresh
 
             case nameOnCard = "name_on_card"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Payment {
         public init(cardId: String, nameOnCard: String? = nil, nickname: String? = nil, refresh: Bool? = nil) {
             self.cardId = cardId
 
-            self.refresh = refresh
-
             self.nickname = nickname
+
+            self.refresh = refresh
 
             self.nameOnCard = nameOnCard
         }
@@ -41,7 +41,7 @@ public extension ApplicationClient.Payment {
             cardId = try container.decode(String.self, forKey: .cardId)
 
             do {
-                refresh = try container.decode(Bool.self, forKey: .refresh)
+                nickname = try container.decode(String.self, forKey: .nickname)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                nickname = try container.decode(String.self, forKey: .nickname)
+                refresh = try container.decode(Bool.self, forKey: .refresh)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,9 +70,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(cardId, forKey: .cardId)
 
-            try? container.encode(refresh, forKey: .refresh)
-
             try? container.encodeIfPresent(nickname, forKey: .nickname)
+
+            try? container.encode(refresh, forKey: .refresh)
 
             try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
         }

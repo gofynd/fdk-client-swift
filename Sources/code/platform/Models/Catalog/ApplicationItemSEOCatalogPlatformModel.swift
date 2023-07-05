@@ -9,9 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class ApplicationItemSEO: Codable {
-        public var description: String?
+        public var description: [String: Any]?
 
-        public var title: String?
+        public var title: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case description
@@ -19,7 +19,7 @@ public extension PlatformClient.Catalog {
             case title
         }
 
-        public init(description: String? = nil, title: String? = nil) {
+        public init(description: [String: Any]? = nil, title: [String: Any]? = nil) {
             self.description = description
 
             self.title = title
@@ -29,7 +29,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                description = try container.decode([String: Any].self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                title = try container.decode([String: Any].self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ApplicationItemSEO: Codable {
-        public var description: String?
+        public var description: [String: Any]?
 
-        public var title: String?
+        public var title: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case description
@@ -72,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case title
         }
 
-        public init(description: String? = nil, title: String? = nil) {
+        public init(description: [String: Any]? = nil, title: [String: Any]? = nil) {
             self.description = description
 
             self.title = title
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                description = try container.decode(String.self, forKey: .description)
+                description = try container.decode([String: Any].self, forKey: .description)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                title = try container.decode([String: Any].self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

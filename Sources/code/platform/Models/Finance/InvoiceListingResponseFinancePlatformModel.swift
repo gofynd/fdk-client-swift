@@ -11,30 +11,30 @@ public extension PlatformClient.Finance {
     class InvoiceListingResponse: Codable {
         public var unpaidInvoiceData: UnpaidInvoiceDataItems?
 
-        public var itemCount: Int?
+        public var page: Page?
 
         public var items: [InvoiceListingResponseItems]?
 
-        public var page: Page?
+        public var itemCount: Int?
 
         public enum CodingKeys: String, CodingKey {
             case unpaidInvoiceData = "unpaid_invoice_data"
 
-            case itemCount = "item_count"
+            case page
 
             case items
 
-            case page
+            case itemCount = "item_count"
         }
 
         public init(items: [InvoiceListingResponseItems]? = nil, itemCount: Int? = nil, page: Page? = nil, unpaidInvoiceData: UnpaidInvoiceDataItems? = nil) {
             self.unpaidInvoiceData = unpaidInvoiceData
 
-            self.itemCount = itemCount
+            self.page = page
 
             self.items = items
 
-            self.page = page
+            self.itemCount = itemCount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                itemCount = try container.decode(Int.self, forKey: .itemCount)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                itemCount = try container.decode(Int.self, forKey: .itemCount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(unpaidInvoiceData, forKey: .unpaidInvoiceData)
 
-            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
+            try? container.encodeIfPresent(page, forKey: .page)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
         }
     }
 }

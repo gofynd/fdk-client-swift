@@ -4945,28 +4945,6 @@ Success
 
  
  
- #### [TriggerJobResponse](#TriggerJobResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [TriggerJobRequest](#TriggerJobRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | jobId | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [Job](#Job)
 
  | Properties | Type | Nullable | Description |
@@ -5027,6 +5005,28 @@ Success
 
  
  
+ #### [TriggerJobResponse](#TriggerJobResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TriggerJobRequest](#TriggerJobRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | jobId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [LogEmail](#LogEmail)
 
  | Properties | Type | Nullable | Description |
@@ -5076,6 +5076,8 @@ Success
  | application | String? |  yes  |  |
  | service | String? |  yes  |  |
  | step | String? |  yes  |  |
+ | source | String? |  yes  |  |
+ | channelType | String? |  yes  |  |
  | status | String? |  yes  |  |
  | data | [String: Any]? |  yes  |  |
  | expireAt | String? |  yes  |  |
@@ -5134,6 +5136,18 @@ Success
 
  
  
+ #### [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | slug | String? |  yes  |  |
+ | id | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [SendOtpCommsReqData](#SendOtpCommsReqData)
 
  | Properties | Type | Nullable | Description |
@@ -5169,6 +5183,7 @@ Success
  | otpLength | Int? |  yes  |  |
  | expiry | Int? |  yes  |  |
  | template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate)? |  yes  |  |
+ | provider | [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)? |  yes  |  |
 
 ---
 

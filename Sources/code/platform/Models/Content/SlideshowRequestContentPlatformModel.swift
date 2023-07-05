@@ -15,7 +15,7 @@ public extension PlatformClient.ApplicationClient.Content {
 
         public var configuration: ConfigurationSchema?
 
-        public var media: [SlideshowMedia]?
+        public var media: SlideshowMedia?
 
         public var active: Bool?
 
@@ -31,7 +31,7 @@ public extension PlatformClient.ApplicationClient.Content {
             case active
         }
 
-        public init(active: Bool? = nil, configuration: ConfigurationSchema? = nil, media: [SlideshowMedia]? = nil, platform: String? = nil, slug: String? = nil) {
+        public init(active: Bool? = nil, configuration: ConfigurationSchema? = nil, media: SlideshowMedia? = nil, platform: String? = nil, slug: String? = nil) {
             self.slug = slug
 
             self.platform = platform
@@ -71,7 +71,7 @@ public extension PlatformClient.ApplicationClient.Content {
             } catch {}
 
             do {
-                media = try container.decode([SlideshowMedia].self, forKey: .media)
+                media = try container.decode(SlideshowMedia.self, forKey: .media)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

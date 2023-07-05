@@ -13,30 +13,30 @@ public extension PlatformClient.Order {
 
         public var dpId: Int?
 
-        public var boxType: String?
-
-        public var affiliateShipmentId: String
-
         public var fulfillmentId: Int
 
         public var articles: [ArticleDetails1]
 
         public var shipments: Int
 
+        public var boxType: String?
+
+        public var affiliateShipmentId: String
+
         public enum CodingKeys: String, CodingKey {
             case meta
 
             case dpId = "dp_id"
-
-            case boxType = "box_type"
-
-            case affiliateShipmentId = "affiliate_shipment_id"
 
             case fulfillmentId = "fulfillment_id"
 
             case articles
 
             case shipments
+
+            case boxType = "box_type"
+
+            case affiliateShipmentId = "affiliate_shipment_id"
         }
 
         public init(affiliateShipmentId: String, articles: [ArticleDetails1], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, meta: [String: Any]? = nil, shipments: Int) {
@@ -44,15 +44,15 @@ public extension PlatformClient.Order {
 
             self.dpId = dpId
 
-            self.boxType = boxType
-
-            self.affiliateShipmentId = affiliateShipmentId
-
             self.fulfillmentId = fulfillmentId
 
             self.articles = articles
 
             self.shipments = shipments
+
+            self.boxType = boxType
+
+            self.affiliateShipmentId = affiliateShipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -74,6 +74,12 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+
+            articles = try container.decode([ArticleDetails1].self, forKey: .articles)
+
+            shipments = try container.decode(Int.self, forKey: .shipments)
+
             do {
                 boxType = try container.decode(String.self, forKey: .boxType)
 
@@ -83,12 +89,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
-
-            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
-
-            articles = try container.decode([ArticleDetails1].self, forKey: .articles)
-
-            shipments = try container.decode(Int.self, forKey: .shipments)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -98,15 +98,15 @@ public extension PlatformClient.Order {
 
             try? container.encode(dpId, forKey: .dpId)
 
-            try? container.encode(boxType, forKey: .boxType)
-
-            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
             try? container.encodeIfPresent(articles, forKey: .articles)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encode(boxType, forKey: .boxType)
+
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
         }
     }
 }
@@ -122,30 +122,30 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var dpId: Int?
 
-        public var boxType: String?
-
-        public var affiliateShipmentId: String
-
         public var fulfillmentId: Int
 
         public var articles: [ArticleDetails1]
 
         public var shipments: Int
 
+        public var boxType: String?
+
+        public var affiliateShipmentId: String
+
         public enum CodingKeys: String, CodingKey {
             case meta
 
             case dpId = "dp_id"
-
-            case boxType = "box_type"
-
-            case affiliateShipmentId = "affiliate_shipment_id"
 
             case fulfillmentId = "fulfillment_id"
 
             case articles
 
             case shipments
+
+            case boxType = "box_type"
+
+            case affiliateShipmentId = "affiliate_shipment_id"
         }
 
         public init(affiliateShipmentId: String, articles: [ArticleDetails1], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, meta: [String: Any]? = nil, shipments: Int) {
@@ -153,15 +153,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.dpId = dpId
 
-            self.boxType = boxType
-
-            self.affiliateShipmentId = affiliateShipmentId
-
             self.fulfillmentId = fulfillmentId
 
             self.articles = articles
 
             self.shipments = shipments
+
+            self.boxType = boxType
+
+            self.affiliateShipmentId = affiliateShipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -183,6 +183,12 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
+
+            articles = try container.decode([ArticleDetails1].self, forKey: .articles)
+
+            shipments = try container.decode(Int.self, forKey: .shipments)
+
             do {
                 boxType = try container.decode(String.self, forKey: .boxType)
 
@@ -192,12 +198,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             affiliateShipmentId = try container.decode(String.self, forKey: .affiliateShipmentId)
-
-            fulfillmentId = try container.decode(Int.self, forKey: .fulfillmentId)
-
-            articles = try container.decode([ArticleDetails1].self, forKey: .articles)
-
-            shipments = try container.decode(Int.self, forKey: .shipments)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -207,15 +207,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(dpId, forKey: .dpId)
 
-            try? container.encode(boxType, forKey: .boxType)
-
-            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-
             try? container.encodeIfPresent(fulfillmentId, forKey: .fulfillmentId)
 
             try? container.encodeIfPresent(articles, forKey: .articles)
 
             try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encode(boxType, forKey: .boxType)
+
+            try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
         }
     }
 }

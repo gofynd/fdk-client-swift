@@ -13,22 +13,22 @@ public extension PlatformClient.Catalog {
 
         public var effective: Double?
 
-        public var transfer: Double?
+        public var tpNotes: [String: Any]?
 
         public var currency: String?
 
-        public var tpNotes: [String: Any]?
+        public var transfer: Double?
 
         public enum CodingKeys: String, CodingKey {
             case marked
 
             case effective
 
-            case transfer
+            case tpNotes = "tp_notes"
 
             case currency
 
-            case tpNotes = "tp_notes"
+            case transfer
         }
 
         public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, tpNotes: [String: Any]? = nil, transfer: Double? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Catalog {
 
             self.effective = effective
 
-            self.transfer = transfer
+            self.tpNotes = tpNotes
 
             self.currency = currency
 
-            self.tpNotes = tpNotes
+            self.transfer = transfer
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                transfer = try container.decode(Double.self, forKey: .transfer)
+                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
+                transfer = try container.decode(Double.self, forKey: .transfer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,11 +94,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(transfer, forKey: .transfer)
+            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
+            try? container.encodeIfPresent(transfer, forKey: .transfer)
         }
     }
 }
@@ -114,22 +114,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var effective: Double?
 
-        public var transfer: Double?
+        public var tpNotes: [String: Any]?
 
         public var currency: String?
 
-        public var tpNotes: [String: Any]?
+        public var transfer: Double?
 
         public enum CodingKeys: String, CodingKey {
             case marked
 
             case effective
 
-            case transfer
+            case tpNotes = "tp_notes"
 
             case currency
 
-            case tpNotes = "tp_notes"
+            case transfer
         }
 
         public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, tpNotes: [String: Any]? = nil, transfer: Double? = nil) {
@@ -137,11 +137,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.effective = effective
 
-            self.transfer = transfer
+            self.tpNotes = tpNotes
 
             self.currency = currency
 
-            self.tpNotes = tpNotes
+            self.transfer = transfer
         }
 
         required public init(from decoder: Decoder) throws {
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                transfer = try container.decode(Double.self, forKey: .transfer)
+                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                tpNotes = try container.decode([String: Any].self, forKey: .tpNotes)
+                transfer = try container.decode(Double.self, forKey: .transfer)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,11 +195,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 
-            try? container.encodeIfPresent(transfer, forKey: .transfer)
+            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(tpNotes, forKey: .tpNotes)
+            try? container.encodeIfPresent(transfer, forKey: .transfer)
         }
     }
 }

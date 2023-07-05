@@ -203,6 +203,7 @@ public extension ApplicationClient {
             b: Bool?,
             areaCode: String?,
             buyNow: Bool?,
+            id: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -222,6 +223,10 @@ public extension ApplicationClient {
 
             if let value = buyNow {
                 xQuery["buy_now"] = value
+            }
+
+            if let value = id {
+                xQuery["id"] = value
             }
 
             let fullUrl = relativeUrls["addItems"] ?? ""
@@ -1116,6 +1121,10 @@ public extension ApplicationClient {
             paymentIdentifier: String?,
             aggregatorName: String?,
             merchantCode: String?,
+            iin: String?,
+            network: String?,
+            type: String?,
+            cardId: String?,
 
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -1147,6 +1156,22 @@ public extension ApplicationClient {
 
             if let value = merchantCode {
                 xQuery["merchant_code"] = value
+            }
+
+            if let value = iin {
+                xQuery["iin"] = value
+            }
+
+            if let value = network {
+                xQuery["network"] = value
+            }
+
+            if let value = type {
+                xQuery["type"] = value
+            }
+
+            if let value = cardId {
+                xQuery["card_id"] = value
             }
 
             let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
@@ -1484,6 +1509,7 @@ public extension ApplicationClient {
             slug: String?,
             pageSize: Int?,
             promotionGroup: String?,
+            storeId: Int?,
 
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1499,6 +1525,10 @@ public extension ApplicationClient {
 
             if let value = promotionGroup {
                 xQuery["promotion_group"] = value
+            }
+
+            if let value = storeId {
+                xQuery["store_id"] = value
             }
 
             let fullUrl = relativeUrls["getPromotionOffers"] ?? ""

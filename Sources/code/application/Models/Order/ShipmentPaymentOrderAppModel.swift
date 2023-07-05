@@ -13,9 +13,9 @@ public extension ApplicationClient.Order {
 
         public var mop: String?
 
-        public var status: String?
-
         public var paymentMode: String?
+
+        public var status: String?
 
         public var logo: String?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Order {
 
             case mop
 
-            case status
-
             case paymentMode = "payment_mode"
+
+            case status
 
             case logo
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient.Order {
 
             self.mop = mop
 
-            self.status = status
-
             self.paymentMode = paymentMode
+
+            self.status = status
 
             self.logo = logo
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(mop, forKey: .mop)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

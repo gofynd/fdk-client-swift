@@ -3120,7 +3120,7 @@ Success. Returns a list of pages along with their details. Check the example sho
  | slug | String? |  yes  |  |
  | platform | String? |  yes  |  |
  | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
- | media | [[SlideshowMedia](#SlideshowMedia)]? |  yes  |  |
+ | media | [SlideshowMedia](#SlideshowMedia)? |  yes  |  |
  | active | Bool? |  yes  |  |
 
 ---

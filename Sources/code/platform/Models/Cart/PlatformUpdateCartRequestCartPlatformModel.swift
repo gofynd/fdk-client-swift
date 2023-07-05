@@ -9,24 +9,24 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PlatformUpdateCartRequest: Codable {
-        public var userId: String?
-
         public var items: [UpdateProductCart]?
+
+        public var userId: String?
 
         public var operation: String
 
         public enum CodingKeys: String, CodingKey {
-            case userId = "user_id"
-
             case items
+
+            case userId = "user_id"
 
             case operation
         }
 
         public init(items: [UpdateProductCart]? = nil, operation: String, userId: String? = nil) {
-            self.userId = userId
-
             self.items = items
+
+            self.userId = userId
 
             self.operation = operation
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                userId = try container.decode(String.self, forKey: .userId)
+                items = try container.decode([UpdateProductCart].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                items = try container.decode([UpdateProductCart].self, forKey: .items)
+                userId = try container.decode(String.self, forKey: .userId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,9 +56,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(userId, forKey: .userId)
-
             try? container.encodeIfPresent(items, forKey: .items)
+
+            try? container.encodeIfPresent(userId, forKey: .userId)
 
             try? container.encodeIfPresent(operation, forKey: .operation)
         }

@@ -196,7 +196,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | [ApplicationData](#ApplicationData)? |  yes  |  |
+ | application | [Application](#Application)? |  yes  |  |
 
 ---
 
@@ -307,7 +307,7 @@ Success
 
  
  
- #### [ApplicationData](#ApplicationData)
+ #### [Application](#Application)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -336,7 +336,6 @@ Success
  | appType | String? |  yes  | It shows whether application is live or in development mode |
  | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
- | slug | String? |  yes  |  |
 
 ---
 
@@ -407,7 +406,7 @@ Success
 
  
  
- #### [LocationDetails](#LocationDetails)
+ #### [LocationCountry](#LocationCountry)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -424,10 +423,6 @@ Success
  | id | String? |  yes  |  |
  | defaultCurrency | [LocationDefaultCurrency](#LocationDefaultCurrency)? |  yes  |  |
  | defaultLanguage | [LocationDefaultLanguage](#LocationDefaultLanguage)? |  yes  |  |
- | stateCode | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
- | latitude | String? |  yes  |  |
- | longitude | String? |  yes  |  |
 
 ---
 
@@ -438,7 +433,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[LocationDetails](#LocationDetails)]? |  yes  |  |
+ | items | [[String: Any]]? |  yes  |  |
 
 ---
 

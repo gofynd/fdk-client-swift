@@ -9,59 +9,57 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PlatformCartMetaRequest: Codable {
-        public var gstin: String?
-
-        public var staffUserId: String?
+        public var pickUpCustomerDetails: [String: Any]?
 
         public var panNo: String?
 
-        public var pickUpCustomerDetails: [String: Any]?
+        public var gstin: String?
 
         public var checkoutMode: String?
 
         public var comment: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case gstin
+        public var staffUserId: String?
 
-            case staffUserId = "staff_user_id"
+        public var giftDetails: ArticleGiftDetail?
+
+        public enum CodingKeys: String, CodingKey {
+            case pickUpCustomerDetails = "pick_up_customer_details"
 
             case panNo = "pan_no"
 
-            case pickUpCustomerDetails = "pick_up_customer_details"
+            case gstin
 
             case checkoutMode = "checkout_mode"
 
             case comment
+
+            case staffUserId = "staff_user_id"
+
+            case giftDetails = "gift_details"
         }
 
-        public init(checkoutMode: String? = nil, comment: String? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, staffUserId: String? = nil) {
-            self.gstin = gstin
-
-            self.staffUserId = staffUserId
+        public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: ArticleGiftDetail? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, staffUserId: String? = nil) {
+            self.pickUpCustomerDetails = pickUpCustomerDetails
 
             self.panNo = panNo
 
-            self.pickUpCustomerDetails = pickUpCustomerDetails
+            self.gstin = gstin
 
             self.checkoutMode = checkoutMode
 
             self.comment = comment
+
+            self.staffUserId = staffUserId
+
+            self.giftDetails = giftDetails
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                gstin = try container.decode(String.self, forKey: .gstin)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                staffUserId = try container.decode(String.self, forKey: .staffUserId)
+                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +75,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+                gstin = try container.decode(String.self, forKey: .gstin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,22 +97,40 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                staffUserId = try container.decode(String.self, forKey: .staffUserId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                giftDetails = try container.decode(ArticleGiftDetail.self, forKey: .giftDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
-
-            try? container.encode(staffUserId, forKey: .staffUserId)
+            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
             try? container.encodeIfPresent(panNo, forKey: .panNo)
 
-            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
             try? container.encodeIfPresent(comment, forKey: .comment)
+
+            try? container.encode(staffUserId, forKey: .staffUserId)
+
+            try? container.encodeIfPresent(giftDetails, forKey: .giftDetails)
         }
     }
 }

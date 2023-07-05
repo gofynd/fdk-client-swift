@@ -8,13 +8,13 @@ public extension PublicClient.Configuration {
      */
 
     class Locations: Codable {
-        public var items: [LocationDetails]?
+        public var items: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
             case items
         }
 
-        public init(items: [LocationDetails]? = nil) {
+        public init(items: [[String: Any]]? = nil) {
             self.items = items
         }
 
@@ -22,7 +22,7 @@ public extension PublicClient.Configuration {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([LocationDetails].self, forKey: .items)
+                items = try container.decode([[String: Any]].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

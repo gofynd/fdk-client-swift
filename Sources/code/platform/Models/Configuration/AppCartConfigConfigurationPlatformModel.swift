@@ -21,8 +21,6 @@ public extension PlatformClient.Configuration {
 
         public var revenueEngineCoupon: Bool?
 
-        public var emptyCart: Bool?
-
         public var panCard: PanCardConfig?
 
         public enum CodingKeys: String, CodingKey {
@@ -38,12 +36,10 @@ public extension PlatformClient.Configuration {
 
             case revenueEngineCoupon = "revenue_engine_coupon"
 
-            case emptyCart = "empty_cart"
-
             case panCard = "pan_card"
         }
 
-        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, emptyCart: Bool? = nil, enabled: Bool? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
+        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
             self.deliveryCharges = deliveryCharges
 
             self.enabled = enabled
@@ -55,8 +51,6 @@ public extension PlatformClient.Configuration {
             self.bulkCoupons = bulkCoupons
 
             self.revenueEngineCoupon = revenueEngineCoupon
-
-            self.emptyCart = emptyCart
 
             self.panCard = panCard
         }
@@ -113,14 +107,6 @@ public extension PlatformClient.Configuration {
             } catch {}
 
             do {
-                emptyCart = try container.decode(Bool.self, forKey: .emptyCart)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 panCard = try container.decode(PanCardConfig.self, forKey: .panCard)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -143,8 +129,6 @@ public extension PlatformClient.Configuration {
             try? container.encodeIfPresent(bulkCoupons, forKey: .bulkCoupons)
 
             try? container.encodeIfPresent(revenueEngineCoupon, forKey: .revenueEngineCoupon)
-
-            try? container.encodeIfPresent(emptyCart, forKey: .emptyCart)
 
             try? container.encodeIfPresent(panCard, forKey: .panCard)
         }
@@ -170,8 +154,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         public var revenueEngineCoupon: Bool?
 
-        public var emptyCart: Bool?
-
         public var panCard: PanCardConfig?
 
         public enum CodingKeys: String, CodingKey {
@@ -187,12 +169,10 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
             case revenueEngineCoupon = "revenue_engine_coupon"
 
-            case emptyCart = "empty_cart"
-
             case panCard = "pan_card"
         }
 
-        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, emptyCart: Bool? = nil, enabled: Bool? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
+        public init(bulkCoupons: Bool? = nil, deliveryCharges: DeliveryCharges? = nil, enabled: Bool? = nil, maxCartItems: Int? = nil, minCartValue: Double? = nil, panCard: PanCardConfig? = nil, revenueEngineCoupon: Bool? = nil) {
             self.deliveryCharges = deliveryCharges
 
             self.enabled = enabled
@@ -204,8 +184,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.bulkCoupons = bulkCoupons
 
             self.revenueEngineCoupon = revenueEngineCoupon
-
-            self.emptyCart = emptyCart
 
             self.panCard = panCard
         }
@@ -262,14 +240,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             } catch {}
 
             do {
-                emptyCart = try container.decode(Bool.self, forKey: .emptyCart)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 panCard = try container.decode(PanCardConfig.self, forKey: .panCard)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -292,8 +262,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             try? container.encodeIfPresent(bulkCoupons, forKey: .bulkCoupons)
 
             try? container.encodeIfPresent(revenueEngineCoupon, forKey: .revenueEngineCoupon)
-
-            try? container.encodeIfPresent(emptyCart, forKey: .emptyCart)
 
             try? container.encodeIfPresent(panCard, forKey: .panCard)
         }
