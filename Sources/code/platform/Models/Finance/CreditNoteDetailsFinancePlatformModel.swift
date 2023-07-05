@@ -11,54 +11,54 @@ public extension PlatformClient.Finance {
     class CreditNoteDetails: Codable {
         public var cnDetails: [CnDetails]?
 
-        public var redemptionDetails: [RedemptionDetails]?
-
-        public var customerMobileNumber: String?
-
-        public var cnReferenceNumber: String?
-
         public var cnAmount: Int?
 
         public var cnStatus: String?
 
-        public var availableCnBalance: Int?
+        public var customerMobileNumber: String?
 
         public var remainingCnAmount: Int?
 
+        public var cnReferenceNumber: String?
+
+        public var redemptionDetails: [RedemptionDetails]?
+
+        public var availableCnBalance: Int?
+
         public enum CodingKeys: String, CodingKey {
             case cnDetails = "cn_details"
-
-            case redemptionDetails = "redemption_details"
-
-            case customerMobileNumber = "customer_mobile_number"
-
-            case cnReferenceNumber = "cn_reference_number"
 
             case cnAmount = "cn_amount"
 
             case cnStatus = "cn_status"
 
-            case availableCnBalance = "available_cn_balance"
+            case customerMobileNumber = "customer_mobile_number"
 
             case remainingCnAmount = "remaining_cn_amount"
+
+            case cnReferenceNumber = "cn_reference_number"
+
+            case redemptionDetails = "redemption_details"
+
+            case availableCnBalance = "available_cn_balance"
         }
 
         public init(availableCnBalance: Int? = nil, cnAmount: Int? = nil, cnDetails: [CnDetails]? = nil, cnReferenceNumber: String? = nil, cnStatus: String? = nil, customerMobileNumber: String? = nil, redemptionDetails: [RedemptionDetails]? = nil, remainingCnAmount: Int? = nil) {
             self.cnDetails = cnDetails
 
-            self.redemptionDetails = redemptionDetails
-
-            self.customerMobileNumber = customerMobileNumber
-
-            self.cnReferenceNumber = cnReferenceNumber
-
             self.cnAmount = cnAmount
 
             self.cnStatus = cnStatus
 
-            self.availableCnBalance = availableCnBalance
+            self.customerMobileNumber = customerMobileNumber
 
             self.remainingCnAmount = remainingCnAmount
+
+            self.cnReferenceNumber = cnReferenceNumber
+
+            self.redemptionDetails = redemptionDetails
+
+            self.availableCnBalance = availableCnBalance
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,30 +66,6 @@ public extension PlatformClient.Finance {
 
             do {
                 cnDetails = try container.decode([CnDetails].self, forKey: .cnDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                redemptionDetails = try container.decode([RedemptionDetails].self, forKey: .redemptionDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                cnReferenceNumber = try container.decode(String.self, forKey: .cnReferenceNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,7 +89,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                availableCnBalance = try container.decode(Int.self, forKey: .availableCnBalance)
+                customerMobileNumber = try container.decode(String.self, forKey: .customerMobileNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,6 +103,30 @@ public extension PlatformClient.Finance {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                cnReferenceNumber = try container.decode(String.self, forKey: .cnReferenceNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                redemptionDetails = try container.decode([RedemptionDetails].self, forKey: .redemptionDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                availableCnBalance = try container.decode(Int.self, forKey: .availableCnBalance)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -134,19 +134,19 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(cnDetails, forKey: .cnDetails)
 
-            try? container.encodeIfPresent(redemptionDetails, forKey: .redemptionDetails)
-
-            try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
-
-            try? container.encodeIfPresent(cnReferenceNumber, forKey: .cnReferenceNumber)
-
             try? container.encodeIfPresent(cnAmount, forKey: .cnAmount)
 
             try? container.encodeIfPresent(cnStatus, forKey: .cnStatus)
 
-            try? container.encodeIfPresent(availableCnBalance, forKey: .availableCnBalance)
+            try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
 
             try? container.encodeIfPresent(remainingCnAmount, forKey: .remainingCnAmount)
+
+            try? container.encodeIfPresent(cnReferenceNumber, forKey: .cnReferenceNumber)
+
+            try? container.encodeIfPresent(redemptionDetails, forKey: .redemptionDetails)
+
+            try? container.encodeIfPresent(availableCnBalance, forKey: .availableCnBalance)
         }
     }
 }

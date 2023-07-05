@@ -13,18 +13,18 @@ public extension PlatformClient.Finance {
 
         public var items: [[String: Any]]?
 
-        public var success: Bool?
-
         public var page: Page?
+
+        public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case itemCount = "item_count"
 
             case items
 
-            case success
-
             case page
+
+            case success
         }
 
         public init(items: [[String: Any]]? = nil, itemCount: Int? = nil, page: Page? = nil, success: Bool? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Finance {
 
             self.items = items
 
-            self.success = success
-
             self.page = page
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                page = try container.decode(Page.self, forKey: .page)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(items, forKey: .items)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

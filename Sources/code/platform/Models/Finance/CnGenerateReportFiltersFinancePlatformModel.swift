@@ -9,9 +9,7 @@ public extension PlatformClient.Finance {
      */
 
     class CnGenerateReportFilters: Codable {
-        public var orderingChannel: [String]?
-
-        public var staffId: [String]?
+        public var channelOfIssuance: [String]?
 
         public var utilisation: [String]?
 
@@ -19,12 +17,12 @@ public extension PlatformClient.Finance {
 
         public var storeId: [Int]?
 
-        public var channelOfIssuance: [String]?
+        public var orderingChannel: [String]?
+
+        public var staffId: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case orderingChannel = "ordering_channel"
-
-            case staffId = "staff_id"
+            case channelOfIssuance = "channel_of_issuance"
 
             case utilisation
 
@@ -32,13 +30,13 @@ public extension PlatformClient.Finance {
 
             case storeId = "store_id"
 
-            case channelOfIssuance = "channel_of_issuance"
+            case orderingChannel = "ordering_channel"
+
+            case staffId = "staff_id"
         }
 
         public init(channelOfIssuance: [String]? = nil, orderingChannel: [String]? = nil, staffId: [String]? = nil, storeId: [Int]? = nil, typesOfTransaction: [String]? = nil, utilisation: [String]? = nil) {
-            self.orderingChannel = orderingChannel
-
-            self.staffId = staffId
+            self.channelOfIssuance = channelOfIssuance
 
             self.utilisation = utilisation
 
@@ -46,22 +44,16 @@ public extension PlatformClient.Finance {
 
             self.storeId = storeId
 
-            self.channelOfIssuance = channelOfIssuance
+            self.orderingChannel = orderingChannel
+
+            self.staffId = staffId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                orderingChannel = try container.decode([String].self, forKey: .orderingChannel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                staffId = try container.decode([String].self, forKey: .staffId)
+                channelOfIssuance = try container.decode([String].self, forKey: .channelOfIssuance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +85,15 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                channelOfIssuance = try container.decode([String].self, forKey: .channelOfIssuance)
+                orderingChannel = try container.decode([String].self, forKey: .orderingChannel)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                staffId = try container.decode([String].self, forKey: .staffId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,9 +104,7 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
-
-            try? container.encodeIfPresent(staffId, forKey: .staffId)
+            try? container.encodeIfPresent(channelOfIssuance, forKey: .channelOfIssuance)
 
             try? container.encodeIfPresent(utilisation, forKey: .utilisation)
 
@@ -114,7 +112,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(channelOfIssuance, forKey: .channelOfIssuance)
+            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+
+            try? container.encodeIfPresent(staffId, forKey: .staffId)
         }
     }
 }

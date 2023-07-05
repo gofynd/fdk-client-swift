@@ -13,9 +13,9 @@ public extension ApplicationClient.Order {
 
         public var feedbackType: String?
 
-        public var reasonId: Int?
-
         public var showTextArea: Bool?
+
+        public var reasonId: Int?
 
         public var priority: Int?
 
@@ -26,9 +26,9 @@ public extension ApplicationClient.Order {
 
             case feedbackType = "feedback_type"
 
-            case reasonId = "reason_id"
-
             case showTextArea = "show_text_area"
+
+            case reasonId = "reason_id"
 
             case priority
         }
@@ -40,9 +40,9 @@ public extension ApplicationClient.Order {
 
             self.feedbackType = feedbackType
 
-            self.reasonId = reasonId
-
             self.showTextArea = showTextArea
+
+            self.reasonId = reasonId
 
             self.priority = priority
         }
@@ -75,7 +75,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                reasonId = try container.decode(Int.self, forKey: .reasonId)
+                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                showTextArea = try container.decode(Bool.self, forKey: .showTextArea)
+                reasonId = try container.decode(Int.self, forKey: .reasonId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(feedbackType, forKey: .feedbackType)
 
-            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
-
             try? container.encodeIfPresent(showTextArea, forKey: .showTextArea)
+
+            try? container.encodeIfPresent(reasonId, forKey: .reasonId)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
         }

@@ -9,51 +9,51 @@ public extension PlatformClient.Finance {
      */
 
     class GetReportingNestedFilters: Codable {
-        public var placeholderText: String?
-
-        public var required: Bool?
-
-        public var options: [[String: Any]]?
-
         public var text: String?
-
-        public var type: String?
 
         public var value: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case placeholderText = "placeholder_text"
+        public var options: [[String: Any]]?
 
-            case required
+        public var required: Bool?
+
+        public var type: String?
+
+        public var placeholderText: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case text
+
+            case value
 
             case options
 
-            case text
+            case required
 
             case type
 
-            case value
+            case placeholderText = "placeholder_text"
         }
 
         public init(options: [[String: Any]]? = nil, placeholderText: String? = nil, required: Bool? = nil, text: String? = nil, type: String? = nil, value: String? = nil) {
-            self.placeholderText = placeholderText
+            self.text = text
 
-            self.required = required
+            self.value = value
 
             self.options = options
 
-            self.text = text
+            self.required = required
 
             self.type = type
 
-            self.value = value
+            self.placeholderText = placeholderText
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                placeholderText = try container.decode(String.self, forKey: .placeholderText)
+                text = try container.decode(String.self, forKey: .text)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                required = try container.decode(Bool.self, forKey: .required)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
+                required = try container.decode(Bool.self, forKey: .required)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                placeholderText = try container.decode(String.self, forKey: .placeholderText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,17 +104,17 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+            try? container.encodeIfPresent(text, forKey: .text)
 
-            try? container.encodeIfPresent(required, forKey: .required)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(options, forKey: .options)
 
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(required, forKey: .required)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class DeleteConfig: Codable {
         public var affiliateId: String?
 
-        public var slugValues: [String]?
-
         public var sellerId: Int?
+
+        public var slugValues: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case affiliateId = "affiliate_id"
 
-            case slugValues = "slug_values"
-
             case sellerId = "seller_id"
+
+            case slugValues = "slug_values"
         }
 
         public init(affiliateId: String? = nil, sellerId: Int? = nil, slugValues: [String]? = nil) {
             self.affiliateId = affiliateId
 
-            self.slugValues = slugValues
-
             self.sellerId = sellerId
+
+            self.slugValues = slugValues
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                slugValues = try container.decode([String].self, forKey: .slugValues)
+                sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                sellerId = try container.decode(Int.self, forKey: .sellerId)
+                slugValues = try container.decode([String].self, forKey: .slugValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
-            try? container.encodeIfPresent(slugValues, forKey: .slugValues)
-
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(slugValues, forKey: .slugValues)
         }
     }
 }

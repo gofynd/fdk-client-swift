@@ -11,22 +11,22 @@ public extension PlatformClient.ApplicationClient.Cart {
     class OverrideCartItemPromo: Codable {
         public var rwrdTndr: String?
 
+        public var itemList: [[String: Any]]?
+
         public var promoId: String
 
         public var promoAmount: String
-
-        public var itemList: [[String: Any]]?
 
         public var promoDesc: String?
 
         public enum CodingKeys: String, CodingKey {
             case rwrdTndr = "rwrd_tndr"
 
+            case itemList = "item_list"
+
             case promoId = "promo_id"
 
             case promoAmount = "promo_amount"
-
-            case itemList = "item_list"
 
             case promoDesc = "promo_desc"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(itemList: [[String: Any]]? = nil, promoAmount: String, promoDesc: String? = nil, promoId: String, rwrdTndr: String? = nil) {
             self.rwrdTndr = rwrdTndr
 
+            self.itemList = itemList
+
             self.promoId = promoId
 
             self.promoAmount = promoAmount
-
-            self.itemList = itemList
 
             self.promoDesc = promoDesc
         }
@@ -54,10 +54,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            promoId = try container.decode(String.self, forKey: .promoId)
-
-            promoAmount = try container.decode(String.self, forKey: .promoAmount)
-
             do {
                 itemList = try container.decode([[String: Any]].self, forKey: .itemList)
 
@@ -65,6 +61,10 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            promoId = try container.decode(String.self, forKey: .promoId)
+
+            promoAmount = try container.decode(String.self, forKey: .promoAmount)
 
             do {
                 promoDesc = try container.decode(String.self, forKey: .promoDesc)
@@ -80,11 +80,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(rwrdTndr, forKey: .rwrdTndr)
 
+            try? container.encodeIfPresent(itemList, forKey: .itemList)
+
             try? container.encodeIfPresent(promoId, forKey: .promoId)
 
             try? container.encodeIfPresent(promoAmount, forKey: .promoAmount)
-
-            try? container.encodeIfPresent(itemList, forKey: .itemList)
 
             try? container.encodeIfPresent(promoDesc, forKey: .promoDesc)
         }

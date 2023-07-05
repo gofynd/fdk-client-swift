@@ -7,9 +7,9 @@ public extension ApplicationClient.Cart {
          Used By: Cart
      */
     class LadderPrice: Codable {
-        public var currencyCode: String?
-
         public var currencySymbol: String?
+
+        public var currencyCode: String?
 
         public var effective: Int?
 
@@ -18,9 +18,9 @@ public extension ApplicationClient.Cart {
         public var offerPrice: Double?
 
         public enum CodingKeys: String, CodingKey {
-            case currencyCode = "currency_code"
-
             case currencySymbol = "currency_symbol"
+
+            case currencyCode = "currency_code"
 
             case effective
 
@@ -30,9 +30,9 @@ public extension ApplicationClient.Cart {
         }
 
         public init(currencyCode: String? = nil, currencySymbol: String? = nil, effective: Int? = nil, marked: Int? = nil, offerPrice: Double? = nil) {
-            self.currencyCode = currencyCode
-
             self.currencySymbol = currencySymbol
+
+            self.currencyCode = currencyCode
 
             self.effective = effective
 
@@ -45,7 +45,7 @@ public extension ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -53,7 +53,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                currencySymbol = try container.decode(String.self, forKey: .currencySymbol)
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,9 +88,9 @@ public extension ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
 

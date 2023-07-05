@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class GetReportingFiltersResponse: Codable {
         public var search: GetReportingFilters?
 
-        public var status: GetReportingFilters?
-
         public var filters: [GetReportingNestedFilters]?
+
+        public var status: GetReportingFilters?
 
         public enum CodingKeys: String, CodingKey {
             case search
 
-            case status
-
             case filters
+
+            case status
         }
 
         public init(filters: [GetReportingNestedFilters]? = nil, search: GetReportingFilters? = nil, status: GetReportingFilters? = nil) {
             self.search = search
 
-            self.status = status
-
             self.filters = filters
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                status = try container.decode(GetReportingFilters.self, forKey: .status)
+                filters = try container.decode([GetReportingNestedFilters].self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                filters = try container.decode([GetReportingNestedFilters].self, forKey: .filters)
+                status = try container.decode(GetReportingFilters.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(search, forKey: .search)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

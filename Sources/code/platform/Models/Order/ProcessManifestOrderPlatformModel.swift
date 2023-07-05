@@ -9,40 +9,36 @@ public extension PlatformClient.Order {
      */
 
     class ProcessManifest: Codable {
-        public var action: String
-
-        public var uniqueId: String
-
         public var filters: FiltersRequest
 
         public var manifestId: String?
 
+        public var action: String
+
+        public var uniqueId: String
+
         public enum CodingKeys: String, CodingKey {
-            case action
-
-            case uniqueId = "unique_id"
-
             case filters
 
             case manifestId = "manifest_id"
+
+            case action
+
+            case uniqueId = "unique_id"
         }
 
         public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
-            self.action = action
-
-            self.uniqueId = uniqueId
-
             self.filters = filters
 
             self.manifestId = manifestId
+
+            self.action = action
+
+            self.uniqueId = uniqueId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            action = try container.decode(String.self, forKey: .action)
-
-            uniqueId = try container.decode(String.self, forKey: .uniqueId)
 
             filters = try container.decode(FiltersRequest.self, forKey: .filters)
 
@@ -53,18 +49,22 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            action = try container.decode(String.self, forKey: .action)
+
+            uniqueId = try container.decode(String.self, forKey: .uniqueId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
         }
     }
 }
@@ -76,40 +76,36 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ProcessManifest: Codable {
-        public var action: String
-
-        public var uniqueId: String
-
         public var filters: FiltersRequest
 
         public var manifestId: String?
 
+        public var action: String
+
+        public var uniqueId: String
+
         public enum CodingKeys: String, CodingKey {
-            case action
-
-            case uniqueId = "unique_id"
-
             case filters
 
             case manifestId = "manifest_id"
+
+            case action
+
+            case uniqueId = "unique_id"
         }
 
         public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
-            self.action = action
-
-            self.uniqueId = uniqueId
-
             self.filters = filters
 
             self.manifestId = manifestId
+
+            self.action = action
+
+            self.uniqueId = uniqueId
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            action = try container.decode(String.self, forKey: .action)
-
-            uniqueId = try container.decode(String.self, forKey: .uniqueId)
 
             filters = try container.decode(FiltersRequest.self, forKey: .filters)
 
@@ -120,18 +116,22 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            action = try container.decode(String.self, forKey: .action)
+
+            uniqueId = try container.decode(String.self, forKey: .uniqueId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+
+            try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(uniqueId, forKey: .uniqueId)
         }
     }
 }
