@@ -9,63 +9,63 @@ public extension PlatformClient.Finance {
      */
 
     class GetCnConfigResponseData: Codable {
-        public var redemptionOrderingChannel: [String]?
+        public var validity: Int?
 
         public var isCnAsRefundMethod: Bool?
 
-        public var meta: GetCnConfigResponseMeta?
-
-        public var affiliateId: String?
+        public var sellerId: Int?
 
         public var currencyType: String?
 
-        public var sellerId: Int?
-
         public var notificationEvents: CreditNoteConfigNotificationEvents?
 
-        public var validity: Int?
+        public var affiliateId: String?
+
+        public var redemptionOrderingChannel: [String]?
+
+        public var meta: GetCnConfigResponseMeta?
 
         public enum CodingKeys: String, CodingKey {
-            case redemptionOrderingChannel = "redemption_ordering_channel"
+            case validity
 
             case isCnAsRefundMethod = "is_cn_as_refund_method"
 
-            case meta
-
-            case affiliateId = "affiliate_id"
+            case sellerId = "seller_id"
 
             case currencyType = "currency_type"
 
-            case sellerId = "seller_id"
-
             case notificationEvents = "notification_events"
 
-            case validity
+            case affiliateId = "affiliate_id"
+
+            case redemptionOrderingChannel = "redemption_ordering_channel"
+
+            case meta
         }
 
         public init(affiliateId: String? = nil, currencyType: String? = nil, isCnAsRefundMethod: Bool? = nil, meta: GetCnConfigResponseMeta? = nil, notificationEvents: CreditNoteConfigNotificationEvents? = nil, redemptionOrderingChannel: [String]? = nil, sellerId: Int? = nil, validity: Int? = nil) {
-            self.redemptionOrderingChannel = redemptionOrderingChannel
+            self.validity = validity
 
             self.isCnAsRefundMethod = isCnAsRefundMethod
 
-            self.meta = meta
-
-            self.affiliateId = affiliateId
+            self.sellerId = sellerId
 
             self.currencyType = currencyType
 
-            self.sellerId = sellerId
-
             self.notificationEvents = notificationEvents
 
-            self.validity = validity
+            self.affiliateId = affiliateId
+
+            self.redemptionOrderingChannel = redemptionOrderingChannel
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                redemptionOrderingChannel = try container.decode([String].self, forKey: .redemptionOrderingChannel)
+                validity = try container.decode(Int.self, forKey: .validity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -81,15 +81,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                meta = try container.decode(GetCnConfigResponseMeta.self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,14 +97,6 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                sellerId = try container.decode(Int.self, forKey: .sellerId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 notificationEvents = try container.decode(CreditNoteConfigNotificationEvents.self, forKey: .notificationEvents)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -121,7 +105,23 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                validity = try container.decode(Int.self, forKey: .validity)
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                redemptionOrderingChannel = try container.decode([String].self, forKey: .redemptionOrderingChannel)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode(GetCnConfigResponseMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,21 +132,21 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(redemptionOrderingChannel, forKey: .redemptionOrderingChannel)
+            try? container.encodeIfPresent(validity, forKey: .validity)
 
             try? container.encodeIfPresent(isCnAsRefundMethod, forKey: .isCnAsRefundMethod)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
             try? container.encodeIfPresent(currencyType, forKey: .currencyType)
 
-            try? container.encodeIfPresent(sellerId, forKey: .sellerId)
-
             try? container.encodeIfPresent(notificationEvents, forKey: .notificationEvents)
 
-            try? container.encodeIfPresent(validity, forKey: .validity)
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
+            try? container.encodeIfPresent(redemptionOrderingChannel, forKey: .redemptionOrderingChannel)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

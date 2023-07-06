@@ -9,24 +9,24 @@ public extension PlatformClient.Catalog {
      */
 
     class ProductSizeSellerFilter: Codable {
-        public var name: String?
-
         public var value: String?
+
+        public var name: String?
 
         public var isSelected: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case value
+
+            case name
 
             case isSelected = "is_selected"
         }
 
         public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
-            self.name = name
-
             self.value = value
+
+            self.name = name
 
             self.isSelected = isSelected
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProductSizeSellerFilter: Codable {
-        public var name: String?
-
         public var value: String?
+
+        public var name: String?
 
         public var isSelected: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case value
+
+            case name
 
             case isSelected = "is_selected"
         }
 
         public init(isSelected: Bool? = nil, name: String? = nil, value: String? = nil) {
-            self.name = name
-
             self.value = value
+
+            self.name = name
 
             self.isSelected = isSelected
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(isSelected, forKey: .isSelected)
         }

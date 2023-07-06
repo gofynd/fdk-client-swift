@@ -13,11 +13,11 @@ public extension PlatformClient.Payment {
 
         public var appId: String
 
+        public var created: Bool
+
         public var success: Bool
 
         public var excludedFields: [String]
-
-        public var created: Bool
 
         public var displayFields: [String]
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Payment {
 
             case appId = "app_id"
 
+            case created
+
             case success
 
             case excludedFields = "excluded_fields"
-
-            case created
 
             case displayFields = "display_fields"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Payment {
 
             self.appId = appId
 
+            self.created = created
+
             self.success = success
 
             self.excludedFields = excludedFields
-
-            self.created = created
 
             self.displayFields = displayFields
         }
@@ -62,11 +62,11 @@ public extension PlatformClient.Payment {
 
             appId = try container.decode(String.self, forKey: .appId)
 
+            created = try container.decode(Bool.self, forKey: .created)
+
             success = try container.decode(Bool.self, forKey: .success)
 
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
-
-            created = try container.decode(Bool.self, forKey: .created)
 
             displayFields = try container.decode([String].self, forKey: .displayFields)
         }
@@ -78,11 +78,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
+            try? container.encodeIfPresent(created, forKey: .created)
+
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
-
-            try? container.encodeIfPresent(created, forKey: .created)
 
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
         }
@@ -100,11 +100,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var appId: String
 
+        public var created: Bool
+
         public var success: Bool
 
         public var excludedFields: [String]
-
-        public var created: Bool
 
         public var displayFields: [String]
 
@@ -113,11 +113,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case appId = "app_id"
 
+            case created
+
             case success
 
             case excludedFields = "excluded_fields"
-
-            case created
 
             case displayFields = "display_fields"
         }
@@ -127,11 +127,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.appId = appId
 
+            self.created = created
+
             self.success = success
 
             self.excludedFields = excludedFields
-
-            self.created = created
 
             self.displayFields = displayFields
         }
@@ -149,11 +149,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             appId = try container.decode(String.self, forKey: .appId)
 
+            created = try container.decode(Bool.self, forKey: .created)
+
             success = try container.decode(Bool.self, forKey: .success)
 
             excludedFields = try container.decode([String].self, forKey: .excludedFields)
-
-            created = try container.decode(Bool.self, forKey: .created)
 
             displayFields = try container.decode([String].self, forKey: .displayFields)
         }
@@ -165,11 +165,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
+            try? container.encodeIfPresent(created, forKey: .created)
+
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(excludedFields, forKey: .excludedFields)
-
-            try? container.encodeIfPresent(created, forKey: .created)
 
             try? container.encodeIfPresent(displayFields, forKey: .displayFields)
         }

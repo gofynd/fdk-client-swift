@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class GiftCard: Codable {
         public var giftMessage: String?
 
-        public var displayText: String?
+        public var giftPrice: Int?
 
         public var isGiftApplied: Bool?
 
-        public var giftPrice: Int?
+        public var displayText: String?
 
         public enum CodingKeys: String, CodingKey {
             case giftMessage = "gift_message"
 
-            case displayText = "display_text"
+            case giftPrice = "gift_price"
 
             case isGiftApplied = "is_gift_applied"
 
-            case giftPrice = "gift_price"
+            case displayText = "display_text"
         }
 
         public init(displayText: String? = nil, giftMessage: String? = nil, giftPrice: Int? = nil, isGiftApplied: Bool? = nil) {
             self.giftMessage = giftMessage
 
-            self.displayText = displayText
+            self.giftPrice = giftPrice
 
             self.isGiftApplied = isGiftApplied
 
-            self.giftPrice = giftPrice
+            self.displayText = displayText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                displayText = try container.decode(String.self, forKey: .displayText)
+                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
+                displayText = try container.decode(String.self, forKey: .displayText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
 
-            try? container.encodeIfPresent(displayText, forKey: .displayText)
+            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
 
             try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
 
-            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class GiftCard: Codable {
         public var giftMessage: String?
 
-        public var displayText: String?
+        public var giftPrice: Int?
 
         public var isGiftApplied: Bool?
 
-        public var giftPrice: Int?
+        public var displayText: String?
 
         public enum CodingKeys: String, CodingKey {
             case giftMessage = "gift_message"
 
-            case displayText = "display_text"
+            case giftPrice = "gift_price"
 
             case isGiftApplied = "is_gift_applied"
 
-            case giftPrice = "gift_price"
+            case displayText = "display_text"
         }
 
         public init(displayText: String? = nil, giftMessage: String? = nil, giftPrice: Int? = nil, isGiftApplied: Bool? = nil) {
             self.giftMessage = giftMessage
 
-            self.displayText = displayText
+            self.giftPrice = giftPrice
 
             self.isGiftApplied = isGiftApplied
 
-            self.giftPrice = giftPrice
+            self.displayText = displayText
         }
 
         required public init(from decoder: Decoder) throws {
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                displayText = try container.decode(String.self, forKey: .displayText)
+                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                giftPrice = try container.decode(Int.self, forKey: .giftPrice)
+                displayText = try container.decode(String.self, forKey: .displayText)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
 
-            try? container.encodeIfPresent(displayText, forKey: .displayText)
+            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
 
             try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
 
-            try? container.encodeIfPresent(giftPrice, forKey: .giftPrice)
+            try? container.encodeIfPresent(displayText, forKey: .displayText)
         }
     }
 }

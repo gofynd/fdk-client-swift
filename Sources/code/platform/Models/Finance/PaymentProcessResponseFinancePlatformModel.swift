@@ -15,9 +15,9 @@ public extension PlatformClient.Finance {
 
         public var code: Int?
 
-        public var meta: [String: Any]?
-
         public var redirectUrl: String?
+
+        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case message
@@ -26,9 +26,9 @@ public extension PlatformClient.Finance {
 
             case code
 
-            case meta
-
             case redirectUrl = "redirect_url"
+
+            case meta
         }
 
         public init(code: Int? = nil, message: String? = nil, meta: [String: Any]? = nil, redirectUrl: String? = nil, transactionId: String? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Finance {
 
             self.code = code
 
-            self.meta = meta
-
             self.redirectUrl = redirectUrl
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

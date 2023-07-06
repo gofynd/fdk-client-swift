@@ -9,9 +9,9 @@ public extension PlatformClient.Finance {
      */
 
     class CnGenerateReportFilters: Codable {
-        public var channelOfIssuance: [String]?
-
         public var utilisation: [String]?
+
+        public var channelOfIssuance: [String]?
 
         public var storeId: [Int]?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.Finance {
         public var staffId: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case channelOfIssuance = "channel_of_issuance"
-
             case utilisation
+
+            case channelOfIssuance = "channel_of_issuance"
 
             case storeId = "store_id"
 
@@ -36,9 +36,9 @@ public extension PlatformClient.Finance {
         }
 
         public init(channelOfIssuance: [String]? = nil, orderingChannel: [String]? = nil, staffId: [String]? = nil, storeId: [Int]? = nil, typesOfTransaction: [String]? = nil, utilisation: [String]? = nil) {
-            self.channelOfIssuance = channelOfIssuance
-
             self.utilisation = utilisation
+
+            self.channelOfIssuance = channelOfIssuance
 
             self.storeId = storeId
 
@@ -53,7 +53,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                channelOfIssuance = try container.decode([String].self, forKey: .channelOfIssuance)
+                utilisation = try container.decode([String].self, forKey: .utilisation)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                utilisation = try container.decode([String].self, forKey: .utilisation)
+                channelOfIssuance = try container.decode([String].self, forKey: .channelOfIssuance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,9 +104,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(channelOfIssuance, forKey: .channelOfIssuance)
-
             try? container.encodeIfPresent(utilisation, forKey: .utilisation)
+
+            try? container.encodeIfPresent(channelOfIssuance, forKey: .channelOfIssuance)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 

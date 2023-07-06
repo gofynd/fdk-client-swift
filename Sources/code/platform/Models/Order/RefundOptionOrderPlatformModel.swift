@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class RefundOption: Codable {
-        public var type: String?
-
         public var name: String?
+
+        public var type: String?
 
         public var slug: String?
 
         public var value: String?
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case name
+
+            case type
 
             case slug
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(name: String? = nil, slug: String? = nil, type: String? = nil, value: String? = nil) {
-            self.type = type
-
             self.name = name
+
+            self.type = type
 
             self.slug = slug
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class RefundOption: Codable {
-        public var type: String?
-
         public var name: String?
+
+        public var type: String?
 
         public var slug: String?
 
         public var value: String?
 
         public enum CodingKeys: String, CodingKey {
-            case type
-
             case name
+
+            case type
 
             case slug
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(name: String? = nil, slug: String? = nil, type: String? = nil, value: String? = nil) {
-            self.type = type
-
             self.name = name
+
+            self.type = type
 
             self.slug = slug
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
 

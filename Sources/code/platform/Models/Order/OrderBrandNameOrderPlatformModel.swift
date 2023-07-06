@@ -9,6 +9,10 @@ public extension PlatformClient.Order {
      */
 
     class OrderBrandName: Codable {
+        public var id: Int
+
+        public var brandName: String?
+
         public var modifiedOn: String?
 
         public var logo: String?
@@ -17,11 +21,11 @@ public extension PlatformClient.Order {
 
         public var company: Int
 
-        public var id: Int
-
-        public var brandName: String?
-
         public enum CodingKeys: String, CodingKey {
+            case id
+
+            case brandName = "brand_name"
+
             case modifiedOn = "modified_on"
 
             case logo
@@ -29,13 +33,13 @@ public extension PlatformClient.Order {
             case createdOn = "created_on"
 
             case company
-
-            case id
-
-            case brandName = "brand_name"
         }
 
         public init(brandName: String? = nil, company: Int, createdOn: String? = nil, id: Int, logo: String? = nil, modifiedOn: String? = nil) {
+            self.id = id
+
+            self.brandName = brandName
+
             self.modifiedOn = modifiedOn
 
             self.logo = logo
@@ -43,14 +47,20 @@ public extension PlatformClient.Order {
             self.createdOn = createdOn
 
             self.company = company
-
-            self.id = id
-
-            self.brandName = brandName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            id = try container.decode(Int.self, forKey: .id)
+
+            do {
+                brandName = try container.decode(String.self, forKey: .brandName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
@@ -77,20 +87,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             company = try container.decode(Int.self, forKey: .company)
-
-            id = try container.decode(Int.self, forKey: .id)
-
-            do {
-                brandName = try container.decode(String.self, forKey: .brandName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
@@ -99,10 +103,6 @@ public extension PlatformClient.Order {
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encode(company, forKey: .company)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
         }
     }
 }
@@ -114,6 +114,10 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderBrandName: Codable {
+        public var id: Int
+
+        public var brandName: String?
+
         public var modifiedOn: String?
 
         public var logo: String?
@@ -122,11 +126,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var company: Int
 
-        public var id: Int
-
-        public var brandName: String?
-
         public enum CodingKeys: String, CodingKey {
+            case id
+
+            case brandName = "brand_name"
+
             case modifiedOn = "modified_on"
 
             case logo
@@ -134,13 +138,13 @@ public extension PlatformClient.ApplicationClient.Order {
             case createdOn = "created_on"
 
             case company
-
-            case id
-
-            case brandName = "brand_name"
         }
 
         public init(brandName: String? = nil, company: Int, createdOn: String? = nil, id: Int, logo: String? = nil, modifiedOn: String? = nil) {
+            self.id = id
+
+            self.brandName = brandName
+
             self.modifiedOn = modifiedOn
 
             self.logo = logo
@@ -148,14 +152,20 @@ public extension PlatformClient.ApplicationClient.Order {
             self.createdOn = createdOn
 
             self.company = company
-
-            self.id = id
-
-            self.brandName = brandName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            id = try container.decode(Int.self, forKey: .id)
+
+            do {
+                brandName = try container.decode(String.self, forKey: .brandName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
@@ -182,20 +192,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             company = try container.decode(Int.self, forKey: .company)
-
-            id = try container.decode(Int.self, forKey: .id)
-
-            do {
-                brandName = try container.decode(String.self, forKey: .brandName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(id, forKey: .id)
+
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
 
@@ -204,10 +208,6 @@ public extension PlatformClient.ApplicationClient.Order {
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 
             try? container.encode(company, forKey: .company)
-
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
         }
     }
 }

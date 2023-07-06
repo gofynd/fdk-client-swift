@@ -13,22 +13,22 @@ public extension PlatformClient.Payment {
 
         public var appId: String
 
+        public var aggregator: String
+
         public var status: String
 
         public var creditLineId: String
-
-        public var aggregator: String
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
             case appId = "app_id"
 
+            case aggregator
+
             case status
 
             case creditLineId = "credit_line_id"
-
-            case aggregator
         }
 
         public init(aggregator: String, appId: String, creditLineId: String, status: String, userId: String) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Payment {
 
             self.appId = appId
 
+            self.aggregator = aggregator
+
             self.status = status
 
             self.creditLineId = creditLineId
-
-            self.aggregator = aggregator
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,11 +50,11 @@ public extension PlatformClient.Payment {
 
             appId = try container.decode(String.self, forKey: .appId)
 
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
             status = try container.decode(String.self, forKey: .status)
 
             creditLineId = try container.decode(String.self, forKey: .creditLineId)
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
-
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
         }
     }
 }
@@ -84,22 +84,22 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var appId: String
 
+        public var aggregator: String
+
         public var status: String
 
         public var creditLineId: String
-
-        public var aggregator: String
 
         public enum CodingKeys: String, CodingKey {
             case userId = "user_id"
 
             case appId = "app_id"
 
+            case aggregator
+
             case status
 
             case creditLineId = "credit_line_id"
-
-            case aggregator
         }
 
         public init(aggregator: String, appId: String, creditLineId: String, status: String, userId: String) {
@@ -107,11 +107,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.appId = appId
 
+            self.aggregator = aggregator
+
             self.status = status
 
             self.creditLineId = creditLineId
-
-            self.aggregator = aggregator
         }
 
         required public init(from decoder: Decoder) throws {
@@ -121,11 +121,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             appId = try container.decode(String.self, forKey: .appId)
 
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
             status = try container.decode(String.self, forKey: .status)
 
             creditLineId = try container.decode(String.self, forKey: .creditLineId)
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
             try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(creditLineId, forKey: .creditLineId)
-
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
         }
     }
 }
