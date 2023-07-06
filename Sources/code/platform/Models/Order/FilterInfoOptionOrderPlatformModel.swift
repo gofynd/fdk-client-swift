@@ -11,42 +11,42 @@ public extension PlatformClient.Order {
     class FilterInfoOption: Codable {
         public var placeholderText: String?
 
-        public var text: String?
-
-        public var showUi: Bool?
+        public var minSearchSize: Int?
 
         public var name: String?
 
-        public var value: String?
+        public var showUi: Bool?
 
-        public var minSearchSize: Int?
+        public var text: String?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case placeholderText = "placeholder_text"
 
-            case text
-
-            case showUi = "show_ui"
+            case minSearchSize = "min_search_size"
 
             case name
 
-            case value
+            case showUi = "show_ui"
 
-            case minSearchSize = "min_search_size"
+            case text
+
+            case value
         }
 
         public init(minSearchSize: Int? = nil, name: String? = nil, placeholderText: String? = nil, showUi: Bool? = nil, text: String? = nil, value: String? = nil) {
             self.placeholderText = placeholderText
 
-            self.text = text
-
-            self.showUi = showUi
+            self.minSearchSize = minSearchSize
 
             self.name = name
 
-            self.value = value
+            self.showUi = showUi
 
-            self.minSearchSize = minSearchSize
+            self.text = text
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,15 +61,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                showUi = try container.decode(Bool.self, forKey: .showUi)
+                minSearchSize = try container.decode(Int.self, forKey: .minSearchSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +77,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                showUi = try container.decode(Bool.self, forKey: .showUi)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +85,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                minSearchSize = try container.decode(Int.self, forKey: .minSearchSize)
+                text = try container.decode(String.self, forKey: .text)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,15 +106,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
-            try? container.encode(text, forKey: .text)
-
-            try? container.encodeIfPresent(showUi, forKey: .showUi)
+            try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
 
             try? container.encode(name, forKey: .name)
 
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(showUi, forKey: .showUi)
 
-            try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
+            try? container.encode(text, forKey: .text)
+
+            try? container.encode(value, forKey: .value)
         }
     }
 }
@@ -128,42 +128,42 @@ public extension PlatformClient.ApplicationClient.Order {
     class FilterInfoOption: Codable {
         public var placeholderText: String?
 
-        public var text: String?
-
-        public var showUi: Bool?
+        public var minSearchSize: Int?
 
         public var name: String?
 
-        public var value: String?
+        public var showUi: Bool?
 
-        public var minSearchSize: Int?
+        public var text: String?
+
+        public var value: String?
 
         public enum CodingKeys: String, CodingKey {
             case placeholderText = "placeholder_text"
 
-            case text
-
-            case showUi = "show_ui"
+            case minSearchSize = "min_search_size"
 
             case name
 
-            case value
+            case showUi = "show_ui"
 
-            case minSearchSize = "min_search_size"
+            case text
+
+            case value
         }
 
         public init(minSearchSize: Int? = nil, name: String? = nil, placeholderText: String? = nil, showUi: Bool? = nil, text: String? = nil, value: String? = nil) {
             self.placeholderText = placeholderText
 
-            self.text = text
-
-            self.showUi = showUi
+            self.minSearchSize = minSearchSize
 
             self.name = name
 
-            self.value = value
+            self.showUi = showUi
 
-            self.minSearchSize = minSearchSize
+            self.text = text
+
+            self.value = value
         }
 
         required public init(from decoder: Decoder) throws {
@@ -178,15 +178,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                text = try container.decode(String.self, forKey: .text)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                showUi = try container.decode(Bool.self, forKey: .showUi)
+                minSearchSize = try container.decode(Int.self, forKey: .minSearchSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -202,7 +194,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                showUi = try container.decode(Bool.self, forKey: .showUi)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +202,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                minSearchSize = try container.decode(Int.self, forKey: .minSearchSize)
+                text = try container.decode(String.self, forKey: .text)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,15 +223,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
 
-            try? container.encode(text, forKey: .text)
-
-            try? container.encodeIfPresent(showUi, forKey: .showUi)
+            try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
 
             try? container.encode(name, forKey: .name)
 
-            try? container.encode(value, forKey: .value)
+            try? container.encodeIfPresent(showUi, forKey: .showUi)
 
-            try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
+            try? container.encode(text, forKey: .text)
+
+            try? container.encode(value, forKey: .value)
         }
     }
 }

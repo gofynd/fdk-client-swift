@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var channelShipmentId: String?
 
-        public var logo: String?
-
         public var name: String?
+
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case isAffiliate = "is_affiliate"
 
             case channelShipmentId = "channel_shipment_id"
 
-            case logo
-
             case name
+
+            case logo
         }
 
         public init(channelShipmentId: String? = nil, isAffiliate: Bool? = nil, logo: String? = nil, name: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.channelShipmentId = channelShipmentId
 
-            self.logo = logo
-
             self.name = name
+
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var channelShipmentId: String?
 
-        public var logo: String?
-
         public var name: String?
+
+        public var logo: String?
 
         public enum CodingKeys: String, CodingKey {
             case isAffiliate = "is_affiliate"
 
             case channelShipmentId = "channel_shipment_id"
 
-            case logo
-
             case name
+
+            case logo
         }
 
         public init(channelShipmentId: String? = nil, isAffiliate: Bool? = nil, logo: String? = nil, name: String? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.channelShipmentId = channelShipmentId
 
-            self.logo = logo
-
             self.name = name
+
+            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                logo = try container.decode(String.self, forKey: .logo)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                logo = try container.decode(String.self, forKey: .logo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

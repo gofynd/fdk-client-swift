@@ -9,24 +9,24 @@ public extension ApplicationClient.Payment {
     class ResendOrCancelPaymentRequest: Codable {
         public var deviceId: String?
 
-        public var requestType: String
-
         public var orderId: String
+
+        public var requestType: String
 
         public enum CodingKeys: String, CodingKey {
             case deviceId = "device_id"
 
-            case requestType = "request_type"
-
             case orderId = "order_id"
+
+            case requestType = "request_type"
         }
 
         public init(deviceId: String? = nil, orderId: String, requestType: String) {
             self.deviceId = deviceId
 
-            self.requestType = requestType
-
             self.orderId = orderId
+
+            self.requestType = requestType
         }
 
         required public init(from decoder: Decoder) throws {
@@ -40,9 +40,9 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            requestType = try container.decode(String.self, forKey: .requestType)
-
             orderId = try container.decode(String.self, forKey: .orderId)
+
+            requestType = try container.decode(String.self, forKey: .requestType)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +50,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(deviceId, forKey: .deviceId)
 
-            try? container.encodeIfPresent(requestType, forKey: .requestType)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(requestType, forKey: .requestType)
         }
     }
 }

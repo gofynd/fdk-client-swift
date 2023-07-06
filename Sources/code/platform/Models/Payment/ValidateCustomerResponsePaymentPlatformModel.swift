@@ -9,24 +9,24 @@ public extension PlatformClient.Payment {
      */
 
     class ValidateCustomerResponse: Codable {
-        public var message: String
-
         public var data: [String: Any]
+
+        public var message: String
 
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case message
-
             case data
+
+            case message
 
             case success
         }
 
         public init(data: [String: Any], message: String, success: Bool) {
-            self.message = message
-
             self.data = data
+
+            self.message = message
 
             self.success = success
         }
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            message = try container.decode(String.self, forKey: .message)
-
             data = try container.decode([String: Any].self, forKey: .data)
+
+            message = try container.decode(String.self, forKey: .message)
 
             success = try container.decode(Bool.self, forKey: .success)
         }
@@ -44,9 +44,9 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }
@@ -60,24 +60,24 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class ValidateCustomerResponse: Codable {
-        public var message: String
-
         public var data: [String: Any]
+
+        public var message: String
 
         public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case message
-
             case data
+
+            case message
 
             case success
         }
 
         public init(data: [String: Any], message: String, success: Bool) {
-            self.message = message
-
             self.data = data
+
+            self.message = message
 
             self.success = success
         }
@@ -85,9 +85,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            message = try container.decode(String.self, forKey: .message)
-
             data = try container.decode([String: Any].self, forKey: .data)
+
+            message = try container.decode(String.self, forKey: .message)
 
             success = try container.decode(Bool.self, forKey: .success)
         }
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

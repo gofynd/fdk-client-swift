@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var resendTimer: Int?
 
-        public var message: String?
-
         public var mobile: Int?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case requestId = "request_id"
 
             case resendTimer = "resend_timer"
 
-            case message
-
             case mobile
+
+            case message
         }
 
         public init(message: String? = nil, mobile: Int? = nil, requestId: String? = nil, resendTimer: Int? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.resendTimer = resendTimer
 
-            self.message = message
-
             self.mobile = mobile
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                mobile = try container.decode(Int.self, forKey: .mobile)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                mobile = try container.decode(Int.self, forKey: .mobile)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var resendTimer: Int?
 
-        public var message: String?
-
         public var mobile: Int?
+
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case requestId = "request_id"
 
             case resendTimer = "resend_timer"
 
-            case message
-
             case mobile
+
+            case message
         }
 
         public init(message: String? = nil, mobile: Int? = nil, requestId: String? = nil, resendTimer: Int? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.resendTimer = resendTimer
 
-            self.message = message
-
             self.mobile = mobile
+
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                mobile = try container.decode(Int.self, forKey: .mobile)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                mobile = try container.decode(Int.self, forKey: .mobile)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(resendTimer, forKey: .resendTimer)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(message, forKey: .message)
         }
     }
 }

@@ -9,51 +9,51 @@ public extension PlatformClient.Order {
      */
 
     class ManifestMediaUpdate: Codable {
-        public var file: ManifestFile?
+        public var status: Bool?
 
         public var mediaType: String?
-
-        public var code: Int?
-
-        public var status: Bool?
 
         public var link: String?
 
         public var entity: String?
 
+        public var file: ManifestFile?
+
+        public var code: Int?
+
         public enum CodingKeys: String, CodingKey {
-            case file
+            case status
 
             case mediaType = "media_type"
-
-            case code
-
-            case status
 
             case link
 
             case entity
+
+            case file
+
+            case code
         }
 
         public init(code: Int? = nil, entity: String? = nil, file: ManifestFile? = nil, link: String? = nil, mediaType: String? = nil, status: Bool? = nil) {
-            self.file = file
+            self.status = status
 
             self.mediaType = mediaType
-
-            self.code = code
-
-            self.status = status
 
             self.link = link
 
             self.entity = entity
+
+            self.file = file
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                file = try container.decode(ManifestFile.self, forKey: .file)
+                status = try container.decode(Bool.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,22 +62,6 @@ public extension PlatformClient.Order {
 
             do {
                 mediaType = try container.decode(String.self, forKey: .mediaType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(Int.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                status = try container.decode(Bool.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,22 +83,38 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                file = try container.decode(ManifestFile.self, forKey: .file)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                code = try container.decode(Int.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(file, forKey: .file)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(mediaType, forKey: .mediaType)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(link, forKey: .link)
 
             try? container.encodeIfPresent(entity, forKey: .entity)
+
+            try? container.encodeIfPresent(file, forKey: .file)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }
@@ -126,51 +126,51 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ManifestMediaUpdate: Codable {
-        public var file: ManifestFile?
+        public var status: Bool?
 
         public var mediaType: String?
-
-        public var code: Int?
-
-        public var status: Bool?
 
         public var link: String?
 
         public var entity: String?
 
+        public var file: ManifestFile?
+
+        public var code: Int?
+
         public enum CodingKeys: String, CodingKey {
-            case file
+            case status
 
             case mediaType = "media_type"
-
-            case code
-
-            case status
 
             case link
 
             case entity
+
+            case file
+
+            case code
         }
 
         public init(code: Int? = nil, entity: String? = nil, file: ManifestFile? = nil, link: String? = nil, mediaType: String? = nil, status: Bool? = nil) {
-            self.file = file
+            self.status = status
 
             self.mediaType = mediaType
-
-            self.code = code
-
-            self.status = status
 
             self.link = link
 
             self.entity = entity
+
+            self.file = file
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                file = try container.decode(ManifestFile.self, forKey: .file)
+                status = try container.decode(Bool.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -179,22 +179,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 mediaType = try container.decode(String.self, forKey: .mediaType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(Int.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                status = try container.decode(Bool.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,22 +200,38 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                file = try container.decode(ManifestFile.self, forKey: .file)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                code = try container.decode(Int.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(file, forKey: .file)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(mediaType, forKey: .mediaType)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(link, forKey: .link)
 
             try? container.encodeIfPresent(entity, forKey: .entity)
+
+            try? container.encodeIfPresent(file, forKey: .file)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }

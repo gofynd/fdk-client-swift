@@ -7,24 +7,24 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class FollowIdsData: Codable {
-        public var brands: [Int]?
-
         public var products: [Int]?
+
+        public var brands: [Int]?
 
         public var collections: [Int]?
 
         public enum CodingKeys: String, CodingKey {
-            case brands
-
             case products
+
+            case brands
 
             case collections
         }
 
         public init(brands: [Int]? = nil, collections: [Int]? = nil, products: [Int]? = nil) {
-            self.brands = brands
-
             self.products = products
+
+            self.brands = brands
 
             self.collections = collections
         }
@@ -33,7 +33,7 @@ public extension ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                brands = try container.decode([Int].self, forKey: .brands)
+                products = try container.decode([Int].self, forKey: .products)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -41,7 +41,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                products = try container.decode([Int].self, forKey: .products)
+                brands = try container.decode([Int].self, forKey: .brands)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,9 +60,9 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(brands, forKey: .brands)
-
             try? container.encodeIfPresent(products, forKey: .products)
+
+            try? container.encodeIfPresent(brands, forKey: .brands)
 
             try? container.encodeIfPresent(collections, forKey: .collections)
         }

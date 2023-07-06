@@ -11,42 +11,42 @@ public extension PlatformClient.Payment {
     class ExtensionPaymentUpdateRequestSerializer: Codable {
         public var totalAmount: Int
 
+        public var status: String
+
         public var paymentDetails: [String: Any]
 
         public var currency: String
 
-        public var orderDetails: [String: Any]
-
-        public var status: String
-
         public var gid: String
+
+        public var orderDetails: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case totalAmount = "total_amount"
+
+            case status
 
             case paymentDetails = "payment_details"
 
             case currency
 
-            case orderDetails = "order_details"
-
-            case status
-
             case gid
+
+            case orderDetails = "order_details"
         }
 
         public init(currency: String, gid: String, orderDetails: [String: Any], paymentDetails: [String: Any], status: String, totalAmount: Int) {
             self.totalAmount = totalAmount
 
+            self.status = status
+
             self.paymentDetails = paymentDetails
 
             self.currency = currency
 
-            self.orderDetails = orderDetails
-
-            self.status = status
-
             self.gid = gid
+
+            self.orderDetails = orderDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,15 +54,15 @@ public extension PlatformClient.Payment {
 
             totalAmount = try container.decode(Int.self, forKey: .totalAmount)
 
+            status = try container.decode(String.self, forKey: .status)
+
             paymentDetails = try container.decode([String: Any].self, forKey: .paymentDetails)
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            orderDetails = try container.decode([String: Any].self, forKey: .orderDetails)
-
-            status = try container.decode(String.self, forKey: .status)
-
             gid = try container.decode(String.self, forKey: .gid)
+
+            orderDetails = try container.decode([String: Any].self, forKey: .orderDetails)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -70,15 +70,15 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
 
+            try? container.encodeIfPresent(status, forKey: .status)
+
             try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
-
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(gid, forKey: .gid)
+
+            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
         }
     }
 }
@@ -92,42 +92,42 @@ public extension PlatformClient.ApplicationClient.Payment {
     class ExtensionPaymentUpdateRequestSerializer: Codable {
         public var totalAmount: Int
 
+        public var status: String
+
         public var paymentDetails: [String: Any]
 
         public var currency: String
 
-        public var orderDetails: [String: Any]
-
-        public var status: String
-
         public var gid: String
+
+        public var orderDetails: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case totalAmount = "total_amount"
+
+            case status
 
             case paymentDetails = "payment_details"
 
             case currency
 
-            case orderDetails = "order_details"
-
-            case status
-
             case gid
+
+            case orderDetails = "order_details"
         }
 
         public init(currency: String, gid: String, orderDetails: [String: Any], paymentDetails: [String: Any], status: String, totalAmount: Int) {
             self.totalAmount = totalAmount
 
+            self.status = status
+
             self.paymentDetails = paymentDetails
 
             self.currency = currency
 
-            self.orderDetails = orderDetails
-
-            self.status = status
-
             self.gid = gid
+
+            self.orderDetails = orderDetails
         }
 
         required public init(from decoder: Decoder) throws {
@@ -135,15 +135,15 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             totalAmount = try container.decode(Int.self, forKey: .totalAmount)
 
+            status = try container.decode(String.self, forKey: .status)
+
             paymentDetails = try container.decode([String: Any].self, forKey: .paymentDetails)
 
             currency = try container.decode(String.self, forKey: .currency)
 
-            orderDetails = try container.decode([String: Any].self, forKey: .orderDetails)
-
-            status = try container.decode(String.self, forKey: .status)
-
             gid = try container.decode(String.self, forKey: .gid)
+
+            orderDetails = try container.decode([String: Any].self, forKey: .orderDetails)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -151,15 +151,15 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
 
+            try? container.encodeIfPresent(status, forKey: .status)
+
             try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 
-            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
-
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(gid, forKey: .gid)
+
+            try? container.encodeIfPresent(orderDetails, forKey: .orderDetails)
         }
     }
 }

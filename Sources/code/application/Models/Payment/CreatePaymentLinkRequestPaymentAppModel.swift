@@ -7,56 +7,54 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class CreatePaymentLinkRequest: Codable {
-        public var mobileNumber: String
-
-        public var externalOrderId: String
+        public var email: String
 
         public var meta: CreatePaymentLinkMeta
 
-        public var email: String
+        public var externalOrderId: String
 
         public var amount: Double
 
         public var description: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case mobileNumber = "mobile_number"
+        public var mobileNumber: String
 
-            case externalOrderId = "external_order_id"
+        public enum CodingKeys: String, CodingKey {
+            case email
 
             case meta
 
-            case email
+            case externalOrderId = "external_order_id"
 
             case amount
 
             case description
+
+            case mobileNumber = "mobile_number"
         }
 
         public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
-            self.mobileNumber = mobileNumber
-
-            self.externalOrderId = externalOrderId
+            self.email = email
 
             self.meta = meta
 
-            self.email = email
+            self.externalOrderId = externalOrderId
 
             self.amount = amount
 
             self.description = description
+
+            self.mobileNumber = mobileNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
-
-            externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
+            email = try container.decode(String.self, forKey: .email)
 
             meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
 
-            email = try container.decode(String.self, forKey: .email)
+            externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
 
             amount = try container.decode(Double.self, forKey: .amount)
 
@@ -67,22 +65,24 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
-
-            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
+            try? container.encodeIfPresent(email, forKey: .email)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encode(description, forKey: .description)
+
+            try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
         }
     }
 }
