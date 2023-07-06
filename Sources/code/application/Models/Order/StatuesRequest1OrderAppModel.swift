@@ -9,18 +9,18 @@ public extension ApplicationClient.Order {
     class StatuesRequest1: Codable {
         public var status: String?
 
-        public var excludeBagsNextState: String?
-
         public var shipments: [ShipmentsRequest1]?
+
+        public var excludeBagsNextState: String?
 
         public var splitShipment: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case status
 
-            case excludeBagsNextState = "exclude_bags_next_state"
-
             case shipments
+
+            case excludeBagsNextState = "exclude_bags_next_state"
 
             case splitShipment = "split_shipment"
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Order {
         public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest1]? = nil, splitShipment: Bool? = nil, status: String? = nil) {
             self.status = status
 
-            self.excludeBagsNextState = excludeBagsNextState
-
             self.shipments = shipments
+
+            self.excludeBagsNextState = excludeBagsNextState
 
             self.splitShipment = splitShipment
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
+                shipments = try container.decode([ShipmentsRequest1].self, forKey: .shipments)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                shipments = try container.decode([ShipmentsRequest1].self, forKey: .shipments)
+                excludeBagsNextState = try container.decode(String.self, forKey: .excludeBagsNextState)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
-
             try? container.encodeIfPresent(shipments, forKey: .shipments)
+
+            try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
 
             try? container.encodeIfPresent(splitShipment, forKey: .splitShipment)
         }

@@ -11,6 +11,8 @@ public extension ApplicationClient.Payment {
 
         public var identifierType: String?
 
+        public var os: String?
+
         public var osVersion: String?
 
         public var deviceModel: String?
@@ -19,12 +21,12 @@ public extension ApplicationClient.Payment {
 
         public var identificationNumber: String?
 
-        public var os: String?
-
         public enum CodingKeys: String, CodingKey {
             case deviceMake = "device_make"
 
             case identifierType = "identifier_type"
+
+            case os
 
             case osVersion = "os_version"
 
@@ -33,14 +35,14 @@ public extension ApplicationClient.Payment {
             case deviceType = "device_type"
 
             case identificationNumber = "identification_number"
-
-            case os
         }
 
         public init(deviceMake: String? = nil, deviceModel: String? = nil, deviceType: String? = nil, identificationNumber: String? = nil, identifierType: String? = nil, os: String? = nil, osVersion: String? = nil) {
             self.deviceMake = deviceMake
 
             self.identifierType = identifierType
+
+            self.os = os
 
             self.osVersion = osVersion
 
@@ -49,8 +51,6 @@ public extension ApplicationClient.Payment {
             self.deviceType = deviceType
 
             self.identificationNumber = identificationNumber
-
-            self.os = os
         }
 
         required public init(from decoder: Decoder) throws {
@@ -66,6 +66,14 @@ public extension ApplicationClient.Payment {
 
             do {
                 identifierType = try container.decode(String.self, forKey: .identifierType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                os = try container.decode(String.self, forKey: .os)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,14 +111,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                os = try container.decode(String.self, forKey: .os)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -120,6 +120,8 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(identifierType, forKey: .identifierType)
 
+            try? container.encode(os, forKey: .os)
+
             try? container.encode(osVersion, forKey: .osVersion)
 
             try? container.encode(deviceModel, forKey: .deviceModel)
@@ -127,8 +129,6 @@ public extension ApplicationClient.Payment {
             try? container.encode(deviceType, forKey: .deviceType)
 
             try? container.encode(identificationNumber, forKey: .identificationNumber)
-
-            try? container.encode(os, forKey: .os)
         }
     }
 }

@@ -11,42 +11,42 @@ public extension PlatformClient.Order {
     class CompanyDetails: Codable {
         public var companyGst: String?
 
-        public var companyCin: String?
+        public var companyId: Int?
 
         public var companyContact: ContactDetails?
 
+        public var address: [String: Any]?
+
         public var companyName: String?
 
-        public var companyId: Int?
-
-        public var address: [String: Any]?
+        public var companyCin: String?
 
         public enum CodingKeys: String, CodingKey {
             case companyGst = "company_gst"
 
-            case companyCin = "company_cin"
+            case companyId = "company_id"
 
             case companyContact = "company_contact"
 
+            case address
+
             case companyName = "company_name"
 
-            case companyId = "company_id"
-
-            case address
+            case companyCin = "company_cin"
         }
 
         public init(address: [String: Any]? = nil, companyCin: String? = nil, companyContact: ContactDetails? = nil, companyGst: String? = nil, companyId: Int? = nil, companyName: String? = nil) {
             self.companyGst = companyGst
 
-            self.companyCin = companyCin
+            self.companyId = companyId
 
             self.companyContact = companyContact
 
+            self.address = address
+
             self.companyName = companyName
 
-            self.companyId = companyId
-
-            self.address = address
+            self.companyCin = companyCin
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,30 +54,6 @@ public extension PlatformClient.Order {
 
             do {
                 companyGst = try container.decode(String.self, forKey: .companyGst)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyCin = try container.decode(String.self, forKey: .companyCin)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyContact = try container.decode(ContactDetails.self, forKey: .companyContact)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyName = try container.decode(String.self, forKey: .companyName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +69,31 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                companyContact = try container.decode(ContactDetails.self, forKey: .companyContact)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 address = try container.decode([String: Any].self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyName = try container.decode(String.self, forKey: .companyName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyCin = try container.decode(String.self, forKey: .companyCin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,15 +106,15 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(companyGst, forKey: .companyGst)
 
-            try? container.encode(companyCin, forKey: .companyCin)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(companyContact, forKey: .companyContact)
 
+            try? container.encodeIfPresent(address, forKey: .address)
+
             try? container.encodeIfPresent(companyName, forKey: .companyName)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encode(companyCin, forKey: .companyCin)
         }
     }
 }
@@ -128,42 +128,42 @@ public extension PlatformClient.ApplicationClient.Order {
     class CompanyDetails: Codable {
         public var companyGst: String?
 
-        public var companyCin: String?
+        public var companyId: Int?
 
         public var companyContact: ContactDetails?
 
+        public var address: [String: Any]?
+
         public var companyName: String?
 
-        public var companyId: Int?
-
-        public var address: [String: Any]?
+        public var companyCin: String?
 
         public enum CodingKeys: String, CodingKey {
             case companyGst = "company_gst"
 
-            case companyCin = "company_cin"
+            case companyId = "company_id"
 
             case companyContact = "company_contact"
 
+            case address
+
             case companyName = "company_name"
 
-            case companyId = "company_id"
-
-            case address
+            case companyCin = "company_cin"
         }
 
         public init(address: [String: Any]? = nil, companyCin: String? = nil, companyContact: ContactDetails? = nil, companyGst: String? = nil, companyId: Int? = nil, companyName: String? = nil) {
             self.companyGst = companyGst
 
-            self.companyCin = companyCin
+            self.companyId = companyId
 
             self.companyContact = companyContact
 
+            self.address = address
+
             self.companyName = companyName
 
-            self.companyId = companyId
-
-            self.address = address
+            self.companyCin = companyCin
         }
 
         required public init(from decoder: Decoder) throws {
@@ -171,30 +171,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 companyGst = try container.decode(String.self, forKey: .companyGst)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyCin = try container.decode(String.self, forKey: .companyCin)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyContact = try container.decode(ContactDetails.self, forKey: .companyContact)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                companyName = try container.decode(String.self, forKey: .companyName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +186,31 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                companyContact = try container.decode(ContactDetails.self, forKey: .companyContact)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 address = try container.decode([String: Any].self, forKey: .address)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyName = try container.decode(String.self, forKey: .companyName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                companyCin = try container.decode(String.self, forKey: .companyCin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,15 +223,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(companyGst, forKey: .companyGst)
 
-            try? container.encode(companyCin, forKey: .companyCin)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(companyContact, forKey: .companyContact)
 
+            try? container.encodeIfPresent(address, forKey: .address)
+
             try? container.encodeIfPresent(companyName, forKey: .companyName)
 
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encode(companyCin, forKey: .companyCin)
         }
     }
 }
