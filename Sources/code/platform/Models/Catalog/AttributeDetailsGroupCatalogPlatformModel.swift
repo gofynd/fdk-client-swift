@@ -15,13 +15,13 @@ public extension PlatformClient.Catalog {
 
         public var key: String?
 
-        public var name: String
-
         public var slug: String?
 
-        public var logo: String?
+        public var name: String
 
         public var priority: Int
+
+        public var logo: String?
 
         public var unit: String?
 
@@ -32,13 +32,13 @@ public extension PlatformClient.Catalog {
 
             case key
 
-            case name
-
             case slug
 
-            case logo
+            case name
 
             case priority
+
+            case logo
 
             case unit
         }
@@ -50,13 +50,13 @@ public extension PlatformClient.Catalog {
 
             self.key = key
 
-            self.name = name
-
             self.slug = slug
 
-            self.logo = logo
+            self.name = name
 
             self.priority = priority
+
+            self.logo = logo
 
             self.unit = unit
         }
@@ -76,8 +76,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 slug = try container.decode(String.self, forKey: .slug)
 
@@ -86,6 +84,10 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode(String.self, forKey: .name)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -93,8 +95,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 unit = try container.decode(String.self, forKey: .unit)
@@ -114,13 +114,13 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }
@@ -140,13 +140,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var key: String?
 
-        public var name: String
-
         public var slug: String?
 
-        public var logo: String?
+        public var name: String
 
         public var priority: Int
+
+        public var logo: String?
 
         public var unit: String?
 
@@ -157,13 +157,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case key
 
-            case name
-
             case slug
 
-            case logo
+            case name
 
             case priority
+
+            case logo
 
             case unit
         }
@@ -175,13 +175,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.key = key
 
-            self.name = name
-
             self.slug = slug
 
-            self.logo = logo
+            self.name = name
 
             self.priority = priority
+
+            self.logo = logo
 
             self.unit = unit
         }
@@ -201,8 +201,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
-
             do {
                 slug = try container.decode(String.self, forKey: .slug)
 
@@ -211,6 +209,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode(String.self, forKey: .name)
+
+            priority = try container.decode(Int.self, forKey: .priority)
+
             do {
                 logo = try container.decode(String.self, forKey: .logo)
 
@@ -218,8 +220,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            priority = try container.decode(Int.self, forKey: .priority)
 
             do {
                 unit = try container.decode(String.self, forKey: .unit)
@@ -239,13 +239,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(key, forKey: .key)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(unit, forKey: .unit)
         }

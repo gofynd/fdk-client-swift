@@ -7,45 +7,61 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class AutocompleteItem: Codable {
+        public var logo: Media?
+
         public var action: ProductListingAction?
+
+        public var customJson: [String: Any]?
 
         public var type: String?
 
         public var display: String?
 
-        public var logo: Media?
-
-        public var customJson: [String: Any]?
-
         public enum CodingKeys: String, CodingKey {
+            case logo
+
             case action
+
+            case customJson = "_custom_json"
 
             case type
 
             case display
-
-            case logo
-
-            case customJson = "_custom_json"
         }
 
         public init(action: ProductListingAction? = nil, display: String? = nil, logo: Media? = nil, type: String? = nil, customJson: [String: Any]? = nil) {
+            self.logo = logo
+
             self.action = action
+
+            self.customJson = customJson
 
             self.type = type
 
             self.display = display
-
-            self.logo = logo
-
-            self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
+                logo = try container.decode(Media.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 action = try container.decode(ProductListingAction.self, forKey: .action)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,36 +83,20 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                logo = try container.decode(Media.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(logo, forKey: .logo)
+
             try? container.encodeIfPresent(action, forKey: .action)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(display, forKey: .display)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
-
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class CollectionItem: Codable {
         public var priority: Int?
 
-        public var action: String
-
         public var itemId: Int
+
+        public var action: String
 
         public enum CodingKeys: String, CodingKey {
             case priority
 
-            case action
-
             case itemId = "item_id"
+
+            case action
         }
 
         public init(action: String, itemId: Int, priority: Int? = nil) {
             self.priority = priority
 
-            self.action = action
-
             self.itemId = itemId
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,9 +42,9 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            action = try container.decode(String.self, forKey: .action)
-
             itemId = try container.decode(Int.self, forKey: .itemId)
+
+            action = try container.decode(String.self, forKey: .action)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -52,9 +52,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }
@@ -68,24 +68,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionItem: Codable {
         public var priority: Int?
 
-        public var action: String
-
         public var itemId: Int
+
+        public var action: String
 
         public enum CodingKeys: String, CodingKey {
             case priority
 
-            case action
-
             case itemId = "item_id"
+
+            case action
         }
 
         public init(action: String, itemId: Int, priority: Int? = nil) {
             self.priority = priority
 
-            self.action = action
-
             self.itemId = itemId
+
+            self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            action = try container.decode(String.self, forKey: .action)
-
             itemId = try container.decode(Int.self, forKey: .itemId)
+
+            action = try container.decode(String.self, forKey: .action)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -109,9 +109,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(action, forKey: .action)
-
             try? container.encodeIfPresent(itemId, forKey: .itemId)
+
+            try? container.encodeIfPresent(action, forKey: .action)
         }
     }
 }

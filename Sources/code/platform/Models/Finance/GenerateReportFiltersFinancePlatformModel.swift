@@ -9,24 +9,24 @@ public extension PlatformClient.Finance {
      */
 
     class GenerateReportFilters: Codable {
-        public var channel: [String]?
-
         public var company: [String]?
+
+        public var channel: [String]?
 
         public var brand: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case channel
-
             case company
+
+            case channel
 
             case brand
         }
 
         public init(brand: [String]? = nil, channel: [String]? = nil, company: [String]? = nil) {
-            self.channel = channel
-
             self.company = company
+
+            self.channel = channel
 
             self.brand = brand
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                channel = try container.decode([String].self, forKey: .channel)
+                company = try container.decode([String].self, forKey: .company)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                company = try container.decode([String].self, forKey: .company)
+                channel = try container.decode([String].self, forKey: .channel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(channel, forKey: .channel)
-
             try? container.encodeIfPresent(company, forKey: .company)
+
+            try? container.encodeIfPresent(channel, forKey: .channel)
 
             try? container.encodeIfPresent(brand, forKey: .brand)
         }

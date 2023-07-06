@@ -9,66 +9,66 @@ public extension ApplicationClient.Payment {
     class PollingPaymentLinkResponse: Codable {
         public var redirectUrl: String?
 
-        public var aggregatorName: String?
-
-        public var success: Bool?
-
-        public var amount: Double?
-
-        public var paymentLinkId: String?
+        public var statusCode: Int?
 
         public var orderId: String?
 
-        public var status: String?
+        public var paymentLinkId: String?
 
-        public var statusCode: Int?
+        public var aggregatorName: String?
+
+        public var amount: Double?
 
         public var message: String?
 
         public var httpStatus: Int?
 
+        public var status: String?
+
+        public var success: Bool?
+
         public enum CodingKeys: String, CodingKey {
             case redirectUrl = "redirect_url"
 
-            case aggregatorName = "aggregator_name"
-
-            case success
-
-            case amount
-
-            case paymentLinkId = "payment_link_id"
+            case statusCode = "status_code"
 
             case orderId = "order_id"
 
-            case status
+            case paymentLinkId = "payment_link_id"
 
-            case statusCode = "status_code"
+            case aggregatorName = "aggregator_name"
+
+            case amount
 
             case message
 
             case httpStatus = "http_status"
+
+            case status
+
+            case success
         }
 
         public init(aggregatorName: String? = nil, amount: Double? = nil, httpStatus: Int? = nil, message: String? = nil, orderId: String? = nil, paymentLinkId: String? = nil, redirectUrl: String? = nil, status: String? = nil, statusCode: Int? = nil, success: Bool? = nil) {
             self.redirectUrl = redirectUrl
 
-            self.aggregatorName = aggregatorName
-
-            self.success = success
-
-            self.amount = amount
-
-            self.paymentLinkId = paymentLinkId
+            self.statusCode = statusCode
 
             self.orderId = orderId
 
-            self.status = status
+            self.paymentLinkId = paymentLinkId
 
-            self.statusCode = statusCode
+            self.aggregatorName = aggregatorName
+
+            self.amount = amount
 
             self.message = message
 
             self.httpStatus = httpStatus
+
+            self.status = status
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -83,31 +83,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                success = try container.decode(Bool.self, forKey: .success)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                amount = try container.decode(Double.self, forKey: .amount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
+                statusCode = try container.decode(Int.self, forKey: .statusCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,7 +99,7 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                paymentLinkId = try container.decode(String.self, forKey: .paymentLinkId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,7 +107,15 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                statusCode = try container.decode(Int.self, forKey: .statusCode)
+                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,6 +137,22 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                success = try container.decode(Bool.self, forKey: .success)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -160,23 +160,23 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(redirectUrl, forKey: .redirectUrl)
 
-            try? container.encode(aggregatorName, forKey: .aggregatorName)
-
-            try? container.encode(success, forKey: .success)
-
-            try? container.encode(amount, forKey: .amount)
-
-            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
+            try? container.encode(statusCode, forKey: .statusCode)
 
             try? container.encode(orderId, forKey: .orderId)
 
-            try? container.encode(status, forKey: .status)
+            try? container.encode(paymentLinkId, forKey: .paymentLinkId)
 
-            try? container.encode(statusCode, forKey: .statusCode)
+            try? container.encode(aggregatorName, forKey: .aggregatorName)
+
+            try? container.encode(amount, forKey: .amount)
 
             try? container.encode(message, forKey: .message)
 
             try? container.encode(httpStatus, forKey: .httpStatus)
+
+            try? container.encode(status, forKey: .status)
+
+            try? container.encode(success, forKey: .success)
         }
     }
 }

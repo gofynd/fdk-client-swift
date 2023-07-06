@@ -13,9 +13,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var articleId: String
 
-        public var meta: [String: Any]?
-
         public var type: String?
+
+        public var meta: [String: Any]?
 
         public var code: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case articleId = "article_id"
 
-            case meta
-
             case type
+
+            case meta
 
             case code
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.articleId = articleId
 
-            self.meta = meta
-
             self.type = type
+
+            self.meta = meta
 
             self.code = code
         }
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             articleId = try container.decode(String.self, forKey: .articleId)
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,9 +88,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(articleId, forKey: .articleId)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(code, forKey: .code)
         }

@@ -9,36 +9,44 @@ public extension PlatformClient.Catalog {
      */
 
     class ProductBrand: Codable {
+        public var logo: Media?
+
         public var uid: Int?
 
         public var name: String?
 
         public var action: Action?
 
-        public var logo: Media?
-
         public enum CodingKeys: String, CodingKey {
+            case logo
+
             case uid
 
             case name
 
             case action
-
-            case logo
         }
 
         public init(action: Action? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
+            self.logo = logo
+
             self.uid = uid
 
             self.name = name
 
             self.action = action
-
-            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                logo = try container.decode(Media.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -63,26 +71,18 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                logo = try container.decode(Media.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }
@@ -94,36 +94,44 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class ProductBrand: Codable {
+        public var logo: Media?
+
         public var uid: Int?
 
         public var name: String?
 
         public var action: Action?
 
-        public var logo: Media?
-
         public enum CodingKeys: String, CodingKey {
+            case logo
+
             case uid
 
             case name
 
             case action
-
-            case logo
         }
 
         public init(action: Action? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil) {
+            self.logo = logo
+
             self.uid = uid
 
             self.name = name
 
             self.action = action
-
-            self.logo = logo
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                logo = try container.decode(Media.self, forKey: .logo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 uid = try container.decode(Int.self, forKey: .uid)
@@ -148,26 +156,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                logo = try container.decode(Media.self, forKey: .logo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+
+            try? container.encodeIfPresent(logo, forKey: .logo)
 
             try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(action, forKey: .action)
-
-            try? container.encodeIfPresent(logo, forKey: .logo)
         }
     }
 }

@@ -9,9 +9,9 @@ public extension ApplicationClient.Catalog {
     class ProductGroupPrice: Codable {
         public var maxEffective: Double?
 
-        public var minEffective: Double?
-
         public var currency: String?
+
+        public var minEffective: Double?
 
         public var maxMarked: Double?
 
@@ -20,9 +20,9 @@ public extension ApplicationClient.Catalog {
         public enum CodingKeys: String, CodingKey {
             case maxEffective = "max_effective"
 
-            case minEffective = "min_effective"
-
             case currency
+
+            case minEffective = "min_effective"
 
             case maxMarked = "max_marked"
 
@@ -32,9 +32,9 @@ public extension ApplicationClient.Catalog {
         public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
             self.maxEffective = maxEffective
 
-            self.minEffective = minEffective
-
             self.currency = currency
+
+            self.minEffective = minEffective
 
             self.maxMarked = maxMarked
 
@@ -53,7 +53,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                minEffective = try container.decode(Double.self, forKey: .minEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,9 +90,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
 
-            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
 
             try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
 

@@ -9,63 +9,63 @@ public extension PlatformClient.Finance {
      */
 
     class CnGenerateReportItems: Codable {
-        public var shipmentId: String?
-
-        public var status: String?
-
-        public var totalAmount: Int?
-
-        public var creditNoteNumber: String?
-
-        public var expiryDate: String?
-
         public var invoiceNumber: String?
-
-        public var dateIssued: String?
 
         public var orderId: String?
 
-        public enum CodingKeys: String, CodingKey {
-            case shipmentId = "shipment_id"
+        public var totalAmount: Int?
 
-            case status
+        public var dateIssued: String?
+
+        public var shipmentId: String?
+
+        public var expiryDate: String?
+
+        public var status: String?
+
+        public var creditNoteNumber: String?
+
+        public enum CodingKeys: String, CodingKey {
+            case invoiceNumber = "invoice_number"
+
+            case orderId = "order_id"
 
             case totalAmount = "total_amount"
 
-            case creditNoteNumber = "credit_note_number"
+            case dateIssued = "date_issued"
+
+            case shipmentId = "shipment_id"
 
             case expiryDate = "expiry_date"
 
-            case invoiceNumber = "invoice_number"
+            case status
 
-            case dateIssued = "date_issued"
-
-            case orderId = "order_id"
+            case creditNoteNumber = "credit_note_number"
         }
 
         public init(creditNoteNumber: String? = nil, dateIssued: String? = nil, expiryDate: String? = nil, invoiceNumber: String? = nil, orderId: String? = nil, shipmentId: String? = nil, status: String? = nil, totalAmount: Int? = nil) {
-            self.shipmentId = shipmentId
+            self.invoiceNumber = invoiceNumber
 
-            self.status = status
+            self.orderId = orderId
 
             self.totalAmount = totalAmount
 
-            self.creditNoteNumber = creditNoteNumber
+            self.dateIssued = dateIssued
+
+            self.shipmentId = shipmentId
 
             self.expiryDate = expiryDate
 
-            self.invoiceNumber = invoiceNumber
+            self.status = status
 
-            self.dateIssued = dateIssued
-
-            self.orderId = orderId
+            self.creditNoteNumber = creditNoteNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -73,7 +73,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,7 +89,15 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                creditNoteNumber = try container.decode(String.self, forKey: .creditNoteNumber)
+                dateIssued = try container.decode(String.self, forKey: .dateIssued)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +113,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,15 +121,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                dateIssued = try container.decode(String.self, forKey: .dateIssued)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                creditNoteNumber = try container.decode(String.self, forKey: .creditNoteNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,21 +132,21 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
 
-            try? container.encodeIfPresent(creditNoteNumber, forKey: .creditNoteNumber)
+            try? container.encodeIfPresent(dateIssued, forKey: .dateIssued)
+
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(expiryDate, forKey: .expiryDate)
 
-            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
+            try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(dateIssued, forKey: .dateIssued)
-
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(creditNoteNumber, forKey: .creditNoteNumber)
         }
     }
 }

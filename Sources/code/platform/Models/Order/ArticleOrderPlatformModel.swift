@@ -9,122 +9,102 @@ public extension PlatformClient.Order {
      */
 
     class Article: Codable {
-        public var uid: String
+        public var isSet: Bool?
 
         public var sellerIdentifier: String
 
-        public var returnConfig: ReturnConfig?
-
-        public var dimensions: Dimensions?
-
-        public var isSet: Bool?
-
-        public var size: String
-
-        public var identifiers: [String: Any]
-
         public var childDetails: [String: Any]?
 
-        public var currency: [String: Any]?
-
-        public var rawMeta: String?
+        public var uid: String
 
         public var code: String?
 
-        public var weight: Weight?
+        public var currency: [String: Any]?
 
         public var aSet: [String: Any]?
 
-        public var id: String
-
         public var espModified: Bool?
 
+        public var dimensions: Dimensions?
+
+        public var weight: Weight?
+
+        public var identifiers: [String: Any]
+
+        public var id: String
+
+        public var returnConfig: ReturnConfig?
+
+        public var size: String
+
+        public var rawMeta: String?
+
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case isSet = "is_set"
 
             case sellerIdentifier = "seller_identifier"
 
-            case returnConfig = "return_config"
-
-            case dimensions
-
-            case isSet = "is_set"
-
-            case size
-
-            case identifiers
-
             case childDetails = "child_details"
 
-            case currency
-
-            case rawMeta = "raw_meta"
+            case uid
 
             case code
 
-            case weight
+            case currency
 
             case aSet = "a_set"
 
+            case espModified = "esp_modified"
+
+            case dimensions
+
+            case weight
+
+            case identifiers
+
             case id = "_id"
 
-            case espModified = "esp_modified"
+            case returnConfig = "return_config"
+
+            case size
+
+            case rawMeta = "raw_meta"
         }
 
         public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, uid: String, weight: Weight? = nil, id: String) {
-            self.uid = uid
+            self.isSet = isSet
 
             self.sellerIdentifier = sellerIdentifier
 
-            self.returnConfig = returnConfig
-
-            self.dimensions = dimensions
-
-            self.isSet = isSet
-
-            self.size = size
-
-            self.identifiers = identifiers
-
             self.childDetails = childDetails
 
-            self.currency = currency
-
-            self.rawMeta = rawMeta
+            self.uid = uid
 
             self.code = code
 
-            self.weight = weight
+            self.currency = currency
 
             self.aSet = aSet
 
+            self.espModified = espModified
+
+            self.dimensions = dimensions
+
+            self.weight = weight
+
+            self.identifiers = identifiers
+
             self.id = id
 
-            self.espModified = espModified
+            self.returnConfig = returnConfig
+
+            self.size = size
+
+            self.rawMeta = rawMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            uid = try container.decode(String.self, forKey: .uid)
-
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
-            do {
-                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dimensions = try container.decode(Dimensions.self, forKey: .dimensions)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 isSet = try container.decode(Bool.self, forKey: .isSet)
@@ -134,12 +114,20 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            size = try container.decode(String.self, forKey: .size)
-
-            identifiers = try container.decode([String: Any].self, forKey: .identifiers)
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
                 childDetails = try container.decode([String: Any].self, forKey: .childDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            uid = try container.decode(String.self, forKey: .uid)
+
+            do {
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -155,7 +143,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                rawMeta = try container.decode(String.self, forKey: .rawMeta)
+                aSet = try container.decode([String: Any].self, forKey: .aSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,7 +151,15 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                espModified = try container.decode(Bool.self, forKey: .espModified)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dimensions = try container.decode(Dimensions.self, forKey: .dimensions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -178,18 +174,22 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            identifiers = try container.decode([String: Any].self, forKey: .identifiers)
+
+            id = try container.decode(String.self, forKey: .id)
+
             do {
-                aSet = try container.decode([String: Any].self, forKey: .aSet)
+                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            id = try container.decode(String.self, forKey: .id)
+            size = try container.decode(String.self, forKey: .size)
 
             do {
-                espModified = try container.decode(Bool.self, forKey: .espModified)
+                rawMeta = try container.decode(String.self, forKey: .rawMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -200,35 +200,35 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
-            try? container.encode(returnConfig, forKey: .returnConfig)
-
-            try? container.encodeIfPresent(dimensions, forKey: .dimensions)
-
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
             try? container.encode(childDetails, forKey: .childDetails)
 
-            try? container.encode(currency, forKey: .currency)
-
-            try? container.encode(rawMeta, forKey: .rawMeta)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(weight, forKey: .weight)
+            try? container.encode(currency, forKey: .currency)
 
             try? container.encode(aSet, forKey: .aSet)
 
+            try? container.encode(espModified, forKey: .espModified)
+
+            try? container.encodeIfPresent(dimensions, forKey: .dimensions)
+
+            try? container.encodeIfPresent(weight, forKey: .weight)
+
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encode(espModified, forKey: .espModified)
+            try? container.encode(returnConfig, forKey: .returnConfig)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encode(rawMeta, forKey: .rawMeta)
         }
     }
 }
@@ -240,122 +240,102 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Article: Codable {
-        public var uid: String
+        public var isSet: Bool?
 
         public var sellerIdentifier: String
 
-        public var returnConfig: ReturnConfig?
-
-        public var dimensions: Dimensions?
-
-        public var isSet: Bool?
-
-        public var size: String
-
-        public var identifiers: [String: Any]
-
         public var childDetails: [String: Any]?
 
-        public var currency: [String: Any]?
-
-        public var rawMeta: String?
+        public var uid: String
 
         public var code: String?
 
-        public var weight: Weight?
+        public var currency: [String: Any]?
 
         public var aSet: [String: Any]?
 
-        public var id: String
-
         public var espModified: Bool?
 
+        public var dimensions: Dimensions?
+
+        public var weight: Weight?
+
+        public var identifiers: [String: Any]
+
+        public var id: String
+
+        public var returnConfig: ReturnConfig?
+
+        public var size: String
+
+        public var rawMeta: String?
+
         public enum CodingKeys: String, CodingKey {
-            case uid
+            case isSet = "is_set"
 
             case sellerIdentifier = "seller_identifier"
 
-            case returnConfig = "return_config"
-
-            case dimensions
-
-            case isSet = "is_set"
-
-            case size
-
-            case identifiers
-
             case childDetails = "child_details"
 
-            case currency
-
-            case rawMeta = "raw_meta"
+            case uid
 
             case code
 
-            case weight
+            case currency
 
             case aSet = "a_set"
 
+            case espModified = "esp_modified"
+
+            case dimensions
+
+            case weight
+
+            case identifiers
+
             case id = "_id"
 
-            case espModified = "esp_modified"
+            case returnConfig = "return_config"
+
+            case size
+
+            case rawMeta = "raw_meta"
         }
 
         public init(aSet: [String: Any]? = nil, childDetails: [String: Any]? = nil, code: String? = nil, currency: [String: Any]? = nil, dimensions: Dimensions? = nil, espModified: Bool? = nil, identifiers: [String: Any], isSet: Bool? = nil, rawMeta: String? = nil, returnConfig: ReturnConfig? = nil, sellerIdentifier: String, size: String, uid: String, weight: Weight? = nil, id: String) {
-            self.uid = uid
+            self.isSet = isSet
 
             self.sellerIdentifier = sellerIdentifier
 
-            self.returnConfig = returnConfig
-
-            self.dimensions = dimensions
-
-            self.isSet = isSet
-
-            self.size = size
-
-            self.identifiers = identifiers
-
             self.childDetails = childDetails
 
-            self.currency = currency
-
-            self.rawMeta = rawMeta
+            self.uid = uid
 
             self.code = code
 
-            self.weight = weight
+            self.currency = currency
 
             self.aSet = aSet
 
+            self.espModified = espModified
+
+            self.dimensions = dimensions
+
+            self.weight = weight
+
+            self.identifiers = identifiers
+
             self.id = id
 
-            self.espModified = espModified
+            self.returnConfig = returnConfig
+
+            self.size = size
+
+            self.rawMeta = rawMeta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            uid = try container.decode(String.self, forKey: .uid)
-
-            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
-
-            do {
-                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                dimensions = try container.decode(Dimensions.self, forKey: .dimensions)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 isSet = try container.decode(Bool.self, forKey: .isSet)
@@ -365,12 +345,20 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            size = try container.decode(String.self, forKey: .size)
-
-            identifiers = try container.decode([String: Any].self, forKey: .identifiers)
+            sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
 
             do {
                 childDetails = try container.decode([String: Any].self, forKey: .childDetails)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            uid = try container.decode(String.self, forKey: .uid)
+
+            do {
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -386,7 +374,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                rawMeta = try container.decode(String.self, forKey: .rawMeta)
+                aSet = try container.decode([String: Any].self, forKey: .aSet)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -394,7 +382,15 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                espModified = try container.decode(Bool.self, forKey: .espModified)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                dimensions = try container.decode(Dimensions.self, forKey: .dimensions)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -409,18 +405,22 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            identifiers = try container.decode([String: Any].self, forKey: .identifiers)
+
+            id = try container.decode(String.self, forKey: .id)
+
             do {
-                aSet = try container.decode([String: Any].self, forKey: .aSet)
+                returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            id = try container.decode(String.self, forKey: .id)
+            size = try container.decode(String.self, forKey: .size)
 
             do {
-                espModified = try container.decode(Bool.self, forKey: .espModified)
+                rawMeta = try container.decode(String.self, forKey: .rawMeta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -431,35 +431,35 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(isSet, forKey: .isSet)
 
             try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
 
-            try? container.encode(returnConfig, forKey: .returnConfig)
-
-            try? container.encodeIfPresent(dimensions, forKey: .dimensions)
-
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
             try? container.encode(childDetails, forKey: .childDetails)
 
-            try? container.encode(currency, forKey: .currency)
-
-            try? container.encode(rawMeta, forKey: .rawMeta)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(weight, forKey: .weight)
+            try? container.encode(currency, forKey: .currency)
 
             try? container.encode(aSet, forKey: .aSet)
 
+            try? container.encode(espModified, forKey: .espModified)
+
+            try? container.encodeIfPresent(dimensions, forKey: .dimensions)
+
+            try? container.encodeIfPresent(weight, forKey: .weight)
+
+            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+
             try? container.encodeIfPresent(id, forKey: .id)
 
-            try? container.encode(espModified, forKey: .espModified)
+            try? container.encode(returnConfig, forKey: .returnConfig)
+
+            try? container.encodeIfPresent(size, forKey: .size)
+
+            try? container.encode(rawMeta, forKey: .rawMeta)
         }
     }
 }

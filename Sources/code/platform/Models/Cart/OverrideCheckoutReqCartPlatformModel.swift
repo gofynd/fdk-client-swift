@@ -9,82 +9,90 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class OverrideCheckoutReq: Codable {
-        public var paymentIdentifier: String
+        public var orderingStore: Int?
 
-        public var cartItems: [OverrideCartItem]
+        public var currencyCode: String
+
+        public var merchantCode: String
 
         public var shippingAddress: [String: Any]?
 
-        public var orderingStore: Int?
+        public var billingAddress: [String: Any]?
 
         public var aggregator: String
 
         public var cartId: String
 
-        public var currencyCode: String
+        public var orderType: String
 
         public var paymentMode: String
 
-        public var billingAddress: [String: Any]?
+        public var paymentIdentifier: String
 
-        public var merchantCode: String
-
-        public var orderType: String
+        public var cartItems: [OverrideCartItem]
 
         public enum CodingKeys: String, CodingKey {
-            case paymentIdentifier = "payment_identifier"
+            case orderingStore = "ordering_store"
 
-            case cartItems = "cart_items"
+            case currencyCode = "currency_code"
+
+            case merchantCode = "merchant_code"
 
             case shippingAddress = "shipping_address"
 
-            case orderingStore = "ordering_store"
+            case billingAddress = "billing_address"
 
             case aggregator
 
             case cartId = "cart_id"
 
-            case currencyCode = "currency_code"
+            case orderType = "order_type"
 
             case paymentMode = "payment_mode"
 
-            case billingAddress = "billing_address"
+            case paymentIdentifier = "payment_identifier"
 
-            case merchantCode = "merchant_code"
-
-            case orderType = "order_type"
+            case cartItems = "cart_items"
         }
 
         public init(aggregator: String, billingAddress: [String: Any]? = nil, cartId: String, cartItems: [OverrideCartItem], currencyCode: String, merchantCode: String, orderingStore: Int? = nil, orderType: String, paymentIdentifier: String, paymentMode: String, shippingAddress: [String: Any]? = nil) {
-            self.paymentIdentifier = paymentIdentifier
+            self.orderingStore = orderingStore
 
-            self.cartItems = cartItems
+            self.currencyCode = currencyCode
+
+            self.merchantCode = merchantCode
 
             self.shippingAddress = shippingAddress
 
-            self.orderingStore = orderingStore
+            self.billingAddress = billingAddress
 
             self.aggregator = aggregator
 
             self.cartId = cartId
 
-            self.currencyCode = currencyCode
+            self.orderType = orderType
 
             self.paymentMode = paymentMode
 
-            self.billingAddress = billingAddress
+            self.paymentIdentifier = paymentIdentifier
 
-            self.merchantCode = merchantCode
-
-            self.orderType = orderType
+            self.cartItems = cartItems
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
+            do {
+                orderingStore = try container.decode(Int.self, forKey: .orderingStore)
 
-            cartItems = try container.decode([OverrideCartItem].self, forKey: .cartItems)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            currencyCode = try container.decode(String.self, forKey: .currencyCode)
+
+            merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
             do {
                 shippingAddress = try container.decode([String: Any].self, forKey: .shippingAddress)
@@ -95,7 +103,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                orderingStore = try container.decode(Int.self, forKey: .orderingStore)
+                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,47 +114,39 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             cartId = try container.decode(String.self, forKey: .cartId)
 
-            currencyCode = try container.decode(String.self, forKey: .currencyCode)
+            orderType = try container.decode(String.self, forKey: .orderType)
 
             paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
-            do {
-                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
+            paymentIdentifier = try container.decode(String.self, forKey: .paymentIdentifier)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            merchantCode = try container.decode(String.self, forKey: .merchantCode)
-
-            orderType = try container.decode(String.self, forKey: .orderType)
+            cartItems = try container.decode([OverrideCartItem].self, forKey: .cartItems)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
+            try? container.encode(orderingStore, forKey: .orderingStore)
 
-            try? container.encodeIfPresent(cartItems, forKey: .cartItems)
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
+            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
             try? container.encodeIfPresent(shippingAddress, forKey: .shippingAddress)
 
-            try? container.encode(orderingStore, forKey: .orderingStore)
+            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+            try? container.encode(paymentIdentifier, forKey: .paymentIdentifier)
 
-            try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
-
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encodeIfPresent(cartItems, forKey: .cartItems)
         }
     }
 }
