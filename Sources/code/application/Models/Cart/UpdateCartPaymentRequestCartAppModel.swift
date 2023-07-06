@@ -9,9 +9,9 @@ public extension ApplicationClient.Cart {
     class UpdateCartPaymentRequest: Codable {
         public var paymentMode: String?
 
-        public var aggregatorName: String?
-
         public var merchantCode: String?
+
+        public var aggregatorName: String?
 
         public var addressId: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case paymentMode = "payment_mode"
 
-            case aggregatorName = "aggregator_name"
-
             case merchantCode = "merchant_code"
+
+            case aggregatorName = "aggregator_name"
 
             case addressId = "address_id"
 
@@ -36,9 +36,9 @@ public extension ApplicationClient.Cart {
         public init(addressId: String? = nil, aggregatorName: String? = nil, id: String? = nil, merchantCode: String? = nil, paymentIdentifier: String? = nil, paymentMode: String? = nil) {
             self.paymentMode = paymentMode
 
-            self.aggregatorName = aggregatorName
-
             self.merchantCode = merchantCode
+
+            self.aggregatorName = aggregatorName
 
             self.addressId = addressId
 
@@ -59,7 +59,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
+                merchantCode = try container.decode(String.self, forKey: .merchantCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +67,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                merchantCode = try container.decode(String.self, forKey: .merchantCode)
+                aggregatorName = try container.decode(String.self, forKey: .aggregatorName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,9 +104,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
-
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
+
+            try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
             try? container.encodeIfPresent(addressId, forKey: .addressId)
 

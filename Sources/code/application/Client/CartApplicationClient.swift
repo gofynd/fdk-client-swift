@@ -63,6 +63,8 @@ public extension ApplicationClient {
 
             ulrs["getLadderOffers"] = config.domain.appendAsPath("/service/application/cart/v1.0/available-ladder-prices")
 
+            ulrs["checkoutCartV2"] = config.domain.appendAsPath("/service/application/cart/v2.0/checkout")
+
             self.relativeUrls = ulrs
         }
 
@@ -201,6 +203,7 @@ public extension ApplicationClient {
             b: Bool?,
             areaCode: String?,
             buyNow: Bool?,
+            id: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -220,6 +223,10 @@ public extension ApplicationClient {
 
             if let value = buyNow {
                 xQuery["buy_now"] = value
+            }
+
+            if let value = id {
+                xQuery["id"] = value
             }
 
             let fullUrl = relativeUrls["addItems"] ?? ""
@@ -326,7 +333,7 @@ public extension ApplicationClient {
          * Description: Use this API to delete the cart.
          **/
         public func deleteCart(
-            id: Int?,
+            id: String?,
 
             onResponse: @escaping (_ response: DeleteCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1114,6 +1121,10 @@ public extension ApplicationClient {
             paymentIdentifier: String?,
             aggregatorName: String?,
             merchantCode: String?,
+            iin: String?,
+            network: String?,
+            type: String?,
+            cardId: String?,
 
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -1145,6 +1156,22 @@ public extension ApplicationClient {
 
             if let value = merchantCode {
                 xQuery["merchant_code"] = value
+            }
+
+            if let value = iin {
+                xQuery["iin"] = value
+            }
+
+            if let value = network {
+                xQuery["network"] = value
+            }
+
+            if let value = type {
+                xQuery["type"] = value
+            }
+
+            if let value = cardId {
+                xQuery["card_id"] = value
             }
 
             let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
@@ -1482,6 +1509,7 @@ public extension ApplicationClient {
             slug: String?,
             pageSize: Int?,
             promotionGroup: String?,
+            storeId: Int?,
 
             onResponse: @escaping (_ response: PromotionOffersResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1497,6 +1525,10 @@ public extension ApplicationClient {
 
             if let value = promotionGroup {
                 xQuery["promotion_group"] = value
+            }
+
+            if let value = storeId {
+                xQuery["store_id"] = value
             }
 
             let fullUrl = relativeUrls["getPromotionOffers"] ?? ""
@@ -1578,6 +1610,53 @@ public extension ApplicationClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(LadderPriceOffers.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Checkout all items in the cart
+         * Description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+         **/
+        public func checkoutCartV2(
+            buyNow: Bool?,
+            body: CartCheckoutDetailV2Request,
+            onResponse: @escaping (_ response: CartCheckoutResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = buyNow {
+                xQuery["buy_now"] = value
+            }
+
+            let fullUrl = relativeUrls["checkoutCartV2"] ?? ""
+
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "post",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders: [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CartCheckoutResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {

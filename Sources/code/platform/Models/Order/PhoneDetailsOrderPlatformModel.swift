@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class PhoneDetails: Codable {
-        public var mobileNumber: String?
+        public var number: String?
 
         public var countryCode: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case mobileNumber = "mobile_number"
+            case number
 
             case countryCode = "country_code"
         }
 
-        public init(countryCode: Int? = nil, mobileNumber: String? = nil) {
-            self.mobileNumber = mobileNumber
+        public init(countryCode: Int? = nil, number: String? = nil) {
+            self.number = number
 
             self.countryCode = countryCode
         }
@@ -29,7 +29,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
+                number = try container.decode(String.self, forKey: .number)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,7 +48,7 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
+            try? container.encodeIfPresent(number, forKey: .number)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
         }
@@ -62,18 +62,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PhoneDetails: Codable {
-        public var mobileNumber: String?
+        public var number: String?
 
         public var countryCode: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case mobileNumber = "mobile_number"
+            case number
 
             case countryCode = "country_code"
         }
 
-        public init(countryCode: Int? = nil, mobileNumber: String? = nil) {
-            self.mobileNumber = mobileNumber
+        public init(countryCode: Int? = nil, number: String? = nil) {
+            self.number = number
 
             self.countryCode = countryCode
         }
@@ -82,7 +82,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                mobileNumber = try container.decode(String.self, forKey: .mobileNumber)
+                number = try container.decode(String.self, forKey: .number)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,7 +101,7 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(mobileNumber, forKey: .mobileNumber)
+            try? container.encodeIfPresent(number, forKey: .number)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
         }

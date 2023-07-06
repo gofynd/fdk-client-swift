@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class StoreEinvoice: Codable {
         public var password: String?
 
-        public var user: String?
+        public var enabled: Bool
 
         public var username: String?
 
-        public var enabled: Bool
+        public var user: String?
 
         public enum CodingKeys: String, CodingKey {
             case password
 
-            case user
+            case enabled
 
             case username
 
-            case enabled
+            case user
         }
 
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
             self.password = password
 
-            self.user = user
+            self.enabled = enabled
 
             self.username = username
 
-            self.enabled = enabled
+            self.user = user
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,13 +48,7 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                user = try container.decode(String.self, forKey: .user)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            enabled = try container.decode(Bool.self, forKey: .enabled)
 
             do {
                 username = try container.decode(String.self, forKey: .username)
@@ -64,7 +58,13 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            enabled = try container.decode(Bool.self, forKey: .enabled)
+            do {
+                user = try container.decode(String.self, forKey: .user)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -72,11 +72,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(password, forKey: .password)
 
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(user, forKey: .user)
         }
     }
 }
@@ -90,30 +90,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class StoreEinvoice: Codable {
         public var password: String?
 
-        public var user: String?
+        public var enabled: Bool
 
         public var username: String?
 
-        public var enabled: Bool
+        public var user: String?
 
         public enum CodingKeys: String, CodingKey {
             case password
 
-            case user
+            case enabled
 
             case username
 
-            case enabled
+            case user
         }
 
         public init(enabled: Bool, password: String? = nil, user: String? = nil, username: String? = nil) {
             self.password = password
 
-            self.user = user
+            self.enabled = enabled
 
             self.username = username
 
-            self.enabled = enabled
+            self.user = user
         }
 
         required public init(from decoder: Decoder) throws {
@@ -127,13 +127,7 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                user = try container.decode(String.self, forKey: .user)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            enabled = try container.decode(Bool.self, forKey: .enabled)
 
             do {
                 username = try container.decode(String.self, forKey: .username)
@@ -143,7 +137,13 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            enabled = try container.decode(Bool.self, forKey: .enabled)
+            do {
+                user = try container.decode(String.self, forKey: .user)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -151,11 +151,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(password, forKey: .password)
 
-            try? container.encodeIfPresent(user, forKey: .user)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(username, forKey: .username)
 
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(user, forKey: .user)
         }
     }
 }

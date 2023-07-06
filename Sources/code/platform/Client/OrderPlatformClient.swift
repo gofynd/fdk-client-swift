@@ -19,19 +19,16 @@ public extension PlatformClient {
             lane: String?,
             bagStatus: String?,
             statusOverrideLane: Bool?,
+            timeToDispatch: String?,
             searchType: String?,
             searchValue: String?,
-            searchId: String?,
             fromDate: String?,
             toDate: String?,
             dpIds: String?,
-            orderingCompanyId: String?,
             stores: String?,
-            salesChannel: String?,
-            requestByExt: String?,
+            salesChannels: String?,
             pageNo: Int?,
             pageSize: Int?,
-            isPrioritySort: Bool?,
             fetchActiveShipment: Bool?,
             excludeLockedShipments: Bool?,
             paymentMethods: String?,
@@ -40,6 +37,7 @@ public extension PlatformClient {
             customMeta: String?,
             orderingChannel: String?,
             companyAffiliateTag: String?,
+            platformUserId: String?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -57,16 +55,16 @@ public extension PlatformClient {
                 xQuery["status_override_lane"] = value
             }
 
+            if let value = timeToDispatch {
+                xQuery["time_to_dispatch"] = value
+            }
+
             if let value = searchType {
                 xQuery["search_type"] = value
             }
 
             if let value = searchValue {
                 xQuery["search_value"] = value
-            }
-
-            if let value = searchId {
-                xQuery["search_id"] = value
             }
 
             if let value = fromDate {
@@ -81,20 +79,12 @@ public extension PlatformClient {
                 xQuery["dp_ids"] = value
             }
 
-            if let value = orderingCompanyId {
-                xQuery["ordering_company_id"] = value
-            }
-
             if let value = stores {
                 xQuery["stores"] = value
             }
 
-            if let value = salesChannel {
-                xQuery["sales_channel"] = value
-            }
-
-            if let value = requestByExt {
-                xQuery["request_by_ext"] = value
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
             }
 
             if let value = pageNo {
@@ -103,10 +93,6 @@ public extension PlatformClient {
 
             if let value = pageSize {
                 xQuery["page_size"] = value
-            }
-
-            if let value = isPrioritySort {
-                xQuery["is_priority_sort"] = value
             }
 
             if let value = fetchActiveShipment {
@@ -139,6 +125,10 @@ public extension PlatformClient {
 
             if let value = companyAffiliateTag {
                 xQuery["company_affiliate_tag"] = value
+            }
+
+            if let value = platformUserId {
+                xQuery["platform_user_id"] = value
             }
 
             PlatformAPIClient.execute(
@@ -178,8 +168,6 @@ public extension PlatformClient {
         public func getShipmentById(
             channelShipmentId: String?,
             shipmentId: String?,
-            orderingCompanyId: String?,
-            requestByExt: String?,
 
             onResponse: @escaping (_ response: ShipmentInfoResponse?, _ error: FDKError?) -> Void
         ) {
@@ -191,14 +179,6 @@ public extension PlatformClient {
 
             if let value = shipmentId {
                 xQuery["shipment_id"] = value
-            }
-
-            if let value = orderingCompanyId {
-                xQuery["ordering_company_id"] = value
-            }
-
-            if let value = requestByExt {
-                xQuery["request_by_ext"] = value
             }
 
             PlatformAPIClient.execute(
@@ -238,7 +218,7 @@ public extension PlatformClient {
         public func getOrderById(
             orderId: String,
 
-            onResponse: @escaping (_ response: ShipmentDetailsResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: OrderDetailsResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
@@ -260,7 +240,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(ShipmentDetailsResponse.self, from: data)
+                        let response = Utility.decode(OrderDetailsResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -285,9 +265,14 @@ public extension PlatformClient {
             toDate: String?,
             dpIds: String?,
             stores: String?,
-            salesChannel: String?,
+            salesChannels: String?,
             paymentMode: String?,
             bagStatus: String?,
+            searchType: String?,
+            searchValue: String?,
+            tags: String?,
+            timeToDispatch: String?,
+            paymentMethods: String?,
 
             onResponse: @escaping (_ response: LaneConfigResponse?, _ error: FDKError?) -> Void
         ) {
@@ -317,8 +302,8 @@ public extension PlatformClient {
                 xQuery["stores"] = value
             }
 
-            if let value = salesChannel {
-                xQuery["sales_channel"] = value
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
             }
 
             if let value = paymentMode {
@@ -327,6 +312,26 @@ public extension PlatformClient {
 
             if let value = bagStatus {
                 xQuery["bag_status"] = value
+            }
+
+            if let value = searchType {
+                xQuery["search_type"] = value
+            }
+
+            if let value = searchValue {
+                xQuery["search_value"] = value
+            }
+
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+
+            if let value = timeToDispatch {
+                xQuery["time_to_dispatch"] = value
+            }
+
+            if let value = paymentMethods {
+                xQuery["payment_methods"] = value
             }
 
             PlatformAPIClient.execute(
@@ -375,7 +380,7 @@ public extension PlatformClient {
             toDate: String?,
             dpIds: String?,
             stores: String?,
-            salesChannel: String?,
+            salesChannels: String?,
             pageNo: Int?,
             pageSize: Int?,
             isPrioritySort: Bool?,
@@ -429,8 +434,8 @@ public extension PlatformClient {
                 xQuery["stores"] = value
             }
 
-            if let value = salesChannel {
-                xQuery["sales_channel"] = value
+            if let value = salesChannels {
+                xQuery["sales_channels"] = value
             }
 
             if let value = pageNo {
@@ -968,7 +973,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description: update shipment lock
+         * Description: update shipment/bag lock and check status
          **/
         public func updateShipmentLock(
             body: UpdateShipmentLockPayload,
@@ -1153,8 +1158,8 @@ public extension PlatformClient {
             caller: String,
             receiver: String,
             bagId: String,
-            callingTo: String?,
             callerId: String?,
+            method: String?,
 
             onResponse: @escaping (_ response: Click2CallResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1166,12 +1171,12 @@ public extension PlatformClient {
 
             xQuery["bag_id"] = bagId
 
-            if let value = callingTo {
-                xQuery["calling_to"] = value
-            }
-
             if let value = callerId {
                 xQuery["caller_id"] = value
+            }
+
+            if let value = method {
+                xQuery["method"] = value
             }
 
             PlatformAPIClient.execute(
@@ -1206,7 +1211,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description: Update shipment status
+         * Description: This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
          **/
         public func updateShipmentStatus(
             body: UpdateShipmentStatusRequest,
@@ -1360,7 +1365,7 @@ public extension PlatformClient {
          * Description:
          **/
         public func getShipmentHistory(
-            shipmentId: Int?,
+            shipmentId: String?,
             bagId: Int?,
 
             onResponse: @escaping (_ response: ShipmentHistoryResponse?, _ error: FDKError?) -> Void
@@ -1485,47 +1490,9 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func platformManualAssignDPToShipment(
-            body: ManualAssignDPToShipment,
-            onResponse: @escaping (_ response: ManualAssignDPToShipmentResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/order-manage/v1.0/company/\(companyId)/oms/manual-place-shipment",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ManualAssignDPToShipmentResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
-         * Description:
-         **/
         public func updatePackagingDimensions(
-            body: CreateOrderPayload,
-            onResponse: @escaping (_ response: CreateOrderResponse?, _ error: FDKError?) -> Void
+            body: UpdatePackagingDimensionsPayload,
+            onResponse: @escaping (_ response: UpdatePackagingDimensionsResponse?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -1543,7 +1510,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(CreateOrderResponse.self, from: data)
+                        let response = Utility.decode(UpdatePackagingDimensionsResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -1788,8 +1755,8 @@ public extension PlatformClient {
          * Summary:
          * Description:
          **/
-        public func sendSmsNinjaPlatform(
-            onResponse: @escaping (_ response: OrderStatusResult?, _ error: FDKError?) -> Void
+        public func getStateTransitionMap(
+            onResponse: @escaping (_ response: BagStateTransitionMap?, _ error: FDKError?) -> Void
         ) {
             PlatformAPIClient.execute(
                 config: config,
@@ -1807,7 +1774,7 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
-                        let response = Utility.decode(OrderStatusResult.self, from: data)
+                        let response = Utility.decode(BagStateTransitionMap.self, from: data)
 
                         onResponse(response, nil)
                     } else {

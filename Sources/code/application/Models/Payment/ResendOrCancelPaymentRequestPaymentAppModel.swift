@@ -11,16 +11,22 @@ public extension ApplicationClient.Payment {
 
         public var orderId: String
 
+        public var deviceId: String?
+
         public enum CodingKeys: String, CodingKey {
             case requestType = "request_type"
 
             case orderId = "order_id"
+
+            case deviceId = "device_id"
         }
 
-        public init(orderId: String, requestType: String) {
+        public init(deviceId: String? = nil, orderId: String, requestType: String) {
             self.requestType = requestType
 
             self.orderId = orderId
+
+            self.deviceId = deviceId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -29,6 +35,14 @@ public extension ApplicationClient.Payment {
             requestType = try container.decode(String.self, forKey: .requestType)
 
             orderId = try container.decode(String.self, forKey: .orderId)
+
+            do {
+                deviceId = try container.decode(String.self, forKey: .deviceId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -37,6 +51,8 @@ public extension ApplicationClient.Payment {
             try? container.encodeIfPresent(requestType, forKey: .requestType)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encode(deviceId, forKey: .deviceId)
         }
     }
 }
