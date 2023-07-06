@@ -13,9 +13,9 @@ public extension PlatformClient.Payment {
 
         public var extraMeta: [String: Any]?
 
-        public var currentStatus: String?
-
         public var orderId: String?
+
+        public var currentStatus: String?
 
         public var paymentGateway: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Payment {
 
             case extraMeta = "extra_meta"
 
-            case currentStatus = "current_status"
-
             case orderId = "order_id"
+
+            case currentStatus = "current_status"
 
             case paymentGateway = "payment_gateway"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             self.extraMeta = extraMeta
 
-            self.currentStatus = currentStatus
-
             self.orderId = orderId
+
+            self.currentStatus = currentStatus
 
             self.paymentGateway = paymentGateway
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                currentStatus = try container.decode(String.self, forKey: .currentStatus)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                currentStatus = try container.decode(String.self, forKey: .currentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Payment {
 
             try? container.encode(extraMeta, forKey: .extraMeta)
 
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var extraMeta: [String: Any]?
 
-        public var currentStatus: String?
-
         public var orderId: String?
+
+        public var currentStatus: String?
 
         public var paymentGateway: String?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case extraMeta = "extra_meta"
 
-            case currentStatus = "current_status"
-
             case orderId = "order_id"
+
+            case currentStatus = "current_status"
 
             case paymentGateway = "payment_gateway"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.extraMeta = extraMeta
 
-            self.currentStatus = currentStatus
-
             self.orderId = orderId
+
+            self.currentStatus = currentStatus
 
             self.paymentGateway = paymentGateway
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                currentStatus = try container.decode(String.self, forKey: .currentStatus)
+                orderId = try container.decode(String.self, forKey: .orderId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                currentStatus = try container.decode(String.self, forKey: .currentStatus)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encode(extraMeta, forKey: .extraMeta)
 
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
 
             try? container.encodeIfPresent(paymentGateway, forKey: .paymentGateway)
         }

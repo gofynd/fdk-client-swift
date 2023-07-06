@@ -9,57 +9,57 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentStatusData: Codable {
-        public var createdAt: String?
+        public var id: Int?
 
         public var shipmentId: String?
 
         public var bagList: [String]?
 
-        public var meta: [String: Any]?
+        public var createdAt: String?
 
         public var status: String?
 
-        public var id: Int?
-
         public var displayName: String?
 
+        public var meta: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
-            case createdAt = "created_at"
+            case id
 
             case shipmentId = "shipment_id"
 
             case bagList = "bag_list"
 
-            case meta
+            case createdAt = "created_at"
 
             case status
 
-            case id
-
             case displayName = "display_name"
+
+            case meta
         }
 
         public init(bagList: [String]? = nil, createdAt: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.createdAt = createdAt
+            self.id = id
 
             self.shipmentId = shipmentId
 
             self.bagList = bagList
 
-            self.meta = meta
+            self.createdAt = createdAt
 
             self.status = status
 
-            self.id = id
-
             self.displayName = displayName
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                createdAt = try container.decode(String.self, forKey: .createdAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,7 +99,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -107,7 +107,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,19 +118,19 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encode(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
@@ -142,57 +142,57 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentStatusData: Codable {
-        public var createdAt: String?
+        public var id: Int?
 
         public var shipmentId: String?
 
         public var bagList: [String]?
 
-        public var meta: [String: Any]?
+        public var createdAt: String?
 
         public var status: String?
 
-        public var id: Int?
-
         public var displayName: String?
 
+        public var meta: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
-            case createdAt = "created_at"
+            case id
 
             case shipmentId = "shipment_id"
 
             case bagList = "bag_list"
 
-            case meta
+            case createdAt = "created_at"
 
             case status
 
-            case id
-
             case displayName = "display_name"
+
+            case meta
         }
 
         public init(bagList: [String]? = nil, createdAt: String? = nil, displayName: String? = nil, id: Int? = nil, meta: [String: Any]? = nil, shipmentId: String? = nil, status: String? = nil) {
-            self.createdAt = createdAt
+            self.id = id
 
             self.shipmentId = shipmentId
 
             self.bagList = bagList
 
-            self.meta = meta
+            self.createdAt = createdAt
 
             self.status = status
 
-            self.id = id
-
             self.displayName = displayName
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,7 +216,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
+                createdAt = try container.decode(String.self, forKey: .createdAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -232,7 +232,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                displayName = try container.decode(String.self, forKey: .displayName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -240,7 +240,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                displayName = try container.decode(String.self, forKey: .displayName)
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,19 +251,19 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encode(createdAt, forKey: .createdAt)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encode(createdAt, forKey: .createdAt)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(displayName, forKey: .displayName)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

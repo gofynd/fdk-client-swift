@@ -47,6 +47,7 @@ public extension ApplicationClient.Content {
         case register
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
+        case orderStatus = "order-status"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -183,6 +184,8 @@ public extension ApplicationClient.Content {
                 return "/shipping-policy"
             case .returnPolicy:
                 return "/return-policy"
+            case .orderStatus:
+                return "/cart/order-status"
             }
         }
 
@@ -278,6 +281,8 @@ public extension ApplicationClient.Content {
                 return "Shipping policy"
             case .returnPolicy:
                 return "Return policy"
+            case .orderStatus:
+                return "Order status"
             }
         }
 
@@ -373,6 +378,8 @@ public extension ApplicationClient.Content {
                 return []
             case .returnPolicy:
                 return []
+            case .orderStatus:
+                return []
             }
         }
 
@@ -467,6 +474,8 @@ public extension ApplicationClient.Content {
             case .shippingPolicy:
                 return []
             case .returnPolicy:
+                return []
+            case .orderStatus:
                 return []
             }
         }

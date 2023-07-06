@@ -9,227 +9,171 @@ public extension PlatformClient.Order {
      */
 
     class ShippingInfo: Codable {
-        public var primaryMobileNumber: String
-
-        public var country: String
-
-        public var alternateMobileNumber: String?
-
-        public var landmark: String?
-
-        public var title: String?
-
-        public var firstName: String
-
-        public var middleName: String?
-
-        public var addressType: String?
-
-        public var pincode: String
-
-        public var floorNo: String?
-
-        public var slot: [[String: Any]]?
+        public var gender: String?
 
         public var countryCode: String?
 
-        public var stateCode: String?
-
-        public var state: String
-
-        public var customerCode: String?
-
-        public var alternateEmail: String?
-
         public var externalCustomerCode: String?
 
-        public var geoLocation: [String: Any]?
+        public var landmark: String?
 
-        public var lastName: String?
-
-        public var address1: String
-
-        public var primaryEmail: String
-
-        public var city: String
+        public var primaryMobileNumber: String
 
         public var shippingType: String?
 
+        public var alternateEmail: String?
+
         public var houseNo: String?
 
-        public var gender: String?
+        public var pincode: String
+
+        public var alternateMobileNumber: String?
+
+        public var lastName: String?
+
+        public var stateCode: String?
+
+        public var customerCode: String?
+
+        public var firstName: String
+
+        public var addressType: String?
 
         public var address2: String?
 
+        public var geoLocation: [String: Any]?
+
+        public var floorNo: String?
+
+        public var state: String
+
+        public var title: String?
+
+        public var city: String
+
+        public var primaryEmail: String
+
+        public var slot: [[String: Any]]?
+
+        public var country: String
+
+        public var address1: String
+
+        public var middleName: String?
+
         public enum CodingKeys: String, CodingKey {
-            case primaryMobileNumber = "primary_mobile_number"
-
-            case country
-
-            case alternateMobileNumber = "alternate_mobile_number"
-
-            case landmark
-
-            case title
-
-            case firstName = "first_name"
-
-            case middleName = "middle_name"
-
-            case addressType = "address_type"
-
-            case pincode
-
-            case floorNo = "floor_no"
-
-            case slot
+            case gender
 
             case countryCode = "country_code"
 
-            case stateCode = "state_code"
-
-            case state
-
-            case customerCode = "customer_code"
-
-            case alternateEmail = "alternate_email"
-
             case externalCustomerCode = "external_customer_code"
 
-            case geoLocation = "geo_location"
+            case landmark
 
-            case lastName = "last_name"
-
-            case address1
-
-            case primaryEmail = "primary_email"
-
-            case city
+            case primaryMobileNumber = "primary_mobile_number"
 
             case shippingType = "shipping_type"
 
+            case alternateEmail = "alternate_email"
+
             case houseNo = "house_no"
 
-            case gender
+            case pincode
+
+            case alternateMobileNumber = "alternate_mobile_number"
+
+            case lastName = "last_name"
+
+            case stateCode = "state_code"
+
+            case customerCode = "customer_code"
+
+            case firstName = "first_name"
+
+            case addressType = "address_type"
 
             case address2
+
+            case geoLocation = "geo_location"
+
+            case floorNo = "floor_no"
+
+            case state
+
+            case title
+
+            case city
+
+            case primaryEmail = "primary_email"
+
+            case slot
+
+            case country
+
+            case address1
+
+            case middleName = "middle_name"
         }
 
         public init(address1: String, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, city: String, country: String, countryCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String, floorNo: String? = nil, gender: String? = nil, geoLocation: [String: Any]? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String, primaryEmail: String, primaryMobileNumber: String, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String, stateCode: String? = nil, title: String? = nil) {
-            self.primaryMobileNumber = primaryMobileNumber
-
-            self.country = country
-
-            self.alternateMobileNumber = alternateMobileNumber
-
-            self.landmark = landmark
-
-            self.title = title
-
-            self.firstName = firstName
-
-            self.middleName = middleName
-
-            self.addressType = addressType
-
-            self.pincode = pincode
-
-            self.floorNo = floorNo
-
-            self.slot = slot
+            self.gender = gender
 
             self.countryCode = countryCode
 
-            self.stateCode = stateCode
-
-            self.state = state
-
-            self.customerCode = customerCode
-
-            self.alternateEmail = alternateEmail
-
             self.externalCustomerCode = externalCustomerCode
 
-            self.geoLocation = geoLocation
+            self.landmark = landmark
 
-            self.lastName = lastName
-
-            self.address1 = address1
-
-            self.primaryEmail = primaryEmail
-
-            self.city = city
+            self.primaryMobileNumber = primaryMobileNumber
 
             self.shippingType = shippingType
 
+            self.alternateEmail = alternateEmail
+
             self.houseNo = houseNo
 
-            self.gender = gender
+            self.pincode = pincode
+
+            self.alternateMobileNumber = alternateMobileNumber
+
+            self.lastName = lastName
+
+            self.stateCode = stateCode
+
+            self.customerCode = customerCode
+
+            self.firstName = firstName
+
+            self.addressType = addressType
 
             self.address2 = address2
+
+            self.geoLocation = geoLocation
+
+            self.floorNo = floorNo
+
+            self.state = state
+
+            self.title = title
+
+            self.city = city
+
+            self.primaryEmail = primaryEmail
+
+            self.slot = slot
+
+            self.country = country
+
+            self.address1 = address1
+
+            self.middleName = middleName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            primaryMobileNumber = try container.decode(String.self, forKey: .primaryMobileNumber)
-
-            country = try container.decode(String.self, forKey: .country)
-
             do {
-                alternateMobileNumber = try container.decode(String.self, forKey: .alternateMobileNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                landmark = try container.decode(String.self, forKey: .landmark)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            firstName = try container.decode(String.self, forKey: .firstName)
-
-            do {
-                middleName = try container.decode(String.self, forKey: .middleName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                addressType = try container.decode(String.self, forKey: .addressType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            do {
-                floorNo = try container.decode(String.self, forKey: .floorNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slot = try container.decode([[String: Any]].self, forKey: .slot)
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -245,17 +189,25 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                stateCode = try container.decode(String.self, forKey: .stateCode)
+                externalCustomerCode = try container.decode(String.self, forKey: .externalCustomerCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            state = try container.decode(String.self, forKey: .state)
+            do {
+                landmark = try container.decode(String.self, forKey: .landmark)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            primaryMobileNumber = try container.decode(String.self, forKey: .primaryMobileNumber)
 
             do {
-                customerCode = try container.decode(String.self, forKey: .customerCode)
+                shippingType = try container.decode(String.self, forKey: .shippingType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -271,7 +223,59 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                externalCustomerCode = try container.decode(String.self, forKey: .externalCustomerCode)
+                houseNo = try container.decode(String.self, forKey: .houseNo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            do {
+                alternateMobileNumber = try container.decode(String.self, forKey: .alternateMobileNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                lastName = try container.decode(String.self, forKey: .lastName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stateCode = try container.decode(String.self, forKey: .stateCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customerCode = try container.decode(String.self, forKey: .customerCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            firstName = try container.decode(String.self, forKey: .firstName)
+
+            do {
+                addressType = try container.decode(String.self, forKey: .addressType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -287,45 +291,41 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                lastName = try container.decode(String.self, forKey: .lastName)
+                floorNo = try container.decode(String.self, forKey: .floorNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            address1 = try container.decode(String.self, forKey: .address1)
+            state = try container.decode(String.self, forKey: .state)
 
-            primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
+            do {
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             city = try container.decode(String.self, forKey: .city)
 
+            primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
+
             do {
-                shippingType = try container.decode(String.self, forKey: .shippingType)
+                slot = try container.decode([[String: Any]].self, forKey: .slot)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                houseNo = try container.decode(String.self, forKey: .houseNo)
+            country = try container.decode(String.self, forKey: .country)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            address1 = try container.decode(String.self, forKey: .address1)
 
             do {
-                gender = try container.decode(String.self, forKey: .gender)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address2 = try container.decode(String.self, forKey: .address2)
+                middleName = try container.decode(String.self, forKey: .middleName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -336,57 +336,57 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(primaryMobileNumber, forKey: .primaryMobileNumber)
-
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(alternateMobileNumber, forKey: .alternateMobileNumber)
-
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-
-            try? container.encodeIfPresent(title, forKey: .title)
-
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
-            try? container.encodeIfPresent(middleName, forKey: .middleName)
-
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(floorNo, forKey: .floorNo)
-
-            try? container.encodeIfPresent(slot, forKey: .slot)
+            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(customerCode, forKey: .customerCode)
-
-            try? container.encodeIfPresent(alternateEmail, forKey: .alternateEmail)
-
             try? container.encodeIfPresent(externalCustomerCode, forKey: .externalCustomerCode)
 
-            try? container.encodeIfPresent(geoLocation, forKey: .geoLocation)
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
-            try? container.encodeIfPresent(address1, forKey: .address1)
-
-            try? container.encodeIfPresent(primaryEmail, forKey: .primaryEmail)
-
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(primaryMobileNumber, forKey: .primaryMobileNumber)
 
             try? container.encodeIfPresent(shippingType, forKey: .shippingType)
 
+            try? container.encodeIfPresent(alternateEmail, forKey: .alternateEmail)
+
             try? container.encodeIfPresent(houseNo, forKey: .houseNo)
 
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(alternateMobileNumber, forKey: .alternateMobileNumber)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
+
+            try? container.encodeIfPresent(customerCode, forKey: .customerCode)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
 
             try? container.encodeIfPresent(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(geoLocation, forKey: .geoLocation)
+
+            try? container.encodeIfPresent(floorNo, forKey: .floorNo)
+
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(primaryEmail, forKey: .primaryEmail)
+
+            try? container.encodeIfPresent(slot, forKey: .slot)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(address1, forKey: .address1)
+
+            try? container.encodeIfPresent(middleName, forKey: .middleName)
         }
     }
 }
@@ -398,227 +398,171 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShippingInfo: Codable {
-        public var primaryMobileNumber: String
-
-        public var country: String
-
-        public var alternateMobileNumber: String?
-
-        public var landmark: String?
-
-        public var title: String?
-
-        public var firstName: String
-
-        public var middleName: String?
-
-        public var addressType: String?
-
-        public var pincode: String
-
-        public var floorNo: String?
-
-        public var slot: [[String: Any]]?
+        public var gender: String?
 
         public var countryCode: String?
 
-        public var stateCode: String?
-
-        public var state: String
-
-        public var customerCode: String?
-
-        public var alternateEmail: String?
-
         public var externalCustomerCode: String?
 
-        public var geoLocation: [String: Any]?
+        public var landmark: String?
 
-        public var lastName: String?
-
-        public var address1: String
-
-        public var primaryEmail: String
-
-        public var city: String
+        public var primaryMobileNumber: String
 
         public var shippingType: String?
 
+        public var alternateEmail: String?
+
         public var houseNo: String?
 
-        public var gender: String?
+        public var pincode: String
+
+        public var alternateMobileNumber: String?
+
+        public var lastName: String?
+
+        public var stateCode: String?
+
+        public var customerCode: String?
+
+        public var firstName: String
+
+        public var addressType: String?
 
         public var address2: String?
 
+        public var geoLocation: [String: Any]?
+
+        public var floorNo: String?
+
+        public var state: String
+
+        public var title: String?
+
+        public var city: String
+
+        public var primaryEmail: String
+
+        public var slot: [[String: Any]]?
+
+        public var country: String
+
+        public var address1: String
+
+        public var middleName: String?
+
         public enum CodingKeys: String, CodingKey {
-            case primaryMobileNumber = "primary_mobile_number"
-
-            case country
-
-            case alternateMobileNumber = "alternate_mobile_number"
-
-            case landmark
-
-            case title
-
-            case firstName = "first_name"
-
-            case middleName = "middle_name"
-
-            case addressType = "address_type"
-
-            case pincode
-
-            case floorNo = "floor_no"
-
-            case slot
+            case gender
 
             case countryCode = "country_code"
 
-            case stateCode = "state_code"
-
-            case state
-
-            case customerCode = "customer_code"
-
-            case alternateEmail = "alternate_email"
-
             case externalCustomerCode = "external_customer_code"
 
-            case geoLocation = "geo_location"
+            case landmark
 
-            case lastName = "last_name"
-
-            case address1
-
-            case primaryEmail = "primary_email"
-
-            case city
+            case primaryMobileNumber = "primary_mobile_number"
 
             case shippingType = "shipping_type"
 
+            case alternateEmail = "alternate_email"
+
             case houseNo = "house_no"
 
-            case gender
+            case pincode
+
+            case alternateMobileNumber = "alternate_mobile_number"
+
+            case lastName = "last_name"
+
+            case stateCode = "state_code"
+
+            case customerCode = "customer_code"
+
+            case firstName = "first_name"
+
+            case addressType = "address_type"
 
             case address2
+
+            case geoLocation = "geo_location"
+
+            case floorNo = "floor_no"
+
+            case state
+
+            case title
+
+            case city
+
+            case primaryEmail = "primary_email"
+
+            case slot
+
+            case country
+
+            case address1
+
+            case middleName = "middle_name"
         }
 
         public init(address1: String, address2: String? = nil, addressType: String? = nil, alternateEmail: String? = nil, alternateMobileNumber: String? = nil, city: String, country: String, countryCode: String? = nil, customerCode: String? = nil, externalCustomerCode: String? = nil, firstName: String, floorNo: String? = nil, gender: String? = nil, geoLocation: [String: Any]? = nil, houseNo: String? = nil, landmark: String? = nil, lastName: String? = nil, middleName: String? = nil, pincode: String, primaryEmail: String, primaryMobileNumber: String, shippingType: String? = nil, slot: [[String: Any]]? = nil, state: String, stateCode: String? = nil, title: String? = nil) {
-            self.primaryMobileNumber = primaryMobileNumber
-
-            self.country = country
-
-            self.alternateMobileNumber = alternateMobileNumber
-
-            self.landmark = landmark
-
-            self.title = title
-
-            self.firstName = firstName
-
-            self.middleName = middleName
-
-            self.addressType = addressType
-
-            self.pincode = pincode
-
-            self.floorNo = floorNo
-
-            self.slot = slot
+            self.gender = gender
 
             self.countryCode = countryCode
 
-            self.stateCode = stateCode
-
-            self.state = state
-
-            self.customerCode = customerCode
-
-            self.alternateEmail = alternateEmail
-
             self.externalCustomerCode = externalCustomerCode
 
-            self.geoLocation = geoLocation
+            self.landmark = landmark
 
-            self.lastName = lastName
-
-            self.address1 = address1
-
-            self.primaryEmail = primaryEmail
-
-            self.city = city
+            self.primaryMobileNumber = primaryMobileNumber
 
             self.shippingType = shippingType
 
+            self.alternateEmail = alternateEmail
+
             self.houseNo = houseNo
 
-            self.gender = gender
+            self.pincode = pincode
+
+            self.alternateMobileNumber = alternateMobileNumber
+
+            self.lastName = lastName
+
+            self.stateCode = stateCode
+
+            self.customerCode = customerCode
+
+            self.firstName = firstName
+
+            self.addressType = addressType
 
             self.address2 = address2
+
+            self.geoLocation = geoLocation
+
+            self.floorNo = floorNo
+
+            self.state = state
+
+            self.title = title
+
+            self.city = city
+
+            self.primaryEmail = primaryEmail
+
+            self.slot = slot
+
+            self.country = country
+
+            self.address1 = address1
+
+            self.middleName = middleName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            primaryMobileNumber = try container.decode(String.self, forKey: .primaryMobileNumber)
-
-            country = try container.decode(String.self, forKey: .country)
-
             do {
-                alternateMobileNumber = try container.decode(String.self, forKey: .alternateMobileNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                landmark = try container.decode(String.self, forKey: .landmark)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                title = try container.decode(String.self, forKey: .title)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            firstName = try container.decode(String.self, forKey: .firstName)
-
-            do {
-                middleName = try container.decode(String.self, forKey: .middleName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                addressType = try container.decode(String.self, forKey: .addressType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            do {
-                floorNo = try container.decode(String.self, forKey: .floorNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                slot = try container.decode([[String: Any]].self, forKey: .slot)
+                gender = try container.decode(String.self, forKey: .gender)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -634,17 +578,25 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                stateCode = try container.decode(String.self, forKey: .stateCode)
+                externalCustomerCode = try container.decode(String.self, forKey: .externalCustomerCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            state = try container.decode(String.self, forKey: .state)
+            do {
+                landmark = try container.decode(String.self, forKey: .landmark)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            primaryMobileNumber = try container.decode(String.self, forKey: .primaryMobileNumber)
 
             do {
-                customerCode = try container.decode(String.self, forKey: .customerCode)
+                shippingType = try container.decode(String.self, forKey: .shippingType)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -660,7 +612,59 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                externalCustomerCode = try container.decode(String.self, forKey: .externalCustomerCode)
+                houseNo = try container.decode(String.self, forKey: .houseNo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            do {
+                alternateMobileNumber = try container.decode(String.self, forKey: .alternateMobileNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                lastName = try container.decode(String.self, forKey: .lastName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                stateCode = try container.decode(String.self, forKey: .stateCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                customerCode = try container.decode(String.self, forKey: .customerCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            firstName = try container.decode(String.self, forKey: .firstName)
+
+            do {
+                addressType = try container.decode(String.self, forKey: .addressType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -676,45 +680,41 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                lastName = try container.decode(String.self, forKey: .lastName)
+                floorNo = try container.decode(String.self, forKey: .floorNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            address1 = try container.decode(String.self, forKey: .address1)
+            state = try container.decode(String.self, forKey: .state)
 
-            primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
+            do {
+                title = try container.decode(String.self, forKey: .title)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             city = try container.decode(String.self, forKey: .city)
 
+            primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
+
             do {
-                shippingType = try container.decode(String.self, forKey: .shippingType)
+                slot = try container.decode([[String: Any]].self, forKey: .slot)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                houseNo = try container.decode(String.self, forKey: .houseNo)
+            country = try container.decode(String.self, forKey: .country)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            address1 = try container.decode(String.self, forKey: .address1)
 
             do {
-                gender = try container.decode(String.self, forKey: .gender)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address2 = try container.decode(String.self, forKey: .address2)
+                middleName = try container.decode(String.self, forKey: .middleName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -725,57 +725,57 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(primaryMobileNumber, forKey: .primaryMobileNumber)
-
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encodeIfPresent(alternateMobileNumber, forKey: .alternateMobileNumber)
-
-            try? container.encodeIfPresent(landmark, forKey: .landmark)
-
-            try? container.encodeIfPresent(title, forKey: .title)
-
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
-
-            try? container.encodeIfPresent(middleName, forKey: .middleName)
-
-            try? container.encodeIfPresent(addressType, forKey: .addressType)
-
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
-            try? container.encodeIfPresent(floorNo, forKey: .floorNo)
-
-            try? container.encodeIfPresent(slot, forKey: .slot)
+            try? container.encodeIfPresent(gender, forKey: .gender)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
-            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
-
-            try? container.encodeIfPresent(state, forKey: .state)
-
-            try? container.encodeIfPresent(customerCode, forKey: .customerCode)
-
-            try? container.encodeIfPresent(alternateEmail, forKey: .alternateEmail)
-
             try? container.encodeIfPresent(externalCustomerCode, forKey: .externalCustomerCode)
 
-            try? container.encodeIfPresent(geoLocation, forKey: .geoLocation)
+            try? container.encodeIfPresent(landmark, forKey: .landmark)
 
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-
-            try? container.encodeIfPresent(address1, forKey: .address1)
-
-            try? container.encodeIfPresent(primaryEmail, forKey: .primaryEmail)
-
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encodeIfPresent(primaryMobileNumber, forKey: .primaryMobileNumber)
 
             try? container.encodeIfPresent(shippingType, forKey: .shippingType)
 
+            try? container.encodeIfPresent(alternateEmail, forKey: .alternateEmail)
+
             try? container.encodeIfPresent(houseNo, forKey: .houseNo)
 
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(alternateMobileNumber, forKey: .alternateMobileNumber)
+
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+
+            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
+
+            try? container.encodeIfPresent(customerCode, forKey: .customerCode)
+
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
 
             try? container.encodeIfPresent(address2, forKey: .address2)
+
+            try? container.encodeIfPresent(geoLocation, forKey: .geoLocation)
+
+            try? container.encodeIfPresent(floorNo, forKey: .floorNo)
+
+            try? container.encodeIfPresent(state, forKey: .state)
+
+            try? container.encodeIfPresent(title, forKey: .title)
+
+            try? container.encodeIfPresent(city, forKey: .city)
+
+            try? container.encodeIfPresent(primaryEmail, forKey: .primaryEmail)
+
+            try? container.encodeIfPresent(slot, forKey: .slot)
+
+            try? container.encodeIfPresent(country, forKey: .country)
+
+            try? container.encodeIfPresent(address1, forKey: .address1)
+
+            try? container.encodeIfPresent(middleName, forKey: .middleName)
         }
     }
 }
