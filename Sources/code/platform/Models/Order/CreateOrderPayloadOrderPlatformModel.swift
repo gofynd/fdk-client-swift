@@ -11,24 +11,24 @@ public extension PlatformClient.Order {
     class CreateOrderPayload: Codable {
         public var orderInfo: OrderInfo
 
-        public var affiliateId: String
-
         public var orderConfig: OrderConfig
+
+        public var affiliateId: String
 
         public enum CodingKeys: String, CodingKey {
             case orderInfo = "order_info"
 
-            case affiliateId = "affiliate_id"
-
             case orderConfig = "order_config"
+
+            case affiliateId = "affiliate_id"
         }
 
         public init(affiliateId: String, orderConfig: OrderConfig, orderInfo: OrderInfo) {
             self.orderInfo = orderInfo
 
-            self.affiliateId = affiliateId
-
             self.orderConfig = orderConfig
+
+            self.affiliateId = affiliateId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Order {
 
             orderInfo = try container.decode(OrderInfo.self, forKey: .orderInfo)
 
-            affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
             orderConfig = try container.decode(OrderConfig.self, forKey: .orderConfig)
+
+            affiliateId = try container.decode(String.self, forKey: .affiliateId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(orderInfo, forKey: .orderInfo)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(orderConfig, forKey: .orderConfig)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreateOrderPayload: Codable {
         public var orderInfo: OrderInfo
 
-        public var affiliateId: String
-
         public var orderConfig: OrderConfig
+
+        public var affiliateId: String
 
         public enum CodingKeys: String, CodingKey {
             case orderInfo = "order_info"
 
-            case affiliateId = "affiliate_id"
-
             case orderConfig = "order_config"
+
+            case affiliateId = "affiliate_id"
         }
 
         public init(affiliateId: String, orderConfig: OrderConfig, orderInfo: OrderInfo) {
             self.orderInfo = orderInfo
 
-            self.affiliateId = affiliateId
-
             self.orderConfig = orderConfig
+
+            self.affiliateId = affiliateId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             orderInfo = try container.decode(OrderInfo.self, forKey: .orderInfo)
 
-            affiliateId = try container.decode(String.self, forKey: .affiliateId)
-
             orderConfig = try container.decode(OrderConfig.self, forKey: .orderConfig)
+
+            affiliateId = try container.decode(String.self, forKey: .affiliateId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(orderInfo, forKey: .orderInfo)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(orderConfig, forKey: .orderConfig)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }
     }
 }

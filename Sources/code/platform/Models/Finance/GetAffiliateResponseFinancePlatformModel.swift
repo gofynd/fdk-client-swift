@@ -2,34 +2,34 @@
 
 import Foundation
 
-public extension PlatformClient.ApplicationClient.Cart {
+public extension PlatformClient.Finance {
     /*
-         Model: GiftDetail
-         Used By: Cart
+         Model: GetAffiliateResponse
+         Used By: Finance
      */
 
-    class GiftDetail: Codable {
-        public var isGiftApplied: Bool?
+    class GetAffiliateResponse: Codable {
+        public var success: Bool?
 
-        public var giftMessage: String?
+        public var docs: [[String: Any]]?
 
         public enum CodingKeys: String, CodingKey {
-            case isGiftApplied = "is_gift_applied"
+            case success
 
-            case giftMessage = "gift_message"
+            case docs
         }
 
-        public init(giftMessage: String? = nil, isGiftApplied: Bool? = nil) {
-            self.isGiftApplied = isGiftApplied
+        public init(docs: [[String: Any]]? = nil, success: Bool? = nil) {
+            self.success = success
 
-            self.giftMessage = giftMessage
+            self.docs = docs
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                giftMessage = try container.decode(String.self, forKey: .giftMessage)
+                docs = try container.decode([[String: Any]].self, forKey: .docs)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
+            try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
+            try? container.encodeIfPresent(docs, forKey: .docs)
         }
     }
 }

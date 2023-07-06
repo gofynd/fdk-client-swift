@@ -9,24 +9,24 @@ public extension PlatformClient.Payment {
      */
 
     class CancelPaymentLinkResponse: Codable {
-        public var success: Bool
-
         public var message: String
+
+        public var success: Bool
 
         public var statusCode: Int
 
         public enum CodingKeys: String, CodingKey {
-            case success
-
             case message
+
+            case success
 
             case statusCode = "status_code"
         }
 
         public init(message: String, statusCode: Int, success: Bool) {
-            self.success = success
-
             self.message = message
+
+            self.success = success
 
             self.statusCode = statusCode
         }
@@ -34,9 +34,9 @@ public extension PlatformClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             message = try container.decode(String.self, forKey: .message)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
@@ -44,9 +44,9 @@ public extension PlatformClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
         }
@@ -60,24 +60,24 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class CancelPaymentLinkResponse: Codable {
-        public var success: Bool
-
         public var message: String
+
+        public var success: Bool
 
         public var statusCode: Int
 
         public enum CodingKeys: String, CodingKey {
-            case success
-
             case message
+
+            case success
 
             case statusCode = "status_code"
         }
 
         public init(message: String, statusCode: Int, success: Bool) {
-            self.success = success
-
             self.message = message
+
+            self.success = success
 
             self.statusCode = statusCode
         }
@@ -85,9 +85,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             message = try container.decode(String.self, forKey: .message)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
         }

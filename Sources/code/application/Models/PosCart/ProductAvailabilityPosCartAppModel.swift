@@ -7,51 +7,51 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class ProductAvailability: Codable {
-        public var availableSizes: [ProductAvailabilitySize]?
+        public var otherStoreQuantity: Int?
 
         public var deliverable: Bool?
 
         public var outOfStock: Bool?
 
-        public var sizes: [String]?
+        public var availableSizes: [ProductAvailabilitySize]?
 
         public var isValid: Bool?
 
-        public var otherStoreQuantity: Int?
+        public var sizes: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case availableSizes = "available_sizes"
+            case otherStoreQuantity = "other_store_quantity"
 
             case deliverable
 
             case outOfStock = "out_of_stock"
 
-            case sizes
+            case availableSizes = "available_sizes"
 
             case isValid = "is_valid"
 
-            case otherStoreQuantity = "other_store_quantity"
+            case sizes
         }
 
         public init(availableSizes: [ProductAvailabilitySize]? = nil, deliverable: Bool? = nil, isValid: Bool? = nil, otherStoreQuantity: Int? = nil, outOfStock: Bool? = nil, sizes: [String]? = nil) {
-            self.availableSizes = availableSizes
+            self.otherStoreQuantity = otherStoreQuantity
 
             self.deliverable = deliverable
 
             self.outOfStock = outOfStock
 
-            self.sizes = sizes
+            self.availableSizes = availableSizes
 
             self.isValid = isValid
 
-            self.otherStoreQuantity = otherStoreQuantity
+            self.sizes = sizes
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                availableSizes = try container.decode([ProductAvailabilitySize].self, forKey: .availableSizes)
+                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -75,7 +75,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                sizes = try container.decode([String].self, forKey: .sizes)
+                availableSizes = try container.decode([ProductAvailabilitySize].self, forKey: .availableSizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                otherStoreQuantity = try container.decode(Int.self, forKey: .otherStoreQuantity)
+                sizes = try container.decode([String].self, forKey: .sizes)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -102,17 +102,17 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
+            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
 
             try? container.encodeIfPresent(deliverable, forKey: .deliverable)
 
             try? container.encodeIfPresent(outOfStock, forKey: .outOfStock)
 
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(availableSizes, forKey: .availableSizes)
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
-            try? container.encodeIfPresent(otherStoreQuantity, forKey: .otherStoreQuantity)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
         }
     }
 }

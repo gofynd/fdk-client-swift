@@ -9,47 +9,47 @@ public extension PlatformClient.Payment {
      */
 
     class PaymentStatusBulkHandlerResponse: Codable {
+        public var status: Int
+
+        public var error: String?
+
+        public var data: [PaymentStatusObject]?
+
         public var success: String
 
         public var count: Int?
 
-        public var data: [PaymentStatusObject]?
-
-        public var error: String?
-
-        public var status: Int
-
         public enum CodingKeys: String, CodingKey {
-            case success
-
-            case count
-
-            case data
+            case status
 
             case error
 
-            case status
+            case data
+
+            case success
+
+            case count
         }
 
         public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
-            self.success = success
-
-            self.count = count
-
-            self.data = data
+            self.status = status
 
             self.error = error
 
-            self.status = status
+            self.data = data
+
+            self.success = success
+
+            self.count = count
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(String.self, forKey: .success)
+            status = try container.decode(Int.self, forKey: .status)
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,29 +64,29 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(String.self, forKey: .success)
+
             do {
-                error = try container.decode(String.self, forKey: .error)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(count, forKey: .count)
-
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 }
@@ -98,47 +98,47 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class PaymentStatusBulkHandlerResponse: Codable {
+        public var status: Int
+
+        public var error: String?
+
+        public var data: [PaymentStatusObject]?
+
         public var success: String
 
         public var count: Int?
 
-        public var data: [PaymentStatusObject]?
-
-        public var error: String?
-
-        public var status: Int
-
         public enum CodingKeys: String, CodingKey {
-            case success
-
-            case count
-
-            case data
+            case status
 
             case error
 
-            case status
+            case data
+
+            case success
+
+            case count
         }
 
         public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
-            self.success = success
-
-            self.count = count
-
-            self.data = data
+            self.status = status
 
             self.error = error
 
-            self.status = status
+            self.data = data
+
+            self.success = success
+
+            self.count = count
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(String.self, forKey: .success)
+            status = try container.decode(Int.self, forKey: .status)
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                error = try container.decode(String.self, forKey: .error)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -153,29 +153,29 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(String.self, forKey: .success)
+
             do {
-                error = try container.decode(String.self, forKey: .error)
+                count = try container.decode(Int.self, forKey: .count)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encodeIfPresent(count, forKey: .count)
-
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(data, forKey: .data)
+
+            try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encodeIfPresent(count, forKey: .count)
         }
     }
 }

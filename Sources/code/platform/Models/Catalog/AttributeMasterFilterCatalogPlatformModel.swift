@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class AttributeMasterFilter: Codable {
         public var priority: Int?
 
-        public var dependsOn: [String]?
-
         public var indexing: Bool
+
+        public var dependsOn: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case priority
 
-            case dependsOn = "depends_on"
-
             case indexing
+
+            case dependsOn = "depends_on"
         }
 
         public init(dependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
             self.priority = priority
 
-            self.dependsOn = dependsOn
-
             self.indexing = indexing
+
+            self.dependsOn = dependsOn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            indexing = try container.decode(Bool.self, forKey: .indexing)
+
             do {
                 dependsOn = try container.decode([String].self, forKey: .dependsOn)
 
@@ -49,8 +51,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            indexing = try container.decode(Bool.self, forKey: .indexing)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,9 +58,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
-
             try? container.encodeIfPresent(indexing, forKey: .indexing)
+
+            try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
         }
     }
 }
@@ -74,24 +74,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AttributeMasterFilter: Codable {
         public var priority: Int?
 
-        public var dependsOn: [String]?
-
         public var indexing: Bool
+
+        public var dependsOn: [String]?
 
         public enum CodingKeys: String, CodingKey {
             case priority
 
-            case dependsOn = "depends_on"
-
             case indexing
+
+            case dependsOn = "depends_on"
         }
 
         public init(dependsOn: [String]? = nil, indexing: Bool, priority: Int? = nil) {
             self.priority = priority
 
-            self.dependsOn = dependsOn
-
             self.indexing = indexing
+
+            self.dependsOn = dependsOn
         }
 
         required public init(from decoder: Decoder) throws {
@@ -105,6 +105,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            indexing = try container.decode(Bool.self, forKey: .indexing)
+
             do {
                 dependsOn = try container.decode([String].self, forKey: .dependsOn)
 
@@ -112,8 +114,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            indexing = try container.decode(Bool.self, forKey: .indexing)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -121,9 +121,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(priority, forKey: .priority)
 
-            try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
-
             try? container.encodeIfPresent(indexing, forKey: .indexing)
+
+            try? container.encodeIfPresent(dependsOn, forKey: .dependsOn)
         }
     }
 }
