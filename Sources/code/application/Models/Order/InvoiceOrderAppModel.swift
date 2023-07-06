@@ -9,24 +9,24 @@ public extension ApplicationClient.Order {
     class Invoice: Codable {
         public var labelUrl: String?
 
-        public var updatedDate: String?
-
         public var invoiceUrl: String?
+
+        public var updatedDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case labelUrl = "label_url"
 
-            case updatedDate = "updated_date"
-
             case invoiceUrl = "invoice_url"
+
+            case updatedDate = "updated_date"
         }
 
         public init(invoiceUrl: String? = nil, labelUrl: String? = nil, updatedDate: String? = nil) {
             self.labelUrl = labelUrl
 
-            self.updatedDate = updatedDate
-
             self.invoiceUrl = invoiceUrl
+
+            self.updatedDate = updatedDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                updatedDate = try container.decode(String.self, forKey: .updatedDate)
+                invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Order {
             } catch {}
 
             do {
-                invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
+                updatedDate = try container.decode(String.self, forKey: .updatedDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Order {
 
             try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
 
-            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
-
             try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
+
+            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
         }
     }
 }

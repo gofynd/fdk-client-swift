@@ -9,30 +9,30 @@ public extension ApplicationClient.Catalog {
     class StrategyWiseListingSchemaV3: Codable {
         public var tat: Int?
 
-        public var distance: Int?
+        public var pincode: Int?
 
         public var quantity: Int?
 
-        public var pincode: Int?
+        public var distance: Int?
 
         public enum CodingKeys: String, CodingKey {
             case tat
 
-            case distance
+            case pincode
 
             case quantity
 
-            case pincode
+            case distance
         }
 
         public init(distance: Int? = nil, pincode: Int? = nil, quantity: Int? = nil, tat: Int? = nil) {
             self.tat = tat
 
-            self.distance = distance
+            self.pincode = pincode
 
             self.quantity = quantity
 
-            self.pincode = pincode
+            self.distance = distance
         }
 
         required public init(from decoder: Decoder) throws {
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                distance = try container.decode(Int.self, forKey: .distance)
+                pincode = try container.decode(Int.self, forKey: .pincode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                pincode = try container.decode(Int.self, forKey: .pincode)
+                distance = try container.decode(Int.self, forKey: .distance)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,11 +76,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(tat, forKey: .tat)
 
-            try? container.encodeIfPresent(distance, forKey: .distance)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(quantity, forKey: .quantity)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encodeIfPresent(distance, forKey: .distance)
         }
     }
 }

@@ -9,39 +9,39 @@ public extension PlatformClient.Order {
      */
 
     class RefundOption: Codable {
-        public var slug: String?
+        public var value: String?
 
         public var name: String?
 
+        public var slug: String?
+
         public var type: String?
 
-        public var value: String?
-
         public enum CodingKeys: String, CodingKey {
-            case slug
+            case value
 
             case name
 
-            case type
+            case slug
 
-            case value
+            case type
         }
 
         public init(name: String? = nil, slug: String? = nil, type: String? = nil, value: String? = nil) {
-            self.slug = slug
+            self.value = value
 
             self.name = name
 
-            self.type = type
+            self.slug = slug
 
-            self.value = value
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,13 +76,13 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -94,39 +94,39 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class RefundOption: Codable {
-        public var slug: String?
+        public var value: String?
 
         public var name: String?
 
+        public var slug: String?
+
         public var type: String?
 
-        public var value: String?
-
         public enum CodingKeys: String, CodingKey {
-            case slug
+            case value
 
             case name
 
-            case type
+            case slug
 
-            case value
+            case type
         }
 
         public init(name: String? = nil, slug: String? = nil, type: String? = nil, value: String? = nil) {
-            self.slug = slug
+            self.value = value
 
             self.name = name
 
-            self.type = type
+            self.slug = slug
 
-            self.value = value
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                slug = try container.decode(String.self, forKey: .slug)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                slug = try container.decode(String.self, forKey: .slug)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,13 +161,13 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

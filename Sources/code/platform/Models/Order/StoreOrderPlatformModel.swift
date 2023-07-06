@@ -9,240 +9,232 @@ public extension PlatformClient.Order {
      */
 
     class Store: Codable {
-        public var longitude: Double
+        public var orderIntegrationId: String?
+
+        public var meta: StoreMeta
+
+        public var updatedAt: String?
+
+        public var contactPerson: String
+
+        public var brandId: [String: Any]?
+
+        public var companyId: Int
 
         public var fulfillmentChannel: String
 
-        public var sId: String
+        public var storeActiveFrom: String?
+
+        public var phone: Int
+
+        public var storeEmail: String
+
+        public var longitude: Double
 
         public var city: String
 
-        public var locationType: String
+        public var loginUsername: String
+
+        public var sId: String
+
+        public var address2: String?
 
         public var pincode: String
 
         public var name: String
 
-        public var phone: Int
-
-        public var companyId: Int
-
-        public var updatedAt: String?
-
-        public var mallName: String?
-
-        public var alohomoraUserId: Int?
+        public var vatNo: String?
 
         public var mallArea: String?
 
-        public var country: String
-
-        public var vatNo: String?
-
         public var brandStoreTags: [String]?
-
-        public var address2: String?
-
-        public var isActive: Bool?
-
-        public var contactPerson: String
-
-        public var storeAddressJson: StoreAddress?
-
-        public var brandId: [String: Any]?
-
-        public var storeEmail: String
 
         public var address1: String
 
-        public var storeActiveFrom: String?
-
-        public var packagingMaterialCount: Int?
-
-        public var loginUsername: String
-
-        public var latitude: Double
-
-        public var isEnabledForRecon: Bool?
-
-        public var meta: StoreMeta
+        public var country: String
 
         public var state: String
 
         public var code: String?
 
-        public var createdAt: String
-
         public var parentStoreId: Int?
+
+        public var storeAddressJson: StoreAddress?
 
         public var isArchived: Bool?
 
-        public var orderIntegrationId: String?
+        public var locationType: String
+
+        public var packagingMaterialCount: Int?
+
+        public var isActive: Bool?
+
+        public var latitude: Double
+
+        public var mallName: String?
+
+        public var alohomoraUserId: Int?
+
+        public var isEnabledForRecon: Bool?
+
+        public var createdAt: String
 
         public enum CodingKeys: String, CodingKey {
-            case longitude
+            case orderIntegrationId = "order_integration_id"
+
+            case meta
+
+            case updatedAt = "updated_at"
+
+            case contactPerson = "contact_person"
+
+            case brandId = "brand_id"
+
+            case companyId = "company_id"
 
             case fulfillmentChannel = "fulfillment_channel"
 
-            case sId = "s_id"
+            case storeActiveFrom = "store_active_from"
+
+            case phone
+
+            case storeEmail = "store_email"
+
+            case longitude
 
             case city
 
-            case locationType = "location_type"
+            case loginUsername = "login_username"
+
+            case sId = "s_id"
+
+            case address2
 
             case pincode
 
             case name
 
-            case phone
-
-            case companyId = "company_id"
-
-            case updatedAt = "updated_at"
-
-            case mallName = "mall_name"
-
-            case alohomoraUserId = "alohomora_user_id"
+            case vatNo = "vat_no"
 
             case mallArea = "mall_area"
 
-            case country
-
-            case vatNo = "vat_no"
-
             case brandStoreTags = "brand_store_tags"
-
-            case address2
-
-            case isActive = "is_active"
-
-            case contactPerson = "contact_person"
-
-            case storeAddressJson = "store_address_json"
-
-            case brandId = "brand_id"
-
-            case storeEmail = "store_email"
 
             case address1
 
-            case storeActiveFrom = "store_active_from"
-
-            case packagingMaterialCount = "packaging_material_count"
-
-            case loginUsername = "login_username"
-
-            case latitude
-
-            case isEnabledForRecon = "is_enabled_for_recon"
-
-            case meta
+            case country
 
             case state
 
             case code
 
-            case createdAt = "created_at"
-
             case parentStoreId = "parent_store_id"
+
+            case storeAddressJson = "store_address_json"
 
             case isArchived = "is_archived"
 
-            case orderIntegrationId = "order_integration_id"
+            case locationType = "location_type"
+
+            case packagingMaterialCount = "packaging_material_count"
+
+            case isActive = "is_active"
+
+            case latitude
+
+            case mallName = "mall_name"
+
+            case alohomoraUserId = "alohomora_user_id"
+
+            case isEnabledForRecon = "is_enabled_for_recon"
+
+            case createdAt = "created_at"
         }
 
         public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandId: [String: Any]? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double, locationType: String, loginUsername: String, longitude: Double, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: Int, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String, updatedAt: String? = nil, vatNo: String? = nil) {
-            self.longitude = longitude
+            self.orderIntegrationId = orderIntegrationId
+
+            self.meta = meta
+
+            self.updatedAt = updatedAt
+
+            self.contactPerson = contactPerson
+
+            self.brandId = brandId
+
+            self.companyId = companyId
 
             self.fulfillmentChannel = fulfillmentChannel
 
-            self.sId = sId
+            self.storeActiveFrom = storeActiveFrom
+
+            self.phone = phone
+
+            self.storeEmail = storeEmail
+
+            self.longitude = longitude
 
             self.city = city
 
-            self.locationType = locationType
+            self.loginUsername = loginUsername
+
+            self.sId = sId
+
+            self.address2 = address2
 
             self.pincode = pincode
 
             self.name = name
 
-            self.phone = phone
-
-            self.companyId = companyId
-
-            self.updatedAt = updatedAt
-
-            self.mallName = mallName
-
-            self.alohomoraUserId = alohomoraUserId
+            self.vatNo = vatNo
 
             self.mallArea = mallArea
 
-            self.country = country
-
-            self.vatNo = vatNo
-
             self.brandStoreTags = brandStoreTags
-
-            self.address2 = address2
-
-            self.isActive = isActive
-
-            self.contactPerson = contactPerson
-
-            self.storeAddressJson = storeAddressJson
-
-            self.brandId = brandId
-
-            self.storeEmail = storeEmail
 
             self.address1 = address1
 
-            self.storeActiveFrom = storeActiveFrom
-
-            self.packagingMaterialCount = packagingMaterialCount
-
-            self.loginUsername = loginUsername
-
-            self.latitude = latitude
-
-            self.isEnabledForRecon = isEnabledForRecon
-
-            self.meta = meta
+            self.country = country
 
             self.state = state
 
             self.code = code
 
-            self.createdAt = createdAt
-
             self.parentStoreId = parentStoreId
+
+            self.storeAddressJson = storeAddressJson
 
             self.isArchived = isArchived
 
-            self.orderIntegrationId = orderIntegrationId
+            self.locationType = locationType
+
+            self.packagingMaterialCount = packagingMaterialCount
+
+            self.isActive = isActive
+
+            self.latitude = latitude
+
+            self.mallName = mallName
+
+            self.alohomoraUserId = alohomoraUserId
+
+            self.isEnabledForRecon = isEnabledForRecon
+
+            self.createdAt = createdAt
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            longitude = try container.decode(Double.self, forKey: .longitude)
+            do {
+                orderIntegrationId = try container.decode(String.self, forKey: .orderIntegrationId)
 
-            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            sId = try container.decode(String.self, forKey: .sId)
-
-            city = try container.decode(String.self, forKey: .city)
-
-            locationType = try container.decode(String.self, forKey: .locationType)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            phone = try container.decode(Int.self, forKey: .phone)
-
-            companyId = try container.decode(Int.self, forKey: .companyId)
+            meta = try container.decode(StoreMeta.self, forKey: .meta)
 
             do {
                 updatedAt = try container.decode(String.self, forKey: .updatedAt)
@@ -251,6 +243,134 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+
+            do {
+                brandId = try container.decode([String: Any].self, forKey: .brandId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            companyId = try container.decode(Int.self, forKey: .companyId)
+
+            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
+
+            do {
+                storeActiveFrom = try container.decode(String.self, forKey: .storeActiveFrom)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            phone = try container.decode(Int.self, forKey: .phone)
+
+            storeEmail = try container.decode(String.self, forKey: .storeEmail)
+
+            longitude = try container.decode(Double.self, forKey: .longitude)
+
+            city = try container.decode(String.self, forKey: .city)
+
+            loginUsername = try container.decode(String.self, forKey: .loginUsername)
+
+            sId = try container.decode(String.self, forKey: .sId)
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            name = try container.decode(String.self, forKey: .name)
+
+            do {
+                vatNo = try container.decode(String.self, forKey: .vatNo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mallArea = try container.decode(String.self, forKey: .mallArea)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brandStoreTags = try container.decode([String].self, forKey: .brandStoreTags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            address1 = try container.decode(String.self, forKey: .address1)
+
+            country = try container.decode(String.self, forKey: .country)
+
+            state = try container.decode(String.self, forKey: .state)
+
+            do {
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                parentStoreId = try container.decode(Int.self, forKey: .parentStoreId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeAddressJson = try container.decode(StoreAddress.self, forKey: .storeAddressJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isArchived = try container.decode(Bool.self, forKey: .isArchived)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            locationType = try container.decode(String.self, forKey: .locationType)
+
+            do {
+                packagingMaterialCount = try container.decode(Int.self, forKey: .packagingMaterialCount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            latitude = try container.decode(Double.self, forKey: .latitude)
 
             do {
                 mallName = try container.decode(String.self, forKey: .mallName)
@@ -269,90 +389,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                mallArea = try container.decode(String.self, forKey: .mallArea)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            country = try container.decode(String.self, forKey: .country)
-
-            do {
-                vatNo = try container.decode(String.self, forKey: .vatNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandStoreTags = try container.decode([String].self, forKey: .brandStoreTags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address2 = try container.decode(String.self, forKey: .address2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
-
-            do {
-                storeAddressJson = try container.decode(StoreAddress.self, forKey: .storeAddressJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandId = try container.decode([String: Any].self, forKey: .brandId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            storeEmail = try container.decode(String.self, forKey: .storeEmail)
-
-            address1 = try container.decode(String.self, forKey: .address1)
-
-            do {
-                storeActiveFrom = try container.decode(String.self, forKey: .storeActiveFrom)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                packagingMaterialCount = try container.decode(Int.self, forKey: .packagingMaterialCount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            loginUsername = try container.decode(String.self, forKey: .loginUsername)
-
-            latitude = try container.decode(Double.self, forKey: .latitude)
-
-            do {
                 isEnabledForRecon = try container.decode(Bool.self, forKey: .isEnabledForRecon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -360,117 +396,81 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            meta = try container.decode(StoreMeta.self, forKey: .meta)
-
-            state = try container.decode(String.self, forKey: .state)
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            do {
-                parentStoreId = try container.decode(Int.self, forKey: .parentStoreId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isArchived = try container.decode(Bool.self, forKey: .isArchived)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderIntegrationId = try container.decode(String.self, forKey: .orderIntegrationId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encode(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+
+            try? container.encode(brandId, forKey: .brandId)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
 
-            try? container.encodeIfPresent(sId, forKey: .sId)
+            try? container.encode(storeActiveFrom, forKey: .storeActiveFrom)
+
+            try? container.encodeIfPresent(phone, forKey: .phone)
+
+            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
+
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(locationType, forKey: .locationType)
+            try? container.encodeIfPresent(loginUsername, forKey: .loginUsername)
+
+            try? container.encodeIfPresent(sId, forKey: .sId)
+
+            try? container.encodeIfPresent(address2, forKey: .address2)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encode(updatedAt, forKey: .updatedAt)
-
-            try? container.encode(mallName, forKey: .mallName)
-
-            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
+            try? container.encode(vatNo, forKey: .vatNo)
 
             try? container.encode(mallArea, forKey: .mallArea)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encode(vatNo, forKey: .vatNo)
-
             try? container.encodeIfPresent(brandStoreTags, forKey: .brandStoreTags)
-
-            try? container.encodeIfPresent(address2, forKey: .address2)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
-
-            try? container.encodeIfPresent(storeAddressJson, forKey: .storeAddressJson)
-
-            try? container.encode(brandId, forKey: .brandId)
-
-            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
 
             try? container.encodeIfPresent(address1, forKey: .address1)
 
-            try? container.encode(storeActiveFrom, forKey: .storeActiveFrom)
-
-            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
-
-            try? container.encodeIfPresent(loginUsername, forKey: .loginUsername)
-
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-
-            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
             try? container.encodeIfPresent(parentStoreId, forKey: .parentStoreId)
+
+            try? container.encodeIfPresent(storeAddressJson, forKey: .storeAddressJson)
 
             try? container.encodeIfPresent(isArchived, forKey: .isArchived)
 
-            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
+            try? container.encodeIfPresent(locationType, forKey: .locationType)
+
+            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
+
+            try? container.encode(mallName, forKey: .mallName)
+
+            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
+
+            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
         }
     }
 }
@@ -482,240 +482,232 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Store: Codable {
-        public var longitude: Double
+        public var orderIntegrationId: String?
+
+        public var meta: StoreMeta
+
+        public var updatedAt: String?
+
+        public var contactPerson: String
+
+        public var brandId: [String: Any]?
+
+        public var companyId: Int
 
         public var fulfillmentChannel: String
 
-        public var sId: String
+        public var storeActiveFrom: String?
+
+        public var phone: Int
+
+        public var storeEmail: String
+
+        public var longitude: Double
 
         public var city: String
 
-        public var locationType: String
+        public var loginUsername: String
+
+        public var sId: String
+
+        public var address2: String?
 
         public var pincode: String
 
         public var name: String
 
-        public var phone: Int
-
-        public var companyId: Int
-
-        public var updatedAt: String?
-
-        public var mallName: String?
-
-        public var alohomoraUserId: Int?
+        public var vatNo: String?
 
         public var mallArea: String?
 
-        public var country: String
-
-        public var vatNo: String?
-
         public var brandStoreTags: [String]?
-
-        public var address2: String?
-
-        public var isActive: Bool?
-
-        public var contactPerson: String
-
-        public var storeAddressJson: StoreAddress?
-
-        public var brandId: [String: Any]?
-
-        public var storeEmail: String
 
         public var address1: String
 
-        public var storeActiveFrom: String?
-
-        public var packagingMaterialCount: Int?
-
-        public var loginUsername: String
-
-        public var latitude: Double
-
-        public var isEnabledForRecon: Bool?
-
-        public var meta: StoreMeta
+        public var country: String
 
         public var state: String
 
         public var code: String?
 
-        public var createdAt: String
-
         public var parentStoreId: Int?
+
+        public var storeAddressJson: StoreAddress?
 
         public var isArchived: Bool?
 
-        public var orderIntegrationId: String?
+        public var locationType: String
+
+        public var packagingMaterialCount: Int?
+
+        public var isActive: Bool?
+
+        public var latitude: Double
+
+        public var mallName: String?
+
+        public var alohomoraUserId: Int?
+
+        public var isEnabledForRecon: Bool?
+
+        public var createdAt: String
 
         public enum CodingKeys: String, CodingKey {
-            case longitude
+            case orderIntegrationId = "order_integration_id"
+
+            case meta
+
+            case updatedAt = "updated_at"
+
+            case contactPerson = "contact_person"
+
+            case brandId = "brand_id"
+
+            case companyId = "company_id"
 
             case fulfillmentChannel = "fulfillment_channel"
 
-            case sId = "s_id"
+            case storeActiveFrom = "store_active_from"
+
+            case phone
+
+            case storeEmail = "store_email"
+
+            case longitude
 
             case city
 
-            case locationType = "location_type"
+            case loginUsername = "login_username"
+
+            case sId = "s_id"
+
+            case address2
 
             case pincode
 
             case name
 
-            case phone
-
-            case companyId = "company_id"
-
-            case updatedAt = "updated_at"
-
-            case mallName = "mall_name"
-
-            case alohomoraUserId = "alohomora_user_id"
+            case vatNo = "vat_no"
 
             case mallArea = "mall_area"
 
-            case country
-
-            case vatNo = "vat_no"
-
             case brandStoreTags = "brand_store_tags"
-
-            case address2
-
-            case isActive = "is_active"
-
-            case contactPerson = "contact_person"
-
-            case storeAddressJson = "store_address_json"
-
-            case brandId = "brand_id"
-
-            case storeEmail = "store_email"
 
             case address1
 
-            case storeActiveFrom = "store_active_from"
-
-            case packagingMaterialCount = "packaging_material_count"
-
-            case loginUsername = "login_username"
-
-            case latitude
-
-            case isEnabledForRecon = "is_enabled_for_recon"
-
-            case meta
+            case country
 
             case state
 
             case code
 
-            case createdAt = "created_at"
-
             case parentStoreId = "parent_store_id"
+
+            case storeAddressJson = "store_address_json"
 
             case isArchived = "is_archived"
 
-            case orderIntegrationId = "order_integration_id"
+            case locationType = "location_type"
+
+            case packagingMaterialCount = "packaging_material_count"
+
+            case isActive = "is_active"
+
+            case latitude
+
+            case mallName = "mall_name"
+
+            case alohomoraUserId = "alohomora_user_id"
+
+            case isEnabledForRecon = "is_enabled_for_recon"
+
+            case createdAt = "created_at"
         }
 
         public init(address1: String, address2: String? = nil, alohomoraUserId: Int? = nil, brandId: [String: Any]? = nil, brandStoreTags: [String]? = nil, city: String, code: String? = nil, companyId: Int, contactPerson: String, country: String, createdAt: String, fulfillmentChannel: String, isActive: Bool? = nil, isArchived: Bool? = nil, isEnabledForRecon: Bool? = nil, latitude: Double, locationType: String, loginUsername: String, longitude: Double, mallArea: String? = nil, mallName: String? = nil, meta: StoreMeta, name: String, orderIntegrationId: String? = nil, packagingMaterialCount: Int? = nil, parentStoreId: Int? = nil, phone: Int, pincode: String, state: String, storeActiveFrom: String? = nil, storeAddressJson: StoreAddress? = nil, storeEmail: String, sId: String, updatedAt: String? = nil, vatNo: String? = nil) {
-            self.longitude = longitude
+            self.orderIntegrationId = orderIntegrationId
+
+            self.meta = meta
+
+            self.updatedAt = updatedAt
+
+            self.contactPerson = contactPerson
+
+            self.brandId = brandId
+
+            self.companyId = companyId
 
             self.fulfillmentChannel = fulfillmentChannel
 
-            self.sId = sId
+            self.storeActiveFrom = storeActiveFrom
+
+            self.phone = phone
+
+            self.storeEmail = storeEmail
+
+            self.longitude = longitude
 
             self.city = city
 
-            self.locationType = locationType
+            self.loginUsername = loginUsername
+
+            self.sId = sId
+
+            self.address2 = address2
 
             self.pincode = pincode
 
             self.name = name
 
-            self.phone = phone
-
-            self.companyId = companyId
-
-            self.updatedAt = updatedAt
-
-            self.mallName = mallName
-
-            self.alohomoraUserId = alohomoraUserId
+            self.vatNo = vatNo
 
             self.mallArea = mallArea
 
-            self.country = country
-
-            self.vatNo = vatNo
-
             self.brandStoreTags = brandStoreTags
-
-            self.address2 = address2
-
-            self.isActive = isActive
-
-            self.contactPerson = contactPerson
-
-            self.storeAddressJson = storeAddressJson
-
-            self.brandId = brandId
-
-            self.storeEmail = storeEmail
 
             self.address1 = address1
 
-            self.storeActiveFrom = storeActiveFrom
-
-            self.packagingMaterialCount = packagingMaterialCount
-
-            self.loginUsername = loginUsername
-
-            self.latitude = latitude
-
-            self.isEnabledForRecon = isEnabledForRecon
-
-            self.meta = meta
+            self.country = country
 
             self.state = state
 
             self.code = code
 
-            self.createdAt = createdAt
-
             self.parentStoreId = parentStoreId
+
+            self.storeAddressJson = storeAddressJson
 
             self.isArchived = isArchived
 
-            self.orderIntegrationId = orderIntegrationId
+            self.locationType = locationType
+
+            self.packagingMaterialCount = packagingMaterialCount
+
+            self.isActive = isActive
+
+            self.latitude = latitude
+
+            self.mallName = mallName
+
+            self.alohomoraUserId = alohomoraUserId
+
+            self.isEnabledForRecon = isEnabledForRecon
+
+            self.createdAt = createdAt
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            longitude = try container.decode(Double.self, forKey: .longitude)
+            do {
+                orderIntegrationId = try container.decode(String.self, forKey: .orderIntegrationId)
 
-            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            sId = try container.decode(String.self, forKey: .sId)
-
-            city = try container.decode(String.self, forKey: .city)
-
-            locationType = try container.decode(String.self, forKey: .locationType)
-
-            pincode = try container.decode(String.self, forKey: .pincode)
-
-            name = try container.decode(String.self, forKey: .name)
-
-            phone = try container.decode(Int.self, forKey: .phone)
-
-            companyId = try container.decode(Int.self, forKey: .companyId)
+            meta = try container.decode(StoreMeta.self, forKey: .meta)
 
             do {
                 updatedAt = try container.decode(String.self, forKey: .updatedAt)
@@ -724,6 +716,134 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            contactPerson = try container.decode(String.self, forKey: .contactPerson)
+
+            do {
+                brandId = try container.decode([String: Any].self, forKey: .brandId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            companyId = try container.decode(Int.self, forKey: .companyId)
+
+            fulfillmentChannel = try container.decode(String.self, forKey: .fulfillmentChannel)
+
+            do {
+                storeActiveFrom = try container.decode(String.self, forKey: .storeActiveFrom)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            phone = try container.decode(Int.self, forKey: .phone)
+
+            storeEmail = try container.decode(String.self, forKey: .storeEmail)
+
+            longitude = try container.decode(Double.self, forKey: .longitude)
+
+            city = try container.decode(String.self, forKey: .city)
+
+            loginUsername = try container.decode(String.self, forKey: .loginUsername)
+
+            sId = try container.decode(String.self, forKey: .sId)
+
+            do {
+                address2 = try container.decode(String.self, forKey: .address2)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            pincode = try container.decode(String.self, forKey: .pincode)
+
+            name = try container.decode(String.self, forKey: .name)
+
+            do {
+                vatNo = try container.decode(String.self, forKey: .vatNo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mallArea = try container.decode(String.self, forKey: .mallArea)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brandStoreTags = try container.decode([String].self, forKey: .brandStoreTags)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            address1 = try container.decode(String.self, forKey: .address1)
+
+            country = try container.decode(String.self, forKey: .country)
+
+            state = try container.decode(String.self, forKey: .state)
+
+            do {
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                parentStoreId = try container.decode(Int.self, forKey: .parentStoreId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                storeAddressJson = try container.decode(StoreAddress.self, forKey: .storeAddressJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isArchived = try container.decode(Bool.self, forKey: .isArchived)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            locationType = try container.decode(String.self, forKey: .locationType)
+
+            do {
+                packagingMaterialCount = try container.decode(Int.self, forKey: .packagingMaterialCount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            latitude = try container.decode(Double.self, forKey: .latitude)
 
             do {
                 mallName = try container.decode(String.self, forKey: .mallName)
@@ -742,90 +862,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                mallArea = try container.decode(String.self, forKey: .mallArea)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            country = try container.decode(String.self, forKey: .country)
-
-            do {
-                vatNo = try container.decode(String.self, forKey: .vatNo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandStoreTags = try container.decode([String].self, forKey: .brandStoreTags)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                address2 = try container.decode(String.self, forKey: .address2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            contactPerson = try container.decode(String.self, forKey: .contactPerson)
-
-            do {
-                storeAddressJson = try container.decode(StoreAddress.self, forKey: .storeAddressJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandId = try container.decode([String: Any].self, forKey: .brandId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            storeEmail = try container.decode(String.self, forKey: .storeEmail)
-
-            address1 = try container.decode(String.self, forKey: .address1)
-
-            do {
-                storeActiveFrom = try container.decode(String.self, forKey: .storeActiveFrom)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                packagingMaterialCount = try container.decode(Int.self, forKey: .packagingMaterialCount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            loginUsername = try container.decode(String.self, forKey: .loginUsername)
-
-            latitude = try container.decode(Double.self, forKey: .latitude)
-
-            do {
                 isEnabledForRecon = try container.decode(Bool.self, forKey: .isEnabledForRecon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -833,117 +869,81 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            meta = try container.decode(StoreMeta.self, forKey: .meta)
-
-            state = try container.decode(String.self, forKey: .state)
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             createdAt = try container.decode(String.self, forKey: .createdAt)
-
-            do {
-                parentStoreId = try container.decode(Int.self, forKey: .parentStoreId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                isArchived = try container.decode(Bool.self, forKey: .isArchived)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderIntegrationId = try container.decode(String.self, forKey: .orderIntegrationId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(longitude, forKey: .longitude)
+            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
+            try? container.encode(updatedAt, forKey: .updatedAt)
+
+            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+
+            try? container.encode(brandId, forKey: .brandId)
+
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
 
             try? container.encodeIfPresent(fulfillmentChannel, forKey: .fulfillmentChannel)
 
-            try? container.encodeIfPresent(sId, forKey: .sId)
+            try? container.encode(storeActiveFrom, forKey: .storeActiveFrom)
+
+            try? container.encodeIfPresent(phone, forKey: .phone)
+
+            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
+
+            try? container.encodeIfPresent(longitude, forKey: .longitude)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
-            try? container.encodeIfPresent(locationType, forKey: .locationType)
+            try? container.encodeIfPresent(loginUsername, forKey: .loginUsername)
+
+            try? container.encodeIfPresent(sId, forKey: .sId)
+
+            try? container.encodeIfPresent(address2, forKey: .address2)
 
             try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(phone, forKey: .phone)
-
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
-
-            try? container.encode(updatedAt, forKey: .updatedAt)
-
-            try? container.encode(mallName, forKey: .mallName)
-
-            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
+            try? container.encode(vatNo, forKey: .vatNo)
 
             try? container.encode(mallArea, forKey: .mallArea)
 
-            try? container.encodeIfPresent(country, forKey: .country)
-
-            try? container.encode(vatNo, forKey: .vatNo)
-
             try? container.encodeIfPresent(brandStoreTags, forKey: .brandStoreTags)
-
-            try? container.encodeIfPresent(address2, forKey: .address2)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
-
-            try? container.encodeIfPresent(storeAddressJson, forKey: .storeAddressJson)
-
-            try? container.encode(brandId, forKey: .brandId)
-
-            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
 
             try? container.encodeIfPresent(address1, forKey: .address1)
 
-            try? container.encode(storeActiveFrom, forKey: .storeActiveFrom)
-
-            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
-
-            try? container.encodeIfPresent(loginUsername, forKey: .loginUsername)
-
-            try? container.encodeIfPresent(latitude, forKey: .latitude)
-
-            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encodeIfPresent(state, forKey: .state)
 
             try? container.encodeIfPresent(code, forKey: .code)
 
-            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
-
             try? container.encodeIfPresent(parentStoreId, forKey: .parentStoreId)
+
+            try? container.encodeIfPresent(storeAddressJson, forKey: .storeAddressJson)
 
             try? container.encodeIfPresent(isArchived, forKey: .isArchived)
 
-            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
+            try? container.encodeIfPresent(locationType, forKey: .locationType)
+
+            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(latitude, forKey: .latitude)
+
+            try? container.encode(mallName, forKey: .mallName)
+
+            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
+
+            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
+
+            try? container.encodeIfPresent(createdAt, forKey: .createdAt)
         }
     }
 }

@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var results: [AutocompleteResult]?
 
-        public var appId: String?
-
         public var isActive: Bool?
+
+        public var appId: String?
 
         public var customJson: [String: Any]?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case results
 
-            case appId = "app_id"
-
             case isActive = "is_active"
+
+            case appId = "app_id"
 
             case customJson = "_custom_json"
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.results = results
 
-            self.appId = appId
-
             self.isActive = isActive
+
+            self.appId = appId
 
             self.customJson = customJson
         }
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                appId = try container.decode(String.self, forKey: .appId)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(results, forKey: .results)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var results: [AutocompleteResult]?
 
-        public var appId: String?
-
         public var isActive: Bool?
+
+        public var appId: String?
 
         public var customJson: [String: Any]?
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case results
 
-            case appId = "app_id"
-
             case isActive = "is_active"
+
+            case appId = "app_id"
 
             case customJson = "_custom_json"
         }
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.results = results
 
-            self.appId = appId
-
             self.isActive = isActive
+
+            self.appId = appId
 
             self.customJson = customJson
         }
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                appId = try container.decode(String.self, forKey: .appId)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                appId = try container.decode(String.self, forKey: .appId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,9 +195,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(results, forKey: .results)
 
-            try? container.encodeIfPresent(appId, forKey: .appId)
-
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+
+            try? container.encodeIfPresent(appId, forKey: .appId)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
