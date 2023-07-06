@@ -11,60 +11,60 @@ public extension PlatformClient.Order {
     class SmsDataPayload: Codable {
         public var shipmentId: Int
 
-        public var phoneNumber: Int
-
         public var message: String
-
-        public var brandName: String?
 
         public var orderId: String
 
         public var customerName: String?
 
+        public var phoneNumber: Int
+
         public var amountPaid: Int?
 
-        public var paymentMode: String?
+        public var brandName: String?
 
         public var countryCode: String
+
+        public var paymentMode: String?
 
         public enum CodingKeys: String, CodingKey {
             case shipmentId = "shipment_id"
 
-            case phoneNumber = "phone_number"
-
             case message
-
-            case brandName = "brand_name"
 
             case orderId = "order_id"
 
             case customerName = "customer_name"
 
+            case phoneNumber = "phone_number"
+
             case amountPaid = "amount_paid"
 
-            case paymentMode = "payment_mode"
+            case brandName = "brand_name"
 
             case countryCode = "country_code"
+
+            case paymentMode = "payment_mode"
         }
 
         public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: Int, shipmentId: Int) {
             self.shipmentId = shipmentId
 
-            self.phoneNumber = phoneNumber
-
             self.message = message
-
-            self.brandName = brandName
 
             self.orderId = orderId
 
             self.customerName = customerName
 
+            self.phoneNumber = phoneNumber
+
             self.amountPaid = amountPaid
 
-            self.paymentMode = paymentMode
+            self.brandName = brandName
 
             self.countryCode = countryCode
+
+            self.paymentMode = paymentMode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -72,17 +72,7 @@ public extension PlatformClient.Order {
 
             shipmentId = try container.decode(Int.self, forKey: .shipmentId)
 
-            phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
-
             message = try container.decode(String.self, forKey: .message)
-
-            do {
-                brandName = try container.decode(String.self, forKey: .brandName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
@@ -94,6 +84,8 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
+
             do {
                 amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
@@ -103,7 +95,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                brandName = try container.decode(String.self, forKey: .brandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,6 +103,14 @@ public extension PlatformClient.Order {
             } catch {}
 
             countryCode = try container.decode(String.self, forKey: .countryCode)
+
+            do {
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -118,21 +118,21 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
-
             try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
         }
     }
 }
@@ -146,60 +146,60 @@ public extension PlatformClient.ApplicationClient.Order {
     class SmsDataPayload: Codable {
         public var shipmentId: Int
 
-        public var phoneNumber: Int
-
         public var message: String
-
-        public var brandName: String?
 
         public var orderId: String
 
         public var customerName: String?
 
+        public var phoneNumber: Int
+
         public var amountPaid: Int?
 
-        public var paymentMode: String?
+        public var brandName: String?
 
         public var countryCode: String
+
+        public var paymentMode: String?
 
         public enum CodingKeys: String, CodingKey {
             case shipmentId = "shipment_id"
 
-            case phoneNumber = "phone_number"
-
             case message
-
-            case brandName = "brand_name"
 
             case orderId = "order_id"
 
             case customerName = "customer_name"
 
+            case phoneNumber = "phone_number"
+
             case amountPaid = "amount_paid"
 
-            case paymentMode = "payment_mode"
+            case brandName = "brand_name"
 
             case countryCode = "country_code"
+
+            case paymentMode = "payment_mode"
         }
 
         public init(amountPaid: Int? = nil, brandName: String? = nil, countryCode: String, customerName: String? = nil, message: String, orderId: String, paymentMode: String? = nil, phoneNumber: Int, shipmentId: Int) {
             self.shipmentId = shipmentId
 
-            self.phoneNumber = phoneNumber
-
             self.message = message
-
-            self.brandName = brandName
 
             self.orderId = orderId
 
             self.customerName = customerName
 
+            self.phoneNumber = phoneNumber
+
             self.amountPaid = amountPaid
 
-            self.paymentMode = paymentMode
+            self.brandName = brandName
 
             self.countryCode = countryCode
+
+            self.paymentMode = paymentMode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -207,17 +207,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             shipmentId = try container.decode(Int.self, forKey: .shipmentId)
 
-            phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
-
             message = try container.decode(String.self, forKey: .message)
-
-            do {
-                brandName = try container.decode(String.self, forKey: .brandName)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
@@ -229,6 +219,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            phoneNumber = try container.decode(Int.self, forKey: .phoneNumber)
+
             do {
                 amountPaid = try container.decode(Int.self, forKey: .amountPaid)
 
@@ -238,7 +230,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                brandName = try container.decode(String.self, forKey: .brandName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -246,6 +238,14 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             countryCode = try container.decode(String.self, forKey: .countryCode)
+
+            do {
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -253,21 +253,21 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
-
             try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
             try? container.encodeIfPresent(customerName, forKey: .customerName)
 
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+
             try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
 
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
+
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
         }
     }
 }

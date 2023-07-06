@@ -9061,6 +9061,7 @@ Success. Returns a JSON object of components. Refer `PageSchema` for more detail
  | register | register | Symbolic link for Register: /auth/register |
  | shippingPolicy | shipping-policy | Symbolic link for Shipping policy: /shipping-policy |
  | returnPolicy | return-policy | Symbolic link for Return policy: /return-policy |
+ | orderStatus | order-status | Symbolic link for Order status: /cart/order-status |
 
 ---
 

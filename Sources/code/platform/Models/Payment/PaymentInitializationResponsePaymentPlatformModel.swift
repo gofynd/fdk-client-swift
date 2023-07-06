@@ -9,134 +9,144 @@ public extension PlatformClient.Payment {
      */
 
     class PaymentInitializationResponse: Codable {
-        public var success: Bool
-
-        public var amount: Int?
-
-        public var pollingUrl: String
-
-        public var bqrImage: String?
-
-        public var timeout: Int?
-
-        public var vpa: String?
+        public var virtualId: String?
 
         public var method: String
 
-        public var status: String?
-
-        public var customerId: String?
-
-        public var aggregatorOrderId: String?
-
-        public var deviceId: String?
+        public var pollingUrl: String
 
         public var upiPollUrl: String?
-
-        public var virtualId: String?
-
-        public var currency: String?
-
-        public var aggregator: String
 
         public var razorpayPaymentId: String?
 
         public var merchantOrderId: String
 
+        public var timeout: Int?
+
+        public var bqrImage: String?
+
+        public var aggregator: String
+
+        public var success: Bool
+
+        public var currency: String?
+
+        public var customerId: String?
+
+        public var amount: Int?
+
+        public var status: String?
+
+        public var aggregatorOrderId: String?
+
+        public var deviceId: String?
+
+        public var vpa: String?
+
         public enum CodingKeys: String, CodingKey {
-            case success
-
-            case amount
-
-            case pollingUrl = "polling_url"
-
-            case bqrImage = "bqr_image"
-
-            case timeout
-
-            case vpa
+            case virtualId = "virtual_id"
 
             case method
 
-            case status
+            case pollingUrl = "polling_url"
+
+            case upiPollUrl = "upi_poll_url"
+
+            case razorpayPaymentId = "razorpay_payment_id"
+
+            case merchantOrderId = "merchant_order_id"
+
+            case timeout
+
+            case bqrImage = "bqr_image"
+
+            case aggregator
+
+            case success
+
+            case currency
 
             case customerId = "customer_id"
+
+            case amount
+
+            case status
 
             case aggregatorOrderId = "aggregator_order_id"
 
             case deviceId = "device_id"
 
-            case upiPollUrl = "upi_poll_url"
-
-            case virtualId = "virtual_id"
-
-            case currency
-
-            case aggregator
-
-            case razorpayPaymentId = "razorpay_payment_id"
-
-            case merchantOrderId = "merchant_order_id"
+            case vpa
         }
 
         public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, success: Bool, timeout: Int? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
-            self.success = success
-
-            self.amount = amount
-
-            self.pollingUrl = pollingUrl
-
-            self.bqrImage = bqrImage
-
-            self.timeout = timeout
-
-            self.vpa = vpa
+            self.virtualId = virtualId
 
             self.method = method
 
-            self.status = status
+            self.pollingUrl = pollingUrl
+
+            self.upiPollUrl = upiPollUrl
+
+            self.razorpayPaymentId = razorpayPaymentId
+
+            self.merchantOrderId = merchantOrderId
+
+            self.timeout = timeout
+
+            self.bqrImage = bqrImage
+
+            self.aggregator = aggregator
+
+            self.success = success
+
+            self.currency = currency
 
             self.customerId = customerId
+
+            self.amount = amount
+
+            self.status = status
 
             self.aggregatorOrderId = aggregatorOrderId
 
             self.deviceId = deviceId
 
-            self.upiPollUrl = upiPollUrl
-
-            self.virtualId = virtualId
-
-            self.currency = currency
-
-            self.aggregator = aggregator
-
-            self.razorpayPaymentId = razorpayPaymentId
-
-            self.merchantOrderId = merchantOrderId
+            self.vpa = vpa
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             do {
-                amount = try container.decode(Int.self, forKey: .amount)
+                virtualId = try container.decode(String.self, forKey: .virtualId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            method = try container.decode(String.self, forKey: .method)
 
             pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
 
             do {
-                bqrImage = try container.decode(String.self, forKey: .bqrImage)
+                upiPollUrl = try container.decode(String.self, forKey: .upiPollUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             do {
                 timeout = try container.decode(Int.self, forKey: .timeout)
@@ -147,17 +157,19 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                vpa = try container.decode(String.self, forKey: .vpa)
+                bqrImage = try container.decode(String.self, forKey: .bqrImage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            method = try container.decode(String.self, forKey: .method)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -166,6 +178,22 @@ public extension PlatformClient.Payment {
 
             do {
                 customerId = try container.decode(String.self, forKey: .customerId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amount = try container.decode(Int.self, forKey: .amount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -189,78 +217,50 @@ public extension PlatformClient.Payment {
             } catch {}
 
             do {
-                upiPollUrl = try container.decode(String.self, forKey: .upiPollUrl)
+                vpa = try container.decode(String.self, forKey: .vpa)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                virtualId = try container.decode(String.self, forKey: .virtualId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            do {
-                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encode(amount, forKey: .amount)
-
-            try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
-
-            try? container.encode(bqrImage, forKey: .bqrImage)
-
-            try? container.encode(timeout, forKey: .timeout)
-
-            try? container.encode(vpa, forKey: .vpa)
+            try? container.encode(virtualId, forKey: .virtualId)
 
             try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
+
+            try? container.encode(upiPollUrl, forKey: .upiPollUrl)
+
+            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
+
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+
+            try? container.encode(timeout, forKey: .timeout)
+
+            try? container.encode(bqrImage, forKey: .bqrImage)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encode(currency, forKey: .currency)
 
             try? container.encode(customerId, forKey: .customerId)
+
+            try? container.encode(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
 
             try? container.encode(deviceId, forKey: .deviceId)
 
-            try? container.encode(upiPollUrl, forKey: .upiPollUrl)
-
-            try? container.encode(virtualId, forKey: .virtualId)
-
-            try? container.encode(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
-            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
-
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encode(vpa, forKey: .vpa)
         }
     }
 }
@@ -272,134 +272,144 @@ public extension PlatformClient.ApplicationClient.Payment {
      */
 
     class PaymentInitializationResponse: Codable {
-        public var success: Bool
-
-        public var amount: Int?
-
-        public var pollingUrl: String
-
-        public var bqrImage: String?
-
-        public var timeout: Int?
-
-        public var vpa: String?
+        public var virtualId: String?
 
         public var method: String
 
-        public var status: String?
-
-        public var customerId: String?
-
-        public var aggregatorOrderId: String?
-
-        public var deviceId: String?
+        public var pollingUrl: String
 
         public var upiPollUrl: String?
-
-        public var virtualId: String?
-
-        public var currency: String?
-
-        public var aggregator: String
 
         public var razorpayPaymentId: String?
 
         public var merchantOrderId: String
 
+        public var timeout: Int?
+
+        public var bqrImage: String?
+
+        public var aggregator: String
+
+        public var success: Bool
+
+        public var currency: String?
+
+        public var customerId: String?
+
+        public var amount: Int?
+
+        public var status: String?
+
+        public var aggregatorOrderId: String?
+
+        public var deviceId: String?
+
+        public var vpa: String?
+
         public enum CodingKeys: String, CodingKey {
-            case success
-
-            case amount
-
-            case pollingUrl = "polling_url"
-
-            case bqrImage = "bqr_image"
-
-            case timeout
-
-            case vpa
+            case virtualId = "virtual_id"
 
             case method
 
-            case status
+            case pollingUrl = "polling_url"
+
+            case upiPollUrl = "upi_poll_url"
+
+            case razorpayPaymentId = "razorpay_payment_id"
+
+            case merchantOrderId = "merchant_order_id"
+
+            case timeout
+
+            case bqrImage = "bqr_image"
+
+            case aggregator
+
+            case success
+
+            case currency
 
             case customerId = "customer_id"
+
+            case amount
+
+            case status
 
             case aggregatorOrderId = "aggregator_order_id"
 
             case deviceId = "device_id"
 
-            case upiPollUrl = "upi_poll_url"
-
-            case virtualId = "virtual_id"
-
-            case currency
-
-            case aggregator
-
-            case razorpayPaymentId = "razorpay_payment_id"
-
-            case merchantOrderId = "merchant_order_id"
+            case vpa
         }
 
         public init(aggregator: String, aggregatorOrderId: String? = nil, amount: Int? = nil, bqrImage: String? = nil, currency: String? = nil, customerId: String? = nil, deviceId: String? = nil, merchantOrderId: String, method: String, pollingUrl: String, razorpayPaymentId: String? = nil, status: String? = nil, success: Bool, timeout: Int? = nil, upiPollUrl: String? = nil, virtualId: String? = nil, vpa: String? = nil) {
-            self.success = success
-
-            self.amount = amount
-
-            self.pollingUrl = pollingUrl
-
-            self.bqrImage = bqrImage
-
-            self.timeout = timeout
-
-            self.vpa = vpa
+            self.virtualId = virtualId
 
             self.method = method
 
-            self.status = status
+            self.pollingUrl = pollingUrl
+
+            self.upiPollUrl = upiPollUrl
+
+            self.razorpayPaymentId = razorpayPaymentId
+
+            self.merchantOrderId = merchantOrderId
+
+            self.timeout = timeout
+
+            self.bqrImage = bqrImage
+
+            self.aggregator = aggregator
+
+            self.success = success
+
+            self.currency = currency
 
             self.customerId = customerId
+
+            self.amount = amount
+
+            self.status = status
 
             self.aggregatorOrderId = aggregatorOrderId
 
             self.deviceId = deviceId
 
-            self.upiPollUrl = upiPollUrl
-
-            self.virtualId = virtualId
-
-            self.currency = currency
-
-            self.aggregator = aggregator
-
-            self.razorpayPaymentId = razorpayPaymentId
-
-            self.merchantOrderId = merchantOrderId
+            self.vpa = vpa
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             do {
-                amount = try container.decode(Int.self, forKey: .amount)
+                virtualId = try container.decode(String.self, forKey: .virtualId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            method = try container.decode(String.self, forKey: .method)
 
             pollingUrl = try container.decode(String.self, forKey: .pollingUrl)
 
             do {
-                bqrImage = try container.decode(String.self, forKey: .bqrImage)
+                upiPollUrl = try container.decode(String.self, forKey: .upiPollUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             do {
                 timeout = try container.decode(Int.self, forKey: .timeout)
@@ -410,17 +420,19 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                vpa = try container.decode(String.self, forKey: .vpa)
+                bqrImage = try container.decode(String.self, forKey: .bqrImage)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            method = try container.decode(String.self, forKey: .method)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -429,6 +441,22 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             do {
                 customerId = try container.decode(String.self, forKey: .customerId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amount = try container.decode(Int.self, forKey: .amount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -452,78 +480,50 @@ public extension PlatformClient.ApplicationClient.Payment {
             } catch {}
 
             do {
-                upiPollUrl = try container.decode(String.self, forKey: .upiPollUrl)
+                vpa = try container.decode(String.self, forKey: .vpa)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                virtualId = try container.decode(String.self, forKey: .virtualId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
-            do {
-                razorpayPaymentId = try container.decode(String.self, forKey: .razorpayPaymentId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
-            try? container.encode(amount, forKey: .amount)
-
-            try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
-
-            try? container.encode(bqrImage, forKey: .bqrImage)
-
-            try? container.encode(timeout, forKey: .timeout)
-
-            try? container.encode(vpa, forKey: .vpa)
+            try? container.encode(virtualId, forKey: .virtualId)
 
             try? container.encodeIfPresent(method, forKey: .method)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(pollingUrl, forKey: .pollingUrl)
+
+            try? container.encode(upiPollUrl, forKey: .upiPollUrl)
+
+            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
+
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+
+            try? container.encode(timeout, forKey: .timeout)
+
+            try? container.encode(bqrImage, forKey: .bqrImage)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+
+            try? container.encodeIfPresent(success, forKey: .success)
+
+            try? container.encode(currency, forKey: .currency)
 
             try? container.encode(customerId, forKey: .customerId)
+
+            try? container.encode(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
 
             try? container.encode(deviceId, forKey: .deviceId)
 
-            try? container.encode(upiPollUrl, forKey: .upiPollUrl)
-
-            try? container.encode(virtualId, forKey: .virtualId)
-
-            try? container.encode(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
-            try? container.encode(razorpayPaymentId, forKey: .razorpayPaymentId)
-
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encode(vpa, forKey: .vpa)
         }
     }
 }

@@ -134,7 +134,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipments-listing",
+                url: "/service/platform/order/v1.0/company/\(companyId)/shipments-listing",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -184,7 +184,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipment-details",
+                url: "/service/platform/order/v1.0/company/\(companyId)/shipment-details",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -198,59 +198,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(ShipmentInfoResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary: Get Invoice or Label or Pos of a shipment
-         * Description: Use this API to retrieve shipments invoice, label and pos.
-         **/
-        public func getAssetByShipmentIds(
-            shipmentIds: String,
-            invoice: Bool?,
-            expiresIn: String?,
-
-            onResponse: @escaping (_ response: ResponseGetAssetShipment?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            xQuery["shipment_ids"] = shipmentIds
-
-            if let value = invoice {
-                xQuery["invoice"] = value
-            }
-
-            if let value = expiresIn {
-                xQuery["expires_in"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipments-invoice",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ResponseGetAssetShipment.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -280,7 +227,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/order-details",
+                url: "/service/platform/order/v1.0/company/\(companyId)/order-details",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -395,7 +342,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/lane-config/",
+                url: "/service/platform/order/v1.0/company/\(companyId)/lane-config/",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -520,7 +467,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/orders-listing",
+                url: "/service/platform/order/v1.0/company/\(companyId)/orders-listing",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -534,56 +481,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(OrderListingResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
-         * Description:
-         **/
-        public func getMetricCount(
-            fromDate: String?,
-            toDate: String?,
-
-            onResponse: @escaping (_ response: MetricCountResponse?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = fromDate {
-                xQuery["from_date"] = value
-            }
-
-            if let value = toDate {
-                xQuery["to_date"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipment/metrics-count/",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(MetricCountResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -618,7 +515,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/filter-listing",
+                url: "/service/platform/order/v1.0/company/\(companyId)/filter-listing",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -632,144 +529,6 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(FiltersResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
-         * Description:
-         **/
-        public func createShipmentReport(
-            fromDate: String?,
-            toDate: String?,
-
-            onResponse: @escaping (_ response: Success?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = fromDate {
-                xQuery["from_date"] = value
-            }
-
-            if let value = toDate {
-                xQuery["to_date"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/reports/shipment",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(Success.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
-         * Description:
-         **/
-        public func getReportsShipmentListing(
-            pageNo: Int?,
-            pageSize: Int?,
-
-            onResponse: @escaping (_ response: OmsReports?, _ error: FDKError?) -> Void
-        ) {
-            var xQuery: [String: Any] = [:]
-
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
-
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/reports/shipment-listing",
-                query: xQuery,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(OmsReports.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
-         * Summary:
-         * Description:
-         **/
-        public func upsertJioCode(
-            body: JioCodeUpsertPayload,
-            onResponse: @escaping (_ response: JioCodeUpsertResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "post",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/upsert/jiocode/article",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(JioCodeUpsertResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -856,7 +615,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/generate/file",
+                url: "/service/platform/order/v1.0/company/\(companyId)/generate/file",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -893,7 +652,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/bulk-action/get-seller-templates",
+                url: "/service/platform/order/v1.0/company/\(companyId)/bulk-action/get-seller-templates",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -938,7 +697,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/bulk-action/download-seller-templates",
+                url: "/service/platform/order/v1.0/company/\(companyId)/bulk-action/download-seller-templates",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -979,7 +738,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/shipments/\(shipmentId)/bags/\(bagId)/state/\(state)/reasons",
+                url: "/service/platform/order/v1.0/company/\(companyId)/shipments/\(shipmentId)/bags/\(bagId)/state/\(state)/reasons",
                 query: nil,
                 body: nil,
                 headers: [],
@@ -1034,7 +793,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/bag-details/",
+                url: "/service/platform/order/v1.0/company/\(companyId)/bag-details/",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1119,7 +878,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/bags",
+                url: "/service/platform/order/v1.0/company/\(companyId)/bags",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -1170,7 +929,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/orders/v1.0/company/\(companyId)/orders/\(orderId)/generate/pos-receipt",
+                url: "/service/platform/order/v1.0/company/\(companyId)/orders/\(orderId)/generate/pos-receipt",
                 query: xQuery,
                 body: nil,
                 headers: [],

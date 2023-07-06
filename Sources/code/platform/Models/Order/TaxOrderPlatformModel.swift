@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class Tax: Codable {
         public var amount: [String: Any]
 
-        public var breakup: [[String: Any]]?
-
         public var rate: Double
+
+        public var breakup: [[String: Any]]?
 
         public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case breakup
-
             case rate
+
+            case breakup
 
             case name
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
             self.amount = amount
 
-            self.breakup = breakup
-
             self.rate = rate
+
+            self.breakup = breakup
 
             self.name = name
         }
@@ -42,6 +42,8 @@ public extension PlatformClient.Order {
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
+            rate = try container.decode(Double.self, forKey: .rate)
+
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
 
@@ -49,8 +51,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            rate = try container.decode(Double.self, forKey: .rate)
 
             name = try container.decode(String.self, forKey: .name)
         }
@@ -60,9 +60,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(breakup, forKey: .breakup)
-
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(breakup, forKey: .breakup)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }
@@ -78,18 +78,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class Tax: Codable {
         public var amount: [String: Any]
 
-        public var breakup: [[String: Any]]?
-
         public var rate: Double
+
+        public var breakup: [[String: Any]]?
 
         public var name: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case breakup
-
             case rate
+
+            case breakup
 
             case name
         }
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(amount: [String: Any], breakup: [[String: Any]]? = nil, name: String, rate: Double) {
             self.amount = amount
 
-            self.breakup = breakup
-
             self.rate = rate
+
+            self.breakup = breakup
 
             self.name = name
         }
@@ -109,6 +109,8 @@ public extension PlatformClient.ApplicationClient.Order {
 
             amount = try container.decode([String: Any].self, forKey: .amount)
 
+            rate = try container.decode(Double.self, forKey: .rate)
+
             do {
                 breakup = try container.decode([[String: Any]].self, forKey: .breakup)
 
@@ -116,8 +118,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            rate = try container.decode(Double.self, forKey: .rate)
 
             name = try container.decode(String.self, forKey: .name)
         }
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(breakup, forKey: .breakup)
-
             try? container.encodeIfPresent(rate, forKey: .rate)
+
+            try? container.encodeIfPresent(breakup, forKey: .breakup)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

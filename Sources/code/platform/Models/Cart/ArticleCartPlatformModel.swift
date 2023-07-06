@@ -11,9 +11,9 @@ public extension PlatformClient.ApplicationClient.Cart {
     class Article: Codable {
         public var value: Double?
 
-        public var meta: [String: Any]?
-
         public var articleId: String
+
+        public var meta: [String: Any]?
 
         public var type: String?
 
@@ -22,9 +22,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public enum CodingKeys: String, CodingKey {
             case value
 
-            case meta
-
             case articleId = "article_id"
+
+            case meta
 
             case type
 
@@ -34,9 +34,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(articleId: String, code: String? = nil, meta: [String: Any]? = nil, type: String? = nil, value: Double? = nil) {
             self.value = value
 
-            self.meta = meta
-
             self.articleId = articleId
+
+            self.meta = meta
 
             self.type = type
 
@@ -54,6 +54,8 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            articleId = try container.decode(String.self, forKey: .articleId)
+
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
 
@@ -61,8 +63,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            articleId = try container.decode(String.self, forKey: .articleId)
 
             do {
                 type = try container.decode(String.self, forKey: .type)
@@ -86,9 +86,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(value, forKey: .value)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(articleId, forKey: .articleId)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(type, forKey: .type)
 

@@ -13,13 +13,13 @@ public extension PlatformClient.Payment {
 
         public var payoutsAggregators: [[String: Any]]
 
-        public var transferType: String
+        public var moreAttributes: [String: Any]
 
-        public var customers: [String: Any]
+        public var transferType: String
 
         public var isDefault: Bool
 
-        public var moreAttributes: [String: Any]
+        public var customers: [String: Any]
 
         public var uniqueTransferNo: [String: Any]
 
@@ -28,13 +28,13 @@ public extension PlatformClient.Payment {
 
             case payoutsAggregators = "payouts_aggregators"
 
-            case transferType = "transfer_type"
+            case moreAttributes = "more_attributes"
 
-            case customers
+            case transferType = "transfer_type"
 
             case isDefault = "is_default"
 
-            case moreAttributes = "more_attributes"
+            case customers
 
             case uniqueTransferNo = "unique_transfer_no"
         }
@@ -44,13 +44,13 @@ public extension PlatformClient.Payment {
 
             self.payoutsAggregators = payoutsAggregators
 
-            self.transferType = transferType
+            self.moreAttributes = moreAttributes
 
-            self.customers = customers
+            self.transferType = transferType
 
             self.isDefault = isDefault
 
-            self.moreAttributes = moreAttributes
+            self.customers = customers
 
             self.uniqueTransferNo = uniqueTransferNo
         }
@@ -62,13 +62,13 @@ public extension PlatformClient.Payment {
 
             payoutsAggregators = try container.decode([[String: Any]].self, forKey: .payoutsAggregators)
 
-            transferType = try container.decode(String.self, forKey: .transferType)
+            moreAttributes = try container.decode([String: Any].self, forKey: .moreAttributes)
 
-            customers = try container.decode([String: Any].self, forKey: .customers)
+            transferType = try container.decode(String.self, forKey: .transferType)
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            moreAttributes = try container.decode([String: Any].self, forKey: .moreAttributes)
+            customers = try container.decode([String: Any].self, forKey: .customers)
 
             uniqueTransferNo = try container.decode([String: Any].self, forKey: .uniqueTransferNo)
         }
@@ -80,13 +80,13 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(payoutsAggregators, forKey: .payoutsAggregators)
 
-            try? container.encodeIfPresent(transferType, forKey: .transferType)
+            try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
 
-            try? container.encodeIfPresent(customers, forKey: .customers)
+            try? container.encodeIfPresent(transferType, forKey: .transferType)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
+            try? container.encodeIfPresent(customers, forKey: .customers)
 
             try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
         }
@@ -104,13 +104,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var payoutsAggregators: [[String: Any]]
 
-        public var transferType: String
+        public var moreAttributes: [String: Any]
 
-        public var customers: [String: Any]
+        public var transferType: String
 
         public var isDefault: Bool
 
-        public var moreAttributes: [String: Any]
+        public var customers: [String: Any]
 
         public var uniqueTransferNo: [String: Any]
 
@@ -119,13 +119,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case payoutsAggregators = "payouts_aggregators"
 
-            case transferType = "transfer_type"
+            case moreAttributes = "more_attributes"
 
-            case customers
+            case transferType = "transfer_type"
 
             case isDefault = "is_default"
 
-            case moreAttributes = "more_attributes"
+            case customers
 
             case uniqueTransferNo = "unique_transfer_no"
         }
@@ -135,13 +135,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.payoutsAggregators = payoutsAggregators
 
-            self.transferType = transferType
+            self.moreAttributes = moreAttributes
 
-            self.customers = customers
+            self.transferType = transferType
 
             self.isDefault = isDefault
 
-            self.moreAttributes = moreAttributes
+            self.customers = customers
 
             self.uniqueTransferNo = uniqueTransferNo
         }
@@ -153,13 +153,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             payoutsAggregators = try container.decode([[String: Any]].self, forKey: .payoutsAggregators)
 
-            transferType = try container.decode(String.self, forKey: .transferType)
+            moreAttributes = try container.decode([String: Any].self, forKey: .moreAttributes)
 
-            customers = try container.decode([String: Any].self, forKey: .customers)
+            transferType = try container.decode(String.self, forKey: .transferType)
 
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
 
-            moreAttributes = try container.decode([String: Any].self, forKey: .moreAttributes)
+            customers = try container.decode([String: Any].self, forKey: .customers)
 
             uniqueTransferNo = try container.decode([String: Any].self, forKey: .uniqueTransferNo)
         }
@@ -171,13 +171,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(payoutsAggregators, forKey: .payoutsAggregators)
 
-            try? container.encodeIfPresent(transferType, forKey: .transferType)
+            try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
 
-            try? container.encodeIfPresent(customers, forKey: .customers)
+            try? container.encodeIfPresent(transferType, forKey: .transferType)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
 
-            try? container.encodeIfPresent(moreAttributes, forKey: .moreAttributes)
+            try? container.encodeIfPresent(customers, forKey: .customers)
 
             try? container.encodeIfPresent(uniqueTransferNo, forKey: .uniqueTransferNo)
         }

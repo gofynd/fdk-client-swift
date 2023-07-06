@@ -13,26 +13,26 @@ public extension PlatformClient.Finance {
 
         public var endDate: String?
 
-        public var page: Int?
-
-        public var startDate: String?
+        public var pageSize: Int?
 
         public var filters: InoviceListingPayloadDataFilters?
 
-        public var pageSize: Int?
+        public var startDate: String?
+
+        public var page: Int?
 
         public enum CodingKeys: String, CodingKey {
             case search
 
             case endDate = "end_date"
 
-            case page
-
-            case startDate = "start_date"
+            case pageSize = "page_size"
 
             case filters
 
-            case pageSize = "page_size"
+            case startDate = "start_date"
+
+            case page
         }
 
         public init(endDate: String? = nil, filters: InoviceListingPayloadDataFilters? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, startDate: String? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Finance {
 
             self.endDate = endDate
 
-            self.page = page
-
-            self.startDate = startDate
+            self.pageSize = pageSize
 
             self.filters = filters
 
-            self.pageSize = pageSize
+            self.startDate = startDate
+
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,15 +69,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                page = try container.decode(Int.self, forKey: .page)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                startDate = try container.decode(String.self, forKey: .startDate)
+                pageSize = try container.decode(Int.self, forKey: .pageSize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +85,15 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                pageSize = try container.decode(Int.self, forKey: .pageSize)
+                startDate = try container.decode(String.self, forKey: .startDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                page = try container.decode(Int.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,13 +108,13 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(endDate, forKey: .endDate)
 
-            try? container.encodeIfPresent(page, forKey: .page)
-
-            try? container.encodeIfPresent(startDate, forKey: .startDate)
+            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
 
             try? container.encodeIfPresent(filters, forKey: .filters)
 
-            try? container.encodeIfPresent(pageSize, forKey: .pageSize)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

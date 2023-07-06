@@ -13,11 +13,11 @@ public extension PlatformClient.Finance {
 
         public var utilisation: [String]?
 
-        public var typesOfTransaction: [String]?
-
         public var storeId: [Int]?
 
         public var orderingChannel: [String]?
+
+        public var typesOfTransaction: [String]?
 
         public var staffId: [String]?
 
@@ -26,11 +26,11 @@ public extension PlatformClient.Finance {
 
             case utilisation
 
-            case typesOfTransaction = "types_of_transaction"
-
             case storeId = "store_id"
 
             case orderingChannel = "ordering_channel"
+
+            case typesOfTransaction = "types_of_transaction"
 
             case staffId = "staff_id"
         }
@@ -40,11 +40,11 @@ public extension PlatformClient.Finance {
 
             self.utilisation = utilisation
 
-            self.typesOfTransaction = typesOfTransaction
-
             self.storeId = storeId
 
             self.orderingChannel = orderingChannel
+
+            self.typesOfTransaction = typesOfTransaction
 
             self.staffId = staffId
         }
@@ -69,14 +69,6 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                typesOfTransaction = try container.decode([String].self, forKey: .typesOfTransaction)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 storeId = try container.decode([Int].self, forKey: .storeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -86,6 +78,14 @@ public extension PlatformClient.Finance {
 
             do {
                 orderingChannel = try container.decode([String].self, forKey: .orderingChannel)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                typesOfTransaction = try container.decode([String].self, forKey: .typesOfTransaction)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,11 +108,11 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(utilisation, forKey: .utilisation)
 
-            try? container.encodeIfPresent(typesOfTransaction, forKey: .typesOfTransaction)
-
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+
+            try? container.encodeIfPresent(typesOfTransaction, forKey: .typesOfTransaction)
 
             try? container.encodeIfPresent(staffId, forKey: .staffId)
         }

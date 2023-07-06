@@ -13,9 +13,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var cartId: String?
 
-        public var pickUpCustomerDetails: [String: Any]?
-
         public var cartValue: Double?
+
+        public var pickUpCustomerDetails: [String: Any]?
 
         public var createdOn: String?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case cartId = "cart_id"
 
-            case pickUpCustomerDetails = "pick_up_customer_details"
-
             case cartValue = "cart_value"
+
+            case pickUpCustomerDetails = "pick_up_customer_details"
 
             case createdOn = "created_on"
 
@@ -40,9 +40,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.cartId = cartId
 
-            self.pickUpCustomerDetails = pickUpCustomerDetails
-
             self.cartValue = cartValue
+
+            self.pickUpCustomerDetails = pickUpCustomerDetails
 
             self.createdOn = createdOn
 
@@ -69,7 +69,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
+                cartValue = try container.decode(Double.self, forKey: .cartValue)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                cartValue = try container.decode(Double.self, forKey: .cartValue)
+                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,9 +108,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
-            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
-
             try? container.encodeIfPresent(cartValue, forKey: .cartValue)
+
+            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
             try? container.encodeIfPresent(createdOn, forKey: .createdOn)
 

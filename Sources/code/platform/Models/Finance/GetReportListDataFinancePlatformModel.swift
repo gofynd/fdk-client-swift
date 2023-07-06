@@ -9,27 +9,27 @@ public extension PlatformClient.Finance {
      */
 
     class GetReportListData: Codable {
-        public var roleName: String?
-
         public var listingEnabled: Bool?
 
-        public enum CodingKeys: String, CodingKey {
-            case roleName = "role_name"
+        public var roleName: String?
 
+        public enum CodingKeys: String, CodingKey {
             case listingEnabled = "listing_enabled"
+
+            case roleName = "role_name"
         }
 
         public init(listingEnabled: Bool? = nil, roleName: String? = nil) {
-            self.roleName = roleName
-
             self.listingEnabled = listingEnabled
+
+            self.roleName = roleName
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                roleName = try container.decode(String.self, forKey: .roleName)
+                listingEnabled = try container.decode(Bool.self, forKey: .listingEnabled)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                listingEnabled = try container.decode(Bool.self, forKey: .listingEnabled)
+                roleName = try container.decode(String.self, forKey: .roleName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(roleName, forKey: .roleName)
-
             try? container.encodeIfPresent(listingEnabled, forKey: .listingEnabled)
+
+            try? container.encodeIfPresent(roleName, forKey: .roleName)
         }
     }
 }

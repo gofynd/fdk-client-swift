@@ -11,18 +11,18 @@ public extension PlatformClient.Catalog {
     class ProductBulkAssets: Codable {
         public var companyId: Int?
 
-        public var url: String
-
         public var batchId: String?
+
+        public var url: String
 
         public var user: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
-            case url
-
             case batchId = "batch_id"
+
+            case url
 
             case user
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Catalog {
         public init(batchId: String? = nil, companyId: Int? = nil, url: String, user: [String: Any]) {
             self.companyId = companyId
 
-            self.url = url
-
             self.batchId = batchId
+
+            self.url = url
 
             self.user = user
         }
@@ -48,8 +48,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            url = try container.decode(String.self, forKey: .url)
-
             do {
                 batchId = try container.decode(String.self, forKey: .batchId)
 
@@ -57,6 +55,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            url = try container.decode(String.self, forKey: .url)
 
             user = try container.decode([String: Any].self, forKey: .user)
         }
@@ -66,9 +66,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(batchId, forKey: .batchId)
+
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(user, forKey: .user)
         }
@@ -84,18 +84,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductBulkAssets: Codable {
         public var companyId: Int?
 
-        public var url: String
-
         public var batchId: String?
+
+        public var url: String
 
         public var user: [String: Any]
 
         public enum CodingKeys: String, CodingKey {
             case companyId = "company_id"
 
-            case url
-
             case batchId = "batch_id"
+
+            case url
 
             case user
         }
@@ -103,9 +103,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public init(batchId: String? = nil, companyId: Int? = nil, url: String, user: [String: Any]) {
             self.companyId = companyId
 
-            self.url = url
-
             self.batchId = batchId
+
+            self.url = url
 
             self.user = user
         }
@@ -121,8 +121,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            url = try container.decode(String.self, forKey: .url)
-
             do {
                 batchId = try container.decode(String.self, forKey: .batchId)
 
@@ -130,6 +128,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            url = try container.decode(String.self, forKey: .url)
 
             user = try container.decode([String: Any].self, forKey: .user)
         }
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(companyId, forKey: .companyId)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(batchId, forKey: .batchId)
+
+            try? container.encodeIfPresent(url, forKey: .url)
 
             try? container.encodeIfPresent(user, forKey: .user)
         }
