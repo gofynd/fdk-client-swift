@@ -25,6 +25,12 @@ public extension PlatformClient.Configuration {
             do {
                 apiKey = try container.decode(String.self, forKey: .apiKey)
 
+                if let strong_apiKey = apiKey,
+                   let apiKeyData = Data(base64Encoded: strong_apiKey)
+                {
+                    apiKey = String(data: apiKeyData, encoding: .utf8) ?? apiKey
+                }
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -34,7 +40,7 @@ public extension PlatformClient.Configuration {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(apiKey, forKey: .apiKey)
+            try? container.encodeIfPresent(apiKey?.asBase64, forKey: .apiKey)
         }
     }
 }
@@ -62,6 +68,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             do {
                 apiKey = try container.decode(String.self, forKey: .apiKey)
 
+                if let strong_apiKey = apiKey,
+                   let apiKeyData = Data(base64Encoded: strong_apiKey)
+                {
+                    apiKey = String(data: apiKeyData, encoding: .utf8) ?? apiKey
+                }
+
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
@@ -71,7 +83,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(apiKey, forKey: .apiKey)
+            try? container.encodeIfPresent(apiKey?.asBase64, forKey: .apiKey)
         }
     }
 }

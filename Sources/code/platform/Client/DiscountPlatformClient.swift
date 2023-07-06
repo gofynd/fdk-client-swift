@@ -257,7 +257,7 @@ public extension PlatformClient {
          **/
         public func validateDiscountFile(
             discount: String?,
-            body: DiscountJob,
+            body: FileJobRequest,
             onResponse: @escaping (_ response: FileJobResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]

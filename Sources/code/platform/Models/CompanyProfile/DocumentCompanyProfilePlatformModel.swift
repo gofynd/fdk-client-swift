@@ -13,9 +13,9 @@ public extension PlatformClient.CompanyProfile {
 
         public var url: String?
 
-        public var verified: Bool?
-
         public var legalName: String?
+
+        public var verified: Bool?
 
         public var value: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.CompanyProfile {
 
             case url
 
-            case verified
-
             case legalName = "legal_name"
+
+            case verified
 
             case value
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.CompanyProfile {
 
             self.url = url
 
-            self.verified = verified
-
             self.legalName = legalName
+
+            self.verified = verified
 
             self.value = value
         }
@@ -57,7 +57,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                verified = try container.decode(Bool.self, forKey: .verified)
+                legalName = try container.decode(String.self, forKey: .legalName)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                legalName = try container.decode(String.self, forKey: .legalName)
+                verified = try container.decode(Bool.self, forKey: .verified)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -82,9 +82,9 @@ public extension PlatformClient.CompanyProfile {
 
             try? container.encodeIfPresent(url, forKey: .url)
 
-            try? container.encodeIfPresent(verified, forKey: .verified)
-
             try? container.encodeIfPresent(legalName, forKey: .legalName)
+
+            try? container.encodeIfPresent(verified, forKey: .verified)
 
             try? container.encodeIfPresent(value, forKey: .value)
         }

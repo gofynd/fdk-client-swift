@@ -9,36 +9,36 @@ public extension PlatformClient.Catalog {
      */
 
     class Price: Codable {
-        public var maxEffective: Double?
+        public var minEffective: Double?
 
         public var maxMarked: Double?
 
-        public var minMarked: Double?
+        public var maxEffective: Double?
 
-        public var minEffective: Double?
+        public var minMarked: Double?
 
         public var currency: String?
 
         public enum CodingKeys: String, CodingKey {
-            case maxEffective = "max_effective"
+            case minEffective = "min_effective"
 
             case maxMarked = "max_marked"
 
-            case minMarked = "min_marked"
+            case maxEffective = "max_effective"
 
-            case minEffective = "min_effective"
+            case minMarked = "min_marked"
 
             case currency
         }
 
         public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
-            self.maxEffective = maxEffective
+            self.minEffective = minEffective
 
             self.maxMarked = maxMarked
 
-            self.minMarked = minMarked
+            self.maxEffective = maxEffective
 
-            self.minEffective = minEffective
+            self.minMarked = minMarked
 
             self.currency = currency
         }
@@ -47,7 +47,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                maxEffective = try container.decode(Double.self, forKey: .maxEffective)
+                minEffective = try container.decode(Double.self, forKey: .minEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                minMarked = try container.decode(Double.self, forKey: .minMarked)
+                maxEffective = try container.decode(Double.self, forKey: .maxEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                minMarked = try container.decode(Double.self, forKey: .minMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,13 +90,13 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
+            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
 
             try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
 
-            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
+            try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
 
-            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
+            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
         }
@@ -110,36 +110,36 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Price: Codable {
-        public var maxEffective: Double?
+        public var minEffective: Double?
 
         public var maxMarked: Double?
 
-        public var minMarked: Double?
+        public var maxEffective: Double?
 
-        public var minEffective: Double?
+        public var minMarked: Double?
 
         public var currency: String?
 
         public enum CodingKeys: String, CodingKey {
-            case maxEffective = "max_effective"
+            case minEffective = "min_effective"
 
             case maxMarked = "max_marked"
 
-            case minMarked = "min_marked"
+            case maxEffective = "max_effective"
 
-            case minEffective = "min_effective"
+            case minMarked = "min_marked"
 
             case currency
         }
 
         public init(currency: String? = nil, maxEffective: Double? = nil, maxMarked: Double? = nil, minEffective: Double? = nil, minMarked: Double? = nil) {
-            self.maxEffective = maxEffective
+            self.minEffective = minEffective
 
             self.maxMarked = maxMarked
 
-            self.minMarked = minMarked
+            self.maxEffective = maxEffective
 
-            self.minEffective = minEffective
+            self.minMarked = minMarked
 
             self.currency = currency
         }
@@ -148,7 +148,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                maxEffective = try container.decode(Double.self, forKey: .maxEffective)
+                minEffective = try container.decode(Double.self, forKey: .minEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -164,7 +164,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                minMarked = try container.decode(Double.self, forKey: .minMarked)
+                maxEffective = try container.decode(Double.self, forKey: .maxEffective)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                minEffective = try container.decode(Double.self, forKey: .minEffective)
+                minMarked = try container.decode(Double.self, forKey: .minMarked)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,13 +191,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
+            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
 
             try? container.encodeIfPresent(maxMarked, forKey: .maxMarked)
 
-            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
+            try? container.encodeIfPresent(maxEffective, forKey: .maxEffective)
 
-            try? container.encodeIfPresent(minEffective, forKey: .minEffective)
+            try? container.encodeIfPresent(minMarked, forKey: .minMarked)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
         }

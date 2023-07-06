@@ -25,6 +25,8 @@ public extension PlatformClient.Billing {
 
         public var displayText: String?
 
+        public var config: [String: Any]?
+
         public enum CodingKeys: String, CodingKey {
             case name
 
@@ -41,9 +43,11 @@ public extension PlatformClient.Billing {
             case enabled
 
             case displayText = "display_text"
+
+            case config
         }
 
-        public init(description: String? = nil, displayText: String? = nil, enabled: Bool? = nil, group: String? = nil, icon: String? = nil, links: [String: Any]? = nil, name: String? = nil, slug: String? = nil) {
+        public init(config: [String: Any]? = nil, description: String? = nil, displayText: String? = nil, enabled: Bool? = nil, group: String? = nil, icon: String? = nil, links: [String: Any]? = nil, name: String? = nil, slug: String? = nil) {
             self.name = name
 
             self.slug = slug
@@ -59,6 +63,8 @@ public extension PlatformClient.Billing {
             self.enabled = enabled
 
             self.displayText = displayText
+
+            self.config = config
         }
 
         required public init(from decoder: Decoder) throws {
@@ -127,6 +133,14 @@ public extension PlatformClient.Billing {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                config = try container.decode([String: Any].self, forKey: .config)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -147,6 +161,8 @@ public extension PlatformClient.Billing {
             try? container.encodeIfPresent(enabled, forKey: .enabled)
 
             try? container.encodeIfPresent(displayText, forKey: .displayText)
+
+            try? container.encodeIfPresent(config, forKey: .config)
         }
     }
 }

@@ -11,9 +11,15 @@ public extension ApplicationClient.PosCart {
 
         public var codCharge: Double?
 
+        public var total: Double?
+
+        public var subtotal: Double?
+
+        public var giftCard: Double?
+
         public var deliveryCharge: Double?
 
-        public var total: Double?
+        public var gstCharges: Double?
 
         public var convenienceFee: Double?
 
@@ -21,24 +27,26 @@ public extension ApplicationClient.PosCart {
 
         public var fyndCash: Double?
 
-        public var subtotal: Double?
-
-        public var coupon: Double?
+        public var vog: Double?
 
         public var discount: Double?
 
-        public var gstCharges: Double?
-
-        public var vog: Double?
+        public var coupon: Double?
 
         public enum CodingKeys: String, CodingKey {
             case mrpTotal = "mrp_total"
 
             case codCharge = "cod_charge"
 
+            case total
+
+            case subtotal
+
+            case giftCard = "gift_card"
+
             case deliveryCharge = "delivery_charge"
 
-            case total
+            case gstCharges = "gst_charges"
 
             case convenienceFee = "convenience_fee"
 
@@ -46,25 +54,27 @@ public extension ApplicationClient.PosCart {
 
             case fyndCash = "fynd_cash"
 
-            case subtotal
-
-            case coupon
+            case vog
 
             case discount
 
-            case gstCharges = "gst_charges"
-
-            case vog
+            case coupon
         }
 
-        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, gstCharges: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
+        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
             self.mrpTotal = mrpTotal
 
             self.codCharge = codCharge
 
+            self.total = total
+
+            self.subtotal = subtotal
+
+            self.giftCard = giftCard
+
             self.deliveryCharge = deliveryCharge
 
-            self.total = total
+            self.gstCharges = gstCharges
 
             self.convenienceFee = convenienceFee
 
@@ -72,15 +82,11 @@ public extension ApplicationClient.PosCart {
 
             self.fyndCash = fyndCash
 
-            self.subtotal = subtotal
-
-            self.coupon = coupon
+            self.vog = vog
 
             self.discount = discount
 
-            self.gstCharges = gstCharges
-
-            self.vog = vog
+            self.coupon = coupon
         }
 
         required public init(from decoder: Decoder) throws {
@@ -103,6 +109,30 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
+                total = try container.decode(Double.self, forKey: .total)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                subtotal = try container.decode(Double.self, forKey: .subtotal)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                giftCard = try container.decode(Double.self, forKey: .giftCard)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 deliveryCharge = try container.decode(Double.self, forKey: .deliveryCharge)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -111,7 +141,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                total = try container.decode(Double.self, forKey: .total)
+                gstCharges = try container.decode(Double.self, forKey: .gstCharges)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -143,15 +173,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                subtotal = try container.decode(Double.self, forKey: .subtotal)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                coupon = try container.decode(Double.self, forKey: .coupon)
+                vog = try container.decode(Double.self, forKey: .vog)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -167,15 +189,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                gstCharges = try container.decode(Double.self, forKey: .gstCharges)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                vog = try container.decode(Double.self, forKey: .vog)
+                coupon = try container.decode(Double.self, forKey: .coupon)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -190,9 +204,15 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(codCharge, forKey: .codCharge)
 
+            try? container.encodeIfPresent(total, forKey: .total)
+
+            try? container.encodeIfPresent(subtotal, forKey: .subtotal)
+
+            try? container.encodeIfPresent(giftCard, forKey: .giftCard)
+
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
 
-            try? container.encodeIfPresent(total, forKey: .total)
+            try? container.encodeIfPresent(gstCharges, forKey: .gstCharges)
 
             try? container.encodeIfPresent(convenienceFee, forKey: .convenienceFee)
 
@@ -200,15 +220,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(fyndCash, forKey: .fyndCash)
 
-            try? container.encodeIfPresent(subtotal, forKey: .subtotal)
-
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encodeIfPresent(vog, forKey: .vog)
 
             try? container.encodeIfPresent(discount, forKey: .discount)
 
-            try? container.encodeIfPresent(gstCharges, forKey: .gstCharges)
-
-            try? container.encodeIfPresent(vog, forKey: .vog)
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
         }
     }
 }

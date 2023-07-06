@@ -13,9 +13,9 @@ public extension PlatformClient.Catalog {
 
         public var kind: String?
 
-        public var operators: [String]?
-
         public var name: String
+
+        public var operators: [String]?
 
         public var logo: String?
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Catalog {
 
             case kind
 
-            case operators
-
             case name
+
+            case operators
 
             case logo
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Catalog {
 
             self.kind = kind
 
-            self.operators = operators
-
             self.name = name
+
+            self.operators = operators
 
             self.logo = logo
         }
@@ -56,6 +56,8 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
                 operators = try container.decode([String].self, forKey: .operators)
 
@@ -63,8 +65,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -82,9 +82,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(kind, forKey: .kind)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }
@@ -102,9 +102,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var kind: String?
 
-        public var operators: [String]?
-
         public var name: String
+
+        public var operators: [String]?
 
         public var logo: String?
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case kind
 
-            case operators
-
             case name
+
+            case operators
 
             case logo
         }
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.kind = kind
 
-            self.operators = operators
-
             self.name = name
+
+            self.operators = operators
 
             self.logo = logo
         }
@@ -145,6 +145,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            name = try container.decode(String.self, forKey: .name)
+
             do {
                 operators = try container.decode([String].self, forKey: .operators)
 
@@ -152,8 +154,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            name = try container.decode(String.self, forKey: .name)
 
             do {
                 logo = try container.decode(String.self, forKey: .logo)
@@ -171,9 +171,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(kind, forKey: .kind)
 
-            try? container.encodeIfPresent(operators, forKey: .operators)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(operators, forKey: .operators)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
         }

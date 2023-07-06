@@ -9,20 +9,24 @@ public extension ApplicationClient.Payment {
     class CustomerOnboardingRequest: Codable {
         public var personalInfo: UserPersonalInfoInDetails
 
+        public var marketplaceInfo: MarketplaceInfo?
+
+        public var mcc: String?
+
         public var aggregator: String
 
         public var businessInfo: BusinessDetails?
 
         public var source: String
 
-        public var mcc: String?
-
-        public var marketplaceInfo: MarketplaceInfo?
-
         public var device: DeviceDetails?
 
         public enum CodingKeys: String, CodingKey {
             case personalInfo = "personal_info"
+
+            case marketplaceInfo = "marketplace_info"
+
+            case mcc
 
             case aggregator
 
@@ -30,25 +34,21 @@ public extension ApplicationClient.Payment {
 
             case source
 
-            case mcc
-
-            case marketplaceInfo = "marketplace_info"
-
             case device
         }
 
         public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, mcc: String? = nil, personalInfo: UserPersonalInfoInDetails, source: String) {
             self.personalInfo = personalInfo
 
+            self.marketplaceInfo = marketplaceInfo
+
+            self.mcc = mcc
+
             self.aggregator = aggregator
 
             self.businessInfo = businessInfo
 
             self.source = source
-
-            self.mcc = mcc
-
-            self.marketplaceInfo = marketplaceInfo
 
             self.device = device
         }
@@ -57,6 +57,22 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
+
+            do {
+                marketplaceInfo = try container.decode(MarketplaceInfo.self, forKey: .marketplaceInfo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                mcc = try container.decode(String.self, forKey: .mcc)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
 
@@ -69,22 +85,6 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             source = try container.decode(String.self, forKey: .source)
-
-            do {
-                mcc = try container.decode(String.self, forKey: .mcc)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                marketplaceInfo = try container.decode(MarketplaceInfo.self, forKey: .marketplaceInfo)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
 
             do {
                 device = try container.decode(DeviceDetails.self, forKey: .device)
@@ -100,15 +100,15 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(personalInfo, forKey: .personalInfo)
 
+            try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
+
+            try? container.encode(mcc, forKey: .mcc)
+
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(businessInfo, forKey: .businessInfo)
 
             try? container.encodeIfPresent(source, forKey: .source)
-
-            try? container.encode(mcc, forKey: .mcc)
-
-            try? container.encodeIfPresent(marketplaceInfo, forKey: .marketplaceInfo)
 
             try? container.encodeIfPresent(device, forKey: .device)
         }

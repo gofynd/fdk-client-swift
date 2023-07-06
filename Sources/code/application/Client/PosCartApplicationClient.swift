@@ -201,6 +201,7 @@ public extension ApplicationClient {
             b: Bool?,
             areaCode: String?,
             buyNow: Bool?,
+            id: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -220,6 +221,10 @@ public extension ApplicationClient {
 
             if let value = buyNow {
                 xQuery["buy_now"] = value
+            }
+
+            if let value = id {
+                xQuery["id"] = value
             }
 
             let fullUrl = relativeUrls["addItems"] ?? ""
@@ -1238,6 +1243,7 @@ public extension ApplicationClient {
             p: Bool?,
             id: String?,
             addressId: String?,
+            areaCode: String?,
             orderType: String?,
             body: UpdateCartShipmentRequest,
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
@@ -1258,6 +1264,10 @@ public extension ApplicationClient {
 
             if let value = addressId {
                 xQuery["address_id"] = value
+            }
+
+            if let value = areaCode {
+                xQuery["area_code"] = value
             }
 
             if let value = orderType {

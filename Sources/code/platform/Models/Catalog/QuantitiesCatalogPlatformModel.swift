@@ -9,18 +9,18 @@ public extension PlatformClient.Catalog {
      */
 
     class Quantities: Codable {
-        public var damaged: QuantityBase?
-
         public var sellable: QuantityBase?
+
+        public var damaged: QuantityBase?
 
         public var notAvailable: QuantityBase?
 
         public var orderCommitted: QuantityBase?
 
         public enum CodingKeys: String, CodingKey {
-            case damaged
-
             case sellable
+
+            case damaged
 
             case notAvailable = "not_available"
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(damaged: QuantityBase? = nil, notAvailable: QuantityBase? = nil, orderCommitted: QuantityBase? = nil, sellable: QuantityBase? = nil) {
-            self.damaged = damaged
-
             self.sellable = sellable
+
+            self.damaged = damaged
 
             self.notAvailable = notAvailable
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
+                sellable = try container.decode(QuantityBase.self, forKey: .sellable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                sellable = try container.decode(QuantityBase.self, forKey: .sellable)
+                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(damaged, forKey: .damaged)
-
             try? container.encodeIfPresent(sellable, forKey: .sellable)
+
+            try? container.encodeIfPresent(damaged, forKey: .damaged)
 
             try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class Quantities: Codable {
-        public var damaged: QuantityBase?
-
         public var sellable: QuantityBase?
+
+        public var damaged: QuantityBase?
 
         public var notAvailable: QuantityBase?
 
         public var orderCommitted: QuantityBase?
 
         public enum CodingKeys: String, CodingKey {
-            case damaged
-
             case sellable
+
+            case damaged
 
             case notAvailable = "not_available"
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(damaged: QuantityBase? = nil, notAvailable: QuantityBase? = nil, orderCommitted: QuantityBase? = nil, sellable: QuantityBase? = nil) {
-            self.damaged = damaged
-
             self.sellable = sellable
+
+            self.damaged = damaged
 
             self.notAvailable = notAvailable
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
+                sellable = try container.decode(QuantityBase.self, forKey: .sellable)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                sellable = try container.decode(QuantityBase.self, forKey: .sellable)
+                damaged = try container.decode(QuantityBase.self, forKey: .damaged)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(damaged, forKey: .damaged)
-
             try? container.encodeIfPresent(sellable, forKey: .sellable)
+
+            try? container.encodeIfPresent(damaged, forKey: .damaged)
 
             try? container.encodeIfPresent(notAvailable, forKey: .notAvailable)
 

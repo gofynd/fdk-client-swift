@@ -9,27 +9,27 @@ public extension PlatformClient.Order {
      */
 
     class Formatted: Codable {
-        public var fMin: String?
+        public var max: String?
 
-        public var fMax: String?
+        public var min: String?
 
         public enum CodingKeys: String, CodingKey {
-            case fMin = "f_min"
+            case max
 
-            case fMax = "f_max"
+            case min
         }
 
-        public init(fMax: String? = nil, fMin: String? = nil) {
-            self.fMin = fMin
+        public init(max: String? = nil, min: String? = nil) {
+            self.max = max
 
-            self.fMax = fMax
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                fMin = try container.decode(String.self, forKey: .fMin)
+                max = try container.decode(String.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                fMax = try container.decode(String.self, forKey: .fMax)
+                min = try container.decode(String.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(fMin, forKey: .fMin)
+            try? container.encodeIfPresent(max, forKey: .max)
 
-            try? container.encodeIfPresent(fMax, forKey: .fMax)
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }
@@ -62,27 +62,27 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class Formatted: Codable {
-        public var fMin: String?
+        public var max: String?
 
-        public var fMax: String?
+        public var min: String?
 
         public enum CodingKeys: String, CodingKey {
-            case fMin = "f_min"
+            case max
 
-            case fMax = "f_max"
+            case min
         }
 
-        public init(fMax: String? = nil, fMin: String? = nil) {
-            self.fMin = fMin
+        public init(max: String? = nil, min: String? = nil) {
+            self.max = max
 
-            self.fMax = fMax
+            self.min = min
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                fMin = try container.decode(String.self, forKey: .fMin)
+                max = try container.decode(String.self, forKey: .max)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                fMax = try container.decode(String.self, forKey: .fMax)
+                min = try container.decode(String.self, forKey: .min)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(fMin, forKey: .fMin)
+            try? container.encodeIfPresent(max, forKey: .max)
 
-            try? container.encodeIfPresent(fMax, forKey: .fMax)
+            try? container.encodeIfPresent(min, forKey: .min)
         }
     }
 }
