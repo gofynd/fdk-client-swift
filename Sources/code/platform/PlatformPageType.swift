@@ -47,7 +47,6 @@ public extension PlatformClient.ApplicationClient.Content {
         case register
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
-        case orderStatus = "order-status"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -184,8 +183,6 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "/shipping-policy"
             case .returnPolicy:
                 return "/return-policy"
-            case .orderStatus:
-                return "/cart/order-status"
             }
         }
 
@@ -281,8 +278,6 @@ public extension PlatformClient.ApplicationClient.Content {
                 return "Shipping policy"
             case .returnPolicy:
                 return "Return policy"
-            case .orderStatus:
-                return "Order status"
             }
         }
 
@@ -378,8 +373,6 @@ public extension PlatformClient.ApplicationClient.Content {
                 return []
             case .returnPolicy:
                 return []
-            case .orderStatus:
-                return []
             }
         }
 
@@ -474,8 +467,6 @@ public extension PlatformClient.ApplicationClient.Content {
             case .shippingPolicy:
                 return []
             case .returnPolicy:
-                return []
-            case .orderStatus:
                 return []
             }
         }
@@ -529,7 +520,6 @@ public extension PlatformClient.Catalog {
         case register
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
-        case orderStatus = "order-status"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -666,8 +656,6 @@ public extension PlatformClient.Catalog {
                 return "/shipping-policy"
             case .returnPolicy:
                 return "/return-policy"
-            case .orderStatus:
-                return "/cart/order-status"
             }
         }
 
@@ -763,8 +751,6 @@ public extension PlatformClient.Catalog {
                 return "Shipping policy"
             case .returnPolicy:
                 return "Return policy"
-            case .orderStatus:
-                return "Order status"
             }
         }
 
@@ -860,8 +846,6 @@ public extension PlatformClient.Catalog {
                 return []
             case .returnPolicy:
                 return []
-            case .orderStatus:
-                return []
             }
         }
 
@@ -956,8 +940,6 @@ public extension PlatformClient.Catalog {
             case .shippingPolicy:
                 return []
             case .returnPolicy:
-                return []
-            case .orderStatus:
                 return []
             }
         }
@@ -1011,7 +993,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         case register
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
-        case orderStatus = "order-status"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -1148,8 +1129,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "/shipping-policy"
             case .returnPolicy:
                 return "/return-policy"
-            case .orderStatus:
-                return "/cart/order-status"
             }
         }
 
@@ -1245,8 +1224,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return "Shipping policy"
             case .returnPolicy:
                 return "Return policy"
-            case .orderStatus:
-                return "Order status"
             }
         }
 
@@ -1342,8 +1319,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return []
             case .returnPolicy:
                 return []
-            case .orderStatus:
-                return []
             }
         }
 
@@ -1438,8 +1413,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             case .shippingPolicy:
                 return []
             case .returnPolicy:
-                return []
-            case .orderStatus:
                 return []
             }
         }

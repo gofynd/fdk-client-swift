@@ -11,9 +11,9 @@ public extension ApplicationClient.Payment {
 
         public var amount: Int
 
-        public var aggregator: String
-
         public var orderId: String
+
+        public var aggregator: String
 
         public var transactionToken: String?
 
@@ -22,9 +22,9 @@ public extension ApplicationClient.Payment {
 
             case amount
 
-            case aggregator
-
             case orderId = "order_id"
+
+            case aggregator
 
             case transactionToken = "transaction_token"
         }
@@ -34,9 +34,9 @@ public extension ApplicationClient.Payment {
 
             self.amount = amount
 
-            self.aggregator = aggregator
-
             self.orderId = orderId
+
+            self.aggregator = aggregator
 
             self.transactionToken = transactionToken
         }
@@ -54,9 +54,9 @@ public extension ApplicationClient.Payment {
 
             amount = try container.decode(Int.self, forKey: .amount)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             orderId = try container.decode(String.self, forKey: .orderId)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             do {
                 transactionToken = try container.decode(String.self, forKey: .transactionToken)
@@ -74,9 +74,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encode(transactionToken, forKey: .transactionToken)
         }

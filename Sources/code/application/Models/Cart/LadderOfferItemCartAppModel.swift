@@ -13,9 +13,9 @@ public extension ApplicationClient.Cart {
 
         public var price: LadderPrice?
 
-        public var type: String?
-
         public var maxQuantity: Int?
+
+        public var type: String?
 
         public enum CodingKeys: String, CodingKey {
             case margin
@@ -24,9 +24,9 @@ public extension ApplicationClient.Cart {
 
             case price
 
-            case type
-
             case maxQuantity = "max_quantity"
+
+            case type
         }
 
         public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.Cart {
 
             self.price = price
 
-            self.type = type
-
             self.maxQuantity = maxQuantity
+
+            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(price, forKey: .price)
 
-            try? container.encodeIfPresent(type, forKey: .type)
-
             try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
+
+            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

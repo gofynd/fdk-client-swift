@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class ShipmentListingChannel: Codable {
-        public var name: String?
-
         public var channelShipmentId: String?
+
+        public var name: String?
 
         public var logo: String?
 
         public var isAffiliate: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case channelShipmentId = "channel_shipment_id"
+
+            case name
 
             case logo
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(channelShipmentId: String? = nil, isAffiliate: Bool? = nil, logo: String? = nil, name: String? = nil) {
-            self.name = name
-
             self.channelShipmentId = channelShipmentId
+
+            self.name = name
 
             self.logo = logo
 
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 
@@ -94,18 +94,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ShipmentListingChannel: Codable {
-        public var name: String?
-
         public var channelShipmentId: String?
+
+        public var name: String?
 
         public var logo: String?
 
         public var isAffiliate: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case name
-
             case channelShipmentId = "channel_shipment_id"
+
+            case name
 
             case logo
 
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(channelShipmentId: String? = nil, isAffiliate: Bool? = nil, logo: String? = nil, name: String? = nil) {
-            self.name = name
-
             self.channelShipmentId = channelShipmentId
+
+            self.name = name
 
             self.logo = logo
 
@@ -126,7 +126,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
+                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                channelShipmentId = try container.decode(String.self, forKey: .channelShipmentId)
+                name = try container.decode(String.self, forKey: .name)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -161,9 +161,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(channelShipmentId, forKey: .channelShipmentId)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
 

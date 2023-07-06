@@ -17,9 +17,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var code: String?
 
-        public var title: String?
-
         public var valid: Bool?
+
+        public var title: String?
 
         public enum CodingKeys: String, CodingKey {
             case nextValidationRequired = "next_validation_required"
@@ -30,9 +30,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             case code
 
-            case title
-
             case valid
+
+            case title
         }
 
         public init(code: String? = nil, discount: Double? = nil, displayMessageEn: String? = nil, nextValidationRequired: Bool? = nil, title: String? = nil, valid: Bool? = nil) {
@@ -44,9 +44,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             self.code = code
 
-            self.title = title
-
             self.valid = valid
+
+            self.title = title
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,7 +85,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                title = try container.decode(String.self, forKey: .title)
+                valid = try container.decode(Bool.self, forKey: .valid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +93,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                valid = try container.decode(Bool.self, forKey: .valid)
+                title = try container.decode(String.self, forKey: .title)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encode(code, forKey: .code)
 
-            try? container.encodeIfPresent(title, forKey: .title)
-
             try? container.encodeIfPresent(valid, forKey: .valid)
+
+            try? container.encodeIfPresent(title, forKey: .title)
         }
     }
 }

@@ -7,11 +7,11 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class CreatePaymentLinkRequest: Codable {
-        public var amount: Double
-
         public var externalOrderId: String
 
         public var description: String?
+
+        public var amount: Double
 
         public var meta: CreatePaymentLinkMeta
 
@@ -20,11 +20,11 @@ public extension ApplicationClient.Payment {
         public var mobileNumber: String
 
         public enum CodingKeys: String, CodingKey {
-            case amount
-
             case externalOrderId = "external_order_id"
 
             case description
+
+            case amount
 
             case meta
 
@@ -34,11 +34,11 @@ public extension ApplicationClient.Payment {
         }
 
         public init(amount: Double, description: String? = nil, email: String, externalOrderId: String, meta: CreatePaymentLinkMeta, mobileNumber: String) {
-            self.amount = amount
-
             self.externalOrderId = externalOrderId
 
             self.description = description
+
+            self.amount = amount
 
             self.meta = meta
 
@@ -50,8 +50,6 @@ public extension ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            amount = try container.decode(Double.self, forKey: .amount)
-
             externalOrderId = try container.decode(String.self, forKey: .externalOrderId)
 
             do {
@@ -61,6 +59,8 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            amount = try container.decode(Double.self, forKey: .amount)
 
             meta = try container.decode(CreatePaymentLinkMeta.self, forKey: .meta)
 
@@ -72,11 +72,11 @@ public extension ApplicationClient.Payment {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
-
             try? container.encodeIfPresent(externalOrderId, forKey: .externalOrderId)
 
             try? container.encode(description, forKey: .description)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 

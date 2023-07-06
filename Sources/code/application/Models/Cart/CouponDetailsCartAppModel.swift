@@ -9,24 +9,24 @@ public extension ApplicationClient.Cart {
     class CouponDetails: Codable {
         public var discountTotalQuantity: Double?
 
-        public var code: String?
-
         public var discountSingleQuantity: Double?
+
+        public var code: String?
 
         public enum CodingKeys: String, CodingKey {
             case discountTotalQuantity = "discount_total_quantity"
 
-            case code
-
             case discountSingleQuantity = "discount_single_quantity"
+
+            case code
         }
 
         public init(code: String? = nil, discountSingleQuantity: Double? = nil, discountTotalQuantity: Double? = nil) {
             self.discountTotalQuantity = discountTotalQuantity
 
-            self.code = code
-
             self.discountSingleQuantity = discountSingleQuantity
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -41,7 +41,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                code = try container.decode(String.self, forKey: .code)
+                discountSingleQuantity = try container.decode(Double.self, forKey: .discountSingleQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                discountSingleQuantity = try container.decode(Double.self, forKey: .discountSingleQuantity)
+                code = try container.decode(String.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(discountTotalQuantity, forKey: .discountTotalQuantity)
 
-            try? container.encodeIfPresent(code, forKey: .code)
-
             try? container.encodeIfPresent(discountSingleQuantity, forKey: .discountSingleQuantity)
+
+            try? container.encodeIfPresent(code, forKey: .code)
         }
     }
 }

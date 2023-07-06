@@ -2,40 +2,40 @@
 
 import Foundation
 
-public extension PlatformClient.Order {
+public extension PlatformClient.Serviceability {
     /*
-         Model: ReturnConfig1
-         Used By: Order
+         Model: Error
+         Used By: Serviceability
      */
 
-    class ReturnConfig1: Codable {
-        public var returnable: Bool?
+    class Error: Codable {
+        public var type: String?
 
-        public var time: Double?
+        public var value: String?
 
-        public var unit: String?
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case returnable
+            case type
 
-            case time
+            case value
 
-            case unit
+            case message
         }
 
-        public init(returnable: Bool? = nil, time: Double? = nil, unit: String? = nil) {
-            self.returnable = returnable
+        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
+            self.type = type
 
-            self.time = time
+            self.value = value
 
-            self.unit = unit
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                returnable = try container.decode(Bool.self, forKey: .returnable)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                time = try container.decode(Double.self, forKey: .time)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,49 +62,49 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(returnable, forKey: .returnable)
+            try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(time, forKey: .time)
+            try? container.encode(value, forKey: .value)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encode(message, forKey: .message)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-         Model: ReturnConfig1
-         Used By: Order
+         Model: Error
+         Used By: Serviceability
      */
 
-    class ReturnConfig1: Codable {
-        public var returnable: Bool?
+    class Error: Codable {
+        public var type: String?
 
-        public var time: Double?
+        public var value: String?
 
-        public var unit: String?
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
-            case returnable
+            case type
 
-            case time
+            case value
 
-            case unit
+            case message
         }
 
-        public init(returnable: Bool? = nil, time: Double? = nil, unit: String? = nil) {
-            self.returnable = returnable
+        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
+            self.type = type
 
-            self.time = time
+            self.value = value
 
-            self.unit = unit
+            self.message = message
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                returnable = try container.decode(Bool.self, forKey: .returnable)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                time = try container.decode(Double.self, forKey: .time)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,11 +131,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(returnable, forKey: .returnable)
+            try? container.encode(type, forKey: .type)
 
-            try? container.encodeIfPresent(time, forKey: .time)
+            try? container.encode(value, forKey: .value)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encode(message, forKey: .message)
         }
     }
 }

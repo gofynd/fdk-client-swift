@@ -1,35 +1,33 @@
 
 
 import Foundation
-
-public extension PlatformClient.ApplicationClient.Cart {
+public extension ApplicationClient.Order {
     /*
-         Model: GiftDetail
-         Used By: Cart
+         Model: ProductsDataUpdatesFilters1
+         Used By: Order
      */
+    class ProductsDataUpdatesFilters1: Codable {
+        public var identifier: String?
 
-    class GiftDetail: Codable {
-        public var isGiftApplied: Bool?
-
-        public var giftMessage: String?
+        public var lineNumber: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case isGiftApplied = "is_gift_applied"
+            case identifier
 
-            case giftMessage = "gift_message"
+            case lineNumber = "line_number"
         }
 
-        public init(giftMessage: String? = nil, isGiftApplied: Bool? = nil) {
-            self.isGiftApplied = isGiftApplied
+        public init(identifier: String? = nil, lineNumber: Int? = nil) {
+            self.identifier = identifier
 
-            self.giftMessage = giftMessage
+            self.lineNumber = lineNumber
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                isGiftApplied = try container.decode(Bool.self, forKey: .isGiftApplied)
+                identifier = try container.decode(String.self, forKey: .identifier)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +35,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                giftMessage = try container.decode(String.self, forKey: .giftMessage)
+                lineNumber = try container.decode(Int.self, forKey: .lineNumber)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +46,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(isGiftApplied, forKey: .isGiftApplied)
+            try? container.encodeIfPresent(identifier, forKey: .identifier)
 
-            try? container.encodeIfPresent(giftMessage, forKey: .giftMessage)
+            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
         }
     }
 }

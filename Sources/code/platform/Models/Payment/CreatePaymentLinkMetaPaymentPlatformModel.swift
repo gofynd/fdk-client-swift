@@ -13,9 +13,9 @@ public extension PlatformClient.Payment {
 
         public var checkoutMode: String
 
-        public var pincode: String
-
         public var assignCardId: String?
+
+        public var pincode: String
 
         public var amount: String
 
@@ -24,9 +24,9 @@ public extension PlatformClient.Payment {
 
             case checkoutMode = "checkout_mode"
 
-            case pincode
-
             case assignCardId = "assign_card_id"
+
+            case pincode
 
             case amount
         }
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             self.checkoutMode = checkoutMode
 
-            self.pincode = pincode
-
             self.assignCardId = assignCardId
+
+            self.pincode = pincode
 
             self.amount = amount
         }
@@ -50,8 +50,6 @@ public extension PlatformClient.Payment {
 
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
-            pincode = try container.decode(String.self, forKey: .pincode)
-
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
 
@@ -59,6 +57,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             amount = try container.decode(String.self, forKey: .amount)
         }
@@ -70,9 +70,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encode(assignCardId, forKey: .assignCardId)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
         }
@@ -90,9 +90,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var checkoutMode: String
 
-        public var pincode: String
-
         public var assignCardId: String?
+
+        public var pincode: String
 
         public var amount: String
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             case checkoutMode = "checkout_mode"
 
-            case pincode
-
             case assignCardId = "assign_card_id"
+
+            case pincode
 
             case amount
         }
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.checkoutMode = checkoutMode
 
-            self.pincode = pincode
-
             self.assignCardId = assignCardId
+
+            self.pincode = pincode
 
             self.amount = amount
         }
@@ -127,8 +127,6 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
-            pincode = try container.decode(String.self, forKey: .pincode)
-
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
 
@@ -136,6 +134,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             amount = try container.decode(String.self, forKey: .amount)
         }
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encode(assignCardId, forKey: .assignCardId)
+
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encodeIfPresent(amount, forKey: .amount)
         }
