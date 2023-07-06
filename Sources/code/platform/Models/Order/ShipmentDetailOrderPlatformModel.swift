@@ -13,26 +13,26 @@ public extension PlatformClient.Order {
 
         public var status: String?
 
-        public var meta: Meta
-
         public var bagList: [Int]?
 
         public var shipmentId: String?
 
         public var remarks: String?
 
+        public var meta: Meta
+
         public enum CodingKeys: String, CodingKey {
             case id
 
             case status
-
-            case meta
 
             case bagList = "bag_list"
 
             case shipmentId = "shipment_id"
 
             case remarks
+
+            case meta
         }
 
         public init(bagList: [Int]? = nil, id: Int, meta: Meta, remarks: String? = nil, shipmentId: String? = nil, status: String? = nil) {
@@ -40,13 +40,13 @@ public extension PlatformClient.Order {
 
             self.status = status
 
-            self.meta = meta
-
             self.bagList = bagList
 
             self.shipmentId = shipmentId
 
             self.remarks = remarks
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,8 +61,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            meta = try container.decode(Meta.self, forKey: .meta)
 
             do {
                 bagList = try container.decode([Int].self, forKey: .bagList)
@@ -87,6 +85,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            meta = try container.decode(Meta.self, forKey: .meta)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -96,13 +96,13 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(remarks, forKey: .remarks)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }
@@ -118,26 +118,26 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var status: String?
 
-        public var meta: Meta
-
         public var bagList: [Int]?
 
         public var shipmentId: String?
 
         public var remarks: String?
 
+        public var meta: Meta
+
         public enum CodingKeys: String, CodingKey {
             case id
 
             case status
-
-            case meta
 
             case bagList = "bag_list"
 
             case shipmentId = "shipment_id"
 
             case remarks
+
+            case meta
         }
 
         public init(bagList: [Int]? = nil, id: Int, meta: Meta, remarks: String? = nil, shipmentId: String? = nil, status: String? = nil) {
@@ -145,13 +145,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.status = status
 
-            self.meta = meta
-
             self.bagList = bagList
 
             self.shipmentId = shipmentId
 
             self.remarks = remarks
+
+            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -166,8 +166,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            meta = try container.decode(Meta.self, forKey: .meta)
 
             do {
                 bagList = try container.decode([Int].self, forKey: .bagList)
@@ -192,6 +190,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            meta = try container.decode(Meta.self, forKey: .meta)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -201,13 +201,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(status, forKey: .status)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
             try? container.encodeIfPresent(bagList, forKey: .bagList)
 
             try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(remarks, forKey: .remarks)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

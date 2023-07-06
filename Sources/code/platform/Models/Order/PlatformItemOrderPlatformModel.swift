@@ -9,157 +9,141 @@ public extension PlatformClient.Order {
      */
 
     class PlatformItem: Codable {
-        public var name: String?
-
-        public var l3Category: Int?
-
-        public var l2Category: [String]?
+        public var id: Int?
 
         public var color: String?
 
-        public var brand: String?
+        public var size: String?
 
-        public var slugKey: String?
+        public var canReturn: Bool?
 
-        public var l3CategoryName: String?
+        public var l3Category: Int?
 
         public var departmentId: Int?
 
+        public var attributes: PlatformArticleAttributes?
+
+        public var l2Category: [String]?
+
         public var l1Category: [String]?
+
+        public var name: String?
+
+        public var l3CategoryName: String?
+
+        public var brand: String?
+
+        public var meta: [String: Any]?
 
         public var lastUpdatedAt: String?
 
-        public var attributes: PlatformArticleAttributes?
+        public var branchUrl: String?
 
-        public var id: Int?
+        public var brandId: Int?
 
-        public var size: String?
+        public var slugKey: String?
+
+        public var code: String?
+
+        public var canCancel: Bool?
 
         public var images: [String]?
 
         public var image: [String]?
 
-        public var canCancel: Bool?
-
-        public var brandId: Int?
-
-        public var code: String?
-
-        public var canReturn: Bool?
-
-        public var meta: [String: Any]?
-
-        public var branchUrl: String?
-
         public enum CodingKeys: String, CodingKey {
-            case name
-
-            case l3Category = "l3_category"
-
-            case l2Category = "l2_category"
+            case id
 
             case color
 
-            case brand
+            case size
 
-            case slugKey = "slug_key"
+            case canReturn = "can_return"
 
-            case l3CategoryName = "l3_category_name"
+            case l3Category = "l3_category"
 
             case departmentId = "department_id"
 
+            case attributes
+
+            case l2Category = "l2_category"
+
             case l1Category = "l1_category"
+
+            case name
+
+            case l3CategoryName = "l3_category_name"
+
+            case brand
+
+            case meta
 
             case lastUpdatedAt = "last_updated_at"
 
-            case attributes
+            case branchUrl = "branch_url"
 
-            case id
+            case brandId = "brand_id"
 
-            case size
+            case slugKey = "slug_key"
+
+            case code
+
+            case canCancel = "can_cancel"
 
             case images
 
             case image
-
-            case canCancel = "can_cancel"
-
-            case brandId = "brand_id"
-
-            case code
-
-            case canReturn = "can_return"
-
-            case meta
-
-            case branchUrl = "branch_url"
         }
 
         public init(attributes: PlatformArticleAttributes? = nil, branchUrl: String? = nil, brand: String? = nil, brandId: Int? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, color: String? = nil, departmentId: Int? = nil, id: Int? = nil, image: [String]? = nil, images: [String]? = nil, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: String? = nil, meta: [String: Any]? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil) {
-            self.name = name
-
-            self.l3Category = l3Category
-
-            self.l2Category = l2Category
+            self.id = id
 
             self.color = color
 
-            self.brand = brand
+            self.size = size
 
-            self.slugKey = slugKey
+            self.canReturn = canReturn
 
-            self.l3CategoryName = l3CategoryName
+            self.l3Category = l3Category
 
             self.departmentId = departmentId
 
+            self.attributes = attributes
+
+            self.l2Category = l2Category
+
             self.l1Category = l1Category
+
+            self.name = name
+
+            self.l3CategoryName = l3CategoryName
+
+            self.brand = brand
+
+            self.meta = meta
 
             self.lastUpdatedAt = lastUpdatedAt
 
-            self.attributes = attributes
+            self.branchUrl = branchUrl
 
-            self.id = id
+            self.brandId = brandId
 
-            self.size = size
+            self.slugKey = slugKey
+
+            self.code = code
+
+            self.canCancel = canCancel
 
             self.images = images
 
             self.image = image
-
-            self.canCancel = canCancel
-
-            self.brandId = brandId
-
-            self.code = code
-
-            self.canReturn = canReturn
-
-            self.meta = meta
-
-            self.branchUrl = branchUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                l3Category = try container.decode(Int.self, forKey: .l3Category)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                l2Category = try container.decode([String].self, forKey: .l2Category)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -175,7 +159,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                brand = try container.decode(String.self, forKey: .brand)
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,7 +167,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                slugKey = try container.decode(String.self, forKey: .slugKey)
+                canReturn = try container.decode(Bool.self, forKey: .canReturn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,7 +175,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
+                l3Category = try container.decode(Int.self, forKey: .l3Category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -207,7 +191,55 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                attributes = try container.decode(PlatformArticleAttributes.self, forKey: .attributes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                l2Category = try container.decode([String].self, forKey: .l2Category)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 l1Category = try container.decode([String].self, forKey: .l1Category)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(String.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,7 +255,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                attributes = try container.decode(PlatformArticleAttributes.self, forKey: .attributes)
+                branchUrl = try container.decode(String.self, forKey: .branchUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -231,7 +263,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                brandId = try container.decode(Int.self, forKey: .brandId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -239,7 +271,23 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                slugKey = try container.decode(String.self, forKey: .slugKey)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                canCancel = try container.decode(Bool.self, forKey: .canCancel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -261,100 +309,52 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                canCancel = try container.decode(Bool.self, forKey: .canCancel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandId = try container.decode(Int.self, forKey: .brandId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                canReturn = try container.decode(Bool.self, forKey: .canReturn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                branchUrl = try container.decode(String.self, forKey: .branchUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
-
-            try? container.encodeIfPresent(l2Category, forKey: .l2Category)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encode(color, forKey: .color)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
 
-            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
 
             try? container.encodeIfPresent(departmentId, forKey: .departmentId)
 
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
+            try? container.encodeIfPresent(l2Category, forKey: .l2Category)
+
             try? container.encodeIfPresent(l1Category, forKey: .l1Category)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(lastUpdatedAt, forKey: .lastUpdatedAt)
 
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
+            try? container.encode(branchUrl, forKey: .branchUrl)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
 
             try? container.encodeIfPresent(images, forKey: .images)
 
             try? container.encodeIfPresent(image, forKey: .image)
-
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
-
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encode(branchUrl, forKey: .branchUrl)
         }
     }
 }
@@ -366,157 +366,141 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class PlatformItem: Codable {
-        public var name: String?
-
-        public var l3Category: Int?
-
-        public var l2Category: [String]?
+        public var id: Int?
 
         public var color: String?
 
-        public var brand: String?
+        public var size: String?
 
-        public var slugKey: String?
+        public var canReturn: Bool?
 
-        public var l3CategoryName: String?
+        public var l3Category: Int?
 
         public var departmentId: Int?
 
+        public var attributes: PlatformArticleAttributes?
+
+        public var l2Category: [String]?
+
         public var l1Category: [String]?
+
+        public var name: String?
+
+        public var l3CategoryName: String?
+
+        public var brand: String?
+
+        public var meta: [String: Any]?
 
         public var lastUpdatedAt: String?
 
-        public var attributes: PlatformArticleAttributes?
+        public var branchUrl: String?
 
-        public var id: Int?
+        public var brandId: Int?
 
-        public var size: String?
+        public var slugKey: String?
+
+        public var code: String?
+
+        public var canCancel: Bool?
 
         public var images: [String]?
 
         public var image: [String]?
 
-        public var canCancel: Bool?
-
-        public var brandId: Int?
-
-        public var code: String?
-
-        public var canReturn: Bool?
-
-        public var meta: [String: Any]?
-
-        public var branchUrl: String?
-
         public enum CodingKeys: String, CodingKey {
-            case name
-
-            case l3Category = "l3_category"
-
-            case l2Category = "l2_category"
+            case id
 
             case color
 
-            case brand
+            case size
 
-            case slugKey = "slug_key"
+            case canReturn = "can_return"
 
-            case l3CategoryName = "l3_category_name"
+            case l3Category = "l3_category"
 
             case departmentId = "department_id"
 
+            case attributes
+
+            case l2Category = "l2_category"
+
             case l1Category = "l1_category"
+
+            case name
+
+            case l3CategoryName = "l3_category_name"
+
+            case brand
+
+            case meta
 
             case lastUpdatedAt = "last_updated_at"
 
-            case attributes
+            case branchUrl = "branch_url"
 
-            case id
+            case brandId = "brand_id"
 
-            case size
+            case slugKey = "slug_key"
+
+            case code
+
+            case canCancel = "can_cancel"
 
             case images
 
             case image
-
-            case canCancel = "can_cancel"
-
-            case brandId = "brand_id"
-
-            case code
-
-            case canReturn = "can_return"
-
-            case meta
-
-            case branchUrl = "branch_url"
         }
 
         public init(attributes: PlatformArticleAttributes? = nil, branchUrl: String? = nil, brand: String? = nil, brandId: Int? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, code: String? = nil, color: String? = nil, departmentId: Int? = nil, id: Int? = nil, image: [String]? = nil, images: [String]? = nil, l1Category: [String]? = nil, l2Category: [String]? = nil, l3Category: Int? = nil, l3CategoryName: String? = nil, lastUpdatedAt: String? = nil, meta: [String: Any]? = nil, name: String? = nil, size: String? = nil, slugKey: String? = nil) {
-            self.name = name
-
-            self.l3Category = l3Category
-
-            self.l2Category = l2Category
+            self.id = id
 
             self.color = color
 
-            self.brand = brand
+            self.size = size
 
-            self.slugKey = slugKey
+            self.canReturn = canReturn
 
-            self.l3CategoryName = l3CategoryName
+            self.l3Category = l3Category
 
             self.departmentId = departmentId
 
+            self.attributes = attributes
+
+            self.l2Category = l2Category
+
             self.l1Category = l1Category
+
+            self.name = name
+
+            self.l3CategoryName = l3CategoryName
+
+            self.brand = brand
+
+            self.meta = meta
 
             self.lastUpdatedAt = lastUpdatedAt
 
-            self.attributes = attributes
+            self.branchUrl = branchUrl
 
-            self.id = id
+            self.brandId = brandId
 
-            self.size = size
+            self.slugKey = slugKey
+
+            self.code = code
+
+            self.canCancel = canCancel
 
             self.images = images
 
             self.image = image
-
-            self.canCancel = canCancel
-
-            self.brandId = brandId
-
-            self.code = code
-
-            self.canReturn = canReturn
-
-            self.meta = meta
-
-            self.branchUrl = branchUrl
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                l3Category = try container.decode(Int.self, forKey: .l3Category)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                l2Category = try container.decode([String].self, forKey: .l2Category)
+                id = try container.decode(Int.self, forKey: .id)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -532,7 +516,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                brand = try container.decode(String.self, forKey: .brand)
+                size = try container.decode(String.self, forKey: .size)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -540,7 +524,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                slugKey = try container.decode(String.self, forKey: .slugKey)
+                canReturn = try container.decode(Bool.self, forKey: .canReturn)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -548,7 +532,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
+                l3Category = try container.decode(Int.self, forKey: .l3Category)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -564,7 +548,55 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                attributes = try container.decode(PlatformArticleAttributes.self, forKey: .attributes)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                l2Category = try container.decode([String].self, forKey: .l2Category)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 l1Category = try container.decode([String].self, forKey: .l1Category)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                l3CategoryName = try container.decode(String.self, forKey: .l3CategoryName)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                brand = try container.decode(String.self, forKey: .brand)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -580,7 +612,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                attributes = try container.decode(PlatformArticleAttributes.self, forKey: .attributes)
+                branchUrl = try container.decode(String.self, forKey: .branchUrl)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -588,7 +620,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                id = try container.decode(Int.self, forKey: .id)
+                brandId = try container.decode(Int.self, forKey: .brandId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -596,7 +628,23 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                size = try container.decode(String.self, forKey: .size)
+                slugKey = try container.decode(String.self, forKey: .slugKey)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                code = try container.decode(String.self, forKey: .code)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                canCancel = try container.decode(Bool.self, forKey: .canCancel)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -618,100 +666,52 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                canCancel = try container.decode(Bool.self, forKey: .canCancel)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                brandId = try container.decode(Int.self, forKey: .brandId)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(String.self, forKey: .code)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                canReturn = try container.decode(Bool.self, forKey: .canReturn)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                branchUrl = try container.decode(String.self, forKey: .branchUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
-
-            try? container.encodeIfPresent(l2Category, forKey: .l2Category)
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encode(color, forKey: .color)
 
-            try? container.encodeIfPresent(brand, forKey: .brand)
+            try? container.encodeIfPresent(size, forKey: .size)
 
-            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
 
-            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
+            try? container.encodeIfPresent(l3Category, forKey: .l3Category)
 
             try? container.encodeIfPresent(departmentId, forKey: .departmentId)
 
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
+
+            try? container.encodeIfPresent(l2Category, forKey: .l2Category)
+
             try? container.encodeIfPresent(l1Category, forKey: .l1Category)
+
+            try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(l3CategoryName, forKey: .l3CategoryName)
+
+            try? container.encodeIfPresent(brand, forKey: .brand)
+
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(lastUpdatedAt, forKey: .lastUpdatedAt)
 
-            try? container.encodeIfPresent(attributes, forKey: .attributes)
+            try? container.encode(branchUrl, forKey: .branchUrl)
 
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(brandId, forKey: .brandId)
 
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(slugKey, forKey: .slugKey)
+
+            try? container.encodeIfPresent(code, forKey: .code)
+
+            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
 
             try? container.encodeIfPresent(images, forKey: .images)
 
             try? container.encodeIfPresent(image, forKey: .image)
-
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
-
-            try? container.encodeIfPresent(brandId, forKey: .brandId)
-
-            try? container.encodeIfPresent(code, forKey: .code)
-
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
-
-            try? container.encode(branchUrl, forKey: .branchUrl)
         }
     }
 }
