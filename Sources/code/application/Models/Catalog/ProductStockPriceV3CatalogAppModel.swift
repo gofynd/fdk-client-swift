@@ -9,18 +9,18 @@ public extension ApplicationClient.Catalog {
     class ProductStockPriceV3: Codable {
         public var marked: Double?
 
-        public var selling: Double?
-
         public var currency: String?
+
+        public var selling: Double?
 
         public var effective: Double?
 
         public enum CodingKeys: String, CodingKey {
             case marked
 
-            case selling
-
             case currency
+
+            case selling
 
             case effective
         }
@@ -28,9 +28,9 @@ public extension ApplicationClient.Catalog {
         public init(currency: String? = nil, effective: Double? = nil, marked: Double? = nil, selling: Double? = nil) {
             self.marked = marked
 
-            self.selling = selling
-
             self.currency = currency
+
+            self.selling = selling
 
             self.effective = effective
         }
@@ -47,7 +47,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                selling = try container.decode(Double.self, forKey: .selling)
+                currency = try container.decode(String.self, forKey: .currency)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,7 +55,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                currency = try container.decode(String.self, forKey: .currency)
+                selling = try container.decode(Double.self, forKey: .selling)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,9 +76,9 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(marked, forKey: .marked)
 
-            try? container.encodeIfPresent(selling, forKey: .selling)
-
             try? container.encodeIfPresent(currency, forKey: .currency)
+
+            try? container.encodeIfPresent(selling, forKey: .selling)
 
             try? container.encodeIfPresent(effective, forKey: .effective)
         }

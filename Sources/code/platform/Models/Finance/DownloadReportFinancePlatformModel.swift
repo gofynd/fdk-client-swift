@@ -11,18 +11,18 @@ public extension PlatformClient.Finance {
     class DownloadReport: Codable {
         public var startDate: String?
 
-        public var pagesize: Int?
-
         public var page: Int?
+
+        public var pagesize: Int?
 
         public var endDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case startDate = "start_date"
 
-            case pagesize
-
             case page
+
+            case pagesize
 
             case endDate = "end_date"
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Finance {
         public init(endDate: String? = nil, page: Int? = nil, pagesize: Int? = nil, startDate: String? = nil) {
             self.startDate = startDate
 
-            self.pagesize = pagesize
-
             self.page = page
+
+            self.pagesize = pagesize
 
             self.endDate = endDate
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                pagesize = try container.decode(Int.self, forKey: .pagesize)
+                page = try container.decode(Int.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                page = try container.decode(Int.self, forKey: .page)
+                pagesize = try container.decode(Int.self, forKey: .pagesize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(startDate, forKey: .startDate)
 
-            try? container.encodeIfPresent(pagesize, forKey: .pagesize)
-
             try? container.encodeIfPresent(page, forKey: .page)
+
+            try? container.encodeIfPresent(pagesize, forKey: .pagesize)
 
             try? container.encodeIfPresent(endDate, forKey: .endDate)
         }

@@ -11,22 +11,22 @@ public extension ApplicationClient.Catalog {
 
         public var length: Double
 
+        public var isDefault: Bool
+
         public var width: Double
 
         public var height: Double
-
-        public var isDefault: Bool
 
         public enum CodingKeys: String, CodingKey {
             case unit
 
             case length
 
+            case isDefault = "is_default"
+
             case width
 
             case height
-
-            case isDefault = "is_default"
         }
 
         public init(height: Double, isDefault: Bool, length: Double, unit: String, width: Double) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Catalog {
 
             self.length = length
 
+            self.isDefault = isDefault
+
             self.width = width
 
             self.height = height
-
-            self.isDefault = isDefault
         }
 
         required public init(from decoder: Decoder) throws {
@@ -48,11 +48,11 @@ public extension ApplicationClient.Catalog {
 
             length = try container.decode(Double.self, forKey: .length)
 
+            isDefault = try container.decode(Bool.self, forKey: .isDefault)
+
             width = try container.decode(Double.self, forKey: .width)
 
             height = try container.decode(Double.self, forKey: .height)
-
-            isDefault = try container.decode(Bool.self, forKey: .isDefault)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,11 +62,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(length, forKey: .length)
 
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+
             try? container.encodeIfPresent(width, forKey: .width)
 
             try? container.encodeIfPresent(height, forKey: .height)
-
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
         }
     }
 }

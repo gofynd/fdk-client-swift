@@ -9,18 +9,18 @@ public extension PlatformClient.Catalog {
      */
 
     class UserDetail: Codable {
-        public var username: String
-
         public var superUser: Bool?
+
+        public var username: String
 
         public var contact: String?
 
         public var userId: String
 
         public enum CodingKeys: String, CodingKey {
-            case username
-
             case superUser = "super_user"
+
+            case username
 
             case contact
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Catalog {
         }
 
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
-            self.username = username
-
             self.superUser = superUser
+
+            self.username = username
 
             self.contact = contact
 
@@ -40,8 +40,6 @@ public extension PlatformClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            username = try container.decode(String.self, forKey: .username)
-
             do {
                 superUser = try container.decode(Bool.self, forKey: .superUser)
 
@@ -49,6 +47,8 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            username = try container.decode(String.self, forKey: .username)
 
             do {
                 contact = try container.decode(String.self, forKey: .contact)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(superUser, forKey: .superUser)
+
+            try? container.encodeIfPresent(username, forKey: .username)
 
             try? container.encodeIfPresent(contact, forKey: .contact)
 
@@ -82,18 +82,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class UserDetail: Codable {
-        public var username: String
-
         public var superUser: Bool?
+
+        public var username: String
 
         public var contact: String?
 
         public var userId: String
 
         public enum CodingKeys: String, CodingKey {
-            case username
-
             case superUser = "super_user"
+
+            case username
 
             case contact
 
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public init(contact: String? = nil, superUser: Bool? = nil, username: String, userId: String) {
-            self.username = username
-
             self.superUser = superUser
+
+            self.username = username
 
             self.contact = contact
 
@@ -113,8 +113,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            username = try container.decode(String.self, forKey: .username)
-
             do {
                 superUser = try container.decode(Bool.self, forKey: .superUser)
 
@@ -122,6 +120,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            username = try container.decode(String.self, forKey: .username)
 
             do {
                 contact = try container.decode(String.self, forKey: .contact)
@@ -137,9 +137,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(username, forKey: .username)
-
             try? container.encodeIfPresent(superUser, forKey: .superUser)
+
+            try? container.encodeIfPresent(username, forKey: .username)
 
             try? container.encodeIfPresent(contact, forKey: .contact)
 
