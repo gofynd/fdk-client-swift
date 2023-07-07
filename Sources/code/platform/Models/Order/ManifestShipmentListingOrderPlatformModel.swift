@@ -9,11 +9,11 @@ public extension PlatformClient.Order {
      */
 
     class ManifestShipmentListing: Codable {
-        public var items: [ManifestItemDetails]?
-
-        public var status: Int
+        public var success: Bool
 
         public var message: String?
+
+        public var status: Int
 
         public var totalCount: Int
 
@@ -21,14 +21,14 @@ public extension PlatformClient.Order {
 
         public var lane: String?
 
-        public var success: Bool
+        public var items: [ManifestItemDetails]?
 
         public enum CodingKeys: String, CodingKey {
-            case items
-
-            case status
+            case success
 
             case message
+
+            case status
 
             case totalCount = "total_count"
 
@@ -36,15 +36,15 @@ public extension PlatformClient.Order {
 
             case lane
 
-            case success
+            case items
         }
 
         public init(items: [ManifestItemDetails]? = nil, lane: String? = nil, message: String? = nil, page: ManifestPageInfo, status: Int, success: Bool, totalCount: Int) {
-            self.items = items
-
-            self.status = status
+            self.success = success
 
             self.message = message
+
+            self.status = status
 
             self.totalCount = totalCount
 
@@ -52,21 +52,13 @@ public extension PlatformClient.Order {
 
             self.lane = lane
 
-            self.success = success
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                items = try container.decode([ManifestItemDetails].self, forKey: .items)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            status = try container.decode(Int.self, forKey: .status)
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 message = try container.decode(String.self, forKey: .message)
@@ -75,6 +67,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(Int.self, forKey: .status)
 
             totalCount = try container.decode(Int.self, forKey: .totalCount)
 
@@ -88,17 +82,23 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
+            do {
+                items = try container.decode([ManifestItemDetails].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
@@ -106,7 +106,7 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(lane, forKey: .lane)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
@@ -118,11 +118,11 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ManifestShipmentListing: Codable {
-        public var items: [ManifestItemDetails]?
-
-        public var status: Int
+        public var success: Bool
 
         public var message: String?
+
+        public var status: Int
 
         public var totalCount: Int
 
@@ -130,14 +130,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var lane: String?
 
-        public var success: Bool
+        public var items: [ManifestItemDetails]?
 
         public enum CodingKeys: String, CodingKey {
-            case items
-
-            case status
+            case success
 
             case message
+
+            case status
 
             case totalCount = "total_count"
 
@@ -145,15 +145,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case lane
 
-            case success
+            case items
         }
 
         public init(items: [ManifestItemDetails]? = nil, lane: String? = nil, message: String? = nil, page: ManifestPageInfo, status: Int, success: Bool, totalCount: Int) {
-            self.items = items
-
-            self.status = status
+            self.success = success
 
             self.message = message
+
+            self.status = status
 
             self.totalCount = totalCount
 
@@ -161,21 +161,13 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.lane = lane
 
-            self.success = success
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            do {
-                items = try container.decode([ManifestItemDetails].self, forKey: .items)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            status = try container.decode(Int.self, forKey: .status)
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 message = try container.decode(String.self, forKey: .message)
@@ -184,6 +176,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(Int.self, forKey: .status)
 
             totalCount = try container.decode(Int.self, forKey: .totalCount)
 
@@ -197,17 +191,23 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(Bool.self, forKey: .success)
+            do {
+                items = try container.decode([ManifestItemDetails].self, forKey: .items)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(status, forKey: .status)
 
             try? container.encodeIfPresent(totalCount, forKey: .totalCount)
 
@@ -215,7 +215,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(lane, forKey: .lane)
 
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }

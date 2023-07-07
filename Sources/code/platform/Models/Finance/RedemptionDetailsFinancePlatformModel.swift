@@ -9,79 +9,63 @@ public extension PlatformClient.Finance {
      */
 
     class RedemptionDetails: Codable {
-        public var amountDebited: Int?
-
-        public var invoiceNumber: String?
-
-        public var orderId: String?
+        public var shipmentId: String?
 
         public var storeId: String?
 
-        public var shipmentId: String?
+        public var staffId: String?
 
         public var orderingChannel: String?
 
-        public var staffId: String?
-
         public var createdAt: String?
 
+        public var orderId: String?
+
+        public var invoiceNumber: String?
+
+        public var amountDebited: Int?
+
         public enum CodingKeys: String, CodingKey {
-            case amountDebited = "amount_debited"
-
-            case invoiceNumber = "invoice_number"
-
-            case orderId = "order_id"
+            case shipmentId = "shipment_id"
 
             case storeId = "store_id"
 
-            case shipmentId = "shipment_id"
+            case staffId = "staff_id"
 
             case orderingChannel = "ordering_channel"
 
-            case staffId = "staff_id"
-
             case createdAt = "created_at"
+
+            case orderId = "order_id"
+
+            case invoiceNumber = "invoice_number"
+
+            case amountDebited = "amount_debited"
         }
 
         public init(amountDebited: Int? = nil, createdAt: String? = nil, invoiceNumber: String? = nil, orderingChannel: String? = nil, orderId: String? = nil, shipmentId: String? = nil, staffId: String? = nil, storeId: String? = nil) {
-            self.amountDebited = amountDebited
-
-            self.invoiceNumber = invoiceNumber
-
-            self.orderId = orderId
+            self.shipmentId = shipmentId
 
             self.storeId = storeId
 
-            self.shipmentId = shipmentId
+            self.staffId = staffId
 
             self.orderingChannel = orderingChannel
 
-            self.staffId = staffId
-
             self.createdAt = createdAt
+
+            self.orderId = orderId
+
+            self.invoiceNumber = invoiceNumber
+
+            self.amountDebited = amountDebited
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                amountDebited = try container.decode(Int.self, forKey: .amountDebited)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                orderId = try container.decode(String.self, forKey: .orderId)
+                shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,7 +81,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                staffId = try container.decode(String.self, forKey: .staffId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,7 +97,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                staffId = try container.decode(String.self, forKey: .staffId)
+                createdAt = try container.decode(String.self, forKey: .createdAt)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,7 +105,23 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                createdAt = try container.decode(String.self, forKey: .createdAt)
+                orderId = try container.decode(String.self, forKey: .orderId)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                invoiceNumber = try container.decode(String.self, forKey: .invoiceNumber)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                amountDebited = try container.decode(Int.self, forKey: .amountDebited)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,21 +132,21 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(amountDebited, forKey: .amountDebited)
-
-            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
-
-            try? container.encodeIfPresent(orderId, forKey: .orderId)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(storeId, forKey: .storeId)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(staffId, forKey: .staffId)
 
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
-            try? container.encodeIfPresent(staffId, forKey: .staffId)
-
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
+
+            try? container.encodeIfPresent(orderId, forKey: .orderId)
+
+            try? container.encodeIfPresent(invoiceNumber, forKey: .invoiceNumber)
+
+            try? container.encodeIfPresent(amountDebited, forKey: .amountDebited)
         }
     }
 }

@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class Media2: Codable {
         public var aspectRatio: String?
 
-        public var url: String?
-
         public var type: String?
+
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case aspectRatio = "aspect_ratio"
 
-            case url
-
             case type
+
+            case url
         }
 
         public init(aspectRatio: String? = nil, type: String? = nil, url: String? = nil) {
             self.aspectRatio = aspectRatio
 
-            self.url = url
-
             self.type = type
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Media2: Codable {
         public var aspectRatio: String?
 
-        public var url: String?
-
         public var type: String?
+
+        public var url: String?
 
         public enum CodingKeys: String, CodingKey {
             case aspectRatio = "aspect_ratio"
 
-            case url
-
             case type
+
+            case url
         }
 
         public init(aspectRatio: String? = nil, type: String? = nil, url: String? = nil) {
             self.aspectRatio = aspectRatio
 
-            self.url = url
-
             self.type = type
+
+            self.url = url
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                url = try container.decode(String.self, forKey: .url)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                type = try container.decode(String.self, forKey: .type)
+                url = try container.decode(String.self, forKey: .url)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(aspectRatio, forKey: .aspectRatio)
 
-            try? container.encodeIfPresent(url, forKey: .url)
-
             try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(url, forKey: .url)
         }
     }
 }

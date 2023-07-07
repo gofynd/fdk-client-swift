@@ -9,24 +9,24 @@ public extension PlatformClient.Order {
      */
 
     class AnnouncementsResponse: Codable {
-        public var message: String?
-
         public var announcements: [AnnouncementResponse]?
+
+        public var message: String?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case message
-
             case announcements
+
+            case message
 
             case success
         }
 
         public init(announcements: [AnnouncementResponse]? = nil, message: String? = nil, success: Bool? = nil) {
-            self.message = message
-
             self.announcements = announcements
+
+            self.message = message
 
             self.success = success
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                announcements = try container.decode([AnnouncementResponse].self, forKey: .announcements)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                announcements = try container.decode([AnnouncementResponse].self, forKey: .announcements)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(announcements, forKey: .announcements)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }
@@ -78,24 +78,24 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AnnouncementsResponse: Codable {
-        public var message: String?
-
         public var announcements: [AnnouncementResponse]?
+
+        public var message: String?
 
         public var success: Bool?
 
         public enum CodingKeys: String, CodingKey {
-            case message
-
             case announcements
+
+            case message
 
             case success
         }
 
         public init(announcements: [AnnouncementResponse]? = nil, message: String? = nil, success: Bool? = nil) {
-            self.message = message
-
             self.announcements = announcements
+
+            self.message = message
 
             self.success = success
         }
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                announcements = try container.decode([AnnouncementResponse].self, forKey: .announcements)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                announcements = try container.decode([AnnouncementResponse].self, forKey: .announcements)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(message, forKey: .message)
-
             try? container.encodeIfPresent(announcements, forKey: .announcements)
+
+            try? container.encodeIfPresent(message, forKey: .message)
 
             try? container.encodeIfPresent(success, forKey: .success)
         }

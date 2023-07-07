@@ -11,42 +11,42 @@ public extension PlatformClient.Catalog {
     class CollectionItemUpdate: Codable {
         public var query: [CollectionQuery]?
 
-        public var allowFacets: Bool?
+        public var type: String?
 
         public var allowSort: Bool?
+
+        public var allowFacets: Bool?
 
         public var items: [CollectionItem]?
 
         public var visibleFacetsKeys: [String]?
 
-        public var type: String?
-
         public enum CodingKeys: String, CodingKey {
             case query
 
-            case allowFacets = "allow_facets"
+            case type
 
             case allowSort = "allow_sort"
+
+            case allowFacets = "allow_facets"
 
             case items
 
             case visibleFacetsKeys = "visible_facets_keys"
-
-            case type
         }
 
         public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItem]? = nil, query: [CollectionQuery]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil) {
             self.query = query
 
-            self.allowFacets = allowFacets
+            self.type = type
 
             self.allowSort = allowSort
+
+            self.allowFacets = allowFacets
 
             self.items = items
 
             self.visibleFacetsKeys = visibleFacetsKeys
-
-            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,7 +61,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -70,6 +70,14 @@ public extension PlatformClient.Catalog {
 
             do {
                 allowSort = try container.decode(Bool.self, forKey: .allowSort)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,14 +99,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -106,15 +106,15 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(query, forKey: .query)
 
-            try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(allowSort, forKey: .allowSort)
+
+            try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
-            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
@@ -128,42 +128,42 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionItemUpdate: Codable {
         public var query: [CollectionQuery]?
 
-        public var allowFacets: Bool?
+        public var type: String?
 
         public var allowSort: Bool?
+
+        public var allowFacets: Bool?
 
         public var items: [CollectionItem]?
 
         public var visibleFacetsKeys: [String]?
 
-        public var type: String?
-
         public enum CodingKeys: String, CodingKey {
             case query
 
-            case allowFacets = "allow_facets"
+            case type
 
             case allowSort = "allow_sort"
+
+            case allowFacets = "allow_facets"
 
             case items
 
             case visibleFacetsKeys = "visible_facets_keys"
-
-            case type
         }
 
         public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, items: [CollectionItem]? = nil, query: [CollectionQuery]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil) {
             self.query = query
 
-            self.allowFacets = allowFacets
+            self.type = type
 
             self.allowSort = allowSort
+
+            self.allowFacets = allowFacets
 
             self.items = items
 
             self.visibleFacetsKeys = visibleFacetsKeys
-
-            self.type = type
         }
 
         required public init(from decoder: Decoder) throws {
@@ -178,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
+                type = try container.decode(String.self, forKey: .type)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,6 +187,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 allowSort = try container.decode(Bool.self, forKey: .allowSort)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                allowFacets = try container.decode(Bool.self, forKey: .allowFacets)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -208,14 +216,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                type = try container.decode(String.self, forKey: .type)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -223,15 +223,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(query, forKey: .query)
 
-            try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
+            try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(allowSort, forKey: .allowSort)
+
+            try? container.encodeIfPresent(allowFacets, forKey: .allowFacets)
 
             try? container.encodeIfPresent(items, forKey: .items)
 
             try? container.encodeIfPresent(visibleFacetsKeys, forKey: .visibleFacetsKeys)
-
-            try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }

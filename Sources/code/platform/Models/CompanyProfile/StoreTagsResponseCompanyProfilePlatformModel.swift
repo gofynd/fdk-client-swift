@@ -9,27 +9,27 @@ public extension PlatformClient.CompanyProfile {
      */
 
     class StoreTagsResponse: Codable {
-        public var success: Bool?
-
         public var tags: [String]?
 
-        public enum CodingKeys: String, CodingKey {
-            case success
+        public var success: Bool?
 
+        public enum CodingKeys: String, CodingKey {
             case tags
+
+            case success
         }
 
         public init(success: Bool? = nil, tags: [String]? = nil) {
-            self.success = success
-
             self.tags = tags
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                success = try container.decode(Bool.self, forKey: .success)
+                tags = try container.decode([String].self, forKey: .tags)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.CompanyProfile {
             } catch {}
 
             do {
-                tags = try container.decode([String].self, forKey: .tags)
+                success = try container.decode(Bool.self, forKey: .success)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,9 +48,9 @@ public extension PlatformClient.CompanyProfile {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(tags, forKey: .tags)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

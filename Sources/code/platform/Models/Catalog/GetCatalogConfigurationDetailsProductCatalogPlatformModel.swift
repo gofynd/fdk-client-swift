@@ -11,30 +11,30 @@ public extension PlatformClient.Catalog {
     class GetCatalogConfigurationDetailsProduct: Codable {
         public var variant: [String: Any]?
 
+        public var similar: [String: Any]?
+
         public var compare: [String: Any]?
 
         public var detail: [String: Any]?
 
-        public var similar: [String: Any]?
-
         public enum CodingKeys: String, CodingKey {
             case variant
+
+            case similar
 
             case compare
 
             case detail
-
-            case similar
         }
 
         public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
             self.variant = variant
 
+            self.similar = similar
+
             self.compare = compare
 
             self.detail = detail
-
-            self.similar = similar
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,14 @@ public extension PlatformClient.Catalog {
 
             do {
                 variant = try container.decode([String: Any].self, forKey: .variant)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                similar = try container.decode([String: Any].self, forKey: .similar)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,14 +71,6 @@ public extension PlatformClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                similar = try container.decode([String: Any].self, forKey: .similar)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(variant, forKey: .variant)
 
+            try? container.encodeIfPresent(similar, forKey: .similar)
+
             try? container.encodeIfPresent(compare, forKey: .compare)
 
             try? container.encodeIfPresent(detail, forKey: .detail)
-
-            try? container.encodeIfPresent(similar, forKey: .similar)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetCatalogConfigurationDetailsProduct: Codable {
         public var variant: [String: Any]?
 
+        public var similar: [String: Any]?
+
         public var compare: [String: Any]?
 
         public var detail: [String: Any]?
 
-        public var similar: [String: Any]?
-
         public enum CodingKeys: String, CodingKey {
             case variant
+
+            case similar
 
             case compare
 
             case detail
-
-            case similar
         }
 
         public init(compare: [String: Any]? = nil, detail: [String: Any]? = nil, similar: [String: Any]? = nil, variant: [String: Any]? = nil) {
             self.variant = variant
 
+            self.similar = similar
+
             self.compare = compare
 
             self.detail = detail
-
-            self.similar = similar
         }
 
         required public init(from decoder: Decoder) throws {
@@ -127,6 +127,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             do {
                 variant = try container.decode([String: Any].self, forKey: .variant)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                similar = try container.decode([String: Any].self, forKey: .similar)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -148,14 +156,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                similar = try container.decode([String: Any].self, forKey: .similar)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(variant, forKey: .variant)
 
+            try? container.encodeIfPresent(similar, forKey: .similar)
+
             try? container.encodeIfPresent(compare, forKey: .compare)
 
             try? container.encodeIfPresent(detail, forKey: .detail)
-
-            try? container.encodeIfPresent(similar, forKey: .similar)
         }
     }
 }

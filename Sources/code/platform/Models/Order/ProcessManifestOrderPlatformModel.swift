@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class ProcessManifest: Codable {
-        public var filters: FiltersRequest
-
         public var manifestId: String?
+
+        public var filters: FiltersRequest
 
         public var action: String
 
         public var uniqueId: String
 
         public enum CodingKeys: String, CodingKey {
-            case filters
-
             case manifestId = "manifest_id"
+
+            case filters
 
             case action
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
-            self.filters = filters
-
             self.manifestId = manifestId
+
+            self.filters = filters
 
             self.action = action
 
@@ -40,8 +40,6 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            filters = try container.decode(FiltersRequest.self, forKey: .filters)
-
             do {
                 manifestId = try container.decode(String.self, forKey: .manifestId)
 
@@ -49,6 +47,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            filters = try container.decode(FiltersRequest.self, forKey: .filters)
 
             action = try container.decode(String.self, forKey: .action)
 
@@ -58,9 +58,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(action, forKey: .action)
 
@@ -76,18 +76,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ProcessManifest: Codable {
-        public var filters: FiltersRequest
-
         public var manifestId: String?
+
+        public var filters: FiltersRequest
 
         public var action: String
 
         public var uniqueId: String
 
         public enum CodingKeys: String, CodingKey {
-            case filters
-
             case manifestId = "manifest_id"
+
+            case filters
 
             case action
 
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(action: String, filters: FiltersRequest, manifestId: String? = nil, uniqueId: String) {
-            self.filters = filters
-
             self.manifestId = manifestId
+
+            self.filters = filters
 
             self.action = action
 
@@ -107,8 +107,6 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            filters = try container.decode(FiltersRequest.self, forKey: .filters)
-
             do {
                 manifestId = try container.decode(String.self, forKey: .manifestId)
 
@@ -116,6 +114,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            filters = try container.decode(FiltersRequest.self, forKey: .filters)
 
             action = try container.decode(String.self, forKey: .action)
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(filters, forKey: .filters)
-
             try? container.encodeIfPresent(manifestId, forKey: .manifestId)
+
+            try? container.encodeIfPresent(filters, forKey: .filters)
 
             try? container.encodeIfPresent(action, forKey: .action)
 

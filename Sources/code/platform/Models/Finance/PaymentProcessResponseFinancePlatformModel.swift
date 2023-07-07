@@ -13,22 +13,22 @@ public extension PlatformClient.Finance {
 
         public var code: Int?
 
+        public var meta: [String: Any]?
+
         public var transactionId: String?
 
         public var message: String?
-
-        public var meta: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case redirectUrl = "redirect_url"
 
             case code
 
+            case meta
+
             case transactionId = "transaction_id"
 
             case message
-
-            case meta
         }
 
         public init(code: Int? = nil, message: String? = nil, meta: [String: Any]? = nil, redirectUrl: String? = nil, transactionId: String? = nil) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Finance {
 
             self.code = code
 
+            self.meta = meta
+
             self.transactionId = transactionId
 
             self.message = message
-
-            self.meta = meta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -63,6 +63,14 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 transactionId = try container.decode(String.self, forKey: .transactionId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -77,14 +85,6 @@ public extension PlatformClient.Finance {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                meta = try container.decode([String: Any].self, forKey: .meta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -94,11 +94,11 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(code, forKey: .code)
 
+            try? container.encodeIfPresent(meta, forKey: .meta)
+
             try? container.encodeIfPresent(transactionId, forKey: .transactionId)
 
             try? container.encodeIfPresent(message, forKey: .message)
-
-            try? container.encodeIfPresent(meta, forKey: .meta)
         }
     }
 }

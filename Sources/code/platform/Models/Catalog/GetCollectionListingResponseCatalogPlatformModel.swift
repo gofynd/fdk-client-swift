@@ -11,24 +11,24 @@ public extension PlatformClient.Catalog {
     class GetCollectionListingResponse: Codable {
         public var page: Page?
 
-        public var items: [GetCollectionDetailNest]?
-
         public var filters: CollectionListingFilter?
+
+        public var items: [GetCollectionDetailNest]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
-            case items
-
             case filters
+
+            case items
         }
 
         public init(filters: CollectionListingFilter? = nil, items: [GetCollectionDetailNest]? = nil, page: Page? = nil) {
             self.page = page
 
-            self.items = items
-
             self.filters = filters
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([GetCollectionDetailNest].self, forKey: .items)
+                filters = try container.decode(CollectionListingFilter.self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                filters = try container.decode(CollectionListingFilter.self, forKey: .filters)
+                items = try container.decode([GetCollectionDetailNest].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
@@ -80,24 +80,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetCollectionListingResponse: Codable {
         public var page: Page?
 
-        public var items: [GetCollectionDetailNest]?
-
         public var filters: CollectionListingFilter?
+
+        public var items: [GetCollectionDetailNest]?
 
         public enum CodingKeys: String, CodingKey {
             case page
 
-            case items
-
             case filters
+
+            case items
         }
 
         public init(filters: CollectionListingFilter? = nil, items: [GetCollectionDetailNest]? = nil, page: Page? = nil) {
             self.page = page
 
-            self.items = items
-
             self.filters = filters
+
+            self.items = items
         }
 
         required public init(from decoder: Decoder) throws {
@@ -112,7 +112,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                items = try container.decode([GetCollectionDetailNest].self, forKey: .items)
+                filters = try container.decode(CollectionListingFilter.self, forKey: .filters)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,7 +120,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                filters = try container.decode(CollectionListingFilter.self, forKey: .filters)
+                items = try container.decode([GetCollectionDetailNest].self, forKey: .items)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(page, forKey: .page)
 
-            try? container.encodeIfPresent(items, forKey: .items)
-
             try? container.encodeIfPresent(filters, forKey: .filters)
+
+            try? container.encodeIfPresent(items, forKey: .items)
         }
     }
 }
