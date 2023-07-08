@@ -29,7 +29,7 @@ Get all orders
 
 
 ```swift
-applicationClient.order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, status: status) { (response, error) in
+order.getOrders(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, status: status) { (response, error) in
     // Use response
 }
 ```
@@ -88,7 +88,7 @@ Get details of an order
 
 
 ```swift
-applicationClient.order.getOrderById(orderId: orderId) { (response, error) in
+order.getOrderById(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -143,7 +143,7 @@ Get details of a shipment
 
 
 ```swift
-applicationClient.order.getShipmentById(shipmentId: shipmentId) { (response, error) in
+order.getShipmentById(shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -198,7 +198,7 @@ Get reasons behind full or partial cancellation of a shipment
 
 
 ```swift
-applicationClient.order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
+order.getShipmentReasons(shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -253,7 +253,7 @@ Update the shipment status
 
 
 ```swift
-applicationClient.order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, error) in
+order.updateShipmentStatus(shipmentId: shipmentId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -308,7 +308,7 @@ Track shipment
 
 
 ```swift
-applicationClient.order.trackShipment(shipmentId: shipmentId) { (response, error) in
+order.trackShipment(shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -363,7 +363,7 @@ Get POS Order
 
 
 ```swift
-applicationClient.order.getPosOrderById(orderId: orderId) { (response, error) in
+order.getPosOrderById(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -418,7 +418,7 @@ Get Customer Details by Shipment Id
 
 
 ```swift
-applicationClient.order.getCustomerDetailsByShipmentId(orderId: orderId, shipmentId: shipmentId) { (response, error) in
+order.getCustomerDetailsByShipmentId(orderId: orderId, shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -474,7 +474,7 @@ Send and Resend Otp code to Order-Shipment customer
 
 
 ```swift
-applicationClient.order.sendOtpToShipmentCustomer(orderId: orderId, shipmentId: shipmentId) { (response, error) in
+order.sendOtpToShipmentCustomer(orderId: orderId, shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -530,7 +530,7 @@ Verify Otp code
 
 
 ```swift
-applicationClient.order.verifyOtpShipmentCustomer(orderId: orderId, shipmentId: shipmentId, body: body) { (response, error) in
+order.verifyOtpShipmentCustomer(orderId: orderId, shipmentId: shipmentId, body: body) { (response, error) in
     // Use response
 }
 ```

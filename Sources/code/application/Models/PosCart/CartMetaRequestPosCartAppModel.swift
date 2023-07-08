@@ -7,22 +7,22 @@ public extension ApplicationClient.PosCart {
          Used By: PosCart
      */
     class CartMetaRequest: Codable {
-        public var comment: String?
+        public var revenueTax: RevenueTaxDetail?
 
         public var checkoutMode: String?
 
-        public var revenueTax: RevenueTaxDetail?
+        public var comment: String?
 
         public var gstin: String?
 
         public var pickUpCustomerDetails: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
-            case comment
+            case revenueTax = "revenue_tax"
 
             case checkoutMode = "checkout_mode"
 
-            case revenueTax = "revenue_tax"
+            case comment
 
             case gstin
 
@@ -30,11 +30,11 @@ public extension ApplicationClient.PosCart {
         }
 
         public init(checkoutMode: String? = nil, comment: String? = nil, gstin: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, revenueTax: RevenueTaxDetail? = nil) {
-            self.comment = comment
+            self.revenueTax = revenueTax
 
             self.checkoutMode = checkoutMode
 
-            self.revenueTax = revenueTax
+            self.comment = comment
 
             self.gstin = gstin
 
@@ -45,7 +45,7 @@ public extension ApplicationClient.PosCart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                comment = try container.decode(String.self, forKey: .comment)
+                revenueTax = try container.decode(RevenueTaxDetail.self, forKey: .revenueTax)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                revenueTax = try container.decode(RevenueTaxDetail.self, forKey: .revenueTax)
+                comment = try container.decode(String.self, forKey: .comment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,11 +88,11 @@ public extension ApplicationClient.PosCart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encodeIfPresent(revenueTax, forKey: .revenueTax)
 
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(revenueTax, forKey: .revenueTax)
+            try? container.encodeIfPresent(comment, forKey: .comment)
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 

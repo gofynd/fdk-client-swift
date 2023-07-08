@@ -31,7 +31,7 @@ Get statistics groups
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroups() { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getStatiscticsGroups() { (response, error) in
     // Use response
 }
 ```
@@ -89,7 +89,7 @@ Get statistics group components
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents(groupName: groupName) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getStatiscticsGroupComponents(groupName: groupName) { (response, error) in
     // Use response
 }
 ```
@@ -155,7 +155,7 @@ Get component statistics csv
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsCSV(componentName: componentName) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getComponentStatsCSV(componentName: componentName) { (response, error) in
     // Use response
 }
 ```
@@ -210,7 +210,7 @@ Get component statistics pdf
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").analytics.getComponentStatsPDF(componentName: componentName) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getComponentStatsPDF(componentName: componentName) { (response, error) in
     // Use response
 }
 ```
@@ -265,7 +265,7 @@ Get component statistics
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").analytics.getComponentStats(componentName: componentName) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getComponentStats(componentName: componentName) { (response, error) in
     // Use response
 }
 ```
@@ -367,7 +367,7 @@ Get abandon carts list
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartList(fromDate: fromDate, toDate: toDate, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getAbandonCartList(fromDate: fromDate, toDate: toDate, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -445,7 +445,7 @@ Get abandon carts csv
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV(fromDate: fromDate, toDate: toDate) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getAbandonCartsCSV(fromDate: fromDate, toDate: toDate) { (response, error) in
     // Use response
 }
 ```
@@ -501,7 +501,7 @@ Get abandon carts details
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").analytics.getAbandonCartDetail(cartId: cartId) { (response, error) in
+client.application("<APPLICATION_ID>").analytics.getAbandonCartDetail(cartId: cartId) { (response, error) in
     // Use response
 }
 ```
@@ -556,7 +556,7 @@ Create data export job in required format
 
 
 ```swift
-platformClient.analytics.createExportJob(exportType: exportType, body: body) { (response, error) in
+client.analytics.createExportJob(exportType: exportType, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -614,7 +614,7 @@ Get data export job status
 
 
 ```swift
-platformClient.analytics.getExportJobStatus(exportType: exportType, jobId: jobId) { (response, error) in
+client.analytics.getExportJobStatus(exportType: exportType, jobId: jobId) { (response, error) in
     // Use response
 }
 ```
@@ -674,7 +674,7 @@ Get logs list
 
 
 ```swift
-platformClient.analytics.getLogsList(logType: logType, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
+client.analytics.getLogsList(logType: logType, pageNo: pageNo, pageSize: pageSize, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -749,7 +749,7 @@ Search logs
 
 
 ```swift
-platformClient.analytics.searchLogs(pageNo: pageNo, pageSize: pageSize, logType: logType, body: body) { (response, error) in
+client.analytics.searchLogs(pageNo: pageNo, pageSize: pageSize, logType: logType, body: body) { (response, error) in
     // Use response
 }
 ```

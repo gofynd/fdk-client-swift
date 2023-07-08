@@ -13,9 +13,9 @@ public extension ApplicationClient.Cart {
 
         public var type: String?
 
-        public var maxQuantity: Int?
-
         public var price: LadderPrice?
+
+        public var maxQuantity: Int?
 
         public enum CodingKeys: String, CodingKey {
             case minQuantity = "min_quantity"
@@ -24,9 +24,9 @@ public extension ApplicationClient.Cart {
 
             case type
 
-            case maxQuantity = "max_quantity"
-
             case price
+
+            case maxQuantity = "max_quantity"
         }
 
         public init(margin: Int? = nil, maxQuantity: Int? = nil, minQuantity: Int? = nil, price: LadderPrice? = nil, type: String? = nil) {
@@ -36,9 +36,9 @@ public extension ApplicationClient.Cart {
 
             self.type = type
 
-            self.maxQuantity = maxQuantity
-
             self.price = price
+
+            self.maxQuantity = maxQuantity
         }
 
         required public init(from decoder: Decoder) throws {
@@ -69,7 +69,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
+                price = try container.decode(LadderPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension ApplicationClient.Cart {
             } catch {}
 
             do {
-                price = try container.decode(LadderPrice.self, forKey: .price)
+                maxQuantity = try container.decode(Int.self, forKey: .maxQuantity)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -94,9 +94,9 @@ public extension ApplicationClient.Cart {
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
-
             try? container.encodeIfPresent(price, forKey: .price)
+
+            try? container.encodeIfPresent(maxQuantity, forKey: .maxQuantity)
         }
     }
 }

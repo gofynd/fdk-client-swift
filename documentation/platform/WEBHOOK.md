@@ -25,7 +25,7 @@ Get Subscribers By Company ID
 
 
 ```swift
-platformClient.webhook.getSubscribersByCompany(pageNo: pageNo, pageSize: pageSize, extensionId: extensionId) { (response, error) in
+client.webhook.getSubscribersByCompany(pageNo: pageNo, pageSize: pageSize, extensionId: extensionId) { (response, error) in
     // Use response
 }
 ```
@@ -82,7 +82,7 @@ Register Subscriber
 
 
 ```swift
-platformClient.webhook.registerSubscriberToEvent(body: body) { (response, error) in
+client.webhook.registerSubscriberToEvent(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -136,7 +136,7 @@ Update Subscriber
 
 
 ```swift
-platformClient.webhook.updateSubscriberConfig(body: body) { (response, error) in
+client.webhook.updateSubscriberConfig(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -190,7 +190,7 @@ Get Subscribers By Extension ID
 
 
 ```swift
-platformClient.webhook.getSubscribersByExtensionId(pageNo: pageNo, pageSize: pageSize, extensionId: extensionId) { (response, error) in
+client.webhook.getSubscribersByExtensionId(pageNo: pageNo, pageSize: pageSize, extensionId: extensionId) { (response, error) in
     // Use response
 }
 ```
@@ -247,7 +247,7 @@ Get Subscriber By Subscriber ID
 
 
 ```swift
-platformClient.webhook.getSubscriberById(subscriberId: subscriberId) { (response, error) in
+client.webhook.getSubscriberById(subscriberId: subscriberId) { (response, error) in
     // Use response
 }
 ```
@@ -302,7 +302,7 @@ Success
 
 
 ```swift
-platformClient.webhook.fetchAllEventConfigurations() { (response, error) in
+client.webhook.fetchAllEventConfigurations() { (response, error) in
     // Use response
 }
 ```

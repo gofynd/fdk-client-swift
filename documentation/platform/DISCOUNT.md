@@ -29,7 +29,7 @@ Fetch discount list.
 
 
 ```swift
-platformClient.discount.getDiscounts(view: view, q: q, pageNo: pageNo, pageSize: pageSize, archived: archived, month: month, year: year, type: type, appIds: appIds) { (response, error) in
+client.discount.getDiscounts(view: view, q: q, pageNo: pageNo, pageSize: pageSize, archived: archived, month: month, year: year, type: type, appIds: appIds) { (response, error) in
     // Use response
 }
 ```
@@ -92,7 +92,7 @@ Create Discount.
 
 
 ```swift
-platformClient.discount.createDiscount(body: body) { (response, error) in
+client.discount.createDiscount(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -146,7 +146,7 @@ Fetch discount.
 
 
 ```swift
-platformClient.discount.getDiscount(id: id) { (response, error) in
+client.discount.getDiscount(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -201,7 +201,7 @@ Create Discount.
 
 
 ```swift
-platformClient.discount.updateDiscount(id: id, body: body) { (response, error) in
+client.discount.updateDiscount(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -256,7 +256,7 @@ Validate File.
 
 
 ```swift
-platformClient.discount.validateDiscountFile(discount: discount, body: body) { (response, error) in
+client.discount.validateDiscountFile(discount: discount, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -311,7 +311,7 @@ Validate File.
 
 
 ```swift
-platformClient.discount.downloadDiscountFile(type: type, body: body) { (response, error) in
+client.discount.downloadDiscountFile(type: type, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -366,7 +366,7 @@ Validate File Job.
 
 
 ```swift
-platformClient.discount.getValidationJob(id: id) { (response, error) in
+client.discount.getValidationJob(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -421,7 +421,7 @@ Cancel Validation Job.
 
 
 ```swift
-platformClient.discount.cancelValidationJob(id: id) { (response, error) in
+client.discount.cancelValidationJob(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -476,7 +476,7 @@ Download File Job.
 
 
 ```swift
-platformClient.discount.getDownloadJob(id: id) { (response, error) in
+client.discount.getDownloadJob(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -531,7 +531,7 @@ Cancel Download Job.
 
 
 ```swift
-platformClient.discount.cancelDownloadJob(id: id) { (response, error) in
+client.discount.cancelDownloadJob(id: id) { (response, error) in
     // Use response
 }
 ```
