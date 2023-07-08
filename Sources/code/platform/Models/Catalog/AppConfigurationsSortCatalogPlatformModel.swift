@@ -9,7 +9,9 @@ public extension PlatformClient.Catalog {
      */
 
     class AppConfigurationsSort: Codable {
-        public var key: String
+        public var priority: Int
+
+        public var isActive: Bool
 
         public var defaultKey: String
 
@@ -17,16 +19,16 @@ public extension PlatformClient.Catalog {
 
         public var appId: String
 
+        public var key: String
+
         public var name: String?
-
-        public var isActive: Bool
-
-        public var priority: Int
 
         public var isDefault: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case key
+            case priority
+
+            case isActive = "is_active"
 
             case defaultKey = "default_key"
 
@@ -34,17 +36,17 @@ public extension PlatformClient.Catalog {
 
             case appId = "app_id"
 
+            case key
+
             case name
-
-            case isActive = "is_active"
-
-            case priority
 
             case isDefault = "is_default"
         }
 
         public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
-            self.key = key
+            self.priority = priority
+
+            self.isActive = isActive
 
             self.defaultKey = defaultKey
 
@@ -52,11 +54,9 @@ public extension PlatformClient.Catalog {
 
             self.appId = appId
 
+            self.key = key
+
             self.name = name
-
-            self.isActive = isActive
-
-            self.priority = priority
 
             self.isDefault = isDefault
         }
@@ -64,7 +64,9 @@ public extension PlatformClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            key = try container.decode(String.self, forKey: .key)
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             defaultKey = try container.decode(String.self, forKey: .defaultKey)
 
@@ -78,6 +80,8 @@ public extension PlatformClient.Catalog {
 
             appId = try container.decode(String.self, forKey: .appId)
 
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -86,17 +90,15 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(defaultKey, forKey: .defaultKey)
 
@@ -104,11 +106,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
+            try? container.encodeIfPresent(key, forKey: .key)
+
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
         }
@@ -122,7 +122,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
      */
 
     class AppConfigurationsSort: Codable {
-        public var key: String
+        public var priority: Int
+
+        public var isActive: Bool
 
         public var defaultKey: String
 
@@ -130,16 +132,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var appId: String
 
+        public var key: String
+
         public var name: String?
-
-        public var isActive: Bool
-
-        public var priority: Int
 
         public var isDefault: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case key
+            case priority
+
+            case isActive = "is_active"
 
             case defaultKey = "default_key"
 
@@ -147,17 +149,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case appId = "app_id"
 
+            case key
+
             case name
-
-            case isActive = "is_active"
-
-            case priority
 
             case isDefault = "is_default"
         }
 
         public init(appId: String, defaultKey: String, isActive: Bool, isDefault: Bool, key: String, logo: String? = nil, name: String? = nil, priority: Int) {
-            self.key = key
+            self.priority = priority
+
+            self.isActive = isActive
 
             self.defaultKey = defaultKey
 
@@ -165,11 +167,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.appId = appId
 
+            self.key = key
+
             self.name = name
-
-            self.isActive = isActive
-
-            self.priority = priority
 
             self.isDefault = isDefault
         }
@@ -177,7 +177,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            key = try container.decode(String.self, forKey: .key)
+            priority = try container.decode(Int.self, forKey: .priority)
+
+            isActive = try container.decode(Bool.self, forKey: .isActive)
 
             defaultKey = try container.decode(String.self, forKey: .defaultKey)
 
@@ -191,6 +193,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             appId = try container.decode(String.self, forKey: .appId)
 
+            key = try container.decode(String.self, forKey: .key)
+
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -199,17 +203,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            isActive = try container.decode(Bool.self, forKey: .isActive)
-
-            priority = try container.decode(Int.self, forKey: .priority)
-
             isDefault = try container.decode(Bool.self, forKey: .isDefault)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(key, forKey: .key)
+            try? container.encodeIfPresent(priority, forKey: .priority)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(defaultKey, forKey: .defaultKey)
 
@@ -217,11 +219,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(appId, forKey: .appId)
 
+            try? container.encodeIfPresent(key, forKey: .key)
+
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
-            try? container.encodeIfPresent(priority, forKey: .priority)
 
             try? container.encodeIfPresent(isDefault, forKey: .isDefault)
         }

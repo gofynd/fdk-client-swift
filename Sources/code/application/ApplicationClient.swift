@@ -34,6 +34,8 @@ public class ApplicationClient {
 
     public let posCart: PosCart
 
+    public let logistic: Logistic
+
     public init(config: ApplicationConfig) {
         self.config = config
 
@@ -66,6 +68,8 @@ public class ApplicationClient {
         rewards = Rewards(config: config)
 
         posCart = PosCart(config: config)
+
+        logistic = Logistic(config: config)
     }
 
     public func setLocationDetails(details: ApplicationConfig.LocationDetails?) {

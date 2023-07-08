@@ -35,7 +35,7 @@ Get current application details
 
 
 ```swift
-applicationClient.configuration.getApplication() { (response, error) in
+configuration.getApplication() { (response, error) in
     // Use response
 }
 ```
@@ -148,7 +148,7 @@ Get application, owner and seller information
 
 
 ```swift
-applicationClient.configuration.getOwnerInfo() { (response, error) in
+configuration.getOwnerInfo() { (response, error) in
     // Use response
 }
 ```
@@ -299,7 +299,7 @@ Get basic application details
 
 
 ```swift
-applicationClient.configuration.getBasicDetails() { (response, error) in
+configuration.getBasicDetails() { (response, error) in
     // Use response
 }
 ```
@@ -389,7 +389,7 @@ Get integration tokens
 
 
 ```swift
-applicationClient.configuration.getIntegrationTokens() { (response, error) in
+configuration.getIntegrationTokens() { (response, error) in
     // Use response
 }
 ```
@@ -508,7 +508,7 @@ Get deployment stores
 
 
 ```swift
-applicationClient.configuration.getOrderingStores(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
+configuration.getOrderingStores(pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -565,7 +565,7 @@ Get ordering store details
 
 
 ```swift
-applicationClient.configuration.getStoreDetailById(storeId: storeId) { (response, error) in
+configuration.getStoreDetailById(storeId: storeId) { (response, error) in
     // Use response
 }
 ```
@@ -628,7 +628,7 @@ Get features of application
 
 
 ```swift
-applicationClient.configuration.getFeatures() { (response, error) in
+configuration.getFeatures() { (response, error) in
     // Use response
 }
 ```
@@ -773,7 +773,7 @@ Get application information
 
 
 ```swift
-applicationClient.configuration.getContactInfo() { (response, error) in
+configuration.getContactInfo() { (response, error) in
     // Use response
 }
 ```
@@ -938,7 +938,7 @@ Get all currencies list
 
 
 ```swift
-applicationClient.configuration.getCurrencies() { (response, error) in
+configuration.getCurrencies() { (response, error) in
     // Use response
 }
 ```
@@ -1001,7 +1001,7 @@ Get currency by its ID
 
 
 ```swift
-applicationClient.configuration.getCurrencyById(id: id) { (response, error) in
+configuration.getCurrencyById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1065,7 +1065,7 @@ Get currencies enabled in the application
 
 
 ```swift
-applicationClient.configuration.getAppCurrencies() { (response, error) in
+configuration.getAppCurrencies() { (response, error) in
     // Use response
 }
 ```
@@ -1133,7 +1133,7 @@ Get list of languages
 
 
 ```swift
-applicationClient.configuration.getLanguages() { (response, error) in
+configuration.getLanguages() { (response, error) in
     // Use response
 }
 ```
@@ -1198,7 +1198,7 @@ Get an Ordering Store signed cookie on selection of ordering store.
 
 
 ```swift
-applicationClient.configuration.getOrderingStoreCookie(body: body) { (response, error) in
+configuration.getOrderingStoreCookie(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1252,7 +1252,7 @@ Unset the Ordering Store signed cookie.
 
 
 ```swift
-applicationClient.configuration.removeOrderingStoreCookie() { (response, error) in
+configuration.removeOrderingStoreCookie() { (response, error) in
     // Use response
 }
 ```
@@ -1302,7 +1302,7 @@ Get a list of staff.
 
 
 ```swift
-applicationClient.configuration.getAppStaffList(pageNo: pageNo, pageSize: pageSize, orderIncent: orderIncent, orderingStore: orderingStore, user: user) { (response, error) in
+configuration.getAppStaffList(pageNo: pageNo, pageSize: pageSize, orderIncent: orderIncent, orderingStore: orderingStore, user: user) { (response, error) in
     // Use response
 }
 ```
@@ -1361,7 +1361,7 @@ Get a list of staff.
 
 
 ```swift
-applicationClient.configuration.getAppStaffs(orderIncent: orderIncent, orderingStore: orderingStore, user: user) { (response, error) in
+configuration.getAppStaffs(orderIncent: orderIncent, orderingStore: orderingStore, user: user) { (response, error) in
     // Use response
 }
 ```

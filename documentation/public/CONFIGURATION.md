@@ -21,7 +21,7 @@ Search Application
 
 
 ```swift
-publicClient.configuration.searchApplication(authorization: authorization, query: query) { (response, error) in
+configuration.searchApplication(authorization: authorization, query: query) { (response, error) in
     // Use response
 }
 ```
@@ -138,7 +138,7 @@ Get countries, states, cities
 
 
 ```swift
-publicClient.configuration.getLocations(locationType: locationType, id: id) { (response, error) in
+configuration.getLocations(locationType: locationType, id: id) { (response, error) in
     // Use response
 }
 ```

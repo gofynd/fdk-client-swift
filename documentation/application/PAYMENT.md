@@ -58,7 +58,7 @@ Get payment gateway keys
 
 
 ```swift
-applicationClient.payment.getAggregatorsConfig(xApiToken: xApiToken, refresh: refresh) { (response, error) in
+payment.getAggregatorsConfig(xApiToken: xApiToken, refresh: refresh) { (response, error) in
     // Use response
 }
 ```
@@ -150,7 +150,7 @@ Attach a saved card to customer.
 
 
 ```swift
-applicationClient.payment.attachCardToCustomer(body: body) { (response, error) in
+payment.attachCardToCustomer(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -233,7 +233,7 @@ Fetch active payment gateway for card payments
 
 
 ```swift
-applicationClient.payment.getActiveCardAggregator(refresh: refresh) { (response, error) in
+payment.getActiveCardAggregator(refresh: refresh) { (response, error) in
     // Use response
 }
 ```
@@ -296,7 +296,7 @@ Fetch the list of cards saved by the user
 
 
 ```swift
-applicationClient.payment.getActiveUserCards(forceRefresh: forceRefresh) { (response, error) in
+payment.getActiveUserCards(forceRefresh: forceRefresh) { (response, error) in
     // Use response
 }
 ```
@@ -375,7 +375,7 @@ Delete a card
 
 
 ```swift
-applicationClient.payment.deleteUserCard(body: body) { (response, error) in
+payment.deleteUserCard(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -431,7 +431,7 @@ Validate customer for payment
 
 
 ```swift
-applicationClient.payment.verifyCustomerForPayment(body: body) { (response, error) in
+payment.verifyCustomerForPayment(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -528,7 +528,7 @@ Verify and charge payment
 
 
 ```swift
-applicationClient.payment.verifyAndChargePayment(body: body) { (response, error) in
+payment.verifyAndChargePayment(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -590,7 +590,7 @@ Initialize a payment (server-to-server) for UPI and BharatQR
 
 
 ```swift
-applicationClient.payment.initialisePayment(body: body) { (response, error) in
+payment.initialisePayment(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -656,7 +656,7 @@ Performs continuous polling to check status of payment on the server
 
 
 ```swift
-applicationClient.payment.checkAndUpdatePaymentStatus(body: body) { (response, error) in
+payment.checkAndUpdatePaymentStatus(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -714,7 +714,7 @@ Get applicable payment options
 
 
 ```swift
-applicationClient.payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, cardReference: cardReference, userDetails: userDetails) { (response, error) in
+payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, cardReference: cardReference, userDetails: userDetails) { (response, error) in
     // Use response
 }
 ```
@@ -1287,7 +1287,7 @@ Get applicable payment options for Point-of-Sale (POS)
 
 
 ```swift
-applicationClient.payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, cardReference: cardReference, orderType: orderType, userDetails: userDetails) { (response, error) in
+payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, cardReference: cardReference, orderType: orderType, userDetails: userDetails) { (response, error) in
     // Use response
 }
 ```
@@ -1529,7 +1529,7 @@ Get CreditLine Offer
 
 
 ```swift
-applicationClient.payment.getRupifiBannerDetails() { (response, error) in
+payment.getRupifiBannerDetails() { (response, error) in
     // Use response
 }
 ```
@@ -1585,7 +1585,7 @@ Get Epaylater Enabled
 
 
 ```swift
-applicationClient.payment.getEpaylaterBannerDetails() { (response, error) in
+payment.getEpaylaterBannerDetails() { (response, error) in
     // Use response
 }
 ```
@@ -1667,7 +1667,7 @@ API to resend and cancel a payment link which was already generated.
 
 
 ```swift
-applicationClient.payment.resendOrCancelPayment(body: body) { (response, error) in
+payment.resendOrCancelPayment(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1751,7 +1751,7 @@ Convert base64 string to HTML form
 
 
 ```swift
-applicationClient.payment.renderHTML(body: body) { (response, error) in
+payment.renderHTML(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1807,7 +1807,7 @@ API to Validate UPI ID
 
 
 ```swift
-applicationClient.payment.validateVPA(body: body) { (response, error) in
+payment.validateVPA(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1869,7 +1869,7 @@ Lists the mode of refund
 
 
 ```swift
-applicationClient.payment.getActiveRefundTransferModes() { (response, error) in
+payment.getActiveRefundTransferModes() { (response, error) in
     // Use response
 }
 ```
@@ -1934,7 +1934,7 @@ Enable/Disable a mode for transferring a refund
 
 
 ```swift
-applicationClient.payment.enableOrDisableRefundTransferMode(body: body) { (response, error) in
+payment.enableOrDisableRefundTransferMode(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1990,7 +1990,7 @@ Lists the beneficiary of a refund
 
 
 ```swift
-applicationClient.payment.getUserBeneficiariesDetail(orderId: orderId) { (response, error) in
+payment.getUserBeneficiariesDetail(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -2070,7 +2070,7 @@ Verify IFSC Code
 
 
 ```swift
-applicationClient.payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
+payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
     // Use response
 }
 ```
@@ -2145,7 +2145,7 @@ Lists the beneficiary of a refund
 
 
 ```swift
-applicationClient.payment.getOrderBeneficiariesDetail(orderId: orderId) { (response, error) in
+payment.getOrderBeneficiariesDetail(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -2224,7 +2224,7 @@ Verify the beneficiary details using OTP
 
 
 ```swift
-applicationClient.payment.verifyOtpAndAddBeneficiaryForBank(body: body) { (response, error) in
+payment.verifyOtpAndAddBeneficiaryForBank(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2281,7 +2281,7 @@ Save bank details for cancelled/returned order
 
 
 ```swift
-applicationClient.payment.addBeneficiaryDetails(body: body) { (response, error) in
+payment.addBeneficiaryDetails(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2340,7 +2340,7 @@ Save bank details for cancelled/returned order
 
 
 ```swift
-applicationClient.payment.addRefundBankAccountUsingOTP(body: body) { (response, error) in
+payment.addRefundBankAccountUsingOTP(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2399,7 +2399,7 @@ Send OTP on adding a wallet beneficiary
 
 
 ```swift
-applicationClient.payment.verifyOtpAndAddBeneficiaryForWallet(body: body) { (response, error) in
+payment.verifyOtpAndAddBeneficiaryForWallet(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2457,7 +2457,7 @@ Set a default beneficiary for a refund
 
 
 ```swift
-applicationClient.payment.updateDefaultBeneficiary(body: body) { (response, error) in
+payment.updateDefaultBeneficiary(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2514,7 +2514,7 @@ Get payment link
 
 
 ```swift
-applicationClient.payment.getPaymentLink(paymentLinkId: paymentLinkId) { (response, error) in
+payment.getPaymentLink(paymentLinkId: paymentLinkId) { (response, error) in
     // Use response
 }
 ```
@@ -2579,7 +2579,7 @@ Create payment link
 
 
 ```swift
-applicationClient.payment.createPaymentLink(body: body) { (response, error) in
+payment.createPaymentLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2640,7 +2640,7 @@ Resend payment link
 
 
 ```swift
-applicationClient.payment.resendPaymentLink(body: body) { (response, error) in
+payment.resendPaymentLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2699,7 +2699,7 @@ Cancel payment link
 
 
 ```swift
-applicationClient.payment.cancelPaymentLink(body: body) { (response, error) in
+payment.cancelPaymentLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2757,7 +2757,7 @@ Get applicable payment options for payment link
 
 
 ```swift
-applicationClient.payment.getPaymentModeRoutesPaymentLink(paymentLinkId: paymentLinkId) { (response, error) in
+payment.getPaymentModeRoutesPaymentLink(paymentLinkId: paymentLinkId) { (response, error) in
     // Use response
 }
 ```
@@ -3219,7 +3219,7 @@ Used for polling if payment successful or not
 
 
 ```swift
-applicationClient.payment.pollingPaymentLink(paymentLinkId: paymentLinkId) { (response, error) in
+payment.pollingPaymentLink(paymentLinkId: paymentLinkId) { (response, error) in
     // Use response
 }
 ```
@@ -3282,7 +3282,7 @@ Create Order user
 
 
 ```swift
-applicationClient.payment.createOrderHandlerPaymentLink(body: body) { (response, error) in
+payment.createOrderHandlerPaymentLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3354,7 +3354,7 @@ Initialize a payment (server-to-server) for UPI and BharatQR
 
 
 ```swift
-applicationClient.payment.initialisePaymentPaymentLink(body: body) { (response, error) in
+payment.initialisePaymentPaymentLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3420,7 +3420,7 @@ Performs continuous polling to check status of payment on the server
 
 
 ```swift
-applicationClient.payment.checkAndUpdatePaymentStatusPaymentLink(body: body) { (response, error) in
+payment.checkAndUpdatePaymentStatusPaymentLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3478,7 +3478,7 @@ API to fetch the customer credit summary
 
 
 ```swift
-applicationClient.payment.customerCreditSummary(aggregator: aggregator) { (response, error) in
+payment.customerCreditSummary(aggregator: aggregator) { (response, error) in
     // Use response
 }
 ```
@@ -3562,7 +3562,7 @@ API to get the redirect url to redirect the user to aggregator's page
 
 
 ```swift
-applicationClient.payment.redirectToAggregator(source: source, aggregator: aggregator) { (response, error) in
+payment.redirectToAggregator(source: source, aggregator: aggregator) { (response, error) in
     // Use response
 }
 ```
@@ -3624,7 +3624,7 @@ API to fetch the customer credit summary
 
 
 ```swift
-applicationClient.payment.checkCredit(aggregator: aggregator) { (response, error) in
+payment.checkCredit(aggregator: aggregator) { (response, error) in
     // Use response
 }
 ```
@@ -3686,7 +3686,7 @@ API to fetch the customer credit summary
 
 
 ```swift
-applicationClient.payment.customerOnboard(body: body) { (response, error) in
+payment.customerOnboard(body: body) { (response, error) in
     // Use response
 }
 ```

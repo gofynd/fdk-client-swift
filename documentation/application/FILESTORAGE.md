@@ -22,7 +22,7 @@ Initiates an upload and returns a storage link that is valid for 30 minutes. You
 
 
 ```swift
-applicationClient.filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
+filestorage.startUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -95,7 +95,7 @@ Completes the upload process. After successfully uploading a file, call this API
 
 
 ```swift
-applicationClient.filestorage.completeUpload(namespace: namespace, body: body) { (response, error) in
+filestorage.completeUpload(namespace: namespace, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -168,7 +168,7 @@ Explain here
 
 
 ```swift
-applicationClient.filestorage.signUrls(body: body) { (response, error) in
+filestorage.signUrls(body: body) { (response, error) in
     // Use response
 }
 ```

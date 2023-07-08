@@ -46,7 +46,7 @@ Fetch all items added to the cart
 
 
 ```swift
-applicationClient.poscart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, buyNow: buyNow) { (response, error) in
+poscart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -272,7 +272,7 @@ Fetch last-modified timestamp
 
 
 ```swift
-applicationClient.poscart.getCartLastModified(id: id) { (response, error) in
+poscart.getCartLastModified(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -308,7 +308,7 @@ Add items to cart
 
 
 ```swift
-applicationClient.poscart.addItems(i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
+poscart.addItems(i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1010,7 +1010,7 @@ Update items in the cart
 
 
 ```swift
-applicationClient.poscart.updateCart(id: id, i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
+poscart.updateCart(id: id, i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1442,7 +1442,7 @@ Count items in the cart
 
 
 ```swift
-applicationClient.poscart.getItemCount(id: id, buyNow: buyNow) { (response, error) in
+poscart.getItemCount(id: id, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -1500,7 +1500,7 @@ Fetch Coupon
 
 
 ```swift
-applicationClient.poscart.getCoupons(id: id, buyNow: buyNow) { (response, error) in
+poscart.getCoupons(id: id, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -1592,7 +1592,7 @@ Apply Coupon
 
 
 ```swift
-applicationClient.poscart.applyCoupon(i: i, b: b, p: p, id: id, buyNow: buyNow, body: body) { (response, error) in
+poscart.applyCoupon(i: i, b: b, p: p, id: id, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2188,7 +2188,7 @@ Remove Coupon Applied
 
 
 ```swift
-applicationClient.poscart.removeCoupon(id: id, buyNow: buyNow) { (response, error) in
+poscart.removeCoupon(id: id, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -2402,7 +2402,7 @@ Get discount offers based on quantity
 
 
 ```swift
-applicationClient.poscart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug) { (response, error) in
+poscart.getBulkDiscountOffers(itemId: itemId, articleId: articleId, uid: uid, slug: slug) { (response, error) in
     // Use response
 }
 ```
@@ -2531,7 +2531,7 @@ Apply reward points at cart
 
 
 ```swift
-applicationClient.poscart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
+poscart.applyRewardPoints(id: id, i: i, b: b, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2756,7 +2756,7 @@ Fetch address
 
 
 ```swift
-applicationClient.poscart.getAddresses(cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+poscart.getAddresses(cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
     // Use response
 }
 ```
@@ -2846,7 +2846,7 @@ Add address to an account
 
 
 ```swift
-applicationClient.poscart.addAddress(body: body) { (response, error) in
+poscart.addAddress(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2904,7 +2904,7 @@ Fetch a single address by its ID
 
 
 ```swift
-applicationClient.poscart.getAddressById(id: id, cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
+poscart.getAddressById(id: id, cartId: cartId, buyNow: buyNow, mobileNo: mobileNo, checkoutMode: checkoutMode, tags: tags, isDefault: isDefault) { (response, error) in
     // Use response
 }
 ```
@@ -2992,7 +2992,7 @@ Update address added to an account
 
 
 ```swift
-applicationClient.poscart.updateAddress(id: id, body: body) { (response, error) in
+poscart.updateAddress(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3052,7 +3052,7 @@ Remove address associated with an account
 
 
 ```swift
-applicationClient.poscart.removeAddress(id: id) { (response, error) in
+poscart.removeAddress(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3110,7 +3110,7 @@ Select an address from available addresses
 
 
 ```swift
-applicationClient.poscart.selectAddress(cartId: cartId, buyNow: buyNow, i: i, b: b, body: body) { (response, error) in
+poscart.selectAddress(cartId: cartId, buyNow: buyNow, i: i, b: b, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3424,7 +3424,7 @@ Update cart payment
 
 
 ```swift
-applicationClient.poscart.selectPaymentMode(id: id, buyNow: buyNow, body: body) { (response, error) in
+poscart.selectPaymentMode(id: id, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3748,7 +3748,7 @@ Verify the coupon eligibility against the payment mode
 
 
 ```swift
-applicationClient.poscart.validateCouponForPayment(id: id, buyNow: buyNow, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode) { (response, error) in
+poscart.validateCouponForPayment(id: id, buyNow: buyNow, addressId: addressId, paymentMode: paymentMode, paymentIdentifier: paymentIdentifier, aggregatorName: aggregatorName, merchantCode: merchantCode) { (response, error) in
     // Use response
 }
 ```
@@ -3819,7 +3819,7 @@ Get delivery date and options before checkout
 
 
 ```swift
-applicationClient.poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingStoreId, p: p, id: id, addressId: addressId, areaCode: areaCode, orderType: orderType) { (response, error) in
+poscart.getShipments(pickAtStoreUid: pickAtStoreUid, orderingStoreId: orderingStoreId, p: p, id: id, addressId: addressId, areaCode: areaCode, orderType: orderType) { (response, error) in
     // Use response
 }
 ```
@@ -4520,7 +4520,7 @@ Update shipment delivery type and quantity before checkout
 
 
 ```swift
-applicationClient.poscart.updateShipments(i: i, p: p, id: id, addressId: addressId, orderType: orderType, body: body) { (response, error) in
+poscart.updateShipments(i: i, p: p, id: id, addressId: addressId, orderType: orderType, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5220,7 +5220,7 @@ Checkout all items in the cart
 
 
 ```swift
-applicationClient.poscart.checkoutCart(id: id, body: body) { (response, error) in
+poscart.checkoutCart(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5655,7 +5655,7 @@ Update the cart meta
 
 
 ```swift
-applicationClient.poscart.updateCartMeta(id: id, buyNow: buyNow, body: body) { (response, error) in
+poscart.updateCartMeta(id: id, buyNow: buyNow, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5713,7 +5713,7 @@ Get available delivery modes for cart
 
 
 ```swift
-applicationClient.poscart.getAvailableDeliveryModes(areaCode: areaCode, id: id) { (response, error) in
+poscart.getAvailableDeliveryModes(areaCode: areaCode, id: id) { (response, error) in
     // Use response
 }
 ```
@@ -5777,7 +5777,7 @@ Get list of stores for give uids
 
 
 ```swift
-applicationClient.poscart.getStoreAddressByUid(storeUid: storeUid) { (response, error) in
+poscart.getStoreAddressByUid(storeUid: storeUid) { (response, error) in
     // Use response
 }
 ```
@@ -5856,7 +5856,7 @@ Generate token for sharing the cart
 
 
 ```swift
-applicationClient.poscart.getCartShareLink(body: body) { (response, error) in
+poscart.getCartShareLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -5921,7 +5921,7 @@ Get details of a shared cart
 
 
 ```swift
-applicationClient.poscart.getCartSharedItems(token: token) { (response, error) in
+poscart.getCartSharedItems(token: token) { (response, error) in
     // Use response
 }
 ```
@@ -6252,7 +6252,7 @@ Merge or replace existing cart
 
 
 ```swift
-applicationClient.poscart.updateCartWithSharedItems(token: token, action: action) { (response, error) in
+poscart.updateCartWithSharedItems(token: token, action: action) { (response, error) in
     // Use response
 }
 ```

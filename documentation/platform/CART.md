@@ -36,7 +36,7 @@ Get with single coupon details or coupon list
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.getCoupons(pageNo: pageNo, pageSize: pageSize, isArchived: isArchived, title: title, isPublic: isPublic, isDisplay: isDisplay, typeSlug: typeSlug, code: code) { (response, error) in
+client.application("<APPLICATION_ID>").cart.getCoupons(pageNo: pageNo, pageSize: pageSize, isArchived: isArchived, title: title, isPublic: isPublic, isDisplay: isDisplay, typeSlug: typeSlug, code: code) { (response, error) in
     // Use response
 }
 ```
@@ -150,7 +150,7 @@ Create new coupon
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.createCoupon(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.createCoupon(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -207,7 +207,7 @@ Get with single coupon details or coupon list
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.getCouponById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").cart.getCouponById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -402,7 +402,7 @@ Update existing coupon configuration
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.updateCoupon(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.updateCoupon(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -460,7 +460,7 @@ Update coupon archive state and schedule
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.updateCouponPartially(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.updateCouponPartially(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -539,7 +539,7 @@ Get promotion list
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.getPromotions(pageNo: pageNo, pageSize: pageSize, q: q, isActive: isActive, promoGroup: promoGroup, promotionType: promotionType, fpPanel: fpPanel, promotionId: promotionId) { (response, error) in
+client.application("<APPLICATION_ID>").cart.getPromotions(pageNo: pageNo, pageSize: pageSize, q: q, isActive: isActive, promoGroup: promoGroup, promotionType: promotionType, fpPanel: fpPanel, promotionId: promotionId) { (response, error) in
     // Use response
 }
 ```
@@ -646,7 +646,7 @@ Create new promotion
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.createPromotion(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.createPromotion(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -814,7 +814,7 @@ Get with single promotion details or promotion list
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.getPromotionById(id: id) { (response, error) in
+client.application("<APPLICATION_ID>").cart.getPromotionById(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -983,7 +983,7 @@ Update existing promotion configuration
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.updatePromotion(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.updatePromotion(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1152,7 +1152,7 @@ Update promotion publish state and schedule
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.updatePromotionPartially(id: id, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.updatePromotionPartially(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1231,7 +1231,7 @@ Fetch Cart Details
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.fetchAndvalidateCartItems(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1559,7 +1559,7 @@ Check Pincode Serviceability
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.checkCartServiceability(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.checkCartServiceability(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2143,7 +2143,7 @@ Create Fynd order with cart details
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.checkoutCart(body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.checkoutCart(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2202,7 +2202,7 @@ Get with abandoned cart list
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.getAbandonedCart(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, anonymousCart: anonymousCart, lastId: lastId, sortOn: sortOn) { (response, error) in
+client.application("<APPLICATION_ID>").cart.getAbandonedCart(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, anonymousCart: anonymousCart, lastId: lastId, sortOn: sortOn) { (response, error) in
     // Use response
 }
 ```
@@ -2424,7 +2424,7 @@ Fetch all items added to the cart
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails(id: id, i: i, b: b) { (response, error) in
+client.application("<APPLICATION_ID>").cart.getAbandonedCartDetails(id: id, i: i, b: b) { (response, error) in
     // Use response
 }
 ```
@@ -2648,7 +2648,7 @@ Add items to abandoned cart
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.addItems(cartId: cartId, b: b, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.addItems(cartId: cartId, b: b, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -3349,7 +3349,7 @@ Update items in the abandoned cart
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.updateCart(cartId: cartId, b: b, body: body) { (response, error) in
+client.application("<APPLICATION_ID>").cart.updateCart(cartId: cartId, b: b, body: body) { (response, error) in
     // Use response
 }
 ```

@@ -31,7 +31,7 @@ Get Slingshot Configuration Of  A Company
 
 
 ```swift
-platformClient.inventory.getConfigByCompany() { (response, error) in
+client.inventory.getConfigByCompany() { (response, error) in
     // Use response
 }
 ```
@@ -81,7 +81,7 @@ Get Slingshot Configuration Of  A Company
 
 
 ```swift
-platformClient.inventory.suppressStores(body: body) { (response, error) in
+client.inventory.suppressStores(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -135,7 +135,7 @@ Get Job Configs For A Company
 
 
 ```swift
-platformClient.inventory.getJobsByCompany(pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.inventory.getJobsByCompany(pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -191,7 +191,7 @@ Updates An Existing Job Config
 
 
 ```swift
-platformClient.inventory.updateJob(body: body) { (response, error) in
+client.inventory.updateJob(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -245,7 +245,7 @@ Creates A New Job Config
 
 
 ```swift
-platformClient.inventory.createJob(body: body) { (response, error) in
+client.inventory.createJob(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -299,7 +299,7 @@ Get Job Code Steps
 
 
 ```swift
-platformClient.inventory.getJobSteps(jobId: jobId) { (response, error) in
+client.inventory.getJobSteps(jobId: jobId) { (response, error) in
     // Use response
 }
 ```
@@ -354,7 +354,7 @@ Get Job Configs By Company And Integration
 
 
 ```swift
-platformClient.inventory.getJobByCompanyAndIntegration(integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.inventory.getJobByCompanyAndIntegration(integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -411,7 +411,7 @@ Disable Job Config
 
 
 ```swift
-platformClient.inventory.disable(integrationId: integrationId) { (response, error) in
+client.inventory.disable(integrationId: integrationId) { (response, error) in
     // Use response
 }
 ```
@@ -466,7 +466,7 @@ Get Job Configs Defaults
 
 
 ```swift
-platformClient.inventory.getJobConfigDefaults() { (response, error) in
+client.inventory.getJobConfigDefaults() { (response, error) in
     // Use response
 }
 ```
@@ -516,7 +516,7 @@ Get Job Config By Code
 
 
 ```swift
-platformClient.inventory.getJobByCode(code: code) { (response, error) in
+client.inventory.getJobByCode(code: code) { (response, error) in
     // Use response
 }
 ```
@@ -571,7 +571,7 @@ Get Job Metrics
 
 
 ```swift
-platformClient.inventory.getJobCodeMetrics(code: code, pageNo: pageNo, pageSize: pageSize, status: status, date: date) { (response, error) in
+client.inventory.getJobCodeMetrics(code: code, pageNo: pageNo, pageSize: pageSize, status: status, date: date) { (response, error) in
     // Use response
 }
 ```
@@ -630,7 +630,7 @@ Get Job Codes By Company And Integration
 
 
 ```swift
-platformClient.inventory.getJobCodesByCompanyAndIntegration(integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+client.inventory.getJobCodesByCompanyAndIntegration(integrationId: integrationId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
