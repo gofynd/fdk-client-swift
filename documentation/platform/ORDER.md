@@ -39,7 +39,7 @@ Update status of Shipment
 
 
 ```swift
-client.order.shipmentStatusUpdate(body: body) { (response, error) in
+platformClient.order.shipmentStatusUpdate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -93,7 +93,7 @@ Get Activity Status
 
 
 ```swift
-client.order.activityStatus(bagId: bagId) { (response, error) in
+platformClient.order.activityStatus(bagId: bagId) { (response, error) in
     // Use response
 }
 ```
@@ -148,7 +148,7 @@ Update Store Process-Shipment
 
 
 ```swift
-client.order.storeProcessShipmentUpdate(body: body) { (response, error) in
+platformClient.order.storeProcessShipmentUpdate(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -202,7 +202,7 @@ Check Refund is available or not
 
 
 ```swift
-client.order.checkRefund(shipmentId: shipmentId) { (response, error) in
+platformClient.order.checkRefund(shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -257,7 +257,7 @@ Decides if Shipment bags can break
 
 
 ```swift
-client.order.shipmentBagsCanBreak(body: body) { (response, error) in
+platformClient.order.shipmentBagsCanBreak(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -311,7 +311,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, isPrioritySort: isPrioritySort, lockStatus: lockStatus, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, deploymentStores: deploymentStores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+platformClient.order.getOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, isPrioritySort: isPrioritySort, lockStatus: lockStatus, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, deploymentStores: deploymentStores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -381,7 +381,7 @@ Get Order Lanes Count for company based on Company Id
 
 
 ```swift
-client.order.getOrderLanesCountByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+platformClient.order.getOrderLanesCountByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -447,7 +447,7 @@ Get Order Details for company based on Company Id and Order Id
 
 
 ```swift
-client.order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
+platformClient.order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
     // Use response
 }
 ```
@@ -504,7 +504,7 @@ Get Order Details for company based on Company Id and Order Id
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
+platformClient.application("<APPLICATION_ID>").order.getOrderDetails(orderId: orderId, next: next, previous: previous) { (response, error) in
     // Use response
 }
 ```
@@ -561,7 +561,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.order.getPicklistOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+platformClient.order.getPicklistOrdersByCompanyId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
@@ -627,7 +627,7 @@ Track Shipment by shipment id, for application based on application Id
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.trackShipmentPlatform(shipmentId: shipmentId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").order.trackShipmentPlatform(shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -682,7 +682,7 @@ Track Order by order id, for application based on application Id
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.trackOrder(orderId: orderId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").order.trackOrder(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -737,7 +737,7 @@ Get all failed orders application wise
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.failedOrders() { (response, error) in
+platformClient.application("<APPLICATION_ID>").order.failedOrders() { (response, error) in
     // Use response
 }
 ```
@@ -787,7 +787,7 @@ Reprocess order by order id
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.reprocessOrder(orderId: orderId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").order.reprocessOrder(orderId: orderId) { (response, error) in
     // Use response
 }
 ```
@@ -842,7 +842,7 @@ Use this API to update the shipment using its shipment ID.
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.updateShipment(shipmentId: shipmentId, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").order.updateShipment(shipmentId: shipmentId, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -897,7 +897,7 @@ Use this API to retrieve the issues that led to the cancellation of bags within 
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.getPlatformShipmentReasons(action: action) { (response, error) in
+platformClient.application("<APPLICATION_ID>").order.getPlatformShipmentReasons(action: action) { (response, error) in
     // Use response
 }
 ```
@@ -952,7 +952,7 @@ Use this API to track a shipment using its shipment ID.
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.getShipmentTrackDetails(orderId: orderId, shipmentId: shipmentId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").order.getShipmentTrackDetails(orderId: orderId, shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -1008,7 +1008,7 @@ Use this API to get address of a shipment using its shipment ID and Address Cate
 
 
 ```swift
-client.order.getShipmentAddress(shipmentId: shipmentId, addressCategory: addressCategory) { (response, error) in
+platformClient.order.getShipmentAddress(shipmentId: shipmentId, addressCategory: addressCategory) { (response, error) in
     // Use response
 }
 ```
@@ -1064,7 +1064,7 @@ Use this API to update address of a shipment using its shipment ID and Address C
 
 
 ```swift
-client.order.updateShipmentAddress(shipmentId: shipmentId, addressCategory: addressCategory, body: body) { (response, error) in
+platformClient.order.updateShipmentAddress(shipmentId: shipmentId, addressCategory: addressCategory, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1120,7 +1120,7 @@ Get Orders for company based on Company Id
 
 
 ```swift
-client.application("<APPLICATION_ID>").order.getOrdersByApplicationId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
+platformClient.application("<APPLICATION_ID>").order.getOrdersByApplicationId(pageNo: pageNo, pageSize: pageSize, fromDate: fromDate, toDate: toDate, q: q, stage: stage, salesChannels: salesChannels, orderId: orderId, stores: stores, status: status, dp: dp, shortenUrls: shortenUrls, filterType: filterType) { (response, error) in
     // Use response
 }
 ```
