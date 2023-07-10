@@ -61,6 +61,18 @@ public extension PlatformClient.Lead {
 
         case salesChannel = "sales_channel"
     }
+
+    /*
+         Enum: TicketIntegrationDetails
+         Used By: Lead
+     */
+    enum TicketIntegrationDetails: String, Codable {
+        case defaultCase = "default"
+
+        case freshdesk
+
+        case kapture
+    }
 }
 
 public extension PlatformClient.ApplicationClient.Lead {
@@ -122,6 +134,18 @@ public extension PlatformClient.ApplicationClient.Lead {
         case platformPanel = "platform_panel"
 
         case salesChannel = "sales_channel"
+    }
+
+    /*
+         Enum: TicketIntegrationDetails
+         Used By: Lead
+     */
+    enum TicketIntegrationDetails: String, Codable {
+        case defaultCase = "default"
+
+        case freshdesk
+
+        case kapture
     }
 }
 

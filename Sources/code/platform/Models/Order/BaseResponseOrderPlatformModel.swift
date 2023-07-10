@@ -9,9 +9,9 @@ public extension PlatformClient.Order {
      */
 
     class BaseResponse: Codable {
-        public var success: Bool
+        public var success: Bool?
 
-        public var message: String
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -19,7 +19,7 @@ public extension PlatformClient.Order {
             case message
         }
 
-        public init(message: String, success: Bool) {
+        public init(message: String? = nil, success: Bool? = nil) {
             self.success = success
 
             self.message = message
@@ -28,9 +28,21 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            do {
+                success = try container.decode(Bool.self, forKey: .success)
 
-            message = try container.decode(String.self, forKey: .message)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -50,9 +62,9 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class BaseResponse: Codable {
-        public var success: Bool
+        public var success: Bool?
 
-        public var message: String
+        public var message: String?
 
         public enum CodingKeys: String, CodingKey {
             case success
@@ -60,7 +72,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case message
         }
 
-        public init(message: String, success: Bool) {
+        public init(message: String? = nil, success: Bool? = nil) {
             self.success = success
 
             self.message = message
@@ -69,9 +81,21 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            success = try container.decode(Bool.self, forKey: .success)
+            do {
+                success = try container.decode(Bool.self, forKey: .success)
 
-            message = try container.decode(String.self, forKey: .message)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                message = try container.decode(String.self, forKey: .message)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {

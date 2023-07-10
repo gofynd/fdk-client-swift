@@ -3667,7 +3667,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [String]? |  yes  |  |
+ | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
 
 ---
 
@@ -3831,6 +3831,21 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug)? |  yes  |  |
  | active | Bool? |  yes  |  |
  | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [SessionListResponseInfo](#SessionListResponseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sessionId | String? |  yes  |  |
+ | userAgent | String? |  yes  |  |
+ | ip | String? |  yes  |  |
+ | domain | String? |  yes  |  |
+ | expireIn | String? |  yes  |  |
 
 ---
 
@@ -4237,6 +4252,37 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | gender | String? |  yes  |  |
  | externalId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+ | phoneNumbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
+ | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserEmails](#UserEmails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | Bool? |  yes  |  |
+ | primary | Bool? |  yes  |  |
+ | verified | Bool? |  yes  |  |
+ | email | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [UserPhoneNumbers](#UserPhoneNumbers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | Bool? |  yes  |  |
+ | primary | Bool? |  yes  |  |
+ | verified | Bool? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
 
 ---
 
@@ -4260,8 +4306,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | profilePicUrl | String? |  yes  |  |
  | username | String? |  yes  |  |
  | accountType | String? |  yes  |  |
- | debug | [Debug](#Debug)? |  yes  |  |
- | hasOldPasswordHash | Bool? |  yes  |  |
  | id | String? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
@@ -4294,18 +4338,6 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | verified | Bool? |  yes  |  |
  | email | String? |  yes  |  |
  | active | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Debug](#Debug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | source | String? |  yes  |  |
- | platform | String? |  yes  |  |
 
 ---
 

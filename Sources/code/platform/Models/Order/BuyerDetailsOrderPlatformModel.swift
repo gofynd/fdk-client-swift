@@ -11,7 +11,7 @@ public extension PlatformClient.Order {
     class BuyerDetails: Codable {
         public var state: String
 
-        public var gstin: String
+        public var name: String
 
         public var city: String
 
@@ -19,14 +19,14 @@ public extension PlatformClient.Order {
 
         public var address: String
 
-        public var name: String
-
         public var pincode: Int
+
+        public var gstin: String
 
         public enum CodingKeys: String, CodingKey {
             case state
 
-            case gstin
+            case name
 
             case city
 
@@ -34,15 +34,15 @@ public extension PlatformClient.Order {
 
             case address
 
-            case name
-
             case pincode
+
+            case gstin
         }
 
         public init(address: String, ajioSiteId: String? = nil, city: String, gstin: String, name: String, pincode: Int, state: String) {
             self.state = state
 
-            self.gstin = gstin
+            self.name = name
 
             self.city = city
 
@@ -50,9 +50,9 @@ public extension PlatformClient.Order {
 
             self.address = address
 
-            self.name = name
-
             self.pincode = pincode
+
+            self.gstin = gstin
         }
 
         required public init(from decoder: Decoder) throws {
@@ -60,7 +60,7 @@ public extension PlatformClient.Order {
 
             state = try container.decode(String.self, forKey: .state)
 
-            gstin = try container.decode(String.self, forKey: .gstin)
+            name = try container.decode(String.self, forKey: .name)
 
             city = try container.decode(String.self, forKey: .city)
 
@@ -74,9 +74,9 @@ public extension PlatformClient.Order {
 
             address = try container.decode(String.self, forKey: .address)
 
-            name = try container.decode(String.self, forKey: .name)
-
             pincode = try container.decode(Int.self, forKey: .pincode)
+
+            gstin = try container.decode(String.self, forKey: .gstin)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -84,7 +84,7 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
@@ -92,9 +92,9 @@ public extension PlatformClient.Order {
 
             try? container.encode(address, forKey: .address)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
         }
     }
 }
@@ -108,7 +108,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class BuyerDetails: Codable {
         public var state: String
 
-        public var gstin: String
+        public var name: String
 
         public var city: String
 
@@ -116,14 +116,14 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var address: String
 
-        public var name: String
-
         public var pincode: Int
+
+        public var gstin: String
 
         public enum CodingKeys: String, CodingKey {
             case state
 
-            case gstin
+            case name
 
             case city
 
@@ -131,15 +131,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case address
 
-            case name
-
             case pincode
+
+            case gstin
         }
 
         public init(address: String, ajioSiteId: String? = nil, city: String, gstin: String, name: String, pincode: Int, state: String) {
             self.state = state
 
-            self.gstin = gstin
+            self.name = name
 
             self.city = city
 
@@ -147,9 +147,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.address = address
 
-            self.name = name
-
             self.pincode = pincode
+
+            self.gstin = gstin
         }
 
         required public init(from decoder: Decoder) throws {
@@ -157,7 +157,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             state = try container.decode(String.self, forKey: .state)
 
-            gstin = try container.decode(String.self, forKey: .gstin)
+            name = try container.decode(String.self, forKey: .name)
 
             city = try container.decode(String.self, forKey: .city)
 
@@ -171,9 +171,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             address = try container.decode(String.self, forKey: .address)
 
-            name = try container.decode(String.self, forKey: .name)
-
             pincode = try container.decode(Int.self, forKey: .pincode)
+
+            gstin = try container.decode(String.self, forKey: .gstin)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -181,7 +181,7 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(state, forKey: .state)
 
-            try? container.encodeIfPresent(gstin, forKey: .gstin)
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(city, forKey: .city)
 
@@ -189,9 +189,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(address, forKey: .address)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+
+            try? container.encodeIfPresent(gstin, forKey: .gstin)
         }
     }
 }

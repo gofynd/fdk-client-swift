@@ -11,36 +11,36 @@ public extension PlatformClient.Payment {
     class PaymentStatusBulkHandlerResponse: Codable {
         public var error: String?
 
-        public var data: [PaymentStatusObject]?
-
         public var success: String
 
-        public var status: Int
+        public var data: [PaymentStatusObject]?
 
         public var count: Int?
+
+        public var status: Int
 
         public enum CodingKeys: String, CodingKey {
             case error
 
-            case data
-
             case success
 
-            case status
+            case data
 
             case count
+
+            case status
         }
 
         public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
             self.error = error
 
-            self.data = data
-
             self.success = success
 
-            self.status = status
+            self.data = data
 
             self.count = count
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,6 +54,8 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(String.self, forKey: .success)
+
             do {
                 data = try container.decode([PaymentStatusObject].self, forKey: .data)
 
@@ -62,10 +64,6 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(String.self, forKey: .success)
-
-            status = try container.decode(Int.self, forKey: .status)
-
             do {
                 count = try container.decode(Int.self, forKey: .count)
 
@@ -73,6 +71,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -80,13 +80,13 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encodeIfPresent(count, forKey: .count)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
@@ -100,36 +100,36 @@ public extension PlatformClient.ApplicationClient.Payment {
     class PaymentStatusBulkHandlerResponse: Codable {
         public var error: String?
 
-        public var data: [PaymentStatusObject]?
-
         public var success: String
 
-        public var status: Int
+        public var data: [PaymentStatusObject]?
 
         public var count: Int?
+
+        public var status: Int
 
         public enum CodingKeys: String, CodingKey {
             case error
 
-            case data
-
             case success
 
-            case status
+            case data
 
             case count
+
+            case status
         }
 
         public init(count: Int? = nil, data: [PaymentStatusObject]? = nil, error: String? = nil, status: Int, success: String) {
             self.error = error
 
-            self.data = data
-
             self.success = success
 
-            self.status = status
+            self.data = data
 
             self.count = count
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -143,6 +143,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            success = try container.decode(String.self, forKey: .success)
+
             do {
                 data = try container.decode([PaymentStatusObject].self, forKey: .data)
 
@@ -151,10 +153,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            success = try container.decode(String.self, forKey: .success)
-
-            status = try container.decode(Int.self, forKey: .status)
-
             do {
                 count = try container.decode(Int.self, forKey: .count)
 
@@ -162,6 +160,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            status = try container.decode(Int.self, forKey: .status)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -169,13 +169,13 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(error, forKey: .error)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(data, forKey: .data)
 
             try? container.encodeIfPresent(count, forKey: .count)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

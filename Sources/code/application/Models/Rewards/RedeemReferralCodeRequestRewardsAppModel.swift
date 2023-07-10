@@ -7,9 +7,9 @@ public extension ApplicationClient.Rewards {
          Used By: Rewards
      */
     class RedeemReferralCodeRequest: Codable {
-        public var deviceId: String
+        public var deviceId: String?
 
-        public var referralCode: String
+        public var referralCode: String?
 
         public enum CodingKeys: String, CodingKey {
             case deviceId = "device_id"
@@ -17,7 +17,7 @@ public extension ApplicationClient.Rewards {
             case referralCode = "referral_code"
         }
 
-        public init(deviceId: String, referralCode: String) {
+        public init(deviceId: String? = nil, referralCode: String? = nil) {
             self.deviceId = deviceId
 
             self.referralCode = referralCode
@@ -26,9 +26,21 @@ public extension ApplicationClient.Rewards {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            deviceId = try container.decode(String.self, forKey: .deviceId)
+            do {
+                deviceId = try container.decode(String.self, forKey: .deviceId)
 
-            referralCode = try container.decode(String.self, forKey: .referralCode)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                referralCode = try container.decode(String.self, forKey: .referralCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {

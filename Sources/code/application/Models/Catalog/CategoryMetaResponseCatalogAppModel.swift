@@ -11,22 +11,22 @@ public extension ApplicationClient.Catalog {
 
         public var name: String?
 
-        public var customJson: [String: Any]?
-
         public var banners: ImageUrls?
 
         public var logo: Media?
+
+        public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case uid
 
             case name
 
-            case customJson = "_custom_json"
-
             case banners
 
             case logo
+
+            case customJson = "_custom_json"
         }
 
         public init(banners: ImageUrls? = nil, logo: Media? = nil, name: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
@@ -34,11 +34,11 @@ public extension ApplicationClient.Catalog {
 
             self.name = name
 
-            self.customJson = customJson
-
             self.banners = banners
 
             self.logo = logo
+
+            self.customJson = customJson
         }
 
         required public init(from decoder: Decoder) throws {
@@ -61,14 +61,6 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                customJson = try container.decode([String: Any].self, forKey: .customJson)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 banners = try container.decode(ImageUrls.self, forKey: .banners)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -83,6 +75,14 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                customJson = try container.decode([String: Any].self, forKey: .customJson)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -92,11 +92,11 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(name, forKey: .name)
 
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
-
             try? container.encodeIfPresent(banners, forKey: .banners)
 
             try? container.encodeIfPresent(logo, forKey: .logo)
+
+            try? container.encodeIfPresent(customJson, forKey: .customJson)
         }
     }
 }

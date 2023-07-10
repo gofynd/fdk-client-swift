@@ -200,8 +200,8 @@ public extension ApplicationClient {
             i: Bool?,
             b: Bool?,
             areaCode: String?,
-            id: String?,
             buyNow: Bool?,
+            id: String?,
             body: AddCartRequest,
             onResponse: @escaping (_ response: AddCartDetailResponse?, _ error: FDKError?) -> Void
         ) {
@@ -219,12 +219,12 @@ public extension ApplicationClient {
                 xQuery["area_code"] = value
             }
 
-            if let value = id {
-                xQuery["id"] = value
-            }
-
             if let value = buyNow {
                 xQuery["buy_now"] = value
+            }
+
+            if let value = id {
+                xQuery["id"] = value
             }
 
             let fullUrl = relativeUrls["addItems"] ?? ""
@@ -1072,6 +1072,10 @@ public extension ApplicationClient {
             paymentIdentifier: String?,
             aggregatorName: String?,
             merchantCode: String?,
+            iin: String?,
+            network: String?,
+            type: String?,
+            cardId: String?,
 
             onResponse: @escaping (_ response: PaymentCouponValidate?, _ error: FDKError?) -> Void
         ) {
@@ -1103,6 +1107,22 @@ public extension ApplicationClient {
 
             if let value = merchantCode {
                 xQuery["merchant_code"] = value
+            }
+
+            if let value = iin {
+                xQuery["iin"] = value
+            }
+
+            if let value = network {
+                xQuery["network"] = value
+            }
+
+            if let value = type {
+                xQuery["type"] = value
+            }
+
+            if let value = cardId {
+                xQuery["card_id"] = value
             }
 
             let fullUrl = relativeUrls["validateCouponForPayment"] ?? ""
@@ -1223,6 +1243,7 @@ public extension ApplicationClient {
             p: Bool?,
             id: String?,
             addressId: String?,
+            areaCode: String?,
             orderType: String?,
             body: UpdateCartShipmentRequest,
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
@@ -1243,6 +1264,10 @@ public extension ApplicationClient {
 
             if let value = addressId {
                 xQuery["address_id"] = value
+            }
+
+            if let value = areaCode {
+                xQuery["area_code"] = value
             }
 
             if let value = orderType {

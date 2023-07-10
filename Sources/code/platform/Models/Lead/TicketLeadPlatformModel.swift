@@ -17,11 +17,9 @@ public extension PlatformClient.Lead {
 
         public var content: TicketContent?
 
-        public var ticketId: String
-
         public var category: TicketCategory
 
-        public var subCategory: TicketSubCategory?
+        public var subCategory: String?
 
         public var source: TicketSourceEnum
 
@@ -39,6 +37,8 @@ public extension PlatformClient.Lead {
 
         public var isFeedbackPending: Bool?
 
+        public var integration: [String: Any]?
+
         public var id: String
 
         public var updatedAt: String?
@@ -53,8 +53,6 @@ public extension PlatformClient.Lead {
             case responseId = "response_id"
 
             case content
-
-            case ticketId = "ticket_id"
 
             case category
 
@@ -76,6 +74,8 @@ public extension PlatformClient.Lead {
 
             case isFeedbackPending = "is_feedback_pending"
 
+            case integration
+
             case id = "_id"
 
             case updatedAt = "updated_at"
@@ -83,7 +83,7 @@ public extension PlatformClient.Lead {
             case createdAt = "created_at"
         }
 
-        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: TicketSubCategory? = nil, tags: [String]? = nil, ticketId: String, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
+        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
             self.context = context
 
             self.createdOn = createdOn
@@ -91,8 +91,6 @@ public extension PlatformClient.Lead {
             self.responseId = responseId
 
             self.content = content
-
-            self.ticketId = ticketId
 
             self.category = category
 
@@ -113,6 +111,8 @@ public extension PlatformClient.Lead {
             self.customJson = customJson
 
             self.isFeedbackPending = isFeedbackPending
+
+            self.integration = integration
 
             self.id = id
 
@@ -156,12 +156,10 @@ public extension PlatformClient.Lead {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            ticketId = try container.decode(String.self, forKey: .ticketId)
-
             category = try container.decode(TicketCategory.self, forKey: .category)
 
             do {
-                subCategory = try container.decode(TicketSubCategory.self, forKey: .subCategory)
+                subCategory = try container.decode(String.self, forKey: .subCategory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,6 +212,14 @@ public extension PlatformClient.Lead {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                integration = try container.decode([String: Any].self, forKey: .integration)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             id = try container.decode(String.self, forKey: .id)
 
             do {
@@ -244,8 +250,6 @@ public extension PlatformClient.Lead {
 
             try? container.encodeIfPresent(content, forKey: .content)
 
-            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
-
             try? container.encodeIfPresent(category, forKey: .category)
 
             try? container.encodeIfPresent(subCategory, forKey: .subCategory)
@@ -265,6 +269,8 @@ public extension PlatformClient.Lead {
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(isFeedbackPending, forKey: .isFeedbackPending)
+
+            try? container.encodeIfPresent(integration, forKey: .integration)
 
             try? container.encodeIfPresent(id, forKey: .id)
 
@@ -290,11 +296,9 @@ public extension PlatformClient.ApplicationClient.Lead {
 
         public var content: TicketContent?
 
-        public var ticketId: String
-
         public var category: TicketCategory
 
-        public var subCategory: TicketSubCategory?
+        public var subCategory: String?
 
         public var source: TicketSourceEnum
 
@@ -312,6 +316,8 @@ public extension PlatformClient.ApplicationClient.Lead {
 
         public var isFeedbackPending: Bool?
 
+        public var integration: [String: Any]?
+
         public var id: String
 
         public var updatedAt: String?
@@ -326,8 +332,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             case responseId = "response_id"
 
             case content
-
-            case ticketId = "ticket_id"
 
             case category
 
@@ -349,6 +353,8 @@ public extension PlatformClient.ApplicationClient.Lead {
 
             case isFeedbackPending = "is_feedback_pending"
 
+            case integration
+
             case id = "_id"
 
             case updatedAt = "updated_at"
@@ -356,7 +362,7 @@ public extension PlatformClient.ApplicationClient.Lead {
             case createdAt = "created_at"
         }
 
-        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: TicketSubCategory? = nil, tags: [String]? = nil, ticketId: String, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
+        public init(assignedTo: [String: Any]? = nil, category: TicketCategory, content: TicketContent? = nil, context: TicketContext? = nil, createdAt: String? = nil, createdBy: [String: Any]? = nil, createdOn: CreatedOn? = nil, integration: [String: Any]? = nil, isFeedbackPending: Bool? = nil, priority: Priority, responseId: String? = nil, source: TicketSourceEnum, status: Status, subCategory: String? = nil, tags: [String]? = nil, updatedAt: String? = nil, customJson: [String: Any]? = nil, id: String) {
             self.context = context
 
             self.createdOn = createdOn
@@ -364,8 +370,6 @@ public extension PlatformClient.ApplicationClient.Lead {
             self.responseId = responseId
 
             self.content = content
-
-            self.ticketId = ticketId
 
             self.category = category
 
@@ -386,6 +390,8 @@ public extension PlatformClient.ApplicationClient.Lead {
             self.customJson = customJson
 
             self.isFeedbackPending = isFeedbackPending
+
+            self.integration = integration
 
             self.id = id
 
@@ -429,12 +435,10 @@ public extension PlatformClient.ApplicationClient.Lead {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            ticketId = try container.decode(String.self, forKey: .ticketId)
-
             category = try container.decode(TicketCategory.self, forKey: .category)
 
             do {
-                subCategory = try container.decode(TicketSubCategory.self, forKey: .subCategory)
+                subCategory = try container.decode(String.self, forKey: .subCategory)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -487,6 +491,14 @@ public extension PlatformClient.ApplicationClient.Lead {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            do {
+                integration = try container.decode([String: Any].self, forKey: .integration)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
             id = try container.decode(String.self, forKey: .id)
 
             do {
@@ -517,8 +529,6 @@ public extension PlatformClient.ApplicationClient.Lead {
 
             try? container.encodeIfPresent(content, forKey: .content)
 
-            try? container.encodeIfPresent(ticketId, forKey: .ticketId)
-
             try? container.encodeIfPresent(category, forKey: .category)
 
             try? container.encodeIfPresent(subCategory, forKey: .subCategory)
@@ -538,6 +548,8 @@ public extension PlatformClient.ApplicationClient.Lead {
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(isFeedbackPending, forKey: .isFeedbackPending)
+
+            try? container.encodeIfPresent(integration, forKey: .integration)
 
             try? container.encodeIfPresent(id, forKey: .id)
 

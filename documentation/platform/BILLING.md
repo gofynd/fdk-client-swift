@@ -10,6 +10,8 @@ Handle platform subscription
 * [createSubscriptionCharge](#createsubscriptioncharge)
 * [getSubscriptionCharge](#getsubscriptioncharge)
 * [cancelSubscriptionCharge](#cancelsubscriptioncharge)
+* [createOneTimeCharge](#createonetimecharge)
+* [getChargeDetails](#getchargedetails)
 * [getInvoices](#getinvoices)
 * [getInvoiceById](#getinvoicebyid)
 * [getCustomerDetail](#getcustomerdetail)
@@ -222,6 +224,117 @@ Cancel subscription and attached charges.
 
 
 [EntitySubscription](#EntitySubscription)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createOneTimeCharge
+Create one time subscription charge
+
+
+
+
+```swift
+platformClient.billing.createOneTimeCharge(extensionId: extensionId, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| extensionId | String | yes | Extension _id |  
+| body | CreateOneTimeCharge | yes | Request body |
+
+
+Register one time subscription charge for a seller of your extension.
+
+*Returned Response:*
+
+
+
+
+[CreateOneTimeChargeResponse](#CreateOneTimeChargeResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getChargeDetails
+Get subscription charge details
+
+
+
+
+```swift
+platformClient.billing.getChargeDetails(extensionId: extensionId, chargeId: chargeId) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| extensionId | String | yes | Extension _id |   
+| chargeId | String | yes | Standalone charge _id |  
+
+
+
+Get created subscription charge details
+
+*Returned Response:*
+
+
+
+
+[OneTimeChargeEntity](#OneTimeChargeEntity)
 
 Success
 
@@ -1038,8 +1151,8 @@ Success
     "is_enabled": true,
     "subscription": {
       "current_period": {
-        "start": "2020-12-17T13:45:36.722Z",
-        "end": "2021-01-17T13:45:36.722Z"
+        "start": "2023-05-23T07:00:31.345Z",
+        "end": "2023-06-22T07:00:31.345Z"
       },
       "pause_collection": {},
       "trial": {},
@@ -1049,14 +1162,123 @@ Success
       },
       "is_active": true,
       "cancel_at_period_end": false,
-      "_id": "5f3a8a00668947663b7fbd38",
-      "subscriber_id": "5ee773e1351e5e84289ed9cf",
-      "plan_id": "5f3a8786c90d780037723a12",
-      "product_suite_id": "5f3a8786c90d7800377239f3",
+      "freezed": false,
+      "channel_type": "ecomm",
+      "_id": "6385dc9389fe3577db6935f3",
+      "subscriber_id": "6385dc9289fe356a346935eb",
+      "plan_id": "5f2e30cad1456d00386abf1c",
+      "product_suite_id": "5f2e30cad1456d00386abefc",
       "plan_data": {
+        "plan_components": [
+          {
+            "is_active": true,
+            "display_text": null,
+            "_id": "5f2e30cbd1456d00386ac008",
+            "plan_id": "5f2e30cad1456d00386abf1c",
+            "created_at": "2020-08-08T04:57:47.829Z",
+            "modified_at": "2021-07-31T12:13:51.221Z",
+            "component": {
+              "is_visible": true,
+              "is_active": true,
+              "is_display": true,
+              "_id": "5f2e30cad1456d00386abefd",
+              "component_price_config": {
+                "type": "display",
+                "display_text": "4%"
+              },
+              "name": "Transaction Fees",
+              "slug": "transaction-fee",
+              "description": "Transaction fees is inclusive of Payment Gateway",
+              "group": "Key Features",
+              "icon": "",
+              "product_suite_id": "5f2e30cad1456d00386abefc",
+              "created_at": "2020-08-08T04:57:46.648Z",
+              "modified_at": "2021-07-31T12:13:50.344Z",
+              "links": {}
+            },
+            "component_price": {
+              "display_text": "3.5%",
+              "is_default": false,
+              "is_active": true,
+              "processing_type": "display",
+              "tags": [],
+              "_id": "5f2e30cbd1456d00386abf77",
+              "component_id": "5f2e30cad1456d00386abefd",
+              "created_at": "2020-08-08T04:57:47.433Z",
+              "modified_at": "2023-04-21T07:04:22.574Z",
+              "__v": 0
+            }
+          }
+        ],
+        "components": [
+          {
+            "_id": "634569a3675d1912531e5ef3",
+            "component_price_config": {
+              "type": "revenue",
+              "default_config": {
+                "recurring": {
+                  "aggregate_usage": "sum",
+                  "usage_type": "licensed",
+                  "interval_count": 1
+                },
+                "transform_quantity": {
+                  "divide_by": 1,
+                  "round": "up"
+                },
+                "free_tier": {
+                  "type": "TIME_BASED",
+                  "value": 0
+                },
+                "unit_amount": 0,
+                "quantity": 1,
+                "price_type": "static",
+                "price_ui_type": "standard",
+                "bill_type": "one_time",
+                "billing_scheme": "per_unit",
+                "display_text": "Yes",
+                "tiers": [],
+                "currency": "INR"
+              },
+              "display_text": "Free",
+              "price_meta": {
+                "unit_amount": 0,
+                "price_type": "static",
+                "bill_type": "one_time",
+                "billing_scheme": "per_unit",
+                "transform_quantity": {
+                  "divide_by": 1,
+                  "round": "up"
+                }
+              }
+            },
+            "is_visible": true,
+            "is_active": true,
+            "is_display": true,
+            "product_suite_id": "5ececa006415744de9228e2e",
+            "name": "SSL Certificates",
+            "slug": "ssl-certificates",
+            "description": "",
+            "group": "Key Features",
+            "icon": "",
+            "links": {},
+            "created_at": "2022-10-11T13:03:31.767Z",
+            "modified_at": "2023-04-21T07:04:23.544Z"
+          }
+        ],
+        "fee_components": [],
         "recurring": {
-          "interval": "month",
-          "interval_count": 1
+          "interval_count": 1,
+          "interval": "month"
+        },
+        "taxation": {
+          "gst": 0.18
+        },
+        "one_time_fees": {
+          "developement": 0,
+          "marketing": 0
+        },
+        "credit_line": {
+          "is_active": false
         },
         "is_trial_plan": false,
         "plan_group": "default",
@@ -1066,23 +1288,340 @@ Success
         "is_visible": true,
         "trial_period": 0,
         "addons": [],
-        "tags": [],
+        "tags": [
+          "popular"
+        ],
         "type": "public",
         "country": "IN",
-        "_id": "5f3a8786c90d780037723a12",
-        "name": "Standard",
-        "description": "Standard",
-        "amount": 999,
-        "product_suite_id": "5f3a8786c90d7800377239f3",
-        "created_at": "2020-08-17T13:35:02.547Z",
-        "modified_at": "2020-08-17T13:35:02.547Z"
+        "company_ids": [],
+        "channel_type": "ecomm",
+        "_id": "5f2e30cad1456d00386abf1c",
+        "tagLines": [],
+        "name": "Premium",
+        "description": "For scaled up businesses",
+        "amount": 2499,
+        "product_suite_id": "5f2e30cad1456d00386abefc",
+        "created_at": "2020-08-08T04:57:46.830Z",
+        "modified_at": "2023-04-21T07:04:22.363Z",
+        "current_status": "active",
+        "plan_leeway_after_activation": 7,
+        "activated_on": "2023-06-02T07:57:16.638Z"
       },
       "current_status": "active",
       "collection_method": "charge_automatically",
-      "created_at": "2020-08-17T13:45:36.731Z",
-      "modified_at": "2020-12-17T11:01:15.960Z",
-      "latest_invoice": "5fdb3a7bfc849c2153b944d5"
-    }
+      "created_at": "2022-11-29T10:18:59.466Z",
+      "modified_at": "2023-06-02T07:57:17.254Z",
+      "latest_invoice": "6479a0dda77a156ad997bd4d"
+    },
+    "latest_invoice": {
+      "documents": {},
+      "payment": {},
+      "period": {
+        "start": "2023-05-23T07:00:31.345Z",
+        "end": "2023-06-22T07:00:31.345Z"
+      },
+      "client": {
+        "address_lines": [
+          "TEST, TEST ,TEST, TEST",
+          "",
+          "NAVI MUMBAI, 400614, MAHARASHTRA, INDIA"
+        ],
+        "name": "avi_test",
+        "email": "avinashsharma@gofynd.com",
+        "phone": "undefined undefined"
+      },
+      "discount": {},
+      "taxation": {
+        "cgst": 0.09,
+        "sgst": 0.09,
+        "igst": 0
+      },
+      "auto_advance": false,
+      "currency": "INR",
+      "paid": true,
+      "attemp": 1,
+      "credit_note_amount": 1768.82,
+      "_id": "6479a0dda77a156ad997bd4d",
+      "collection_method": "charge_automatically",
+      "subscriber_id": "6385dc9289fe356a346935eb",
+      "invoice_url": "",
+      "number": "PS-P-A00515-FY24",
+      "pg_data": {},
+      "old_settlement": 999.33,
+      "credit_balance": null,
+      "receipt_number": "",
+      "statement_descriptor": "avi_test",
+      "current_status": "paid",
+      "status_trail": [
+        {
+          "_id": "6479a0dda77a157bd397bd4e",
+          "value": "open",
+          "timestamp": "2023-06-02T07:57:17.096Z"
+        },
+        {
+          "_id": "6479a196244a37915c4b9448",
+          "value": "paid",
+          "timestamp": "2023-06-02T08:00:22.059Z"
+        },
+        {
+          "_id": "6479a196e3c6582ed5ea7157",
+          "value": "paid",
+          "timestamp": "2023-06-02T08:00:22.099Z"
+        }
+      ],
+      "subtotal": 2555.4900000000002,
+      "total": 786.67,
+      "subscription": "6385dc9389fe3577db6935f3",
+      "next_action_time": "2023-06-02T07:57:17.112Z",
+      "meta": {
+        "old_plan_amount": 499.67,
+        "new_plan_amount": 1666,
+        "credit_note_id": "FP-C27-A00055-24",
+        "isPlanChanged": true
+      },
+      "created_at": "2023-06-02T07:57:17.128Z",
+      "modified_at": "2023-06-02T08:00:23.182Z",
+      "hash_identifier": "987abf78c61bfef585242bbbeaab1b59",
+      "pdf_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/company/13781/self/subscription/documents/invoices/original/U6ffgNlo_-PS-P-A00515-FY24-paid.pdf"
+    },
+    "latestInvoice": {
+      "documents": {},
+      "payment": {},
+      "period": {
+        "start": "2023-05-23T07:00:31.345Z",
+        "end": "2023-06-22T07:00:31.345Z"
+      },
+      "client": {
+        "address_lines": [
+          "TEST, TEST ,TEST, TEST",
+          "",
+          "NAVI MUMBAI, 400614, MAHARASHTRA, INDIA"
+        ],
+        "name": "avi_test",
+        "email": "avinashsharma@gofynd.com",
+        "phone": "undefined undefined"
+      },
+      "discount": {},
+      "taxation": {
+        "cgst": 0.09,
+        "sgst": 0.09,
+        "igst": 0
+      },
+      "auto_advance": false,
+      "currency": "INR",
+      "paid": true,
+      "attemp": 1,
+      "credit_note_amount": 1768.82,
+      "_id": "6479a0dda77a156ad997bd4d",
+      "collection_method": "charge_automatically",
+      "subscriber_id": "6385dc9289fe356a346935eb",
+      "invoice_url": "",
+      "number": "PS-P-A00515-FY24",
+      "pg_data": {},
+      "old_settlement": 999.33,
+      "credit_balance": null,
+      "receipt_number": "",
+      "statement_descriptor": "avi_test",
+      "current_status": "paid",
+      "status_trail": [
+        {
+          "_id": "6479a0dda77a157bd397bd4e",
+          "value": "open",
+          "timestamp": "2023-06-02T07:57:17.096Z"
+        },
+        {
+          "_id": "6479a196244a37915c4b9448",
+          "value": "paid",
+          "timestamp": "2023-06-02T08:00:22.059Z"
+        },
+        {
+          "_id": "6479a196e3c6582ed5ea7157",
+          "value": "paid",
+          "timestamp": "2023-06-02T08:00:22.099Z"
+        }
+      ],
+      "subtotal": 2555.4900000000002,
+      "total": 786.67,
+      "subscription": "6385dc9389fe3577db6935f3",
+      "next_action_time": "2023-06-02T07:57:17.112Z",
+      "meta": {
+        "old_plan_amount": 499.67,
+        "new_plan_amount": 1666,
+        "credit_note_id": "FP-C27-A00055-24",
+        "isPlanChanged": true
+      },
+      "created_at": "2023-06-02T07:57:17.128Z",
+      "modified_at": "2023-06-02T08:00:23.182Z",
+      "hash_identifier": "987abf78c61bfef585242bbbeaab1b59",
+      "pdf_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/company/13781/self/subscription/documents/invoices/original/U6ffgNlo_-PS-P-A00515-FY24-paid.pdf"
+    },
+    "mandate_amount": 630000,
+    "current_subscriptions": [
+      {
+        "current_period": {
+          "start": "2023-05-23T07:00:31.345Z",
+          "end": "2023-06-22T07:00:31.345Z"
+        },
+        "pause_collection": {},
+        "trial": {},
+        "invoice_settings": {
+          "generation": true,
+          "charging": true
+        },
+        "is_active": true,
+        "cancel_at_period_end": false,
+        "freezed": false,
+        "channel_type": "ecomm",
+        "_id": "6385dc9389fe3577db6935f3",
+        "subscriber_id": "6385dc9289fe356a346935eb",
+        "plan_id": "5f2e30cad1456d00386abf1c",
+        "product_suite_id": "5f2e30cad1456d00386abefc",
+        "plan_data": {
+          "plan_components": [
+            {
+              "is_active": true,
+              "display_text": null,
+              "_id": "5f2e30cbd1456d00386ac008",
+              "plan_id": "5f2e30cad1456d00386abf1c",
+              "created_at": "2020-08-08T04:57:47.829Z",
+              "modified_at": "2021-07-31T12:13:51.221Z",
+              "component": {
+                "is_visible": true,
+                "is_active": true,
+                "is_display": true,
+                "_id": "5f2e30cad1456d00386abefd",
+                "component_price_config": {
+                  "type": "display",
+                  "display_text": "4%"
+                },
+                "name": "Transaction Fees",
+                "slug": "transaction-fee",
+                "description": "Transaction fees is inclusive of Payment Gateway",
+                "group": "Key Features",
+                "icon": "",
+                "product_suite_id": "5f2e30cad1456d00386abefc",
+                "created_at": "2020-08-08T04:57:46.648Z",
+                "modified_at": "2021-07-31T12:13:50.344Z",
+                "links": {}
+              },
+              "component_price": {
+                "display_text": "3.5%",
+                "is_default": false,
+                "is_active": true,
+                "processing_type": "display",
+                "tags": [],
+                "_id": "5f2e30cbd1456d00386abf77",
+                "component_id": "5f2e30cad1456d00386abefd",
+                "created_at": "2020-08-08T04:57:47.433Z",
+                "modified_at": "2023-04-21T07:04:22.574Z",
+                "__v": 0
+              }
+            }
+          ],
+          "components": [
+            {
+              "_id": "634569a3675d1912531e5ef3",
+              "component_price_config": {
+                "type": "revenue",
+                "default_config": {
+                  "recurring": {
+                    "aggregate_usage": "sum",
+                    "usage_type": "licensed",
+                    "interval_count": 1
+                  },
+                  "transform_quantity": {
+                    "divide_by": 1,
+                    "round": "up"
+                  },
+                  "free_tier": {
+                    "type": "TIME_BASED",
+                    "value": 0
+                  },
+                  "unit_amount": 0,
+                  "quantity": 1,
+                  "price_type": "static",
+                  "price_ui_type": "standard",
+                  "bill_type": "one_time",
+                  "billing_scheme": "per_unit",
+                  "display_text": "Yes",
+                  "tiers": [],
+                  "currency": "INR"
+                },
+                "display_text": "Free",
+                "price_meta": {
+                  "unit_amount": 0,
+                  "price_type": "static",
+                  "bill_type": "one_time",
+                  "billing_scheme": "per_unit",
+                  "transform_quantity": {
+                    "divide_by": 1,
+                    "round": "up"
+                  }
+                }
+              },
+              "is_visible": true,
+              "is_active": true,
+              "is_display": true,
+              "product_suite_id": "5ececa006415744de9228e2e",
+              "name": "SSL Certificates",
+              "slug": "ssl-certificates",
+              "description": "",
+              "group": "Key Features",
+              "icon": "",
+              "links": {},
+              "created_at": "2022-10-11T13:03:31.767Z",
+              "modified_at": "2023-04-21T07:04:23.544Z"
+            }
+          ],
+          "fee_components": [],
+          "recurring": {
+            "interval_count": 1,
+            "interval": "month"
+          },
+          "taxation": {
+            "gst": 0.18
+          },
+          "one_time_fees": {
+            "developement": 0,
+            "marketing": 0
+          },
+          "credit_line": {
+            "is_active": false
+          },
+          "is_trial_plan": false,
+          "plan_group": "default",
+          "tag_lines": [],
+          "currency": "INR",
+          "is_active": true,
+          "is_visible": true,
+          "trial_period": 0,
+          "addons": [],
+          "tags": [
+            "popular"
+          ],
+          "type": "public",
+          "country": "IN",
+          "company_ids": [],
+          "channel_type": "ecomm",
+          "_id": "5f2e30cad1456d00386abf1c",
+          "tagLines": [],
+          "name": "Premium",
+          "description": "For scaled up businesses",
+          "amount": 2499,
+          "product_suite_id": "5f2e30cad1456d00386abefc",
+          "created_at": "2020-08-08T04:57:46.830Z",
+          "modified_at": "2023-04-21T07:04:22.363Z",
+          "current_status": "active",
+          "plan_leeway_after_activation": 7,
+          "activated_on": "2023-06-02T07:57:16.638Z"
+        },
+        "current_status": "active",
+        "collection_method": "charge_automatically",
+        "created_at": "2022-11-29T10:18:59.466Z",
+        "modified_at": "2023-06-02T07:57:17.254Z",
+        "latest_invoice": "6479a0dda77a156ad997bd4d"
+      }
+    ]
   }
 }
 ```
@@ -1565,6 +2104,7 @@ Success
  | links | [String: Any]? |  yes  |  |
  | enabled | Bool? |  yes  |  |
  | displayText | String? |  yes  |  |
+ | config | [String: Any]? |  yes  |  |
 
 ---
 
@@ -1670,6 +2210,37 @@ Success
 
  
  
+ #### [OneTimeChargeItem](#OneTimeChargeItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | term | String? |  yes  |  |
+ | pricingType | String |  no  |  |
+ | price | [EntityChargePrice](#EntityChargePrice) |  no  |  |
+ | cappedAmount | Double? |  yes  |  |
+ | isTest | Bool? |  yes  |  |
+ | metadata | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateOneTimeCharge](#CreateOneTimeCharge)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String |  no  |  |
+ | charge | [OneTimeChargeItem](#OneTimeChargeItem) |  no  |  |
+ | isTest | Bool? |  yes  |  |
+ | returnUrl | String |  no  |  |
+
+---
+
+
+ 
+ 
  #### [CurrentPeriod](#CurrentPeriod)
 
  | Properties | Type | Nullable | Description |
@@ -1688,7 +2259,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | id | String? |  yes  |  |
  | name | String? |  yes  |  |
- | term | String? |  yes  |  |
+ | term | String? |  yes  | Brief description for a charge |
  | pricingType | String? |  yes  |  |
  | price | [EntityChargePrice](#EntityChargePrice)? |  yes  |  |
  | recurring | [EntityChargeRecurring](#EntityChargeRecurring)? |  yes  |  |
@@ -1720,6 +2291,42 @@ Success
  | trialPeriod | [SubscriptionTrialPeriod](#SubscriptionTrialPeriod)? |  yes  |  |
  | metadata | [String: Any]? |  yes  |  |
  | lineItems | [[SubscriptionCharge](#SubscriptionCharge)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [OneTimeChargeEntity](#OneTimeChargeEntity)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | status | String? |  yes  |  |
+ | activatedOn | String? |  yes  |  |
+ | cancelledOn | String? |  yes  |  |
+ | metadata | [String: Any]? |  yes  |  |
+ | returnUrl | String? |  yes  |  |
+ | isTest | Bool? |  yes  |  |
+ | pricingType | String? |  yes  |  |
+ | subscriberId | String? |  yes  |  |
+ | entityType | String? |  yes  |  |
+ | entityId | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | price | [EntityChargePrice](#EntityChargePrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CreateOneTimeChargeResponse](#CreateOneTimeChargeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charge | [OneTimeChargeEntity](#OneTimeChargeEntity)? |  yes  |  |
+ | confirmUrl | String? |  yes  |  |
 
 ---
 
@@ -2203,6 +2810,7 @@ Success
  | createdAt | String? |  yes  |  |
  | modifiedAt | String? |  yes  |  |
  | latestInvoice | String? |  yes  |  |
+ | channelType | String? |  yes  |  |
 
 ---
 
@@ -2215,6 +2823,10 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | isEnabled | Bool? |  yes  |  |
  | subscription | [Subscription](#Subscription)? |  yes  |  |
+ | latestInvoice | [InvoicesData](#InvoicesData)? |  yes  |  |
+ | nextPlan | [Plan](#Plan)? |  yes  |  |
+ | currentSubscriptions | [[Subscription](#Subscription)]? |  yes  |  |
+ | mandateAmount | String? |  yes  |  |
 
 ---
 

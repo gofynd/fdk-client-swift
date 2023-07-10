@@ -52,8 +52,8 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get current application details
-         * Description: Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
+         * Summary: Get current sales channel details
+         * Description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
          **/
         public func getApplication(
             onResponse: @escaping (_ response: Application?, _ error: FDKError?) -> Void
@@ -91,8 +91,8 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get application, owner and seller information
-         * Description: Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
+         * Summary: Get sales channel, owner and seller information
+         * Description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
          **/
         public func getOwnerInfo(
             onResponse: @escaping (_ response: ApplicationAboutResponse?, _ error: FDKError?) -> Void
@@ -130,7 +130,7 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get basic application details
+         * Summary: Get basic details of the application
          * Description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
          **/
         public func getBasicDetails(
@@ -208,7 +208,7 @@ public extension ApplicationClient {
 
         /**
          *
-         * Summary: Get deployment stores
+         * Summary: Get all deployment stores
          * Description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
          **/
         public func getOrderingStores(
@@ -538,7 +538,7 @@ public extension ApplicationClient {
         /**
          *
          * Summary: Get list of languages
-         * Description: Use this API to get a list of languages supported in the application.
+         * Description: Use this API to get a list of languages supported in the application
          **/
         public func getLanguages(
             onResponse: @escaping (_ response: LanguageResponse?, _ error: FDKError?) -> Void
@@ -664,6 +664,7 @@ public extension ApplicationClient {
             orderIncent: Bool?,
             orderingStore: Int?,
             user: String?,
+            userName: String?,
 
             onResponse: @escaping (_ response: AppStaffListResponse?, _ error: FDKError?) -> Void
         ) {
@@ -687,6 +688,10 @@ public extension ApplicationClient {
 
             if let value = user {
                 xQuery["user"] = value
+            }
+
+            if let value = userName {
+                xQuery["user_name"] = value
             }
 
             let fullUrl = relativeUrls["getAppStaffList"] ?? ""
@@ -729,7 +734,8 @@ public extension ApplicationClient {
             pageSize: Int?,
             orderIncent: Bool?,
             orderingStore: Int?,
-            user: String?
+            user: String?,
+            userName: String?
 
         ) -> Paginator<AppStaffListResponse> {
             let pageSize = pageSize ?? 20
@@ -742,7 +748,8 @@ public extension ApplicationClient {
 
                     orderIncent: orderIncent,
                     orderingStore: orderingStore,
-                    user: user
+                    user: user,
+                    userName: userName
                 ) { response, error in
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false

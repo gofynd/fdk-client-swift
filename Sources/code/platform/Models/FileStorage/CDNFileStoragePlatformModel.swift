@@ -11,9 +11,9 @@ public extension PlatformClient.FileStorage {
     class CDN: Codable {
         public var url: String
 
-        public var absoluteUrl: String?
+        public var absoluteUrl: String
 
-        public var relativeUrl: String?
+        public var relativeUrl: String
 
         public enum CodingKeys: String, CodingKey {
             case url
@@ -23,7 +23,7 @@ public extension PlatformClient.FileStorage {
             case relativeUrl = "relative_url"
         }
 
-        public init(absoluteUrl: String? = nil, relativeUrl: String? = nil, url: String) {
+        public init(absoluteUrl: String, relativeUrl: String, url: String) {
             self.url = url
 
             self.absoluteUrl = absoluteUrl
@@ -36,21 +36,9 @@ public extension PlatformClient.FileStorage {
 
             url = try container.decode(String.self, forKey: .url)
 
-            do {
-                absoluteUrl = try container.decode(String.self, forKey: .absoluteUrl)
+            absoluteUrl = try container.decode(String.self, forKey: .absoluteUrl)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                relativeUrl = try container.decode(String.self, forKey: .relativeUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            relativeUrl = try container.decode(String.self, forKey: .relativeUrl)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -74,9 +62,9 @@ public extension PlatformClient.ApplicationClient.FileStorage {
     class CDN: Codable {
         public var url: String
 
-        public var absoluteUrl: String?
+        public var absoluteUrl: String
 
-        public var relativeUrl: String?
+        public var relativeUrl: String
 
         public enum CodingKeys: String, CodingKey {
             case url
@@ -86,7 +74,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             case relativeUrl = "relative_url"
         }
 
-        public init(absoluteUrl: String? = nil, relativeUrl: String? = nil, url: String) {
+        public init(absoluteUrl: String, relativeUrl: String, url: String) {
             self.url = url
 
             self.absoluteUrl = absoluteUrl
@@ -99,21 +87,9 @@ public extension PlatformClient.ApplicationClient.FileStorage {
 
             url = try container.decode(String.self, forKey: .url)
 
-            do {
-                absoluteUrl = try container.decode(String.self, forKey: .absoluteUrl)
+            absoluteUrl = try container.decode(String.self, forKey: .absoluteUrl)
 
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                relativeUrl = try container.decode(String.self, forKey: .relativeUrl)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
+            relativeUrl = try container.decode(String.self, forKey: .relativeUrl)
         }
 
         public func encode(to encoder: Encoder) throws {

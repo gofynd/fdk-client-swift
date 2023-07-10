@@ -13,16 +13,22 @@ public extension PlatformClient.Lead {
 
         public var display: String
 
+        public var subCategories: TicketSubCategory?
+
         public enum CodingKeys: String, CodingKey {
             case key
 
             case display
+
+            case subCategories = "sub_categories"
         }
 
-        public init(display: String, key: String) {
+        public init(display: String, key: String, subCategories: TicketSubCategory? = nil) {
             self.key = key
 
             self.display = display
+
+            self.subCategories = subCategories
         }
 
         required public init(from decoder: Decoder) throws {
@@ -31,6 +37,14 @@ public extension PlatformClient.Lead {
             key = try container.decode(String.self, forKey: .key)
 
             display = try container.decode(String.self, forKey: .display)
+
+            do {
+                subCategories = try container.decode(TicketSubCategory.self, forKey: .subCategories)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -39,6 +53,8 @@ public extension PlatformClient.Lead {
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(subCategories, forKey: .subCategories)
         }
     }
 }
@@ -54,16 +70,22 @@ public extension PlatformClient.ApplicationClient.Lead {
 
         public var display: String
 
+        public var subCategories: TicketSubCategory?
+
         public enum CodingKeys: String, CodingKey {
             case key
 
             case display
+
+            case subCategories = "sub_categories"
         }
 
-        public init(display: String, key: String) {
+        public init(display: String, key: String, subCategories: TicketSubCategory? = nil) {
             self.key = key
 
             self.display = display
+
+            self.subCategories = subCategories
         }
 
         required public init(from decoder: Decoder) throws {
@@ -72,6 +94,14 @@ public extension PlatformClient.ApplicationClient.Lead {
             key = try container.decode(String.self, forKey: .key)
 
             display = try container.decode(String.self, forKey: .display)
+
+            do {
+                subCategories = try container.decode(TicketSubCategory.self, forKey: .subCategories)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -80,6 +110,8 @@ public extension PlatformClient.ApplicationClient.Lead {
             try? container.encodeIfPresent(key, forKey: .key)
 
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(subCategories, forKey: .subCategories)
         }
     }
 }

@@ -170,45 +170,6 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: Updation of zone collections in database.
-         * Description: This API returns response of updation of zone in mongo database.
-         **/
-        public func updateZoneControllerView(
-            zoneId: String,
-            body: ZoneUpdateRequest,
-            onResponse: @escaping (_ response: ZoneSuccessResponse?, _ error: FDKError?) -> Void
-        ) {
-            PlatformAPIClient.execute(
-                config: config,
-                method: "put",
-                url: "/service/platform/logistics/v1.0/company/\(companyId)/zone/\(zoneId)",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        let response = Utility.decode(ZoneSuccessResponse.self, from: data)
-
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-                }
-            )
-        }
-
-        /**
-         *
          * Summary: Zone Data View of application.
          * Description: This API returns Zone Data View of the application.
          **/
@@ -234,6 +195,45 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(GetSingleZoneDataViewResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Updation of zone collections in database.
+         * Description: This API returns response of updation of zone in mongo database.
+         **/
+        public func updateZoneControllerView(
+            zoneId: String,
+            body: ZoneUpdateRequest,
+            onResponse: @escaping (_ response: ZoneSuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/zone/\(zoneId)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ZoneSuccessResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
@@ -428,6 +428,388 @@ public extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         let response = Utility.decode(GetStoresViewResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get serviceable store of the item
+         * Description: This API returns serviceable store of the item.
+         **/
+        public func getOptimalLocations(
+            body: ReAssignStoreRequest,
+            onResponse: @escaping (_ response: ReAssignStoreResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/reassign",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(ReAssignStoreResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Upsertion of DpAccount in database.
+         * Description: This API returns response of upsertion of DpAccount in mongo database.
+         **/
+        public func upsertDpAccount(
+            body: CompanyDpAccountRequest,
+            onResponse: @escaping (_ response: CompanyDpAccountResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/account",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CompanyDpAccountResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Getting DpAccount of a company from database.
+         * Description: This API returns response DpAccount of a company from mongo database.
+         **/
+        public func getDpAccount(
+            pageNumber: Int?,
+            pageSize: Int?,
+            stage: String?,
+            paymentMode: String?,
+            transportType: String?,
+
+            onResponse: @escaping (_ response: CompanyDpAccountListResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = pageNumber {
+                xQuery["page_number"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            if let value = stage {
+                xQuery["stage"] = value
+            }
+
+            if let value = paymentMode {
+                xQuery["payment_mode"] = value
+            }
+
+            if let value = transportType {
+                xQuery["transport_type"] = value
+            }
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/account",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(CompanyDpAccountListResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Fetching of DpRules from database.
+         * Description: This API returns response of DpRules from mongo database.
+         **/
+        public func getDpRules(
+            ruleUid: String,
+
+            onResponse: @escaping (_ response: DpRuleSuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/rules/\(ruleUid)",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(DpRuleSuccessResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Updating of DpRules from database.
+         * Description: This API updates and returns response of DpRules from mongo database.
+         **/
+        public func updateDpRule(
+            ruleUid: String,
+            body: DpRulesUpdateRequest,
+            onResponse: @escaping (_ response: DpRuleUpdateSuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/rules/\(ruleUid)",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(DpRuleUpdateSuccessResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Upsert of DpRules in database.
+         * Description: This API returns response of upsert of DpRules in mongo database.
+         **/
+        public func upsertDpRules(
+            body: DpRuleRequest,
+            onResponse: @escaping (_ response: DpRuleSuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/rules",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(DpRuleSuccessResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Fetching of DpRules from database.
+         * Description: This API returns response of DpRules from mongo database.
+         **/
+        public func getDpRuleInsert(
+            pageNumber: Int?,
+            pageSize: Int?,
+
+            onResponse: @escaping (_ response: DpMultipleRuleSuccessResponse?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = pageNumber {
+                xQuery["page_number"] = value
+            }
+
+            if let value = pageSize {
+                xQuery["page_size"] = value
+            }
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/rules",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(DpMultipleRuleSuccessResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Get All DpCompanyRules applied to company from database.
+         * Description: This API returns response of all DpCompanyRules from mongo database.
+         **/
+        public func getDpCompanyRules(
+            onResponse: @escaping (_ response: DPCompanyRuleResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/priority",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(DPCompanyRuleResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary: Upsert of DpCompanyRules in database.
+         * Description: This API returns response of upsert of DpCompanyRules in mongo database.
+         **/
+        public func upsertDpCompanyRules(
+            body: DPCompanyRuleRequest,
+            onResponse: @escaping (_ response: DPCompanyRuleResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "put",
+                url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/priority",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(DPCompanyRuleResponse.self, from: data)
 
                         onResponse(response, nil)
                     } else {
