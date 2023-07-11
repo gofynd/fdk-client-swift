@@ -11,42 +11,42 @@ public extension PlatformClient.Order {
     class HistoryReason: Codable {
         public var text: String?
 
-        public var category: String?
-
-        public var code: Int?
-
         public var quantity: Int?
 
         public var dislayName: String?
 
+        public var category: String?
+
         public var state: String?
+
+        public var code: Int?
 
         public enum CodingKeys: String, CodingKey {
             case text
-
-            case category
-
-            case code
 
             case quantity
 
             case dislayName = "dislay_name"
 
+            case category
+
             case state
+
+            case code
         }
 
         public init(category: String? = nil, code: Int? = nil, dislayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
             self.text = text
 
-            self.category = category
-
-            self.code = code
-
             self.quantity = quantity
 
             self.dislayName = dislayName
 
+            self.category = category
+
             self.state = state
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -54,22 +54,6 @@ public extension PlatformClient.Order {
 
             do {
                 text = try container.decode(String.self, forKey: .text)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                category = try container.decode(String.self, forKey: .category)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(Int.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -93,7 +77,23 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
+                category = try container.decode(String.self, forKey: .category)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 state = try container.decode(String.self, forKey: .state)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                code = try container.decode(Int.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,15 +106,15 @@ public extension PlatformClient.Order {
 
             try? container.encode(text, forKey: .text)
 
-            try? container.encode(category, forKey: .category)
-
-            try? container.encode(code, forKey: .code)
-
             try? container.encode(quantity, forKey: .quantity)
 
             try? container.encode(dislayName, forKey: .dislayName)
 
+            try? container.encode(category, forKey: .category)
+
             try? container.encode(state, forKey: .state)
+
+            try? container.encode(code, forKey: .code)
         }
     }
 }
@@ -128,42 +128,42 @@ public extension PlatformClient.ApplicationClient.Order {
     class HistoryReason: Codable {
         public var text: String?
 
-        public var category: String?
-
-        public var code: Int?
-
         public var quantity: Int?
 
         public var dislayName: String?
 
+        public var category: String?
+
         public var state: String?
+
+        public var code: Int?
 
         public enum CodingKeys: String, CodingKey {
             case text
-
-            case category
-
-            case code
 
             case quantity
 
             case dislayName = "dislay_name"
 
+            case category
+
             case state
+
+            case code
         }
 
         public init(category: String? = nil, code: Int? = nil, dislayName: String? = nil, quantity: Int? = nil, state: String? = nil, text: String? = nil) {
             self.text = text
 
-            self.category = category
-
-            self.code = code
-
             self.quantity = quantity
 
             self.dislayName = dislayName
 
+            self.category = category
+
             self.state = state
+
+            self.code = code
         }
 
         required public init(from decoder: Decoder) throws {
@@ -171,22 +171,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 text = try container.decode(String.self, forKey: .text)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                category = try container.decode(String.self, forKey: .category)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                code = try container.decode(Int.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,7 +194,23 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
+                category = try container.decode(String.self, forKey: .category)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 state = try container.decode(String.self, forKey: .state)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                code = try container.decode(Int.self, forKey: .code)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -223,15 +223,15 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encode(text, forKey: .text)
 
-            try? container.encode(category, forKey: .category)
-
-            try? container.encode(code, forKey: .code)
-
             try? container.encode(quantity, forKey: .quantity)
 
             try? container.encode(dislayName, forKey: .dislayName)
 
+            try? container.encode(category, forKey: .category)
+
             try? container.encode(state, forKey: .state)
+
+            try? container.encode(code, forKey: .code)
         }
     }
 }

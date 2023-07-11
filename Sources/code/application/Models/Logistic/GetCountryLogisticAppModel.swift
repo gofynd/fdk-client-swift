@@ -7,42 +7,42 @@ public extension ApplicationClient.Logistic {
          Used By: Logistic
      */
     class GetCountry: Codable {
-        public var subType: String?
+        public var uid: String?
 
         public var actions: [String: Any]?
-
-        public var name: String?
-
-        public var phoneCode: String?
 
         public var ios2: String?
 
         public var hierarchy: [String: Any]?
 
+        public var name: String?
+
         public var ios3: String?
 
-        public var uid: String?
+        public var subType: String?
+
+        public var phoneCode: String?
 
         public var currency: String?
 
         public var timezones: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case subType = "sub_type"
+            case uid
 
             case actions
-
-            case name
-
-            case phoneCode = "phone_code"
 
             case ios2
 
             case hierarchy
 
+            case name
+
             case ios3
 
-            case uid
+            case subType = "sub_type"
+
+            case phoneCode = "phone_code"
 
             case currency
 
@@ -50,21 +50,21 @@ public extension ApplicationClient.Logistic {
         }
 
         public init(actions: [String: Any]? = nil, currency: String? = nil, hierarchy: [String: Any]? = nil, ios2: String? = nil, ios3: String? = nil, name: String? = nil, phoneCode: String? = nil, subType: String? = nil, timezones: [String]? = nil, uid: String? = nil) {
-            self.subType = subType
+            self.uid = uid
 
             self.actions = actions
-
-            self.name = name
-
-            self.phoneCode = phoneCode
 
             self.ios2 = ios2
 
             self.hierarchy = hierarchy
 
+            self.name = name
+
             self.ios3 = ios3
 
-            self.uid = uid
+            self.subType = subType
+
+            self.phoneCode = phoneCode
 
             self.currency = currency
 
@@ -75,7 +75,7 @@ public extension ApplicationClient.Logistic {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                subType = try container.decode(String.self, forKey: .subType)
+                uid = try container.decode(String.self, forKey: .uid)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -84,22 +84,6 @@ public extension ApplicationClient.Logistic {
 
             do {
                 actions = try container.decode([String: Any].self, forKey: .actions)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                name = try container.decode(String.self, forKey: .name)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                phoneCode = try container.decode(String.self, forKey: .phoneCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -123,6 +107,14 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
+                name = try container.decode(String.self, forKey: .name)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 ios3 = try container.decode(String.self, forKey: .ios3)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -131,7 +123,15 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
+                subType = try container.decode(String.self, forKey: .subType)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                phoneCode = try container.decode(String.self, forKey: .phoneCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,21 +158,21 @@ public extension ApplicationClient.Logistic {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(subType, forKey: .subType)
+            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(actions, forKey: .actions)
-
-            try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(phoneCode, forKey: .phoneCode)
 
             try? container.encodeIfPresent(ios2, forKey: .ios2)
 
             try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
 
+            try? container.encodeIfPresent(name, forKey: .name)
+
             try? container.encodeIfPresent(ios3, forKey: .ios3)
 
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(subType, forKey: .subType)
+
+            try? container.encodeIfPresent(phoneCode, forKey: .phoneCode)
 
             try? container.encodeIfPresent(currency, forKey: .currency)
 

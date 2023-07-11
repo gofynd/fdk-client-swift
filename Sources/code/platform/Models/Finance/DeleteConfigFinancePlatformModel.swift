@@ -9,24 +9,24 @@ public extension PlatformClient.Finance {
      */
 
     class DeleteConfig: Codable {
-        public var affiliateId: String?
-
         public var slugValues: [String]?
+
+        public var affiliateId: String?
 
         public var sellerId: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case affiliateId = "affiliate_id"
-
             case slugValues = "slug_values"
+
+            case affiliateId = "affiliate_id"
 
             case sellerId = "seller_id"
         }
 
         public init(affiliateId: String? = nil, sellerId: Int? = nil, slugValues: [String]? = nil) {
-            self.affiliateId = affiliateId
-
             self.slugValues = slugValues
+
+            self.affiliateId = affiliateId
 
             self.sellerId = sellerId
         }
@@ -35,7 +35,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                slugValues = try container.decode([String].self, forKey: .slugValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                slugValues = try container.decode([String].self, forKey: .slugValues)
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -62,9 +62,9 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(slugValues, forKey: .slugValues)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
         }

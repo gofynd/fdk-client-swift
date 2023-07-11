@@ -11,24 +11,24 @@ public extension PlatformClient.Serviceability {
     class DpAccountFailureResponse: Codable {
         public var success: Bool
 
-        public var statusCode: Int
-
         public var error: [ErrorResponse]
+
+        public var statusCode: Int
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case statusCode = "status_code"
-
             case error
+
+            case statusCode = "status_code"
         }
 
         public init(error: [ErrorResponse], statusCode: Int, success: Bool) {
             self.success = success
 
-            self.statusCode = statusCode
-
             self.error = error
+
+            self.statusCode = statusCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Serviceability {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
-
             error = try container.decode([ErrorResponse].self, forKey: .error)
+
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class DpAccountFailureResponse: Codable {
         public var success: Bool
 
-        public var statusCode: Int
-
         public var error: [ErrorResponse]
+
+        public var statusCode: Int
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case statusCode = "status_code"
-
             case error
+
+            case statusCode = "status_code"
         }
 
         public init(error: [ErrorResponse], statusCode: Int, success: Bool) {
             self.success = success
 
-            self.statusCode = statusCode
-
             self.error = error
+
+            self.statusCode = statusCode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             success = try container.decode(Bool.self, forKey: .success)
 
-            statusCode = try container.decode(Int.self, forKey: .statusCode)
-
             error = try container.decode([ErrorResponse].self, forKey: .error)
+
+            statusCode = try container.decode(Int.self, forKey: .statusCode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
-
             try? container.encodeIfPresent(error, forKey: .error)
+
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
         }
     }
 }

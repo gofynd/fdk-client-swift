@@ -15,9 +15,9 @@ public extension PlatformClient.Catalog {
 
         public var stores: [String]?
 
-        public var toDate: String?
-
         public var fromDate: String?
+
+        public var toDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
@@ -26,9 +26,9 @@ public extension PlatformClient.Catalog {
 
             case stores
 
-            case toDate = "to_date"
-
             case fromDate = "from_date"
+
+            case toDate = "to_date"
         }
 
         public init(brands: [String]? = nil, fromDate: String? = nil, quantity: InventoryExportQuantityFilter? = nil, stores: [String]? = nil, toDate: String? = nil) {
@@ -38,9 +38,9 @@ public extension PlatformClient.Catalog {
 
             self.stores = stores
 
-            self.toDate = toDate
-
             self.fromDate = fromDate
+
+            self.toDate = toDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -71,7 +71,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                toDate = try container.decode(String.self, forKey: .toDate)
+                fromDate = try container.decode(String.self, forKey: .fromDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +79,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                fromDate = try container.decode(String.self, forKey: .fromDate)
+                toDate = try container.decode(String.self, forKey: .toDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +96,9 @@ public extension PlatformClient.Catalog {
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
-
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
+
+            try? container.encodeIfPresent(toDate, forKey: .toDate)
         }
     }
 }
@@ -116,9 +116,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var stores: [String]?
 
-        public var toDate: String?
-
         public var fromDate: String?
+
+        public var toDate: String?
 
         public enum CodingKeys: String, CodingKey {
             case quantity
@@ -127,9 +127,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case stores
 
-            case toDate = "to_date"
-
             case fromDate = "from_date"
+
+            case toDate = "to_date"
         }
 
         public init(brands: [String]? = nil, fromDate: String? = nil, quantity: InventoryExportQuantityFilter? = nil, stores: [String]? = nil, toDate: String? = nil) {
@@ -139,9 +139,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             self.stores = stores
 
-            self.toDate = toDate
-
             self.fromDate = fromDate
+
+            self.toDate = toDate
         }
 
         required public init(from decoder: Decoder) throws {
@@ -172,7 +172,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                toDate = try container.decode(String.self, forKey: .toDate)
+                fromDate = try container.decode(String.self, forKey: .fromDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                fromDate = try container.decode(String.self, forKey: .fromDate)
+                toDate = try container.decode(String.self, forKey: .toDate)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,9 +197,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(stores, forKey: .stores)
 
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
-
             try? container.encodeIfPresent(fromDate, forKey: .fromDate)
+
+            try? container.encodeIfPresent(toDate, forKey: .toDate)
         }
     }
 }

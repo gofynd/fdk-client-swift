@@ -7,50 +7,48 @@ public extension ApplicationClient.Catalog {
          Used By: Catalog
      */
     class CategoryItems: Codable {
-        public var slug: String
-
         public var childs: [Child]?
+
+        public var slug: String
 
         public var banners: CategoryBanner
 
-        public var name: String
-
         public var uid: Int
+
+        public var name: String
 
         public var action: ProductListingAction
 
         public enum CodingKeys: String, CodingKey {
-            case slug
-
             case childs
+
+            case slug
 
             case banners
 
-            case name
-
             case uid
+
+            case name
 
             case action
         }
 
         public init(action: ProductListingAction, banners: CategoryBanner, childs: [Child]? = nil, name: String, slug: String, uid: Int) {
-            self.slug = slug
-
             self.childs = childs
+
+            self.slug = slug
 
             self.banners = banners
 
-            self.name = name
-
             self.uid = uid
+
+            self.name = name
 
             self.action = action
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
-            slug = try container.decode(String.self, forKey: .slug)
 
             do {
                 childs = try container.decode([Child].self, forKey: .childs)
@@ -60,11 +58,13 @@ public extension ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            slug = try container.decode(String.self, forKey: .slug)
+
             banners = try container.decode(CategoryBanner.self, forKey: .banners)
 
-            name = try container.decode(String.self, forKey: .name)
-
             uid = try container.decode(Int.self, forKey: .uid)
+
+            name = try container.decode(String.self, forKey: .name)
 
             action = try container.decode(ProductListingAction.self, forKey: .action)
         }
@@ -72,15 +72,15 @@ public extension ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(slug, forKey: .slug)
-
             try? container.encodeIfPresent(childs, forKey: .childs)
+
+            try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(banners, forKey: .banners)
 
-            try? container.encodeIfPresent(name, forKey: .name)
-
             try? container.encodeIfPresent(uid, forKey: .uid)
+
+            try? container.encodeIfPresent(name, forKey: .name)
 
             try? container.encodeIfPresent(action, forKey: .action)
         }

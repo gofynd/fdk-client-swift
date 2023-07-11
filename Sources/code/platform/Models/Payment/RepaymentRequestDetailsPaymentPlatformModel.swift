@@ -11,66 +11,66 @@ public extension PlatformClient.Payment {
     class RepaymentRequestDetails: Codable {
         public var amount: Double
 
-        public var fwdShipmentId: String
-
-        public var outstandingDetailsId: Int
-
-        public var currentStatus: String
+        public var aggregator: String
 
         public var aggregatorOrderId: String
 
-        public var paymentModeIdentifier: String
+        public var outstandingDetailsId: Int
+
+        public var merchantOrderId: String
 
         public var aggregatorTransactionId: String
 
+        public var currentStatus: String
+
         public var paymentMode: String
 
-        public var aggregator: String
+        public var paymentModeIdentifier: String
 
-        public var merchantOrderId: String
+        public var fwdShipmentId: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case fwdShipmentId = "fwd_shipment_id"
-
-            case outstandingDetailsId = "outstanding_details_id"
-
-            case currentStatus = "current_status"
+            case aggregator
 
             case aggregatorOrderId = "aggregator_order_id"
 
-            case paymentModeIdentifier = "payment_mode_identifier"
+            case outstandingDetailsId = "outstanding_details_id"
+
+            case merchantOrderId = "merchant_order_id"
 
             case aggregatorTransactionId = "aggregator_transaction_id"
 
+            case currentStatus = "current_status"
+
             case paymentMode = "payment_mode"
 
-            case aggregator
+            case paymentModeIdentifier = "payment_mode_identifier"
 
-            case merchantOrderId = "merchant_order_id"
+            case fwdShipmentId = "fwd_shipment_id"
         }
 
         public init(aggregator: String, aggregatorOrderId: String, aggregatorTransactionId: String, amount: Double, currentStatus: String, fwdShipmentId: String, merchantOrderId: String, outstandingDetailsId: Int, paymentMode: String, paymentModeIdentifier: String) {
             self.amount = amount
 
-            self.fwdShipmentId = fwdShipmentId
-
-            self.outstandingDetailsId = outstandingDetailsId
-
-            self.currentStatus = currentStatus
+            self.aggregator = aggregator
 
             self.aggregatorOrderId = aggregatorOrderId
 
-            self.paymentModeIdentifier = paymentModeIdentifier
+            self.outstandingDetailsId = outstandingDetailsId
+
+            self.merchantOrderId = merchantOrderId
 
             self.aggregatorTransactionId = aggregatorTransactionId
 
+            self.currentStatus = currentStatus
+
             self.paymentMode = paymentMode
 
-            self.aggregator = aggregator
+            self.paymentModeIdentifier = paymentModeIdentifier
 
-            self.merchantOrderId = merchantOrderId
+            self.fwdShipmentId = fwdShipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -78,23 +78,23 @@ public extension PlatformClient.Payment {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            fwdShipmentId = try container.decode(String.self, forKey: .fwdShipmentId)
-
-            outstandingDetailsId = try container.decode(Int.self, forKey: .outstandingDetailsId)
-
-            currentStatus = try container.decode(String.self, forKey: .currentStatus)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
 
-            paymentModeIdentifier = try container.decode(String.self, forKey: .paymentModeIdentifier)
+            outstandingDetailsId = try container.decode(Int.self, forKey: .outstandingDetailsId)
+
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             aggregatorTransactionId = try container.decode(String.self, forKey: .aggregatorTransactionId)
 
+            currentStatus = try container.decode(String.self, forKey: .currentStatus)
+
             paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            paymentModeIdentifier = try container.decode(String.self, forKey: .paymentModeIdentifier)
 
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+            fwdShipmentId = try container.decode(String.self, forKey: .fwdShipmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -102,23 +102,23 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(fwdShipmentId, forKey: .fwdShipmentId)
-
-            try? container.encodeIfPresent(outstandingDetailsId, forKey: .outstandingDetailsId)
-
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
 
-            try? container.encodeIfPresent(paymentModeIdentifier, forKey: .paymentModeIdentifier)
+            try? container.encodeIfPresent(outstandingDetailsId, forKey: .outstandingDetailsId)
+
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
 
             try? container.encodeIfPresent(aggregatorTransactionId, forKey: .aggregatorTransactionId)
 
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(paymentModeIdentifier, forKey: .paymentModeIdentifier)
 
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(fwdShipmentId, forKey: .fwdShipmentId)
         }
     }
 }
@@ -132,66 +132,66 @@ public extension PlatformClient.ApplicationClient.Payment {
     class RepaymentRequestDetails: Codable {
         public var amount: Double
 
-        public var fwdShipmentId: String
-
-        public var outstandingDetailsId: Int
-
-        public var currentStatus: String
+        public var aggregator: String
 
         public var aggregatorOrderId: String
 
-        public var paymentModeIdentifier: String
+        public var outstandingDetailsId: Int
+
+        public var merchantOrderId: String
 
         public var aggregatorTransactionId: String
 
+        public var currentStatus: String
+
         public var paymentMode: String
 
-        public var aggregator: String
+        public var paymentModeIdentifier: String
 
-        public var merchantOrderId: String
+        public var fwdShipmentId: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
-            case fwdShipmentId = "fwd_shipment_id"
-
-            case outstandingDetailsId = "outstanding_details_id"
-
-            case currentStatus = "current_status"
+            case aggregator
 
             case aggregatorOrderId = "aggregator_order_id"
 
-            case paymentModeIdentifier = "payment_mode_identifier"
+            case outstandingDetailsId = "outstanding_details_id"
+
+            case merchantOrderId = "merchant_order_id"
 
             case aggregatorTransactionId = "aggregator_transaction_id"
 
+            case currentStatus = "current_status"
+
             case paymentMode = "payment_mode"
 
-            case aggregator
+            case paymentModeIdentifier = "payment_mode_identifier"
 
-            case merchantOrderId = "merchant_order_id"
+            case fwdShipmentId = "fwd_shipment_id"
         }
 
         public init(aggregator: String, aggregatorOrderId: String, aggregatorTransactionId: String, amount: Double, currentStatus: String, fwdShipmentId: String, merchantOrderId: String, outstandingDetailsId: Int, paymentMode: String, paymentModeIdentifier: String) {
             self.amount = amount
 
-            self.fwdShipmentId = fwdShipmentId
-
-            self.outstandingDetailsId = outstandingDetailsId
-
-            self.currentStatus = currentStatus
+            self.aggregator = aggregator
 
             self.aggregatorOrderId = aggregatorOrderId
 
-            self.paymentModeIdentifier = paymentModeIdentifier
+            self.outstandingDetailsId = outstandingDetailsId
+
+            self.merchantOrderId = merchantOrderId
 
             self.aggregatorTransactionId = aggregatorTransactionId
 
+            self.currentStatus = currentStatus
+
             self.paymentMode = paymentMode
 
-            self.aggregator = aggregator
+            self.paymentModeIdentifier = paymentModeIdentifier
 
-            self.merchantOrderId = merchantOrderId
+            self.fwdShipmentId = fwdShipmentId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -199,23 +199,23 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             amount = try container.decode(Double.self, forKey: .amount)
 
-            fwdShipmentId = try container.decode(String.self, forKey: .fwdShipmentId)
-
-            outstandingDetailsId = try container.decode(Int.self, forKey: .outstandingDetailsId)
-
-            currentStatus = try container.decode(String.self, forKey: .currentStatus)
+            aggregator = try container.decode(String.self, forKey: .aggregator)
 
             aggregatorOrderId = try container.decode(String.self, forKey: .aggregatorOrderId)
 
-            paymentModeIdentifier = try container.decode(String.self, forKey: .paymentModeIdentifier)
+            outstandingDetailsId = try container.decode(Int.self, forKey: .outstandingDetailsId)
+
+            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
 
             aggregatorTransactionId = try container.decode(String.self, forKey: .aggregatorTransactionId)
 
+            currentStatus = try container.decode(String.self, forKey: .currentStatus)
+
             paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
+            paymentModeIdentifier = try container.decode(String.self, forKey: .paymentModeIdentifier)
 
-            merchantOrderId = try container.decode(String.self, forKey: .merchantOrderId)
+            fwdShipmentId = try container.decode(String.self, forKey: .fwdShipmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -223,23 +223,23 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(amount, forKey: .amount)
 
-            try? container.encodeIfPresent(fwdShipmentId, forKey: .fwdShipmentId)
-
-            try? container.encodeIfPresent(outstandingDetailsId, forKey: .outstandingDetailsId)
-
-            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
             try? container.encodeIfPresent(aggregatorOrderId, forKey: .aggregatorOrderId)
 
-            try? container.encodeIfPresent(paymentModeIdentifier, forKey: .paymentModeIdentifier)
+            try? container.encodeIfPresent(outstandingDetailsId, forKey: .outstandingDetailsId)
+
+            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
 
             try? container.encodeIfPresent(aggregatorTransactionId, forKey: .aggregatorTransactionId)
 
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
+
             try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
+            try? container.encodeIfPresent(paymentModeIdentifier, forKey: .paymentModeIdentifier)
 
-            try? container.encodeIfPresent(merchantOrderId, forKey: .merchantOrderId)
+            try? container.encodeIfPresent(fwdShipmentId, forKey: .fwdShipmentId)
         }
     }
 }
