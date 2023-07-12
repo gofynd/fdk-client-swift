@@ -9,42 +9,42 @@ public extension PlatformClient.Finance {
      */
 
     class CnGenerateReportFilters: Codable {
-        public var typesOfTransaction: [String]?
+        public var utilisation: [String]?
 
-        public var staffId: [String]?
+        public var typesOfTransaction: [String]?
 
         public var orderingChannel: [String]?
 
-        public var utilisation: [String]?
-
         public var storeId: [Int]?
+
+        public var staffId: [String]?
 
         public var channelOfIssuance: [String]?
 
         public enum CodingKeys: String, CodingKey {
-            case typesOfTransaction = "types_of_transaction"
+            case utilisation
 
-            case staffId = "staff_id"
+            case typesOfTransaction = "types_of_transaction"
 
             case orderingChannel = "ordering_channel"
 
-            case utilisation
-
             case storeId = "store_id"
+
+            case staffId = "staff_id"
 
             case channelOfIssuance = "channel_of_issuance"
         }
 
         public init(channelOfIssuance: [String]? = nil, orderingChannel: [String]? = nil, staffId: [String]? = nil, storeId: [Int]? = nil, typesOfTransaction: [String]? = nil, utilisation: [String]? = nil) {
-            self.typesOfTransaction = typesOfTransaction
+            self.utilisation = utilisation
 
-            self.staffId = staffId
+            self.typesOfTransaction = typesOfTransaction
 
             self.orderingChannel = orderingChannel
 
-            self.utilisation = utilisation
-
             self.storeId = storeId
+
+            self.staffId = staffId
 
             self.channelOfIssuance = channelOfIssuance
         }
@@ -53,7 +53,7 @@ public extension PlatformClient.Finance {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                typesOfTransaction = try container.decode([String].self, forKey: .typesOfTransaction)
+                utilisation = try container.decode([String].self, forKey: .utilisation)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                staffId = try container.decode([String].self, forKey: .staffId)
+                typesOfTransaction = try container.decode([String].self, forKey: .typesOfTransaction)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,7 +77,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                utilisation = try container.decode([String].self, forKey: .utilisation)
+                storeId = try container.decode([Int].self, forKey: .storeId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                storeId = try container.decode([Int].self, forKey: .storeId)
+                staffId = try container.decode([String].self, forKey: .staffId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,15 +104,15 @@ public extension PlatformClient.Finance {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(typesOfTransaction, forKey: .typesOfTransaction)
+            try? container.encodeIfPresent(utilisation, forKey: .utilisation)
 
-            try? container.encodeIfPresent(staffId, forKey: .staffId)
+            try? container.encodeIfPresent(typesOfTransaction, forKey: .typesOfTransaction)
 
             try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
 
-            try? container.encodeIfPresent(utilisation, forKey: .utilisation)
-
             try? container.encodeIfPresent(storeId, forKey: .storeId)
+
+            try? container.encodeIfPresent(staffId, forKey: .staffId)
 
             try? container.encodeIfPresent(channelOfIssuance, forKey: .channelOfIssuance)
         }

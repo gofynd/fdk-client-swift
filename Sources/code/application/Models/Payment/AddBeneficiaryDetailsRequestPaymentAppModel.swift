@@ -9,48 +9,48 @@ public extension ApplicationClient.Payment {
     class AddBeneficiaryDetailsRequest: Codable {
         public var orderId: String
 
-        public var details: BeneficiaryModeDetails
-
-        public var delights: Bool
+        public var shipmentId: String
 
         public var requestId: String?
 
-        public var otp: String?
-
         public var transferMode: String
 
-        public var shipmentId: String
+        public var delights: Bool
+
+        public var details: BeneficiaryModeDetails
+
+        public var otp: String?
 
         public enum CodingKeys: String, CodingKey {
             case orderId = "order_id"
 
-            case details
-
-            case delights
+            case shipmentId = "shipment_id"
 
             case requestId = "request_id"
 
-            case otp
-
             case transferMode = "transfer_mode"
 
-            case shipmentId = "shipment_id"
+            case delights
+
+            case details
+
+            case otp
         }
 
         public init(delights: Bool, details: BeneficiaryModeDetails, orderId: String, otp: String? = nil, requestId: String? = nil, shipmentId: String, transferMode: String) {
             self.orderId = orderId
 
-            self.details = details
-
-            self.delights = delights
+            self.shipmentId = shipmentId
 
             self.requestId = requestId
 
-            self.otp = otp
-
             self.transferMode = transferMode
 
-            self.shipmentId = shipmentId
+            self.delights = delights
+
+            self.details = details
+
+            self.otp = otp
         }
 
         required public init(from decoder: Decoder) throws {
@@ -58,9 +58,7 @@ public extension ApplicationClient.Payment {
 
             orderId = try container.decode(String.self, forKey: .orderId)
 
-            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
-
-            delights = try container.decode(Bool.self, forKey: .delights)
+            shipmentId = try container.decode(String.self, forKey: .shipmentId)
 
             do {
                 requestId = try container.decode(String.self, forKey: .requestId)
@@ -70,6 +68,12 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
+            transferMode = try container.decode(String.self, forKey: .transferMode)
+
+            delights = try container.decode(Bool.self, forKey: .delights)
+
+            details = try container.decode(BeneficiaryModeDetails.self, forKey: .details)
+
             do {
                 otp = try container.decode(String.self, forKey: .otp)
 
@@ -77,10 +81,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            transferMode = try container.decode(String.self, forKey: .transferMode)
-
-            shipmentId = try container.decode(String.self, forKey: .shipmentId)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -88,17 +88,17 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(orderId, forKey: .orderId)
 
-            try? container.encodeIfPresent(details, forKey: .details)
-
-            try? container.encodeIfPresent(delights, forKey: .delights)
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
 
             try? container.encodeIfPresent(requestId, forKey: .requestId)
 
-            try? container.encodeIfPresent(otp, forKey: .otp)
-
             try? container.encodeIfPresent(transferMode, forKey: .transferMode)
 
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encodeIfPresent(delights, forKey: .delights)
+
+            try? container.encodeIfPresent(details, forKey: .details)
+
+            try? container.encodeIfPresent(otp, forKey: .otp)
         }
     }
 }

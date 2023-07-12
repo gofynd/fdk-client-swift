@@ -13,18 +13,18 @@ public extension PlatformClient.Payment {
 
         public var meta: MultiTenderPaymentMeta?
 
-        public var mode: String
-
         public var name: String?
+
+        public var mode: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
             case meta
 
-            case mode
-
             case name
+
+            case mode
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Payment {
 
             self.meta = meta
 
-            self.mode = mode
-
             self.name = name
+
+            self.mode = mode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,8 +50,6 @@ public extension PlatformClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mode = try container.decode(String.self, forKey: .mode)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -59,6 +57,8 @@ public extension PlatformClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mode = try container.decode(String.self, forKey: .mode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -68,9 +68,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
         }
     }
 }
@@ -86,18 +86,18 @@ public extension PlatformClient.ApplicationClient.Payment {
 
         public var meta: MultiTenderPaymentMeta?
 
-        public var mode: String
-
         public var name: String?
+
+        public var mode: String
 
         public enum CodingKeys: String, CodingKey {
             case amount
 
             case meta
 
-            case mode
-
             case name
+
+            case mode
         }
 
         public init(amount: Double, meta: MultiTenderPaymentMeta? = nil, mode: String, name: String? = nil) {
@@ -105,9 +105,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             self.meta = meta
 
-            self.mode = mode
-
             self.name = name
+
+            self.mode = mode
         }
 
         required public init(from decoder: Decoder) throws {
@@ -123,8 +123,6 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            mode = try container.decode(String.self, forKey: .mode)
-
             do {
                 name = try container.decode(String.self, forKey: .name)
 
@@ -132,6 +130,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            mode = try container.decode(String.self, forKey: .mode)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
-            try? container.encodeIfPresent(mode, forKey: .mode)
-
             try? container.encodeIfPresent(name, forKey: .name)
+
+            try? container.encodeIfPresent(mode, forKey: .mode)
         }
     }
 }

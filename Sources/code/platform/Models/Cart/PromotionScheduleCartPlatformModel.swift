@@ -9,26 +9,26 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class PromotionSchedule: Codable {
-        public var nextSchedule: [[String: Any]]?
+        public var start: String
 
         public var end: String
 
-        public var published: Bool
+        public var nextSchedule: [[String: Any]]?
 
-        public var start: String
+        public var published: Bool
 
         public var cron: String?
 
         public var duration: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case nextSchedule = "next_schedule"
+            case start
 
             case end
 
-            case published
+            case nextSchedule = "next_schedule"
 
-            case start
+            case published
 
             case cron
 
@@ -36,13 +36,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String, nextSchedule: [[String: Any]]? = nil, published: Bool, start: String) {
-            self.nextSchedule = nextSchedule
+            self.start = start
 
             self.end = end
 
-            self.published = published
+            self.nextSchedule = nextSchedule
 
-            self.start = start
+            self.published = published
 
             self.cron = cron
 
@@ -52,6 +52,10 @@ public extension PlatformClient.ApplicationClient.Cart {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            start = try container.decode(String.self, forKey: .start)
+
+            end = try container.decode(String.self, forKey: .end)
+
             do {
                 nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
 
@@ -60,11 +64,7 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            end = try container.decode(String.self, forKey: .end)
-
             published = try container.decode(Bool.self, forKey: .published)
-
-            start = try container.decode(String.self, forKey: .start)
 
             do {
                 cron = try container.decode(String.self, forKey: .cron)
@@ -86,13 +86,13 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encodeIfPresent(end, forKey: .end)
 
-            try? container.encodeIfPresent(published, forKey: .published)
+            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
-            try? container.encodeIfPresent(start, forKey: .start)
+            try? container.encodeIfPresent(published, forKey: .published)
 
             try? container.encode(cron, forKey: .cron)
 

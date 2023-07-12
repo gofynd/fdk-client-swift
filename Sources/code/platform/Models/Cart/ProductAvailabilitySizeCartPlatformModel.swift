@@ -11,22 +11,22 @@ public extension PlatformClient.ApplicationClient.Cart {
     class ProductAvailabilitySize: Codable {
         public var meta: [String: Any]?
 
+        public var value: String?
+
         public var isAvailable: Bool?
 
         public var display: String?
-
-        public var value: String?
 
         public var customJson: [String: Any]?
 
         public enum CodingKeys: String, CodingKey {
             case meta
 
+            case value
+
             case isAvailable = "is_available"
 
             case display
-
-            case value
 
             case customJson = "_custom_json"
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(display: String? = nil, isAvailable: Bool? = nil, meta: [String: Any]? = nil, value: String? = nil, customJson: [String: Any]? = nil) {
             self.meta = meta
 
+            self.value = value
+
             self.isAvailable = isAvailable
 
             self.display = display
-
-            self.value = value
 
             self.customJson = customJson
         }
@@ -48,6 +48,14 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 meta = try container.decode([String: Any].self, forKey: .meta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,14 +79,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 customJson = try container.decode([String: Any].self, forKey: .customJson)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -92,11 +92,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(meta, forKey: .meta)
 
+            try? container.encodeIfPresent(value, forKey: .value)
+
             try? container.encodeIfPresent(isAvailable, forKey: .isAvailable)
 
             try? container.encodeIfPresent(display, forKey: .display)
-
-            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
         }

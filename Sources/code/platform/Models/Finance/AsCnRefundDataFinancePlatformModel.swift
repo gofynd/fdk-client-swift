@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class AsCnRefundData: Codable {
         public var sellerId: Int?
 
-        public var toggleEditRequired: Bool?
-
         public var affiliateId: String?
+
+        public var toggleEditRequired: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case sellerId = "seller_id"
 
-            case toggleEditRequired = "toggle_edit_required"
-
             case affiliateId = "affiliate_id"
+
+            case toggleEditRequired = "toggle_edit_required"
         }
 
         public init(affiliateId: String? = nil, sellerId: Int? = nil, toggleEditRequired: Bool? = nil) {
             self.sellerId = sellerId
 
-            self.toggleEditRequired = toggleEditRequired
-
             self.affiliateId = affiliateId
+
+            self.toggleEditRequired = toggleEditRequired
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                toggleEditRequired = try container.decode(Bool.self, forKey: .toggleEditRequired)
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                toggleEditRequired = try container.decode(Bool.self, forKey: .toggleEditRequired)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
 
-            try? container.encodeIfPresent(toggleEditRequired, forKey: .toggleEditRequired)
-
             try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+
+            try? container.encodeIfPresent(toggleEditRequired, forKey: .toggleEditRequired)
         }
     }
 }

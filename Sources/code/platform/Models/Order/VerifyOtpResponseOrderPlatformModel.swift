@@ -11,30 +11,30 @@ public extension PlatformClient.Order {
     class VerifyOtpResponse: Codable {
         public var message: String?
 
-        public var data: VerifyOtpResponseData?
-
         public var success: Bool?
 
         public var status: Int?
 
+        public var data: VerifyOtpResponseData?
+
         public enum CodingKeys: String, CodingKey {
             case message
-
-            case data
 
             case success
 
             case status
+
+            case data
         }
 
         public init(data: VerifyOtpResponseData? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             self.message = message
 
-            self.data = data
-
             self.success = success
 
             self.status = status
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,14 +42,6 @@ public extension PlatformClient.Order {
 
             do {
                 message = try container.decode(String.self, forKey: .message)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                data = try container.decode(VerifyOtpResponseData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,6 +63,14 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                data = try container.decode(VerifyOtpResponseData.self, forKey: .data)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
@@ -96,30 +96,30 @@ public extension PlatformClient.ApplicationClient.Order {
     class VerifyOtpResponse: Codable {
         public var message: String?
 
-        public var data: VerifyOtpResponseData?
-
         public var success: Bool?
 
         public var status: Int?
 
+        public var data: VerifyOtpResponseData?
+
         public enum CodingKeys: String, CodingKey {
             case message
-
-            case data
 
             case success
 
             case status
+
+            case data
         }
 
         public init(data: VerifyOtpResponseData? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
             self.message = message
 
-            self.data = data
-
             self.success = success
 
             self.status = status
+
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
@@ -127,14 +127,6 @@ public extension PlatformClient.ApplicationClient.Order {
 
             do {
                 message = try container.decode(String.self, forKey: .message)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                data = try container.decode(VerifyOtpResponseData.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,6 +148,14 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                data = try container.decode(VerifyOtpResponseData.self, forKey: .data)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -163,11 +163,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(data, forKey: .data)
-
             try? container.encodeIfPresent(success, forKey: .success)
 
             try? container.encodeIfPresent(status, forKey: .status)
+
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }

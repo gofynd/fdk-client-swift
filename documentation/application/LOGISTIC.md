@@ -11,10 +11,6 @@ Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logist
 * [getAllCountries](#getallcountries)
 * [getPincodeZones](#getpincodezones)
 * [getOptimalLocations](#getoptimallocations)
-* [getCountries](#getcountries)
-* [getCountry](#getcountry)
-* [getLocalities](#getlocalities)
-* [getLocality](#getlocality)
 
 
 
@@ -490,222 +486,6 @@ Response status_code
 ---
 
 
-#### getCountries
-Get list of all countries API
-
-
-
-
-```swift
-applicationClient.logistic.getCountries() { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-
-Get countries data
-
-*Returned Response:*
-
-
-
-
-[GetCountries](#GetCountries)
-
-Get countries data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCountry
-Get single Country API
-
-
-
-
-```swift
-applicationClient.logistic.getCountry(uid: uid) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| uid | String | yes | A `uid` contains a specific unique name of a region. |  
-
-
-
-Get country data
-
-*Returned Response:*
-
-
-
-
-[GetCountry](#GetCountry)
-
-Get country data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLocalities
-Get Localities API
-
-
-
-
-```swift
-applicationClient.logistic.getLocalities(region: region) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| region | String | yes | A `region` contains a specific unique name. |  
-
-
-
-Get Localities data
-
-*Returned Response:*
-
-
-
-
-[GetLocalities](#GetLocalities)
-
-Get Localities data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getLocality
-Get Locality API
-
-
-
-
-```swift
-applicationClient.logistic.getLocality(region: region, value: value) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| region | String | yes | A `region` contains a specific unique name. |   
-| value | String | yes | A `value` contains a specific value of the region. |  
-
-
-
-Get Locality data
-
-*Returned Response:*
-
-
-
-
-[GetLocality](#GetLocality)
-
-Get Locality data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 ### Schemas
 
@@ -715,47 +495,9 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
  | type | String? |  yes  |  |
  | value | String? |  yes  |  |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PincodeParentsResponse](#PincodeParentsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | String? |  yes  |  |
- | subType | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | name | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PincodeLatLongData](#PincodeLatLongData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coordinates | [String]? |  yes  |  |
- | type | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [PincodeMetaResponse](#PincodeMetaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | zone | String? |  yes  |  |
- | internalZoneId | Int? |  yes  |  |
 
 ---
 
@@ -774,19 +516,57 @@ Get Locality data
 
  
  
+ #### [PincodeMetaResponse](#PincodeMetaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | internalZoneId | Int? |  yes  |  |
+ | zone | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeParentsResponse](#PincodeParentsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subType | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | displayName | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PincodeLatLongData](#PincodeLatLongData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | coordinates | [String]? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [PincodeDataResponse](#PincodeDataResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | metaCode | [CountryMetaResponse](#CountryMetaResponse)? |  yes  |  |
+ | meta | [PincodeMetaResponse](#PincodeMetaResponse)? |  yes  |  |
+ | parents | [[PincodeParentsResponse](#PincodeParentsResponse)]? |  yes  |  |
+ | subType | String? |  yes  |  |
  | uid | String? |  yes  |  |
  | name | String? |  yes  |  |
- | parents | [[PincodeParentsResponse](#PincodeParentsResponse)]? |  yes  |  |
- | latLong | [PincodeLatLongData](#PincodeLatLongData)? |  yes  |  |
- | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
- | subType | String? |  yes  |  |
- | meta | [PincodeMetaResponse](#PincodeMetaResponse)? |  yes  |  |
- | metaCode | [CountryMetaResponse](#CountryMetaResponse)? |  yes  |  |
  | displayName | String? |  yes  |  |
+ | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
+ | latLong | [PincodeLatLongData](#PincodeLatLongData)? |  yes  |  |
 
 ---
 
@@ -797,9 +577,9 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
  | error | [PincodeErrorSchemaResponse](#PincodeErrorSchemaResponse) |  no  |  |
  | data | [[PincodeDataResponse](#PincodeDataResponse)]? |  yes  |  |
+ | success | Bool |  no  |  |
 
 ---
 
@@ -835,9 +615,9 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillmentId | Int? |  yes  |  |
- | fromPincode | String? |  yes  |  |
  | articles | [[TATArticlesRequest](#TATArticlesRequest)]? |  yes  |  |
+ | fromPincode | String? |  yes  |  |
+ | fulfillmentId | Int? |  yes  |  |
 
 ---
 
@@ -848,37 +628,12 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  |  |
- | toPincode | String? |  yes  |  |
- | source | String? |  yes  |  |
- | journey | String? |  yes  |  |
- | locationDetails | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)]? |  yes  |  |
  | action | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | value | String? |  yes  |  |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [TATTimestampResponse](#TATTimestampResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | Int? |  yes  |  |
- | min | Int? |  yes  |  |
+ | locationDetails | [[TATLocationDetailsRequest](#TATLocationDetailsRequest)]? |  yes  |  |
+ | source | String? |  yes  |  |
+ | identifier | String? |  yes  |  |
+ | journey | String? |  yes  |  |
+ | toPincode | String? |  yes  |  |
 
 ---
 
@@ -897,12 +652,37 @@ Get Locality data
 
  
  
+ #### [TATTimestampResponse](#TATTimestampResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | Int? |  yes  |  |
+ | min | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [TATPromiseResponse](#TATPromiseResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | timestamp | [TATTimestampResponse](#TATTimestampResponse)? |  yes  |  |
  | formatted | [TATFormattedResponse](#TATFormattedResponse)? |  yes  |  |
+ | timestamp | [TATTimestampResponse](#TATTimestampResponse)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TATErrorSchemaResponse](#TATErrorSchemaResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | value | String? |  yes  |  |
 
 ---
 
@@ -914,12 +694,12 @@ Get Locality data
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | manufacturingTimeUnit | String? |  yes  |  |
- | manufacturingTimeSeconds | Int? |  yes  |  |
- | manufacturingTime | Int? |  yes  |  |
  | promise | [TATPromiseResponse](#TATPromiseResponse)? |  yes  |  |
- | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
- | category | [TATCategoryRequest](#TATCategoryRequest)? |  yes  |  |
+ | manufacturingTime | Int? |  yes  |  |
+ | manufacturingTimeSeconds | Int? |  yes  |  |
  | isCodAvailable | Bool? |  yes  |  |
+ | category | [TATCategoryRequest](#TATCategoryRequest)? |  yes  |  |
+ | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
 
 ---
 
@@ -930,9 +710,9 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillmentId | Int? |  yes  |  |
- | fromPincode | String? |  yes  |  |
  | articles | [[TATArticlesResponse](#TATArticlesResponse)]? |  yes  |  |
+ | fromPincode | String? |  yes  |  |
+ | fulfillmentId | Int? |  yes  |  |
 
 ---
 
@@ -944,18 +724,18 @@ Get Locality data
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | requestUuid | String? |  yes  |  |
- | paymentMode | String? |  yes  |  |
- | identifier | String? |  yes  |  |
  | success | Bool? |  yes  |  |
- | toPincode | String? |  yes  |  |
- | source | String? |  yes  |  |
- | journey | String? |  yes  |  |
- | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
- | locationDetails | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)]? |  yes  |  |
+ | toCity | String? |  yes  |  |
+ | paymentMode | String? |  yes  |  |
  | stormbreakerUuid | String? |  yes  |  |
  | isCodAvailable | Bool? |  yes  |  |
  | action | String? |  yes  |  |
- | toCity | String? |  yes  |  |
+ | locationDetails | [[TATLocationDetailsResponse](#TATLocationDetailsResponse)]? |  yes  |  |
+ | source | String? |  yes  |  |
+ | identifier | String? |  yes  |  |
+ | journey | String? |  yes  |  |
+ | error | [TATErrorSchemaResponse](#TATErrorSchemaResponse)? |  yes  |  |
+ | toPincode | String? |  yes  |  |
 
 ---
 
@@ -997,15 +777,15 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | uid | String? |  yes  |  |
- | type | String? |  yes  |  |
- | name | String? |  yes  |  |
  | parentId | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | logistics | [LogisticsResponse](#LogisticsResponse)? |  yes  |  |
- | subType | String? |  yes  |  |
+ | type | String? |  yes  |  |
  | meta | [CountryMetaResponse](#CountryMetaResponse)? |  yes  |  |
+ | subType | String? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | name | String? |  yes  |  |
  | displayName | String? |  yes  |  |
+ | logistics | [LogisticsResponse](#LogisticsResponse)? |  yes  |  |
 
 ---
 
@@ -1027,8 +807,8 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pincode | String |  no  |  |
  | country | String |  no  |  |
+ | pincode | String |  no  |  |
 
 ---
 
@@ -1039,8 +819,8 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | zones | [String] |  no  |  |
  | serviceabilityType | String |  no  |  |
+ | zones | [String] |  no  |  |
 
 ---
 
@@ -1051,11 +831,11 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | String |  no  |  |
- | toPincode | String |  no  |  |
- | ignoredLocations | [Int] |  no  |  |
  | configuration | [String: Any] |  no  |  |
  | articles | [[String: Any]] |  no  |  |
+ | identifier | String |  no  |  |
+ | ignoredLocations | [Int] |  no  |  |
+ | toPincode | String |  no  |  |
 
 ---
 
@@ -1067,111 +847,10 @@ Get Locality data
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | pystormbreakerUuid | String |  no  |  |
- | success | Bool |  no  |  |
  | toPincode | String |  no  |  |
- | error | [String: Any] |  no  |  |
  | assignedStores | [[String: Any]]? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetCountries](#GetCountries)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [String: Any]? |  yes  |  |
- | items | [[String: Any]]? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetCountry](#GetCountry)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | String? |  yes  |  |
- | actions | [String: Any]? |  yes  |  |
- | ios2 | String? |  yes  |  |
- | hierarchy | [String: Any]? |  yes  |  |
- | name | String? |  yes  |  |
- | ios3 | String? |  yes  |  |
- | subType | String? |  yes  |  |
- | phoneCode | String? |  yes  |  |
- | currency | String? |  yes  |  |
- | timezones | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | current | Int? |  yes  |  |
- | size | Int? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [Logistics](#Logistics)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dp | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [Region](#Region)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | uid | String? |  yes  |  |
- | type | String? |  yes  |  |
- | name | String? |  yes  |  |
- | parentId | [String]? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | logistics | [Logistics](#Logistics)? |  yes  |  |
- | subType | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | displayName | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetLocalities](#GetLocalities)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page | [Page](#Page)? |  yes  |  |
- | regions | [[Region](#Region)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetLocality](#GetLocality)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | regions | [Region](#Region)? |  yes  |  |
+ | error | [String: Any] |  no  |  |
+ | success | Bool |  no  |  |
 
 ---
 

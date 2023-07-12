@@ -9,18 +9,18 @@ public extension PlatformClient.Order {
      */
 
     class AttachUserInfo: Codable {
-        public var countryCode: String?
-
         public var mobile: String
+
+        public var countryCode: String?
 
         public var firstName: String
 
         public var lastName: String
 
         public enum CodingKeys: String, CodingKey {
-            case countryCode = "country_code"
-
             case mobile
+
+            case countryCode = "country_code"
 
             case firstName = "first_name"
 
@@ -28,9 +28,9 @@ public extension PlatformClient.Order {
         }
 
         public init(countryCode: String? = nil, firstName: String, lastName: String, mobile: String) {
-            self.countryCode = countryCode
-
             self.mobile = mobile
+
+            self.countryCode = countryCode
 
             self.firstName = firstName
 
@@ -40,6 +40,8 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            mobile = try container.decode(String.self, forKey: .mobile)
+
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
 
@@ -47,8 +49,6 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mobile = try container.decode(String.self, forKey: .mobile)
 
             firstName = try container.decode(String.self, forKey: .firstName)
 
@@ -58,9 +58,9 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 
@@ -76,18 +76,18 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class AttachUserInfo: Codable {
-        public var countryCode: String?
-
         public var mobile: String
+
+        public var countryCode: String?
 
         public var firstName: String
 
         public var lastName: String
 
         public enum CodingKeys: String, CodingKey {
-            case countryCode = "country_code"
-
             case mobile
+
+            case countryCode = "country_code"
 
             case firstName = "first_name"
 
@@ -95,9 +95,9 @@ public extension PlatformClient.ApplicationClient.Order {
         }
 
         public init(countryCode: String? = nil, firstName: String, lastName: String, mobile: String) {
-            self.countryCode = countryCode
-
             self.mobile = mobile
+
+            self.countryCode = countryCode
 
             self.firstName = firstName
 
@@ -107,6 +107,8 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
+            mobile = try container.decode(String.self, forKey: .mobile)
+
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
 
@@ -114,8 +116,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            mobile = try container.decode(String.self, forKey: .mobile)
 
             firstName = try container.decode(String.self, forKey: .firstName)
 
@@ -125,9 +125,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-
             try? container.encodeIfPresent(mobile, forKey: .mobile)
+
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
 
             try? container.encodeIfPresent(firstName, forKey: .firstName)
 

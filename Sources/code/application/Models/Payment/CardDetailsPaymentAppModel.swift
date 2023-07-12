@@ -7,19 +7,27 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class CardDetails: Codable {
-        public var cardObject: String
-
-        public var cardToken: String?
-
-        public var cardBrand: String
-
-        public var isDomesticCard: Bool
-
-        public var nameOnCard: String?
+        public var country: String
 
         public var cardSubType: String
 
+        public var extendedCardType: String
+
         public var user: String?
+
+        public var nameOnCard: String?
+
+        public var isDomesticCard: Bool
+
+        public var type: String
+
+        public var cardObject: String
+
+        public var cardExpMonth: String?
+
+        public var bank: String
+
+        public var id: String
 
         public var cardExpYear: String?
 
@@ -27,32 +35,32 @@ public extension ApplicationClient.Payment {
 
         public var bankCode: String
 
-        public var country: String
+        public var cardToken: String?
 
-        public var id: String
-
-        public var cardExpMonth: String?
-
-        public var extendedCardType: String
-
-        public var bank: String
-
-        public var type: String
+        public var cardBrand: String
 
         public enum CodingKeys: String, CodingKey {
-            case cardObject = "card_object"
-
-            case cardToken = "card_token"
-
-            case cardBrand = "card_brand"
-
-            case isDomesticCard = "is_domestic_card"
-
-            case nameOnCard = "name_on_card"
+            case country
 
             case cardSubType = "card_sub_type"
 
+            case extendedCardType = "extended_card_type"
+
             case user
+
+            case nameOnCard = "name_on_card"
+
+            case isDomesticCard = "is_domestic_card"
+
+            case type
+
+            case cardObject = "card_object"
+
+            case cardExpMonth = "card_exp_month"
+
+            case bank
+
+            case id
 
             case cardExpYear = "card_exp_year"
 
@@ -60,33 +68,33 @@ public extension ApplicationClient.Payment {
 
             case bankCode = "bank_code"
 
-            case country
+            case cardToken = "card_token"
 
-            case id
-
-            case cardExpMonth = "card_exp_month"
-
-            case extendedCardType = "extended_card_type"
-
-            case bank
-
-            case type
+            case cardBrand = "card_brand"
         }
 
         public init(bank: String, bankCode: String, cardBrand: String, cardExpMonth: String? = nil, cardExpYear: String? = nil, cardObject: String, cardSubType: String, cardToken: String? = nil, country: String, extendedCardType: String, id: String, isDomesticCard: Bool, nameOnCard: String? = nil, status: Bool, type: String, user: String? = nil) {
-            self.cardObject = cardObject
-
-            self.cardToken = cardToken
-
-            self.cardBrand = cardBrand
-
-            self.isDomesticCard = isDomesticCard
-
-            self.nameOnCard = nameOnCard
+            self.country = country
 
             self.cardSubType = cardSubType
 
+            self.extendedCardType = extendedCardType
+
             self.user = user
+
+            self.nameOnCard = nameOnCard
+
+            self.isDomesticCard = isDomesticCard
+
+            self.type = type
+
+            self.cardObject = cardObject
+
+            self.cardExpMonth = cardExpMonth
+
+            self.bank = bank
+
+            self.id = id
 
             self.cardExpYear = cardExpYear
 
@@ -94,35 +102,27 @@ public extension ApplicationClient.Payment {
 
             self.bankCode = bankCode
 
-            self.country = country
+            self.cardToken = cardToken
 
-            self.id = id
-
-            self.cardExpMonth = cardExpMonth
-
-            self.extendedCardType = extendedCardType
-
-            self.bank = bank
-
-            self.type = type
+            self.cardBrand = cardBrand
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            cardObject = try container.decode(String.self, forKey: .cardObject)
+            country = try container.decode(String.self, forKey: .country)
+
+            cardSubType = try container.decode(String.self, forKey: .cardSubType)
+
+            extendedCardType = try container.decode(String.self, forKey: .extendedCardType)
 
             do {
-                cardToken = try container.decode(String.self, forKey: .cardToken)
+                user = try container.decode(String.self, forKey: .user)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            cardBrand = try container.decode(String.self, forKey: .cardBrand)
-
-            isDomesticCard = try container.decode(Bool.self, forKey: .isDomesticCard)
 
             do {
                 nameOnCard = try container.decode(String.self, forKey: .nameOnCard)
@@ -132,15 +132,23 @@ public extension ApplicationClient.Payment {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            cardSubType = try container.decode(String.self, forKey: .cardSubType)
+            isDomesticCard = try container.decode(Bool.self, forKey: .isDomesticCard)
+
+            type = try container.decode(String.self, forKey: .type)
+
+            cardObject = try container.decode(String.self, forKey: .cardObject)
 
             do {
-                user = try container.decode(String.self, forKey: .user)
+                cardExpMonth = try container.decode(String.self, forKey: .cardExpMonth)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            bank = try container.decode(String.self, forKey: .bank)
+
+            id = try container.decode(String.self, forKey: .id)
 
             do {
                 cardExpYear = try container.decode(String.self, forKey: .cardExpYear)
@@ -154,41 +162,41 @@ public extension ApplicationClient.Payment {
 
             bankCode = try container.decode(String.self, forKey: .bankCode)
 
-            country = try container.decode(String.self, forKey: .country)
-
-            id = try container.decode(String.self, forKey: .id)
-
             do {
-                cardExpMonth = try container.decode(String.self, forKey: .cardExpMonth)
+                cardToken = try container.decode(String.self, forKey: .cardToken)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            extendedCardType = try container.decode(String.self, forKey: .extendedCardType)
-
-            bank = try container.decode(String.self, forKey: .bank)
-
-            type = try container.decode(String.self, forKey: .type)
+            cardBrand = try container.decode(String.self, forKey: .cardBrand)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(cardObject, forKey: .cardObject)
-
-            try? container.encodeIfPresent(cardToken, forKey: .cardToken)
-
-            try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
-
-            try? container.encodeIfPresent(isDomesticCard, forKey: .isDomesticCard)
-
-            try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
+            try? container.encodeIfPresent(country, forKey: .country)
 
             try? container.encode(cardSubType, forKey: .cardSubType)
 
+            try? container.encodeIfPresent(extendedCardType, forKey: .extendedCardType)
+
             try? container.encodeIfPresent(user, forKey: .user)
+
+            try? container.encodeIfPresent(nameOnCard, forKey: .nameOnCard)
+
+            try? container.encodeIfPresent(isDomesticCard, forKey: .isDomesticCard)
+
+            try? container.encodeIfPresent(type, forKey: .type)
+
+            try? container.encodeIfPresent(cardObject, forKey: .cardObject)
+
+            try? container.encodeIfPresent(cardExpMonth, forKey: .cardExpMonth)
+
+            try? container.encodeIfPresent(bank, forKey: .bank)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(cardExpYear, forKey: .cardExpYear)
 
@@ -196,17 +204,9 @@ public extension ApplicationClient.Payment {
 
             try? container.encode(bankCode, forKey: .bankCode)
 
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encodeIfPresent(cardToken, forKey: .cardToken)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
-            try? container.encodeIfPresent(cardExpMonth, forKey: .cardExpMonth)
-
-            try? container.encodeIfPresent(extendedCardType, forKey: .extendedCardType)
-
-            try? container.encodeIfPresent(bank, forKey: .bank)
-
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(cardBrand, forKey: .cardBrand)
         }
     }
 }

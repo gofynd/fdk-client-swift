@@ -9,22 +9,22 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class CouponSchedule: Codable {
-        public var nextSchedule: [[String: Any]]?
+        public var start: String?
 
         public var end: String?
 
-        public var start: String?
+        public var nextSchedule: [[String: Any]]?
 
         public var cron: String?
 
         public var duration: Int?
 
         public enum CodingKeys: String, CodingKey {
-            case nextSchedule = "next_schedule"
+            case start
 
             case end
 
-            case start
+            case nextSchedule = "next_schedule"
 
             case cron
 
@@ -32,11 +32,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         }
 
         public init(cron: String? = nil, duration: Int? = nil, end: String? = nil, nextSchedule: [[String: Any]]? = nil, start: String? = nil) {
-            self.nextSchedule = nextSchedule
+            self.start = start
 
             self.end = end
 
-            self.start = start
+            self.nextSchedule = nextSchedule
 
             self.cron = cron
 
@@ -47,7 +47,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
+                start = try container.decode(String.self, forKey: .start)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,7 +63,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                start = try container.decode(String.self, forKey: .start)
+                nextSchedule = try container.decode([[String: Any]].self, forKey: .nextSchedule)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,11 +90,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
+            try? container.encodeIfPresent(start, forKey: .start)
 
             try? container.encode(end, forKey: .end)
 
-            try? container.encodeIfPresent(start, forKey: .start)
+            try? container.encodeIfPresent(nextSchedule, forKey: .nextSchedule)
 
             try? container.encode(cron, forKey: .cron)
 

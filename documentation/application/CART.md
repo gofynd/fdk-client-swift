@@ -6005,7 +6005,7 @@ Get delivery date and options before checkout
 
 
 ```swift
-applicationClient.cart.getShipments(p: p, id: id, buyNow: buyNow, addressId: addressId, areaCode: areaCode) { (response, error) in
+applicationClient.cart.getShipments(p: p, id: id, buyNow: buyNow, addressId: addressId, areaCode: areaCode, orderType: orderType) { (response, error) in
     // Use response
 }
 ```
@@ -6020,7 +6020,8 @@ applicationClient.cart.getShipments(p: p, id: id, buyNow: buyNow, addressId: add
 | id | String? | no | The unique identifier of the cart |   
 | buyNow | Bool? | no |  |   
 | addressId | String? | no | ID allotted to the selected address |   
-| areaCode | String? | no | The PIN Code of the destination address, e.g. 400059 |  
+| areaCode | String? | no | The PIN Code of the destination address, e.g. 400059 |   
+| orderType | String? | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. Digital - If the customer wants to buy digital voucher ( for jiogames ) |  
 
 
 
@@ -9324,51 +9325,14 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  
  
- #### [CartCurrency](#CartCurrency)
+ #### [LoyaltyPoints](#LoyaltyPoints)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  | Currency code defined by ISO 4217:2015 |
- | symbol | String? |  yes  | refers to a graphic symbol or sign that is used to denote a specific currency |
-
----
-
-
- 
- 
- #### [CouponBreakup](#CouponBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  | coupon message |
- | description | String? |  yes  |  |
- | value | Double? |  yes  | coupon discount amount value |
- | code | String? |  yes  | coupon code |
- | type | String? |  yes  | type of coupon (absolute/percentage/bogo/bundle/payment) |
- | subTitle | String? |  yes  |  |
- | couponType | String? |  yes  |  |
- | couponValue | Double? |  yes  |  |
- | title | String? |  yes  |  |
+ | applicable | Double? |  yes  | refers to applicable credit value |
+ | total | Double? |  yes  | refers to total value of loyalty points |
+ | description | String? |  yes  | loyalty points description text |
  | isApplied | Bool? |  yes  | boolean flag that denotes if coupon is applied or not. True if applied else False |
- | uid | String? |  yes  | unique coupon identifier |
- | minimumCartValue | Double? |  yes  |  |
- | maxDiscountValue | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [DisplayBreakup](#DisplayBreakup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  | refers to display text for breakup |
- | currencyCode | String? |  yes  | refers to identify currencies in a standardized and globally recognized manner |
- | message | [String]? |  yes  | Display error message if any, else an empty list |
- | value | Double? |  yes  | refers to value of display attribute |
- | key | String? |  yes  | refers to key name of display attribute |
- | currencySymbol | String? |  yes  | refers to a graphic symbol or sign that is used to denote a specific currency |
 
 ---
 
@@ -9379,33 +9343,58 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | convenienceFee | Double? |  yes  | refers to additional cost associated with providing convenience or special services to the customer |
- | subtotal | Double? |  yes  | represents the total cost of the items before any additional charges or discounts |
- | deliveryCharge | Double? |  yes  | delivery charges value |
- | giftCard | Double? |  yes  |  |
- | youSaved | Double? |  yes  | refers to the amount of money that a customer has saved due to discounts, promotions, or any other cost reductions applied to their cart |
- | gstCharges | Double? |  yes  | refer to the Goods and Services Tax applied to the products or services included in the cart |
- | coupon | Double? |  yes  | coupon value to show breakup. |
- | codCharge | Double? |  yes  | cash on delivery charges value |
  | vog | Double? |  yes  | total value of good refers to the cumulative value or cost of all the goods or products included in the cart |
- | discount | Double? |  yes  | refers to discount price value |
- | total | Double? |  yes  | represents the complete cost that the customer will be charged for their cart, considering all relevant factors such as item prices, taxes, fees, and discounts |
- | mrpTotal | Double? |  yes  | represents the total cost based on the maximum retail prices of the items |
  | fyndCash | Double? |  yes  | fynd cash value |
+ | codCharge | Double? |  yes  | cash on delivery charges value |
+ | deliveryCharge | Double? |  yes  | delivery charges value |
+ | total | Double? |  yes  | represents the complete cost that the customer will be charged for their cart, considering all relevant factors such as item prices, taxes, fees, and discounts |
+ | subtotal | Double? |  yes  | represents the total cost of the items before any additional charges or discounts |
+ | youSaved | Double? |  yes  | refers to the amount of money that a customer has saved due to discounts, promotions, or any other cost reductions applied to their cart |
+ | discount | Double? |  yes  | refers to discount price value |
+ | gstCharges | Double? |  yes  | refer to the Goods and Services Tax applied to the products or services included in the cart |
+ | convenienceFee | Double? |  yes  | refers to additional cost associated with providing convenience or special services to the customer |
+ | mrpTotal | Double? |  yes  | represents the total cost based on the maximum retail prices of the items |
+ | giftCard | Double? |  yes  |  |
+ | coupon | Double? |  yes  | coupon value to show breakup. |
 
 ---
 
 
  
  
- #### [LoyaltyPoints](#LoyaltyPoints)
+ #### [DisplayBreakup](#DisplayBreakup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applicable | Double? |  yes  | refers to applicable credit value |
- | total | Double? |  yes  | refers to total value of loyalty points |
+ | currencyCode | String? |  yes  | refers to identify currencies in a standardized and globally recognized manner |
+ | key | String? |  yes  | refers to key name of display attribute |
+ | currencySymbol | String? |  yes  | refers to a graphic symbol or sign that is used to denote a specific currency |
+ | value | Double? |  yes  | refers to value of display attribute |
+ | message | [String]? |  yes  | Display error message if any, else an empty list |
+ | display | String? |  yes  | refers to display text for breakup |
+
+---
+
+
+ 
+ 
+ #### [CouponBreakup](#CouponBreakup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | minimumCartValue | Double? |  yes  |  |
+ | value | Double? |  yes  | coupon discount amount value |
+ | message | String? |  yes  | coupon message |
+ | subTitle | String? |  yes  |  |
+ | maxDiscountValue | Double? |  yes  |  |
+ | couponType | String? |  yes  |  |
  | isApplied | Bool? |  yes  | boolean flag that denotes if coupon is applied or not. True if applied else False |
- | description | String? |  yes  | loyalty points description text |
+ | uid | String? |  yes  | unique coupon identifier |
+ | description | String? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | code | String? |  yes  | coupon code |
+ | type | String? |  yes  | type of coupon (absolute/percentage/bogo/bundle/payment) |
+ | title | String? |  yes  |  |
 
 ---
 
@@ -9416,10 +9405,46 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
- | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
- | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
  | loyaltyPoints | [LoyaltyPoints](#LoyaltyPoints)? |  yes  |  |
+ | raw | [RawBreakup](#RawBreakup)? |  yes  |  |
+ | display | [[DisplayBreakup](#DisplayBreakup)]? |  yes  |  |
+ | coupon | [CouponBreakup](#CouponBreakup)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PromiseFormatted](#PromiseFormatted)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | String? |  yes  | string value for min delivery promise |
+ | max | String? |  yes  | string value for max delivery promise |
+
+---
+
+
+ 
+ 
+ #### [PromiseTimestamp](#PromiseTimestamp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | Double? |  yes  | float value for min delivery promise |
+ | max | Double? |  yes  | float value for max delivery promise |
+
+---
+
+
+ 
+ 
+ #### [ShipmentPromise](#ShipmentPromise)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
+ | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
 
 ---
 
@@ -9430,61 +9455,9 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  | boolean flag to check if payment selection lock is enabled or not. |
  | paymentIdentifier | String? |  yes  |  |
  | defaultOptions | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CouponDetails](#CouponDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  |  |
- | discountSingleQuantity | Double? |  yes  |  |
- | discountTotalQuantity | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [CartProductIdentifer](#CartProductIdentifer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identifier | String? |  yes  | Article idenfier generated by cart |
-
----
-
-
- 
- 
- #### [ProductPrice](#ProductPrice)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currencyCode | String? |  yes  |  |
- | marked | Double? |  yes  |  |
- | selling | Double? |  yes  |  |
- | effective | Double? |  yes  |  |
- | addOn | Double? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductPriceInfo](#ProductPriceInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
- | base | [ProductPrice](#ProductPrice)? |  yes  |  |
+ | enabled | Bool? |  yes  | boolean flag to check if payment selection lock is enabled or not. |
 
 ---
 
@@ -9495,12 +9468,12 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemImagesUrl | [String]? |  yes  | item images URL |
- | itemId | Int? |  yes  | Item id |
  | itemName | String? |  yes  | Item name |
  | itemPriceDetails | [String: Any]? |  yes  | item price details |
- | itemSlug | String? |  yes  | item slug |
+ | itemImagesUrl | [String]? |  yes  | item images URL |
  | itemBrandName | String? |  yes  | item brand name |
+ | itemId | Int? |  yes  | Item id |
+ | itemSlug | String? |  yes  | item slug |
 
 ---
 
@@ -9511,24 +9484,10 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articleId | String? |  yes  | free article id |
  | freeGiftItemDetails | [FreeGiftItem](#FreeGiftItem)? |  yes  | Free gift items details |
  | quantity | Int? |  yes  | Free article quantity |
+ | articleId | String? |  yes  | free article id |
  | parentItemIdentifier | String? |  yes  | Parent item identifier for free article |
-
----
-
-
- 
- 
- #### [DiscountRulesApp](#DiscountRulesApp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
- | matchedBuyRules | [String]? |  yes  | Matched buy rules for promotion |
- | rawOffer | [String: Any]? |  yes  | raw offer details for promotion |
- | offer | [String: Any]? |  yes  | offer for promotion |
 
 ---
 
@@ -9551,8 +9510,22 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
  | cartConditions | [String: Any]? |  yes  | Cart conditions details for promotion |
+ | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
+
+---
+
+
+ 
+ 
+ #### [DiscountRulesApp](#DiscountRulesApp)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | matchedBuyRules | [String]? |  yes  | Matched buy rules for promotion |
+ | rawOffer | [String: Any]? |  yes  | raw offer details for promotion |
+ | offer | [String: Any]? |  yes  | offer for promotion |
+ | itemCriteria | [String: Any]? |  yes  | Item criteria of promotion |
 
 ---
 
@@ -9563,72 +9536,58 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | promotionType | String? |  yes  | Promotion type of current promotion |
  | mrpPromotion | Bool? |  yes  | If applied promotion is applied on product MRP or ESP |
- | promotionName | String? |  yes  | Promotion name of current promotion |
- | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
- | promotionGroup | String? |  yes  | Promotion group for the promotion |
- | promoId | String? |  yes  | Promotion id |
  | appliedFreeArticles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
- | discountRules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
+ | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
+ | promotionName | String? |  yes  | Promotion name of current promotion |
  | ownership | [Ownership](#Ownership)? |  yes  | Ownership of promotion |
  | buyRules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
  | amount | Double? |  yes  | Per unit discount amount applied with current promotion |
+ | promoId | String? |  yes  | Promotion id |
  | promotionOfferText | String? |  yes  | Offer text of current promotion |
+ | discountRules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
+ | promotionGroup | String? |  yes  | Promotion group for the promotion |
+ | promotionType | String? |  yes  | Promotion type of current promotion |
 
 ---
 
 
  
  
- #### [ProductAvailabilitySize](#ProductAvailabilitySize)
+ #### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | display | String? |  yes  | refers to size of product |
- | isAvailable | Bool? |  yes  | boolean refers to product available size. True if available else False |
- | value | String? |  yes  | refers to size of product |
- | meta | [String: Any]? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
+ | symbol | String? |  yes  | refers to a graphic symbol or sign that is used to denote a specific currency |
+ | code | String? |  yes  | Currency code defined by ISO 4217:2015 |
 
 ---
 
 
  
  
- #### [ProductAvailability](#ProductAvailability)
+ #### [ProductPrice](#ProductPrice)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availableSizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)]? |  yes  |  |
- | isValid | Bool? |  yes  | boolean flag to check if required product is available and deliverable |
- | otherStoreQuantity | Int? |  yes  | refers to other store quantity |
- | outOfStock | Bool? |  yes  | boolean flag to check if product is out of stock |
- | deliverable | Bool? |  yes  | boolean flag to check if product is deliverable |
- | sizes | [String]? |  yes  | refers to list of available product sizes |
+ | addOn | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | marked | Double? |  yes  |  |
+ | selling | Double? |  yes  |  |
+ | effective | Double? |  yes  |  |
 
 ---
 
 
  
  
- #### [PromoMeta](#PromoMeta)
+ #### [ProductPriceInfo](#ProductPriceInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CategoryInfo](#CategoryInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | uid | Int? |  yes  | product Category Id |
+ | base | [ProductPrice](#ProductPrice)? |  yes  |  |
+ | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
 
 ---
 
@@ -9651,21 +9610,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  |  |
  | unit | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [ProductImage](#ProductImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  | product image url |
- | aspectRatio | String? |  yes  | product image aspect ratio |
- | secureUrl | String? |  yes  | product image secure url |
+ | value | String? |  yes  |  |
 
 ---
 
@@ -9677,6 +9623,31 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | tags | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CategoryInfo](#CategoryInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | uid | Int? |  yes  | product Category Id |
+
+---
+
+
+ 
+ 
+ #### [ProductImage](#ProductImage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | secureUrl | String? |  yes  | product image secure url |
+ | url | String? |  yes  | product image url |
+ | aspectRatio | String? |  yes  | product image aspect ratio |
 
 ---
 
@@ -9698,9 +9669,9 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  | product type |
  | url | String? |  yes  | product action url |
  | query | [ActionQuery](#ActionQuery)? |  yes  |  |
- | type | String? |  yes  | product type |
 
 ---
 
@@ -9711,45 +9682,85 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customJson | [String: Any]? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  | contains name and identifier of categories |
  | brand | [BaseInfo](#BaseInfo)? |  yes  | contains name and identifier of brand |
- | type | String? |  yes  | product type |
- | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
+ | name | String? |  yes  | product name |
+ | customJson | [String: Any]? |  yes  |  |
  | netQuantity | [NetQuantity](#NetQuantity)? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | teaserTag | [Tags](#Tags)? |  yes  |  |
+ | slug | String? |  yes  | Unique product url name generated via product name and other meta data |
+ | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  | contains name and identifier of categories |
+ | images | [[ProductImage](#ProductImage)]? |  yes  |  |
  | itemCode | String? |  yes  |  |
  | uid | Int? |  yes  | product unique identifier |
- | images | [[ProductImage](#ProductImage)]? |  yes  |  |
- | teaserTag | [Tags](#Tags)? |  yes  |  |
- | name | String? |  yes  | product name |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | type | String? |  yes  | product type |
 
 ---
 
 
  
  
- #### [BasePrice](#BasePrice)
+ #### [PromoMeta](#PromoMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | currencySymbol | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | marked | Double? |  yes  |  |
- | effective | Double? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
 
  
  
- #### [ArticlePriceInfo](#ArticlePriceInfo)
+ #### [CouponDetails](#CouponDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | converted | [BasePrice](#BasePrice)? |  yes  |  |
- | base | [BasePrice](#BasePrice)? |  yes  |  |
+ | discountSingleQuantity | Double? |  yes  |  |
+ | code | String? |  yes  |  |
+ | discountTotalQuantity | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailabilitySize](#ProductAvailabilitySize)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customJson | [String: Any]? |  yes  |  |
+ | isAvailable | Bool? |  yes  | boolean refers to product available size. True if available else False |
+ | value | String? |  yes  | refers to size of product |
+ | display | String? |  yes  | refers to size of product |
+ | meta | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductAvailability](#ProductAvailability)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sizes | [String]? |  yes  | refers to list of available product sizes |
+ | deliverable | Bool? |  yes  | boolean flag to check if product is deliverable |
+ | outOfStock | Bool? |  yes  | boolean flag to check if product is out of stock |
+ | isValid | Bool? |  yes  | boolean flag to check if required product is available and deliverable |
+ | availableSizes | [[ProductAvailabilitySize](#ProductAvailabilitySize)]? |  yes  |  |
+ | otherStoreQuantity | Int? |  yes  | refers to other store quantity |
+
+---
+
+
+ 
+ 
+ #### [CartProductIdentifer](#CartProductIdentifer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | identifier | String? |  yes  | Article idenfier generated by cart |
 
 ---
 
@@ -9769,63 +9780,53 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  
  
+ #### [BasePrice](#BasePrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | marked | Double? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
+ | currencySymbol | String? |  yes  |  |
+ | effective | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ArticlePriceInfo](#ArticlePriceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [BasePrice](#BasePrice)? |  yes  |  |
+ | converted | [BasePrice](#BasePrice)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ProductArticle](#ProductArticle)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | sellerIdentifier | String? |  yes  |  |
+ | parentItemIdentifiers | [String: Any]? |  yes  | contains information about parent item in case of parent-child relation |
+ | store | [StoreInfo](#StoreInfo)? |  yes  | contains name and identifier of store |
  | customJson | [String: Any]? |  yes  | custom json to supporting article customization |
- | quantity | Int? |  yes  | available quantity for the article |
- | productGroupTags | [String]? |  yes  | product_group_tags to group articles in same group |
- | giftCard | [String: Any]? |  yes  |  |
  | identifier | [String: Any]? |  yes  |  |
- | cartItemMeta | [String: Any]? |  yes  |  |
- | isGiftVisible | Bool? |  yes  |  |
- | mtoQuantity | Int? |  yes  |  |
- | type | String? |  yes  | type of article |
  | price | [ArticlePriceInfo](#ArticlePriceInfo)? |  yes  | refers to article's base and converted price |
  | extraMeta | [String: Any]? |  yes  | any extra meta information related to article |
- | store | [StoreInfo](#StoreInfo)? |  yes  | contains name and identifier of store |
- | uid | String? |  yes  | article unique identifier |
- | parentItemIdentifiers | [String: Any]? |  yes  | contains information about parent item in case of parent-child relation |
+ | cartItemMeta | [String: Any]? |  yes  |  |
+ | isGiftVisible | Bool? |  yes  |  |
+ | productGroupTags | [String]? |  yes  | product_group_tags to group articles in same group |
  | size | String? |  yes  | article size |
+ | uid | String? |  yes  | article unique identifier |
+ | sellerIdentifier | String? |  yes  |  |
  | seller | [BaseInfo](#BaseInfo)? |  yes  | contains name and identifier of seller |
-
----
-
-
- 
- 
- #### [PromiseTimestamp](#PromiseTimestamp)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | Double? |  yes  | float value for max delivery promise |
- | min | Double? |  yes  | float value for min delivery promise |
-
----
-
-
- 
- 
- #### [PromiseFormatted](#PromiseFormatted)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | String? |  yes  | string value for max delivery promise |
- | min | String? |  yes  | string value for min delivery promise |
-
----
-
-
- 
- 
- #### [ShipmentPromise](#ShipmentPromise)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
- | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
+ | mtoQuantity | Int? |  yes  |  |
+ | quantity | Int? |  yes  | available quantity for the article |
+ | giftCard | [String: Any]? |  yes  |  |
+ | type | String? |  yes  | type of article |
 
 ---
 
@@ -9836,26 +9837,26 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bulkOffer | [String: Any]? |  yes  | product bulk offer |
+ | message | String? |  yes  | product related messages if any error else empty string |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  | refers to product's base and converted price per unit |
+ | parentItemIdentifiers | [String: Any]? |  yes  | contains information about parent item in case of parent-child relation |
+ | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  | refers to product's base and converted price |
+ | discount | String? |  yes  | discount for the selected product |
+ | promoMeta | [PromoMeta](#PromoMeta)? |  yes  | promo meta information |
+ | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
+ | quantity | Int? |  yes  | quantity of product |
  | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |
  | isSet | Bool? |  yes  |  |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | pricePerUnit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  | refers to product's base and converted price per unit |
- | promotionsApplied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | moq | [String: Any]? |  yes  | maximum & minimum order quantity information |
  | customOrder | [String: Any]? |  yes  |  |
- | quantity | Int? |  yes  | quantity of product |
- | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
- | promoMeta | [PromoMeta](#PromoMeta)? |  yes  | promo meta information |
- | product | [CartProduct](#CartProduct)? |  yes  |  |
- | key | String? |  yes  | key of product created by combining product unique id and size |
- | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  | refers to product's base and converted price |
- | article | [ProductArticle](#ProductArticle)? |  yes  |  |
- | message | String? |  yes  | product related messages if any error else empty string |
  | couponMessage | String? |  yes  | coupon applied message along with coupon code |
- | discount | String? |  yes  | discount for the selected product |
- | parentItemIdentifiers | [String: Any]? |  yes  | contains information about parent item in case of parent-child relation |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
+ | key | String? |  yes  | key of product created by combining product unique id and size |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | bulkOffer | [String: Any]? |  yes  | product bulk offer |
+ | article | [ProductArticle](#ProductArticle)? |  yes  |  |
 
 ---
 
@@ -9866,25 +9867,25 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponText | String? |  yes  | static coupon text |
+ | gstin | String? |  yes  | gstin number |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | lastModified | String? |  yes  | last modified cart date |
+ | message | String? |  yes  | display error message if any else empty string |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | comment | String? |  yes  | comment related to cart |
  | checkoutMode | String? |  yes  | describe checkout mode(self/other) of the cart |
- | panNo | String? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  | information related to delivery charge |
+ | couponText | String? |  yes  | static coupon text |
  | buyNow | Bool? |  yes  | True for buy_now cart. Default value is False |
  | panConfig | [String: Any]? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | lastModified | String? |  yes  | last modified cart date |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | gstin | String? |  yes  | gstin number |
- | id | String? |  yes  | unique cart id |
+ | deliveryChargeInfo | String? |  yes  | information related to delivery charge |
  | restrictCheckout | Bool? |  yes  |  |
  | isValid | Bool? |  yes  | boolean flag to check if response is valid |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | message | String? |  yes  | display error message if any else empty string |
- | comment | String? |  yes  | comment related to cart |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | id | String? |  yes  | unique cart id |
  | appliedPromoDetails | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | panNo | String? |  yes  |  |
 
 ---
 
@@ -9895,20 +9896,20 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | parentItemIdentifiers | [[String: String]]? |  yes  | contains information about parent item in case of parent-child relation |
+ | customJson | [String: Any]? |  yes  | custom json to supporting article customization |
+ | articleId | String? |  yes  |  |
+ | extraMeta | [String: Any]? |  yes  | any extra meta information related to article |
+ | itemSize | String? |  yes  | article size |
+ | sellerId | Int? |  yes  | seller id |
+ | meta | [String: Any]? |  yes  |  |
+ | productGroupTags | [String]? |  yes  | product_group_tags to group articles in same group |
+ | itemId | Int? |  yes  | item_id of added product |
+ | storeId | Int? |  yes  | store id |
  | articleAssignment | [String: Any]? |  yes  | strategy and level information for article assignment |
  | display | String? |  yes  |  |
- | itemId | Int? |  yes  | item_id of added product |
- | productGroupTags | [String]? |  yes  | product_group_tags to group articles in same group |
  | quantity | Int? |  yes  | article quantity |
- | storeId | Int? |  yes  | store id |
- | articleId | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
  | pos | Bool? |  yes  | True for pos systems |
- | extraMeta | [String: Any]? |  yes  | any extra meta information related to article |
- | sellerId | Int? |  yes  | seller id |
- | parentItemIdentifiers | [[String: String]]? |  yes  | contains information about parent item in case of parent-child relation |
- | itemSize | String? |  yes  | article size |
- | customJson | [String: Any]? |  yes  | custom json to supporting article customization |
 
 ---
 
@@ -9919,8 +9920,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AddProductCart](#AddProductCart)]? |  yes  |  |
  | newCart | Bool? |  yes  |  |
+ | items | [[AddProductCart](#AddProductCart)]? |  yes  |  |
 
 ---
 
@@ -9931,10 +9932,10 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
  | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
- | message | String? |  yes  |  |
  | partial | Bool? |  yes  | When adding multiple items check if all added. True if only few are added. |
+ | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 
@@ -9945,16 +9946,16 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  | article updated quantity |
- | itemId | Int? |  yes  | item_id of added product |
- | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
- | articleId | String? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | extraMeta | [String: Any]? |  yes  | any extra meta information related to article |
- | itemIndex | Int? |  yes  | index of updated article |
  | parentItemIdentifiers | [String: Any]? |  yes  | contains information about parent item in case of parent-child relation |
- | itemSize | String? |  yes  | article size |
  | customJson | [String: Any]? |  yes  | custom json to supporting article customization |
+ | articleId | String? |  yes  |  |
+ | identifiers | [CartProductIdentifer](#CartProductIdentifer) |  no  |  |
+ | extraMeta | [String: Any]? |  yes  | any extra meta information related to article |
+ | itemSize | String? |  yes  | article size |
+ | itemIndex | Int? |  yes  | index of updated article |
+ | itemId | Int? |  yes  | item_id of added product |
+ | quantity | Int? |  yes  | article updated quantity |
+ | meta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -9977,8 +9978,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
  | success | Bool? |  yes  | True if all items are added successfully. False if partially added or not added. |
+ | cart | [CartDetailResponse](#CartDetailResponse)? |  yes  |  |
  | message | String? |  yes  |  |
 
 ---
@@ -10009,40 +10010,40 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  
  
- #### [Coupon](#Coupon)
+ #### [PageCoupon](#PageCoupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | expiresOn | String? |  yes  |  |
- | message | String? |  yes  |  |
- | description | String? |  yes  |  |
- | couponCode | String? |  yes  |  |
- | savings | Double? |  yes  |  |
- | isBankOffer | Bool? |  yes  |  |
- | couponType | String? |  yes  |  |
- | subTitle | String? |  yes  |  |
- | offerText | String? |  yes  |  |
- | couponValue | Double? |  yes  |  |
- | title | String? |  yes  |  |
- | isApplicable | Bool? |  yes  |  |
- | isApplied | Bool? |  yes  |  |
- | minimumCartValue | Double? |  yes  |  |
- | maxDiscountValue | Double? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
+ | total | Int? |  yes  |  |
+ | hasNext | Bool? |  yes  |  |
+ | totalItemCount | Int? |  yes  |  |
+ | current | Int? |  yes  |  |
 
 ---
 
 
  
  
- #### [PageCoupon](#PageCoupon)
+ #### [Coupon](#Coupon)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | totalItemCount | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | hasPrevious | Bool? |  yes  |  |
- | current | Int? |  yes  |  |
- | total | Int? |  yes  |  |
+ | isApplicable | Bool? |  yes  |  |
+ | couponCode | String? |  yes  |  |
+ | expiresOn | String? |  yes  |  |
+ | message | String? |  yes  |  |
+ | couponType | String? |  yes  |  |
+ | subTitle | String? |  yes  |  |
+ | maxDiscountValue | Double? |  yes  |  |
+ | isBankOffer | Bool? |  yes  |  |
+ | offerText | String? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | savings | Double? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | description | String? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
+ | title | String? |  yes  |  |
 
 ---
 
@@ -10053,8 +10054,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | availableCouponList | [[Coupon](#Coupon)]? |  yes  |  |
  | page | [PageCoupon](#PageCoupon)? |  yes  |  |
+ | availableCouponList | [[Coupon](#Coupon)]? |  yes  |  |
 
 ---
 
@@ -10077,10 +10078,10 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | currencyCode | String? |  yes  | Currency code for all amounts |
- | marked | Int? |  yes  | Original price of product |
- | bulkEffective | Double? |  yes  | Discounted per unit price for current offer object |
- | effective | Int? |  yes  | Current per unit price of product after existing deductions |
  | currencySymbol | String? |  yes  | Currency symbol for currency |
+ | bulkEffective | Double? |  yes  | Discounted per unit price for current offer object |
+ | marked | Int? |  yes  | Original price of product |
+ | effective | Int? |  yes  | Current per unit price of product after existing deductions |
 
 ---
 
@@ -10091,13 +10092,13 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | quantity | Int? |  yes  | Quantity on which offer is applicable |
- | margin | Int? |  yes  | Percentage value of discount |
- | type | String? |  yes  | Offer type |
- | autoApplied | Bool? |  yes  | Whether offer discount is auto applied in cart |
  | best | Bool? |  yes  | Is true for best offer from all offers present for all sellers |
- | total | Double? |  yes  | Total price of offer quantity with discount |
  | price | [OfferPrice](#OfferPrice)? |  yes  |  |
+ | total | Double? |  yes  | Total price of offer quantity with discount |
+ | margin | Int? |  yes  | Percentage value of discount |
+ | quantity | Int? |  yes  | Quantity on which offer is applicable |
+ | autoApplied | Bool? |  yes  | Whether offer discount is auto applied in cart |
+ | type | String? |  yes  | Offer type |
 
 ---
 
@@ -10154,8 +10155,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | longitude | Double? |  yes  |  |
  | latitude | Double? |  yes  |  |
+ | longitude | Double? |  yes  |  |
 
 ---
 
@@ -10166,32 +10167,32 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | city | String? |  yes  |  |
  | areaCode | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | createdByUserId | String? |  yes  |  |
- | countryPhoneCode | String? |  yes  |  |
- | landmark | String? |  yes  |  |
- | isActive | Bool? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | area | String? |  yes  |  |
- | country | String? |  yes  |  |
- | state | String? |  yes  |  |
- | phone | String? |  yes  |  |
  | googleMapPoint | [String: Any]? |  yes  |  |
- | countryCode | String? |  yes  |  |
- | countryIsoCode | String? |  yes  |  |
- | id | String? |  yes  |  |
- | userId | String? |  yes  |  |
+ | area | String? |  yes  |  |
+ | createdByUserId | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
  | name | String? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | areaCodeSlug | String? |  yes  |  |
- | address | String? |  yes  |  |
- | addressType | String? |  yes  |  |
- | email | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
+ | country | String? |  yes  |  |
+ | userId | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | countryPhoneCode | String? |  yes  |  |
+ | countryIsoCode | String? |  yes  |  |
  | geoLocation | [GeoLocation](#GeoLocation)? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
+ | address | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | landmark | String? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
+ | email | String? |  yes  |  |
+ | phone | String? |  yes  |  |
+ | addressType | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | areaCodeSlug | String? |  yes  |  |
 
 ---
 
@@ -10202,8 +10203,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [[Address](#Address)]? |  yes  |  |
  | piiMasking | Bool? |  yes  |  |
+ | address | [[Address](#Address)]? |  yes  |  |
 
 ---
 
@@ -10214,8 +10215,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | id | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
 
 ---
@@ -10227,8 +10228,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
  | id | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
  | isUpdated | Bool? |  yes  |  |
  | isDefaultAddress | Bool? |  yes  |  |
 
@@ -10241,8 +10242,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isDeleted | Bool? |  yes  |  |
  | id | String? |  yes  |  |
+ | isDeleted | Bool? |  yes  |  |
 
 ---
 
@@ -10253,9 +10254,9 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | billingAddressId | String? |  yes  |  |
  | id | String? |  yes  |  |
  | cartId | String? |  yes  |  |
+ | billingAddressId | String? |  yes  |  |
 
 ---
 
@@ -10267,11 +10268,11 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | id | String? |  yes  |  |
- | addressId | String? |  yes  |  |
- | aggregatorName | String? |  yes  |  |
  | paymentIdentifier | String? |  yes  |  |
- | merchantCode | String? |  yes  |  |
  | paymentMode | String? |  yes  |  |
+ | addressId | String? |  yes  |  |
+ | merchantCode | String? |  yes  |  |
+ | aggregatorName | String? |  yes  |  |
 
 ---
 
@@ -10282,12 +10283,12 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | displayMessageEn | String? |  yes  |  |
- | code | String? |  yes  |  |
  | valid | Bool? |  yes  |  |
- | title | String? |  yes  |  |
- | nextValidationRequired | Bool? |  yes  |  |
  | discount | Double? |  yes  |  |
+ | displayMessageEn | String? |  yes  |  |
+ | nextValidationRequired | Bool? |  yes  |  |
+ | code | String? |  yes  |  |
+ | title | String? |  yes  |  |
 
 ---
 
@@ -10298,8 +10299,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponValidity | [CouponValidity](#CouponValidity)? |  yes  |  |
  | success | Bool |  no  |  |
+ | couponValidity | [CouponValidity](#CouponValidity)? |  yes  |  |
  | message | String? |  yes  |  |
 
 ---
@@ -10311,16 +10312,16 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fulfillmentType | String? |  yes  |  |
- | shipments | Int? |  yes  |  |
  | dpOptions | [String: Any]? |  yes  |  |
- | orderType | String? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | fulfillmentId | Int? |  yes  |  |
  | dpId | String? |  yes  |  |
- | shipmentType | String? |  yes  |  |
- | boxType | String? |  yes  |  |
+ | fulfillmentType | String? |  yes  |  |
+ | fulfillmentId | Int? |  yes  |  |
  | promise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | orderType | String? |  yes  |  |
+ | shipmentType | String? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
+ | boxType | String? |  yes  |  |
+ | shipments | Int? |  yes  |  |
 
 ---
 
@@ -10331,40 +10332,25 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
- | couponText | String? |  yes  |  |
- | id | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
  | gstin | String? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | uid | String? |  yes  |  |
- | message | String? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | comment | String? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | lastModified | String? |  yes  |  |
  | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | error | Bool? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | cartId | Int? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | shipments | [[ShipmentResponse](#ShipmentResponse)]? |  yes  |  |
  | deliveryChargeInfo | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [StaffCheckout](#StaffCheckout)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String |  no  |  |
- | user | String |  no  |  |
- | lastName | String |  no  |  |
- | employeeCode | String? |  yes  |  |
- | firstName | String |  no  |  |
 
 ---
 
@@ -10383,13 +10369,28 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  
  
+ #### [StaffCheckout](#StaffCheckout)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | firstName | String |  no  |  |
+ | id | String |  no  |  |
+ | user | String |  no  |  |
+ | lastName | String |  no  |  |
+ | employeeCode | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CustomerDetails](#CustomerDetails)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | String? |  yes  |  |
- | email | String? |  yes  |  |
  | mobile | String |  no  |  |
+ | email | String? |  yes  |  |
 
 ---
 
@@ -10400,25 +10401,25 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | callbackUrl | String? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
- | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
- | merchantCode | String? |  yes  |  |
- | customMeta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
- | paymentAutoConfirm | Bool? |  yes  |  |
- | addressId | String? |  yes  |  |
- | billingAddress | [String: Any]? |  yes  |  |
- | paymentParams | [String: Any]? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | paymentMode | String |  no  |  |
- | id | String? |  yes  |  |
- | orderingStore | Int? |  yes  |  |
  | aggregator | String? |  yes  |  |
+ | paymentParams | [String: Any]? |  yes  |  |
+ | customMeta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
  | extraMeta | [String: Any]? |  yes  |  |
- | orderType | String? |  yes  |  |
  | billingAddressId | String? |  yes  |  |
  | deliveryAddress | [String: Any]? |  yes  |  |
+ | orderingStore | Int? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | callbackUrl | String? |  yes  |  |
+ | paymentMode | String |  no  |  |
+ | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
  | customerDetails | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
+ | addressId | String? |  yes  |  |
+ | merchantCode | String? |  yes  |  |
+ | billingAddress | [String: Any]? |  yes  |  |
+ | paymentAutoConfirm | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
+ | orderType | String? |  yes  |  |
 
 ---
 
@@ -10429,35 +10430,35 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponText | String? |  yes  |  |
- | storeEmps | [[String: Any]]? |  yes  |  |
+ | gstin | String? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | codCharges | Int? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | deliveryChargeOrderValue | Int? |  yes  |  |
+ | lastModified | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | message | String? |  yes  |  |
+ | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | codMessage | String? |  yes  |  |
+ | orderId | String? |  yes  |  |
+ | storeEmps | [[String: Any]]? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | codAvailable | Bool? |  yes  |  |
+ | storeCode | String? |  yes  |  |
  | deliveryChargeInfo | String? |  yes  |  |
  | errorMessage | String? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | orderId | String? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | storeCode | String? |  yes  |  |
- | gstin | String? |  yes  |  |
- | id | String? |  yes  |  |
  | restrictCheckout | Bool? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | success | Bool? |  yes  |  |
- | codAvailable | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | uid | String? |  yes  |  |
- | message | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | deliveryCharges | Int? |  yes  |  |
  | cartId | Int? |  yes  |  |
- | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | deliveryChargeOrderValue | Int? |  yes  |  |
  | userType | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | deliveryCharges | Int? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
 
 ---
 
@@ -10468,13 +10469,13 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentConfirmUrl | String? |  yes  |  |
- | success | Bool? |  yes  |  |
  | callbackUrl | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | paymentConfirmUrl | String? |  yes  |  |
+ | cart | [CheckCart](#CheckCart)? |  yes  |  |
  | message | String? |  yes  |  |
  | data | [String: Any]? |  yes  |  |
  | orderId | String? |  yes  |  |
- | cart | [CheckCart](#CheckCart)? |  yes  |  |
  | appInterceptUrl | String? |  yes  |  |
 
 ---
@@ -10509,12 +10510,12 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | pickUpCustomerDetails | [String: Any]? |  yes  | Customer contact details for customer pickup at store |
- | comment | String? |  yes  |  |
+ | gstin | String? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
+ | pickUpCustomerDetails | [String: Any]? |  yes  | Customer contact details for customer pickup at store |
  | giftDetails | [ArticleGiftDetail](#ArticleGiftDetail)? |  yes  |  |
  | deliverySlots | [String: Any]? |  yes  |  |
- | gstin | String? |  yes  |  |
+ | comment | String? |  yes  |  |
 
 ---
 
@@ -10525,8 +10526,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  | cart meta update response message |
  | isValid | Bool? |  yes  |  |
+ | message | String? |  yes  | cart meta update response message |
 
 ---
 
@@ -10560,8 +10561,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | token | String? |  yes  | Short url unique id |
  | shareUrl | String? |  yes  | Short shareable final url |
+ | token | String? |  yes  | Short url unique id |
 
 ---
 
@@ -10573,10 +10574,10 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | user | [String: Any]? |  yes  | User details of who generated share link |
- | createdOn | String? |  yes  |  |
- | meta | [String: Any]? |  yes  | Meta data sent while generating share cart link |
  | token | String? |  yes  | Short link id |
  | source | [String: Any]? |  yes  | Share link device and other source information |
+ | createdOn | String? |  yes  |  |
+ | meta | [String: Any]? |  yes  | Meta data sent while generating share cart link |
 
 ---
 
@@ -10587,25 +10588,25 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | couponText | String? |  yes  |  |
- | checkoutMode | String? |  yes  |  |
- | sharedCartDetails | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
- | deliveryChargeInfo | String? |  yes  |  |
- | buyNow | Bool? |  yes  |  |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | gstin | String? |  yes  |  |
- | id | String? |  yes  |  |
- | restrictCheckout | Bool? |  yes  |  |
- | isValid | Bool? |  yes  |  |
- | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
- | uid | String? |  yes  |  |
+ | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
+ | lastModified | String? |  yes  |  |
  | message | String? |  yes  |  |
- | comment | String? |  yes  |  |
- | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
- | cartId | Int? |  yes  |  |
  | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
+ | sharedCartDetails | [SharedCartDetails](#SharedCartDetails)? |  yes  |  |
+ | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
+ | comment | String? |  yes  |  |
+ | checkoutMode | String? |  yes  |  |
+ | couponText | String? |  yes  |  |
+ | buyNow | Bool? |  yes  |  |
+ | deliveryChargeInfo | String? |  yes  |  |
+ | restrictCheckout | Bool? |  yes  |  |
+ | cartId | Int? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
 
 ---
 
@@ -10616,8 +10617,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cart | [SharedCart](#SharedCart)? |  yes  |  |
  | error | String? |  yes  |  |
+ | cart | [SharedCart](#SharedCart)? |  yes  |  |
 
 ---
 
@@ -10628,12 +10629,12 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | itemImagesUrl | [String]? |  yes  | item images URL |
- | itemId | Int? |  yes  | Item id |
  | itemName | String? |  yes  | Item name |
  | itemPriceDetails | [String: Any]? |  yes  | item price details |
- | itemSlug | String? |  yes  | item slug |
+ | itemImagesUrl | [String]? |  yes  | item images URL |
  | itemBrandName | String? |  yes  | item brand name |
+ | itemId | Int? |  yes  | Item id |
+ | itemSlug | String? |  yes  | item slug |
 
 ---
 
@@ -10645,13 +10646,13 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | id | String? |  yes  | Promotion id |
- | description | String? |  yes  | Offer details including T&C |
- | validTill | String? |  yes  | Datetime ISOString for promotion end date |
- | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
- | offerText | String? |  yes  | Offer title |
- | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
  | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
+ | validTill | String? |  yes  | Datetime ISOString for promotion end date |
+ | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
  | promotionGroup | String? |  yes  | Group of promotion belongs to |
+ | offerText | String? |  yes  | Offer title |
+ | description | String? |  yes  | Offer details including T&C |
+ | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
 
 ---
 
@@ -10686,10 +10687,10 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | currencyCode | String? |  yes  | Currency code for all amounts |
+ | currencySymbol | String? |  yes  | Currency symbol for currency |
  | marked | Int? |  yes  | Original price of product |
  | offerPrice | Double? |  yes  | Discounted per unit price for current offer object |
  | effective | Int? |  yes  | Current per unit price of product after existing deductions |
- | currencySymbol | String? |  yes  | Currency symbol for currency |
 
 ---
 
@@ -10700,11 +10701,11 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | price | [LadderPrice](#LadderPrice)? |  yes  |  |
  | margin | Int? |  yes  | Percentage value of discount |
+ | maxQuantity | Int? |  yes  | Minimum quantity upto which offer is applicable. If not present that offer is applicable on all quantities |
  | type | String? |  yes  | Offer type |
  | minQuantity | Int? |  yes  | Minimum quantity from which offer is applicable |
- | maxQuantity | Int? |  yes  | Minimum quantity upto which offer is applicable. If not present that offer is applicable on all quantities |
- | price | [LadderPrice](#LadderPrice)? |  yes  |  |
 
 ---
 
@@ -10716,15 +10717,15 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | id | String? |  yes  | Promotion id |
- | description | String? |  yes  | Offer details including T&C |
- | validTill | String? |  yes  | Datetime ISOString for promotion end date |
  | calculateOn | String? |  yes  | If this ladder offer is to be calculated on MRP or ESP price |
- | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
- | offerText | String? |  yes  | Offer title |
- | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
  | buyRules | [String: Any]? |  yes  | Buy rules of promotions |
+ | validTill | String? |  yes  | Datetime ISOString for promotion end date |
+ | discountRules | [[String: Any]]? |  yes  | Discount rules of promotions |
  | promotionGroup | String? |  yes  | Group of promotion belongs to |
  | offerPrices | [[LadderOfferItem](#LadderOfferItem)]? |  yes  |  |
+ | offerText | String? |  yes  | Offer title |
+ | description | String? |  yes  | Offer details including T&C |
+ | freeGiftItems | [[FreeGiftItems](#FreeGiftItems)]? |  yes  | Details of free gift items |
 
 ---
 
@@ -10735,8 +10736,8 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  |  |
  | symbol | String? |  yes  |  |
+ | code | String? |  yes  |  |
 
 ---
 
@@ -10759,10 +10760,10 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentGateway | String? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
  | merchantCode | String? |  yes  |  |
  | type | String? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
+ | paymentGateway | String? |  yes  |  |
 
 ---
 
@@ -10773,11 +10774,11 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentMeta | [PaymentMeta](#PaymentMeta) |  no  |  |
- | mode | String |  no  |  |
  | name | String? |  yes  |  |
- | amount | Double? |  yes  |  |
+ | mode | String |  no  |  |
  | payment | String? |  yes  |  |
+ | amount | Double? |  yes  |  |
+ | paymentMeta | [PaymentMeta](#PaymentMeta) |  no  |  |
 
 ---
 
@@ -10788,27 +10789,27 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | callbackUrl | String? |  yes  |  |
- | paymentIdentifier | String? |  yes  |  |
- | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
- | merchantCode | String? |  yes  |  |
- | customMeta | [String: Any]? |  yes  |  |
- | paymentAutoConfirm | Bool? |  yes  |  |
- | paymentMethods | [[PaymentMethod](#PaymentMethod)] |  no  |  |
- | addressId | String? |  yes  |  |
- | billingAddress | [String: Any]? |  yes  |  |
- | paymentParams | [String: Any]? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | paymentMode | String |  no  |  |
- | id | String? |  yes  |  |
- | orderingStore | Int? |  yes  |  |
  | aggregator | String? |  yes  |  |
+ | paymentParams | [String: Any]? |  yes  |  |
+ | customMeta | [String: Any]? |  yes  |  |
  | extraMeta | [String: Any]? |  yes  |  |
- | orderType | String? |  yes  |  |
  | billingAddressId | String? |  yes  |  |
  | deliveryAddress | [String: Any]? |  yes  |  |
+ | orderingStore | Int? |  yes  |  |
+ | paymentMethods | [[PaymentMethod](#PaymentMethod)] |  no  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | callbackUrl | String? |  yes  |  |
+ | paymentMode | String |  no  |  |
+ | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
  | customerDetails | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
+ | addressId | String? |  yes  |  |
+ | merchantCode | String? |  yes  |  |
  | cartId | String? |  yes  |  |
+ | billingAddress | [String: Any]? |  yes  |  |
+ | paymentAutoConfirm | Bool? |  yes  |  |
+ | id | String? |  yes  |  |
+ | paymentIdentifier | String? |  yes  |  |
+ | orderType | String? |  yes  |  |
 
 ---
 
