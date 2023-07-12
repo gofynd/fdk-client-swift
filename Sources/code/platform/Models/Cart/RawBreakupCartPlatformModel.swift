@@ -11,84 +11,84 @@ public extension PlatformClient.ApplicationClient.Cart {
     class RawBreakup: Codable {
         public var subtotal: Double?
 
-        public var codCharge: Double?
-
         public var deliveryCharge: Double?
-
-        public var vog: Double?
-
-        public var fyndCash: Double?
-
-        public var convenienceFee: Double?
 
         public var total: Double?
 
-        public var coupon: Double?
-
-        public var discount: Double?
-
         public var youSaved: Double?
+
+        public var fyndCash: Double?
 
         public var mrpTotal: Double?
 
-        public var gstCharges: Double?
+        public var convenienceFee: Double?
+
+        public var discount: Double?
 
         public var giftCard: Double?
+
+        public var coupon: Double?
+
+        public var vog: Double?
+
+        public var gstCharges: Double?
+
+        public var codCharge: Double?
 
         public enum CodingKeys: String, CodingKey {
             case subtotal
 
-            case codCharge = "cod_charge"
-
             case deliveryCharge = "delivery_charge"
-
-            case vog
-
-            case fyndCash = "fynd_cash"
-
-            case convenienceFee = "convenience_fee"
 
             case total
 
-            case coupon
-
-            case discount
-
             case youSaved = "you_saved"
+
+            case fyndCash = "fynd_cash"
 
             case mrpTotal = "mrp_total"
 
-            case gstCharges = "gst_charges"
+            case convenienceFee = "convenience_fee"
+
+            case discount
 
             case giftCard = "gift_card"
+
+            case coupon
+
+            case vog
+
+            case gstCharges = "gst_charges"
+
+            case codCharge = "cod_charge"
         }
 
         public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
             self.subtotal = subtotal
 
-            self.codCharge = codCharge
-
             self.deliveryCharge = deliveryCharge
-
-            self.vog = vog
-
-            self.fyndCash = fyndCash
-
-            self.convenienceFee = convenienceFee
 
             self.total = total
 
-            self.coupon = coupon
-
-            self.discount = discount
-
             self.youSaved = youSaved
+
+            self.fyndCash = fyndCash
 
             self.mrpTotal = mrpTotal
 
-            self.gstCharges = gstCharges
+            self.convenienceFee = convenienceFee
+
+            self.discount = discount
 
             self.giftCard = giftCard
+
+            self.coupon = coupon
+
+            self.vog = vog
+
+            self.gstCharges = gstCharges
+
+            self.codCharge = codCharge
         }
 
         required public init(from decoder: Decoder) throws {
@@ -96,14 +96,6 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             do {
                 subtotal = try container.decode(Double.self, forKey: .subtotal)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                codCharge = try container.decode(Double.self, forKey: .codCharge)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -119,47 +111,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                vog = try container.decode(Double.self, forKey: .vog)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                fyndCash = try container.decode(Double.self, forKey: .fyndCash)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                convenienceFee = try container.decode(Double.self, forKey: .convenienceFee)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 total = try container.decode(Double.self, forKey: .total)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                coupon = try container.decode(Double.self, forKey: .coupon)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                discount = try container.decode(Double.self, forKey: .discount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -175,7 +127,55 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
+                fyndCash = try container.decode(Double.self, forKey: .fyndCash)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 mrpTotal = try container.decode(Double.self, forKey: .mrpTotal)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                convenienceFee = try container.decode(Double.self, forKey: .convenienceFee)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                discount = try container.decode(Double.self, forKey: .discount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                giftCard = try container.decode(Double.self, forKey: .giftCard)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                coupon = try container.decode(Double.self, forKey: .coupon)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                vog = try container.decode(Double.self, forKey: .vog)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -191,7 +191,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                giftCard = try container.decode(Double.self, forKey: .giftCard)
+                codCharge = try container.decode(Double.self, forKey: .codCharge)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -204,29 +204,29 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(subtotal, forKey: .subtotal)
 
-            try? container.encodeIfPresent(codCharge, forKey: .codCharge)
-
             try? container.encodeIfPresent(deliveryCharge, forKey: .deliveryCharge)
-
-            try? container.encodeIfPresent(vog, forKey: .vog)
-
-            try? container.encodeIfPresent(fyndCash, forKey: .fyndCash)
-
-            try? container.encodeIfPresent(convenienceFee, forKey: .convenienceFee)
 
             try? container.encodeIfPresent(total, forKey: .total)
 
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
-
-            try? container.encodeIfPresent(discount, forKey: .discount)
-
             try? container.encodeIfPresent(youSaved, forKey: .youSaved)
+
+            try? container.encodeIfPresent(fyndCash, forKey: .fyndCash)
 
             try? container.encodeIfPresent(mrpTotal, forKey: .mrpTotal)
 
-            try? container.encodeIfPresent(gstCharges, forKey: .gstCharges)
+            try? container.encodeIfPresent(convenienceFee, forKey: .convenienceFee)
+
+            try? container.encodeIfPresent(discount, forKey: .discount)
 
             try? container.encodeIfPresent(giftCard, forKey: .giftCard)
+
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
+
+            try? container.encodeIfPresent(vog, forKey: .vog)
+
+            try? container.encodeIfPresent(gstCharges, forKey: .gstCharges)
+
+            try? container.encodeIfPresent(codCharge, forKey: .codCharge)
         }
     }
 }

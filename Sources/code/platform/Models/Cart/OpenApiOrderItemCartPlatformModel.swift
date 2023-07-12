@@ -9,155 +9,117 @@ public extension PlatformClient.ApplicationClient.Cart {
      */
 
     class OpenApiOrderItem: Codable {
-        public var extraMeta: [String: Any]?
-
-        public var priceMarked: Double
-
-        public var cashbackApplied: Double
-
-        public var size: String
-
-        public var employeeDiscount: Double?
-
-        public var productId: Int
-
-        public var quantity: Int?
-
-        public var codCharges: Double
-
-        public var amountPaid: Double
-
-        public var priceEffective: Double
-
-        public var loyaltyDiscount: Double?
+        public var meta: CartItemMeta?
 
         public var files: [OpenApiFiles]?
 
-        public var meta: CartItemMeta?
+        public var employeeDiscount: Double?
+
+        public var priceEffective: Double
+
+        public var productId: Int
+
+        public var amountPaid: Double
+
+        public var quantity: Int?
+
+        public var cashbackApplied: Double
 
         public var couponEffectiveDiscount: Double
 
-        public var paymentMethods: [MultiTenderPaymentMethod]
-
         public var deliveryCharges: Double
+
+        public var loyaltyDiscount: Double?
+
+        public var extraMeta: [String: Any]?
+
+        public var codCharges: Double
 
         public var discount: Double
 
+        public var priceMarked: Double
+
+        public var paymentMethods: [MultiTenderPaymentMethod]
+
+        public var size: String
+
         public enum CodingKeys: String, CodingKey {
-            case extraMeta = "extra_meta"
-
-            case priceMarked = "price_marked"
-
-            case cashbackApplied = "cashback_applied"
-
-            case size
-
-            case employeeDiscount = "employee_discount"
-
-            case productId = "product_id"
-
-            case quantity
-
-            case codCharges = "cod_charges"
-
-            case amountPaid = "amount_paid"
-
-            case priceEffective = "price_effective"
-
-            case loyaltyDiscount = "loyalty_discount"
+            case meta
 
             case files
 
-            case meta
+            case employeeDiscount = "employee_discount"
+
+            case priceEffective = "price_effective"
+
+            case productId = "product_id"
+
+            case amountPaid = "amount_paid"
+
+            case quantity
+
+            case cashbackApplied = "cashback_applied"
 
             case couponEffectiveDiscount = "coupon_effective_discount"
 
-            case paymentMethods = "payment_methods"
-
             case deliveryCharges = "delivery_charges"
 
+            case loyaltyDiscount = "loyalty_discount"
+
+            case extraMeta = "extra_meta"
+
+            case codCharges = "cod_charges"
+
             case discount
+
+            case priceMarked = "price_marked"
+
+            case paymentMethods = "payment_methods"
+
+            case size
         }
 
         public init(amountPaid: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, deliveryCharges: Double, discount: Double, employeeDiscount: Double? = nil, extraMeta: [String: Any]? = nil, files: [OpenApiFiles]? = nil, loyaltyDiscount: Double? = nil, meta: CartItemMeta? = nil, paymentMethods: [MultiTenderPaymentMethod], priceEffective: Double, priceMarked: Double, productId: Int, quantity: Int? = nil, size: String) {
-            self.extraMeta = extraMeta
-
-            self.priceMarked = priceMarked
-
-            self.cashbackApplied = cashbackApplied
-
-            self.size = size
-
-            self.employeeDiscount = employeeDiscount
-
-            self.productId = productId
-
-            self.quantity = quantity
-
-            self.codCharges = codCharges
-
-            self.amountPaid = amountPaid
-
-            self.priceEffective = priceEffective
-
-            self.loyaltyDiscount = loyaltyDiscount
+            self.meta = meta
 
             self.files = files
 
-            self.meta = meta
+            self.employeeDiscount = employeeDiscount
+
+            self.priceEffective = priceEffective
+
+            self.productId = productId
+
+            self.amountPaid = amountPaid
+
+            self.quantity = quantity
+
+            self.cashbackApplied = cashbackApplied
 
             self.couponEffectiveDiscount = couponEffectiveDiscount
 
-            self.paymentMethods = paymentMethods
-
             self.deliveryCharges = deliveryCharges
 
+            self.loyaltyDiscount = loyaltyDiscount
+
+            self.extraMeta = extraMeta
+
+            self.codCharges = codCharges
+
             self.discount = discount
+
+            self.priceMarked = priceMarked
+
+            self.paymentMethods = paymentMethods
+
+            self.size = size
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
-
-            cashbackApplied = try container.decode(Double.self, forKey: .cashbackApplied)
-
-            size = try container.decode(String.self, forKey: .size)
-
-            do {
-                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            productId = try container.decode(Int.self, forKey: .productId)
-
-            do {
-                quantity = try container.decode(Int.self, forKey: .quantity)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            codCharges = try container.decode(Double.self, forKey: .codCharges)
-
-            amountPaid = try container.decode(Double.self, forKey: .amountPaid)
-
-            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
-
-            do {
-                loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
+                meta = try container.decode(CartItemMeta.self, forKey: .meta)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,58 +135,96 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                meta = try container.decode(CartItemMeta.self, forKey: .meta)
+                employeeDiscount = try container.decode(Double.self, forKey: .employeeDiscount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            couponEffectiveDiscount = try container.decode(Double.self, forKey: .couponEffectiveDiscount)
+            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
-            paymentMethods = try container.decode([MultiTenderPaymentMethod].self, forKey: .paymentMethods)
+            productId = try container.decode(Int.self, forKey: .productId)
+
+            amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+
+            do {
+                quantity = try container.decode(Int.self, forKey: .quantity)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            cashbackApplied = try container.decode(Double.self, forKey: .cashbackApplied)
+
+            couponEffectiveDiscount = try container.decode(Double.self, forKey: .couponEffectiveDiscount)
 
             deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
 
+            do {
+                loyaltyDiscount = try container.decode(Double.self, forKey: .loyaltyDiscount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                extraMeta = try container.decode([String: Any].self, forKey: .extraMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            codCharges = try container.decode(Double.self, forKey: .codCharges)
+
             discount = try container.decode(Double.self, forKey: .discount)
+
+            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
+
+            paymentMethods = try container.decode([MultiTenderPaymentMethod].self, forKey: .paymentMethods)
+
+            size = try container.decode(String.self, forKey: .size)
         }
 
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
-
-            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
-
-            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
-
-            try? container.encodeIfPresent(productId, forKey: .productId)
-
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
-
-            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
-
-            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
-
-            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
-
-            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
+            try? container.encodeIfPresent(meta, forKey: .meta)
 
             try? container.encodeIfPresent(files, forKey: .files)
 
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
+
+            try? container.encodeIfPresent(priceEffective, forKey: .priceEffective)
+
+            try? container.encodeIfPresent(productId, forKey: .productId)
+
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+
+            try? container.encodeIfPresent(quantity, forKey: .quantity)
+
+            try? container.encodeIfPresent(cashbackApplied, forKey: .cashbackApplied)
 
             try? container.encodeIfPresent(couponEffectiveDiscount, forKey: .couponEffectiveDiscount)
 
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
-
             try? container.encodeIfPresent(deliveryCharges, forKey: .deliveryCharges)
 
+            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
+
+            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+
+            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+
             try? container.encodeIfPresent(discount, forKey: .discount)
+
+            try? container.encodeIfPresent(priceMarked, forKey: .priceMarked)
+
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+
+            try? container.encodeIfPresent(size, forKey: .size)
         }
     }
 }

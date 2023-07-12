@@ -148,7 +148,7 @@ Search an existing user.
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").user.searchUsers(q: q) { (response, error) in
+platformClient.application("<APPLICATION_ID>").user.searchUsers(q: q, query: query) { (response, error) in
     // Use response
 }
 ```
@@ -159,7 +159,8 @@ platformClient.application("<APPLICATION_ID>").user.searchUsers(q: q) { (respons
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| q | String? | no | The search query. Mobile number, email ID or user ID of a customer. |  
+| q | String? | no | The search query. Mobile number, email ID or user ID of a customer. |   
+| query | [[String: Any]]? | no | The search queries. Mobile numbers or email IDs of customers. |  
 
 
 

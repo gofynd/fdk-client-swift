@@ -11,30 +11,30 @@ public extension PlatformClient.Finance {
     class DownloadReport: Codable {
         public var endDate: String?
 
+        public var pagesize: Int?
+
         public var startDate: String?
 
         public var page: Int?
 
-        public var pagesize: Int?
-
         public enum CodingKeys: String, CodingKey {
             case endDate = "end_date"
+
+            case pagesize
 
             case startDate = "start_date"
 
             case page
-
-            case pagesize
         }
 
         public init(endDate: String? = nil, page: Int? = nil, pagesize: Int? = nil, startDate: String? = nil) {
             self.endDate = endDate
 
+            self.pagesize = pagesize
+
             self.startDate = startDate
 
             self.page = page
-
-            self.pagesize = pagesize
         }
 
         required public init(from decoder: Decoder) throws {
@@ -42,6 +42,14 @@ public extension PlatformClient.Finance {
 
             do {
                 endDate = try container.decode(String.self, forKey: .endDate)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pagesize = try container.decode(Int.self, forKey: .pagesize)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -63,14 +71,6 @@ public extension PlatformClient.Finance {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            do {
-                pagesize = try container.decode(Int.self, forKey: .pagesize)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -78,11 +78,11 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(endDate, forKey: .endDate)
 
+            try? container.encodeIfPresent(pagesize, forKey: .pagesize)
+
             try? container.encodeIfPresent(startDate, forKey: .startDate)
 
             try? container.encodeIfPresent(page, forKey: .page)
-
-            try? container.encodeIfPresent(pagesize, forKey: .pagesize)
         }
     }
 }

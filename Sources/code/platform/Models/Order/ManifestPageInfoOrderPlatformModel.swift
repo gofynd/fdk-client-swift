@@ -9,42 +9,42 @@ public extension PlatformClient.Order {
      */
 
     class ManifestPageInfo: Codable {
-        public var hasPrevious: Bool
-
-        public var size: Int
-
-        public var total: Int
+        public var current: Int
 
         public var type: String
 
-        public var current: Int
+        public var hasPrevious: Bool
+
+        public var total: Int
+
+        public var size: Int
 
         public var hasNext: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case hasPrevious = "has_previous"
-
-            case size
-
-            case total
+            case current
 
             case type
 
-            case current
+            case hasPrevious = "has_previous"
+
+            case total
+
+            case size
 
             case hasNext = "has_next"
         }
 
         public init(current: Int, hasNext: Bool, hasPrevious: Bool, size: Int, total: Int, type: String) {
-            self.hasPrevious = hasPrevious
-
-            self.size = size
-
-            self.total = total
+            self.current = current
 
             self.type = type
 
-            self.current = current
+            self.hasPrevious = hasPrevious
+
+            self.total = total
+
+            self.size = size
 
             self.hasNext = hasNext
         }
@@ -52,15 +52,15 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
-
-            size = try container.decode(Int.self, forKey: .size)
-
-            total = try container.decode(Int.self, forKey: .total)
+            current = try container.decode(Int.self, forKey: .current)
 
             type = try container.decode(String.self, forKey: .type)
 
-            current = try container.decode(Int.self, forKey: .current)
+            hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+
+            total = try container.decode(Int.self, forKey: .total)
+
+            size = try container.decode(Int.self, forKey: .size)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
         }
@@ -68,15 +68,15 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(total, forKey: .total)
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+
+            try? container.encodeIfPresent(total, forKey: .total)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
         }
@@ -90,42 +90,42 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class ManifestPageInfo: Codable {
-        public var hasPrevious: Bool
-
-        public var size: Int
-
-        public var total: Int
+        public var current: Int
 
         public var type: String
 
-        public var current: Int
+        public var hasPrevious: Bool
+
+        public var total: Int
+
+        public var size: Int
 
         public var hasNext: Bool
 
         public enum CodingKeys: String, CodingKey {
-            case hasPrevious = "has_previous"
-
-            case size
-
-            case total
+            case current
 
             case type
 
-            case current
+            case hasPrevious = "has_previous"
+
+            case total
+
+            case size
 
             case hasNext = "has_next"
         }
 
         public init(current: Int, hasNext: Bool, hasPrevious: Bool, size: Int, total: Int, type: String) {
-            self.hasPrevious = hasPrevious
-
-            self.size = size
-
-            self.total = total
+            self.current = current
 
             self.type = type
 
-            self.current = current
+            self.hasPrevious = hasPrevious
+
+            self.total = total
+
+            self.size = size
 
             self.hasNext = hasNext
         }
@@ -133,15 +133,15 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
-
-            size = try container.decode(Int.self, forKey: .size)
-
-            total = try container.decode(Int.self, forKey: .total)
+            current = try container.decode(Int.self, forKey: .current)
 
             type = try container.decode(String.self, forKey: .type)
 
-            current = try container.decode(Int.self, forKey: .current)
+            hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+
+            total = try container.decode(Int.self, forKey: .total)
+
+            size = try container.decode(Int.self, forKey: .size)
 
             hasNext = try container.decode(Bool.self, forKey: .hasNext)
         }
@@ -149,15 +149,15 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
-
-            try? container.encodeIfPresent(size, forKey: .size)
-
-            try? container.encodeIfPresent(total, forKey: .total)
+            try? container.encodeIfPresent(current, forKey: .current)
 
             try? container.encodeIfPresent(type, forKey: .type)
 
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+
+            try? container.encodeIfPresent(total, forKey: .total)
+
+            try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(hasNext, forKey: .hasNext)
         }

@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class DeleteConfig: Codable {
         public var slugValues: [String]?
 
-        public var affiliateId: String?
-
         public var sellerId: Int?
+
+        public var affiliateId: String?
 
         public enum CodingKeys: String, CodingKey {
             case slugValues = "slug_values"
 
-            case affiliateId = "affiliate_id"
-
             case sellerId = "seller_id"
+
+            case affiliateId = "affiliate_id"
         }
 
         public init(affiliateId: String? = nil, sellerId: Int? = nil, slugValues: [String]? = nil) {
             self.slugValues = slugValues
 
-            self.affiliateId = affiliateId
-
             self.sellerId = sellerId
+
+            self.affiliateId = affiliateId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                sellerId = try container.decode(Int.self, forKey: .sellerId)
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(slugValues, forKey: .slugValues)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }
     }
 }

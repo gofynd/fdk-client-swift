@@ -11,24 +11,24 @@ public extension PlatformClient.Finance {
     class GetCustomerCreditBalance: Codable {
         public var customerMobileNumber: String?
 
-        public var affiliateId: String?
-
         public var sellerId: Int?
+
+        public var affiliateId: String?
 
         public enum CodingKeys: String, CodingKey {
             case customerMobileNumber = "customer_mobile_number"
 
-            case affiliateId = "affiliate_id"
-
             case sellerId = "seller_id"
+
+            case affiliateId = "affiliate_id"
         }
 
         public init(affiliateId: String? = nil, customerMobileNumber: String? = nil, sellerId: Int? = nil) {
             self.customerMobileNumber = customerMobileNumber
 
-            self.affiliateId = affiliateId
-
             self.sellerId = sellerId
+
+            self.affiliateId = affiliateId
         }
 
         required public init(from decoder: Decoder) throws {
@@ -43,7 +43,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                sellerId = try container.decode(Int.self, forKey: .sellerId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -51,7 +51,7 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                sellerId = try container.decode(Int.self, forKey: .sellerId)
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,9 +64,9 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(customerMobileNumber, forKey: .customerMobileNumber)
 
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-
             try? container.encodeIfPresent(sellerId, forKey: .sellerId)
+
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
         }
     }
 }
