@@ -3099,7 +3099,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -3139,7 +3139,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
-                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)/",
+                url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)",
                 query: nil,
                 body: body.dictionary,
                 headers: [],

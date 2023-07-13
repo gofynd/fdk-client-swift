@@ -13,22 +13,22 @@ public extension PlatformClient.Serviceability {
 
         public var ignoredLocations: [String]
 
-        public var articles: [[String: Any]]
-
         public var toPincode: String
 
         public var identifier: String
+
+        public var articles: [[String: Any]]
 
         public enum CodingKeys: String, CodingKey {
             case configuration
 
             case ignoredLocations = "ignored_locations"
 
-            case articles
-
             case toPincode = "to_pincode"
 
             case identifier
+
+            case articles
         }
 
         public init(articles: [[String: Any]], configuration: [String: Any], identifier: String, ignoredLocations: [String], toPincode: String) {
@@ -36,11 +36,11 @@ public extension PlatformClient.Serviceability {
 
             self.ignoredLocations = ignoredLocations
 
-            self.articles = articles
-
             self.toPincode = toPincode
 
             self.identifier = identifier
+
+            self.articles = articles
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,11 +50,11 @@ public extension PlatformClient.Serviceability {
 
             ignoredLocations = try container.decode([String].self, forKey: .ignoredLocations)
 
-            articles = try container.decode([[String: Any]].self, forKey: .articles)
-
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
             identifier = try container.decode(String.self, forKey: .identifier)
+
+            articles = try container.decode([[String: Any]].self, forKey: .articles)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -64,11 +64,11 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(ignoredLocations, forKey: .ignoredLocations)
 
-            try? container.encodeIfPresent(articles, forKey: .articles)
-
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(articles, forKey: .articles)
         }
     }
 }
@@ -84,22 +84,22 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public var ignoredLocations: [String]
 
-        public var articles: [[String: Any]]
-
         public var toPincode: String
 
         public var identifier: String
+
+        public var articles: [[String: Any]]
 
         public enum CodingKeys: String, CodingKey {
             case configuration
 
             case ignoredLocations = "ignored_locations"
 
-            case articles
-
             case toPincode = "to_pincode"
 
             case identifier
+
+            case articles
         }
 
         public init(articles: [[String: Any]], configuration: [String: Any], identifier: String, ignoredLocations: [String], toPincode: String) {
@@ -107,11 +107,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             self.ignoredLocations = ignoredLocations
 
-            self.articles = articles
-
             self.toPincode = toPincode
 
             self.identifier = identifier
+
+            self.articles = articles
         }
 
         required public init(from decoder: Decoder) throws {
@@ -121,11 +121,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             ignoredLocations = try container.decode([String].self, forKey: .ignoredLocations)
 
-            articles = try container.decode([[String: Any]].self, forKey: .articles)
-
             toPincode = try container.decode(String.self, forKey: .toPincode)
 
             identifier = try container.decode(String.self, forKey: .identifier)
+
+            articles = try container.decode([[String: Any]].self, forKey: .articles)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -135,11 +135,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(ignoredLocations, forKey: .ignoredLocations)
 
-            try? container.encodeIfPresent(articles, forKey: .articles)
-
             try? container.encodeIfPresent(toPincode, forKey: .toPincode)
 
             try? container.encodeIfPresent(identifier, forKey: .identifier)
+
+            try? container.encodeIfPresent(articles, forKey: .articles)
         }
     }
 }

@@ -13,9 +13,9 @@ public extension PlatformClient.Order {
 
         public var remarks: String?
 
-        public var id: Int
-
         public var bagList: [Int]?
+
+        public var id: Int
 
         public var status: String?
 
@@ -26,9 +26,9 @@ public extension PlatformClient.Order {
 
             case remarks
 
-            case id
-
             case bagList = "bag_list"
+
+            case id
 
             case status
 
@@ -40,9 +40,9 @@ public extension PlatformClient.Order {
 
             self.remarks = remarks
 
-            self.id = id
-
             self.bagList = bagList
+
+            self.id = id
 
             self.status = status
 
@@ -68,8 +68,6 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            id = try container.decode(Int.self, forKey: .id)
-
             do {
                 bagList = try container.decode([Int].self, forKey: .bagList)
 
@@ -77,6 +75,8 @@ public extension PlatformClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 status = try container.decode(String.self, forKey: .status)
@@ -96,9 +96,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(remarks, forKey: .remarks)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(bagList, forKey: .bagList)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(status, forKey: .status)
 
@@ -118,9 +118,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var remarks: String?
 
-        public var id: Int
-
         public var bagList: [Int]?
+
+        public var id: Int
 
         public var status: String?
 
@@ -131,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             case remarks
 
-            case id
-
             case bagList = "bag_list"
+
+            case id
 
             case status
 
@@ -145,9 +145,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.remarks = remarks
 
-            self.id = id
-
             self.bagList = bagList
+
+            self.id = id
 
             self.status = status
 
@@ -173,8 +173,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            id = try container.decode(Int.self, forKey: .id)
-
             do {
                 bagList = try container.decode([Int].self, forKey: .bagList)
 
@@ -182,6 +180,8 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            id = try container.decode(Int.self, forKey: .id)
 
             do {
                 status = try container.decode(String.self, forKey: .status)
@@ -201,9 +201,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(remarks, forKey: .remarks)
 
-            try? container.encodeIfPresent(id, forKey: .id)
-
             try? container.encodeIfPresent(bagList, forKey: .bagList)
+
+            try? container.encodeIfPresent(id, forKey: .id)
 
             try? container.encodeIfPresent(status, forKey: .status)
 

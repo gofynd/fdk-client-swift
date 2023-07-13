@@ -9,60 +9,72 @@ public extension ApplicationClient.Payment {
     class ValidateCustomerRequest: Codable {
         public var aggregator: String
 
-        public var orderItems: [[String: Any]]?
+        public var transactionAmountInPaise: Int
 
         public var billingAddress: [String: Any]?
 
-        public var transactionAmountInPaise: Int
+        public var phoneNumber: String
+
+        public var orderItems: [[String: Any]]?
 
         public var merchantParams: [String: Any]?
 
-        public var payload: String?
-
-        public var phoneNumber: String
-
         public var deliveryAddress: [String: Any]?
+
+        public var payload: String?
 
         public enum CodingKeys: String, CodingKey {
             case aggregator
 
-            case orderItems = "order_items"
+            case transactionAmountInPaise = "transaction_amount_in_paise"
 
             case billingAddress = "billing_address"
 
-            case transactionAmountInPaise = "transaction_amount_in_paise"
+            case phoneNumber = "phone_number"
+
+            case orderItems = "order_items"
 
             case merchantParams = "merchant_params"
 
-            case payload
-
-            case phoneNumber = "phone_number"
-
             case deliveryAddress = "delivery_address"
+
+            case payload
         }
 
         public init(aggregator: String, billingAddress: [String: Any]? = nil, deliveryAddress: [String: Any]? = nil, merchantParams: [String: Any]? = nil, orderItems: [[String: Any]]? = nil, payload: String? = nil, phoneNumber: String, transactionAmountInPaise: Int) {
             self.aggregator = aggregator
 
-            self.orderItems = orderItems
+            self.transactionAmountInPaise = transactionAmountInPaise
 
             self.billingAddress = billingAddress
 
-            self.transactionAmountInPaise = transactionAmountInPaise
+            self.phoneNumber = phoneNumber
+
+            self.orderItems = orderItems
 
             self.merchantParams = merchantParams
 
-            self.payload = payload
-
-            self.phoneNumber = phoneNumber
-
             self.deliveryAddress = deliveryAddress
+
+            self.payload = payload
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             aggregator = try container.decode(String.self, forKey: .aggregator)
+
+            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
+
+            do {
+                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
 
             do {
                 orderItems = try container.decode([[String: Any]].self, forKey: .orderItems)
@@ -73,17 +85,15 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             do {
-                billingAddress = try container.decode([String: Any].self, forKey: .billingAddress)
+                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            transactionAmountInPaise = try container.decode(Int.self, forKey: .transactionAmountInPaise)
-
             do {
-                merchantParams = try container.decode([String: Any].self, forKey: .merchantParams)
+                deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -97,16 +107,6 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
-
-            phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
-
-            do {
-                deliveryAddress = try container.decode([String: Any].self, forKey: .deliveryAddress)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -114,19 +114,19 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(aggregator, forKey: .aggregator)
 
-            try? container.encodeIfPresent(orderItems, forKey: .orderItems)
+            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
 
             try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
 
-            try? container.encodeIfPresent(transactionAmountInPaise, forKey: .transactionAmountInPaise)
+            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+
+            try? container.encodeIfPresent(orderItems, forKey: .orderItems)
 
             try? container.encodeIfPresent(merchantParams, forKey: .merchantParams)
 
-            try? container.encode(payload, forKey: .payload)
-
-            try? container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
-
             try? container.encodeIfPresent(deliveryAddress, forKey: .deliveryAddress)
+
+            try? container.encode(payload, forKey: .payload)
         }
     }
 }

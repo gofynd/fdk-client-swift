@@ -11,24 +11,24 @@ public extension PlatformClient.Payment {
     class EdcModelData: Codable {
         public var aggregatorId: Int
 
-        public var aggregator: String
-
         public var models: [String]
+
+        public var aggregator: String
 
         public enum CodingKeys: String, CodingKey {
             case aggregatorId = "aggregator_id"
 
-            case aggregator
-
             case models
+
+            case aggregator
         }
 
         public init(aggregator: String, aggregatorId: Int, models: [String]) {
             self.aggregatorId = aggregatorId
 
-            self.aggregator = aggregator
-
             self.models = models
+
+            self.aggregator = aggregator
         }
 
         required public init(from decoder: Decoder) throws {
@@ -36,9 +36,9 @@ public extension PlatformClient.Payment {
 
             aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             models = try container.decode([String].self, forKey: .models)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -46,9 +46,9 @@ public extension PlatformClient.Payment {
 
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encodeIfPresent(models, forKey: .models)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
         }
     }
 }
@@ -62,24 +62,24 @@ public extension PlatformClient.ApplicationClient.Payment {
     class EdcModelData: Codable {
         public var aggregatorId: Int
 
-        public var aggregator: String
-
         public var models: [String]
+
+        public var aggregator: String
 
         public enum CodingKeys: String, CodingKey {
             case aggregatorId = "aggregator_id"
 
-            case aggregator
-
             case models
+
+            case aggregator
         }
 
         public init(aggregator: String, aggregatorId: Int, models: [String]) {
             self.aggregatorId = aggregatorId
 
-            self.aggregator = aggregator
-
             self.models = models
+
+            self.aggregator = aggregator
         }
 
         required public init(from decoder: Decoder) throws {
@@ -87,9 +87,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             aggregatorId = try container.decode(Int.self, forKey: .aggregatorId)
 
-            aggregator = try container.decode(String.self, forKey: .aggregator)
-
             models = try container.decode([String].self, forKey: .models)
+
+            aggregator = try container.decode(String.self, forKey: .aggregator)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -97,9 +97,9 @@ public extension PlatformClient.ApplicationClient.Payment {
 
             try? container.encodeIfPresent(aggregatorId, forKey: .aggregatorId)
 
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-
             try? container.encodeIfPresent(models, forKey: .models)
+
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
         }
     }
 }
