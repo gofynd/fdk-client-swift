@@ -9,36 +9,36 @@ public extension ApplicationClient.Payment {
     class CreatePaymentLinkMeta: Codable {
         public var cartId: String
 
-        public var pincode: String
-
         public var checkoutMode: String
 
-        public var amount: String
+        public var pincode: String
 
         public var assignCardId: String?
+
+        public var amount: String
 
         public enum CodingKeys: String, CodingKey {
             case cartId = "cart_id"
 
-            case pincode
-
             case checkoutMode = "checkout_mode"
 
-            case amount
+            case pincode
 
             case assignCardId = "assign_card_id"
+
+            case amount
         }
 
         public init(amount: String, assignCardId: String? = nil, cartId: String, checkoutMode: String, pincode: String) {
             self.cartId = cartId
 
-            self.pincode = pincode
-
             self.checkoutMode = checkoutMode
 
-            self.amount = amount
+            self.pincode = pincode
 
             self.assignCardId = assignCardId
+
+            self.amount = amount
         }
 
         required public init(from decoder: Decoder) throws {
@@ -46,11 +46,9 @@ public extension ApplicationClient.Payment {
 
             cartId = try container.decode(String.self, forKey: .cartId)
 
-            pincode = try container.decode(String.self, forKey: .pincode)
-
             checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
 
-            amount = try container.decode(String.self, forKey: .amount)
+            pincode = try container.decode(String.self, forKey: .pincode)
 
             do {
                 assignCardId = try container.decode(String.self, forKey: .assignCardId)
@@ -59,6 +57,8 @@ public extension ApplicationClient.Payment {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            amount = try container.decode(String.self, forKey: .amount)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -66,13 +66,13 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(cartId, forKey: .cartId)
 
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
-
             try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
 
-            try? container.encodeIfPresent(amount, forKey: .amount)
+            try? container.encodeIfPresent(pincode, forKey: .pincode)
 
             try? container.encode(assignCardId, forKey: .assignCardId)
+
+            try? container.encodeIfPresent(amount, forKey: .amount)
         }
     }
 }

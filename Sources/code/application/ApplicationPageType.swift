@@ -23,8 +23,6 @@ public extension ApplicationClient.Content {
         case page
         case policy
         case product
-        case productReviews = "product-reviews"
-        case addProductReview = "add-product-review"
         case productRequest = "product-request"
         case products
         case profile
@@ -49,6 +47,7 @@ public extension ApplicationClient.Content {
         case register
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
+        case orderStatus = "order-status"
 
         init?(path: String) {
             let slash = CharacterSet(charactersIn: "/")
@@ -137,10 +136,6 @@ public extension ApplicationClient.Content {
                 return "/privacy-policy"
             case .product:
                 return "/product/:slug"
-            case .productReviews:
-                return "/product/:slug/reviews"
-            case .addProductReview:
-                return "/product/:slug/add-review"
             case .productRequest:
                 return "/product-request/"
             case .products:
@@ -189,6 +184,8 @@ public extension ApplicationClient.Content {
                 return "/shipping-policy"
             case .returnPolicy:
                 return "/return-policy"
+            case .orderStatus:
+                return "/cart/order-status"
             }
         }
 
@@ -236,10 +233,6 @@ public extension ApplicationClient.Content {
                 return "Privacy Policy"
             case .product:
                 return "Product"
-            case .productReviews:
-                return "Product Reviews"
-            case .addProductReview:
-                return "Add Product review"
             case .productRequest:
                 return "Product Request"
             case .products:
@@ -288,6 +281,8 @@ public extension ApplicationClient.Content {
                 return "Shipping policy"
             case .returnPolicy:
                 return "Return policy"
+            case .orderStatus:
+                return "Order status"
             }
         }
 
@@ -334,10 +329,6 @@ public extension ApplicationClient.Content {
             case .policy:
                 return []
             case .product:
-                return [(name: "slug", required: true)]
-            case .productReviews:
-                return [(name: "slug", required: true)]
-            case .addProductReview:
                 return [(name: "slug", required: true)]
             case .productRequest:
                 return []
@@ -387,6 +378,8 @@ public extension ApplicationClient.Content {
                 return []
             case .returnPolicy:
                 return []
+            case .orderStatus:
+                return []
             }
         }
 
@@ -433,10 +426,6 @@ public extension ApplicationClient.Content {
             case .policy:
                 return []
             case .product:
-                return []
-            case .productReviews:
-                return []
-            case .addProductReview:
                 return []
             case .productRequest:
                 return []
@@ -485,6 +474,8 @@ public extension ApplicationClient.Content {
             case .shippingPolicy:
                 return []
             case .returnPolicy:
+                return []
+            case .orderStatus:
                 return []
             }
         }

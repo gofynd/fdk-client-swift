@@ -3,6 +3,8 @@ import Foundation
 
 public extension PublicClient.Configuration {}
 
+public extension PublicClient.Inventory {}
+
 public extension PublicClient.Webhook {
     /*
          Enum: SubscriberStatus
@@ -16,5 +18,3 @@ public extension PublicClient.Webhook {
         case blocked
     }
 }
-
-public extension PublicClient.Inventory {}

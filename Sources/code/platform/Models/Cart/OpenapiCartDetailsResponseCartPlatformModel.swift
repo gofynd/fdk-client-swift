@@ -11,18 +11,18 @@ public extension PlatformClient.ApplicationClient.Cart {
     class OpenapiCartDetailsResponse: Codable {
         public var isValid: Bool?
 
-        public var breakupValues: CartBreakup?
-
         public var message: String?
+
+        public var breakupValues: CartBreakup?
 
         public var items: [CartProductInfo]?
 
         public enum CodingKeys: String, CodingKey {
             case isValid = "is_valid"
 
-            case breakupValues = "breakup_values"
-
             case message
+
+            case breakupValues = "breakup_values"
 
             case items
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(breakupValues: CartBreakup? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, message: String? = nil) {
             self.isValid = isValid
 
-            self.breakupValues = breakupValues
-
             self.message = message
+
+            self.breakupValues = breakupValues
 
             self.items = items
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                message = try container.decode(String.self, forKey: .message)
+                breakupValues = try container.decode(CartBreakup.self, forKey: .breakupValues)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(isValid, forKey: .isValid)
 
-            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
-
             try? container.encodeIfPresent(message, forKey: .message)
+
+            try? container.encodeIfPresent(breakupValues, forKey: .breakupValues)
 
             try? container.encodeIfPresent(items, forKey: .items)
         }

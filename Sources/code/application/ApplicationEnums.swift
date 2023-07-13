@@ -1,6 +1,8 @@
 
 import Foundation
 
+public extension ApplicationClient.Content {}
+
 public extension ApplicationClient.Lead {
     /*
          Enum: PriorityEnum
@@ -74,5 +76,3 @@ public extension ApplicationClient.Lead {
         case kapture
     }
 }
-
-public extension ApplicationClient.Content {}

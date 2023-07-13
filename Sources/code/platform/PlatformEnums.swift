@@ -1,6 +1,22 @@
 
 import Foundation
 
+public extension PlatformClient.Catalog {}
+
+public extension PlatformClient.ApplicationClient.Catalog {}
+
+public extension PlatformClient.ApplicationClient.Content {
+    /*
+         Enum: GenerationEntityType
+         Used By: Content
+     */
+    enum GenerationEntityType: String, Codable {
+        case title
+
+        case description
+    }
+}
+
 public extension PlatformClient.Lead {
     /*
          Enum: PriorityEnum
@@ -148,22 +164,6 @@ public extension PlatformClient.ApplicationClient.Lead {
         case kapture
     }
 }
-
-public extension PlatformClient.ApplicationClient.Content {
-    /*
-         Enum: GenerationEntityType
-         Used By: Content
-     */
-    enum GenerationEntityType: String, Codable {
-        case title
-
-        case description
-    }
-}
-
-public extension PlatformClient.Catalog {}
-
-public extension PlatformClient.ApplicationClient.Catalog {}
 
 public extension PlatformClient.Webhook {
     /*
