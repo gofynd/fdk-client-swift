@@ -9,36 +9,38 @@ public extension ApplicationClient.Payment {
     class ErrorResponse: Codable {
         public var message: String
 
+        public var success: Bool
+
         public var error: ErrorDescription?
 
         public var statusCode: Int
 
-        public var success: Bool
-
         public enum CodingKeys: String, CodingKey {
             case message
+
+            case success
 
             case error
 
             case statusCode = "status_code"
-
-            case success
         }
 
         public init(error: ErrorDescription? = nil, message: String, statusCode: Int, success: Bool) {
             self.message = message
 
+            self.success = success
+
             self.error = error
 
             self.statusCode = statusCode
-
-            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             message = try container.decode(String.self, forKey: .message)
+
+            success = try container.decode(Bool.self, forKey: .success)
 
             do {
                 error = try container.decode(ErrorDescription.self, forKey: .error)
@@ -49,8 +51,6 @@ public extension ApplicationClient.Payment {
             } catch {}
 
             statusCode = try container.decode(Int.self, forKey: .statusCode)
-
-            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -58,11 +58,11 @@ public extension ApplicationClient.Payment {
 
             try? container.encodeIfPresent(message, forKey: .message)
 
+            try? container.encodeIfPresent(success, forKey: .success)
+
             try? container.encode(error, forKey: .error)
 
             try? container.encodeIfPresent(statusCode, forKey: .statusCode)
-
-            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

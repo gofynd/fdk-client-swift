@@ -11,11 +11,11 @@ public extension ApplicationClient.PosCart {
 
         public var aggregatorName: String?
 
-        public var addressId: String?
+        public var paymentMode: String?
 
         public var merchantCode: String?
 
-        public var paymentMode: String?
+        public var addressId: String?
 
         public var id: String?
 
@@ -24,11 +24,11 @@ public extension ApplicationClient.PosCart {
 
             case aggregatorName = "aggregator_name"
 
-            case addressId = "address_id"
+            case paymentMode = "payment_mode"
 
             case merchantCode = "merchant_code"
 
-            case paymentMode = "payment_mode"
+            case addressId = "address_id"
 
             case id
         }
@@ -38,11 +38,11 @@ public extension ApplicationClient.PosCart {
 
             self.aggregatorName = aggregatorName
 
-            self.addressId = addressId
+            self.paymentMode = paymentMode
 
             self.merchantCode = merchantCode
 
-            self.paymentMode = paymentMode
+            self.addressId = addressId
 
             self.id = id
         }
@@ -67,7 +67,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                addressId = try container.decode(String.self, forKey: .addressId)
+                paymentMode = try container.decode(String.self, forKey: .paymentMode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -83,7 +83,7 @@ public extension ApplicationClient.PosCart {
             } catch {}
 
             do {
-                paymentMode = try container.decode(String.self, forKey: .paymentMode)
+                addressId = try container.decode(String.self, forKey: .addressId)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,11 +106,11 @@ public extension ApplicationClient.PosCart {
 
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
 
-            try? container.encodeIfPresent(addressId, forKey: .addressId)
+            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
 
             try? container.encodeIfPresent(merchantCode, forKey: .merchantCode)
 
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encodeIfPresent(addressId, forKey: .addressId)
 
             try? container.encodeIfPresent(id, forKey: .id)
         }

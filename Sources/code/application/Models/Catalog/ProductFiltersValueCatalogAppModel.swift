@@ -9,78 +9,78 @@ public extension ApplicationClient.Catalog {
     class ProductFiltersValue: Codable {
         public var displayFormat: String?
 
-        public var min: Int?
-
-        public var value: String?
-
-        public var queryFormat: String?
-
-        public var isSelected: Bool
-
-        public var selectedMax: Int?
-
-        public var currencyCode: String?
-
         public var currencySymbol: String?
-
-        public var selectedMin: Int?
 
         public var count: Int?
 
-        public var max: Int?
+        public var min: Int?
+
+        public var queryFormat: String?
 
         public var display: String
+
+        public var currencyCode: String?
+
+        public var selectedMax: Int?
+
+        public var selectedMin: Int?
+
+        public var value: String?
+
+        public var max: Int?
+
+        public var isSelected: Bool
 
         public enum CodingKeys: String, CodingKey {
             case displayFormat = "display_format"
 
-            case min
-
-            case value
-
-            case queryFormat = "query_format"
-
-            case isSelected = "is_selected"
-
-            case selectedMax = "selected_max"
-
-            case currencyCode = "currency_code"
-
             case currencySymbol = "currency_symbol"
-
-            case selectedMin = "selected_min"
 
             case count
 
-            case max
+            case min
+
+            case queryFormat = "query_format"
 
             case display
+
+            case currencyCode = "currency_code"
+
+            case selectedMax = "selected_max"
+
+            case selectedMin = "selected_min"
+
+            case value
+
+            case max
+
+            case isSelected = "is_selected"
         }
 
         public init(count: Int? = nil, currencyCode: String? = nil, currencySymbol: String? = nil, display: String, displayFormat: String? = nil, isSelected: Bool, max: Int? = nil, min: Int? = nil, queryFormat: String? = nil, selectedMax: Int? = nil, selectedMin: Int? = nil, value: String? = nil) {
             self.displayFormat = displayFormat
 
-            self.min = min
-
-            self.value = value
-
-            self.queryFormat = queryFormat
-
-            self.isSelected = isSelected
-
-            self.selectedMax = selectedMax
-
-            self.currencyCode = currencyCode
-
             self.currencySymbol = currencySymbol
-
-            self.selectedMin = selectedMin
 
             self.count = count
 
-            self.max = max
+            self.min = min
+
+            self.queryFormat = queryFormat
 
             self.display = display
+
+            self.currencyCode = currencyCode
+
+            self.selectedMax = selectedMax
+
+            self.selectedMin = selectedMin
+
+            self.value = value
+
+            self.max = max
+
+            self.isSelected = isSelected
         }
 
         required public init(from decoder: Decoder) throws {
@@ -88,48 +88,6 @@ public extension ApplicationClient.Catalog {
 
             do {
                 displayFormat = try container.decode(String.self, forKey: .displayFormat)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                min = try container.decode(Int.self, forKey: .min)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                value = try container.decode(String.self, forKey: .value)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                queryFormat = try container.decode(String.self, forKey: .queryFormat)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            isSelected = try container.decode(Bool.self, forKey: .isSelected)
-
-            do {
-                selectedMax = try container.decode(Int.self, forKey: .selectedMax)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currencyCode = try container.decode(String.self, forKey: .currencyCode)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -145,6 +103,48 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
+                count = try container.decode(Int.self, forKey: .count)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                min = try container.decode(Int.self, forKey: .min)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                queryFormat = try container.decode(String.self, forKey: .queryFormat)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            display = try container.decode(String.self, forKey: .display)
+
+            do {
+                currencyCode = try container.decode(String.self, forKey: .currencyCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                selectedMax = try container.decode(Int.self, forKey: .selectedMax)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
                 selectedMin = try container.decode(Int.self, forKey: .selectedMin)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -153,7 +153,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                count = try container.decode(Int.self, forKey: .count)
+                value = try container.decode(String.self, forKey: .value)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -168,7 +168,7 @@ public extension ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            display = try container.decode(String.self, forKey: .display)
+            isSelected = try container.decode(Bool.self, forKey: .isSelected)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -176,27 +176,27 @@ public extension ApplicationClient.Catalog {
 
             try? container.encodeIfPresent(displayFormat, forKey: .displayFormat)
 
-            try? container.encodeIfPresent(min, forKey: .min)
-
-            try? container.encodeIfPresent(value, forKey: .value)
-
-            try? container.encodeIfPresent(queryFormat, forKey: .queryFormat)
-
-            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
-
-            try? container.encodeIfPresent(selectedMax, forKey: .selectedMax)
-
-            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
-
             try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
-
-            try? container.encodeIfPresent(selectedMin, forKey: .selectedMin)
 
             try? container.encodeIfPresent(count, forKey: .count)
 
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encodeIfPresent(min, forKey: .min)
+
+            try? container.encodeIfPresent(queryFormat, forKey: .queryFormat)
 
             try? container.encodeIfPresent(display, forKey: .display)
+
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+
+            try? container.encodeIfPresent(selectedMax, forKey: .selectedMax)
+
+            try? container.encodeIfPresent(selectedMin, forKey: .selectedMin)
+
+            try? container.encodeIfPresent(value, forKey: .value)
+
+            try? container.encodeIfPresent(max, forKey: .max)
+
+            try? container.encodeIfPresent(isSelected, forKey: .isSelected)
         }
     }
 }

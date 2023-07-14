@@ -11,22 +11,22 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PaymentMethod: Codable {
         public var mode: String
 
-        public var payment: String?
-
         public var paymentMeta: PaymentMeta
 
         public var amount: Double?
+
+        public var payment: String?
 
         public var name: String?
 
         public enum CodingKeys: String, CodingKey {
             case mode
 
-            case payment
-
             case paymentMeta = "payment_meta"
 
             case amount
+
+            case payment
 
             case name
         }
@@ -34,11 +34,11 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentMeta: PaymentMeta) {
             self.mode = mode
 
-            self.payment = payment
-
             self.paymentMeta = paymentMeta
 
             self.amount = amount
+
+            self.payment = payment
 
             self.name = name
         }
@@ -48,18 +48,18 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             mode = try container.decode(String.self, forKey: .mode)
 
+            paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
+
             do {
-                payment = try container.decode(String.self, forKey: .payment)
+                amount = try container.decode(Double.self, forKey: .amount)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            paymentMeta = try container.decode(PaymentMeta.self, forKey: .paymentMeta)
-
             do {
-                amount = try container.decode(Double.self, forKey: .amount)
+                payment = try container.decode(String.self, forKey: .payment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,11 +80,11 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(mode, forKey: .mode)
 
-            try? container.encodeIfPresent(payment, forKey: .payment)
-
             try? container.encodeIfPresent(paymentMeta, forKey: .paymentMeta)
 
             try? container.encode(amount, forKey: .amount)
+
+            try? container.encodeIfPresent(payment, forKey: .payment)
 
             try? container.encodeIfPresent(name, forKey: .name)
         }

@@ -1216,6 +1216,7 @@ public extension ApplicationClient {
             buyNow: Bool?,
             addressId: String?,
             areaCode: String?,
+            orderType: String?,
 
             onResponse: @escaping (_ response: CartShipmentsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1239,6 +1240,10 @@ public extension ApplicationClient {
 
             if let value = areaCode {
                 xQuery["area_code"] = value
+            }
+
+            if let value = orderType {
+                xQuery["order_type"] = value
             }
 
             let fullUrl = relativeUrls["getShipments"] ?? ""

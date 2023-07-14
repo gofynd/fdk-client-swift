@@ -13,18 +13,18 @@ public extension PlatformClient.Serviceability {
 
         public var applicationId: String
 
-        public var success: Bool
-
         public var companyId: Int
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case courierPartnerId = "courier_partner_id"
 
             case applicationId = "application_id"
 
-            case success
-
             case companyId = "company_id"
+
+            case success
         }
 
         public init(applicationId: String, companyId: Int, courierPartnerId: Int? = nil, success: Bool) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Serviceability {
 
             self.applicationId = applicationId
 
-            self.success = success
-
             self.companyId = companyId
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -50,9 +50,9 @@ public extension PlatformClient.Serviceability {
 
             applicationId = try container.decode(String.self, forKey: .applicationId)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             companyId = try container.decode(Int.self, forKey: .companyId)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -62,9 +62,9 @@ public extension PlatformClient.Serviceability {
 
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }
@@ -80,18 +80,18 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
         public var applicationId: String
 
-        public var success: Bool
-
         public var companyId: Int
+
+        public var success: Bool
 
         public enum CodingKeys: String, CodingKey {
             case courierPartnerId = "courier_partner_id"
 
             case applicationId = "application_id"
 
-            case success
-
             case companyId = "company_id"
+
+            case success
         }
 
         public init(applicationId: String, companyId: Int, courierPartnerId: Int? = nil, success: Bool) {
@@ -99,9 +99,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             self.applicationId = applicationId
 
-            self.success = success
-
             self.companyId = companyId
+
+            self.success = success
         }
 
         required public init(from decoder: Decoder) throws {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             applicationId = try container.decode(String.self, forKey: .applicationId)
 
-            success = try container.decode(Bool.self, forKey: .success)
-
             companyId = try container.decode(Int.self, forKey: .companyId)
+
+            success = try container.decode(Bool.self, forKey: .success)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,9 +129,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
 
             try? container.encodeIfPresent(applicationId, forKey: .applicationId)
 
-            try? container.encodeIfPresent(success, forKey: .success)
-
             try? container.encodeIfPresent(companyId, forKey: .companyId)
+
+            try? container.encodeIfPresent(success, forKey: .success)
         }
     }
 }

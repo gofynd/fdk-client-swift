@@ -11,30 +11,30 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PlatformCartMetaRequest: Codable {
         public var gstin: String?
 
-        public var pickUpCustomerDetails: [String: Any]?
-
-        public var checkoutMode: String?
+        public var panNo: String?
 
         public var giftDetails: [String: Any]?
 
-        public var panNo: String?
-
         public var comment: String?
+
+        public var checkoutMode: String?
+
+        public var pickUpCustomerDetails: [String: Any]?
 
         public var staffUserId: String?
 
         public enum CodingKeys: String, CodingKey {
             case gstin
 
-            case pickUpCustomerDetails = "pick_up_customer_details"
-
-            case checkoutMode = "checkout_mode"
+            case panNo = "pan_no"
 
             case giftDetails = "gift_details"
 
-            case panNo = "pan_no"
-
             case comment
+
+            case checkoutMode = "checkout_mode"
+
+            case pickUpCustomerDetails = "pick_up_customer_details"
 
             case staffUserId = "staff_user_id"
         }
@@ -42,15 +42,15 @@ public extension PlatformClient.ApplicationClient.Cart {
         public init(checkoutMode: String? = nil, comment: String? = nil, giftDetails: [String: Any]? = nil, gstin: String? = nil, panNo: String? = nil, pickUpCustomerDetails: [String: Any]? = nil, staffUserId: String? = nil) {
             self.gstin = gstin
 
-            self.pickUpCustomerDetails = pickUpCustomerDetails
-
-            self.checkoutMode = checkoutMode
+            self.panNo = panNo
 
             self.giftDetails = giftDetails
 
-            self.panNo = panNo
-
             self.comment = comment
+
+            self.checkoutMode = checkoutMode
+
+            self.pickUpCustomerDetails = pickUpCustomerDetails
 
             self.staffUserId = staffUserId
         }
@@ -67,15 +67,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+                panNo = try container.decode(String.self, forKey: .panNo)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +83,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                panNo = try container.decode(String.self, forKey: .panNo)
+                comment = try container.decode(String.self, forKey: .comment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,7 +91,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             } catch {}
 
             do {
-                comment = try container.decode(String.self, forKey: .comment)
+                checkoutMode = try container.decode(String.self, forKey: .checkoutMode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                pickUpCustomerDetails = try container.decode([String: Any].self, forKey: .pickUpCustomerDetails)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -120,15 +120,15 @@ public extension PlatformClient.ApplicationClient.Cart {
 
             try? container.encodeIfPresent(gstin, forKey: .gstin)
 
-            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
-
-            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+            try? container.encodeIfPresent(panNo, forKey: .panNo)
 
             try? container.encode(giftDetails, forKey: .giftDetails)
 
-            try? container.encodeIfPresent(panNo, forKey: .panNo)
-
             try? container.encodeIfPresent(comment, forKey: .comment)
+
+            try? container.encodeIfPresent(checkoutMode, forKey: .checkoutMode)
+
+            try? container.encodeIfPresent(pickUpCustomerDetails, forKey: .pickUpCustomerDetails)
 
             try? container.encode(staffUserId, forKey: .staffUserId)
         }

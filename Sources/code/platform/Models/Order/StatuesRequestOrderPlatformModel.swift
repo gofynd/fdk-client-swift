@@ -13,18 +13,18 @@ public extension PlatformClient.Order {
 
         public var excludeBagsNextState: String?
 
-        public var status: String?
-
         public var splitShipment: Bool?
+
+        public var status: String?
 
         public enum CodingKeys: String, CodingKey {
             case shipments
 
             case excludeBagsNextState = "exclude_bags_next_state"
 
-            case status
-
             case splitShipment = "split_shipment"
+
+            case status
         }
 
         public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, splitShipment: Bool? = nil, status: String? = nil) {
@@ -32,9 +32,9 @@ public extension PlatformClient.Order {
 
             self.excludeBagsNextState = excludeBagsNextState
 
-            self.status = status
-
             self.splitShipment = splitShipment
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                splitShipment = try container.decode(Bool.self, forKey: .splitShipment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                splitShipment = try container.decode(Bool.self, forKey: .splitShipment)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,9 +80,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(splitShipment, forKey: .splitShipment)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }
@@ -98,18 +98,18 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var excludeBagsNextState: String?
 
-        public var status: String?
-
         public var splitShipment: Bool?
+
+        public var status: String?
 
         public enum CodingKeys: String, CodingKey {
             case shipments
 
             case excludeBagsNextState = "exclude_bags_next_state"
 
-            case status
-
             case splitShipment = "split_shipment"
+
+            case status
         }
 
         public init(excludeBagsNextState: String? = nil, shipments: [ShipmentsRequest]? = nil, splitShipment: Bool? = nil, status: String? = nil) {
@@ -117,9 +117,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             self.excludeBagsNextState = excludeBagsNextState
 
-            self.status = status
-
             self.splitShipment = splitShipment
+
+            self.status = status
         }
 
         required public init(from decoder: Decoder) throws {
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                status = try container.decode(String.self, forKey: .status)
+                splitShipment = try container.decode(Bool.self, forKey: .splitShipment)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,7 +150,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                splitShipment = try container.decode(Bool.self, forKey: .splitShipment)
+                status = try container.decode(String.self, forKey: .status)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -165,9 +165,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(excludeBagsNextState, forKey: .excludeBagsNextState)
 
-            try? container.encodeIfPresent(status, forKey: .status)
-
             try? container.encodeIfPresent(splitShipment, forKey: .splitShipment)
+
+            try? container.encodeIfPresent(status, forKey: .status)
         }
     }
 }

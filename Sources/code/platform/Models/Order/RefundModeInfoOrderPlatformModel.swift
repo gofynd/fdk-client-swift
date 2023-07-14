@@ -11,18 +11,18 @@ public extension PlatformClient.Order {
     class RefundModeInfo: Codable {
         public var displayName: String?
 
-        public var isActive: Bool?
-
         public var options: [RefundOption]?
+
+        public var isActive: Bool?
 
         public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
-            case isActive = "is_active"
-
             case options
+
+            case isActive = "is_active"
 
             case slug
         }
@@ -30,9 +30,9 @@ public extension PlatformClient.Order {
         public init(displayName: String? = nil, isActive: Bool? = nil, options: [RefundOption]? = nil, slug: String? = nil) {
             self.displayName = displayName
 
-            self.isActive = isActive
-
             self.options = options
+
+            self.isActive = isActive
 
             self.slug = slug
         }
@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                options = try container.decode([RefundOption].self, forKey: .options)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                options = try container.decode([RefundOption].self, forKey: .options)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,9 +78,9 @@ public extension PlatformClient.Order {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(options, forKey: .options)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }
@@ -96,18 +96,18 @@ public extension PlatformClient.ApplicationClient.Order {
     class RefundModeInfo: Codable {
         public var displayName: String?
 
-        public var isActive: Bool?
-
         public var options: [RefundOption]?
+
+        public var isActive: Bool?
 
         public var slug: String?
 
         public enum CodingKeys: String, CodingKey {
             case displayName = "display_name"
 
-            case isActive = "is_active"
-
             case options
+
+            case isActive = "is_active"
 
             case slug
         }
@@ -115,9 +115,9 @@ public extension PlatformClient.ApplicationClient.Order {
         public init(displayName: String? = nil, isActive: Bool? = nil, options: [RefundOption]? = nil, slug: String? = nil) {
             self.displayName = displayName
 
-            self.isActive = isActive
-
             self.options = options
+
+            self.isActive = isActive
 
             self.slug = slug
         }
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                isActive = try container.decode(Bool.self, forKey: .isActive)
+                options = try container.decode([RefundOption].self, forKey: .options)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                options = try container.decode([RefundOption].self, forKey: .options)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -163,9 +163,9 @@ public extension PlatformClient.ApplicationClient.Order {
 
             try? container.encodeIfPresent(displayName, forKey: .displayName)
 
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-
             try? container.encodeIfPresent(options, forKey: .options)
+
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
 
             try? container.encodeIfPresent(slug, forKey: .slug)
         }

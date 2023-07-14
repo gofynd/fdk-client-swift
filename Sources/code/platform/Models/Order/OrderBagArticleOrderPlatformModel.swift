@@ -9,36 +9,44 @@ public extension PlatformClient.Order {
      */
 
     class OrderBagArticle: Codable {
+        public var uid: String?
+
         public var size: String?
 
         public var identifiers: [String: Any]?
 
-        public var uid: String?
-
         public var returnConfig: ReturnConfig1?
 
         public enum CodingKeys: String, CodingKey {
+            case uid
+
             case size
 
             case identifiers
-
-            case uid
 
             case returnConfig = "return_config"
         }
 
         public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, size: String? = nil, uid: String? = nil) {
+            self.uid = uid
+
             self.size = size
 
             self.identifiers = identifiers
-
-            self.uid = uid
 
             self.returnConfig = returnConfig
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 size = try container.decode(String.self, forKey: .size)
@@ -57,14 +65,6 @@ public extension PlatformClient.Order {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 returnConfig = try container.decode(ReturnConfig1.self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -76,11 +76,11 @@ public extension PlatformClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
         }
@@ -94,36 +94,44 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class OrderBagArticle: Codable {
+        public var uid: String?
+
         public var size: String?
 
         public var identifiers: [String: Any]?
 
-        public var uid: String?
-
         public var returnConfig: ReturnConfig1?
 
         public enum CodingKeys: String, CodingKey {
+            case uid
+
             case size
 
             case identifiers
-
-            case uid
 
             case returnConfig = "return_config"
         }
 
         public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, size: String? = nil, uid: String? = nil) {
+            self.uid = uid
+
             self.size = size
 
             self.identifiers = identifiers
-
-            self.uid = uid
 
             self.returnConfig = returnConfig
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
+            do {
+                uid = try container.decode(String.self, forKey: .uid)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 size = try container.decode(String.self, forKey: .size)
@@ -142,14 +150,6 @@ public extension PlatformClient.ApplicationClient.Order {
             } catch {}
 
             do {
-                uid = try container.decode(String.self, forKey: .uid)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
                 returnConfig = try container.decode(ReturnConfig1.self, forKey: .returnConfig)
 
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -161,11 +161,11 @@ public extension PlatformClient.ApplicationClient.Order {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
+            try? container.encodeIfPresent(uid, forKey: .uid)
+
             try? container.encodeIfPresent(size, forKey: .size)
 
             try? container.encodeIfPresent(identifiers, forKey: .identifiers)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
 
             try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
         }
