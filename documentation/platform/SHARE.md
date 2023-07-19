@@ -24,7 +24,7 @@ Create short link
 
 
 ```swift
-client.application("<APPLICATION_ID>").share.createShortLink(body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").share.createShortLink(body: body) { (response, error) in
     // Use response
 }
 ```
@@ -116,7 +116,7 @@ Get short links
 
 
 ```swift
-client.application("<APPLICATION_ID>").share.getShortLinks(pageNo: pageNo, pageSize: pageSize, createdBy: createdBy, active: active, q: q) { (response, error) in
+platformClient.application("<APPLICATION_ID>").share.getShortLinks(pageNo: pageNo, pageSize: pageSize, createdBy: createdBy, active: active, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -224,7 +224,7 @@ Get short link by hash
 
 
 ```swift
-client.application("<APPLICATION_ID>").share.getShortLinkByHash(hash: hash) { (response, error) in
+platformClient.application("<APPLICATION_ID>").share.getShortLinkByHash(hash: hash) { (response, error) in
     // Use response
 }
 ```
@@ -317,7 +317,7 @@ Update short link by id
 
 
 ```swift
-client.application("<APPLICATION_ID>").share.updateShortLinkById(id: id, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").share.updateShortLinkById(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -410,7 +410,7 @@ Get click statistics for a short link
 
 
 ```swift
-client.application("<APPLICATION_ID>").share.getShortLinkClickStats(surlId: surlId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").share.getShortLinkClickStats(surlId: surlId) { (response, error) in
     // Use response
 }
 ```
