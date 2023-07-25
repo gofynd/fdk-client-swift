@@ -15,7 +15,7 @@ public extension PlatformClient.Configuration {
 
         public var socialLinks: SocialLinks?
 
-        public var links: Links?
+        public var links: [Links]?
 
         public var copyrightText: String?
 
@@ -55,7 +55,7 @@ public extension PlatformClient.Configuration {
             case v = "__v"
         }
 
-        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: BusinessHighlights? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: Links? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: BusinessHighlights? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: [Links]? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.address = address
 
             self.support = support
@@ -107,7 +107,7 @@ public extension PlatformClient.Configuration {
             } catch {}
 
             do {
-                links = try container.decode(Links.self, forKey: .links)
+                links = try container.decode([Links].self, forKey: .links)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
         public var socialLinks: SocialLinks?
 
-        public var links: Links?
+        public var links: [Links]?
 
         public var copyrightText: String?
 
@@ -252,7 +252,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             case v = "__v"
         }
 
-        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: BusinessHighlights? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: Links? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: BusinessHighlights? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: [Links]? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             self.address = address
 
             self.support = support
@@ -304,7 +304,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             } catch {}
 
             do {
-                links = try container.decode(Links.self, forKey: .links)
+                links = try container.decode([Links].self, forKey: .links)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

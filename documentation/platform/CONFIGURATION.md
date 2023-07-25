@@ -7124,7 +7124,7 @@ Success
  | address | [InformationAddress](#InformationAddress)? |  yes  |  |
  | support | [InformationSupport](#InformationSupport)? |  yes  |  |
  | socialLinks | [SocialLinks](#SocialLinks)? |  yes  |  |
- | links | [Links](#Links)? |  yes  |  |
+ | links | [[Links](#Links)]? |  yes  |  |
  | copyrightText | String? |  yes  | Copyright statement usually seen at the site's footer |
  | id | String? |  yes  | Unique identifier (24-digit Mongo Object ID) of the application information |
  | businessHighlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
@@ -7144,7 +7144,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | loc | String? |  yes  | Co-ordinates of the location |
  | addressLine | [String]? |  yes  | Contact address of the sales channel |
- | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
+ | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
  | city | String? |  yes  | Name of the city, e.g. Mumbai |
  | country | String? |  yes  | Name of the country, e.g. India |
  | pincode | Int? |  yes  | 6-digit PIN Code of the city, e.g. 400001 |
