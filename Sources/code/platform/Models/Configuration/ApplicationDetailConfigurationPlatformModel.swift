@@ -11,15 +11,15 @@ public extension PlatformClient.Configuration {
     class ApplicationDetail: Codable {
         public var name: String
 
-        public var description: String
+        public var description: String?
 
-        public var logo: SecureUrl
+        public var logo: SecureUrl?
 
-        public var mobileLogo: SecureUrl
+        public var mobileLogo: SecureUrl?
 
-        public var favicon: SecureUrl
+        public var favicon: SecureUrl?
 
-        public var banner: SecureUrl
+        public var banner: SecureUrl?
 
         public var domain: Domain?
 
@@ -47,7 +47,7 @@ public extension PlatformClient.Configuration {
             case id = "_id"
         }
 
-        public init(banner: SecureUrl, description: String, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl, logo: SecureUrl, mobileLogo: SecureUrl, name: String, id: String? = nil) {
+        public init(banner: SecureUrl? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, logo: SecureUrl? = nil, mobileLogo: SecureUrl? = nil, name: String, id: String? = nil) {
             self.name = name
 
             self.description = description
@@ -72,15 +72,45 @@ public extension PlatformClient.Configuration {
 
             name = try container.decode(String.self, forKey: .name)
 
-            description = try container.decode(String.self, forKey: .description)
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
-            logo = try container.decode(SecureUrl.self, forKey: .logo)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            mobileLogo = try container.decode(SecureUrl.self, forKey: .mobileLogo)
+            do {
+                logo = try container.decode(SecureUrl.self, forKey: .logo)
 
-            favicon = try container.decode(SecureUrl.self, forKey: .favicon)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            banner = try container.decode(SecureUrl.self, forKey: .banner)
+            do {
+                mobileLogo = try container.decode(SecureUrl.self, forKey: .mobileLogo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                favicon = try container.decode(SecureUrl.self, forKey: .favicon)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                banner = try container.decode(SecureUrl.self, forKey: .banner)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 domain = try container.decode(Domain.self, forKey: .domain)
@@ -140,15 +170,15 @@ public extension PlatformClient.ApplicationClient.Configuration {
     class ApplicationDetail: Codable {
         public var name: String
 
-        public var description: String
+        public var description: String?
 
-        public var logo: SecureUrl
+        public var logo: SecureUrl?
 
-        public var mobileLogo: SecureUrl
+        public var mobileLogo: SecureUrl?
 
-        public var favicon: SecureUrl
+        public var favicon: SecureUrl?
 
-        public var banner: SecureUrl
+        public var banner: SecureUrl?
 
         public var domain: Domain?
 
@@ -176,7 +206,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             case id = "_id"
         }
 
-        public init(banner: SecureUrl, description: String, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl, logo: SecureUrl, mobileLogo: SecureUrl, name: String, id: String? = nil) {
+        public init(banner: SecureUrl? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, logo: SecureUrl? = nil, mobileLogo: SecureUrl? = nil, name: String, id: String? = nil) {
             self.name = name
 
             self.description = description
@@ -201,15 +231,45 @@ public extension PlatformClient.ApplicationClient.Configuration {
 
             name = try container.decode(String.self, forKey: .name)
 
-            description = try container.decode(String.self, forKey: .description)
+            do {
+                description = try container.decode(String.self, forKey: .description)
 
-            logo = try container.decode(SecureUrl.self, forKey: .logo)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            mobileLogo = try container.decode(SecureUrl.self, forKey: .mobileLogo)
+            do {
+                logo = try container.decode(SecureUrl.self, forKey: .logo)
 
-            favicon = try container.decode(SecureUrl.self, forKey: .favicon)
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
-            banner = try container.decode(SecureUrl.self, forKey: .banner)
+            do {
+                mobileLogo = try container.decode(SecureUrl.self, forKey: .mobileLogo)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                favicon = try container.decode(SecureUrl.self, forKey: .favicon)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                banner = try container.decode(SecureUrl.self, forKey: .banner)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 domain = try container.decode(Domain.self, forKey: .domain)

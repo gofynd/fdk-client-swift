@@ -20,6 +20,9 @@ Cart APIs
 * [updateCartMetaConfig](#updatecartmetaconfig)
 * [fetchCartMetaConfig](#fetchcartmetaconfig)
 * [createCartMetaConfig](#createcartmetaconfig)
+* [updatePriceAdjustment](#updatepriceadjustment)
+* [removePriceAdjustment](#removepriceadjustment)
+* [addPriceAdjustment](#addpriceadjustment)
 * [fetchAndvalidateCartItems](#fetchandvalidatecartitems)
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
@@ -1526,6 +1529,225 @@ Cart Meta Config Created successfully
   "revenue_engine_coupon": false,
   "gift_pricing": 50,
   "gift_display_text": ""
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updatePriceAdjustment
+Update price adjustment configuration
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").cart.updatePriceAdjustment(id: id, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes |  |  
+| body | PriceAdjustmentUpdate | yes | Request body |
+
+
+Update price adjustment configuration
+
+*Returned Response:*
+
+
+
+
+[PriceAdjustmentResponse](#PriceAdjustmentResponse)
+
+Price Adjustment Updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "cc8154592ccb42c88b481ce4c21ab602",
+    "cart_value": 250,
+    "cart_id": "fa45f5cbd3764a6297bfa79d6bedf71c",
+    "is_authenticated": true,
+    "article_ids": [
+      {
+        "article_id": "f322167ce70f4dca8f8ac0efdc496abe",
+        "value": 100,
+        "code": "abs120",
+        "meta": {}
+      }
+    ],
+    "type": "discount",
+    "message": "Fynd Campaign 100 Rs off",
+    "value": 100,
+    "article_level_distribution": true,
+    "allow_refund": true,
+    "meta": {},
+    "collection": {
+      "collected_by": "FYND",
+      "refund_by": "FYND"
+    }
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### removePriceAdjustment
+Remove price adjustment
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").cart.removePriceAdjustment(id: id) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| id | String | yes |  |  
+
+
+
+Remove price adjustment
+
+*Returned Response:*
+
+
+
+
+[SuccessMessage](#SuccessMessage)
+
+Price Adjustment data Removed successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Price Adjustment removed successfully"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### addPriceAdjustment
+Create new price adjustment
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").cart.addPriceAdjustment(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PriceAdjustmentAdd | yes | Request body |
+
+
+Create new price adjustment
+
+*Returned Response:*
+
+
+
+
+[PriceAdjustmentResponse](#PriceAdjustmentResponse)
+
+Price Adjustment Created successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "cc8154592ccb42c88b481ce4c21ab602",
+    "cart_value": 250,
+    "cart_id": "fa45f5cbd3764a6297bfa79d6bedf71c",
+    "is_authenticated": true,
+    "article_ids": [
+      {
+        "article_id": "f322167ce70f4dca8f8ac0efdc496abe",
+        "value": 100,
+        "code": "abs120",
+        "meta": {}
+      }
+    ],
+    "type": "discount",
+    "message": "Fynd Campaign 100 Rs off",
+    "value": 100,
+    "article_level_distribution": true,
+    "allow_refund": true,
+    "meta": {},
+    "collection": {
+      "collected_by": "FYND",
+      "refund_by": "FYND"
+    }
+  }
 }
 ```
 </details>
@@ -13179,6 +13401,113 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | revenueEngineCoupon | Bool? |  yes  |  |
  | giftPricing | Double? |  yes  |  |
  | enabled | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Article](#Article)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | [String: Any]? |  yes  |  |
+ | articleId | String |  no  |  |
+ | type | String? |  yes  |  |
+ | value | Double? |  yes  |  |
+ | code | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Collection](#Collection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | refundBy | String |  no  |  |
+ | collectedBy | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PriceAdjustmentUpdate](#PriceAdjustmentUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applyExpiry | String? |  yes  |  |
+ | cartId | String |  no  |  |
+ | cartValue | Double? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | type | String |  no  |  |
+ | value | Double |  no  |  |
+ | articleLevelDistribution | Bool |  no  |  |
+ | articleIds | [[Article](#Article)] |  no  |  |
+ | modifiedBy | String? |  yes  |  |
+ | isAuthenticated | Bool |  no  |  |
+ | allowedRefund | Bool? |  yes  |  |
+ | message | String |  no  |  |
+ | collection | [Collection](#Collection) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PriceAdjustment](#PriceAdjustment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applyExpiry | String? |  yes  |  |
+ | cartId | String |  no  |  |
+ | cartValue | Double? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | type | String |  no  |  |
+ | value | Double |  no  |  |
+ | articleLevelDistribution | Bool |  no  |  |
+ | articleIds | [[Article](#Article)] |  no  |  |
+ | id | String? |  yes  |  |
+ | isAuthenticated | Bool |  no  |  |
+ | allowedRefund | Bool? |  yes  |  |
+ | message | String |  no  |  |
+ | collection | [Collection](#Collection) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [PriceAdjustmentResponse](#PriceAdjustmentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [PriceAdjustment](#PriceAdjustment)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PriceAdjustmentAdd](#PriceAdjustmentAdd)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | applyExpiry | String? |  yes  |  |
+ | cartId | String |  no  |  |
+ | cartValue | Double? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | type | String |  no  |  |
+ | createdBy | String? |  yes  |  |
+ | value | Double |  no  |  |
+ | articleLevelDistribution | Bool |  no  |  |
+ | articleIds | [[Article](#Article)] |  no  |  |
+ | isAuthenticated | Bool |  no  |  |
+ | allowedRefund | Bool? |  yes  |  |
+ | message | String |  no  |  |
+ | collection | [Collection](#Collection) |  no  |  |
 
 ---
 

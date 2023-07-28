@@ -1,27 +1,29 @@
 
 
 import Foundation
-public extension ApplicationClient.Common {
+
+public extension PlatformClient.ApplicationClient.Cart {
     /*
-         Model: Locations
-         Used By: Common
+         Model: PriceAdjustmentResponse
+         Used By: Cart
      */
-    class Locations: Codable {
-        public var items: [LocationCountry]?
+
+    class PriceAdjustmentResponse: Codable {
+        public var data: PriceAdjustment?
 
         public enum CodingKeys: String, CodingKey {
-            case items
+            case data
         }
 
-        public init(items: [LocationCountry]? = nil) {
-            self.items = items
+        public init(data: PriceAdjustment? = nil) {
+            self.data = data
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                items = try container.decode([LocationCountry].self, forKey: .items)
+                data = try container.decode(PriceAdjustment.self, forKey: .data)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -32,7 +34,7 @@ public extension ApplicationClient.Common {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(data, forKey: .data)
         }
     }
 }
