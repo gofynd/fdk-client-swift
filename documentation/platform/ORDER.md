@@ -6204,7 +6204,7 @@ We are processing the request!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | cgstTaxPercentage | Double? |  yes  |  |
- | gstinCode | String |  no  |  |
+ | gstinCode | String? |  yes  |  |
  | valueOfGood | Double |  no  |  |
  | gstFee | Double |  no  |  |
  | igstTaxPercentage | Double? |  yes  |  |
@@ -6244,30 +6244,30 @@ We are processing the request!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | refundCredit | Int |  no  |  |
+ | refundCredit | Double |  no  |  |
  | amountPaidRoundoff | Int? |  yes  |  |
- | priceEffective | Int |  no  |  |
+ | priceEffective | Double |  no  |  |
  | promotionEffectiveDiscount | Double |  no  |  |
- | transferPrice | Int |  no  |  |
+ | transferPrice | Double |  no  |  |
  | couponEffectiveDiscount | Double |  no  |  |
  | gstFee | Double |  no  |  |
- | taxCollectedAtSource | Int? |  yes  |  |
+ | taxCollectedAtSource | Double? |  yes  |  |
  | brandCalculatedAmount | Double |  no  |  |
  | deliveryCharge | Double |  no  |  |
  | gstTag | String |  no  |  |
  | hsnCode | String |  no  |  |
- | cashback | Int |  no  |  |
+ | cashback | Double |  no  |  |
  | itemName | String |  no  |  |
  | valueOfGood | Double |  no  |  |
- | cashbackApplied | Int |  no  |  |
- | codCharges | Int |  no  |  |
- | priceMarked | Int |  no  |  |
+ | cashbackApplied | Double |  no  |  |
+ | codCharges | Double |  no  |  |
+ | priceMarked | Double |  no  |  |
  | size | String |  no  |  |
  | amountPaid | Double |  no  |  |
  | couponValue | Double |  no  |  |
- | discount | Int |  no  |  |
- | fyndCredits | Int |  no  |  |
- | gstTaxPercentage | Int |  no  |  |
+ | discount | Double |  no  |  |
+ | fyndCredits | Double |  no  |  |
+ | gstTaxPercentage | Double |  no  |  |
  | identifiers | [Identifier](#Identifier) |  no  |  |
  | totalUnits | Int |  no  |  |
  | addedToFyndCash | Bool |  no  |  |
