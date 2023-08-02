@@ -5,12 +5,16 @@
 ##### [Back to Application docs](./README.md)
 
 ## Logistic Methods
-Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features. 
+Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features.
 * [getPincodeCity](#getpincodecity)
 * [getTatProduct](#gettatproduct)
 * [getAllCountries](#getallcountries)
 * [getPincodeZones](#getpincodezones)
 * [getOptimalLocations](#getoptimallocations)
+* [getCountries](#getcountries)
+* [getCountry](#getcountry)
+* [getLocalities](#getlocalities)
+* [getLocality](#getlocality)
 
 
 
@@ -486,6 +490,593 @@ Response status_code
 ---
 
 
+#### getCountries
+Get all countries and associated data.
+
+
+
+
+```swift
+applicationClient.logistic.getCountries(onboarding: onboarding) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| onboarding | Bool? | no | Only fetch countries which allowed for onboard on Platform. |  
+
+
+
+Retrieve of all countries.
+
+*Returned Response:*
+
+
+
+
+[GetCountries](#GetCountries)
+
+Successfully retrieved all countries with associated data.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Country List 1</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "name": "INDIA",
+        "sub_type": "country",
+        "uid": "64c6ac280000000000000000",
+        "iso2": "IN",
+        "iso3": "IND",
+        "timezones": [
+          "Asia/Kolkata"
+        ],
+        "currency": "INR",
+        "phone_code": "+91",
+        "hierarchy": [
+          {
+            "name": "State",
+            "slug": "state"
+          },
+          {
+            "name": "City",
+            "slug": "city"
+          },
+          {
+            "name": "Pincode",
+            "slug": "pincode"
+          }
+        ]
+      },
+      {
+        "name": "UNITED STATES",
+        "sub_type": "country",
+        "uid": "66a931280000000000000000",
+        "iso2": "US",
+        "iso3": "USA",
+        "timezones": [
+          "America/St_Johns",
+          "America/Halifax",
+          "America/Glace_Bay",
+          "America/Moncton",
+          "America/Goose_Bay",
+          "America/Blanc-Sablon",
+          "America/Toronto",
+          "America/Iqaluit",
+          "America/Atikokan",
+          "America/Winnipeg",
+          "America/Resolute",
+          "America/Rankin_Inlet",
+          "America/Regina",
+          "America/Swift_Current",
+          "America/Edmonton",
+          "America/Cambridge_Bay",
+          "America/Inuvik",
+          "America/Creston",
+          "America/Dawson_Creek",
+          "America/Fort_Nelson",
+          "America/Whitehorse",
+          "America/Dawson",
+          "America/Vancouver"
+        ],
+        "currency": "USD",
+        "phone_code": "+1",
+        "hierarchy": {
+          "value": [
+            {
+              "name": "State",
+              "slug": "state"
+            },
+            {
+              "name": "City",
+              "slug": "city"
+            },
+            {
+              "name": "Zipcode",
+              "slug": "pincode"
+            }
+          ]
+        }
+      }
+    ],
+    "page": {
+      "current": 1,
+      "has_next": true,
+      "has_previous": false,
+      "item_total": 2,
+      "size": 1,
+      "type": "number"
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Country List 2</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "name": "United Arab Emirates",
+        "sub_type": "country",
+        "uid": "669ea5280000000000000000",
+        "iso2": "AE",
+        "iso3": "ARE",
+        "timezones": [
+          "Asia/Dubai"
+        ],
+        "currency": "DIR",
+        "phone_code": "+971",
+        "hierarchy": [
+          {
+            "name": "City",
+            "slug": "city"
+          },
+          {
+            "name": "Area",
+            "slug": "sector"
+          }
+        ]
+      }
+    ],
+    "page": {
+      "current": 1,
+      "has_next": true,
+      "has_previous": false,
+      "item_total": 1,
+      "size": 1,
+      "type": "number"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getCountry
+Get single country and associated data.
+
+
+
+
+```swift
+applicationClient.logistic.getCountry(countryIsoCode: countryIsoCode) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| countryIsoCode | String | yes | The `country_iso_code` is ISO-2 (alpha-2) code for the country. |  
+
+
+
+Retrieve data for a single country and address format.
+
+*Returned Response:*
+
+
+
+
+[GetCountry](#GetCountry)
+
+Get country data.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Country 1</i></summary>
+
+```json
+{
+  "value": {
+    "name": "INDIA",
+    "sub_type": "country",
+    "uid": "64c6ac280000000000000000",
+    "iso2": "IN",
+    "iso3": "IND",
+    "timezones": [
+      "Asia/Kolkata"
+    ],
+    "currency": "INR",
+    "phone_code": "+91",
+    "hierarchy": {
+      "value": [
+        {
+          "name": "State",
+          "slug": "state"
+        },
+        {
+          "name": "City",
+          "slug": "city"
+        },
+        {
+          "name": "Pincode",
+          "slug": "pincode"
+        }
+      ]
+    },
+    "fields": {
+      "serviceability_fields": [
+        "pincode"
+      ],
+      "form_template": [
+        {
+          "form_app_checkout": "{address} {area}_{landmark} {pincode}_{city}_{state}_{address_type}_{name} {phonenumber}_{email}"
+        },
+        {
+          "form_pltm_store": "{address}_{area}_{pincode}_{city}_{state}"
+        },
+        {
+          "form_pln_onboarding": "{pincode}_{city}{state}"
+        },
+        {
+          "display": "{address}{area}_{landmark}_{city} {pincode}_{state}{country}"
+        }
+      ],
+      "address": {
+        "$ref": "#/components/examples/AddressFields"
+      }
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Country 2</i></summary>
+
+```json
+{
+  "value": {
+    "name": "United Arab Emirates",
+    "sub_type": "country",
+    "uid": "669ea5280000000000000000",
+    "iso2": "AE",
+    "iso3": "ARE",
+    "timezones": [
+      "Asia/Dubai"
+    ],
+    "currency": "DIR",
+    "phone_code": "+971",
+    "hierarchy": {
+      "value": [
+        {
+          "name": "City",
+          "slug": "city"
+        },
+        {
+          "name": "Area",
+          "slug": "sector"
+        }
+      ]
+    },
+    "fields": {
+      "serviceability_fields": [
+        "pincode"
+      ],
+      "form_template": [
+        {
+          "form_app_checkout": "{address}_{area}_{city}{sector}_{landmark}_{address_type}_{name} {phonenumber}_{email}"
+        },
+        {
+          "form_pltm_store": "{city}_{sector}"
+        },
+        {
+          "form_pln_onboarding": "{city}{sector}"
+        },
+        {
+          "address_display": "{address}_{area}_{city} {sector}_{country}"
+        }
+      ],
+      "address": {
+        "$ref": "#/components/examples/AddressFields"
+      }
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocalities
+Get Localities.
+
+
+
+
+```swift
+applicationClient.logistic.getLocalities(localityType: localityType, country: country, state: state, city: city) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| localityType | String | yes | A `locality_type` contains unique geographical division. |   
+| country | String? | no | A `country` contains a specific value of the country iso2 code. |   
+| state | String? | no | A `state` contains a specific value of the state, province. |   
+| city | String? | no | A `city` contains a specific value of the city. |  
+
+
+
+Get Localities data.
+
+*Returned Response:*
+
+
+
+
+[GetLocalities](#GetLocalities)
+
+Get Localities data
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Country 1</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "uid": "64b78b60707446a37f2afbbb",
+        "name": "Maharashtra",
+        "display_name": "Maharashtra",
+        "type": "region",
+        "sub_type": "state",
+        "parent_id": [
+          "64b78b60707446a37f2aec6f"
+        ]
+      },
+      {
+        "uid": "64c7fda80000000000000000",
+        "name": "400603",
+        "display_name": "400603",
+        "type": "region",
+        "sub_type": "pincode",
+        "parent_id": [
+          "64b78b60707446a37f2aec6f",
+          "64b78b60707446a37f2aec4b",
+          "64b78b60707446a37f2aec43"
+        ]
+      }
+    ],
+    "page": {
+      "current": 1,
+      "has_next": true,
+      "has_previous": false,
+      "item_total": 2,
+      "size": 1,
+      "type": "number"
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Country 2</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "uid": "63d95e280000000000000000",
+        "name": "Thane",
+        "display_name": "Thane",
+        "type": "region",
+        "sub_type": "city",
+        "parent_id": [
+          "64b78b60707446a37f2aec6f",
+          "64b78b60707446a37f2aec4b"
+        ]
+      }
+    ],
+    "page": {
+      "current": 1,
+      "has_next": true,
+      "has_previous": false,
+      "item_total": 1,
+      "size": 1,
+      "type": "number"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### getLocality
+Get Locality API
+
+
+
+
+```swift
+applicationClient.logistic.getLocality(localityType: localityType, localityValue: localityValue, country: country, state: state, city: city) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| localityType | String | yes | A `locality_type` contains value geographical division. |   
+| localityValue | String | yes | A `locality_value` contains a specific value of the locality. |   
+| country | String? | no | A `country` contains a specific value of the country iso2 code. |   
+| state | String? | no | A `state` contains a specific value of the state, province. |   
+| city | String? | no | A `city` contains a specific value of the city. |  
+
+
+
+Get Locality data
+
+*Returned Response:*
+
+
+
+
+[GetLocality](#GetLocality)
+
+Get Locality data
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Country 1</i></summary>
+
+```json
+{
+  "value": {
+    "uid": "649f1f280000000000000000",
+    "name": "Abu Dhabi",
+    "display_name": "Abu Dhabi",
+    "type": "region",
+    "sub_type": "city",
+    "parent_id": [
+      "64b78b60707446a37f2aec6f"
+    ]
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Country 2</i></summary>
+
+```json
+{
+  "value": {
+    "uid": "649887a80000000000000000",
+    "name": "Sila",
+    "display_name": "Sila",
+    "type": "region",
+    "sub_type": "sector",
+    "parent_id": [
+      "64b78b60707446a37f2aec6f",
+      "64b78b60707446a37f2aec4b"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -851,6 +1442,118 @@ Response status_code
  | success | Bool |  no  |  |
  | error | [String: Any] |  no  |  |
  | assignedStores | [[String: Any]]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCountries](#GetCountries)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [String: Any]? |  yes  |  |
+ | items | [[String: Any]]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCountry](#GetCountry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | actions | [String: Any]? |  yes  |  |
+ | ios2 | String? |  yes  |  |
+ | timezones | [String]? |  yes  |  |
+ | hierarchy | [String: Any]? |  yes  |  |
+ | ios3 | String? |  yes  |  |
+ | phoneCode | String? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | subType | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | uid | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Page](#Page)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hasNext | Bool? |  yes  |  |
+ | size | Int? |  yes  |  |
+ | itemTotal | Int? |  yes  |  |
+ | hasPrevious | Bool? |  yes  |  |
+ | current | Int? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Logistics](#Logistics)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dp | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [Locality](#Locality)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isActive | Bool? |  yes  |  |
+ | parentId | [String]? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
+ | logistics | [Logistics](#Logistics)? |  yes  |  |
+ | uid | String? |  yes  |  |
+ | subType | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | displayName | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetLocalities](#GetLocalities)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [Page](#Page)? |  yes  |  |
+ | regions | [[Locality](#Locality)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetLocality](#GetLocality)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | regions | [Locality](#Locality)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | String? |  yes  |  |
 
 ---
 
