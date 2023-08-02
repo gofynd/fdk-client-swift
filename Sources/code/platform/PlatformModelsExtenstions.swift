@@ -1,11 +1,22 @@
 import Foundation
 #if canImport(FoundationNetworking)
-    import FoundationNetworking
+import FoundationNetworking
 #endif
 
+
+
+
+
+
+
+
+
+
+
 public extension PlatformClient.Catalog.ActionPage {
+    
     static func convertURLToAction(urlString: String) -> PlatformClient.Catalog.ActionPage? {
-        PlatformClient.Catalog.ActionPage(urlString: urlString)
+        return PlatformClient.Catalog.ActionPage(urlString: urlString)
     }
 
     convenience init?(urlString: String) {
@@ -29,11 +40,11 @@ public extension PlatformClient.Catalog.ActionPage {
             }
         }
         for param in type.queryParams {
-            if param.required, query[param.name] == nil {
+            if param.required && query[param.name] == nil {
                 return nil
             }
         }
-        let components = urlComponents.percentEncodedPath.components(separatedBy: "/").map { $0.removingPercentEncoding ?? $0 }
+        let components = urlComponents.percentEncodedPath.components(separatedBy: "/").map{ $0.removingPercentEncoding ?? $0}
         let symbolic = URLComponents(string: type.link)?.percentEncodedPath.components(separatedBy: "/") ?? []
         for paramSpec in type.pathParams {
             if let i = symbolic.firstIndex(of: ":\(paramSpec.name)") {
@@ -54,26 +65,26 @@ public extension PlatformClient.Catalog.ActionPage {
         }
         self.init(params: params, query: query, type: type, url: url)
     }
-
+    
     func getURL() -> String? {
         var urlParts = type.link.components(separatedBy: "/")
         for paramSpec in type.pathParams {
             if let index = urlParts.firstIndex(of: ":\(paramSpec.name)") {
-                if let value = self.params?[paramSpec.name] {
-                    if value.isEmpty {
-                        return nil
-                    } else if value.count == 1 {
-                        urlParts[index] = value[0].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? value[0]
-                    } else {
-                        urlParts[index] = value
-                            .map { $0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? $0 }
-                            .joined(separator: ":::")
-                    }
-                } else if paramSpec.required {
+              if let value = self.params?[paramSpec.name] {
+                if value.isEmpty {
                     return nil
+                } else if value.count == 1 {
+                    urlParts[index] = value[0].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? value[0]
                 } else {
-                    urlParts.remove(at: index)
+                    urlParts[index] = value
+                        .map{$0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? $0}
+                        .joined(separator: ":::")
                 }
+              } else if paramSpec.required {
+                return nil
+              } else {
+                urlParts.remove(at: index)
+              }
             } else if paramSpec.required {
                 return nil
             }
@@ -81,8 +92,7 @@ public extension PlatformClient.Catalog.ActionPage {
         for q in type.queryParams {
             if q.required {
                 if let value = self.query?[q.name],
-                   value.isEmpty
-                {
+                   value.isEmpty {
                     return nil
                 } else if self.query?[q.name] == nil {
                     return nil
@@ -93,7 +103,7 @@ public extension PlatformClient.Catalog.ActionPage {
         for (key, value) in self.query ?? [:] {
             var text = ""
             for val in value {
-                text += "\(key)=\(val.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")&"
+                text += "\(key)=\((val.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? ""))&"
             }
             queryString = (queryString ?? "?") + text
         }
@@ -102,9 +112,12 @@ public extension PlatformClient.Catalog.ActionPage {
     }
 }
 
+
+
 public extension PlatformClient.ApplicationClient.Catalog.ActionPage {
+    
     static func convertURLToAction(urlString: String) -> PlatformClient.ApplicationClient.Catalog.ActionPage? {
-        PlatformClient.ApplicationClient.Catalog.ActionPage(urlString: urlString)
+        return PlatformClient.ApplicationClient.Catalog.ActionPage(urlString: urlString)
     }
 
     convenience init?(urlString: String) {
@@ -128,11 +141,11 @@ public extension PlatformClient.ApplicationClient.Catalog.ActionPage {
             }
         }
         for param in type.queryParams {
-            if param.required, query[param.name] == nil {
+            if param.required && query[param.name] == nil {
                 return nil
             }
         }
-        let components = urlComponents.percentEncodedPath.components(separatedBy: "/").map { $0.removingPercentEncoding ?? $0 }
+        let components = urlComponents.percentEncodedPath.components(separatedBy: "/").map{ $0.removingPercentEncoding ?? $0}
         let symbolic = URLComponents(string: type.link)?.percentEncodedPath.components(separatedBy: "/") ?? []
         for paramSpec in type.pathParams {
             if let i = symbolic.firstIndex(of: ":\(paramSpec.name)") {
@@ -153,26 +166,26 @@ public extension PlatformClient.ApplicationClient.Catalog.ActionPage {
         }
         self.init(params: params, query: query, type: type, url: url)
     }
-
+    
     func getURL() -> String? {
         var urlParts = type.link.components(separatedBy: "/")
         for paramSpec in type.pathParams {
             if let index = urlParts.firstIndex(of: ":\(paramSpec.name)") {
-                if let value = self.params?[paramSpec.name] {
-                    if value.isEmpty {
-                        return nil
-                    } else if value.count == 1 {
-                        urlParts[index] = value[0].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? value[0]
-                    } else {
-                        urlParts[index] = value
-                            .map { $0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? $0 }
-                            .joined(separator: ":::")
-                    }
-                } else if paramSpec.required {
+              if let value = self.params?[paramSpec.name] {
+                if value.isEmpty {
                     return nil
+                } else if value.count == 1 {
+                    urlParts[index] = value[0].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? value[0]
                 } else {
-                    urlParts.remove(at: index)
+                    urlParts[index] = value
+                        .map{$0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? $0}
+                        .joined(separator: ":::")
                 }
+              } else if paramSpec.required {
+                return nil
+              } else {
+                urlParts.remove(at: index)
+              }
             } else if paramSpec.required {
                 return nil
             }
@@ -180,8 +193,7 @@ public extension PlatformClient.ApplicationClient.Catalog.ActionPage {
         for q in type.queryParams {
             if q.required {
                 if let value = self.query?[q.name],
-                   value.isEmpty
-                {
+                   value.isEmpty {
                     return nil
                 } else if self.query?[q.name] == nil {
                     return nil
@@ -192,7 +204,7 @@ public extension PlatformClient.ApplicationClient.Catalog.ActionPage {
         for (key, value) in self.query ?? [:] {
             var text = ""
             for val in value {
-                text += "\(key)=\(val.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")&"
+                text += "\(key)=\((val.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? ""))&"
             }
             queryString = (queryString ?? "?") + text
         }
@@ -201,9 +213,26 @@ public extension PlatformClient.ApplicationClient.Catalog.ActionPage {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public extension PlatformClient.ApplicationClient.Content.ActionPage {
+    
     static func convertURLToAction(urlString: String) -> PlatformClient.ApplicationClient.Content.ActionPage? {
-        PlatformClient.ApplicationClient.Content.ActionPage(urlString: urlString)
+        return PlatformClient.ApplicationClient.Content.ActionPage(urlString: urlString)
     }
 
     convenience init?(urlString: String) {
@@ -227,11 +256,11 @@ public extension PlatformClient.ApplicationClient.Content.ActionPage {
             }
         }
         for param in type.queryParams {
-            if param.required, query[param.name] == nil {
+            if param.required && query[param.name] == nil {
                 return nil
             }
         }
-        let components = urlComponents.percentEncodedPath.components(separatedBy: "/").map { $0.removingPercentEncoding ?? $0 }
+        let components = urlComponents.percentEncodedPath.components(separatedBy: "/").map{ $0.removingPercentEncoding ?? $0}
         let symbolic = URLComponents(string: type.link)?.percentEncodedPath.components(separatedBy: "/") ?? []
         for paramSpec in type.pathParams {
             if let i = symbolic.firstIndex(of: ":\(paramSpec.name)") {
@@ -252,26 +281,26 @@ public extension PlatformClient.ApplicationClient.Content.ActionPage {
         }
         self.init(params: params, query: query, type: type, url: url)
     }
-
+    
     func getURL() -> String? {
         var urlParts = type.link.components(separatedBy: "/")
         for paramSpec in type.pathParams {
             if let index = urlParts.firstIndex(of: ":\(paramSpec.name)") {
-                if let value = self.params?[paramSpec.name] {
-                    if value.isEmpty {
-                        return nil
-                    } else if value.count == 1 {
-                        urlParts[index] = value[0].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? value[0]
-                    } else {
-                        urlParts[index] = value
-                            .map { $0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? $0 }
-                            .joined(separator: ":::")
-                    }
-                } else if paramSpec.required {
+              if let value = self.params?[paramSpec.name] {
+                if value.isEmpty {
                     return nil
+                } else if value.count == 1 {
+                    urlParts[index] = value[0].addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? value[0]
                 } else {
-                    urlParts.remove(at: index)
+                    urlParts[index] = value
+                        .map{$0.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? $0}
+                        .joined(separator: ":::")
                 }
+              } else if paramSpec.required {
+                return nil
+              } else {
+                urlParts.remove(at: index)
+              }
             } else if paramSpec.required {
                 return nil
             }
@@ -279,8 +308,7 @@ public extension PlatformClient.ApplicationClient.Content.ActionPage {
         for q in type.queryParams {
             if q.required {
                 if let value = self.query?[q.name],
-                   value.isEmpty
-                {
+                   value.isEmpty {
                     return nil
                 } else if self.query?[q.name] == nil {
                     return nil
@@ -291,7 +319,7 @@ public extension PlatformClient.ApplicationClient.Content.ActionPage {
         for (key, value) in self.query ?? [:] {
             var text = ""
             for val in value {
-                text += "\(key)=\(val.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? "")&"
+                text += "\(key)=\((val.addingPercentEncoding(withAllowedCharacters: .afURLQueryAllowed) ?? ""))&"
             }
             queryString = (queryString ?? "?") + text
         }
@@ -299,3 +327,32 @@ public extension PlatformClient.ApplicationClient.Content.ActionPage {
         return finalUrl
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
