@@ -2,31 +2,31 @@
 
 import Foundation
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Serviceability {
     /*
-         Model: Trader
-         Used By: Catalog
+         Model: EntityRegionView_Error
+         Used By: Serviceability
      */
 
-    class Trader: Codable {
-        public var address: [String]?
+    class EntityRegionView_Error: Codable {
+        public var message: String?
 
-        public var name: String
+        public var value: String?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case address
+            case message
 
-            case name
+            case value
 
             case type
         }
 
-        public init(address: [String]? = nil, name: String, type: String? = nil) {
-            self.address = address
+        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
+            self.message = message
 
-            self.name = name
+            self.value = value
 
             self.type = type
         }
@@ -35,14 +35,20 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                address = try container.decode([String].self, forKey: .address)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
+            do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 type = try container.decode(String.self, forKey: .type)
@@ -56,40 +62,40 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-         Model: Trader
-         Used By: Catalog
+         Model: EntityRegionView_Error
+         Used By: Serviceability
      */
 
-    class Trader: Codable {
-        public var address: [String]?
+    class EntityRegionView_Error: Codable {
+        public var message: String?
 
-        public var name: String
+        public var value: String?
 
         public var type: String?
 
         public enum CodingKeys: String, CodingKey {
-            case address
+            case message
 
-            case name
+            case value
 
             case type
         }
 
-        public init(address: [String]? = nil, name: String, type: String? = nil) {
-            self.address = address
+        public init(message: String? = nil, type: String? = nil, value: String? = nil) {
+            self.message = message
 
-            self.name = name
+            self.value = value
 
             self.type = type
         }
@@ -98,14 +104,20 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                address = try container.decode([String].self, forKey: .address)
+                message = try container.decode(String.self, forKey: .message)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            name = try container.decode(String.self, forKey: .name)
+            do {
+                value = try container.decode(String.self, forKey: .value)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             do {
                 type = try container.decode(String.self, forKey: .type)
@@ -119,9 +131,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(message, forKey: .message)
 
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(value, forKey: .value)
 
             try? container.encodeIfPresent(type, forKey: .type)
         }

@@ -2,34 +2,34 @@
 
 import Foundation
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Serviceability {
     /*
-         Model: NetQuantity
-         Used By: Catalog
+         Model: GstCredentialsResponse
+         Used By: Serviceability
      */
 
-    class NetQuantity: Codable {
-        public var value: Double?
+    class GstCredentialsResponse: Codable {
+        public var eWaybill: EwayBillResponse?
 
-        public var unit: String?
+        public var eInvoice: EinvoiceResponse?
 
         public enum CodingKeys: String, CodingKey {
-            case value
+            case eWaybill = "e_waybill"
 
-            case unit
+            case eInvoice = "e_invoice"
         }
 
-        public init(unit: String? = nil, value: Double? = nil) {
-            self.value = value
+        public init(eInvoice: EinvoiceResponse? = nil, eWaybill: EwayBillResponse? = nil) {
+            self.eWaybill = eWaybill
 
-            self.unit = unit
+            self.eInvoice = eInvoice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                eWaybill = try container.decode(EwayBillResponse.self, forKey: .eWaybill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                eInvoice = try container.decode(EinvoiceResponse.self, forKey: .eInvoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(eWaybill, forKey: .eWaybill)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-         Model: NetQuantity
-         Used By: Catalog
+         Model: GstCredentialsResponse
+         Used By: Serviceability
      */
 
-    class NetQuantity: Codable {
-        public var value: Double?
+    class GstCredentialsResponse: Codable {
+        public var eWaybill: EwayBillResponse?
 
-        public var unit: String?
+        public var eInvoice: EinvoiceResponse?
 
         public enum CodingKeys: String, CodingKey {
-            case value
+            case eWaybill = "e_waybill"
 
-            case unit
+            case eInvoice = "e_invoice"
         }
 
-        public init(unit: String? = nil, value: Double? = nil) {
-            self.value = value
+        public init(eInvoice: EinvoiceResponse? = nil, eWaybill: EwayBillResponse? = nil) {
+            self.eWaybill = eWaybill
 
-            self.unit = unit
+            self.eInvoice = eInvoice
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                eWaybill = try container.decode(EwayBillResponse.self, forKey: .eWaybill)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                eInvoice = try container.decode(EinvoiceResponse.self, forKey: .eInvoice)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(eWaybill, forKey: .eWaybill)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(eInvoice, forKey: .eInvoice)
         }
     }
 }

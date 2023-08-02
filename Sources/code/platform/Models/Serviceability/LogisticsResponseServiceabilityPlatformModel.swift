@@ -2,34 +2,34 @@
 
 import Foundation
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Serviceability {
     /*
-         Model: NetQuantity
-         Used By: Catalog
+         Model: LogisticsResponse
+         Used By: Serviceability
      */
 
-    class NetQuantity: Codable {
-        public var value: Double?
+    class LogisticsResponse: Codable {
+        public var override: Bool?
 
-        public var unit: String?
+        public var dp: Dp?
 
         public enum CodingKeys: String, CodingKey {
-            case value
+            case override
 
-            case unit
+            case dp
         }
 
-        public init(unit: String? = nil, value: Double? = nil) {
-            self.value = value
+        public init(dp: Dp? = nil, override: Bool? = nil) {
+            self.override = override
 
-            self.unit = unit
+            self.dp = dp
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                override = try container.decode(Bool.self, forKey: .override)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -37,7 +37,7 @@ public extension PlatformClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                dp = try container.decode(Dp.self, forKey: .dp)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -48,41 +48,41 @@ public extension PlatformClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(override, forKey: .override)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(dp, forKey: .dp)
         }
     }
 }
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Serviceability {
     /*
-         Model: NetQuantity
-         Used By: Catalog
+         Model: LogisticsResponse
+         Used By: Serviceability
      */
 
-    class NetQuantity: Codable {
-        public var value: Double?
+    class LogisticsResponse: Codable {
+        public var override: Bool?
 
-        public var unit: String?
+        public var dp: Dp?
 
         public enum CodingKeys: String, CodingKey {
-            case value
+            case override
 
-            case unit
+            case dp
         }
 
-        public init(unit: String? = nil, value: Double? = nil) {
-            self.value = value
+        public init(dp: Dp? = nil, override: Bool? = nil) {
+            self.override = override
 
-            self.unit = unit
+            self.dp = dp
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                value = try container.decode(Double.self, forKey: .value)
+                override = try container.decode(Bool.self, forKey: .override)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             } catch {}
 
             do {
-                unit = try container.decode(String.self, forKey: .unit)
+                dp = try container.decode(Dp.self, forKey: .dp)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -101,9 +101,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
 
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(override, forKey: .override)
 
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encodeIfPresent(dp, forKey: .dp)
         }
     }
 }
