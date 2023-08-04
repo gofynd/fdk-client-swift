@@ -23,6 +23,8 @@ public extension PlatformClient.Discount {
 
         public var fileType: String
 
+        public var id: String
+
         public enum CodingKeys: String, CodingKey {
             case stage
 
@@ -37,9 +39,11 @@ public extension PlatformClient.Discount {
             case type
 
             case fileType = "file_type"
+
+            case id = "_id"
         }
 
-        public init(body: [String: Any]? = nil, companyId: Int, failed: Int, fileType: String, stage: String, total: Int, type: String) {
+        public init(body: [String: Any]? = nil, companyId: Int, failed: Int, fileType: String, stage: String, total: Int, type: String, id: String) {
             self.stage = stage
 
             self.total = total
@@ -53,6 +57,8 @@ public extension PlatformClient.Discount {
             self.type = type
 
             self.fileType = fileType
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -77,6 +83,8 @@ public extension PlatformClient.Discount {
             type = try container.decode(String.self, forKey: .type)
 
             fileType = try container.decode(String.self, forKey: .fileType)
+
+            id = try container.decode(String.self, forKey: .id)
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -95,6 +103,8 @@ public extension PlatformClient.Discount {
             try? container.encodeIfPresent(type, forKey: .type)
 
             try? container.encodeIfPresent(fileType, forKey: .fileType)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

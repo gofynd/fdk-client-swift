@@ -71,7 +71,7 @@ This operation will return the url for the uploaded file.
 
 [StartResponse](#StartResponse)
 
-Success
+Success. Returns a response containing relaving and absolute_url of storage service
 
 
 
@@ -350,11 +350,27 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "urls": [
+      {
+        "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
+        "signed_url": "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
+        "expiry": 1800
+      }
+    ]
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -386,7 +402,7 @@ platformClient.filestorage.copyFiles(sync: sync, body: body) { (response, error)
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| sync | Bool? | no | sync |  
+| sync | Bool? | no |  |  
 | body | BulkRequest | yes | Request body |
 
 
@@ -539,7 +555,7 @@ Browse Files
 
 
 ```swift
-platformClient.filestorage.browse(namespace: namespace, pageNo: pageNo) { (response, error) in
+platformClient.filestorage.browse(namespace: namespace, page: page, limit: limit) { (response, error) in
     // Use response
 }
 ```
@@ -550,8 +566,9 @@ platformClient.filestorage.browse(namespace: namespace, pageNo: pageNo) { (respo
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | bucket name |   
-| pageNo | Int? | no | page no |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
+| page | Int? | no | page no |   
+| limit | Int? | no | Limit |  
 
 
 
@@ -595,7 +612,7 @@ Browse Files
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").filestorage.appbrowse(namespace: namespace, pageNo: pageNo) { (response, error) in
+platformClient.application("<APPLICATION_ID>").filestorage.appbrowse(namespace: namespace, page: page, limit: limit) { (response, error) in
     // Use response
 }
 ```
@@ -606,8 +623,9 @@ platformClient.application("<APPLICATION_ID>").filestorage.appbrowse(namespace: 
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| namespace | String | yes | bucket name |   
-| pageNo | Int? | no | page no |  
+| namespace | String | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
+| page | Int? | no | page no |   
+| limit | Int? | no | Limit |  
 
 
 
@@ -844,17 +862,6 @@ Success
 
  
  
- #### [ReqConfiguration](#ReqConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | concurrency | Int? |  yes  |  |
-
----
-
-
- 
- 
  #### [Destination](#Destination)
 
  | Properties | Type | Nullable | Description |
@@ -874,7 +881,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | urls | [String] |  no  |  |
  | destination | [Destination](#Destination) |  no  |  |
- | configuration | [ReqConfiguration](#ReqConfiguration)? |  yes  |  |
 
 ---
 
@@ -962,6 +968,70 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[DbRecord](#DbRecord)] |  no  |  |
  | page | [Page](#Page) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [Status](#Status)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total | Double |  no  |  |
+ | failed | Double |  no  |  |
+ | succeeded | Double |  no  |  |
+ | result | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FileSrc](#FileSrc)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | method | String? |  yes  |  |
+ | url | String |  no  |  |
+ | namespace | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [File](#File)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | src | [FileSrc](#FileSrc) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkUploadFailFileResponseItems](#BulkUploadFailFileResponseItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool |  no  |  |
+ | error | String? |  yes  |  |
+ | file | [File](#File)? |  yes  |  |
+ | stage | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkUploadFailResponse](#BulkUploadFailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | [Status](#Status) |  no  |  |
+ | files | [[BulkUploadFailFileResponseItems](#BulkUploadFailFileResponseItems)] |  no  |  |
 
 ---
 

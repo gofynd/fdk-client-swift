@@ -53,6 +53,8 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public var dateMeta: PromotionDateMeta?
 
+        public var id: String?
+
         public enum CodingKeys: String, CodingKey {
             case stackable
 
@@ -97,9 +99,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             case customJson = "_custom_json"
 
             case dateMeta = "date_meta"
+
+            case id = "_id"
         }
 
-        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: [String: ItemCriteria], calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule], displayMeta: DisplayMeta1, mode: String, ownership: Ownership1, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, restrictions: Restrictions1? = nil, stackable: Bool? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, schedule: PromotionSchedule? = nil) {
+        public init(applicationId: String, applyAllDiscount: Bool? = nil, applyExclusive: String? = nil, applyPriority: Int? = nil, author: PromotionAuthor? = nil, buyRules: [String: ItemCriteria], calculateOn: String? = nil, code: String? = nil, currency: String? = nil, dateMeta: PromotionDateMeta? = nil, discountRules: [DiscountRule], displayMeta: DisplayMeta1, mode: String, ownership: Ownership1, postOrderAction: PromotionAction? = nil, promotionType: String, promoGroup: String, restrictions: Restrictions1? = nil, stackable: Bool? = nil, visiblility: Visibility? = nil, customJson: [String: Any]? = nil, id: String? = nil, schedule: PromotionSchedule? = nil) {
             self.stackable = stackable
 
             self.calculateOn = calculateOn
@@ -143,6 +147,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.customJson = customJson
 
             self.dateMeta = dateMeta
+
+            self.id = id
         }
 
         required public init(from decoder: Decoder) throws {
@@ -275,6 +281,14 @@ public extension PlatformClient.ApplicationClient.Cart {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                id = try container.decode(String.self, forKey: .id)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -323,6 +337,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             try? container.encodeIfPresent(customJson, forKey: .customJson)
 
             try? container.encodeIfPresent(dateMeta, forKey: .dateMeta)
+
+            try? container.encodeIfPresent(id, forKey: .id)
         }
     }
 }

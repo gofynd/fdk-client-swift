@@ -45,8 +45,6 @@ public extension PlatformClient.Catalog {
 
         public var enabledForEndConsumer: Bool?
 
-        public var example: String?
-
         public var schema: AttributeMaster
 
         public var createdBy: [String: Any]?
@@ -88,14 +86,12 @@ public extension PlatformClient.Catalog {
 
             case enabledForEndConsumer = "enabled_for_end_consumer"
 
-            case example
-
             case schema
 
             case createdBy = "created_by"
         }
 
-        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String], description: String? = nil, details: AttributeMasterDetails, enabledForEndConsumer: Bool? = nil, example: String? = nil, filters: AttributeMasterFilter, isNested: Bool? = nil, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, rawKey: String? = nil, schema: AttributeMaster, slug: String, suggestion: String? = nil, synonyms: [String: Any]? = nil, tags: [String]? = nil, unit: String? = nil, variant: Bool? = nil) {
+        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String], description: String? = nil, details: AttributeMasterDetails, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter, isNested: Bool? = nil, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, rawKey: String? = nil, schema: AttributeMaster, slug: String, suggestion: String? = nil, synonyms: [String: Any]? = nil, tags: [String]? = nil, unit: String? = nil, variant: Bool? = nil) {
             self.variant = variant
 
             self.description = description
@@ -131,8 +127,6 @@ public extension PlatformClient.Catalog {
             self.slug = slug
 
             self.enabledForEndConsumer = enabledForEndConsumer
-
-            self.example = example
 
             self.schema = schema
 
@@ -262,14 +256,6 @@ public extension PlatformClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                example = try container.decode(String.self, forKey: .example)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             schema = try container.decode(AttributeMaster.self, forKey: .schema)
 
             do {
@@ -319,8 +305,6 @@ public extension PlatformClient.Catalog {
             try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(enabledForEndConsumer, forKey: .enabledForEndConsumer)
-
-            try? container.encodeIfPresent(example, forKey: .example)
 
             try? container.encodeIfPresent(schema, forKey: .schema)
 
@@ -372,8 +356,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public var enabledForEndConsumer: Bool?
 
-        public var example: String?
-
         public var schema: AttributeMaster
 
         public var createdBy: [String: Any]?
@@ -415,14 +397,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
             case enabledForEndConsumer = "enabled_for_end_consumer"
 
-            case example
-
             case schema
 
             case createdBy = "created_by"
         }
 
-        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String], description: String? = nil, details: AttributeMasterDetails, enabledForEndConsumer: Bool? = nil, example: String? = nil, filters: AttributeMasterFilter, isNested: Bool? = nil, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, rawKey: String? = nil, schema: AttributeMaster, slug: String, suggestion: String? = nil, synonyms: [String: Any]? = nil, tags: [String]? = nil, unit: String? = nil, variant: Bool? = nil) {
+        public init(createdBy: [String: Any]? = nil, createdOn: String? = nil, departments: [String], description: String? = nil, details: AttributeMasterDetails, enabledForEndConsumer: Bool? = nil, filters: AttributeMasterFilter, isNested: Bool? = nil, logo: String? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, name: String? = nil, rawKey: String? = nil, schema: AttributeMaster, slug: String, suggestion: String? = nil, synonyms: [String: Any]? = nil, tags: [String]? = nil, unit: String? = nil, variant: Bool? = nil) {
             self.variant = variant
 
             self.description = description
@@ -458,8 +438,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.slug = slug
 
             self.enabledForEndConsumer = enabledForEndConsumer
-
-            self.example = example
 
             self.schema = schema
 
@@ -589,14 +567,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            do {
-                example = try container.decode(String.self, forKey: .example)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
             schema = try container.decode(AttributeMaster.self, forKey: .schema)
 
             do {
@@ -646,8 +616,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             try? container.encodeIfPresent(slug, forKey: .slug)
 
             try? container.encodeIfPresent(enabledForEndConsumer, forKey: .enabledForEndConsumer)
-
-            try? container.encodeIfPresent(example, forKey: .example)
 
             try? container.encodeIfPresent(schema, forKey: .schema)
 

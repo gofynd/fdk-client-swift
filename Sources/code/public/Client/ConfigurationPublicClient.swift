@@ -63,7 +63,7 @@ public extension PublicClient {
         /**
          *
          * Summary: Get countries, states, cities
-         * Description:
+         * Description: Get Location configuration
          **/
         public func getLocations(
             locationType: String?,

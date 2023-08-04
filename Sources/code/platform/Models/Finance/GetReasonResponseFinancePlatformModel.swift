@@ -11,18 +11,30 @@ public extension PlatformClient.Finance {
     class GetReasonResponse: Codable {
         public var success: Bool?
 
-        public var data: GetDocs?
+        public var itemList: [ReasonItem]?
+
+        public var itemCount: Int?
+
+        public var page: Page?
 
         public enum CodingKeys: String, CodingKey {
             case success
 
-            case data
+            case itemList = "item_list"
+
+            case itemCount = "item_count"
+
+            case page
         }
 
-        public init(data: GetDocs? = nil, success: Bool? = nil) {
+        public init(itemCount: Int? = nil, itemList: [ReasonItem]? = nil, page: Page? = nil, success: Bool? = nil) {
             self.success = success
 
-            self.data = data
+            self.itemList = itemList
+
+            self.itemCount = itemCount
+
+            self.page = page
         }
 
         required public init(from decoder: Decoder) throws {
@@ -37,7 +49,23 @@ public extension PlatformClient.Finance {
             } catch {}
 
             do {
-                data = try container.decode(GetDocs.self, forKey: .data)
+                itemList = try container.decode([ReasonItem].self, forKey: .itemList)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                itemCount = try container.decode(Int.self, forKey: .itemCount)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
+
+            do {
+                page = try container.decode(Page.self, forKey: .page)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +78,11 @@ public extension PlatformClient.Finance {
 
             try? container.encodeIfPresent(success, forKey: .success)
 
-            try? container.encodeIfPresent(data, forKey: .data)
+            try? container.encodeIfPresent(itemList, forKey: .itemList)
+
+            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
+
+            try? container.encodeIfPresent(page, forKey: .page)
         }
     }
 }

@@ -871,6 +871,122 @@ public class PlatformClient {
 
             /**
              *
+             * Summary: Update price adjustment configuration
+             * Description: Update price adjustment configuration
+             **/
+            public func updatePriceAdjustment(
+                id: String,
+                body: PriceAdjustmentUpdate,
+                onResponse: @escaping (_ response: PriceAdjustmentResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/priceAdjustment/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(PriceAdjustmentResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Remove price adjustment
+             * Description: Remove price adjustment
+             **/
+            public func removePriceAdjustment(
+                id: String,
+
+                onResponse: @escaping (_ response: SuccessMessage?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "delete",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/priceAdjustment/\(id)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(SuccessMessage.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Create new price adjustment
+             * Description: Create new price adjustment
+             **/
+            public func addPriceAdjustment(
+                body: PriceAdjustmentAdd,
+                onResponse: @escaping (_ response: PriceAdjustmentResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/cart/v1.0/company/\(companyId)/application/\(applicationId)/price-adjustment",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(PriceAdjustmentResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
              * Summary: Fetch Cart Details
              * Description: Get all the details of cart for a list of provided `cart_items`
              **/
@@ -1200,7 +1316,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Update items in the abandoned cart
-             * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+             * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call.update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/"  item position in the cart (must be greater than or equal to 0)
              **/
             public func updateCart(
                 cartId: String,
@@ -1765,7 +1881,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Update items in the customer 's cart using cart id
-             * Description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+             * Description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call. update_item for update items. remove_item for removing items.item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity  item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0)
              **/
             public func platformUpdateCart(
                 id: String?,
@@ -2085,7 +2201,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Fetch address
-             * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+             * Description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id  mobile_no checkout_mode tags default
              **/
             public func getAddresses(
                 cartId: String?,
@@ -2198,7 +2314,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Fetch a single address by its ID
-             * Description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+             * Description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional mobile_no checkout_mode tags default
              **/
             public func getAddressById(
                 id: String,
@@ -2274,7 +2390,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Update address added to an account
-             * Description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+             * Description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are:is_default_address landmark area pincode email address_type name address_id address
              **/
             public func updateAddress(
                 id: String,
@@ -2359,7 +2475,7 @@ public class PlatformClient {
             /**
              *
              * Summary: Select an address from available addresses
-             * Description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
+             * Description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid
              **/
             public func selectAddress(
                 cartId: String?,
@@ -11689,7 +11805,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/start/",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/start",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -11746,7 +11862,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/complete/",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/complete",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -11791,7 +11907,7 @@ public class PlatformClient {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/uploads/copy/",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/uploads/copy",
                     query: xQuery,
                     body: body.dictionary,
                     headers: [],
@@ -11824,20 +11940,25 @@ public class PlatformClient {
              **/
             public func appbrowse(
                 namespace: String,
-                pageNo: Int?,
+                page: Int?,
+                limit: Int?,
 
                 onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
             ) {
                 var xQuery: [String: Any] = [:]
 
-                if let value = pageNo {
-                    xQuery["page_no"] = value
+                if let value = page {
+                    xQuery["page"] = value
+                }
+
+                if let value = limit {
+                    xQuery["limit"] = value
                 }
 
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/browse/",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/browse",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -11862,33 +11983,6 @@ public class PlatformClient {
                     }
                 )
             }
-
-            /**
-             *
-             * Summary: get paginator for appbrowse
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func appbrowsePaginator(
-                namespace: String
-
-            ) -> Paginator<BrowseResponse> {
-                let pageSize = 20
-                let paginator = Paginator<BrowseResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.appbrowse(
-                        namespace: namespace,
-                        pageNo: paginator.pageNo
-
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
-            }
         }
 
         public class Lead {
@@ -11907,7 +12001,7 @@ public class PlatformClient {
              * Summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
              * Description: Gets the list of Application level Tickets and/or ticket filters
              **/
-            public func getTickets(
+            public func getNewTickets(
                 items: Bool?,
                 filters: Bool?,
                 q: String?,
@@ -11977,7 +12071,7 @@ public class PlatformClient {
              * Summary: Retreives ticket details of a application level ticket
              * Description: Retreives ticket details of a application level ticket with ticket ID
              **/
-            public func getTicket(
+            public func getNewTicket(
                 id: String,
 
                 onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
@@ -12016,7 +12110,7 @@ public class PlatformClient {
              * Summary: Edits ticket details of a application level ticket
              * Description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
              **/
-            public func editTicket(
+            public func editNewTicket(
                 id: String,
                 body: EditTicketPayload,
                 onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
@@ -12055,7 +12149,7 @@ public class PlatformClient {
              * Summary: Create history for specific application level ticket
              * Description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
              **/
-            public func createHistory(
+            public func createNewHistory(
                 id: String,
                 body: TicketHistoryPayload,
                 onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
@@ -12094,7 +12188,7 @@ public class PlatformClient {
              * Summary: Gets history list for specific application level ticket
              * Description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
              **/
-            public func getTicketHistory(
+            public func getNewTicketHistory(
                 id: String,
 
                 onResponse: @escaping (_ response: TicketHistoryList?, _ error: FDKError?) -> Void
@@ -12286,7 +12380,7 @@ public class PlatformClient {
              * Summary: Get Token to join a specific Video Room using it's unqiue name
              * Description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
              **/
-            public func getTokenForVideoRoom(
+            public func getNewTokenForVideoRoom(
                 uniqueName: String,
 
                 onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: FDKError?) -> Void
@@ -12325,7 +12419,7 @@ public class PlatformClient {
              * Summary: Get participants of a specific Video Room using it's unique name
              * Description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
              **/
-            public func getVideoParticipants(
+            public func getNewVideoParticipants(
                 uniqueName: String,
 
                 onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: FDKError?) -> Void
@@ -12544,7 +12638,7 @@ public class PlatformClient {
              * Description: Use this API to get proxy url
              **/
             public func getProxyPath(
-                extensionId: String?,
+                extensionId: String,
 
                 onResponse: @escaping (_ response: getProxyPathRes?, _ error: FDKError?) -> Void
             ) {
@@ -12622,8 +12716,8 @@ public class PlatformClient {
              * Description: Use this API to get proxy url
              **/
             public func getProxyPathAttachedPath(
-                extensionId: String?,
-                attachedPath: String?,
+                extensionId: String,
+                attachedPath: String,
 
                 onResponse: @escaping (_ response: AddProxyResponse?, _ error: FDKError?) -> Void
             ) {
@@ -14044,6 +14138,283 @@ public class PlatformClient {
                     }
                 )
             }
+
+            /**
+             *
+             * Summary: API to update status of a payment.
+             * Description: A payment_session is initiated against a global identifier (gid) which is identifies the entity payment is initiated against. e.g. order_id, cart_id. This endpoint is to update the status of the said payment_session.
+             **/
+            public func updatePaymentSession(
+                gid: String,
+                body: PaymentSessionRequestSerializer,
+                onResponse: @escaping (_ response: PaymentSessionResponseSerializer?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/session/\(gid)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(PaymentSessionResponseSerializer.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: API to update the status of a refund
+             * Description: A refund_session is initiated against a refund request, and this endpoint is to update the status against the refund request_id. A gid is unique indentifier of the entity against which payment was received e.g. an order.
+             **/
+            public func updateRefundSession(
+                gid: String,
+                requestId: String,
+                body: RefundSessionRequestSerializer,
+                onResponse: @escaping (_ response: RefundSessionResponseSerializer?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/\(gid)/refund/session/\(requestId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(RefundSessionResponseSerializer.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get Payment modes and COD details.
+             * Description: This api fetches all the available PGs for merchant and its offline payment mode details.
+             **/
+            public func getMerchantPaymentOption(
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update Payment modes and COD details.
+             * Description: To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags.
+             **/
+            public func patchMerchantPaymentOption(
+                body: MerchnatPaymentModeResponse,
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get Aggregator, payment mode and sub payment mode.
+             * Description: Get Aggregator, payment mode and sub payment mode details.
+             **/
+            public func getMerchantAggregatorPaymentModeDetails(
+                aggregatorId: Int,
+                businessUnit: String,
+                device: String,
+
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                var xQuery: [String: Any] = [:]
+
+                xQuery["business_unit"] = businessUnit
+
+                xQuery["device"] = device
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/aggregators/\(aggregatorId)",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Update Aggregator, payment mode and sub payment mode.
+             * Description: Update Aggregator, payment mode and sub payment mode details.
+             **/
+            public func patchMerchantAggregatorPaymentModeDetails(
+                aggregatorId: Int,
+                body: MerchnatPaymentModeResponse,
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/aggregators/\(aggregatorId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
+
+            /**
+             *
+             * Summary: Get Aggregators available to be added as PG.
+             * Description: Get Aggregators available to be added as PG.
+             **/
+            public func getPGConfigAggregators(
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration/aggregator",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { responseData, error, responseCode in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                           NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                    }
+                )
+            }
         }
 
         public class Rewards {
@@ -14681,40 +15052,6 @@ public class PlatformClient {
                         }
                     }
                 )
-            }
-
-            /**
-             *
-             * Summary: get paginator for getShortLinks
-             * Description: fetch the next page by calling .next(...) function
-             **/
-            public func getShortLinksPaginator(
-                pageSize: Int?,
-                createdBy: String?,
-                active: String?,
-                q: String?
-
-            ) -> Paginator<ShortLinkList> {
-                let pageSize = pageSize ?? 20
-                let paginator = Paginator<ShortLinkList>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.getShortLinks(
-                        pageNo: paginator.pageNo,
-
-                        pageSize: paginator.pageSize,
-
-                        createdBy: createdBy,
-                        active: active,
-                        q: q
-                    ) { response, error in
-                        if let response = response {
-                            paginator.hasNext = response.page?.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                        }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
             }
 
             /**

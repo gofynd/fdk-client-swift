@@ -791,7 +791,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications/",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications",
                 query: xQuery,
                 body: nil,
                 headers: [],

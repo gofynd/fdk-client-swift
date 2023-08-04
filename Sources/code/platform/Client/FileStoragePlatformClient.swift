@@ -41,7 +41,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/start/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/start",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -98,7 +98,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/complete/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/complete",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -136,7 +136,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/sign-urls/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/sign-urls",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -181,7 +181,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/uploads/copy/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/uploads/copy",
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
@@ -214,20 +214,25 @@ public extension PlatformClient {
          **/
         public func browse(
             namespace: String,
-            pageNo: Int?,
+            page: Int?,
+            limit: Int?,
 
             onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
+            if let value = page {
+                xQuery["page"] = value
+            }
+
+            if let value = limit {
+                xQuery["limit"] = value
             }
 
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/browse/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/browse",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -255,33 +260,6 @@ public extension PlatformClient {
 
         /**
          *
-         * Summary: get paginator for browse
-         * Description: fetch the next page by calling .next(...) function
-         **/
-        public func browsePaginator(
-            namespace: String
-
-        ) -> Paginator<BrowseResponse> {
-            let pageSize = 20
-            let paginator = Paginator<BrowseResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.browse(
-                    namespace: namespace,
-                    pageNo: paginator.pageNo
-
-                ) { response, error in
-                    if let response = response {
-                        paginator.hasNext = response.page.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-
-        /**
-         *
          * Summary: Proxy
          * Description: Proxy
          **/
@@ -297,7 +275,7 @@ public extension PlatformClient {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/proxy/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/proxy",
                 query: xQuery,
                 body: nil,
                 headers: [],

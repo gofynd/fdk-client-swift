@@ -7,7 +7,7 @@ public extension ApplicationClient.Payment {
          Used By: Payment
      */
     class HttpErrorCodeAndResponse: Codable {
-        public var error: ErrorCodeAndDescription
+        public var error: ErrorCodeAndDescription?
 
         public var success: Bool
 
@@ -17,7 +17,7 @@ public extension ApplicationClient.Payment {
             case success
         }
 
-        public init(error: ErrorCodeAndDescription, success: Bool) {
+        public init(error: ErrorCodeAndDescription? = nil, success: Bool) {
             self.error = error
 
             self.success = success
@@ -26,7 +26,13 @@ public extension ApplicationClient.Payment {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            error = try container.decode(ErrorCodeAndDescription.self, forKey: .error)
+            do {
+                error = try container.decode(ErrorCodeAndDescription.self, forKey: .error)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             success = try container.decode(Bool.self, forKey: .success)
         }
