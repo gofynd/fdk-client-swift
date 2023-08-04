@@ -7578,7 +7578,11 @@ Success. Returns a ProductSizePriceV3 object. Check the example shown below or r
     "quantity": 6
   },
   "is_gift": true,
-  "is_cod": false
+  "is_cod": false,
+  "delivery_promise": {
+    "min": "2023-08-03T18:19:23",
+    "max": "2023-08-04T14:19:23"
+  }
 }
 ```
 </details>
@@ -7923,10 +7927,10 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | min | Double? |  yes  |  |
- | currencySymbol | String? |  yes  |  |
- | currencyCode | String? |  yes  |  |
- | max | Double? |  yes  |  |
+ | min | Double? |  yes  | The minimum price for the product across stores. |
+ | currencySymbol | String? |  yes  | The currency symbol for the currency in which the product is available. |
+ | currencyCode | String? |  yes  | The currency code for the currency in which the product is available. |
+ | max | Double? |  yes  | The maximum price for the product across stores. |
 
 ---
 
@@ -7939,6 +7943,19 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | ---------- | ---- | -------- | ----------- |
  | effective | [Price](#Price)? |  yes  |  |
  | marked | [Price](#Price)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ProductSizesPrice](#ProductSizesPrice)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | effective | [Price](#Price)? |  yes  | The effective price object for the product. |
+ | marked | [Price](#Price)? |  yes  | The marked price object for the product. |
+ | selling | [Price](#Price)? |  yes  | The selling price object for the product. |
 
 ---
 
@@ -8024,6 +8041,20 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | unit | String |  no  | The unit of weight |
  | shipping | Double |  no  | The shipping weight of the product |
  | isDefault | Bool |  no  | Whether the weight is the default one or not |
+
+---
+
+
+ 
+ 
+ #### [DiscountMeta](#DiscountMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timer | Bool |  no  | Determines whether the discount countdown is visible or not. |
+ | startTimerInMinutes | Double? |  yes  | The time in minutes before the discount ends when the countdown timer should start. |
+ | start | String? |  yes  | The start time of the live discount. |
+ | end | String? |  yes  | The end time of the live discount. |
 
 ---
 
@@ -8124,12 +8155,13 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | sizes | [[ProductSize](#ProductSize)]? |  yes  |  |
- | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | price | [ProductSizesPrice](#ProductSizesPrice)? |  yes  |  |
  | sizeChart | [SizeChart](#SizeChart)? |  yes  |  |
  | sellable | Bool? |  yes  |  |
  | multiSize | Bool? |  yes  |  |
  | discount | String? |  yes  |  |
  | stores | [ProductSizeStores](#ProductSizeStores)? |  yes  |  |
+ | discountMeta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
 
 ---
 
@@ -9377,9 +9409,11 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | effective | Double? |  yes  |  |
- | currency | String? |  yes  |  |
- | marked | Double? |  yes  |  |
+ | effective | Double? |  yes  | The effective or final price for the product at the given pincode. |
+ | currencyCode | String? |  yes  | The currency code for which the product is available |
+ | currencySymbol | String? |  yes  | The currency symbol for the currency in which the product is available. |
+ | marked | Double? |  yes  | The marked price of the product. |
+ | selling | Double? |  yes  | The selling price of the product. |
 
 ---
 
@@ -9425,6 +9459,18 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
 
  
  
+ #### [PromiseSchema](#PromiseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | String? |  yes  |  |
+ | max | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [ProductSizePriceResponseV3](#ProductSizePriceResponseV3)
 
  | Properties | Type | Nullable | Description |
@@ -9442,6 +9488,7 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | set | [ProductSetV3](#ProductSetV3)? |  yes  |  |
  | sellerCount | Int? |  yes  |  |
  | pricePerPiece | [ProductStockPriceV3](#ProductStockPriceV3)? |  yes  |  |
+ | discountMeta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | discount | String? |  yes  |  |
  | longLat | [Double]? |  yes  |  |
  | specialBadge | String? |  yes  |  |
@@ -9450,6 +9497,7 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | pincode | Int? |  yes  |  |
  | marketplaceAttributes | [[MarketPlaceSttributesSchemaV3](#MarketPlaceSttributesSchemaV3)]? |  yes  |  |
  | seller | [SellerV3](#SellerV3)? |  yes  |  |
+ | deliveryPromise | [PromiseSchema](#PromiseSchema)? |  yes  |  |
 
 ---
 

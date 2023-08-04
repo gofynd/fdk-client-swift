@@ -16,8 +16,6 @@ public extension PlatformClient.FileStorage {
         
         public var destination: Destination
         
-        public var configuration: ReqConfiguration?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,17 +23,13 @@ public extension PlatformClient.FileStorage {
             
             case destination = "destination"
             
-            case configuration = "configuration"
-            
         }
 
-        public init(configuration: ReqConfiguration? = nil, destination: Destination, urls: [String]) {
+        public init(destination: Destination, urls: [String]) {
             
             self.urls = urls
             
             self.destination = destination
-            
-            self.configuration = configuration
             
         }
 
@@ -52,18 +46,6 @@ public extension PlatformClient.FileStorage {
                 
             
             
-            
-                do {
-                    configuration = try container.decode(ReqConfiguration.self, forKey: .configuration)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -77,11 +59,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(destination, forKey: .destination)
-            
-            
-            
-            
-            try? container.encodeIfPresent(configuration, forKey: .configuration)
             
             
         }
@@ -104,8 +81,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var destination: Destination
         
-        public var configuration: ReqConfiguration?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -113,17 +88,13 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case destination = "destination"
             
-            case configuration = "configuration"
-            
         }
 
-        public init(configuration: ReqConfiguration? = nil, destination: Destination, urls: [String]) {
+        public init(destination: Destination, urls: [String]) {
             
             self.urls = urls
             
             self.destination = destination
-            
-            self.configuration = configuration
             
         }
 
@@ -140,18 +111,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 
             
             
-            
-                do {
-                    configuration = try container.decode(ReqConfiguration.self, forKey: .configuration)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -165,11 +124,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(destination, forKey: .destination)
-            
-            
-            
-            
-            try? container.encodeIfPresent(configuration, forKey: .configuration)
             
             
         }

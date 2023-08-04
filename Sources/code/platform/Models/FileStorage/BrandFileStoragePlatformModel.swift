@@ -5,25 +5,31 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: ReqConfiguration
+        Model: Brand
         Used By: FileStorage
     */
 
-    class ReqConfiguration: Codable {
+    class Brand: Codable {
         
         
-        public var concurrency: Int?
+        public var logo: String
+        
+        public var name: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case concurrency = "concurrency"
+            case logo = "logo"
+            
+            case name = "name"
             
         }
 
-        public init(concurrency: Int? = nil) {
+        public init(logo: String, name: String) {
             
-            self.concurrency = concurrency
+            self.logo = logo
+            
+            self.name = name
             
         }
 
@@ -31,16 +37,14 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    concurrency = try container.decode(Int.self, forKey: .concurrency)
+                logo = try container.decode(String.self, forKey: .logo)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+            
+            
+                name = try container.decode(String.self, forKey: .name)
                 
+            
             
         }
         
@@ -49,7 +53,12 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(concurrency, forKey: .concurrency)
+            try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }
@@ -61,25 +70,31 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: ReqConfiguration
+        Model: Brand
         Used By: FileStorage
     */
 
-    class ReqConfiguration: Codable {
+    class Brand: Codable {
         
         
-        public var concurrency: Int?
+        public var logo: String
+        
+        public var name: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case concurrency = "concurrency"
+            case logo = "logo"
+            
+            case name = "name"
             
         }
 
-        public init(concurrency: Int? = nil) {
+        public init(logo: String, name: String) {
             
-            self.concurrency = concurrency
+            self.logo = logo
+            
+            self.name = name
             
         }
 
@@ -87,16 +102,14 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    concurrency = try container.decode(Int.self, forKey: .concurrency)
+                logo = try container.decode(String.self, forKey: .logo)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+            
+            
+                name = try container.decode(String.self, forKey: .name)
                 
+            
             
         }
         
@@ -105,7 +118,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(concurrency, forKey: .concurrency)
+            try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

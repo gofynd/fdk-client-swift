@@ -26,6 +26,8 @@ public extension PlatformClient.Order {
         
         public var quantity: Int
         
+        public var status: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +45,11 @@ public extension PlatformClient.Order {
             
             case quantity = "quantity"
             
+            case status = "status"
+            
         }
 
-        public init(attributes: [String: Any], brandId: Int, category: [String: Any], dimension: [String: Any], quantity: Int, weight: [String: Any], id: String) {
+        public init(attributes: [String: Any], brandId: Int, category: [String: Any], dimension: [String: Any], quantity: Int, status: [String: Any]? = nil, weight: [String: Any], id: String) {
             
             self.id = id
             
@@ -60,6 +64,8 @@ public extension PlatformClient.Order {
             self.attributes = attributes
             
             self.quantity = quantity
+            
+            self.status = status
             
         }
 
@@ -101,6 +107,18 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                do {
+                    status = try container.decode([String: Any].self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -139,6 +157,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }
@@ -171,6 +194,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var quantity: Int
         
+        public var status: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -188,9 +213,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case quantity = "quantity"
             
+            case status = "status"
+            
         }
 
-        public init(attributes: [String: Any], brandId: Int, category: [String: Any], dimension: [String: Any], quantity: Int, weight: [String: Any], id: String) {
+        public init(attributes: [String: Any], brandId: Int, category: [String: Any], dimension: [String: Any], quantity: Int, status: [String: Any]? = nil, weight: [String: Any], id: String) {
             
             self.id = id
             
@@ -205,6 +232,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.attributes = attributes
             
             self.quantity = quantity
+            
+            self.status = status
             
         }
 
@@ -246,6 +275,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                do {
+                    status = try container.decode([String: Any].self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -284,6 +325,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(quantity, forKey: .quantity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

@@ -1174,6 +1174,67 @@ if let value = bagId {
         
         /**
         *
+        * Summary: To fetch next state transitions.
+        * Description: This endpoint will fetch next possible states based on logged in user
+
+        **/
+        public func getRoleBaseStateTransition(
+            orderingChannel: String,
+            status: String,
+            
+            onResponse: @escaping (_ response: RoleBaseStateTransitionMapping?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["ordering_channel"] = orderingChannel
+
+
+
+
+    xQuery["status"] = status
+
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/role/state/transitions/next",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RoleBaseStateTransitionMapping.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: 
         * Description: 
         **/
@@ -1417,6 +1478,54 @@ if let value = bagId {
         * Summary: 
         * Description: 
         **/
+        public func downloadLanesReport(
+            body: BulkReportsDownloadRequest,
+            onResponse: @escaping (_ response: BulkReportsDownloadResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/reports/lanes/download",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(BulkReportsDownloadResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: 
+        * Description: 
+        **/
         public func getShipments(
             lane: String?,
             bagStatus: String?,
@@ -1441,6 +1550,7 @@ if let value = bagId {
             companyAffiliateTag: String?,
             myOrders: Bool?,
             platformUserId: String?,
+            tags: String?,
             
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1604,6 +1714,13 @@ if let value = myOrders {
 if let value = platformUserId {
     
     xQuery["platform_user_id"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
     
 }
 

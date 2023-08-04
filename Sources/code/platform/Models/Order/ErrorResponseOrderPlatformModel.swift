@@ -16,9 +16,11 @@ public extension PlatformClient.Order {
         
         public var success: Bool?
         
-        public var message: String?
+        public var message: String
         
         public var errorTrace: String?
+        
+        public var error: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -31,9 +33,11 @@ public extension PlatformClient.Order {
             
             case errorTrace = "error_trace"
             
+            case error = "error"
+            
         }
 
-        public init(errorTrace: String? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
+        public init(error: String, errorTrace: String? = nil, message: String, status: Int? = nil, success: Bool? = nil) {
             
             self.status = status
             
@@ -42,6 +46,8 @@ public extension PlatformClient.Order {
             self.message = message
             
             self.errorTrace = errorTrace
+            
+            self.error = error
             
         }
 
@@ -73,16 +79,9 @@ public extension PlatformClient.Order {
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
+                message = try container.decode(String.self, forKey: .message)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -95,6 +94,11 @@ public extension PlatformClient.Order {
                     
                 }
                 
+            
+            
+                error = try container.decode(String.self, forKey: .error)
+                
+            
             
         }
         
@@ -119,6 +123,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+            
+            
+            
+            
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }
@@ -141,9 +150,11 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var success: Bool?
         
-        public var message: String?
+        public var message: String
         
         public var errorTrace: String?
+        
+        public var error: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -156,9 +167,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case errorTrace = "error_trace"
             
+            case error = "error"
+            
         }
 
-        public init(errorTrace: String? = nil, message: String? = nil, status: Int? = nil, success: Bool? = nil) {
+        public init(error: String, errorTrace: String? = nil, message: String, status: Int? = nil, success: Bool? = nil) {
             
             self.status = status
             
@@ -167,6 +180,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.message = message
             
             self.errorTrace = errorTrace
+            
+            self.error = error
             
         }
 
@@ -198,16 +213,9 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                do {
-                    message = try container.decode(String.self, forKey: .message)
+                message = try container.decode(String.self, forKey: .message)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -220,6 +228,11 @@ public extension PlatformClient.ApplicationClient.Order {
                     
                 }
                 
+            
+            
+                error = try container.decode(String.self, forKey: .error)
+                
+            
             
         }
         
@@ -244,6 +257,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+            
+            
+            
+            
+            try? container.encodeIfPresent(error, forKey: .error)
             
             
         }

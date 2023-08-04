@@ -15778,7 +15778,7 @@ This operation will return the url for the uploaded file.
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/start/",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/start",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -15845,7 +15845,7 @@ This operation will return the url for the uploaded file.
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/complete/",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/upload/complete",
                     query: nil,
                     body: body.dictionary,
                     headers: [],
@@ -15884,8 +15884,8 @@ This operation will return the url for the uploaded file.
             **/
             public func appCopyFiles(
                 sync: Bool?,
-                body: BulkRequest,
-                onResponse: @escaping (_ response: BulkUploadResponse?, _ error: FDKError?) -> Void
+                body: CopyFiles,
+                onResponse: @escaping (_ response: BulkUploadSyncMode?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -15903,7 +15903,7 @@ if let value = sync {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "post",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/uploads/copy/",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/uploads/copy",
                     query: xQuery,
                     body: body.dictionary,
                     headers: [],
@@ -15917,7 +15917,7 @@ if let value = sync {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BulkUploadResponse.self, from: data)
+                            let response = Utility.decode(BulkUploadSyncMode.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -15941,16 +15941,24 @@ if let value = sync {
             **/
             public func appbrowse(
                 namespace: String,
-                pageNo: Int?,
+                page: Int?,
+                limit: Int?,
                 
                 onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
 
-if let value = pageNo {
+if let value = page {
     
-    xQuery["page_no"] = value
+    xQuery["page"] = value
+    
+}
+
+
+if let value = limit {
+    
+    xQuery["limit"] = value
     
 }
 
@@ -15961,7 +15969,7 @@ if let value = pageNo {
                 PlatformAPIClient.execute(
                     config: config,
                     method: "get",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/browse/",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/namespaces/\(namespace)/browse",
                     query: xQuery,
                     body: nil,
                     headers: [],
@@ -15992,21 +16000,49 @@ if let value = pageNo {
             
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+            /**
+            *
+            * Summary: Get all the supported invoice pdf types
+            * Description: Get all the supported invoice pdf types such as Invoice, Label, Deliver challan
+            **/
+            public func getPdfTypes(
+                
+                onResponse: @escaping (_ response: [InvoiceTypesResponse]?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/types",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode([InvoiceTypesResponse].self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
             
             
             
@@ -16014,30 +16050,269 @@ if let value = pageNo {
             
             /**
             *
-            * Summary: get paginator for appbrowse
-            * Description: fetch the next page by calling .next(...) function
+            * Summary: Get Dummy pdf data for invoice or label
+            * Description: Get Dummy pdf data for invoice or label
             **/
-            public func appbrowsePaginator(
-                namespace: String
+            public func getDefaultPdfData(
+                pdfTypeId: Int,
                 
-                ) -> Paginator<BrowseResponse> {
-                let pageSize = 20
-                let paginator = Paginator<BrowseResponse>(pageSize: pageSize, type: "number")
-                paginator.onPage = {
-                    self.appbrowse(
+                onResponse: @escaping (_ response: [DummyTemplateDataItems]?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["pdf_type_id"] = pdfTypeId
+
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/mapper",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
                             
-                            namespace: namespace,
-                            pageNo: paginator.pageNo
+                            let response = Utility.decode([DummyTemplateDataItems].self, from: data)
                             
-                        ) { response, error in                    
-                        if let response = response {
-                            paginator.hasNext = response.page.hasNext ?? false
-                            paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
                         }
-                        paginator.onNext?(response, error)
-                    }
-                }
-                return paginator
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get html template for sales channel
+            * Description: Get default html template for invoice or label
+            **/
+            public func getDefaultHtmlTemplate(
+                pdfTypeId: Int,
+                format: String,
+                
+                onResponse: @escaping (_ response: [[String: Any]]?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["pdf_type_id"] = pdfTypeId
+
+
+
+
+    xQuery["format"] = format
+
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode([[String: Any]].self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update html template for invoice or label
+            * Description: Update html template for invoice such as Invoice, Label, Deliver challan
+            **/
+            public func saveHtmlTemplate(
+                id: Int,
+                body: pdfConfig,
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = data.dictionary
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Preview HTML template
+            * Description: Rendered HTML template with dummy json data
+            **/
+            public func previewTemplate(
+                body: pdfRender,
+                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "post",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/render",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = String(decoding: data, as: UTF8.self)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Default html template
+            * Description: Get default html template data for invoice or label
+            **/
+            public func getDefaultPdfTemplate(
+                pdfTypeId: Int,
+                format: String,
+                
+                onResponse: @escaping (_ response: [[String: Any]]?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["pdf_type_id"] = pdfTypeId
+
+
+
+
+    xQuery["format"] = format
+
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/default-template",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode([[String: Any]].self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
             }
             
             
@@ -16762,6 +17037,8 @@ if let value = category {
                 self.companyId = config.companyId
                 self.applicationId = applicationId
             }
+            
+            
             
             
             
@@ -18853,6 +19130,359 @@ if let value = paymentLinkId {
                         } else if let data = responseData {
                             
                             let response = Utility.decode(GetPaymentCodeResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: API to update status of a payment.
+            * Description: A payment_session is initiated against a global identifier (gid) which is identifies the entity payment is initiated against. e.g. order_id, cart_id. This endpoint is to update the status of the said payment_session.
+            **/
+            public func updatePaymentSession(
+                gid: String,
+                body: PaymentSessionRequestSerializer,
+                onResponse: @escaping (_ response: PaymentSessionResponseSerializer?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/session/\(gid)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PaymentSessionResponseSerializer.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: API to update the status of a refund
+            * Description: A refund_session is initiated against a refund request, and this endpoint is to update the status against the refund request_id. A gid is unique indentifier of the entity against which payment was received e.g. an order.
+            **/
+            public func updateRefundSession(
+                gid: String,
+                requestId: String,
+                body: RefundSessionRequestSerializer,
+                onResponse: @escaping (_ response: RefundSessionResponseSerializer?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "put",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/\(gid)/refund/session/\(requestId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RefundSessionResponseSerializer.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Payment modes and COD details.
+            * Description: This api fetches all the available PGs for merchant and its offline payment mode details.
+            **/
+            public func getMerchantPaymentOption(
+                
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update Payment modes and COD details.
+            * Description: To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags.
+            **/
+            public func patchMerchantPaymentOption(
+                body: MerchnatPaymentModeResponse,
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Aggregator, payment mode and sub payment mode.
+            * Description: Get Aggregator, payment mode and sub payment mode details.
+            **/
+            public func getMerchantAggregatorPaymentModeDetails(
+                aggregatorId: Int,
+                businessUnit: String,
+                device: String,
+                
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["business_unit"] = businessUnit
+
+
+
+
+    xQuery["device"] = device
+
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/aggregators/\(aggregatorId)",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update Aggregator, payment mode and sub payment mode.
+            * Description: Update Aggregator, payment mode and sub payment mode details.
+            **/
+            public func patchMerchantAggregatorPaymentModeDetails(
+                aggregatorId: Int,
+                body: MerchnatPaymentModeResponse,
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "patch",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/aggregators/\(aggregatorId)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Get Aggregators available to be added as PG.
+            * Description: Get Aggregators available to be added as PG.
+            **/
+            public func getPGConfigAggregators(
+                
+                onResponse: @escaping (_ response: MerchnatPaymentModeResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "get",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/payment/options/configuration/aggregator",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

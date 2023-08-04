@@ -3139,6 +3139,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
  | action | String? |  yes  |  |
  | token | String? |  yes  |  |
  | registerToken | String? |  yes  |  |
+ | captchaCode | String? |  yes  |  |
 
 ---
 

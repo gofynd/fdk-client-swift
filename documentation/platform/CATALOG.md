@@ -8535,7 +8535,7 @@ Validate Product Template Schema
 
 
 ```swift
-platformClient.catalog.validateProductTemplate(slug: slug) { (response, error) in
+platformClient.catalog.validateProductTemplate(slug: slug, itemType: itemType, bulk: bulk) { (response, error) in
     // Use response
 }
 ```
@@ -8546,7 +8546,9 @@ platformClient.catalog.validateProductTemplate(slug: slug) { (response, error) i
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| slug | String | yes | A `slug` is a unique identifier for a particular template. |  
+| slug | String | yes | A `slug` is a unique identifier for a particular template. |   
+| itemType | String? | no | An `item_type` defines the type of item. The default value is standard. |   
+| bulk | Bool? | no | This specification determines the schema type to be retrieved. When set to true, it will return the schema for bulk data; when set to false, it will provide the schema for a single product. The default value is false. |  
 
 
 
@@ -8590,7 +8592,7 @@ Download Product Template View
 
 
 ```swift
-platformClient.catalog.downloadProductTemplateViews(slug: slug) { (response, error) in
+platformClient.catalog.downloadProductTemplateViews(slug: slug, itemType: itemType, type: type) { (response, error) in
     // Use response
 }
 ```
@@ -8601,7 +8603,9 @@ platformClient.catalog.downloadProductTemplateViews(slug: slug) { (response, err
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| slug | String | yes | A `slug` is a unique identifier for a particular template. |  
+| slug | String | yes | A `slug` is a unique identifier for a particular template. |   
+| itemType | String? | no | An `item_type` defines the type of item. The default value is standard. |   
+| type | String? | no | Format type of the sample file. The default value is excel. |  
 
 
 

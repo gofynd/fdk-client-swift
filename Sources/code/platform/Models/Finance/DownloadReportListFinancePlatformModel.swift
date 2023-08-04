@@ -14,18 +14,18 @@ public extension PlatformClient.Finance {
         
         public var items: [DownloadReportItems]?
         
-        public var itemCount: Int?
-        
         public var page: Page?
+        
+        public var itemCount: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case items = "items"
             
-            case itemCount = "item_count"
-            
             case page = "page"
+            
+            case itemCount = "item_count"
             
         }
 
@@ -33,9 +33,9 @@ public extension PlatformClient.Finance {
             
             self.items = items
             
-            self.itemCount = itemCount
-            
             self.page = page
+            
+            self.itemCount = itemCount
             
         }
 
@@ -45,18 +45,6 @@ public extension PlatformClient.Finance {
             
                 do {
                     items = try container.decode([DownloadReportItems].self, forKey: .items)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    itemCount = try container.decode(Int.self, forKey: .itemCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,6 +66,18 @@ public extension PlatformClient.Finance {
                 }
                 
             
+            
+                do {
+                    itemCount = try container.decode(Int.self, forKey: .itemCount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -90,12 +90,12 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
-            
-            
-            
-            
             try? container.encodeIfPresent(page, forKey: .page)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
             
             
         }

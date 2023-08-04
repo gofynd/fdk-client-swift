@@ -12,18 +12,18 @@ public extension PlatformClient.Finance {
     class InoviceListingPayloadDataFilters: Codable {
         
         
-        public var invoiceType: [String]?
-        
         public var paymentStatus: [String]?
+        
+        public var invoiceType: [String]?
         
         public var companyId: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case invoiceType = "invoice_type"
-            
             case paymentStatus = "payment_status"
+            
+            case invoiceType = "invoice_type"
             
             case companyId = "company_id"
             
@@ -31,9 +31,9 @@ public extension PlatformClient.Finance {
 
         public init(companyId: [String]? = nil, invoiceType: [String]? = nil, paymentStatus: [String]? = nil) {
             
-            self.invoiceType = invoiceType
-            
             self.paymentStatus = paymentStatus
+            
+            self.invoiceType = invoiceType
             
             self.companyId = companyId
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    invoiceType = try container.decode([String].self, forKey: .invoiceType)
+                    paymentStatus = try container.decode([String].self, forKey: .paymentStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    paymentStatus = try container.decode([String].self, forKey: .paymentStatus)
+                    invoiceType = try container.decode([String].self, forKey: .invoiceType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,12 +85,12 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(invoiceType, forKey: .invoiceType)
-            
-            
-            
-            
             try? container.encodeIfPresent(paymentStatus, forKey: .paymentStatus)
+            
+            
+            
+            
+            try? container.encodeIfPresent(invoiceType, forKey: .invoiceType)
             
             
             

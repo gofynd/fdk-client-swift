@@ -27,11 +27,13 @@ Handles all platform order and shipment api(s)
 * [orderUpdate](#orderupdate)
 * [checkOrderStatus](#checkorderstatus)
 * [getStateTransitionMap](#getstatetransitionmap)
+* [getRoleBaseStateTransition](#getrolebasestatetransition)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
 * [attachOrderUser](#attachorderuser)
 * [sendUserMobileOTP](#sendusermobileotp)
 * [verifyMobileOTP](#verifymobileotp)
+* [downloadLanesReport](#downloadlanesreport)
 * [getShipments](#getshipments)
 * [getShipmentById](#getshipmentbyid)
 * [getOrderById](#getorderbyid)
@@ -1585,6 +1587,79 @@ State Transition Mapping, for next possible state
 ---
 
 
+#### getRoleBaseStateTransition
+To fetch next state transitions.
+
+
+
+
+```swift
+platformClient.order.getRoleBaseStateTransition(orderingChannel: orderingChannel, status: status) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| orderingChannel | String | yes | Ordering channel |   
+| status | String | yes | current status of a shipment |  
+
+
+
+This endpoint will fetch next possible states based on logged in user
+
+
+*Returned Response:*
+
+
+
+
+[RoleBaseStateTransitionMapping](#RoleBaseStateTransitionMapping)
+
+Role wise state transition mapping, for next possible state
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send state transition success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "next_statuses": [
+      "bag_picked",
+      "delivery_done",
+      "rto_bag_delivered",
+      "rto_in_transit"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### fetchCreditBalanceDetail
 
 
@@ -1864,6 +1939,74 @@ Verify OTP
 ---
 
 
+#### downloadLanesReport
+
+
+
+
+
+```swift
+platformClient.order.downloadLanesReport(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | BulkReportsDownloadRequest | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[BulkReportsDownloadResponse](#BulkReportsDownloadResponse)
+
+Bulk Report creation initiated.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+true
+```
+</details>
+
+<details>
+<summary><i>&nbsp; batch_id</i></summary>
+
+```json
+"0000-1111-2222-3333"
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getShipments
 
 
@@ -1871,7 +2014,7 @@ Verify OTP
 
 
 ```swift
-platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId) { (response, error) in
+platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId, tags: tags) { (response, error) in
     // Use response
 }
 ```
@@ -1904,7 +2047,8 @@ platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverri
 | orderingChannel | String? | no |  |   
 | companyAffiliateTag | String? | no |  |   
 | myOrders | Bool? | no |  |   
-| platformUserId | String? | no |  |  
+| platformUserId | String? | no |  |   
+| tags | String? | no | Comma separated values of tags |  
 
 
 
@@ -4377,8 +4521,9 @@ We are processing the request!
  | ---------- | ---- | -------- | ----------- |
  | status | Int? |  yes  |  |
  | success | Bool? |  yes  |  |
- | message | String? |  yes  |  |
+ | message | String |  no  |  |
  | errorTrace | String? |  yes  |  |
+ | error | String |  no  |  |
 
 ---
 
@@ -4848,6 +4993,7 @@ We are processing the request!
  | weight | [String: Any] |  no  |  |
  | attributes | [String: Any] |  no  |  |
  | quantity | Int |  no  |  |
+ | status | [String: Any]? |  yes  |  |
 
 ---
 
@@ -4878,6 +5024,9 @@ We are processing the request!
  | dpId | Int? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | affiliateShipmentId | String |  no  |  |
+ | lockStatus | Bool? |  yes  |  |
+ | lockMessage | String? |  yes  |  |
+ | actionToStatus | [String: Any]? |  yes  |  |
 
 ---
 
@@ -5536,7 +5685,7 @@ We are processing the request!
  | ---------- | ---- | -------- | ----------- |
  | charges | [[Charge](#Charge)]? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
- | customMessasge | String? |  yes  |  |
+ | customMessage | String? |  yes  |  |
  | quantity | Int? |  yes  |  |
  | sellerIdentifier | String |  no  |  |
  | externalLineId | String? |  yes  |  |
@@ -5651,6 +5800,7 @@ We are processing the request!
  | ---------- | ---- | -------- | ----------- |
  | b2BGstinNumber | String? |  yes  |  |
  | gstin | String? |  yes  |  |
+ | panNo | String? |  yes  |  |
 
 ---
 
@@ -5885,6 +6035,18 @@ We are processing the request!
 
  
  
+ #### [RoleBaseStateTransitionMapping](#RoleBaseStateTransitionMapping)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | nextStatuses | [String]? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload)
 
  | Properties | Type | Nullable | Description |
@@ -6113,6 +6275,50 @@ We are processing the request!
  | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
  | data | [VerifyOtpResponseData](#VerifyOtpResponseData)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkReportsDownloadRequest](#BulkReportsDownloadRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | storeIds | [String]? |  yes  | Download for specific store ids. |
+ | laneType | String? |  yes  |  |
+ | customHeaders | String? |  yes  | Download report with specific headers |
+ | reportType | String? |  yes  | Type of report |
+ | fromDate | String? |  yes  |  |
+ | toDate | String? |  yes  |  |
+ | entities | [String]? |  yes  | Download for specific enitites, entities can be bag, shipment or order_id, etc. |
+ | filterType | String? |  yes  |  |
+ | isCrossCompanyEnabled | Bool? |  yes  | Download lanes for cross company. |
+ | customFiltersForLane | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkReportsDownloadResponse](#BulkReportsDownloadResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | batchId | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [BulkReportsDownloadFailedResponse](#BulkReportsDownloadFailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | Bool? |  yes  |  |
+ | error | String? |  yes  |  |
 
 ---
 
@@ -6849,19 +7055,6 @@ We are processing the request!
 
  
  
- #### [ShipmentDetails1](#ShipmentDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | lockStatus | Bool? |  yes  |  |
- | lockMessage | String? |  yes  |  |
- | actionToStatus | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
  #### [PhoneDetails](#PhoneDetails)
 
  | Properties | Type | Nullable | Description |
@@ -7416,7 +7609,7 @@ We are processing the request!
  | billingDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
  | forwardShipmentId | String? |  yes  |  |
  | fulfilmentPriority | Int? |  yes  |  |
- | shipmentDetails | [ShipmentDetails1](#ShipmentDetails1)? |  yes  |  |
+ | shipmentDetails | [ShipmentDetails](#ShipmentDetails)? |  yes  |  |
  | customMeta | [[String: Any]]? |  yes  |  |
  | shipmentQuantity | Int? |  yes  |  |
  | companyDetails | [CompanyDetails](#CompanyDetails)? |  yes  |  |
@@ -7914,17 +8107,6 @@ We are processing the request!
 
  
  
- #### [ArticleDetails1](#ArticleDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
  #### [StoreAddress](#StoreAddress)
 
  | Properties | Type | Nullable | Description |
@@ -8200,7 +8382,7 @@ We are processing the request!
  | bagStatus | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | sellerIdentifier | String? |  yes  |  |
  | originalBagList | [Int]? |  yes  |  |
- | articleDetails | [ArticleDetails1](#ArticleDetails1)? |  yes  |  |
+ | articleDetails | [ArticleDetails](#ArticleDetails)? |  yes  |  |
  | currentOperationalStatus | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | orderingStore | [Store](#Store)? |  yes  |  |
  | article | [Article](#Article)? |  yes  |  |
@@ -8230,18 +8412,6 @@ We are processing the request!
  | operationalStatus | String? |  yes  |  |
  | entityType | String? |  yes  |  |
  | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ErrorResponse1](#ErrorResponse1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String |  no  |  |
- | error | String |  no  |  |
 
 ---
 

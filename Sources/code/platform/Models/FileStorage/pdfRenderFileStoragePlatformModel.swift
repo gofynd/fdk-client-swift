@@ -3,39 +3,39 @@
 import Foundation
 
 
-public extension PlatformClient.Order {
+public extension PlatformClient.FileStorage {
     /*
-        Model: ShipmentDetails1
-        Used By: Order
+        Model: pdfRender
+        Used By: FileStorage
     */
 
-    class ShipmentDetails1: Codable {
+    class pdfRender: Codable {
         
         
-        public var lockStatus: Bool?
+        public var format: String?
         
-        public var lockMessage: String?
+        public var payload: [DummyTemplateDataItems]?
         
-        public var actionToStatus: [String: Any]?
+        public var template: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case lockStatus = "lock_status"
+            case format = "format"
             
-            case lockMessage = "lock_message"
+            case payload = "payload"
             
-            case actionToStatus = "action_to_status"
+            case template = "template"
             
         }
 
-        public init(actionToStatus: [String: Any]? = nil, lockMessage: String? = nil, lockStatus: Bool? = nil) {
+        public init(format: String? = nil, payload: [DummyTemplateDataItems]? = nil, template: String? = nil) {
             
-            self.lockStatus = lockStatus
+            self.format = format
             
-            self.lockMessage = lockMessage
+            self.payload = payload
             
-            self.actionToStatus = actionToStatus
+            self.template = template
             
         }
 
@@ -44,7 +44,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
+                    format = try container.decode(String.self, forKey: .format)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                    payload = try container.decode([DummyTemplateDataItems].self, forKey: .payload)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,17 +85,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(format, forKey: .format)
             
             
             
             
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
+            try? container.encodeIfPresent(payload, forKey: .payload)
             
             
             
             
-            try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
         }
@@ -105,39 +105,39 @@ public extension PlatformClient.Order {
 
 
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: ShipmentDetails1
-        Used By: Order
+        Model: pdfRender
+        Used By: FileStorage
     */
 
-    class ShipmentDetails1: Codable {
+    class pdfRender: Codable {
         
         
-        public var lockStatus: Bool?
+        public var format: String?
         
-        public var lockMessage: String?
+        public var payload: [DummyTemplateDataItems]?
         
-        public var actionToStatus: [String: Any]?
+        public var template: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case lockStatus = "lock_status"
+            case format = "format"
             
-            case lockMessage = "lock_message"
+            case payload = "payload"
             
-            case actionToStatus = "action_to_status"
+            case template = "template"
             
         }
 
-        public init(actionToStatus: [String: Any]? = nil, lockMessage: String? = nil, lockStatus: Bool? = nil) {
+        public init(format: String? = nil, payload: [DummyTemplateDataItems]? = nil, template: String? = nil) {
             
-            self.lockStatus = lockStatus
+            self.format = format
             
-            self.lockMessage = lockMessage
+            self.payload = payload
             
-            self.actionToStatus = actionToStatus
+            self.template = template
             
         }
 
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
+                    format = try container.decode(String.self, forKey: .format)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    lockMessage = try container.decode(String.self, forKey: .lockMessage)
+                    payload = try container.decode([DummyTemplateDataItems].self, forKey: .payload)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encodeIfPresent(format, forKey: .format)
             
             
             
             
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
+            try? container.encodeIfPresent(payload, forKey: .payload)
             
             
             
             
-            try? container.encodeIfPresent(actionToStatus, forKey: .actionToStatus)
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
         }

@@ -12,24 +12,24 @@ public extension PlatformClient.Finance {
     class DownloadCreditDebitNoteResponseData: Codable {
         
         
-        public var pdfS3Url: String?
-        
         public var id: String?
+        
+        public var pdfS3Url: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case pdfS3Url = "pdf_s3_url"
-            
             case id = "id"
+            
+            case pdfS3Url = "pdf_s3_url"
             
         }
 
         public init(id: String? = nil, pdfS3Url: String? = nil) {
             
-            self.pdfS3Url = pdfS3Url
-            
             self.id = id
+            
+            self.pdfS3Url = pdfS3Url
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    pdfS3Url = try container.decode(String.self, forKey: .pdfS3Url)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    pdfS3Url = try container.decode(String.self, forKey: .pdfS3Url)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(pdfS3Url, forKey: .pdfS3Url)
-            
-            
-            
-            
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pdfS3Url, forKey: .pdfS3Url)
             
             
         }

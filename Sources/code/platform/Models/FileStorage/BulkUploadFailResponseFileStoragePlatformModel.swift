@@ -3,27 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Order {
+public extension PlatformClient.FileStorage {
     /*
-        Model: ArticleDetails1
-        Used By: Order
+        Model: BulkUploadFailResponse
+        Used By: FileStorage
     */
 
-    class ArticleDetails1: Codable {
+    class BulkUploadFailResponse: Codable {
         
         
-        public var status: [String: Any]?
+        public var status: Status
+        
+        public var files: [[String: Any]]
         
 
         public enum CodingKeys: String, CodingKey {
             
             case status = "status"
             
+            case files = "files"
+            
         }
 
-        public init(status: [String: Any]? = nil) {
+        public init(files: [[String: Any]], status: Status) {
             
             self.status = status
+            
+            self.files = files
             
         }
 
@@ -31,16 +37,14 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    status = try container.decode([String: Any].self, forKey: .status)
+                status = try container.decode(Status.self, forKey: .status)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+            
+            
+                files = try container.decode([[String: Any]].self, forKey: .files)
                 
+            
             
         }
         
@@ -50,6 +54,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(files, forKey: .files)
             
             
         }
@@ -59,27 +68,33 @@ public extension PlatformClient.Order {
 
 
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: ArticleDetails1
-        Used By: Order
+        Model: BulkUploadFailResponse
+        Used By: FileStorage
     */
 
-    class ArticleDetails1: Codable {
+    class BulkUploadFailResponse: Codable {
         
         
-        public var status: [String: Any]?
+        public var status: Status
+        
+        public var files: [[String: Any]]
         
 
         public enum CodingKeys: String, CodingKey {
             
             case status = "status"
             
+            case files = "files"
+            
         }
 
-        public init(status: [String: Any]? = nil) {
+        public init(files: [[String: Any]], status: Status) {
             
             self.status = status
+            
+            self.files = files
             
         }
 
@@ -87,16 +102,14 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    status = try container.decode([String: Any].self, forKey: .status)
+                status = try container.decode(Status.self, forKey: .status)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+            
+            
+            
+                files = try container.decode([[String: Any]].self, forKey: .files)
                 
+            
             
         }
         
@@ -106,6 +119,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(files, forKey: .files)
             
             
         }

@@ -14,22 +14,22 @@ public extension PlatformClient.Finance {
         
         public var success: Bool?
         
-        public var itemCount: Int?
+        public var items: [[String: Any]]?
         
         public var page: Page?
         
-        public var items: [[String: Any]]?
+        public var itemCount: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case success = "success"
             
-            case itemCount = "item_count"
+            case items = "items"
             
             case page = "page"
             
-            case items = "items"
+            case itemCount = "item_count"
             
         }
 
@@ -37,11 +37,11 @@ public extension PlatformClient.Finance {
             
             self.success = success
             
-            self.itemCount = itemCount
+            self.items = items
             
             self.page = page
             
-            self.items = items
+            self.itemCount = itemCount
             
         }
 
@@ -62,7 +62,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    itemCount = try container.decode(Int.self, forKey: .itemCount)
+                    items = try container.decode([[String: Any]].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    items = try container.decode([[String: Any]].self, forKey: .items)
+                    itemCount = try container.decode(Int.self, forKey: .itemCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +108,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
+            try? container.encodeIfPresent(items, forKey: .items)
             
             
             
@@ -118,7 +118,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(itemCount, forKey: .itemCount)
             
             
         }

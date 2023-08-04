@@ -51,7 +51,7 @@ This operation will return the url for the uploaded file.
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/start/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/start",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -118,7 +118,7 @@ This operation will return the url for the uploaded file.
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/complete/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/complete",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -168,7 +168,7 @@ This operation will return the url for the uploaded file.
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/sign-urls/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/sign-urls",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -205,8 +205,8 @@ This operation will return the url for the uploaded file.
         **/
         public func copyFiles(
             sync: Bool?,
-            body: BulkRequest,
-            onResponse: @escaping (_ response: BulkUploadResponse?, _ error: FDKError?) -> Void
+            body: CopyFiles,
+            onResponse: @escaping (_ response: BulkUploadSyncMode?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -224,7 +224,7 @@ if let value = sync {
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/uploads/copy/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/uploads/copy",
                 query: xQuery,
                 body: body.dictionary,
                 headers: [],
@@ -238,7 +238,7 @@ if let value = sync {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkUploadResponse.self, from: data)
+                        let response = Utility.decode(BulkUploadSyncMode.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -262,16 +262,24 @@ if let value = sync {
         **/
         public func browse(
             namespace: String,
-            pageNo: Int?,
+            page: Int?,
+            limit: Int?,
             
             onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
 
-if let value = pageNo {
+if let value = page {
     
-    xQuery["page_no"] = value
+    xQuery["page"] = value
+    
+}
+
+
+if let value = limit {
+    
+    xQuery["limit"] = value
     
 }
 
@@ -282,7 +290,7 @@ if let value = pageNo {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/browse/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/browse",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -313,56 +321,6 @@ if let value = pageNo {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: get paginator for browse
-        * Description: fetch the next page by calling .next(...) function
-        **/
-        public func browsePaginator(
-            namespace: String
-            
-            ) -> Paginator<BrowseResponse> {
-            let pageSize = 20
-            let paginator = Paginator<BrowseResponse>(pageSize: pageSize, type: "number")
-            paginator.onPage = {
-                self.browse(
-                        
-                        namespace: namespace,
-                        pageNo: paginator.pageNo
-                        
-                    ) { response, error in                    
-                    if let response = response {
-                        paginator.hasNext = response.page.hasNext ?? false
-                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
-                    }
-                    paginator.onNext?(response, error)
-                }
-            }
-            return paginator
-        }
-        
-        
-        
-        
-        
         /**
         *
         * Summary: Proxy
@@ -387,7 +345,7 @@ var xQuery: [String: Any] = [:]
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/assets/v1.0/company/\(companyId)/proxy/",
+                url: "/service/platform/assets/v1.0/company/\(companyId)/proxy",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -412,6 +370,12 @@ var xQuery: [String: Any] = [:]
                     }
             });
         }
+        
+        
+        
+        
+        
+        
         
         
     }

@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.Finance {
     /*
-        Model: GetDocs
+        Model: GetCnConfigResponse
         Used By: Finance
     */
 
-    class GetDocs: Codable {
+    class GetCnConfigResponse: Codable {
         
         
-        public var docs: [[String: Any]]?
+        public var success: Bool?
         
-        public var items: [[String: Any]]?
+        public var data: GetCnConfigResponseData?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case docs = "docs"
+            case success = "success"
             
-            case items = "items"
+            case data = "data"
             
         }
 
-        public init(docs: [[String: Any]]? = nil, items: [[String: Any]]? = nil) {
+        public init(data: GetCnConfigResponseData? = nil, success: Bool? = nil) {
             
-            self.docs = docs
+            self.success = success
             
-            self.items = items
+            self.data = data
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    docs = try container.decode([[String: Any]].self, forKey: .docs)
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    items = try container.decode([[String: Any]].self, forKey: .items)
+                    data = try container.decode(GetCnConfigResponseData.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(docs, forKey: .docs)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }

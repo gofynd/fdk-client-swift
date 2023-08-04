@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Order {
+public extension PlatformClient.FileStorage {
     /*
-        Model: ErrorResponse1
-        Used By: Order
+        Model: CopyFiles
+        Used By: FileStorage
     */
 
-    class ErrorResponse1: Codable {
+    class CopyFiles: Codable {
         
         
-        public var message: String
+        public var urls: [String]
         
-        public var error: String
+        public var destination: DestinationNamespace
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
+            case urls = "urls"
             
-            case error = "error"
+            case destination = "destination"
             
         }
 
-        public init(error: String, message: String) {
+        public init(destination: DestinationNamespace, urls: [String]) {
             
-            self.message = message
+            self.urls = urls
             
-            self.error = error
+            self.destination = destination
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                message = try container.decode(String.self, forKey: .message)
+                urls = try container.decode([String].self, forKey: .urls)
                 
             
             
             
-                error = try container.decode(String.self, forKey: .error)
+                destination = try container.decode(DestinationNamespace.self, forKey: .destination)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(urls, forKey: .urls)
             
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(destination, forKey: .destination)
             
             
         }
@@ -68,33 +68,33 @@ public extension PlatformClient.Order {
 
 
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: ErrorResponse1
-        Used By: Order
+        Model: CopyFiles
+        Used By: FileStorage
     */
 
-    class ErrorResponse1: Codable {
+    class CopyFiles: Codable {
         
         
-        public var message: String
+        public var urls: [String]
         
-        public var error: String
+        public var destination: DestinationNamespace
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
+            case urls = "urls"
             
-            case error = "error"
+            case destination = "destination"
             
         }
 
-        public init(error: String, message: String) {
+        public init(destination: DestinationNamespace, urls: [String]) {
             
-            self.message = message
+            self.urls = urls
             
-            self.error = error
+            self.destination = destination
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                message = try container.decode(String.self, forKey: .message)
+                urls = try container.decode([String].self, forKey: .urls)
                 
             
             
             
-                error = try container.decode(String.self, forKey: .error)
+                destination = try container.decode(DestinationNamespace.self, forKey: .destination)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(urls, forKey: .urls)
             
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(destination, forKey: .destination)
             
             
         }

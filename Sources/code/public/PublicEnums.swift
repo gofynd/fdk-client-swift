@@ -9,6 +9,10 @@ public extension PublicClient.Inventory {
     
 }
 
+public extension PublicClient.Partner {
+    
+}
+
 public extension PublicClient.Webhook {
     
     

@@ -36,6 +36,8 @@ public extension PlatformClient.Discount {
         
         public var storeIds: [Int]?
         
+        public var discountMeta: DiscountMeta?
+        
         public var validity: ValidityObject
         
         public var createdOn: String
@@ -75,6 +77,8 @@ public extension PlatformClient.Discount {
             
             case storeIds = "store_ids"
             
+            case discountMeta = "discount_meta"
+            
             case validity = "validity"
             
             case createdOn = "created_on"
@@ -89,7 +93,7 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(appIds: [String]? = nil, brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, id: String) {
+        public init(appIds: [String]? = nil, brandIds: [Int]? = nil, companyId: Int, createdBy: UserDetails, createdOn: String, discountLevel: String? = nil, discountMeta: DiscountMeta? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String? = nil, meta: [String: Any]? = nil, modifiedBy: UserDetails, modifiedOn: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil, id: String) {
             
             self.id = id
             
@@ -114,6 +118,8 @@ public extension PlatformClient.Discount {
             self.brandIds = brandIds
             
             self.storeIds = storeIds
+            
+            self.discountMeta = discountMeta
             
             self.validity = validity
             
@@ -249,6 +255,18 @@ public extension PlatformClient.Discount {
                 
             
             
+                do {
+                    discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 validity = try container.decode(ValidityObject.self, forKey: .validity)
                 
             
@@ -348,6 +366,11 @@ public extension PlatformClient.Discount {
             
             
             try? container.encodeIfPresent(storeIds, forKey: .storeIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
             
             
             

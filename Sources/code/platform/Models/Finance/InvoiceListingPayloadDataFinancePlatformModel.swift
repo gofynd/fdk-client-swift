@@ -12,48 +12,48 @@ public extension PlatformClient.Finance {
     class InvoiceListingPayloadData: Codable {
         
         
-        public var search: String?
-        
-        public var endDate: String?
-        
         public var pageSize: Int?
+        
+        public var page: Int?
         
         public var startDate: String?
         
-        public var filters: InoviceListingPayloadDataFilters?
+        public var endDate: String?
         
-        public var page: Int?
+        public var search: String?
+        
+        public var filters: InoviceListingPayloadDataFilters?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case search = "search"
-            
-            case endDate = "end_date"
-            
             case pageSize = "page_size"
+            
+            case page = "page"
             
             case startDate = "start_date"
             
-            case filters = "filters"
+            case endDate = "end_date"
             
-            case page = "page"
+            case search = "search"
+            
+            case filters = "filters"
             
         }
 
         public init(endDate: String? = nil, filters: InoviceListingPayloadDataFilters? = nil, page: Int? = nil, pageSize: Int? = nil, search: String? = nil, startDate: String? = nil) {
             
-            self.search = search
-            
-            self.endDate = endDate
-            
             self.pageSize = pageSize
+            
+            self.page = page
             
             self.startDate = startDate
             
-            self.filters = filters
+            self.endDate = endDate
             
-            self.page = page
+            self.search = search
+            
+            self.filters = filters
             
         }
 
@@ -62,31 +62,19 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    search = try container.decode(String.self, forKey: .search)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    endDate = try container.decode(String.self, forKey: .endDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     pageSize = try container.decode(Int.self, forKey: .pageSize)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    page = try container.decode(Int.self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,7 +98,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    filters = try container.decode(InoviceListingPayloadDataFilters.self, forKey: .filters)
+                    endDate = try container.decode(String.self, forKey: .endDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -122,7 +110,19 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    page = try container.decode(Int.self, forKey: .page)
+                    search = try container.decode(String.self, forKey: .search)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    filters = try container.decode(InoviceListingPayloadDataFilters.self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,17 +139,12 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(search, forKey: .search)
-            
-            
-            
-            
-            try? container.encodeIfPresent(endDate, forKey: .endDate)
-            
-            
-            
-            
             try? container.encodeIfPresent(pageSize, forKey: .pageSize)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
             
@@ -159,12 +154,17 @@ public extension PlatformClient.Finance {
             
             
             
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(search, forKey: .search)
+            
+            
+            
+            
             try? container.encodeIfPresent(filters, forKey: .filters)
-            
-            
-            
-            
-            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }

@@ -652,6 +652,19 @@ Success
 
  
  
+ #### [DiscountMeta](#DiscountMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | timer | Bool |  no  | Determines whether the discount countdown is visible or not. |
+ | hours | Double? |  yes  | The time in hours before the discount ends when the countdown timer should start. |
+ | minutes | Double? |  yes  | The time in minutes before the discount ends when the countdown timer should start. |
+
+---
+
+
+ 
+ 
  #### [CreateUpdateDiscount](#CreateUpdateDiscount)
 
  | Properties | Type | Nullable | Description |
@@ -669,6 +682,7 @@ Success
  | brandIds | [Int]? |  yes  |  |
  | storeIds | [Int]? |  yes  |  |
  | validity | [ValidityObject](#ValidityObject) |  no  |  |
+ | discountMeta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
 
 ---
 
@@ -691,6 +705,7 @@ Success
  | filePath | String? |  yes  |  |
  | brandIds | [Int]? |  yes  |  |
  | storeIds | [Int]? |  yes  |  |
+ | discountMeta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | validity | [ValidityObject](#ValidityObject) |  no  |  |
  | createdOn | String |  no  |  |
  | modifiedOn | String |  no  |  |
@@ -724,6 +739,7 @@ Success
  | sellerIdentifier | String? |  yes  |  |
  | discountType | String |  no  |  |
  | value | Double |  no  |  |
+ | discountMeta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
 
 ---
 
@@ -753,6 +769,7 @@ Success
  | body | [String: Any]? |  yes  |  |
  | type | String |  no  |  |
  | fileType | String |  no  |  |
+ | id | String |  no  | A unique identifier to distinguish and identify a job. |
 
 ---
 

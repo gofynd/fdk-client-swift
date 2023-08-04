@@ -5,25 +5,25 @@ import Foundation
 
 public extension PlatformClient.Finance {
     /*
-        Model: GetEngineFilters
+        Model: GetCustomerCreditBalanceRequest
         Used By: Finance
     */
 
-    class GetEngineFilters: Codable {
+    class GetCustomerCreditBalanceRequest: Codable {
         
         
-        public var configField: String?
+        public var data: GetCustomerCreditBalance?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case configField = "config_field"
+            case data = "data"
             
         }
 
-        public init(configField: String? = nil) {
+        public init(data: GetCustomerCreditBalance? = nil) {
             
-            self.configField = configField
+            self.data = data
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    configField = try container.decode(String.self, forKey: .configField)
+                    data = try container.decode(GetCustomerCreditBalance.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(configField, forKey: .configField)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }
