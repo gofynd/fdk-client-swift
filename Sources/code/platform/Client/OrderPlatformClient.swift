@@ -1122,6 +1122,7 @@ public extension PlatformClient {
             companyAffiliateTag: String?,
             myOrders: Bool?,
             platformUserId: String?,
+            tags: String?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1217,6 +1218,10 @@ public extension PlatformClient {
 
             if let value = platformUserId {
                 xQuery["platform_user_id"] = value
+            }
+
+            if let value = tags {
+                xQuery["tags"] = value
             }
 
             PlatformAPIClient.execute(

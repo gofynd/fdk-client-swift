@@ -9,21 +9,21 @@ public extension PlatformClient.Order {
      */
 
     class FinancialBreakup: Codable {
-        public var refundCredit: Int
+        public var refundCredit: Double
 
         public var amountPaidRoundoff: Int?
 
-        public var priceEffective: Int
+        public var priceEffective: Double
 
         public var promotionEffectiveDiscount: Double
 
-        public var transferPrice: Int
+        public var transferPrice: Double
 
         public var couponEffectiveDiscount: Double
 
         public var gstFee: Double
 
-        public var taxCollectedAtSource: Int?
+        public var taxCollectedAtSource: Double?
 
         public var brandCalculatedAmount: Double
 
@@ -33,17 +33,17 @@ public extension PlatformClient.Order {
 
         public var hsnCode: String
 
-        public var cashback: Int
+        public var cashback: Double
 
         public var itemName: String
 
         public var valueOfGood: Double
 
-        public var cashbackApplied: Int
+        public var cashbackApplied: Double
 
-        public var codCharges: Int
+        public var codCharges: Double
 
-        public var priceMarked: Int
+        public var priceMarked: Double
 
         public var size: String
 
@@ -51,11 +51,11 @@ public extension PlatformClient.Order {
 
         public var couponValue: Double
 
-        public var discount: Int
+        public var discount: Double
 
-        public var fyndCredits: Int
+        public var fyndCredits: Double
 
-        public var gstTaxPercentage: Int
+        public var gstTaxPercentage: Double
 
         public var identifiers: Identifier
 
@@ -119,7 +119,7 @@ public extension PlatformClient.Order {
             case addedToFyndCash = "added_to_fynd_cash"
         }
 
-        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, brandCalculatedAmount: Double, cashback: Int, cashbackApplied: Int, codCharges: Int, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Int, fyndCredits: Int, gstFee: Double, gstTag: String, gstTaxPercentage: Int, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Int, priceMarked: Int, promotionEffectiveDiscount: Double, refundCredit: Int, size: String, taxCollectedAtSource: Int? = nil, totalUnits: Int, transferPrice: Int, valueOfGood: Double) {
+        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
             self.refundCredit = refundCredit
 
             self.amountPaidRoundoff = amountPaidRoundoff
@@ -178,7 +178,7 @@ public extension PlatformClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            refundCredit = try container.decode(Int.self, forKey: .refundCredit)
+            refundCredit = try container.decode(Double.self, forKey: .refundCredit)
 
             do {
                 amountPaidRoundoff = try container.decode(Int.self, forKey: .amountPaidRoundoff)
@@ -188,18 +188,18 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            priceEffective = try container.decode(Int.self, forKey: .priceEffective)
+            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
             promotionEffectiveDiscount = try container.decode(Double.self, forKey: .promotionEffectiveDiscount)
 
-            transferPrice = try container.decode(Int.self, forKey: .transferPrice)
+            transferPrice = try container.decode(Double.self, forKey: .transferPrice)
 
             couponEffectiveDiscount = try container.decode(Double.self, forKey: .couponEffectiveDiscount)
 
             gstFee = try container.decode(Double.self, forKey: .gstFee)
 
             do {
-                taxCollectedAtSource = try container.decode(Int.self, forKey: .taxCollectedAtSource)
+                taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,17 +214,17 @@ public extension PlatformClient.Order {
 
             hsnCode = try container.decode(String.self, forKey: .hsnCode)
 
-            cashback = try container.decode(Int.self, forKey: .cashback)
+            cashback = try container.decode(Double.self, forKey: .cashback)
 
             itemName = try container.decode(String.self, forKey: .itemName)
 
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
-            cashbackApplied = try container.decode(Int.self, forKey: .cashbackApplied)
+            cashbackApplied = try container.decode(Double.self, forKey: .cashbackApplied)
 
-            codCharges = try container.decode(Int.self, forKey: .codCharges)
+            codCharges = try container.decode(Double.self, forKey: .codCharges)
 
-            priceMarked = try container.decode(Int.self, forKey: .priceMarked)
+            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             size = try container.decode(String.self, forKey: .size)
 
@@ -232,11 +232,11 @@ public extension PlatformClient.Order {
 
             couponValue = try container.decode(Double.self, forKey: .couponValue)
 
-            discount = try container.decode(Int.self, forKey: .discount)
+            discount = try container.decode(Double.self, forKey: .discount)
 
-            fyndCredits = try container.decode(Int.self, forKey: .fyndCredits)
+            fyndCredits = try container.decode(Double.self, forKey: .fyndCredits)
 
-            gstTaxPercentage = try container.decode(Int.self, forKey: .gstTaxPercentage)
+            gstTaxPercentage = try container.decode(Double.self, forKey: .gstTaxPercentage)
 
             identifiers = try container.decode(Identifier.self, forKey: .identifiers)
 
@@ -312,21 +312,21 @@ public extension PlatformClient.ApplicationClient.Order {
      */
 
     class FinancialBreakup: Codable {
-        public var refundCredit: Int
+        public var refundCredit: Double
 
         public var amountPaidRoundoff: Int?
 
-        public var priceEffective: Int
+        public var priceEffective: Double
 
         public var promotionEffectiveDiscount: Double
 
-        public var transferPrice: Int
+        public var transferPrice: Double
 
         public var couponEffectiveDiscount: Double
 
         public var gstFee: Double
 
-        public var taxCollectedAtSource: Int?
+        public var taxCollectedAtSource: Double?
 
         public var brandCalculatedAmount: Double
 
@@ -336,17 +336,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var hsnCode: String
 
-        public var cashback: Int
+        public var cashback: Double
 
         public var itemName: String
 
         public var valueOfGood: Double
 
-        public var cashbackApplied: Int
+        public var cashbackApplied: Double
 
-        public var codCharges: Int
+        public var codCharges: Double
 
-        public var priceMarked: Int
+        public var priceMarked: Double
 
         public var size: String
 
@@ -354,11 +354,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public var couponValue: Double
 
-        public var discount: Int
+        public var discount: Double
 
-        public var fyndCredits: Int
+        public var fyndCredits: Double
 
-        public var gstTaxPercentage: Int
+        public var gstTaxPercentage: Double
 
         public var identifiers: Identifier
 
@@ -422,7 +422,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case addedToFyndCash = "added_to_fynd_cash"
         }
 
-        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, brandCalculatedAmount: Double, cashback: Int, cashbackApplied: Int, codCharges: Int, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Int, fyndCredits: Int, gstFee: Double, gstTag: String, gstTaxPercentage: Int, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Int, priceMarked: Int, promotionEffectiveDiscount: Double, refundCredit: Int, size: String, taxCollectedAtSource: Int? = nil, totalUnits: Int, transferPrice: Int, valueOfGood: Double) {
+        public init(addedToFyndCash: Bool, amountPaid: Double, amountPaidRoundoff: Int? = nil, brandCalculatedAmount: Double, cashback: Double, cashbackApplied: Double, codCharges: Double, couponEffectiveDiscount: Double, couponValue: Double, deliveryCharge: Double, discount: Double, fyndCredits: Double, gstFee: Double, gstTag: String, gstTaxPercentage: Double, hsnCode: String, identifiers: Identifier, itemName: String, priceEffective: Double, priceMarked: Double, promotionEffectiveDiscount: Double, refundCredit: Double, size: String, taxCollectedAtSource: Double? = nil, totalUnits: Int, transferPrice: Double, valueOfGood: Double) {
             self.refundCredit = refundCredit
 
             self.amountPaidRoundoff = amountPaidRoundoff
@@ -481,7 +481,7 @@ public extension PlatformClient.ApplicationClient.Order {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            refundCredit = try container.decode(Int.self, forKey: .refundCredit)
+            refundCredit = try container.decode(Double.self, forKey: .refundCredit)
 
             do {
                 amountPaidRoundoff = try container.decode(Int.self, forKey: .amountPaidRoundoff)
@@ -491,18 +491,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            priceEffective = try container.decode(Int.self, forKey: .priceEffective)
+            priceEffective = try container.decode(Double.self, forKey: .priceEffective)
 
             promotionEffectiveDiscount = try container.decode(Double.self, forKey: .promotionEffectiveDiscount)
 
-            transferPrice = try container.decode(Int.self, forKey: .transferPrice)
+            transferPrice = try container.decode(Double.self, forKey: .transferPrice)
 
             couponEffectiveDiscount = try container.decode(Double.self, forKey: .couponEffectiveDiscount)
 
             gstFee = try container.decode(Double.self, forKey: .gstFee)
 
             do {
-                taxCollectedAtSource = try container.decode(Int.self, forKey: .taxCollectedAtSource)
+                taxCollectedAtSource = try container.decode(Double.self, forKey: .taxCollectedAtSource)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -517,17 +517,17 @@ public extension PlatformClient.ApplicationClient.Order {
 
             hsnCode = try container.decode(String.self, forKey: .hsnCode)
 
-            cashback = try container.decode(Int.self, forKey: .cashback)
+            cashback = try container.decode(Double.self, forKey: .cashback)
 
             itemName = try container.decode(String.self, forKey: .itemName)
 
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
-            cashbackApplied = try container.decode(Int.self, forKey: .cashbackApplied)
+            cashbackApplied = try container.decode(Double.self, forKey: .cashbackApplied)
 
-            codCharges = try container.decode(Int.self, forKey: .codCharges)
+            codCharges = try container.decode(Double.self, forKey: .codCharges)
 
-            priceMarked = try container.decode(Int.self, forKey: .priceMarked)
+            priceMarked = try container.decode(Double.self, forKey: .priceMarked)
 
             size = try container.decode(String.self, forKey: .size)
 
@@ -535,11 +535,11 @@ public extension PlatformClient.ApplicationClient.Order {
 
             couponValue = try container.decode(Double.self, forKey: .couponValue)
 
-            discount = try container.decode(Int.self, forKey: .discount)
+            discount = try container.decode(Double.self, forKey: .discount)
 
-            fyndCredits = try container.decode(Int.self, forKey: .fyndCredits)
+            fyndCredits = try container.decode(Double.self, forKey: .fyndCredits)
 
-            gstTaxPercentage = try container.decode(Int.self, forKey: .gstTaxPercentage)
+            gstTaxPercentage = try container.decode(Double.self, forKey: .gstTaxPercentage)
 
             identifiers = try container.decode(Identifier.self, forKey: .identifiers)
 

@@ -28,6 +28,8 @@ public extension ApplicationClient.Lead {
         case log
 
         case comment
+
+        case thread
     }
 
     /*

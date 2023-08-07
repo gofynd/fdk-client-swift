@@ -11,7 +11,7 @@ public extension PlatformClient.Order {
     class GSTDetailsData: Codable {
         public var cgstTaxPercentage: Double?
 
-        public var gstinCode: String
+        public var gstinCode: String?
 
         public var valueOfGood: Double
 
@@ -75,7 +75,7 @@ public extension PlatformClient.Order {
             case hsnCode = "hsn_code"
         }
 
-        public init(brandCalculatedAmount: Double, cgstGstFee: String? = nil, cgstTaxPercentage: Double? = nil, gstinCode: String, gstFee: Double, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, hsnCodeId: String? = nil, igstGstFee: String? = nil, igstTaxPercentage: Double? = nil, isDefaultHsnCode: Bool? = nil, sgstGstFee: String? = nil, sgstTaxPercentage: Double? = nil, taxCollectedAtSource: Double, valueOfGood: Double) {
+        public init(brandCalculatedAmount: Double, cgstGstFee: String? = nil, cgstTaxPercentage: Double? = nil, gstinCode: String? = nil, gstFee: Double, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, hsnCodeId: String? = nil, igstGstFee: String? = nil, igstTaxPercentage: Double? = nil, isDefaultHsnCode: Bool? = nil, sgstGstFee: String? = nil, sgstTaxPercentage: Double? = nil, taxCollectedAtSource: Double, valueOfGood: Double) {
             self.cgstTaxPercentage = cgstTaxPercentage
 
             self.gstinCode = gstinCode
@@ -120,7 +120,13 @@ public extension PlatformClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            gstinCode = try container.decode(String.self, forKey: .gstinCode)
+            do {
+                gstinCode = try container.decode(String.self, forKey: .gstinCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
@@ -258,7 +264,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class GSTDetailsData: Codable {
         public var cgstTaxPercentage: Double?
 
-        public var gstinCode: String
+        public var gstinCode: String?
 
         public var valueOfGood: Double
 
@@ -322,7 +328,7 @@ public extension PlatformClient.ApplicationClient.Order {
             case hsnCode = "hsn_code"
         }
 
-        public init(brandCalculatedAmount: Double, cgstGstFee: String? = nil, cgstTaxPercentage: Double? = nil, gstinCode: String, gstFee: Double, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, hsnCodeId: String? = nil, igstGstFee: String? = nil, igstTaxPercentage: Double? = nil, isDefaultHsnCode: Bool? = nil, sgstGstFee: String? = nil, sgstTaxPercentage: Double? = nil, taxCollectedAtSource: Double, valueOfGood: Double) {
+        public init(brandCalculatedAmount: Double, cgstGstFee: String? = nil, cgstTaxPercentage: Double? = nil, gstinCode: String? = nil, gstFee: Double, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, hsnCodeId: String? = nil, igstGstFee: String? = nil, igstTaxPercentage: Double? = nil, isDefaultHsnCode: Bool? = nil, sgstGstFee: String? = nil, sgstTaxPercentage: Double? = nil, taxCollectedAtSource: Double, valueOfGood: Double) {
             self.cgstTaxPercentage = cgstTaxPercentage
 
             self.gstinCode = gstinCode
@@ -367,7 +373,13 @@ public extension PlatformClient.ApplicationClient.Order {
                 print("codingPath:", context.codingPath)
             } catch {}
 
-            gstinCode = try container.decode(String.self, forKey: .gstinCode)
+            do {
+                gstinCode = try container.decode(String.self, forKey: .gstinCode)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
 
             valueOfGood = try container.decode(Double.self, forKey: .valueOfGood)
 
