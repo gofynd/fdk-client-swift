@@ -1318,6 +1318,7 @@ Success
  | category | String |  no  | Category of the ticket |
  | content | [TicketContent](#TicketContent) |  no  |  |
  | customJson | [String: Any]? |  yes  | optional custom data that needs to be sent |
+ | subscribers | [String]? |  yes  |  |
 
 ---
 
@@ -1503,6 +1504,7 @@ Success
  | rating | rating | This means history event is a rating |
  | log | log | This means history event is a changelog |
  | comment | comment | This means history event is a comment |
+ | thread | thread | This means history event is a thread |
 
 ---
 

@@ -1,31 +1,42 @@
 import Foundation
 
+
+
+
+
+
+
+
+
+
 public extension PlatformClient.Catalog {
+
     enum PageType: String, Codable, CaseIterable {
+        
         case aboutUs = "about-us"
-        case addresses
-        case blog
-        case brands
-        case cards
-        case cart
-        case categories
-        case brand
-        case category
-        case collection
-        case collections
+        case addresses = "addresses"
+        case blog = "blog"
+        case brands = "brands"
+        case cards = "cards"
+        case cart = "cart"
+        case categories = "categories"
+        case brand = "brand"
+        case category = "category"
+        case collection = "collection"
+        case collections = "collections"
         case contactUs = "contact-us"
-        case external
-        case faq
-        case freshchat
-        case home
+        case external = "external"
+        case faq = "faq"
+        case freshchat = "freshchat"
+        case home = "home"
         case notificationSettings = "notification-settings"
-        case orders
-        case page
-        case policy
-        case product
+        case orders = "orders"
+        case page = "page"
+        case policy = "policy"
+        case product = "product"
         case productRequest = "product-request"
-        case products
-        case profile
+        case products = "products"
+        case profile = "profile"
         case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
@@ -33,18 +44,18 @@ public extension PlatformClient.Catalog {
         case profilePhones = "profile-phones"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
-        case settings
+        case settings = "settings"
         case sharedCart = "shared-cart"
-        case tnc
+        case tnc = "tnc"
         case trackOrder = "track-order"
-        case wishlist
-        case sections
-        case form
+        case wishlist = "wishlist"
+        case sections = "sections"
+        case form = "form"
         case cartDelivery = "cart-delivery"
         case cartPayment = "cart-payment"
         case cartReview = "cart-review"
-        case login
-        case register
+        case login = "login"
+        case register = "register"
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
@@ -62,8 +73,8 @@ public extension PlatformClient.Catalog {
                 possibleLink = possibleLink.replacingOccurrences(of: "//", with: "/")
                 allPossible.append((type: type, link: possibleLink.trimmingCharacters(in: slash)))
             }
-            allPossible = allPossible.sorted { $0.link.count > $1.link.count }
-            var match = allPossible.first(where: { $0.link == path })
+            allPossible = allPossible.sorted{$0.link.count > $1.link.count}
+            var match = allPossible.first(where: {$0.link == path})
             for possible in allPossible {
                 if match != nil {
                     break
@@ -73,14 +84,14 @@ public extension PlatformClient.Catalog {
                 if pathComp.count == typeComp.count {
                     var paramsCount = 0
                     var matchCount = 0
-                    for i in 0 ..< pathComp.count {
+                    for i in 0..<pathComp.count {
                         if typeComp[i].starts(with: ":") {
                             paramsCount += 1
                         } else if typeComp[i] == pathComp[i] {
                             matchCount += 1
                         }
                     }
-                    if paramsCount + matchCount == pathComp.count {
+                    if (paramsCount + matchCount == pathComp.count) {
                         match = possible
                     }
                 }
@@ -91,9 +102,10 @@ public extension PlatformClient.Catalog {
                 return nil
             }
         }
-
+        
         public var link: String {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return "/about-us"
             case .addresses:
@@ -190,7 +202,8 @@ public extension PlatformClient.Catalog {
         }
 
         public var name: String {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return "About Us"
             case .addresses:
@@ -287,7 +300,8 @@ public extension PlatformClient.Catalog {
         }
 
         public var pathParams: [(name: String, required: Bool)] {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return []
             case .addresses:
@@ -384,7 +398,8 @@ public extension PlatformClient.Catalog {
         }
 
         public var queryParams: [(name: String, required: Bool)] {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return []
             case .addresses:
@@ -481,33 +496,37 @@ public extension PlatformClient.Catalog {
         }
     }
 }
+
+
 
 public extension PlatformClient.ApplicationClient.Catalog {
+
     enum PageType: String, Codable, CaseIterable {
+        
         case aboutUs = "about-us"
-        case addresses
-        case blog
-        case brands
-        case cards
-        case cart
-        case categories
-        case brand
-        case category
-        case collection
-        case collections
+        case addresses = "addresses"
+        case blog = "blog"
+        case brands = "brands"
+        case cards = "cards"
+        case cart = "cart"
+        case categories = "categories"
+        case brand = "brand"
+        case category = "category"
+        case collection = "collection"
+        case collections = "collections"
         case contactUs = "contact-us"
-        case external
-        case faq
-        case freshchat
-        case home
+        case external = "external"
+        case faq = "faq"
+        case freshchat = "freshchat"
+        case home = "home"
         case notificationSettings = "notification-settings"
-        case orders
-        case page
-        case policy
-        case product
+        case orders = "orders"
+        case page = "page"
+        case policy = "policy"
+        case product = "product"
         case productRequest = "product-request"
-        case products
-        case profile
+        case products = "products"
+        case profile = "profile"
         case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
@@ -515,18 +534,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
         case profilePhones = "profile-phones"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
-        case settings
+        case settings = "settings"
         case sharedCart = "shared-cart"
-        case tnc
+        case tnc = "tnc"
         case trackOrder = "track-order"
-        case wishlist
-        case sections
-        case form
+        case wishlist = "wishlist"
+        case sections = "sections"
+        case form = "form"
         case cartDelivery = "cart-delivery"
         case cartPayment = "cart-payment"
         case cartReview = "cart-review"
-        case login
-        case register
+        case login = "login"
+        case register = "register"
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
@@ -544,8 +563,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 possibleLink = possibleLink.replacingOccurrences(of: "//", with: "/")
                 allPossible.append((type: type, link: possibleLink.trimmingCharacters(in: slash)))
             }
-            allPossible = allPossible.sorted { $0.link.count > $1.link.count }
-            var match = allPossible.first(where: { $0.link == path })
+            allPossible = allPossible.sorted{$0.link.count > $1.link.count}
+            var match = allPossible.first(where: {$0.link == path})
             for possible in allPossible {
                 if match != nil {
                     break
@@ -555,14 +574,14 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 if pathComp.count == typeComp.count {
                     var paramsCount = 0
                     var matchCount = 0
-                    for i in 0 ..< pathComp.count {
+                    for i in 0..<pathComp.count {
                         if typeComp[i].starts(with: ":") {
                             paramsCount += 1
                         } else if typeComp[i] == pathComp[i] {
                             matchCount += 1
                         }
                     }
-                    if paramsCount + matchCount == pathComp.count {
+                    if (paramsCount + matchCount == pathComp.count) {
                         match = possible
                     }
                 }
@@ -573,9 +592,10 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 return nil
             }
         }
-
+        
         public var link: String {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return "/about-us"
             case .addresses:
@@ -672,7 +692,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public var name: String {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return "About Us"
             case .addresses:
@@ -769,7 +790,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public var pathParams: [(name: String, required: Bool)] {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return []
             case .addresses:
@@ -866,7 +888,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
 
         public var queryParams: [(name: String, required: Bool)] {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return []
             case .addresses:
@@ -963,33 +986,51 @@ public extension PlatformClient.ApplicationClient.Catalog {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 public extension PlatformClient.ApplicationClient.Content {
+
     enum PageType: String, Codable, CaseIterable {
+        
         case aboutUs = "about-us"
-        case addresses
-        case blog
-        case brands
-        case cards
-        case cart
-        case categories
-        case brand
-        case category
-        case collection
-        case collections
+        case addresses = "addresses"
+        case blog = "blog"
+        case brands = "brands"
+        case cards = "cards"
+        case cart = "cart"
+        case categories = "categories"
+        case brand = "brand"
+        case category = "category"
+        case collection = "collection"
+        case collections = "collections"
         case contactUs = "contact-us"
-        case external
-        case faq
-        case freshchat
-        case home
+        case external = "external"
+        case faq = "faq"
+        case freshchat = "freshchat"
+        case home = "home"
         case notificationSettings = "notification-settings"
-        case orders
-        case page
-        case policy
-        case product
+        case orders = "orders"
+        case page = "page"
+        case policy = "policy"
+        case product = "product"
         case productRequest = "product-request"
-        case products
-        case profile
+        case products = "products"
+        case profile = "profile"
         case profileOrderShipment = "profile-order-shipment"
         case profileBasic = "profile-basic"
         case profileCompany = "profile-company"
@@ -997,18 +1038,18 @@ public extension PlatformClient.ApplicationClient.Content {
         case profilePhones = "profile-phones"
         case rateUs = "rate-us"
         case referEarn = "refer-earn"
-        case settings
+        case settings = "settings"
         case sharedCart = "shared-cart"
-        case tnc
+        case tnc = "tnc"
         case trackOrder = "track-order"
-        case wishlist
-        case sections
-        case form
+        case wishlist = "wishlist"
+        case sections = "sections"
+        case form = "form"
         case cartDelivery = "cart-delivery"
         case cartPayment = "cart-payment"
         case cartReview = "cart-review"
-        case login
-        case register
+        case login = "login"
+        case register = "register"
         case shippingPolicy = "shipping-policy"
         case returnPolicy = "return-policy"
         case orderStatus = "order-status"
@@ -1026,8 +1067,8 @@ public extension PlatformClient.ApplicationClient.Content {
                 possibleLink = possibleLink.replacingOccurrences(of: "//", with: "/")
                 allPossible.append((type: type, link: possibleLink.trimmingCharacters(in: slash)))
             }
-            allPossible = allPossible.sorted { $0.link.count > $1.link.count }
-            var match = allPossible.first(where: { $0.link == path })
+            allPossible = allPossible.sorted{$0.link.count > $1.link.count}
+            var match = allPossible.first(where: {$0.link == path})
             for possible in allPossible {
                 if match != nil {
                     break
@@ -1037,14 +1078,14 @@ public extension PlatformClient.ApplicationClient.Content {
                 if pathComp.count == typeComp.count {
                     var paramsCount = 0
                     var matchCount = 0
-                    for i in 0 ..< pathComp.count {
+                    for i in 0..<pathComp.count {
                         if typeComp[i].starts(with: ":") {
                             paramsCount += 1
                         } else if typeComp[i] == pathComp[i] {
                             matchCount += 1
                         }
                     }
-                    if paramsCount + matchCount == pathComp.count {
+                    if (paramsCount + matchCount == pathComp.count) {
                         match = possible
                     }
                 }
@@ -1055,9 +1096,10 @@ public extension PlatformClient.ApplicationClient.Content {
                 return nil
             }
         }
-
+        
         public var link: String {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return "/about-us"
             case .addresses:
@@ -1154,7 +1196,8 @@ public extension PlatformClient.ApplicationClient.Content {
         }
 
         public var name: String {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return "About Us"
             case .addresses:
@@ -1251,7 +1294,8 @@ public extension PlatformClient.ApplicationClient.Content {
         }
 
         public var pathParams: [(name: String, required: Bool)] {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return []
             case .addresses:
@@ -1348,7 +1392,8 @@ public extension PlatformClient.ApplicationClient.Content {
         }
 
         public var queryParams: [(name: String, required: Bool)] {
-            switch self {
+            switch self { 
+            
             case .aboutUs:
                 return []
             case .addresses:
@@ -1445,3 +1490,34 @@ public extension PlatformClient.ApplicationClient.Content {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4513,8 +4513,9 @@ We are processing the request!
  | ---------- | ---- | -------- | ----------- |
  | status | Int? |  yes  |  |
  | success | Bool? |  yes  |  |
- | message | String? |  yes  |  |
+ | message | String |  no  |  |
  | errorTrace | String? |  yes  |  |
+ | error | String |  no  |  |
 
 ---
 
@@ -4984,6 +4985,7 @@ We are processing the request!
  | weight | [String: Any] |  no  |  |
  | attributes | [String: Any] |  no  |  |
  | quantity | Int |  no  |  |
+ | status | [String: Any]? |  yes  |  |
 
 ---
 
@@ -5014,6 +5016,9 @@ We are processing the request!
  | dpId | Int? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | affiliateShipmentId | String |  no  |  |
+ | lockStatus | Bool? |  yes  |  |
+ | lockMessage | String? |  yes  |  |
+ | actionToStatus | [String: Any]? |  yes  |  |
 
 ---
 
@@ -6397,7 +6402,7 @@ We are processing the request!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | cgstTaxPercentage | Double? |  yes  |  |
- | gstinCode | String |  no  |  |
+ | gstinCode | String? |  yes  |  |
  | valueOfGood | Double |  no  |  |
  | gstFee | Double |  no  |  |
  | igstTaxPercentage | Double? |  yes  |  |
@@ -6437,30 +6442,30 @@ We are processing the request!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | refundCredit | Int |  no  |  |
+ | refundCredit | Double |  no  |  |
  | amountPaidRoundoff | Int? |  yes  |  |
- | priceEffective | Int |  no  |  |
+ | priceEffective | Double |  no  |  |
  | promotionEffectiveDiscount | Double |  no  |  |
- | transferPrice | Int |  no  |  |
+ | transferPrice | Double |  no  |  |
  | couponEffectiveDiscount | Double |  no  |  |
  | gstFee | Double |  no  |  |
- | taxCollectedAtSource | Int? |  yes  |  |
+ | taxCollectedAtSource | Double? |  yes  |  |
  | brandCalculatedAmount | Double |  no  |  |
  | deliveryCharge | Double |  no  |  |
  | gstTag | String |  no  |  |
  | hsnCode | String |  no  |  |
- | cashback | Int |  no  |  |
+ | cashback | Double |  no  |  |
  | itemName | String |  no  |  |
  | valueOfGood | Double |  no  |  |
- | cashbackApplied | Int |  no  |  |
- | codCharges | Int |  no  |  |
- | priceMarked | Int |  no  |  |
+ | cashbackApplied | Double |  no  |  |
+ | codCharges | Double |  no  |  |
+ | priceMarked | Double |  no  |  |
  | size | String |  no  |  |
  | amountPaid | Double |  no  |  |
  | couponValue | Double |  no  |  |
- | discount | Int |  no  |  |
- | fyndCredits | Int |  no  |  |
- | gstTaxPercentage | Int |  no  |  |
+ | discount | Double |  no  |  |
+ | fyndCredits | Double |  no  |  |
+ | gstTaxPercentage | Double |  no  |  |
  | identifiers | [Identifier](#Identifier) |  no  |  |
  | totalUnits | Int |  no  |  |
  | addedToFyndCash | Bool |  no  |  |
@@ -7042,19 +7047,6 @@ We are processing the request!
 
  
  
- #### [ShipmentDetails1](#ShipmentDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | lockStatus | Bool? |  yes  |  |
- | lockMessage | String? |  yes  |  |
- | actionToStatus | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
  #### [PhoneDetails](#PhoneDetails)
 
  | Properties | Type | Nullable | Description |
@@ -7609,7 +7601,7 @@ We are processing the request!
  | billingDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
  | forwardShipmentId | String? |  yes  |  |
  | fulfilmentPriority | Int? |  yes  |  |
- | shipmentDetails | [ShipmentDetails1](#ShipmentDetails1)? |  yes  |  |
+ | shipmentDetails | [ShipmentDetails](#ShipmentDetails)? |  yes  |  |
  | customMeta | [[String: Any]]? |  yes  |  |
  | shipmentQuantity | Int? |  yes  |  |
  | companyDetails | [CompanyDetails](#CompanyDetails)? |  yes  |  |
@@ -8107,17 +8099,6 @@ We are processing the request!
 
  
  
- #### [ArticleDetails1](#ArticleDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
  #### [StoreAddress](#StoreAddress)
 
  | Properties | Type | Nullable | Description |
@@ -8393,7 +8374,7 @@ We are processing the request!
  | bagStatus | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | sellerIdentifier | String? |  yes  |  |
  | originalBagList | [Int]? |  yes  |  |
- | articleDetails | [ArticleDetails1](#ArticleDetails1)? |  yes  |  |
+ | articleDetails | [ArticleDetails](#ArticleDetails)? |  yes  |  |
  | currentOperationalStatus | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | orderingStore | [Store](#Store)? |  yes  |  |
  | article | [Article](#Article)? |  yes  |  |
@@ -8423,18 +8404,6 @@ We are processing the request!
  | operationalStatus | String? |  yes  |  |
  | entityType | String? |  yes  |  |
  | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ErrorResponse1](#ErrorResponse1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String |  no  |  |
- | error | String |  no  |  |
 
 ---
 

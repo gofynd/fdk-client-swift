@@ -23,7 +23,7 @@ Get paginated audit logs
 
 
 ```swift
-platformClient.audittrail.getAuditLogs(qs: qs) { (response, error) in
+platformClient.audittrail.getAuditLogs(qs: qs, limit: limit, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -34,7 +34,9 @@ platformClient.audittrail.getAuditLogs(qs: qs) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| qs | String | yes | Logs Query |  
+| qs | String | yes | Logs Query |   
+| limit | Int? | no | Current request items count |   
+| sort | [String: Any]? | no | To sort based on _id |  
 
 
 
