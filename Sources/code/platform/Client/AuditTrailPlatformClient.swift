@@ -17,12 +17,22 @@ public extension PlatformClient {
          **/
         public func getAuditLogs(
             qs: String,
+            limit: Int?,
+            sort: [String: Any]?,
 
             onResponse: @escaping (_ response: LogSchemaResponse?, _ error: FDKError?) -> Void
         ) {
             var xQuery: [String: Any] = [:]
 
             xQuery["qs"] = qs
+
+            if let value = limit {
+                xQuery["limit"] = value
+            }
+
+            if let value = sort {
+                xQuery["sort"] = value
+            }
 
             PlatformAPIClient.execute(
                 config: config,

@@ -13,7 +13,7 @@ public extension ApplicationClient.Logistic {
 
         public var meta: [String: Any]?
 
-        public var logistics: Logistics?
+        public var logistics: LogisticsDPSchema?
 
         public var uid: String?
 
@@ -45,7 +45,7 @@ public extension ApplicationClient.Logistic {
             case displayName = "display_name"
         }
 
-        public init(displayName: String? = nil, isActive: Bool? = nil, logistics: Logistics? = nil, meta: [String: Any]? = nil, name: String? = nil, parentId: [String]? = nil, subType: String? = nil, type: String? = nil, uid: String? = nil) {
+        public init(displayName: String? = nil, isActive: Bool? = nil, logistics: LogisticsDPSchema? = nil, meta: [String: Any]? = nil, name: String? = nil, parentId: [String]? = nil, subType: String? = nil, type: String? = nil, uid: String? = nil) {
             self.isActive = isActive
 
             self.parentId = parentId
@@ -93,7 +93,7 @@ public extension ApplicationClient.Logistic {
             } catch {}
 
             do {
-                logistics = try container.decode(Logistics.self, forKey: .logistics)
+                logistics = try container.decode(LogisticsDPSchema.self, forKey: .logistics)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

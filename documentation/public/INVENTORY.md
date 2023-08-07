@@ -5,7 +5,7 @@
 ##### [Back to Public docs](./README.md)
 
 ## Inventory Methods
-
+Inventory Swoop API's
 * [getJobCodesMetrics](#getjobcodesmetrics)
 * [saveJobCodesMetrics](#savejobcodesmetrics)
 * [getConfigByApiKey](#getconfigbyapikey)

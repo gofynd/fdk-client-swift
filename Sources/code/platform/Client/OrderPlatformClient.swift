@@ -127,7 +127,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get Announcements
          **/
         public func getAnnouncements(
             date: String?,
@@ -172,7 +172,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Update Address for the order
          **/
         public func updateAddress(
             shipmentId: String,
@@ -268,7 +268,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Click to Call
          **/
         public func click2Call(
             caller: String,
@@ -365,7 +365,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Process Manifest
          **/
         public func processManifest(
             body: CreateOrderPayload,
@@ -403,7 +403,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Dispatch Manifest
          **/
         public func dispatchManifest(
             body: DispatchManifest,
@@ -441,7 +441,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get Role Based Actions
          **/
         public func getRoleBasedActions(
             onResponse: @escaping (_ response: GetActionsResponse?, _ error: FDKError?) -> Void
@@ -478,7 +478,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get Shipment History
          **/
         public func getShipmentHistory(
             shipmentId: String?,
@@ -528,7 +528,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Post shipment history
          **/
         public func postShipmentHistory(
             body: PostShipmentHistory,
@@ -566,7 +566,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Send SMS Ninja Panel
          **/
         public func sendSmsNinja(
             body: SendSmsPayload,
@@ -604,7 +604,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Update Packaging Dimensions
          **/
         public func updatePackagingDimensions(
             body: UpdatePackagingDimensionsPayload,
@@ -642,7 +642,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Create Order
          **/
         public func createOrder(
             body: CreateOrderAPI,
@@ -755,7 +755,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Upload Consent
          **/
         public func uploadConsent(
             body: UploadConsent,
@@ -793,7 +793,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Update Order
          **/
         public func orderUpdate(
             body: PlatformOrderUpdate,
@@ -831,7 +831,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Check order status
          **/
         public func checkOrderStatus(
             body: OrderStatus,
@@ -869,7 +869,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get State Transition Map
          **/
         public func getStateTransitionMap(
             onResponse: @escaping (_ response: BagStateTransitionMap?, _ error: FDKError?) -> Void
@@ -905,8 +905,55 @@ public extension PlatformClient {
 
         /**
          *
+         * Summary: To fetch next state transitions.
+         * Description: This endpoint will fetch next possible states based on logged in user
+
+         **/
+        public func getAllowedStateTransition(
+            orderingChannel: String,
+            status: String,
+
+            onResponse: @escaping (_ response: RoleBaseStateTransitionMapping?, _ error: FDKError?) -> Void
+        ) {
+            var xQuery: [String: Any] = [:]
+
+            xQuery["ordering_channel"] = orderingChannel
+
+            xQuery["status"] = status
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/allowed/state/transition",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(RoleBaseStateTransitionMapping.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
          * Summary:
-         * Description:
+         * Description: Fetch Credit Balance Detail
          **/
         public func fetchCreditBalanceDetail(
             body: FetchCreditBalanceRequestPayload,
@@ -944,7 +991,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Fetch Refund Mode Config
          **/
         public func fetchRefundModeConfig(
             body: RefundModeConfigRequestPayload,
@@ -982,7 +1029,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Attach Order User
          **/
         public func attachOrderUser(
             body: AttachOrderUser,
@@ -1020,7 +1067,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Send User Mobile OTP
          **/
         public func sendUserMobileOTP(
             body: SendUserMobileOTP,
@@ -1058,7 +1105,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Verify Mobile OTP
          **/
         public func verifyMobileOTP(
             body: VerifyMobileOTP,
@@ -1096,13 +1143,51 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: downloads lanes shipment/orders.
+         **/
+        public func downloadLanesReport(
+            body: BulkReportsDownloadRequest,
+            onResponse: @escaping (_ response: BulkReportsDownloadResponse?, _ error: FDKError?) -> Void
+        ) {
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/reports/lanes/download",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { responseData, error, responseCode in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        let response = Utility.decode(BulkReportsDownloadResponse.self, from: data)
+
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
+                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+                }
+            )
+        }
+
+        /**
+         *
+         * Summary:
+         * Description: Get Shipments Listing for the company id
          **/
         public func getShipments(
             lane: String?,
             bagStatus: String?,
             statusOverrideLane: Bool?,
-            timeToDispatch: String?,
+            timeToDispatch: Double?,
             searchType: String?,
             searchValue: String?,
             fromDate: String?,
@@ -1122,6 +1207,7 @@ public extension PlatformClient {
             companyAffiliateTag: String?,
             myOrders: Bool?,
             platformUserId: String?,
+            tags: String?,
 
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1219,6 +1305,10 @@ public extension PlatformClient {
                 xQuery["platform_user_id"] = value
             }
 
+            if let value = tags {
+                xQuery["tags"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1251,7 +1341,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get shipment details for the given shipment.
          **/
         public func getShipmentById(
             channelShipmentId: String?,
@@ -1301,7 +1391,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get Order Details by ID
          **/
         public func getOrderById(
             orderId: String,
@@ -1344,7 +1434,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get lane config for the order
          **/
         public func getLaneConfig(
             superLane: String?,
@@ -1459,7 +1549,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get Orders Listing
          **/
         public func getOrders(
             lane: String?,
@@ -1584,7 +1674,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get Listing Filters
          **/
         public func getfilters(
             view: String,
@@ -1632,7 +1722,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Generate Bulk Shipment Excel Report.
          **/
         public func getBulkShipmentExcelFile(
             salesChannels: String?,
@@ -1732,7 +1822,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get Bulk Action seller templates.
          **/
         public func getBulkActionTemplate(
             onResponse: @escaping (_ response: BulkActionTemplateResponse?, _ error: FDKError?) -> Void
@@ -1769,7 +1859,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Download bulk actions seller templates.
          **/
         public func downloadBulkActionTemplate(
             templateSlug: String?,
@@ -1855,7 +1945,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get Order Bag Details.
          **/
         public func getBagById(
             bagId: String?,
@@ -1910,7 +2000,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Get Bags for the order
          **/
         public func getBags(
             bagIds: String?,
@@ -1995,7 +2085,7 @@ public extension PlatformClient {
         /**
          *
          * Summary:
-         * Description:
+         * Description: Generate POS recipt by order id.
          **/
         public func generatePOSReceiptByOrderId(
             orderId: String,

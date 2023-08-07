@@ -775,7 +775,8 @@ Success. Returns all available options for payment. Check the example shown belo
         "list": [
           {
             "cod_limit": 1000,
-            "remaining_limit": 100
+            "remaining_limit": 100,
+            "aggregator_name": "name"
           }
         ]
       },
@@ -1133,20 +1134,14 @@ Success. Returns all available options for payment. Check the example shown belo
             "return_url": null
           }
         },
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk",
-        "payment_flow_data": {
-          "is_customer_validation_required": true,
-          "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
-          "config": {
-            "redirect": false,
-            "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-          },
-          "data": {
-            "user_phone": null,
-            "user_email": null
-          },
-          "return_url": null
+        "payment_flow_data": "",
+        "is_customer_validation_required": true,
+        "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
+        "config": {
+          "redirect": false,
+          "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
         }
       },
       "potlee": {
@@ -1168,7 +1163,7 @@ Success. Returns all available options for payment. Check the example shown belo
             "return_url": null
           }
         },
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "api",
         "payment_flow_data": {
           "return_url": null,
@@ -1189,7 +1184,7 @@ Success. Returns all available options for payment. Check the example shown belo
             }
           }
         },
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "juspay": {
@@ -1199,7 +1194,7 @@ Success. Returns all available options for payment. Check the example shown belo
       },
       "razorpay": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "bqr_razorpay": {
@@ -1209,48 +1204,37 @@ Success. Returns all available options for payment. Check the example shown belo
       },
       "fynd": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "api"
       },
       "jio": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "api"
       },
       "stripe": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "ccavenue": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "payumoney": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "rupifi": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "return_url": "",
         "payment_flow": "api",
         "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/",
-        "payment_flow_data": {
-          "is_customer_validation_required": true,
-          "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
-          "config": {
-            "redirect": false,
-            "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-          },
-          "data": {
-            "user_phone": null,
-            "user_email": null
-          },
-          "return_url": null
-        }
+        "payment_flow_data": "",
+        "is_customer_validation_required": true
       },
       "jiopay": {
         "api_link": "http://psp-mandate-merchant-sit.jiomoney.com:3003/pg",
@@ -1264,7 +1248,7 @@ Success. Returns all available options for payment. Check the example shown belo
       },
       "Jio": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "api"
       }
     }
@@ -1449,7 +1433,7 @@ Success. Returns all available options for payment. Check the example shown belo
             "return_url": null
           }
         },
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "juspay": {
@@ -1459,7 +1443,7 @@ Success. Returns all available options for payment. Check the example shown belo
       },
       "razorpay": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "upi_razorpay": {
@@ -1474,37 +1458,37 @@ Success. Returns all available options for payment. Check the example shown belo
       },
       "cashfree": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "api"
       },
       "fynd": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "api"
       },
       "jio": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "api"
       },
       "stripe": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "ccavenue": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "payumoney": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "rupifi": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "return_url": "",
         "payment_flow": "api",
         "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/"
@@ -2117,7 +2101,7 @@ Success. Returns the details of the beneficiary getting a refund. Check the exam
       "email": "payment@gofynd.com",
       "address": "204A",
       "comment": "",
-      "is_active": null,
+      "is_active": true,
       "created_on": "2020-06-29 12:38:39",
       "modified_on": "2020-06-29 12:38:39",
       "display_name": "BANK",
@@ -2272,7 +2256,7 @@ Success. Returns the details of the beneficiary getting a refund. Check the exam
       "email": "prakashtest@gmail.com",
       "address": "49A, Dabhi seri, jodhpur, kalyanpur",
       "comment": "COD Refund",
-      "is_active": null,
+      "is_active": true,
       "created_on": "2021-01-22 11:31:02",
       "modified_on": "2021-01-22 11:31:02",
       "display_name": "BANK",
@@ -2513,7 +2497,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 ```json
 {
   "success": true,
-  "is_verified_flag": false,
+  "is_verified_flag": "false",
   "request_id": "c3ca6c13d490c885a125d106b45697b7"
 }
 ```
@@ -3183,20 +3167,14 @@ Success. Returns all available options for payment. Check the example shown belo
             "return_url": null
           }
         },
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk",
-        "payment_flow_data": {
-          "is_customer_validation_required": true,
-          "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
-          "config": {
-            "redirect": false,
-            "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-          },
-          "data": {
-            "user_phone": null,
-            "user_email": null
-          },
-          "return_url": null
+        "payment_flow_data": "",
+        "is_customer_validation_required": true,
+        "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
+        "config": {
+          "redirect": false,
+          "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
         }
       },
       "mswipe": {
@@ -3212,7 +3190,7 @@ Success. Returns all available options for payment. Check the example shown belo
             }
           }
         },
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "juspay": {
@@ -3222,7 +3200,7 @@ Success. Returns all available options for payment. Check the example shown belo
       },
       "razorpay": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "bqr_razorpay": {
@@ -3232,47 +3210,40 @@ Success. Returns all available options for payment. Check the example shown belo
       },
       "fynd": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "api"
       },
       "jio": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "api"
       },
       "stripe": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "ccavenue": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "payumoney": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "payment_flow": "sdk"
       },
       "rupifi": {
         "data": {},
-        "api_link": "",
+        "api_link": "https://api.fyndx0.de/platform/payment/v2/external/payments/request/?app_id=000000000000000000000001",
         "return_url": "",
         "payment_flow": "api",
         "cust_validation_url": "https://api.jiox0.de/gringotts/api/v1/validate-customer/",
-        "payment_flow_data": {
-          "is_customer_validation_required": true,
-          "cust_validation_url": "https://api.fyndx0.de/platform/payment/api/v1/validate-customer/?app_id=000000000000000000000001",
-          "config": {
-            "redirect": false,
-            "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-          },
-          "data": {
-            "user_phone": null,
-            "user_email": null
-          },
-          "return_url": null
+        "payment_flow_data": "",
+        "is_customer_validation_required": true,
+        "config": {
+          "redirect": false,
+          "final_payment_action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
         }
       }
     }
@@ -3396,6 +3367,7 @@ Success. Check the example shown below
 ```json
 {
   "message": "",
+  "status_code": 200,
   "success": true,
   "data": {
     "amount": 2190000,
@@ -3618,7 +3590,13 @@ Success. Returns the status of payment. Check the example shown below or refer `
       "currency": "INR"
     },
     "due_date": "Oct 22 2021",
-    "days_overdue": 123
+    "days_overdue": 123,
+    "total_due_amount": {
+      "value": 12576,
+      "formatted_value": "₹ 12,576.00",
+      "currency": "INR"
+    },
+    "repayment_url": "https://example_url.com/example/"
   }
 }
 ```
@@ -3679,7 +3657,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
 {
   "success": true,
   "data": {
-    "redirect_url": "https://api-blackbox.epaylater.in//marketplace/customer/transactions/v2?encryptedPayload=dpPuB2+kZ6NyIrg0eWAwk7TbF14502RkIARgullt3PGWMh7Ix0Tc720b6idZzXNxzwaA3BOi2DHUALpqSfOagra+i0wRIVc36O62fwPscQE=checksum=6F06AEAE2A3CBBC81457FB2287C4DEFCFC16DEA8F33482D682134D64E43E34C2merchantId=Sample1234567890redirectConfirmUrl=http://localhost:8000/",
+    "redirect_url": "https://api-blackbox.epaylater.in//marketplace/customer/transactions/v2",
+    "signup_url": "https://api-blackbox.epaylater.in//marketplace/customer/transactions/v2",
     "status": true
   }
 }
@@ -3805,7 +3784,11 @@ Success. Returns the status of payment. Check the example shown below or refer `
       "session_id": "109dae9a-9fe0-4277-979c-0bebb0136930"
     },
     "redirect_url": "https://retail-dev.epaylater.in?sessionId=109dae9a-9fe0-4277-979c-0bebb0136930",
-    "status": true
+    "status": true,
+    "merchant_customer_ref_id": "64217ecb42a43c10c5bde1b4",
+    "status_remark": "Your are one step away to avail credit of Amount(value=10000.0, formattedValue=₹ 10,000.00, currency=INR)",
+    "is_eligible_for_txn": false,
+    "activation_url": "https://urlshortener-sandbox.rupifi.com/BHs8Dsc"
   }
 }
 ```
@@ -4019,7 +4002,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription) |  no  |  |
+ | error | [ErrorCodeAndDescription](#ErrorCodeAndDescription)? |  yes  |  |
  | success | Bool |  no  | Response is successful or not |
 
 ---
@@ -5199,13 +5182,19 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | totalDueAmount | [BalanceDetails](#BalanceDetails)? |  yes  | Total due amount |
  | status | String? |  yes  | Customer Credit status |
+ | limit | [BalanceDetails](#BalanceDetails)? |  yes  | User's credit limit |
  | creditLineId | String? |  yes  | ID at Credit aggregator's end |
  | amountAvailable | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
+ | dueAmount | [BalanceDetails](#BalanceDetails)? |  yes  | Amount that is due for repayment |
  | balance | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
  | statusMessage | String? |  yes  | message to customer |
+ | repaymentUrl | String? |  yes  | Url for repayment |
+ | isEligibleForTxn | Bool? |  yes  | Eligiblity flag to complete transaction |
  | merchantCustomerRefId | String? |  yes  | Unique aggregator customer id |
  | buyerStatus | String? |  yes  | Status from Credit aggregator's end |
+ | activationUrl | String? |  yes  | Url for activation |
 
 ---
 
@@ -5388,9 +5377,13 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | Bool |  no  | Operation Status |
  | redirectUrl | String |  no  | URL to which the user may redirect. |
  | session | [String: Any] |  no  | User Session |
+ | status | Bool |  no  | Transaction status |
+ | statusRemark | String? |  yes  | Decription of status |
+ | isEligibleForTxn | Bool? |  yes  | Whether is eligible for transaction |
+ | merchantCustomerRefId | String? |  yes  | Rupifi customer ID |
+ | activationUrl | String? |  yes  | Url for activation |
 
 ---
 

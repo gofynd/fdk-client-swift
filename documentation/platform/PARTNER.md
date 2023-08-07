@@ -274,7 +274,7 @@ Success
         "description": "dvssdvdvdv"
       }
     ],
-    "description": "<p>Now you can run referral campaigns that lets you and your existing customers refer their friends and family to register on your website.<br /><br />Features<br />&bull; Configure reward for the referrer<br />&bull; Configure reward for the one being referred<br />&bull; Set validity of referral and the reward<br />&bull; Enable/Disable referral campaigns</p>",
+    "description": "Now you can run referral campaigns that lets you and your existing customers refer their friends and family to register on your website.Features Configure reward for the referrer Configurereward for the one being referred Set validity of referral and the reward Enable/Disable referral campaigns",
     "demo_url": "",
     "video_url": []
   },
@@ -387,14 +387,8 @@ Success
   "ext_version": "1.0",
   "company": "1",
   "scope": [
-    {
-      "name": "Sales Channels",
-      "description": "Allows to add and manage new and existing sales channels"
-    },
-    {
-      "name": "Settings",
-      "description": "Allows you to configure and customize features across multiple touchpoints in the application."
-    }
+    "company/saleschannel",
+    "company/application/settings"
   ],
   "installed": true,
   "is_saleschannel": false
@@ -492,7 +486,7 @@ platformClient.partner.getPrivateExtensions(pageSize: pageSize, pageNo: pageNo, 
 | -------- | ---- | -------- | ----------- | 
 | pageSize | Double? | no | Number of records you want to get in single page |   
 | pageNo | Double? | no | Number of page |   
-| query | String? | no | Filter query which we want to pass |  
+| query | [String: Any]? | no | Filter query which we want to pass |  
 
 
 
@@ -704,87 +698,85 @@ Success
 
 ```json
 {
-  "items": [
-    {
-      "_id": "627a68b3ac2caa3c22edd238",
-      "request_status": "accepted",
-      "comment": "",
-      "company_id": 1,
-      "account_type": "live",
-      "requested_permissions": {
-        "company_permissions": [
-          "profile",
-          "product",
-          "order",
-          "extension",
-          "developer",
-          "marketplace",
-          "otherseller",
-          "settings",
-          "audit-trail"
-        ],
-        "application_permissions": [
-          "settings",
-          "staff",
-          "marketing",
-          "communication",
-          "catalogue",
-          "customer",
-          "analytics",
-          "storage",
-          "support",
-          "point_of_sale",
-          "order"
-        ],
-        "company_role": [
-          "custom"
-        ],
-        "application_role": [
-          "admin"
-        ]
-      },
-      "approved_permissions": {
-        "company_permissions": [
-          "profile",
-          "product",
-          "order",
-          "extension",
-          "developer",
-          "marketplace",
-          "otherseller",
-          "settings",
-          "audit-trail"
-        ],
-        "application_permissions": {
-          "6110bfb0d4beb6b2c08f8a79": {
-            "permissions": [
-              "settings",
-              "staff",
-              "marketing",
-              "communication",
-              "catalogue",
-              "customer",
-              "analytics",
-              "storage",
-              "support",
-              "point_of_sale",
-              "order"
-            ],
-            "roles": [
-              "admin"
-            ]
-          }
+  "items": {
+    "_id": "627a68b3ac2caa3c22edd238",
+    "request_status": "accepted",
+    "comment": "",
+    "company_id": 1,
+    "account_type": "live",
+    "requested_permissions": {
+      "company_permissions": [
+        "profile",
+        "product",
+        "order",
+        "extension",
+        "developer",
+        "marketplace",
+        "otherseller",
+        "settings",
+        "audit-trail"
+      ],
+      "application_permissions": [
+        "settings",
+        "staff",
+        "marketing",
+        "communication",
+        "catalogue",
+        "customer",
+        "analytics",
+        "storage",
+        "support",
+        "point_of_sale",
+        "order"
+      ],
+      "company_role": [
+        "custom"
+      ],
+      "application_role": [
+        "admin"
+      ]
+    },
+    "approved_permissions": {
+      "company_permissions": [
+        "profile",
+        "product",
+        "order",
+        "extension",
+        "developer",
+        "marketplace",
+        "otherseller",
+        "settings",
+        "audit-trail"
+      ],
+      "application_permissions": {
+        "6110bfb0d4beb6b2c08f8a79": {
+          "permissions": [
+            "settings",
+            "staff",
+            "marketing",
+            "communication",
+            "catalogue",
+            "customer",
+            "analytics",
+            "storage",
+            "support",
+            "point_of_sale",
+            "order"
+          ],
+          "roles": [
+            "admin"
+          ]
         }
-      },
-      "company_name": "Reliance Digital P. LTDv",
-      "user_id": "043f885d2ec5dd975a9aeac4",
-      "organization_id": "62737a7bffaf722a1d7cebf6",
-      "created_at": "2022-05-10T13:29:23.042Z",
-      "modified_at": "2022-09-15T06:03:53.663Z",
-      "approver_id": "dcbe84c5e68d8c4348c224dd",
-      "organization_name": "Viking Ext Hitesh"
-    }
-  ],
+      }
+    },
+    "company_name": "Reliance Digital P. LTDv",
+    "user_id": "043f885d2ec5dd975a9aeac4",
+    "organization_id": "62737a7bffaf722a1d7cebf6",
+    "created_at": "2022-05-10T13:29:23.042Z",
+    "modified_at": "2022-09-15T06:03:53.663Z",
+    "approver_id": "dcbe84c5e68d8c4348c224dd",
+    "organization_name": "Viking Ext Hitesh"
+  },
   "page": {
     "type": "number",
     "current": 1,
@@ -1100,7 +1092,7 @@ platformClient.application("<APPLICATION_ID>").partner.getProxyPath(extensionId:
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| extensionId | String? | no | extension id |  
+| extensionId | String | yes | extension id |  
 
 
 
@@ -1239,8 +1231,8 @@ platformClient.application("<APPLICATION_ID>").partner.getProxyPathAttachedPath(
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| extensionId | String? | no | extension id |   
-| attachedPath | String? | no | application id |  
+| extensionId | String | yes | extension id |   
+| attachedPath | String | yes | application id |  
 
 
 

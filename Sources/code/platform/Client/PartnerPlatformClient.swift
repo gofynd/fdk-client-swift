@@ -254,7 +254,7 @@ public extension PlatformClient {
         public func getPrivateExtensions(
             pageSize: Double?,
             pageNo: Double?,
-            query: String?,
+            query: [String: Any]?,
 
             onResponse: @escaping (_ response: ExtensionResponse?, _ error: FDKError?) -> Void
         ) {

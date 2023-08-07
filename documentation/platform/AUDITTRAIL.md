@@ -23,7 +23,7 @@ Get paginated audit logs
 
 
 ```swift
-platformClient.audittrail.getAuditLogs(qs: qs) { (response, error) in
+platformClient.audittrail.getAuditLogs(qs: qs, limit: limit, sort: sort) { (response, error) in
     // Use response
 }
 ```
@@ -34,7 +34,9 @@ platformClient.audittrail.getAuditLogs(qs: qs) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| qs | String | yes | Logs Query |  
+| qs | String | yes | Logs Query |   
+| limit | Int? | no | Current request items count |   
+| sort | [String: Any]? | no | To sort based on _id |  
 
 
 
@@ -80,7 +82,7 @@ Success
           }
         },
         "_id": "634eef735e84e7e1b09aa07c",
-        "application": null,
+        "application": "",
         "date": "2022-10-18T18:24:51.329Z",
         "created_at": "2022-10-18T18:24:51.400Z",
         "modified_at": "2022-10-18T18:24:51.400Z"
@@ -514,17 +516,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String? |  yes  | Failure message. |
-
----
-
-
- 
- 
- #### [ResourceNotFound](#ResourceNotFound)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  | Resource not found with {id} |
 
 ---
 

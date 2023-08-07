@@ -987,14 +987,26 @@ public extension PlatformClient {
          **/
         public func validateProductTemplate(
             slug: String,
+            itemType: String?,
+            bulk: Bool?,
 
             onResponse: @escaping (_ response: TemplatesValidationResponse?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = itemType {
+                xQuery["item_type"] = value
+            }
+
+            if let value = bulk {
+                xQuery["bulk"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/\(slug)/validation/schema/",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -1026,14 +1038,26 @@ public extension PlatformClient {
          **/
         public func downloadProductTemplateViews(
             slug: String,
+            itemType: String?,
+            type: String?,
 
             onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
+            var xQuery: [String: Any] = [:]
+
+            if let value = itemType {
+                xQuery["item_type"] = value
+            }
+
+            if let value = type {
+                xQuery["type"] = value
+            }
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/\(slug)/download/",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "text/csv",
@@ -3421,7 +3445,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Location Reassignment
-         * Description:
+         * Description: Location Reassignment
          **/
         public func getOptimalLocations(
             body: AssignStore,

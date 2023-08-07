@@ -9,13 +9,13 @@ public extension PlatformClient.ApplicationClient.Content {
      */
 
     class DataLoaderResetResponseSchema: Codable {
-        public var reset: String?
+        public var reset: Bool?
 
         public enum CodingKeys: String, CodingKey {
             case reset
         }
 
-        public init(reset: String? = nil) {
+        public init(reset: Bool? = nil) {
             self.reset = reset
         }
 
@@ -23,7 +23,7 @@ public extension PlatformClient.ApplicationClient.Content {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             do {
-                reset = try container.decode(String.self, forKey: .reset)
+                reset = try container.decode(Bool.self, forKey: .reset)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

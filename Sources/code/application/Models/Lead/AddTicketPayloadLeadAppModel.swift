@@ -19,6 +19,8 @@ public extension ApplicationClient.Lead {
 
         public var customJson: [String: Any]?
 
+        public var subscribers: [String]?
+
         public enum CodingKeys: String, CodingKey {
             case createdBy = "created_by"
 
@@ -31,9 +33,11 @@ public extension ApplicationClient.Lead {
             case content
 
             case customJson = "_custom_json"
+
+            case subscribers
         }
 
-        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil, customJson: [String: Any]? = nil) {
+        public init(category: String, content: TicketContent, createdBy: [String: Any]? = nil, priority: PriorityEnum? = nil, status: String? = nil, subscribers: [String]? = nil, customJson: [String: Any]? = nil) {
             self.createdBy = createdBy
 
             self.status = status
@@ -45,6 +49,8 @@ public extension ApplicationClient.Lead {
             self.content = content
 
             self.customJson = customJson
+
+            self.subscribers = subscribers
         }
 
         required public init(from decoder: Decoder) throws {
@@ -85,6 +91,14 @@ public extension ApplicationClient.Lead {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                subscribers = try container.decode([String].self, forKey: .subscribers)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -101,6 +115,8 @@ public extension ApplicationClient.Lead {
             try? container.encodeIfPresent(content, forKey: .content)
 
             try? container.encodeIfPresent(customJson, forKey: .customJson)
+
+            try? container.encodeIfPresent(subscribers, forKey: .subscribers)
         }
     }
 }

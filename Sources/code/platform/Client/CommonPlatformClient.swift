@@ -65,7 +65,7 @@ public extension PlatformClient {
         /**
          *
          * Summary: Get countries, states, cities
-         * Description:
+         * Description: Retrieve a list of countries, states, or cities based on the provided location_type and id parameters.
          **/
         public func getLocations(
             locationType: String?,

@@ -246,19 +246,17 @@ Success
 
 ```json
 {
-  "versions": [
-    {
-      "_id": "6035376ab937c5f7c5462888",
-      "application": "000000000000000000000004",
-      "platform_type": "android",
-      "build_status": "pending",
-      "version_name": "0.5.6",
-      "version_code": 1,
-      "created_at": "2021-02-23T17:12:10.977Z",
-      "modified_at": "2021-02-23T17:12:10.977Z",
-      "__v": 0
-    }
-  ],
+  "versions": {
+    "_id": "6035376ab937c5f7c5462888",
+    "application": "000000000000000000000004",
+    "platform_type": "android",
+    "build_status": "pending",
+    "version_name": "0.5.6",
+    "version_code": 1,
+    "created_at": "2021-02-23T17:12:10.977Z",
+    "modified_at": "2021-02-23T17:12:10.977Z",
+    "__v": 0
+  },
   "latest_available_version_name": "0.5.7"
 }
 ```
@@ -329,8 +327,8 @@ Success
     "landing_page": {
       "launch_page": {
         "page_type": "home",
-        "params": null,
-        "query": null
+        "params": {},
+        "query": {}
       },
       "continue_as_guest": true,
       "login_btn_text": "Click here to sign-in",
@@ -478,8 +476,8 @@ Success
   "landing_page": {
     "launch_page": {
       "page_type": "home",
-      "params": null,
-      "query": null
+      "params": {},
+      "query": {}
     },
     "continue_as_guest": true,
     "login_btn_text": "Click here to sign-in",
@@ -616,8 +614,8 @@ Success
   "landing_page": {
     "launch_page": {
       "page_type": "home",
-      "params": null,
-      "query": null
+      "params": {},
+      "query": {}
     },
     "continue_as_guest": true,
     "login_btn_text": "Click here to sign-in",
@@ -1101,8 +1099,7 @@ Success
     ],
     "city": "Mumbai , Maharashtra , India",
     "country": "India",
-    "pincode": 400059,
-    "loc": null
+    "pincode": 400059
   },
   "social_links": {
     "facebook": {
@@ -1168,28 +1165,28 @@ Success
   "support": {
     "timing": "9 AM to 9 PM",
     "phone": [],
-    "email": []
+    "email": [],
+    "business_highlights": [
+      {
+        "_id": "60479413a32f774d754b00ef",
+        "title": "100% Genuine Products",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
+        "sub_title": "Directly from brands"
+      },
+      {
+        "_id": "60479413a32f7717df4b00f0",
+        "title": "Credit Facility Available",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
+        "sub_title": "Free 30 Days Credit"
+      },
+      {
+        "_id": "60479413a32f77e70b4b00f1",
+        "title": "Assured Returns",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
+        "sub_title": "For all damaged/wrong items"
+      }
+    ]
   },
-  "business_highlights": [
-    {
-      "_id": "60479413a32f774d754b00ef",
-      "title": "100% Genuine Products",
-      "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
-      "sub_title": "Directly from brands"
-    },
-    {
-      "_id": "60479413a32f7717df4b00f0",
-      "title": "Credit Facility Available",
-      "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
-      "sub_title": "Free 30 Days Credit"
-    },
-    {
-      "_id": "60479413a32f77e70b4b00f1",
-      "title": "Assured Returns",
-      "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
-      "sub_title": "For all damaged/wrong items"
-    }
-  ],
   "application": "000000000000000000000004",
   "created_at": "2020-03-09T11:25:49.921Z",
   "modified_at": "2021-03-09T15:28:19.598Z",
@@ -1512,23 +1509,11 @@ Success
 
 ```json
 {
-  "items": [
-    {
-      "uid": 108,
-      "name": "Sample2 Company",
-      "company_type": "mbo"
-    },
-    {
-      "uid": 13,
-      "name": "Isabel Mazanec",
-      "company_type": "franchisee"
-    },
-    {
-      "uid": 7,
-      "name": "Zack Burgdorf",
-      "company_type": "distributor"
-    }
-  ],
+  "items": {
+    "uid": 108,
+    "name": "Sample2 Company",
+    "company_type": "mbo"
+  },
   "page": {
     "type": "number",
     "size": 200,
@@ -1593,36 +1578,15 @@ Success
 
 ```json
 {
-  "items": [
-    {
-      "_id": "5ec2c0b168fc2800017112f5",
-      "uid": 1,
-      "name": "RRL01",
-      "display_name": "RRL01",
-      "store_type": "warehouse",
-      "store_code": "WH_8513",
-      "company_id": 1
-    },
-    {
-      "_id": "5ec3b09a68fc28000171137c",
-      "modified_on": "2020-06-30T10:02:41.208Z",
-      "uid": 10,
-      "name": "Saran Ledonne",
-      "display_name": "",
-      "store_type": "high_street",
-      "store_code": "af6198fe-2c23-4441-bbf4-e694c96e255c",
-      "company_id": 1
-    },
-    {
-      "_id": "5f099b2c931b1c0001e7ccb2",
-      "display_name": "cbs 2",
-      "store_code": "HS-c9bac",
-      "name": "cbs 2",
-      "company_id": 80,
-      "store_type": "high_street",
-      "uid": 11014
-    }
-  ],
+  "items": {
+    "id": "5ec2c0b168fc2800017112f5",
+    "uid": 1,
+    "name": "RRL01",
+    "display_name": "RRL01",
+    "store_type": "warehouse",
+    "store_code": "WH_8513",
+    "company_id": 1
+  },
   "page": {
     "type": "number",
     "size": 200,
@@ -1689,16 +1653,14 @@ Success
     "store": {
       "criteria": "filter",
       "stores": [],
-      "rules": [
-        {
-          "companies": [
-            1,
-            3,
-            4
-          ],
-          "brands": []
-        }
-      ]
+      "rules": {
+        "companies": [
+          1,
+          3,
+          4
+        ],
+        "brands": []
+      }
     },
     "category": {
       "criteria": "all",
@@ -1747,18 +1709,18 @@ Success
   },
   "cart": {
     "delivery_charges": {
-      "enabled": true,
-      "charges": [
-        {
-          "threshold": 1000,
-          "charges": 49
-        },
-        {
-          "threshold": 200000,
-          "charges": 79
-        }
-      ]
+      "enabled": true
     },
+    "charges": [
+      {
+        "threshold": 1000,
+        "charges": 49
+      },
+      {
+        "threshold": 200000,
+        "charges": 79
+      }
+    ],
     "enabled": true,
     "max_cart_items": 0,
     "min_cart_value": 120,
@@ -1939,16 +1901,14 @@ Success
     "store": {
       "criteria": "filter",
       "stores": [],
-      "rules": [
-        {
-          "companies": [
-            1,
-            3,
-            4
-          ],
-          "brands": []
-        }
-      ]
+      "rules": {
+        "companies": [
+          1,
+          3,
+          4
+        ],
+        "brands": []
+      }
     },
     "category": {
       "criteria": "all",
@@ -1997,18 +1957,18 @@ Success
   },
   "cart": {
     "delivery_charges": {
-      "enabled": true,
-      "charges": [
-        {
-          "threshold": 1000,
-          "charges": 49
-        },
-        {
-          "threshold": 200000,
-          "charges": 79
-        }
-      ]
+      "enabled": true
     },
+    "charges": [
+      {
+        "threshold": 1000,
+        "charges": 49
+      },
+      {
+        "threshold": 200000,
+        "charges": 79
+      }
+    ],
     "enabled": true,
     "max_cart_items": 0,
     "min_cart_value": 120,
@@ -2189,16 +2149,14 @@ Success
     "store": {
       "criteria": "filter",
       "stores": [],
-      "rules": [
-        {
-          "companies": [
-            1,
-            3,
-            4
-          ],
-          "brands": []
-        }
-      ]
+      "rules": {
+        "companies": [
+          1,
+          3,
+          4
+        ],
+        "brands": []
+      }
     },
     "category": {
       "criteria": "all",
@@ -2247,18 +2205,18 @@ Success
   },
   "cart": {
     "delivery_charges": {
-      "enabled": true,
-      "charges": [
-        {
-          "threshold": 1000,
-          "charges": 49
-        },
-        {
-          "threshold": 200000,
-          "charges": 79
-        }
-      ]
+      "enabled": true
     },
+    "charges": [
+      {
+        "threshold": 1000,
+        "charges": 49
+      },
+      {
+        "threshold": 200000,
+        "charges": 79
+      }
+    ],
     "enabled": true,
     "max_cart_items": 0,
     "min_cart_value": 120,
@@ -3580,15 +3538,20 @@ Success
   "validators": {
     "company": {
       "browser_script": "",
-      "json_schema": {
-        "type": "object",
-        "required": [
-          "ip_address",
-          "icode",
-          "gds_entity_id",
-          "auth_key"
-        ],
-        "properties": {
+      "json_schema": [
+        {
+          "type": "object"
+        },
+        {
+          "required": [
+            "ip_address",
+            "icode",
+            "gds_entity_id",
+            "auth_key"
+          ]
+        },
+        {
+          "properties": null,
           "gds_entity_id": {
             "type": "string",
             "title": "GDS Entity ID",
@@ -3621,13 +3584,16 @@ Success
             "description": "Please select the correct SKU identifier that you use to provide inventory to Fynd."
           }
         }
-      }
+      ]
     },
     "store": {
       "browser_script": "",
-      "json_schema": {
-        "type": "object",
-        "properties": {
+      "json_schema": [
+        {
+          "type": "object"
+        },
+        {
+          "properties": null,
           "location_id": {
             "type": "string",
             "title": "Location ID",
@@ -3640,7 +3606,7 @@ Success
             "description": "Enter IP address provided by Ginesys for your POS server"
           }
         }
-      }
+      ]
     }
   },
   "description": "Sap Integration west ELM brands",
@@ -4420,22 +4386,13 @@ Success
 
 ```json
 {
-  "brands": [
-    {
-      "name": "5th Avenue",
-      "value": 476,
-      "brand_logo_url": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/--unnamed--/1595615012186.jpeg",
-      "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/--unnamed--/1595615012724.jpeg",
-      "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/--unnamed--/1595615013203.jpeg"
-    },
-    {
-      "name": "Abhay",
-      "value": 47,
-      "brand_logo_url": "https://hdn-1.fynd.com/brands/pictures/square-logo/resize-h:200,w:0/9fG6jZUJV-brand-Slamay.png",
-      "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/cpApcg_insta_01.jpg034422ca-b739-4a30-ba9c-87ca32e8c2ef/cpApcg_insta_01.jpg",
-      "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/mtaSMv_insta_01.jpga088b881-886d-4b5a-b82f-139bd2aa3f35/mtaSMv_insta_01.jpg"
-    }
-  ]
+  "brands": {
+    "name": "5th Avenue",
+    "value": 476,
+    "brand_logo_url": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/--unnamed--/1595615012186.jpeg",
+    "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/--unnamed--/1595615012724.jpeg",
+    "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/--unnamed--/1595615013203.jpeg"
+  }
 }
 ```
 </details>
@@ -4798,36 +4755,34 @@ Success
     "opt_type": {
       "key": "store",
       "display": "Store"
-    },
-    "items": [
-      {
-        "name": "RRL01",
-        "id": 1,
-        "store_code": "WH_8513",
-        "_id": "5ec2c0b168fc2800017112f5",
-        "modified_on": "2020-09-09T04:25:55.843Z",
-        "uid": 1,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "display_name": "RRL01",
-        "store_type": "warehouse",
-        "company_id": 1
-      }
-    ]
+    }
   },
+  "items": {
+    "name": "RRL01",
+    "id": 1,
+    "store_code": "WH_8513",
+    "_id": "5ec2c0b168fc2800017112f5",
+    "modified_on": "2020-09-09T04:25:55.843Z",
+    "uid": 1
+  },
+  "address": {
+    "state": "MAHARASHTRA",
+    "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+    "lat_long": {
+      "type": "Point",
+      "coordinates": [
+        72.8691788,
+        19.1174114
+      ]
+    },
+    "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+    "pincode": 400059,
+    "country": "INDIA",
+    "city": "MUMBAI"
+  },
+  "display_name": "RRL01",
+  "store_type": "warehouse",
+  "company_id": 1,
   "opt_out_inventory": {
     "store": [],
     "company": []
@@ -5569,24 +5524,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | ref | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the default currency |
  | code | String? |  yes  | 3-character code of the default currency, e.g. INR, EUR, USD |
-
----
-
-
- 
- 
- #### [CurrencyConfig](#CurrencyConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of all the currency configuration |
- | isActive | Bool? |  yes  | Currency is enabled or not for the current sales channel |
- | name | String? |  yes  | Name of the currency, e.g Indian Rupee |
- | code | String? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
- | createdAt | String? |  yes  | ISO 8601 timestamp of a given currency creation |
- | updatedAt | String? |  yes  | ISO 8601 timestamp of a given currency updation |
- | decimalDigits | Int? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
- | symbol | String? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
 
 ---
 
@@ -6948,17 +6885,6 @@ Success
 
  
  
- #### [UnhandledError](#UnhandledError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [InvalidPayloadRequest](#InvalidPayloadRequest)
 
  | Properties | Type | Nullable | Description |
@@ -7048,52 +6974,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | postOrderReassignment | Bool? |  yes  | Allow post order reassigment of article |
  | rules | [ArticleAssignmentRule](#ArticleAssignmentRule)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CompanyAboutAddress](#CompanyAboutAddress)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pincode | Int? |  yes  | 6-digit PIN code of the city, e.g. 400001 |
- | address1 | String? |  yes  | Primary address line of the company |
- | address2 | String? |  yes  | Secondary address line of the company |
- | city | String? |  yes  | City name, e.g. Mumbai |
- | state | String? |  yes  | State name, e.g. Maharashtra |
- | country | String? |  yes  | Country name, e.g. India |
- | addressType | String? |  yes  | Indicates different office types like office, registered, and home. |
-
----
-
-
- 
- 
- #### [UserEmail](#UserEmail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | Bool? |  yes  | Current email is active or not active |
- | primary | Bool? |  yes  | Indicates current email is primay email or not primary email of user |
- | verified | Bool? |  yes  | Indicates current email is verified email or not verified email |
- | email | String? |  yes  | Email address of the user |
-
----
-
-
- 
- 
- #### [UserPhoneNumber](#UserPhoneNumber)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | Bool? |  yes  | Current phone number is active or not active |
- | primary | Bool? |  yes  | Indicates current phone number is primay  or not primary of user |
- | verified | Bool? |  yes  | Indicates current phone number is verified or not verified |
- | countryCode | Int? |  yes  | Country code, e.g. +91 |
- | phone | String? |  yes  | Phone number of the user |
 
 ---
 

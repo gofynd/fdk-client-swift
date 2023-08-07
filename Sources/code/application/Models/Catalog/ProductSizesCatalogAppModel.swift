@@ -9,7 +9,7 @@ public extension ApplicationClient.Catalog {
     class ProductSizes: Codable {
         public var sizes: [ProductSize]?
 
-        public var price: ProductListingPrice?
+        public var price: ProductSizesPrice?
 
         public var sizeChart: SizeChart?
 
@@ -20,6 +20,8 @@ public extension ApplicationClient.Catalog {
         public var discount: String?
 
         public var stores: ProductSizeStores?
+
+        public var discountMeta: DiscountMeta?
 
         public enum CodingKeys: String, CodingKey {
             case sizes
@@ -35,9 +37,11 @@ public extension ApplicationClient.Catalog {
             case discount
 
             case stores
+
+            case discountMeta = "discount_meta"
         }
 
-        public init(discount: String? = nil, multiSize: Bool? = nil, price: ProductListingPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
+        public init(discount: String? = nil, discountMeta: DiscountMeta? = nil, multiSize: Bool? = nil, price: ProductSizesPrice? = nil, sellable: Bool? = nil, sizes: [ProductSize]? = nil, sizeChart: SizeChart? = nil, stores: ProductSizeStores? = nil) {
             self.sizes = sizes
 
             self.price = price
@@ -51,6 +55,8 @@ public extension ApplicationClient.Catalog {
             self.discount = discount
 
             self.stores = stores
+
+            self.discountMeta = discountMeta
         }
 
         required public init(from decoder: Decoder) throws {
@@ -65,7 +71,7 @@ public extension ApplicationClient.Catalog {
             } catch {}
 
             do {
-                price = try container.decode(ProductListingPrice.self, forKey: .price)
+                price = try container.decode(ProductSizesPrice.self, forKey: .price)
 
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -111,6 +117,14 @@ public extension ApplicationClient.Catalog {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
             } catch {}
+
+            do {
+                discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
+
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {}
         }
 
         public func encode(to encoder: Encoder) throws {
@@ -129,6 +143,8 @@ public extension ApplicationClient.Catalog {
             try? container.encodeIfPresent(discount, forKey: .discount)
 
             try? container.encodeIfPresent(stores, forKey: .stores)
+
+            try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
         }
     }
 }

@@ -79,7 +79,7 @@ public extension ApplicationClient {
         /**
          *
          * Summary: Get countries, states, cities
-         * Description:
+         * Description: Get countries, states, cities
          **/
         public func getLocations(
             locationType: String?,
