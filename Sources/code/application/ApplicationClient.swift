@@ -39,42 +39,40 @@ public class ApplicationClient {
     public init(config: ApplicationConfig) {
         self.config = config
 
-        
         cart = Cart(config: config)
-        
+
         catalog = Catalog(config: config)
-        
+
         common = Common(config: config)
-        
+
         communication = Communication(config: config)
-        
+
         configuration = Configuration(config: config)
-        
+
         content = Content(config: config)
-        
+
         fileStorage = FileStorage(config: config)
-        
+
         lead = Lead(config: config)
-        
+
         logistic = Logistic(config: config)
-        
+
         order = Order(config: config)
-        
+
         payment = Payment(config: config)
-        
+
         posCart = PosCart(config: config)
-        
+
         rewards = Rewards(config: config)
-        
+
         share = Share(config: config)
-        
+
         theme = Theme(config: config)
-        
+
         user = User(config: config)
-        
     }
 
-    public func setLocationDetails(details: ApplicationConfig.LocationDetails?){
+    public func setLocationDetails(details: ApplicationConfig.LocationDetails?) {
         config.locationDetails = details
     }
 }

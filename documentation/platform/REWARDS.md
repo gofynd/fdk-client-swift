@@ -125,6 +125,7 @@ ok
       }
     ],
     "page": {
+      "type": "string",
       "item_total": 2,
       "size": 10,
       "current": 1,
@@ -1506,18 +1507,6 @@ ok
  | updatedAt | String? |  yes  |  |
  | updatedBy | String? |  yes  |  |
  | userId | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [GiveawayAudience](#GiveawayAudience)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | audienceId | String? |  yes  |  |
- | currentCount | Double? |  yes  |  |
 
 ---
 

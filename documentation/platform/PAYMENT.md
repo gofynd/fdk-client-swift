@@ -269,7 +269,7 @@ Save Config Secret For Brand Payment Gateway Success Response.
 ```json
 {
   "success": true,
-  "aggregators": [
+  "aggregator": [
     "razorpay"
   ]
 }
@@ -1300,7 +1300,7 @@ Success
             "merchant_code": "PAYPAL",
             "logo_url": {
               "small": "https://hdn-1.fynd.com/payment/paypal.jpg",
-              "large": "https://hdn-1.fynd.com/payment/paypal.jpg "
+              "large": "https://hdn-1.fynd.com/payment/paypal.jpg"
             },
             "aggregator_name": "Razorpay",
             "display_priority": 10
@@ -2276,6 +2276,7 @@ Success
 
 ```json
 {
+  "message": "Refund Success",
   "success": true,
   "data": {
     "account_no": "XXXX-XXXX-6682",
@@ -2491,7 +2492,7 @@ List Order Beneficiary
       "email": "prakashtest@gmail.com",
       "address": "49A, Dabhi seri, jodhpur, kalyanpur",
       "comment": "COD Refund",
-      "is_active": null,
+      "is_active": true,
       "created_on": "2021-01-22 11:31:02",
       "modified_on": "2021-01-22 11:31:02",
       "display_name": "BANK",
@@ -2570,7 +2571,7 @@ List User Beneficiary
       "email": "payment@gofynd.com",
       "address": "204A",
       "comment": "",
-      "is_active": null,
+      "is_active": true,
       "created_on": "2020-06-29 12:38:39",
       "modified_on": "2020-06-29 12:38:39",
       "display_name": "BANK",
@@ -2699,7 +2700,7 @@ Success. Returns user cod limit , remaining limit and usage of user for COD. Che
   "success": true,
   "user_cod_data": {
     "is_active": true,
-    "user_id": 5,
+    "user_id": "abc",
     "usages": 1000,
     "limit": 10000,
     "remaining_limit": 9000,
@@ -4192,7 +4193,7 @@ Success
             "merchant_code": "PAYPAL",
             "logo_url": {
               "small": "https://hdn-1.fynd.com/payment/paypal.jpg",
-              "large": "https://hdn-1.fynd.com/payment/paypal.jpg "
+              "large": "https://hdn-1.fynd.com/payment/paypal.jpg"
             },
             "aggregator_name": "Razorpay",
             "display_priority": 10
@@ -4637,6 +4638,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
 ```json
 {
+  "status": 0,
   "success": "true",
   "count": 2,
   "data": [
@@ -5402,53 +5404,42 @@ List Order Beneficiary
 {
   "success": true,
   "data": {
-    "WL": {
-      "codes": [
-        {
-          "code": "PAYTM",
-          "merchant_code": "PAYTM",
-          "name": "Paytm"
-        },
-        {
-          "code": "MOBIKWIK",
-          "merchant_code": "MOBIKWIK",
-          "name": "Mobikwik"
-        }
-      ],
-      "networks": [],
-      "types": [],
-      "name": "Wallet"
+    "description": "Successful Payment",
+    "method_code": {
+      "name": "Wallet",
+      "networks": "network",
+      "types": "",
+      "codes": {
+        "code": "W",
+        "merchant_code": "MOBIKWIK",
+        "MOBIKWIK": null,
+        "name": "Mobikwik"
+      }
     },
-    "NB": {
-      "codes": [
-        {
-          "code": "HDFC",
-          "merchant_code": "HDFC",
-          "name": "HDFC Bank"
-        },
-        {
-          "code": "ICIC",
-          "merchant_code": "ICIC",
-          "name": "ICICI Bank"
-        }
-      ],
-      "networks": [],
-      "types": [],
-      "name": "Net Banking"
+    "networks": [],
+    "types": [],
+    "name": "Net Banking",
+    "codes": {
+      "HDFC": {
+        "merchant_code": "HDFC",
+        "name": "HDFC Bank"
+      },
+      "ICIC": {
+        "merchant_code": "ICIC",
+        "name": "ICICI Bank"
+      }
     },
     "CARD": {
-      "codes": [
-        {
-          "code": "ICICI",
+      "codes": {
+        "ICICI": {
           "merchant_code": "ICICI",
           "name": "ICICI Bank"
         },
-        {
-          "code": "AXIS",
+        "AXIS": {
           "merchant_code": "AXIS",
           "name": "AXIS Bank"
         }
-      ],
+      },
       "networks": [
         "RUPAY",
         "VISA",
@@ -5675,40 +5666,42 @@ Success.
   "value": {
     "success": true,
     "message": "",
-    "items": {
-      "online": {
-        "is_active": true,
-        "aggregators": [
-          {
-            "id": 1,
-            "name": "Simpl",
-            "logo": "https://hdn-1.fynd.com/payment/simpl-pg-logo.jpg"
-          }
-        ]
-      },
-      "offline": {
-        "is_active": true,
-        "payment_modes": {
-          "cod": [
+    "items": [
+      {
+        "online": {
+          "is_active": true,
+          "aggregators": [
             {
-              "user_cod_limit": 0,
-              "cod_charges": 0,
-              "anonymous_cod": false,
-              "cod_max_order_value": 0,
-              "cod_min_order_value": 0,
-              "cod_charges_max_value": 0,
-              "cod_charges_min_value": 0
+              "id": 1,
+              "name": "Simpl",
+              "logo": "https://hdn-1.fynd.com/payment/simpl-pg-logo.jpg"
             }
           ]
-        }
-      },
-      "split": {
-        "is_active": true,
-        "payment_modes": {
-          "split_payment": {}
+        },
+        "offline": {
+          "is_active": true,
+          "payment_modes": {
+            "cod": [
+              {
+                "user_cod_limit": 0,
+                "cod_charges": 0,
+                "anonymous_cod": false,
+                "cod_max_order_value": 0,
+                "cod_min_order_value": 0,
+                "cod_charges_max_value": 0,
+                "cod_charges_min_value": 0
+              }
+            ]
+          }
+        },
+        "split": {
+          "is_active": true,
+          "payment_modes": {
+            "split_payment": {}
+          }
         }
       }
-    }
+    ]
   }
 }
 ```
@@ -5775,14 +5768,16 @@ Success.
   "value": {
     "success": true,
     "message": "",
-    "items": {
-      "aggregators": [
-        {
-          "id": 1,
-          "name": "Simpl"
-        }
-      ]
-    },
+    "items": [
+      {
+        "aggregators": [
+          {
+            "id": 1,
+            "name": "Simpl"
+          }
+        ]
+      }
+    ],
     "offline": {
       "is_active": true,
       "payment_modes": {
@@ -5861,6 +5856,7 @@ Success.
 
 ```json
 {
+  "success": true,
   "business_unit": "storefront",
   "device": "android",
   "is_active": true,
@@ -5926,6 +5922,7 @@ Success.
 
 ```json
 {
+  "success": true,
   "business_unit": "storefront",
   "device": "android",
   "is_active": true,

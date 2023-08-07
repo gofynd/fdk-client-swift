@@ -5,7 +5,7 @@
 ##### [Back to Platform docs](./README.md)
 
 ## CompanyProfile Methods
-
+Catalog CBS - platform Front API's
 * [cbsOnboardGet](#cbsonboardget)
 * [updateCompany](#updatecompany)
 * [getCompanyMetrics](#getcompanymetrics)
@@ -588,6 +588,7 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
     }
   ],
   "page": {
+    "type": "",
     "current": 1,
     "size": 1,
     "has_previous": false,
@@ -887,6 +888,7 @@ Company profile object. See example below or refer `LocationListSerializer` for 
     }
   ],
   "page": {
+    "type": "",
     "current": 1,
     "size": 1,
     "has_previous": false,

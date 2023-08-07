@@ -93,7 +93,7 @@ Success
  | storeCode | String |  no  |  |
  | batchId | String |  no  |  |
  | documentType | String? |  yes  |  |
- | shipmentIds | [[String: Any]] |  no  |  |
+ | shipmentIds | [String] |  no  |  |
  | invoiceDocumentType | String? |  yes  |  |
  | labelDocumentType | String? |  yes  |  |
  | document | [[String: Any]]? |  yes  |  |

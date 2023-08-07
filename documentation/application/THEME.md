@@ -5303,81 +5303,7 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  
  
- #### [PaginationSchema](#PaginationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | size | Int? |  yes  |  |
- | itemTotal | Int? |  yes  |  |
- | hasNext | Bool? |  yes  |  |
- | type | String? |  yes  |  |
- | current | Int? |  yes  |  |
-
----
-
-
- 
- 
- #### [ThemesListingResponseSchema](#ThemesListingResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ThemesSchema](#ThemesSchema)]? |  yes  |  |
- | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [AddThemeRequestSchema](#AddThemeRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | themeId | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [UpgradableThemeSchema](#UpgradableThemeSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | parentTheme | String? |  yes  |  |
- | appliedTheme | String? |  yes  |  |
- | upgrade | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [FontsSchema](#FontsSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [FontsSchemaItems](#FontsSchemaItems)? |  yes  |  |
- | kind | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [BlitzkriegApiErrorSchema](#BlitzkriegApiErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [BlitzkriegNotFoundSchema](#BlitzkriegNotFoundSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -5393,37 +5319,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [FontsSchemaItems](#FontsSchemaItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | family | String? |  yes  |  |
- | variants | [String]? |  yes  |  |
- | subsets | [String]? |  yes  |  |
- | version | String? |  yes  |  |
- | lastModified | String? |  yes  |  |
- | files | [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)? |  yes  |  |
- | category | String? |  yes  |  |
- | kind | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | regular | String? |  yes  |  |
- | italic | String? |  yes  |  |
- | bold | String? |  yes  |  |
 
 ---
 
@@ -5562,17 +5457,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
  
  
- #### [Sections](#Sections)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attributes | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [Config](#Config)
 
  | Properties | Type | Nullable | Description |
@@ -5632,17 +5516,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | accentColor | String? |  yes  |  |
  | linkColor | String? |  yes  |  |
  | buttonSecondaryColor | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Custom](#Custom)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | props | [String: Any]? |  yes  |  |
 
 ---
 
