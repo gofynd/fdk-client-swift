@@ -9,9 +9,9 @@ public extension PlatformClient.Serviceability {
      */
 
     class ListViewResponse: Codable {
-        public var summary: [ListViewSummary]
+        public var summary: ListViewSummary
 
-        public var page: [ZoneDataItem]
+        public var page: ZoneDataItem
 
         public var items: [ListViewItems]
 
@@ -23,7 +23,7 @@ public extension PlatformClient.Serviceability {
             case items
         }
 
-        public init(items: [ListViewItems], page: [ZoneDataItem], summary: [ListViewSummary]) {
+        public init(items: [ListViewItems], page: ZoneDataItem, summary: ListViewSummary) {
             self.summary = summary
 
             self.page = page
@@ -34,9 +34,9 @@ public extension PlatformClient.Serviceability {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            summary = try container.decode([ListViewSummary].self, forKey: .summary)
+            summary = try container.decode(ListViewSummary.self, forKey: .summary)
 
-            page = try container.decode([ZoneDataItem].self, forKey: .page)
+            page = try container.decode(ZoneDataItem.self, forKey: .page)
 
             items = try container.decode([ListViewItems].self, forKey: .items)
         }
@@ -60,9 +60,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
      */
 
     class ListViewResponse: Codable {
-        public var summary: [ListViewSummary]
+        public var summary: ListViewSummary
 
-        public var page: [ZoneDataItem]
+        public var page: ZoneDataItem
 
         public var items: [ListViewItems]
 
@@ -74,7 +74,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             case items
         }
 
-        public init(items: [ListViewItems], page: [ZoneDataItem], summary: [ListViewSummary]) {
+        public init(items: [ListViewItems], page: ZoneDataItem, summary: ListViewSummary) {
             self.summary = summary
 
             self.page = page
@@ -85,9 +85,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            summary = try container.decode([ListViewSummary].self, forKey: .summary)
+            summary = try container.decode(ListViewSummary.self, forKey: .summary)
 
-            page = try container.decode([ZoneDataItem].self, forKey: .page)
+            page = try container.decode(ZoneDataItem.self, forKey: .page)
 
             items = try container.decode([ListViewItems].self, forKey: .items)
         }
