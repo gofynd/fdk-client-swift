@@ -2244,8 +2244,8 @@ Response Data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
+ | summary | [ListViewSummary](#ListViewSummary) |  no  |  |
+ | page | [ZoneDataItem](#ZoneDataItem) |  no  |  |
  | items | [[ListViewItems](#ListViewItems)] |  no  |  |
 
 ---

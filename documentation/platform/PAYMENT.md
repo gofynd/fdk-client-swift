@@ -5738,7 +5738,7 @@ platformClient.application("<APPLICATION_ID>").payment.patchMerchantPaymentOptio
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
-| body | MerchnatPaymentModeResponse | yes | Request body |
+| body | MerchnatPaymentModeRequest | yes | Request body |
 
 
 To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags.
@@ -7379,6 +7379,18 @@ Success.
  | message | String? |  yes  | Message |
  | items | [[String: Any]]? |  yes  | List of all aggregator and payment mode details. |
  | success | Bool |  no  | Response is successful or not. |
+
+---
+
+
+ 
+ 
+ #### [MerchnatPaymentModeRequest](#MerchnatPaymentModeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | offline | [String: Any]? |  yes  | Details to be updated for online payment configuration. |
+ | online | [String: Any]? |  yes  | Details to be updated for offline payment configuration. |
 
 ---
 

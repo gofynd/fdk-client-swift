@@ -1999,7 +1999,7 @@ Bulk Report creation initiated.
 
 
 ```swift
-platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId, tags: tags) { (response, error) in
+platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId, tags: tags, customerId: customerId) { (response, error) in
     // Use response
 }
 ```
@@ -2033,7 +2033,8 @@ platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverri
 | companyAffiliateTag | String? | no |  |   
 | myOrders | Bool? | no |  |   
 | platformUserId | String? | no |  |   
-| tags | String? | no | Comma separated values of tags |  
+| tags | String? | no | Comma separated values of tags |   
+| customerId | String? | no |  |  
 
 
 
@@ -3398,7 +3399,7 @@ Response containing count of shipments of the given status
 
 
 ```swift
-platformClient.order.getOrders(lane: lane, searchType: searchType, bagStatus: bagStatus, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, tags: tags, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, isPrioritySort: isPrioritySort, customMeta: customMeta, myOrders: myOrders) { (response, error) in
+platformClient.order.getOrders(lane: lane, searchType: searchType, bagStatus: bagStatus, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, tags: tags, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, isPrioritySort: isPrioritySort, customMeta: customMeta, myOrders: myOrders, customerId: customerId) { (response, error) in
     // Use response
 }
 ```
@@ -3425,7 +3426,8 @@ platformClient.order.getOrders(lane: lane, searchType: searchType, bagStatus: ba
 | pageSize | Int? | no |  |   
 | isPrioritySort | Bool? | no |  |   
 | customMeta | String? | no |  |   
-| myOrders | Bool? | no |  |  
+| myOrders | Bool? | no |  |   
+| customerId | String? | no |  |  
 
 
 
@@ -4513,9 +4515,8 @@ We are processing the request!
  | ---------- | ---- | -------- | ----------- |
  | status | Int? |  yes  |  |
  | success | Bool? |  yes  |  |
- | message | String |  no  |  |
+ | message | String? |  yes  |  |
  | errorTrace | String? |  yes  |  |
- | error | String |  no  |  |
 
 ---
 
@@ -4985,7 +4986,6 @@ We are processing the request!
  | weight | [String: Any] |  no  |  |
  | attributes | [String: Any] |  no  |  |
  | quantity | Int |  no  |  |
- | status | [String: Any]? |  yes  |  |
 
 ---
 
@@ -5016,9 +5016,6 @@ We are processing the request!
  | dpId | Int? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | affiliateShipmentId | String |  no  |  |
- | lockStatus | Bool? |  yes  |  |
- | lockMessage | String? |  yes  |  |
- | actionToStatus | [String: Any]? |  yes  |  |
 
 ---
 
@@ -7047,6 +7044,19 @@ We are processing the request!
 
  
  
+ #### [ShipmentDetails1](#ShipmentDetails1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | lockStatus | Bool? |  yes  |  |
+ | lockMessage | String? |  yes  |  |
+ | actionToStatus | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [PhoneDetails](#PhoneDetails)
 
  | Properties | Type | Nullable | Description |
@@ -7601,7 +7611,7 @@ We are processing the request!
  | billingDetails | [UserDetailsData](#UserDetailsData)? |  yes  |  |
  | forwardShipmentId | String? |  yes  |  |
  | fulfilmentPriority | Int? |  yes  |  |
- | shipmentDetails | [ShipmentDetails](#ShipmentDetails)? |  yes  |  |
+ | shipmentDetails | [ShipmentDetails1](#ShipmentDetails1)? |  yes  |  |
  | customMeta | [[String: Any]]? |  yes  |  |
  | shipmentQuantity | Int? |  yes  |  |
  | companyDetails | [CompanyDetails](#CompanyDetails)? |  yes  |  |
@@ -8099,6 +8109,17 @@ We are processing the request!
 
  
  
+ #### [ArticleDetails1](#ArticleDetails1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | status | [String: Any]? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [StoreAddress](#StoreAddress)
 
  | Properties | Type | Nullable | Description |
@@ -8374,7 +8395,7 @@ We are processing the request!
  | bagStatus | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | sellerIdentifier | String? |  yes  |  |
  | originalBagList | [Int]? |  yes  |  |
- | articleDetails | [ArticleDetails](#ArticleDetails)? |  yes  |  |
+ | articleDetails | [ArticleDetails1](#ArticleDetails1)? |  yes  |  |
  | currentOperationalStatus | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | orderingStore | [Store](#Store)? |  yes  |  |
  | article | [Article](#Article)? |  yes  |  |
@@ -8404,6 +8425,18 @@ We are processing the request!
  | operationalStatus | String? |  yes  |  |
  | entityType | String? |  yes  |  |
  | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ErrorResponse1](#ErrorResponse1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String |  no  |  |
+ | error | String |  no  |  |
 
 ---
 
