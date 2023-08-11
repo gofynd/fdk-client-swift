@@ -24,7 +24,7 @@ public extension PlatformClient.Webhook {
         
         public var emailId: String?
         
-        public var status: SubscriberStatus?
+        public var status: String?
         
         public var authMeta: AuthMeta?
         
@@ -61,7 +61,7 @@ public extension PlatformClient.Webhook {
             
         }
 
-        public init(association: Association? = nil, authMeta: AuthMeta? = nil, createdOn: String? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, eventConfigs: [EventConfig]? = nil, id: Int? = nil, name: String? = nil, status: SubscriberStatus? = nil, updatedOn: String? = nil, webhookUrl: String? = nil) {
+        public init(association: Association? = nil, authMeta: AuthMeta? = nil, createdOn: String? = nil, customHeaders: [String: Any]? = nil, emailId: String? = nil, eventConfigs: [EventConfig]? = nil, id: Int? = nil, name: String? = nil, status: String? = nil, updatedOn: String? = nil, webhookUrl: String? = nil) {
             
             self.id = id
             
@@ -164,7 +164,7 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    status = try container.decode(SubscriberStatus.self, forKey: .status)
+                    status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
