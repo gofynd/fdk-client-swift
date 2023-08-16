@@ -20,6 +20,8 @@ Handle platform subscription
 * [getFeatureLimitConfig](#getfeaturelimitconfig)
 * [activateSubscriptionPlan](#activatesubscriptionplan)
 * [cancelSubscriptionPlan](#cancelsubscriptionplan)
+* [getEnterprisePlans](#getenterpriseplans)
+* [planStatusUpdate](#planstatusupdate)
 
 
 
@@ -703,6 +705,7 @@ Success
       "client": {
         "address_lines": [
           "TV TOWER, Foot Over Bridge Khar",
+          "",
           "Mumbai, 400079, Maharashtra, India"
         ],
         "name": "RELIANCE RETAIL LTD",
@@ -1959,6 +1962,450 @@ Success
 ---
 
 
+#### getEnterprisePlans
+Get Enterprise Plans
+
+
+
+
+```swift
+platformClient.billing.getEnterprisePlans() { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+
+Get Enterprise Plans.
+
+
+*Returned Response:*
+
+
+
+
+[[Plan]](#[Plan])
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Enterprise Plans</i></summary>
+
+```json
+{
+  "value": [
+    {
+      "recurring": {
+        "interval": "month",
+        "interval_count": 1
+      },
+      "is_trial_plan": false,
+      "plan_group": "default",
+      "tag_lines": [],
+      "currency": "INR",
+      "is_active": true,
+      "is_visible": true,
+      "trial_period": 0,
+      "addons": [],
+      "tags": [],
+      "type": "public",
+      "country": "IN",
+      "_id": "60093f1aabffb61debbcb44b",
+      "product_suite_id": "60093f13632a0a1d6fb5cdc3",
+      "name": "2020won",
+      "description": "2020won",
+      "amount": 21,
+      "meta": {
+        "tags": [
+          "2020won"
+        ]
+      },
+      "created_at": "2021-01-21T08:45:14.601Z",
+      "modified_at": "2021-01-21T08:45:14.601Z"
+    },
+    {
+      "recurring": {
+        "interval": "month",
+        "interval_count": 1
+      },
+      "is_trial_plan": false,
+      "plan_group": "default",
+      "tag_lines": [],
+      "currency": "INR",
+      "is_active": true,
+      "is_visible": true,
+      "trial_period": 0,
+      "addons": [],
+      "tags": [],
+      "type": "public",
+      "country": "IN",
+      "_id": "60093f13632a0a1d6fb5cddc",
+      "name": "Standard",
+      "description": "Standard",
+      "amount": 999,
+      "product_suite_id": "60093f13632a0a1d6fb5cdc3",
+      "created_at": "2021-01-21T08:45:07.979Z",
+      "modified_at": "2021-01-21T08:45:07.979Z"
+    },
+    {
+      "recurring": {
+        "interval": "month",
+        "interval_count": 1
+      },
+      "is_trial_plan": false,
+      "plan_group": "default",
+      "tag_lines": [],
+      "currency": "INR",
+      "is_active": true,
+      "is_visible": true,
+      "trial_period": 0,
+      "addons": [],
+      "tags": [],
+      "type": "public",
+      "country": "IN",
+      "_id": "60093f13632a0a1d6fb5cde0",
+      "name": "Professional",
+      "description": "Professional",
+      "amount": 1499,
+      "product_suite_id": "60093f13632a0a1d6fb5cdc3",
+      "created_at": "2021-01-21T08:45:07.985Z",
+      "modified_at": "2021-01-21T08:45:07.985Z"
+    },
+    {
+      "recurring": {
+        "interval": "month",
+        "interval_count": 1
+      },
+      "is_trial_plan": false,
+      "plan_group": "default",
+      "tag_lines": [],
+      "currency": "INR",
+      "is_active": true,
+      "is_visible": true,
+      "trial_period": 0,
+      "addons": [],
+      "tags": [
+        "popular"
+      ],
+      "type": "public",
+      "country": "IN",
+      "_id": "60093f13632a0a1d6fb5cde1",
+      "name": "Premium",
+      "description": "Premium",
+      "amount": 2499,
+      "product_suite_id": "60093f13632a0a1d6fb5cdc3",
+      "created_at": "2021-01-21T08:45:07.985Z",
+      "modified_at": "2021-01-21T08:45:07.985Z"
+    },
+    {
+      "recurring": {
+        "interval": "month",
+        "interval_count": 1
+      },
+      "is_trial_plan": false,
+      "plan_group": "default",
+      "tag_lines": [],
+      "currency": "INR",
+      "is_active": true,
+      "is_visible": true,
+      "trial_period": 0,
+      "addons": [],
+      "tags": [],
+      "type": "public",
+      "country": "IN",
+      "_id": "60093f13632a0a1d6fb5cddf",
+      "name": "Ultra Premium",
+      "description": "Ultra Premium",
+      "amount": 2999,
+      "product_suite_id": "60093f13632a0a1d6fb5cdc3",
+      "created_at": "2021-01-21T08:45:07.979Z",
+      "modified_at": "2021-01-21T08:45:07.979Z"
+    }
+  ]
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### planStatusUpdate
+Update Status of The plan
+
+
+
+
+```swift
+platformClient.billing.planStatusUpdate(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PlanStatusUpdateReq | yes | Request body |
+
+
+It will update the status of the plan
+
+*Returned Response:*
+
+
+
+
+[Plan](#Plan)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "recurring": {
+      "interval": "month",
+      "interval_count": 1
+    },
+    "is_trial_plan": false,
+    "plan_group": "default",
+    "tag_lines": [],
+    "currency": "INR",
+    "is_active": true,
+    "is_visible": true,
+    "trial_period": 0,
+    "addons": [],
+    "tags": [],
+    "type": "public",
+    "country": "IN",
+    "_id": "5f3a8786c90d780037723a12",
+    "name": "Standard",
+    "description": "Standard",
+    "amount": 999,
+    "product_suite_id": "5f3a8786c90d7800377239f3",
+    "created_at": "2020-08-17T13:35:02.547Z",
+    "modified_at": "2020-08-17T13:35:02.547Z",
+    "components": [
+      {
+        "name": "Shipping",
+        "slug": "shipping",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "As per rate card"
+      },
+      {
+        "name": "Transaction Fee",
+        "slug": "transaction-fee",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "4.5%"
+      },
+      {
+        "name": "Number of Customers",
+        "slug": "customers",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Unlimited"
+      },
+      {
+        "name": "Team Management",
+        "slug": "team-management",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "20"
+      },
+      {
+        "name": "Selling Locations",
+        "slug": "selling-locations",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "10"
+      },
+      {
+        "name": "Number of Products",
+        "slug": "products",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Unlimited"
+      },
+      {
+        "name": "Fynd supported Payment Gateway",
+        "slug": "fynd-supported-payment-gateway",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Yes"
+      },
+      {
+        "name": "SSL Certificates",
+        "slug": "ssl-certificates",
+        "description": "SSL certificates",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Free"
+      },
+      {
+        "name": "Themes",
+        "slug": "themes",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Basic Themes <br> Use themes by Partners"
+      },
+      {
+        "name": "Email Campaign",
+        "slug": "email-campagin",
+        "description": "email-campagin",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Free 5000 email <br> Additional email charged at 0.25 INR per email"
+      },
+      {
+        "name": "Sale Websites",
+        "slug": "sale-websites",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "2"
+      },
+      {
+        "name": "SMS campaign",
+        "slug": "sms-campagin",
+        "description": "Sms campagin",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Free 5000 SMS <br> Additional SMS charged at 0.25 INR per SMS"
+      },
+      {
+        "name": "Analytics - Campaign Source",
+        "slug": "analytics-campaign-source",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "CSV + Basic Events"
+      },
+      {
+        "name": "Content Management",
+        "slug": "content-managment",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Yes"
+      },
+      {
+        "name": "Custom Domain",
+        "slug": "custom-domain",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Yes"
+      },
+      {
+        "name": "Service-Level Agreement",
+        "slug": "sla",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "48Hr"
+      },
+      {
+        "name": "Support",
+        "slug": "support",
+        "description": "",
+        "group": "feature",
+        "icon": "",
+        "links": {},
+        "enabled": true,
+        "display_text": "Email"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -2817,6 +3264,19 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | success | Bool? |  yes  |  |
  | data | [Subscription](#Subscription)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [PlanStatusUpdateReq](#PlanStatusUpdateReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | planId | String? |  yes  |  |
+ | reason | String? |  yes  |  |
+ | sellerStatus | String? |  yes  |  |
 
 ---
 

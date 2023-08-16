@@ -17,12 +17,12 @@ public class Paginator<T> {
             self.pageNo = 1
         }
     }
-
+    
     public func next(onResponse: @escaping (_ response: T?, _ error: FDKError?) -> Void) {
         self.onNext = onResponse
         self.onPage?()
     }
-
+    
     public func reset() {
         hasNext = true
         if type == "cursor" {
