@@ -1,7 +1,8 @@
 import Foundation
 
-public extension PlatformClient {
-    class Catalog {
+extension PlatformClient {
+
+    public class Catalog {        
         var config: PlatformConfig
         var companyId: String
 
@@ -9,16 +10,35 @@ public extension PlatformClient {
             self.config = config
             self.companyId = config.companyId
         }
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create Product Bundle
-         * Description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
-         **/
+        *
+        * Summary: Create Product Bundle
+        * Description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+        **/
         public func createProductBundle(
             body: ProductBundleRequest,
             onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -27,7 +47,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -35,39 +55,53 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: List all Product Bundles
-         * Description: Get all product bundles for a particular company
-         **/
+        *
+        * Summary: List all Product Bundles
+        * Description: Get all product bundles for a particular company
+        **/
         public func getProductBundle(
             q: String?,
             slug: [String]?,
-
+            
             onResponse: @escaping (_ response: GetProductBundleListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = q {
-                xQuery["q"] = value
-            }
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
 
-            if let value = slug {
-                xQuery["slug"] = value
-            }
+
+if let value = slug {
+    
+    xQuery["slug"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -77,7 +111,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -85,29 +119,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetProductBundleListingResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Update a Product Bundle
-         * Description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
-         **/
+        *
+        * Summary: Update a Product Bundle
+        * Description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
+        **/
         public func updateProductBundle(
             id: String,
             body: ProductBundleUpdateRequest,
             onResponse: @escaping (_ response: GetProductBundleCreateResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -116,7 +160,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -124,29 +168,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetProductBundleCreateResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get a particular Product Bundle details
-         * Description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
-         **/
+        *
+        * Summary: Get a particular Product Bundle details
+        * Description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+        **/
         public func getProductBundleDetail(
             id: String,
-
+            
             onResponse: @escaping (_ response: GetProductBundleResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -155,7 +209,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -163,28 +217,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetProductBundleResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create a size guide.
-         * Description: This API allows to create a size guide associated to a brand.
-         **/
+        *
+        * Summary: Create a size guide.
+        * Description: This API allows to create a size guide associated to a brand.
+        **/
         public func createSizeGuide(
             body: ValidateSizeGuide,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -193,7 +257,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -201,54 +265,77 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get list of size guides
-         * Description: This API allows to view all the size guides associated to the seller.
-         **/
+        *
+        * Summary: Get list of size guides
+        * Description: This API allows to view all the size guides associated to the seller.
+        **/
         public func getSizeGuides(
             active: Bool?,
             q: String?,
             tag: String?,
             pageNo: Int?,
             pageSize: Int?,
-
+            
             onResponse: @escaping (_ response: ListSizeGuide?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = active {
-                xQuery["active"] = value
-            }
+if let value = active {
+    
+    xQuery["active"] = value
+    
+}
 
-            if let value = q {
-                xQuery["q"] = value
-            }
 
-            if let value = tag {
-                xQuery["tag"] = value
-            }
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+if let value = tag {
+    
+    xQuery["tag"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -258,7 +345,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -266,29 +353,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ListSizeGuide.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Edit a size guide.
-         * Description: This API allows to edit a size guide.
-         **/
+        *
+        * Summary: Edit a size guide.
+        * Description: This API allows to edit a size guide.
+        **/
         public func updateSizeGuide(
             id: String,
             body: ValidateSizeGuide,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -297,7 +394,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -305,29 +402,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get a single size guide.
-         * Description: This API helps to get data associated to a size guide.
-         **/
+        *
+        * Summary: Get a single size guide.
+        * Description: This API helps to get data associated to a size guide.
+        **/
         public func getSizeGuide(
             id: String,
-
+            
             onResponse: @escaping (_ response: SizeGuideResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -336,7 +443,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -344,29 +451,66 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SizeGuideResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Analytics data of catalog and inventory that are being cross-selled.
-         * Description: Analytics data of catalog and inventory that are being cross-selled.
-         **/
+        *
+        * Summary: Analytics data of catalog and inventory that are being cross-selled.
+        * Description: Analytics data of catalog and inventory that are being cross-selled.
+        **/
         public func getSellerInsights(
             sellerAppId: String,
-
+            
             onResponse: @escaping (_ response: CrossSellingResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -375,7 +519,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -383,29 +527,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CrossSellingResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create/Update opt-in infomation.
-         * Description: Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
-         **/
+        *
+        * Summary: Create/Update opt-in infomation.
+        * Description: Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
+        **/
         public func createMarketplaceOptin(
             marketplace: String,
             body: OptInPostRequest,
             onResponse: @escaping (_ response: UpdatedResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -414,7 +568,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -422,27 +576,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(UpdatedResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get opt-in infomation.
-         * Description: Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
-         **/
+        *
+        * Summary: Get opt-in infomation.
+        * Description: Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
+        **/
         public func getMarketplaceOptinDetail(
+            
             onResponse: @escaping (_ response: GetOptInPlatform?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -451,7 +616,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -459,27 +624,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetOptInPlatform.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get the Company details.
-         * Description: Get the details of the company associated with the given company_id passed.
-         **/
+        *
+        * Summary: Get the Company details.
+        * Description: Get the details of the company associated with the given company_id passed.
+        **/
         public func getCompanyDetail(
+            
             onResponse: @escaping (_ response: OptinCompanyDetail?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -488,7 +664,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -496,54 +672,77 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(OptinCompanyDetail.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get the Company Brand details of Optin.
-         * Description: Get the details of the Brands associated with the given company_id passed.
-         **/
+        *
+        * Summary: Get the Company Brand details of Optin.
+        * Description: Get the details of the Brands associated with the given company_id passed.
+        **/
         public func getCompanyBrandDetail(
             isActive: Bool?,
             q: String?,
             pageNo: Int?,
             pageSize: Int?,
             marketplace: String?,
-
+            
             onResponse: @escaping (_ response: OptinCompanyBrandDetailsView?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = isActive {
-                xQuery["is_active"] = value
-            }
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
 
-            if let value = q {
-                xQuery["q"] = value
-            }
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
 
-            if let value = marketplace {
-                xQuery["marketplace"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = marketplace {
+    
+    xQuery["marketplace"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -553,7 +752,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -561,27 +760,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(OptinCompanyBrandDetailsView.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get the Company metrics
-         * Description: Get the Company metrics associated with the company ID passed.
-         **/
+        *
+        * Summary: Get the Company metrics
+        * Description: Get the Company metrics associated with the company ID passed.
+        **/
         public func getCompanyMetrics(
+            
             onResponse: @escaping (_ response: OptinCompanyMetrics?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -590,7 +800,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -598,44 +808,61 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(OptinCompanyMetrics.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get the Store details.
-         * Description: Get the details of the store associated with the company ID passed.
-         **/
+        *
+        * Summary: Get the Store details.
+        * Description: Get the details of the store associated with the company ID passed.
+        **/
         public func getStoreDetail(
             q: String?,
             pageNo: Int?,
             pageSize: Int?,
-
+            
             onResponse: @escaping (_ response: OptinStoreDetails?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = q {
-                xQuery["q"] = value
-            }
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -645,7 +872,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -653,29 +880,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(OptinStoreDetails.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get gender attribute details
-         * Description: This API allows to view the gender attribute details.
-         **/
+        *
+        * Summary: Get gender attribute details
+        * Description: This API allows to view the gender attribute details.
+        **/
         public func getGenderAttribute(
             attributeSlug: String,
-
+            
             onResponse: @escaping (_ response: GenderDetail?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -684,7 +921,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -692,35 +929,49 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GenderDetail.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: List Department specifiec product categories
-         * Description: Allows you to list all product categories values for the departments specified
-         **/
+        *
+        * Summary: List Department specifiec product categories
+        * Description: Allows you to list all product categories values for the departments specified
+        **/
         public func listProductTemplateCategories(
             departments: String,
             itemType: String,
-
+            
             onResponse: @escaping (_ response: ProdcutTemplateCategoriesResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            xQuery["departments"] = departments
 
-            xQuery["item_type"] = itemType
+    xQuery["departments"] = departments
+
+
+
+
+    xQuery["item_type"] = itemType
+
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -730,7 +981,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -738,28 +989,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProdcutTemplateCategoriesResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create the department.
-         * Description: Create departments using the API.
-         **/
+        *
+        * Summary: Create the department.
+        * Description: Create departments using the API.
+        **/
         public func createDepartments(
             body: DepartmentCreateUpdate,
             onResponse: @escaping (_ response: DepartmentCreateResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -768,7 +1029,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -776,24 +1037,28 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(DepartmentCreateResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: List all Departments.
-         * Description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
-         **/
+        *
+        * Summary: List all Departments.
+        * Description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
+        **/
         public func listDepartmentsData(
             pageNo: Int?,
             itemType: String?,
@@ -801,34 +1066,56 @@ public extension PlatformClient {
             name: String?,
             search: String?,
             isActive: Bool?,
-
+            
             onResponse: @escaping (_ response: DepartmentsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
 
-            if let value = itemType {
-                xQuery["item_type"] = value
-            }
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+if let value = itemType {
+    
+    xQuery["item_type"] = value
+    
+}
 
-            if let value = name {
-                xQuery["name"] = value
-            }
 
-            if let value = search {
-                xQuery["search"] = value
-            }
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
 
-            if let value = isActive {
-                xQuery["is_active"] = value
-            }
+
+if let value = name {
+    
+    xQuery["name"] = value
+    
+}
+
+
+if let value = search {
+    
+    xQuery["search"] = value
+    
+}
+
+
+if let value = isActive {
+    
+    xQuery["is_active"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -838,7 +1125,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -846,29 +1133,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(DepartmentsResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Update the department by their uid.
-         * Description: Update the department by their uid using this API.
-         **/
+        *
+        * Summary: Update the department by their uid.
+        * Description: Update the department by their uid using this API.
+        **/
         public func updateDepartment(
             uid: String,
             body: DepartmentCreateUpdate,
             onResponse: @escaping (_ response: DepartmentModel?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -877,7 +1174,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -885,29 +1182,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(DepartmentModel.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get specific departments details by passing in unique id of the department.
-         * Description: Allows you to get department data, by uid.
-         **/
+        *
+        * Summary: Get specific departments details by passing in unique id of the department.
+        * Description: Allows you to get department data, by uid.
+        **/
         public func getDepartmentData(
             uid: String,
-
+            
             onResponse: @escaping (_ response: DepartmentsResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -916,7 +1223,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -924,32 +1231,43 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(DepartmentsResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: List all Templates
-         * Description: Allows you to list all product templates, also can filter by department
-         **/
+        *
+        * Summary: List all Templates
+        * Description: Allows you to list all product templates, also can filter by department
+        **/
         public func listProductTemplate(
             department: String,
-
+            
             onResponse: @escaping (_ response: TemplatesResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            xQuery["department"] = department
+
+    xQuery["department"] = department
+
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -959,7 +1277,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -967,29 +1285,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(TemplatesResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Validate Product Template Schema
-         * Description: Allows you to list all product templates validation values for all the fields present in the database
-         **/
+        *
+        * Summary: Validate Product Template Schema
+        * Description: Allows you to list all product templates validation values for all the fields present in the database
+        **/
         public func validateProductTemplate(
             slug: String,
-
+            
             onResponse: @escaping (_ response: TemplatesValidationResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -998,7 +1326,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1006,29 +1334,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(TemplatesValidationResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Download Product Template View
-         * Description: Allows you to download product template data
-         **/
+        *
+        * Summary: Download Product Template View
+        * Description: Allows you to download product template data
+        **/
         public func downloadProductTemplateViews(
             slug: String,
-
+            
             onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1037,7 +1375,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "text/csv",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1045,32 +1383,43 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = data
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Download Product Template View
-         * Description: Allows you to download product template data
-         **/
+        *
+        * Summary: Download Product Template View
+        * Description: Allows you to download product template data
+        **/
         public func downloadInventoryTemplateView(
             itemType: String,
-
+            
             onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            xQuery["item_type"] = itemType
+
+    xQuery["item_type"] = itemType
+
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1080,7 +1429,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "text/csv",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1088,32 +1437,43 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = data
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Validate Product Template Schema
-         * Description: Allows you to list all product templates validation values for all the fields present in the database
-         **/
+        *
+        * Summary: Validate Product Template Schema
+        * Description: Allows you to list all product templates validation values for all the fields present in the database
+        **/
         public func validateProductTemplateSchema(
             itemType: String,
-
+            
             onResponse: @escaping (_ response: InventoryValidationResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            xQuery["item_type"] = itemType
+
+    xQuery["item_type"] = itemType
+
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1123,7 +1483,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1131,27 +1491,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryValidationResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: List HSN Codes
-         * Description: Allows you to list all hsn Codes
-         **/
+        *
+        * Summary: List HSN Codes
+        * Description: Allows you to list all hsn Codes
+        **/
         public func listHSNCodes(
+            
             onResponse: @escaping (_ response: HSNCodesResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1160,7 +1531,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1168,27 +1539,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(HSNCodesResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Allows you to list all product templates export list details
-         * Description: Can view details including trigger data, task id , etc.
-         **/
+        *
+        * Summary: Allows you to list all product templates export list details
+        * Description: Can view details including trigger data, task id , etc.
+        **/
         public func listProductTemplateExportDetails(
+            
             onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1197,7 +1579,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1205,28 +1587,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductDownloadsResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create a product export job.
-         * Description: This API helps to create a Inventory export job.
-         **/
+        *
+        * Summary: Create a product export job.
+        * Description: This API helps to create a Inventory export job.
+        **/
         public func createProductExportJob(
             body: ProductTemplateDownloadsExport,
             onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1235,7 +1627,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1243,49 +1635,69 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductDownloadsResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Allows you to list all product templates export list details
-         * Description: Can view details including trigger data, task id , etc.
-         **/
+        *
+        * Summary: Allows you to list all product templates export list details
+        * Description: Can view details including trigger data, task id , etc.
+        **/
         public func getProductExportJobs(
             status: String?,
             fromDate: String?,
             toDate: String?,
             q: String?,
-
+            
             onResponse: @escaping (_ response: ProductDownloadsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = status {
-                xQuery["status"] = value
-            }
+if let value = status {
+    
+    xQuery["status"] = value
+    
+}
 
-            if let value = fromDate {
-                xQuery["from_date"] = value
-            }
 
-            if let value = toDate {
-                xQuery["to_date"] = value
-            }
+if let value = fromDate {
+    
+    xQuery["from_date"] = value
+    
+}
 
-            if let value = q {
-                xQuery["q"] = value
-            }
+
+if let value = toDate {
+    
+    xQuery["to_date"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1295,7 +1707,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1303,42 +1715,59 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductDownloadsResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Allows you to list all values for Templates, Brands or Type
-         * Description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
-         **/
+        *
+        * Summary: Allows you to list all values for Templates, Brands or Type
+        * Description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
+        **/
         public func listTemplateBrandTypeValues(
             filter: String,
             templateTag: String?,
             itemType: String?,
-
+            
             onResponse: @escaping (_ response: ProductConfigurationDownloads?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            xQuery["filter"] = filter
 
-            if let value = templateTag {
-                xQuery["template_tag"] = value
-            }
+    xQuery["filter"] = filter
 
-            if let value = itemType {
-                xQuery["item_type"] = value
-            }
+
+
+if let value = templateTag {
+    
+    xQuery["template_tag"] = value
+    
+}
+
+
+if let value = itemType {
+    
+    xQuery["item_type"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1348,7 +1777,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1356,28 +1785,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductConfigurationDownloads.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create product categories
-         * Description: This API lets user create product categories
-         **/
+        *
+        * Summary: Create product categories
+        * Description: This API lets user create product categories
+        **/
         public func createCategories(
             body: CategoryRequestBody,
             onResponse: @escaping (_ response: CategoryCreateResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1386,7 +1825,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1394,54 +1833,77 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CategoryCreateResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get product categories list
-         * Description: This API gets meta associated to product categories.
-         **/
+        *
+        * Summary: Get product categories list
+        * Description: This API gets meta associated to product categories.
+        **/
         public func listCategories(
             level: String?,
             departments: String?,
             q: String?,
             pageNo: Int?,
             pageSize: Int?,
-
+            
             onResponse: @escaping (_ response: CategoryResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = level {
-                xQuery["level"] = value
-            }
+if let value = level {
+    
+    xQuery["level"] = value
+    
+}
 
-            if let value = departments {
-                xQuery["departments"] = value
-            }
 
-            if let value = q {
-                xQuery["q"] = value
-            }
+if let value = departments {
+    
+    xQuery["departments"] = value
+    
+}
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1451,7 +1913,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1459,29 +1921,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CategoryResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Update product categories
-         * Description: Update a product category using this api
-         **/
+        *
+        * Summary: Update product categories
+        * Description: Update a product category using this api
+        **/
         public func updateCategory(
             uid: String,
             body: CategoryRequestBody,
             onResponse: @escaping (_ response: CategoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -1490,7 +1962,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1498,29 +1970,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(CategoryUpdateResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get product category by uid
-         * Description: This API gets meta associated to product categories.
-         **/
+        *
+        * Summary: Get product category by uid
+        * Description: This API gets meta associated to product categories.
+        **/
         public func getCategoryData(
             uid: String,
-
+            
             onResponse: @escaping (_ response: SingleCategoryResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1529,7 +2011,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1537,28 +2019,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SingleCategoryResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create a product.
-         * Description: This API allows to create product.
-         **/
+        *
+        * Summary: Create a product.
+        * Description: This API allows to create product.
+        **/
         public func createProduct(
             body: ProductCreateUpdateSchemaV2,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -1567,7 +2059,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1575,24 +2067,28 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get product list
-         * Description: This API gets meta associated to products.
-         **/
+        *
+        * Summary: Get product list
+        * Description: This API gets meta associated to products.
+        **/
         public func getProducts(
             brandIds: [Int]?,
             categoryIds: [Int]?,
@@ -1603,46 +2099,77 @@ public extension PlatformClient {
             tags: [String]?,
             pageNo: Int?,
             pageSize: Int?,
-
+            
             onResponse: @escaping (_ response: ProductListingResponseV2?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = brandIds {
-                xQuery["brand_ids"] = value
-            }
+if let value = brandIds {
+    
+    xQuery["brand_ids"] = value
+    
+}
 
-            if let value = categoryIds {
-                xQuery["category_ids"] = value
-            }
 
-            if let value = itemIds {
-                xQuery["item_ids"] = value
-            }
+if let value = categoryIds {
+    
+    xQuery["category_ids"] = value
+    
+}
 
-            if let value = departmentIds {
-                xQuery["department_ids"] = value
-            }
 
-            if let value = itemCode {
-                xQuery["item_code"] = value
-            }
+if let value = itemIds {
+    
+    xQuery["item_ids"] = value
+    
+}
 
-            if let value = q {
-                xQuery["q"] = value
-            }
 
-            if let value = tags {
-                xQuery["tags"] = value
-            }
+if let value = departmentIds {
+    
+    xQuery["department_ids"] = value
+    
+}
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+if let value = itemCode {
+    
+    xQuery["item_code"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1652,7 +2179,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1660,41 +2187,55 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductListingResponseV2.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get product list
-         * Description: This API gets meta associated to products.
-         **/
+        *
+        * Summary: Get product list
+        * Description: This API gets meta associated to products.
+        **/
         public func getVariantsOfProducts(
             itemId: Int,
             variantType: String,
             pageNo: Int?,
             pageSize: Int?,
-
+            
             onResponse: @escaping (_ response: ProductVariantsResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1704,7 +2245,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1712,37 +2253,51 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductVariantsResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get list of all the attributes by their l3_categories
-         * Description: This API allows to list all the attributes by their l3_categories.
-         **/
+        *
+        * Summary: Get list of all the attributes by their l3_categories
+        * Description: This API allows to list all the attributes by their l3_categories.
+        **/
         public func getProductAttributes(
             category: String,
             filter: Bool?,
-
+            
             onResponse: @escaping (_ response: ProductAttributesResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            xQuery["category"] = category
 
-            if let value = filter {
-                xQuery["filter"] = value
-            }
+    xQuery["category"] = category
+
+
+
+if let value = filter {
+    
+    xQuery["filter"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1752,7 +2307,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1760,29 +2315,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductAttributesResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Delete a product.
-         * Description: This API allows to delete product.
-         **/
+        *
+        * Summary: Delete a product.
+        * Description: This API allows to delete product.
+        **/
         public func deleteProduct(
             itemId: Int,
-
+            
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -1791,7 +2356,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1799,29 +2364,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Edit a product.
-         * Description: This API allows to edit product.
-         **/
+        *
+        * Summary: Edit a product.
+        * Description: This API allows to edit product.
+        **/
         public func editProduct(
             itemId: Int,
             body: ProductCreateUpdateSchemaV2,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -1830,7 +2405,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1838,40 +2413,54 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get a single product.
-         * Description: This API helps to get data associated to a particular product.
-         **/
+        *
+        * Summary: Get a single product.
+        * Description: This API helps to get data associated to a particular product.
+        **/
         public func getProduct(
             itemId: Int,
             brandUid: Int?,
             itemCode: String?,
-
+            
             onResponse: @escaping (_ response: SingleProductResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = brandUid {
-                xQuery["brand_uid"] = value
-            }
+if let value = brandUid {
+    
+    xQuery["brand_uid"] = value
+    
+}
 
-            if let value = itemCode {
-                xQuery["item_code"] = value
-            }
+
+if let value = itemCode {
+    
+    xQuery["item_code"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -1881,7 +2470,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1889,29 +2478,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SingleProductResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: All Sizes for a given Product
-         * Description: This API allows to get  All Sizes for a given Product.
-         **/
+        *
+        * Summary: All Sizes for a given Product
+        * Description: This API allows to get  All Sizes for a given Product.
+        **/
         public func allSizes(
             itemId: Int,
-
+            
             onResponse: @escaping (_ response: GetAllSizes?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1920,7 +2519,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1928,27 +2527,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetAllSizes.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Validate product/size data
-         * Description: This API validates product data.
-         **/
+        *
+        * Summary: Validate product/size data
+        * Description: This API validates product data.
+        **/
         public func getProductValidation(
+            
             onResponse: @escaping (_ response: ValidateProduct?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -1957,7 +2567,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -1965,45 +2575,62 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ValidateProduct.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get a single product size.
-         * Description: This API helps to get data associated to a particular product size.
-         **/
+        *
+        * Summary: Get a single product size.
+        * Description: This API helps to get data associated to a particular product size.
+        **/
         public func getProductSize(
             itemCode: String?,
             itemId: Int,
             brandUid: Int?,
             uid: Int?,
-
+            
             onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = itemCode {
-                xQuery["item_code"] = value
-            }
+if let value = itemCode {
+    
+    xQuery["item_code"] = value
+    
+}
 
-            if let value = brandUid {
-                xQuery["brand_uid"] = value
-            }
 
-            if let value = uid {
-                xQuery["uid"] = value
-            }
+if let value = brandUid {
+    
+    xQuery["brand_uid"] = value
+    
+}
+
+
+if let value = uid {
+    
+    xQuery["uid"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2013,7 +2640,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2021,28 +2648,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductListingResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create a Bulk product to upload job.
-         * Description: This API helps to create a bulk products upload job.
-         **/
+        *
+        * Summary: Create a Bulk product to upload job.
+        * Description: This API helps to create a bulk products upload job.
+        **/
         public func createBulkProductUploadJob(
             body: BulkJob,
             onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2051,7 +2688,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2059,44 +2696,61 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BulkResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get a list of all bulk product upload jobs.
-         * Description: This API helps to get bulk product upload jobs data.
-         **/
+        *
+        * Summary: Get a list of all bulk product upload jobs.
+        * Description: This API helps to get bulk product upload jobs data.
+        **/
         public func getProductBulkUploadHistory(
             search: String?,
             pageNo: Int?,
             pageSize: Int?,
-
+            
             onResponse: @escaping (_ response: ProductBulkRequestList?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = search {
-                xQuery["search"] = value
-            }
+if let value = search {
+    
+    xQuery["search"] = value
+    
+}
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2106,7 +2760,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2114,35 +2768,49 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductBulkRequestList.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create a Bulk product to upload job.
-         * Description: This API helps to create a bulk products upload job.
-         **/
+        *
+        * Summary: Create a Bulk product to upload job.
+        * Description: This API helps to create a bulk products upload job.
+        **/
         public func uploadBulkProducts(
             department: String,
             productType: String,
             body: BulkJob,
             onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            xQuery["department"] = department
 
-            xQuery["product_type"] = productType
+    xQuery["department"] = department
+
+
+
+
+    xQuery["product_type"] = productType
+
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2152,7 +2820,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2160,29 +2828,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BulkResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Delete Bulk product job.
-         * Description: This API allows to delete bulk product job associated with company.
-         **/
+        *
+        * Summary: Delete Bulk product job.
+        * Description: This API allows to delete bulk product job associated with company.
+        **/
         public func deleteProductBulkJob(
             batchId: Int,
-
+            
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -2191,7 +2869,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2199,29 +2877,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create products in bulk associated with given batch Id.
-         * Description: This API helps to create products in bulk push to kafka for approval/creation.
-         **/
+        *
+        * Summary: Create products in bulk associated with given batch Id.
+        * Description: This API helps to create products in bulk push to kafka for approval/creation.
+        **/
         public func createProductsInBulk(
             batchId: String,
             body: BulkProductRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2230,7 +2918,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2238,27 +2926,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get a list of all tags associated with company.
-         * Description: This API helps to get tags data associated to a particular company.
-         **/
+        *
+        * Summary: Get a list of all tags associated with company.
+        * Description: This API helps to get tags data associated to a particular company.
+        **/
         public func getProductTags(
+            
             onResponse: @escaping (_ response: ProductTagsViewResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2267,7 +2966,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2275,28 +2974,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductTagsViewResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create a Bulk asset upload Job.
-         * Description: This API helps to create a bulk asset upload job.
-         **/
+        *
+        * Summary: Create a Bulk asset upload Job.
+        * Description: This API helps to create a bulk asset upload job.
+        **/
         public func createProductAssetsInBulk(
             body: ProductBulkAssets,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2305,7 +3014,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2313,39 +3022,53 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get a list of all bulk asset jobs.
-         * Description: This API helps to get bulk asset jobs data associated to a particular company.
-         **/
+        *
+        * Summary: Get a list of all bulk asset jobs.
+        * Description: This API helps to get bulk asset jobs data associated to a particular company.
+        **/
         public func getProductAssetsInBulk(
             pageNo: Int?,
             pageSize: Int?,
-
+            
             onResponse: @escaping (_ response: BulkAssetResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2355,7 +3078,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2363,30 +3086,40 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BulkAssetResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Delete a Size associated with product.
-         * Description: This API allows to delete size associated with product.
-         **/
+        *
+        * Summary: Delete a Size associated with product.
+        * Description: This API allows to delete size associated with product.
+        **/
         public func deleteSize(
             itemId: Int,
             size: String,
-
+            
             onResponse: @escaping (_ response: ProductSizeDeleteResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -2395,7 +3128,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2403,30 +3136,40 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(ProductSizeDeleteResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Add Inventory for particular size and store.
-         * Description: This API allows add Inventory for particular size and store.
-         **/
+        *
+        * Summary: Add Inventory for particular size and store.
+        * Description: This API allows add Inventory for particular size and store.
+        **/
         public func addInventory(
             itemId: Int,
             size: String,
             body: InventoryRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2435,7 +3178,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2443,24 +3186,28 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get Inventory for company
-         * Description: This API allows get Inventory data for particular company grouped by size and store.
-         **/
+        *
+        * Summary: Get Inventory for company
+        * Description: This API allows get Inventory data for particular company grouped by size and store.
+        **/
         public func getInventoryBySize(
             itemId: Int,
             size: String,
@@ -2468,26 +3215,42 @@ public extension PlatformClient {
             pageSize: Int?,
             q: String?,
             sellable: Bool?,
-
+            
             onResponse: @escaping (_ response: InventoryResponsePaginated?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
 
-            if let value = q {
-                xQuery["q"] = value
-            }
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
 
-            if let value = sellable {
-                xQuery["sellable"] = value
-            }
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = sellable {
+    
+    xQuery["sellable"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2497,7 +3260,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2505,24 +3268,28 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryResponsePaginated.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get Inventory for company
-         * Description: This API allows get Inventory data for particular company grouped by size and store.
-         **/
+        *
+        * Summary: Get Inventory for company
+        * Description: This API allows get Inventory data for particular company grouped by size and store.
+        **/
         public func getInventoryBySizeIdentifier(
             itemId: Int,
             sizeIdentifier: String,
@@ -2530,26 +3297,42 @@ public extension PlatformClient {
             pageSize: Int?,
             q: String?,
             locationIds: [Int]?,
-
+            
             onResponse: @escaping (_ response: InventorySellerIdentifierResponsePaginated?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
 
-            if let value = q {
-                xQuery["q"] = value
-            }
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
 
-            if let value = locationIds {
-                xQuery["location_ids"] = value
-            }
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = locationIds {
+    
+    xQuery["location_ids"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2559,7 +3342,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2567,24 +3350,28 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventorySellerIdentifierResponsePaginated.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get Inventory for company
-         * Description: This API allows get Inventories data for particular company.
-         **/
+        *
+        * Summary: Get Inventory for company
+        * Description: This API allows get Inventories data for particular company.
+        **/
         public func getInventories(
             itemId: String?,
             size: String?,
@@ -2594,42 +3381,70 @@ public extension PlatformClient {
             sellable: Bool?,
             storeIds: [Int]?,
             sizeIdentifier: String?,
-
+            
             onResponse: @escaping (_ response: GetInventoriesResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = itemId {
-                xQuery["item_id"] = value
-            }
+if let value = itemId {
+    
+    xQuery["item_id"] = value
+    
+}
 
-            if let value = size {
-                xQuery["size"] = value
-            }
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
+if let value = size {
+    
+    xQuery["size"] = value
+    
+}
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
 
-            if let value = q {
-                xQuery["q"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
 
-            if let value = sellable {
-                xQuery["sellable"] = value
-            }
 
-            if let value = storeIds {
-                xQuery["store_ids"] = value
-            }
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
 
-            if let value = sizeIdentifier {
-                xQuery["size_identifier"] = value
-            }
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = sellable {
+    
+    xQuery["sellable"] = value
+    
+}
+
+
+if let value = storeIds {
+    
+    xQuery["store_ids"] = value
+    
+}
+
+
+if let value = sizeIdentifier {
+    
+    xQuery["size_identifier"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2639,7 +3454,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2647,31 +3462,42 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(GetInventoriesResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Delete a Inventory.
-         * Description: This API allows to delete inventory of a particular product for particular company.
-         **/
+        *
+        * Summary: Delete a Inventory.
+        * Description: This API allows to delete inventory of a particular product for particular company.
+        **/
         public func deleteInventory(
             size: String,
             itemId: Int,
             locationId: Double,
-
+            
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -2680,7 +3506,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2688,28 +3514,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create a Bulk Inventory upload Job.
-         * Description: This API helps to create a bulk Inventory upload job.
-         **/
+        *
+        * Summary: Create a Bulk Inventory upload Job.
+        * Description: This API helps to create a bulk Inventory upload job.
+        **/
         public func createBulkInventoryJob(
             body: BulkJob,
             onResponse: @escaping (_ response: BulkResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2718,7 +3554,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2726,39 +3562,53 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BulkResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get a list of all bulk Inventory upload jobs.
-         * Description: This API helps to get bulk Inventory upload jobs data.
-         **/
+        *
+        * Summary: Get a list of all bulk Inventory upload jobs.
+        * Description: This API helps to get bulk Inventory upload jobs data.
+        **/
         public func getInventoryBulkUploadHistory(
             pageNo: Int?,
             pageSize: Int?,
-
+            
             onResponse: @escaping (_ response: BulkInventoryGet?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -2768,7 +3618,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2776,29 +3626,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BulkInventoryGet.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Delete Bulk Inventory job.
-         * Description: This API allows to delete bulk Inventory job associated with company.
-         **/
+        *
+        * Summary: Delete Bulk Inventory job.
+        * Description: This API allows to delete bulk Inventory job associated with company.
+        **/
         public func deleteBulkInventoryJob(
             batchId: String,
-
+            
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -2807,7 +3667,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2815,29 +3675,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create products in bulk associated with given batch Id.
-         * Description: This API helps to create products in bulk push to kafka for approval/creation.
-         **/
+        *
+        * Summary: Create products in bulk associated with given batch Id.
+        * Description: This API helps to create products in bulk push to kafka for approval/creation.
+        **/
         public func createBulkInventory(
             batchId: String,
             body: InventoryBulkRequest,
             onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2846,7 +3716,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2854,28 +3724,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(SuccessResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create a Inventory export Job.
-         * Description: This API helps to create a Inventory export job.
-         **/
+        *
+        * Summary: Create a Inventory export Job.
+        * Description: This API helps to create a Inventory export job.
+        **/
         public func createInventoryExportJob(
             body: InventoryExportRequest,
             onResponse: @escaping (_ response: InventoryExportResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2884,7 +3764,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2892,27 +3772,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryExportResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get Inventory export history.
-         * Description: This API helps to get Inventory export history.
-         **/
+        *
+        * Summary: Get Inventory export history.
+        * Description: This API helps to get Inventory export history.
+        **/
         public func getInventoryExport(
+            
             onResponse: @escaping (_ response: InventoryExportJob?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -2921,7 +3812,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2929,28 +3820,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryExportJob.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Create an inventory export job.
-         * Description: This API helps to create a Inventory export job.
-         **/
+        *
+        * Summary: Create an inventory export job.
+        * Description: This API helps to create a Inventory export job.
+        **/
         public func createInventoryExport(
             body: InventoryCreateRequest,
             onResponse: @escaping (_ response: InventoryExportResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -2959,7 +3860,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -2967,49 +3868,69 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryExportResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get the history of the inventory export.
-         * Description: This API helps you the get the history of inventory jobs depending on the filtered criteria.
-         **/
+        *
+        * Summary: Get the history of the inventory export.
+        * Description: This API helps you the get the history of inventory jobs depending on the filtered criteria.
+        **/
         public func listInventoryExport(
             status: String?,
             fromDate: String?,
             toDate: String?,
             q: String?,
-
+            
             onResponse: @escaping (_ response: InventoryExportJobListResponse?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = status {
-                xQuery["status"] = value
-            }
+if let value = status {
+    
+    xQuery["status"] = value
+    
+}
 
-            if let value = fromDate {
-                xQuery["from_date"] = value
-            }
 
-            if let value = toDate {
-                xQuery["to_date"] = value
-            }
+if let value = fromDate {
+    
+    xQuery["from_date"] = value
+    
+}
 
-            if let value = q {
-                xQuery["q"] = value
-            }
+
+if let value = toDate {
+    
+    xQuery["to_date"] = value
+    
+}
+
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -3019,7 +3940,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3027,34 +3948,45 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryExportJobListResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Get List of different filters for inventory export
-         * Description: This API allows get List of different filters like brand, store, and type for inventory export.
-         **/
+        *
+        * Summary: Get List of different filters for inventory export
+        * Description: This API allows get List of different filters like brand, store, and type for inventory export.
+        **/
         public func exportInventoryConfig(
             filterType: String?,
-
+            
             onResponse: @escaping (_ response: InventoryConfig?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = filterType {
-                xQuery["filter_type"] = value
-            }
+if let value = filterType {
+    
+    xQuery["filter_type"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -3064,7 +3996,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3072,30 +4004,40 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryConfig.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Add Inventory for particular size and store.
-         * Description: This API allows add Inventory for particular size and store.
-         **/
+        *
+        * Summary: Add Inventory for particular size and store.
+        * Description: This API allows add Inventory for particular size and store.
+        **/
         public func deleteRealtimeInventory(
             itemId: Int,
             sellerIdentifier: String,
             body: InventoryRequestSchemaV2,
             onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "delete",
@@ -3104,7 +4046,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3112,30 +4054,40 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryUpdateResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Add Inventory for particular size and store.
-         * Description: This API allows add Inventory for particular size and store.
-         **/
+        *
+        * Summary: Add Inventory for particular size and store.
+        * Description: This API allows add Inventory for particular size and store.
+        **/
         public func updateRealtimeInventory(
             itemId: Int,
             sellerIdentifier: String,
             body: InventoryRequestSchemaV2,
             onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3144,7 +4096,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3152,28 +4104,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryUpdateResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Add Inventory for particular size and store.
-         * Description: This API allows add Inventory for particular size and store.
-         **/
+        *
+        * Summary: Add Inventory for particular size and store.
+        * Description: This API allows add Inventory for particular size and store.
+        **/
         public func updateInventories(
             body: InventoryRequestSchemaV2,
             onResponse: @escaping (_ response: InventoryUpdateResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3182,7 +4144,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3190,29 +4152,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(InventoryUpdateResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Update Hsn Code.
-         * Description: Update Hsn Code.
-         **/
+        *
+        * Summary: Update Hsn Code.
+        * Description: Update Hsn Code.
+        **/
         public func updateHsnCode(
             id: String,
             body: HsnUpsert,
             onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "put",
@@ -3221,7 +4193,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3229,29 +4201,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(HsnCode.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Fetch Hsn Code.
-         * Description: Fetch Hsn Code.
-         **/
+        *
+        * Summary: Fetch Hsn Code.
+        * Description: Fetch Hsn Code.
+        **/
         public func getHsnCode(
             id: String,
-
+            
             onResponse: @escaping (_ response: HsnCode?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3260,7 +4242,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3268,28 +4250,38 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(HsnCode.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Bulk Create or Update Hsn Code.
-         * Description: Bulk Create or Update Hsn Code.
-         **/
+        *
+        * Summary: Bulk Create or Update Hsn Code.
+        * Description: Bulk Create or Update Hsn Code.
+        **/
         public func bulkHsnCode(
             body: BulkHsnUpsert,
             onResponse: @escaping (_ response: BulkHsnResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3298,7 +4290,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3306,49 +4298,69 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(BulkHsnResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Hsn Code List.
-         * Description: Hsn Code List.
-         **/
+        *
+        * Summary: Hsn Code List.
+        * Description: Hsn Code List.
+        **/
         public func getAllProductHsnCodes(
             pageNo: Int?,
             pageSize: Int?,
             q: String?,
             type: String?,
-
+            
             onResponse: @escaping (_ response: HsnCodesListingResponseSchemaV2?, _ error: FDKError?) -> Void
         ) {
-            var xQuery: [String: Any] = [:]
+            
+var xQuery: [String: Any] = [:] 
 
-            if let value = pageNo {
-                xQuery["page_no"] = value
-            }
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
 
-            if let value = pageSize {
-                xQuery["page_size"] = value
-            }
 
-            if let value = q {
-                xQuery["q"] = value
-            }
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
 
-            if let value = type {
-                xQuery["type"] = value
-            }
+
+if let value = q {
+    
+    xQuery["q"] = value
+    
+}
+
+
+if let value = type {
+    
+    xQuery["type"] = value
+    
+}
+
+
+ 
+
 
             PlatformAPIClient.execute(
                 config: config,
@@ -3358,7 +4370,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3366,29 +4378,39 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(HsnCodesListingResponseSchemaV2.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Hsn Code List.
-         * Description: Hsn Code List.
-         **/
+        *
+        * Summary: Hsn Code List.
+        * Description: Hsn Code List.
+        **/
         public func getSingleProductHSNCode(
             reportingHsn: String,
-
+            
             onResponse: @escaping (_ response: HSNDataInsertV2?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
@@ -3397,7 +4419,7 @@ public extension PlatformClient {
                 body: nil,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3405,28 +4427,45 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(HSNDataInsertV2.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /**
-         *
-         * Summary: Location Reassignment
-         * Description:
-         **/
+        *
+        * Summary: Location Reassignment
+        * Description: 
+        **/
         public func getOptimalLocations(
             body: AssignStore,
             onResponse: @escaping (_ response: StoreAssignResponse?, _ error: FDKError?) -> Void
         ) {
+            
+ 
+
+ 
+
+
             PlatformAPIClient.execute(
                 config: config,
                 method: "post",
@@ -3435,7 +4474,7 @@ public extension PlatformClient {
                 body: body.dictionary,
                 headers: [],
                 responseType: "application/json",
-                onResponse: { responseData, error, responseCode in
+                onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
                         if err?.status == nil {
@@ -3443,17 +4482,27 @@ public extension PlatformClient {
                         }
                         onResponse(nil, err)
                     } else if let data = responseData {
+                        
                         let response = Utility.decode(StoreAssignResponse.self, from: data)
-
+                        
                         onResponse(response, nil)
                     } else {
-                        let userInfo: [String: Any] = [NSLocalizedDescriptionKey: NSLocalizedString("Unidentified", value: "Please try after sometime", comment: ""),
-                                                       NSLocalizedFailureReasonErrorKey: NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
                         let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
                         onResponse(nil, err)
                     }
-                }
-            )
+            });
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 }

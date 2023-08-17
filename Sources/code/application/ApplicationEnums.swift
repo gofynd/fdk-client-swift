@@ -1,80 +1,138 @@
 
 import Foundation
 
-public extension ApplicationClient.Content {}
+
+
+
+
+
+
+
+
+
+
+
+public extension ApplicationClient.Content {
+    
+    
+    
+}
+
+
+
+
 
 public extension ApplicationClient.Lead {
+    
+    
     /*
-         Enum: PriorityEnum
-         Used By: Lead
-     */
+        Enum: PriorityEnum
+        Used By: Lead
+    */
     enum PriorityEnum: String, Codable {
-        case low
-
-        case medium
-
-        case high
-
-        case urgent
+        
+        case low = "low"
+        
+        case medium = "medium"
+        
+        case high = "high"
+        
+        case urgent = "urgent"
+        
     }
 
+    
+    
     /*
-         Enum: HistoryTypeEnum
-         Used By: Lead
-     */
+        Enum: HistoryTypeEnum
+        Used By: Lead
+    */
     enum HistoryTypeEnum: String, Codable {
-        case rating
-
-        case log
-
-        case comment
-
-        case thread
+        
+        case rating = "rating"
+        
+        case log = "log"
+        
+        case comment = "comment"
+        
+        case thread = "thread"
+        
     }
 
+    
+    
     /*
-         Enum: TicketAssetTypeEnum
-         Used By: Lead
-     */
+        Enum: TicketAssetTypeEnum
+        Used By: Lead
+    */
     enum TicketAssetTypeEnum: String, Codable {
-        case image
-
-        case video
-
-        case file
-
-        case youtube
-
-        case product
-
-        case collection
-
-        case brand
-
-        case shipment
-
-        case order
+        
+        case image = "image"
+        
+        case video = "video"
+        
+        case file = "file"
+        
+        case youtube = "youtube"
+        
+        case product = "product"
+        
+        case collection = "collection"
+        
+        case brand = "brand"
+        
+        case shipment = "shipment"
+        
+        case order = "order"
+        
     }
 
+    
+    
     /*
-         Enum: TicketSourceEnum
-         Used By: Lead
-     */
+        Enum: TicketSourceEnum
+        Used By: Lead
+    */
     enum TicketSourceEnum: String, Codable {
+        
         case platformPanel = "platform_panel"
-
+        
         case salesChannel = "sales_channel"
+        
     }
 
+    
+    
     /*
-         Enum: TicketIntegrationDetails
-         Used By: Lead
-     */
+        Enum: TicketIntegrationDetails
+        Used By: Lead
+    */
     enum TicketIntegrationDetails: String, Codable {
+        
         case defaultCase = "default"
-
-        case freshdesk
-
-        case kapture
+        
+        case freshdesk = "freshdesk"
+        
+        case kapture = "kapture"
+        
     }
+
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
