@@ -6,27 +6,27 @@
 
 ## Lead Methods
 Handles communication between Administrator
-* [getTickets](#gettickets)
+* [getPlatformTickets](#getplatformtickets)
 * [createTicket](#createticket)
-* [getNewTickets](#getnewtickets)
+* [getTickets](#gettickets)
+* [getPlatformTicket](#getplatformticket)
+* [editPlatformTicket](#editplatformticket)
 * [getTicket](#getticket)
 * [editTicket](#editticket)
-* [getNewTicket](#getnewticket)
-* [editNewTicket](#editnewticket)
-* [createHistory](#createhistory)
-* [getTicketHistory](#gettickethistory)
+* [createPlatformTicketHistory](#createplatformtickethistory)
+* [getPlatformTicketHistory](#getplatformtickethistory)
 * [getFeedbacks](#getfeedbacks)
 * [submitFeedback](#submitfeedback)
-* [createNewHistory](#createnewhistory)
-* [getNewTicketHistory](#getnewtickethistory)
+* [createHistory](#createhistory)
+* [getTicketHistory](#gettickethistory)
 * [getCustomForm](#getcustomform)
 * [editCustomForm](#editcustomform)
 * [getCustomForms](#getcustomforms)
 * [createCustomForm](#createcustomform)
+* [getTokenForPlatformVideoRoom](#gettokenforplatformvideoroom)
 * [getTokenForVideoRoom](#gettokenforvideoroom)
-* [getNewTokenForVideoRoom](#getnewtokenforvideoroom)
+* [getPlatformVideoParticipants](#getplatformvideoparticipants)
 * [getVideoParticipants](#getvideoparticipants)
-* [getNewVideoParticipants](#getnewvideoparticipants)
 * [openVideoRoom](#openvideoroom)
 * [closeVideoRoom](#closevideoroom)
 * [getGeneralConfig](#getgeneralconfig)
@@ -36,14 +36,14 @@ Handles communication between Administrator
 ## Methods with example and description
 
 
-#### getTickets
+#### getPlatformTickets
 Gets the list of company level tickets and/or ticket filters depending on query params
 
 
 
 
 ```swift
-platformClient.lead.getTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+platformClient.lead.getPlatformTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -724,14 +724,14 @@ Success
 ---
 
 
-#### getNewTickets
+#### getTickets
 Gets the list of Application level Tickets and/or ticket filters depending on query params
 
 
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").lead.getNewTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getTickets(items: items, filters: filters, q: q, status: status, priority: priority, category: category) { (response, error) in
     // Use response
 }
 ```
@@ -1158,14 +1158,14 @@ Success
 ---
 
 
-#### getTicket
+#### getPlatformTicket
 Retreives ticket details of a company level ticket with ticket ID
 
 
 
 
 ```swift
-platformClient.lead.getTicket(id: id) { (response, error) in
+platformClient.lead.getPlatformTicket(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1411,14 +1411,14 @@ Success
 ---
 
 
-#### editTicket
+#### editPlatformTicket
 Edits ticket details of a company level ticket
 
 
 
 
 ```swift
-platformClient.lead.editTicket(id: id, body: body) { (response, error) in
+platformClient.lead.editPlatformTicket(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -1664,14 +1664,14 @@ Success
 ---
 
 
-#### getNewTicket
+#### getTicket
 Retreives ticket details of a application level ticket
 
 
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").lead.getNewTicket(id: id) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getTicket(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -1918,14 +1918,14 @@ Success
 ---
 
 
-#### editNewTicket
+#### editTicket
 Edits ticket details of a application level ticket
 
 
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").lead.editNewTicket(id: id, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.editTicket(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2172,14 +2172,14 @@ Success
 ---
 
 
-#### createHistory
+#### createPlatformTicketHistory
 Create history for specific company level ticket
 
 
 
 
 ```swift
-platformClient.lead.createHistory(id: id, body: body) { (response, error) in
+platformClient.lead.createPlatformTicketHistory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2271,14 +2271,14 @@ Success
 ---
 
 
-#### getTicketHistory
+#### getPlatformTicketHistory
 Gets history list for specific company level ticket
 
 
 
 
 ```swift
-platformClient.lead.getTicketHistory(id: id) { (response, error) in
+platformClient.lead.getPlatformTicketHistory(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -2648,14 +2648,14 @@ Success
 ---
 
 
-#### createNewHistory
+#### createHistory
 Create history for specific application level ticket
 
 
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").lead.createNewHistory(id: id, body: body) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.createHistory(id: id, body: body) { (response, error) in
     // Use response
 }
 ```
@@ -2747,14 +2747,14 @@ Success
 ---
 
 
-#### getNewTicketHistory
+#### getTicketHistory
 Gets history list for specific application level ticket
 
 
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").lead.getNewTicketHistory(id: id) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getTicketHistory(id: id) { (response, error) in
     // Use response
 }
 ```
@@ -3492,6 +3492,71 @@ Success
 ---
 
 
+#### getTokenForPlatformVideoRoom
+Get Token to join a specific Video Room using it's unqiue name
+
+
+
+
+```swift
+platformClient.lead.getTokenForPlatformVideoRoom(uniqueName: uniqueName) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| uniqueName | String | yes | Unique name of video room |  
+
+
+
+Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+
+*Returned Response:*
+
+
+
+
+[GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
+```json
+{
+  "value": {
+    "access_token": "your_token_to_the_room"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getTokenForVideoRoom
 Get Token to join a specific Video Room using it's unqiue name
 
@@ -3499,7 +3564,7 @@ Get Token to join a specific Video Room using it's unqiue name
 
 
 ```swift
-platformClient.lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -3557,79 +3622,14 @@ Success
 ---
 
 
-#### getNewTokenForVideoRoom
-Get Token to join a specific Video Room using it's unqiue name
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").lead.getNewTokenForVideoRoom(uniqueName: uniqueName) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| uniqueName | String | yes | Unique name of video room |  
-
-
-
-Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-
-*Returned Response:*
-
-
-
-
-[GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Default</i></summary>
-
-```json
-{
-  "value": {
-    "access_token": "your_token_to_the_room"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getVideoParticipants
+#### getPlatformVideoParticipants
 Get participants of a specific Video Room using it's unique name
 
 
 
 
 ```swift
-platformClient.lead.getVideoParticipants(uniqueName: uniqueName) { (response, error) in
+platformClient.lead.getPlatformVideoParticipants(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```
@@ -3687,14 +3687,14 @@ Success
 ---
 
 
-#### getNewVideoParticipants
+#### getVideoParticipants
 Get participants of a specific Video Room using it's unique name
 
 
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").lead.getNewVideoParticipants(uniqueName: uniqueName) { (response, error) in
+platformClient.application("<APPLICATION_ID>").lead.getVideoParticipants(uniqueName: uniqueName) { (response, error) in
     // Use response
 }
 ```

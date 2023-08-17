@@ -5,31 +5,37 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: SendOtpEmailCommsProvider
+        Model: GlobalProviders
         Used By: Communication
     */
 
-    class SendOtpEmailCommsProvider: Codable {
+    class GlobalProviders: Codable {
         
         
-        public var slug: String?
+        public var email: [GlobalProvidersResObj]?
         
-        public var id: String?
+        public var sms: [GlobalProvidersResObj]?
+        
+        public var voice: [GlobalProvidersResObj]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case slug = "slug"
+            case email = "email"
             
-            case id = "_id"
+            case sms = "sms"
+            
+            case voice = "voice"
             
         }
 
-        public init(slug: String? = nil, id: String? = nil) {
+        public init(email: [GlobalProvidersResObj]? = nil, sms: [GlobalProvidersResObj]? = nil, voice: [GlobalProvidersResObj]? = nil) {
             
-            self.slug = slug
+            self.email = email
             
-            self.id = id
+            self.sms = sms
+            
+            self.voice = voice
             
         }
 
@@ -38,7 +44,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    email = try container.decode([GlobalProvidersResObj].self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +56,19 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    sms = try container.decode([GlobalProvidersResObj].self, forKey: .sms)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    voice = try container.decode([GlobalProvidersResObj].self, forKey: .voice)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +85,17 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(sms, forKey: .sms)
+            
+            
+            
+            
+            try? container.encodeIfPresent(voice, forKey: .voice)
             
             
         }
@@ -84,31 +107,37 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: SendOtpEmailCommsProvider
+        Model: GlobalProviders
         Used By: Communication
     */
 
-    class SendOtpEmailCommsProvider: Codable {
+    class GlobalProviders: Codable {
         
         
-        public var slug: String?
+        public var email: [GlobalProvidersResObj]?
         
-        public var id: String?
+        public var sms: [GlobalProvidersResObj]?
+        
+        public var voice: [GlobalProvidersResObj]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case slug = "slug"
+            case email = "email"
             
-            case id = "_id"
+            case sms = "sms"
+            
+            case voice = "voice"
             
         }
 
-        public init(slug: String? = nil, id: String? = nil) {
+        public init(email: [GlobalProvidersResObj]? = nil, sms: [GlobalProvidersResObj]? = nil, voice: [GlobalProvidersResObj]? = nil) {
             
-            self.slug = slug
+            self.email = email
             
-            self.id = id
+            self.sms = sms
+            
+            self.voice = voice
             
         }
 
@@ -117,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    email = try container.decode([GlobalProvidersResObj].self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +158,19 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    id = try container.decode(String.self, forKey: .id)
+                    sms = try container.decode([GlobalProvidersResObj].self, forKey: .sms)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    voice = try container.decode([GlobalProvidersResObj].self, forKey: .voice)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +187,17 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(sms, forKey: .sms)
+            
+            
+            
+            
+            try? container.encodeIfPresent(voice, forKey: .voice)
             
             
         }

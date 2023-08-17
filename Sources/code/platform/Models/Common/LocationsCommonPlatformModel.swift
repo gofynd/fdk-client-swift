@@ -12,7 +12,7 @@ public extension PlatformClient.Common {
     class Locations: Codable {
         
         
-        public var items: LocationCountry?
+        public var items: [LocationCountry]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Common {
             
         }
 
-        public init(items: LocationCountry? = nil) {
+        public init(items: [LocationCountry]? = nil) {
             
             self.items = items
             
@@ -32,7 +32,7 @@ public extension PlatformClient.Common {
             
             
                 do {
-                    items = try container.decode(LocationCountry.self, forKey: .items)
+                    items = try container.decode([LocationCountry].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

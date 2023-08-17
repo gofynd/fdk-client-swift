@@ -5,31 +5,37 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: BigqueryHeadersReq
+        Model: AppProviderReq
         Used By: Communication
     */
 
-    class BigqueryHeadersReq: Codable {
+    class AppProviderReq: Codable {
         
         
-        public var query: String?
+        public var email: AppProviderRes?
         
-        public var type: String?
+        public var sms: AppProviderRes?
+        
+        public var voice: AppProviderResVoice?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case query = "query"
+            case email = "email"
             
-            case type = "type"
+            case sms = "sms"
+            
+            case voice = "voice"
             
         }
 
-        public init(query: String? = nil, type: String? = nil) {
+        public init(email: AppProviderRes? = nil, sms: AppProviderRes? = nil, voice: AppProviderResVoice? = nil) {
             
-            self.query = query
+            self.email = email
             
-            self.type = type
+            self.sms = sms
+            
+            self.voice = voice
             
         }
 
@@ -38,7 +44,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    query = try container.decode(String.self, forKey: .query)
+                    email = try container.decode(AppProviderRes.self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +56,19 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    sms = try container.decode(AppProviderRes.self, forKey: .sms)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    voice = try container.decode(AppProviderResVoice.self, forKey: .voice)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +85,17 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(sms, forKey: .sms)
+            
+            
+            
+            
+            try? container.encodeIfPresent(voice, forKey: .voice)
             
             
         }
@@ -84,31 +107,37 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: BigqueryHeadersReq
+        Model: AppProviderReq
         Used By: Communication
     */
 
-    class BigqueryHeadersReq: Codable {
+    class AppProviderReq: Codable {
         
         
-        public var query: String?
+        public var email: AppProviderRes?
         
-        public var type: String?
+        public var sms: AppProviderRes?
+        
+        public var voice: AppProviderResVoice?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case query = "query"
+            case email = "email"
             
-            case type = "type"
+            case sms = "sms"
+            
+            case voice = "voice"
             
         }
 
-        public init(query: String? = nil, type: String? = nil) {
+        public init(email: AppProviderRes? = nil, sms: AppProviderRes? = nil, voice: AppProviderResVoice? = nil) {
             
-            self.query = query
+            self.email = email
             
-            self.type = type
+            self.sms = sms
+            
+            self.voice = voice
             
         }
 
@@ -117,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    query = try container.decode(String.self, forKey: .query)
+                    email = try container.decode(AppProviderRes.self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +158,19 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    sms = try container.decode(AppProviderRes.self, forKey: .sms)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    voice = try container.decode(AppProviderResVoice.self, forKey: .voice)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +187,17 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(query, forKey: .query)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(sms, forKey: .sms)
+            
+            
+            
+            
+            try? container.encodeIfPresent(voice, forKey: .voice)
             
             
         }

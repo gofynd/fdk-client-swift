@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Configuration {
+public extension PlatformClient.Communication {
     /*
-        Model: DeliveryCharges
-        Used By: Configuration
+        Model: GenericError
+        Used By: Communication
     */
 
-    class DeliveryCharges: Codable {
+    class GenericError: Codable {
         
         
-        public var enabled: Bool?
+        public var message: Message?
         
-        public var charges: [Charges]?
+        public var sentry: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case enabled = "enabled"
+            case message = "message"
             
-            case charges = "charges"
+            case sentry = "sentry"
             
         }
 
-        public init(charges: [Charges]? = nil, enabled: Bool? = nil) {
+        public init(message: Message? = nil, sentry: String? = nil) {
             
-            self.enabled = enabled
+            self.message = message
             
-            self.charges = charges
+            self.sentry = sentry
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    enabled = try container.decode(Bool.self, forKey: .enabled)
+                    message = try container.decode(Message.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    charges = try container.decode([Charges].self, forKey: .charges)
+                    sentry = try container.decode(String.self, forKey: .sentry)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(charges, forKey: .charges)
+            try? container.encodeIfPresent(sentry, forKey: .sentry)
             
             
         }
@@ -82,33 +82,33 @@ public extension PlatformClient.Configuration {
 
 
 
-public extension PlatformClient.ApplicationClient.Configuration {
+public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: DeliveryCharges
-        Used By: Configuration
+        Model: GenericError
+        Used By: Communication
     */
 
-    class DeliveryCharges: Codable {
+    class GenericError: Codable {
         
         
-        public var enabled: Bool?
+        public var message: Message?
         
-        public var charges: [Charges]?
+        public var sentry: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case enabled = "enabled"
+            case message = "message"
             
-            case charges = "charges"
+            case sentry = "sentry"
             
         }
 
-        public init(charges: [Charges]? = nil, enabled: Bool? = nil) {
+        public init(message: Message? = nil, sentry: String? = nil) {
             
-            self.enabled = enabled
+            self.message = message
             
-            self.charges = charges
+            self.sentry = sentry
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    enabled = try container.decode(Bool.self, forKey: .enabled)
+                    message = try container.decode(Message.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    charges = try container.decode([Charges].self, forKey: .charges)
+                    sentry = try container.decode(String.self, forKey: .sentry)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(charges, forKey: .charges)
+            try? container.encodeIfPresent(sentry, forKey: .sentry)
             
             
         }

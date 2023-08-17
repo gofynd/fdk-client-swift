@@ -5,31 +5,37 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: EmailTemplateDeleteFailureRes
+        Model: DefaultSmsProviders
         Used By: Communication
     */
 
-    class EmailTemplateDeleteFailureRes: Codable {
+    class DefaultSmsProviders: Codable {
         
         
-        public var success: Bool?
+        public var id: String?
         
-        public var message: String?
+        public var name: String?
+        
+        public var isDefault: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case id = "_id"
             
-            case message = "message"
+            case name = "name"
+            
+            case isDefault = "is_default"
             
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
+        public init(isDefault: Bool? = nil, name: String? = nil, id: String? = nil) {
             
-            self.success = success
+            self.id = id
             
-            self.message = message
+            self.name = name
+            
+            self.isDefault = isDefault
             
         }
 
@@ -38,7 +44,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +56,19 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +85,17 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
             
             
         }
@@ -84,31 +107,37 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: EmailTemplateDeleteFailureRes
+        Model: DefaultSmsProviders
         Used By: Communication
     */
 
-    class EmailTemplateDeleteFailureRes: Codable {
+    class DefaultSmsProviders: Codable {
         
         
-        public var success: Bool?
+        public var id: String?
         
-        public var message: String?
+        public var name: String?
+        
+        public var isDefault: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case id = "_id"
             
-            case message = "message"
+            case name = "name"
+            
+            case isDefault = "is_default"
             
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
+        public init(isDefault: Bool? = nil, name: String? = nil, id: String? = nil) {
             
-            self.success = success
+            self.id = id
             
-            self.message = message
+            self.name = name
+            
+            self.isDefault = isDefault
             
         }
 
@@ -117,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +158,19 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +187,17 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
             
             
         }

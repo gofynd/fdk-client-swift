@@ -5,37 +5,37 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: SendOtpCommsReqEmail
+        Model: AppProviderRes
         Used By: Communication
     */
 
-    class SendOtpCommsReqEmail: Codable {
+    class AppProviderRes: Codable {
         
         
-        public var otpLength: Int?
+        public var transaction: AppProviderResObj?
         
-        public var expiry: Int?
+        public var promotional: AppProviderResObj?
         
-        public var template: SendOtpEmailCommsTemplate?
+        public var otp: AppProviderResObj?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case otpLength = "otp_length"
+            case transaction = "transaction"
             
-            case expiry = "expiry"
+            case promotional = "promotional"
             
-            case template = "template"
+            case otp = "otp"
             
         }
 
-        public init(expiry: Int? = nil, otpLength: Int? = nil, template: SendOtpEmailCommsTemplate? = nil) {
+        public init(otp: AppProviderResObj? = nil, promotional: AppProviderResObj? = nil, transaction: AppProviderResObj? = nil) {
             
-            self.otpLength = otpLength
+            self.transaction = transaction
             
-            self.expiry = expiry
+            self.promotional = promotional
             
-            self.template = template
+            self.otp = otp
             
         }
 
@@ -44,7 +44,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    otpLength = try container.decode(Int.self, forKey: .otpLength)
+                    transaction = try container.decode(AppProviderResObj.self, forKey: .transaction)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    expiry = try container.decode(Int.self, forKey: .expiry)
+                    promotional = try container.decode(AppProviderResObj.self, forKey: .promotional)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    template = try container.decode(SendOtpEmailCommsTemplate.self, forKey: .template)
+                    otp = try container.decode(AppProviderResObj.self, forKey: .otp)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,17 +85,17 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(otpLength, forKey: .otpLength)
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
             
             
-            try? container.encodeIfPresent(expiry, forKey: .expiry)
+            try? container.encodeIfPresent(promotional, forKey: .promotional)
             
             
             
             
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(otp, forKey: .otp)
             
             
         }
@@ -107,37 +107,37 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: SendOtpCommsReqEmail
+        Model: AppProviderRes
         Used By: Communication
     */
 
-    class SendOtpCommsReqEmail: Codable {
+    class AppProviderRes: Codable {
         
         
-        public var otpLength: Int?
+        public var transaction: AppProviderResObj?
         
-        public var expiry: Int?
+        public var promotional: AppProviderResObj?
         
-        public var template: SendOtpEmailCommsTemplate?
+        public var otp: AppProviderResObj?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case otpLength = "otp_length"
+            case transaction = "transaction"
             
-            case expiry = "expiry"
+            case promotional = "promotional"
             
-            case template = "template"
+            case otp = "otp"
             
         }
 
-        public init(expiry: Int? = nil, otpLength: Int? = nil, template: SendOtpEmailCommsTemplate? = nil) {
+        public init(otp: AppProviderResObj? = nil, promotional: AppProviderResObj? = nil, transaction: AppProviderResObj? = nil) {
             
-            self.otpLength = otpLength
+            self.transaction = transaction
             
-            self.expiry = expiry
+            self.promotional = promotional
             
-            self.template = template
+            self.otp = otp
             
         }
 
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    otpLength = try container.decode(Int.self, forKey: .otpLength)
+                    transaction = try container.decode(AppProviderResObj.self, forKey: .transaction)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    expiry = try container.decode(Int.self, forKey: .expiry)
+                    promotional = try container.decode(AppProviderResObj.self, forKey: .promotional)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    template = try container.decode(SendOtpEmailCommsTemplate.self, forKey: .template)
+                    otp = try container.decode(AppProviderResObj.self, forKey: .otp)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(otpLength, forKey: .otpLength)
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
             
             
-            try? container.encodeIfPresent(expiry, forKey: .expiry)
+            try? container.encodeIfPresent(promotional, forKey: .promotional)
             
             
             
             
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(otp, forKey: .otp)
             
             
         }

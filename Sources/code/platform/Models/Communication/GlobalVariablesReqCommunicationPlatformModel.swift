@@ -5,25 +5,25 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: BigqueryHeadersRes
+        Model: GlobalVariablesReq
         Used By: Communication
     */
 
-    class BigqueryHeadersRes: Codable {
+    class GlobalVariablesReq: Codable {
         
         
-        public var headers: [BigqueryHeadersResHeaders]?
+        public var globalVariables: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case headers = "headers"
+            case globalVariables = "global_variables"
             
         }
 
-        public init(headers: [BigqueryHeadersResHeaders]? = nil) {
+        public init(globalVariables: [String: Any]? = nil) {
             
-            self.headers = headers
+            self.globalVariables = globalVariables
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    headers = try container.decode([BigqueryHeadersResHeaders].self, forKey: .headers)
+                    globalVariables = try container.decode([String: Any].self, forKey: .globalVariables)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(headers, forKey: .headers)
+            try? container.encodeIfPresent(globalVariables, forKey: .globalVariables)
             
             
         }
@@ -61,25 +61,25 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: BigqueryHeadersRes
+        Model: GlobalVariablesReq
         Used By: Communication
     */
 
-    class BigqueryHeadersRes: Codable {
+    class GlobalVariablesReq: Codable {
         
         
-        public var headers: [BigqueryHeadersResHeaders]?
+        public var globalVariables: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case headers = "headers"
+            case globalVariables = "global_variables"
             
         }
 
-        public init(headers: [BigqueryHeadersResHeaders]? = nil) {
+        public init(globalVariables: [String: Any]? = nil) {
             
-            self.headers = headers
+            self.globalVariables = globalVariables
             
         }
 
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    headers = try container.decode([BigqueryHeadersResHeaders].self, forKey: .headers)
+                    globalVariables = try container.decode([String: Any].self, forKey: .globalVariables)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(headers, forKey: .headers)
+            try? container.encodeIfPresent(globalVariables, forKey: .globalVariables)
             
             
         }

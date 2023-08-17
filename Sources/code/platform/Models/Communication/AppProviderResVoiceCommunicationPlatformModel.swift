@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Configuration {
+public extension PlatformClient.Communication {
     /*
-        Model: DeliveryCharges
-        Used By: Configuration
+        Model: AppProviderResVoice
+        Used By: Communication
     */
 
-    class DeliveryCharges: Codable {
+    class AppProviderResVoice: Codable {
         
         
-        public var enabled: Bool?
+        public var transaction: AppProviderResObj?
         
-        public var charges: [Charges]?
+        public var otp: AppProviderResObj?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case enabled = "enabled"
+            case transaction = "transaction"
             
-            case charges = "charges"
+            case otp = "otp"
             
         }
 
-        public init(charges: [Charges]? = nil, enabled: Bool? = nil) {
+        public init(otp: AppProviderResObj? = nil, transaction: AppProviderResObj? = nil) {
             
-            self.enabled = enabled
+            self.transaction = transaction
             
-            self.charges = charges
+            self.otp = otp
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    enabled = try container.decode(Bool.self, forKey: .enabled)
+                    transaction = try container.decode(AppProviderResObj.self, forKey: .transaction)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    charges = try container.decode([Charges].self, forKey: .charges)
+                    otp = try container.decode(AppProviderResObj.self, forKey: .otp)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
             
             
-            try? container.encodeIfPresent(charges, forKey: .charges)
+            try? container.encodeIfPresent(otp, forKey: .otp)
             
             
         }
@@ -82,33 +82,33 @@ public extension PlatformClient.Configuration {
 
 
 
-public extension PlatformClient.ApplicationClient.Configuration {
+public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: DeliveryCharges
-        Used By: Configuration
+        Model: AppProviderResVoice
+        Used By: Communication
     */
 
-    class DeliveryCharges: Codable {
+    class AppProviderResVoice: Codable {
         
         
-        public var enabled: Bool?
+        public var transaction: AppProviderResObj?
         
-        public var charges: [Charges]?
+        public var otp: AppProviderResObj?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case enabled = "enabled"
+            case transaction = "transaction"
             
-            case charges = "charges"
+            case otp = "otp"
             
         }
 
-        public init(charges: [Charges]? = nil, enabled: Bool? = nil) {
+        public init(otp: AppProviderResObj? = nil, transaction: AppProviderResObj? = nil) {
             
-            self.enabled = enabled
+            self.transaction = transaction
             
-            self.charges = charges
+            self.otp = otp
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    enabled = try container.decode(Bool.self, forKey: .enabled)
+                    transaction = try container.decode(AppProviderResObj.self, forKey: .transaction)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    charges = try container.decode([Charges].self, forKey: .charges)
+                    otp = try container.decode(AppProviderResObj.self, forKey: .otp)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encodeIfPresent(transaction, forKey: .transaction)
             
             
             
             
-            try? container.encodeIfPresent(charges, forKey: .charges)
+            try? container.encodeIfPresent(otp, forKey: .otp)
             
             
         }

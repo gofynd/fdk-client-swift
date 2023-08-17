@@ -5,25 +5,25 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: SystemEmailTemplates
+        Model: EnabledObj
         Used By: Communication
     */
 
-    class SystemEmailTemplates: Codable {
+    class EnabledObj: Codable {
         
         
-        public var items: [SystemEmailTemplate]?
+        public var enabled: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case enabled = "enabled"
             
         }
 
-        public init(items: [SystemEmailTemplate]? = nil) {
+        public init(enabled: Bool? = nil) {
             
-            self.items = items
+            self.enabled = enabled
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    items = try container.decode([SystemEmailTemplate].self, forKey: .items)
+                    enabled = try container.decode(Bool.self, forKey: .enabled)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
             
             
         }
@@ -61,25 +61,25 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: SystemEmailTemplates
+        Model: EnabledObj
         Used By: Communication
     */
 
-    class SystemEmailTemplates: Codable {
+    class EnabledObj: Codable {
         
         
-        public var items: [SystemEmailTemplate]?
+        public var enabled: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case enabled = "enabled"
             
         }
 
-        public init(items: [SystemEmailTemplate]? = nil) {
+        public init(enabled: Bool? = nil) {
             
-            self.items = items
+            self.enabled = enabled
             
         }
 
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    items = try container.decode([SystemEmailTemplate].self, forKey: .items)
+                    enabled = try container.decode(Bool.self, forKey: .enabled)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(enabled, forKey: .enabled)
             
             
         }

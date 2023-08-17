@@ -5,25 +5,31 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: SystemEmailTemplates
+        Model: DummyDatasources
         Used By: Communication
     */
 
-    class SystemEmailTemplates: Codable {
+    class DummyDatasources: Codable {
         
         
-        public var items: [SystemEmailTemplate]?
+        public var id: Int?
+        
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case id = "id"
+            
+            case name = "name"
             
         }
 
-        public init(items: [SystemEmailTemplate]? = nil) {
+        public init(id: Int? = nil, name: String? = nil) {
             
-            self.items = items
+            self.id = id
+            
+            self.name = name
             
         }
 
@@ -32,7 +38,19 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    items = try container.decode([SystemEmailTemplate].self, forKey: .items)
+                    id = try container.decode(Int.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +67,12 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }
@@ -61,25 +84,31 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: SystemEmailTemplates
+        Model: DummyDatasources
         Used By: Communication
     */
 
-    class SystemEmailTemplates: Codable {
+    class DummyDatasources: Codable {
         
         
-        public var items: [SystemEmailTemplate]?
+        public var id: Int?
+        
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case id = "id"
+            
+            case name = "name"
             
         }
 
-        public init(items: [SystemEmailTemplate]? = nil) {
+        public init(id: Int? = nil, name: String? = nil) {
             
-            self.items = items
+            self.id = id
+            
+            self.name = name
             
         }
 
@@ -88,7 +117,19 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    items = try container.decode([SystemEmailTemplate].self, forKey: .items)
+                    id = try container.decode(Int.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +146,12 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

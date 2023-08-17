@@ -5,37 +5,43 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: SendOtpCommsReqEmail
+        Model: GenericDelete
         Used By: Communication
     */
 
-    class SendOtpCommsReqEmail: Codable {
+    class GenericDelete: Codable {
         
         
-        public var otpLength: Int?
+        public var message: String?
         
-        public var expiry: Int?
+        public var acknowledged: Bool?
         
-        public var template: SendOtpEmailCommsTemplate?
+        public var affected: Int?
+        
+        public var operation: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case otpLength = "otp_length"
+            case message = "message"
             
-            case expiry = "expiry"
+            case acknowledged = "acknowledged"
             
-            case template = "template"
+            case affected = "affected"
+            
+            case operation = "operation"
             
         }
 
-        public init(expiry: Int? = nil, otpLength: Int? = nil, template: SendOtpEmailCommsTemplate? = nil) {
+        public init(acknowledged: Bool? = nil, affected: Int? = nil, message: String? = nil, operation: String? = nil) {
             
-            self.otpLength = otpLength
+            self.message = message
             
-            self.expiry = expiry
+            self.acknowledged = acknowledged
             
-            self.template = template
+            self.affected = affected
+            
+            self.operation = operation
             
         }
 
@@ -44,7 +50,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    otpLength = try container.decode(Int.self, forKey: .otpLength)
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +62,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    expiry = try container.decode(Int.self, forKey: .expiry)
+                    acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +74,19 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    template = try container.decode(SendOtpEmailCommsTemplate.self, forKey: .template)
+                    affected = try container.decode(Int.self, forKey: .affected)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    operation = try container.decode(String.self, forKey: .operation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,17 +103,22 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(otpLength, forKey: .otpLength)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(expiry, forKey: .expiry)
+            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
             
             
             
             
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(affected, forKey: .affected)
+            
+            
+            
+            
+            try? container.encodeIfPresent(operation, forKey: .operation)
             
             
         }
@@ -107,37 +130,43 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: SendOtpCommsReqEmail
+        Model: GenericDelete
         Used By: Communication
     */
 
-    class SendOtpCommsReqEmail: Codable {
+    class GenericDelete: Codable {
         
         
-        public var otpLength: Int?
+        public var message: String?
         
-        public var expiry: Int?
+        public var acknowledged: Bool?
         
-        public var template: SendOtpEmailCommsTemplate?
+        public var affected: Int?
+        
+        public var operation: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case otpLength = "otp_length"
+            case message = "message"
             
-            case expiry = "expiry"
+            case acknowledged = "acknowledged"
             
-            case template = "template"
+            case affected = "affected"
+            
+            case operation = "operation"
             
         }
 
-        public init(expiry: Int? = nil, otpLength: Int? = nil, template: SendOtpEmailCommsTemplate? = nil) {
+        public init(acknowledged: Bool? = nil, affected: Int? = nil, message: String? = nil, operation: String? = nil) {
             
-            self.otpLength = otpLength
+            self.message = message
             
-            self.expiry = expiry
+            self.acknowledged = acknowledged
             
-            self.template = template
+            self.affected = affected
+            
+            self.operation = operation
             
         }
 
@@ -146,7 +175,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    otpLength = try container.decode(Int.self, forKey: .otpLength)
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    expiry = try container.decode(Int.self, forKey: .expiry)
+                    acknowledged = try container.decode(Bool.self, forKey: .acknowledged)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +199,19 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    template = try container.decode(SendOtpEmailCommsTemplate.self, forKey: .template)
+                    affected = try container.decode(Int.self, forKey: .affected)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    operation = try container.decode(String.self, forKey: .operation)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,17 +228,22 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(otpLength, forKey: .otpLength)
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(expiry, forKey: .expiry)
+            try? container.encodeIfPresent(acknowledged, forKey: .acknowledged)
             
             
             
             
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(affected, forKey: .affected)
+            
+            
+            
+            
+            try? container.encodeIfPresent(operation, forKey: .operation)
             
             
         }

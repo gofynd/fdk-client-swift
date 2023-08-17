@@ -5,31 +5,37 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: EmailTemplateDeleteSuccessRes
+        Model: metaObj
         Used By: Communication
     */
 
-    class EmailTemplateDeleteSuccessRes: Codable {
+    class metaObj: Codable {
         
         
-        public var success: Bool?
+        public var type: String?
         
-        public var message: String?
+        public var isSystem: Bool?
+        
+        public var template: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case type = "type"
             
-            case message = "message"
+            case isSystem = "is_system"
+            
+            case template = "template"
             
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
+        public init(isSystem: Bool? = nil, template: String? = nil, type: String? = nil) {
             
-            self.success = success
+            self.type = type
             
-            self.message = message
+            self.isSystem = isSystem
+            
+            self.template = template
             
         }
 
@@ -38,7 +44,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +56,19 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    isSystem = try container.decode(Bool.self, forKey: .isSystem)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +85,17 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(isSystem, forKey: .isSystem)
+            
+            
+            
+            
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
         }
@@ -84,31 +107,37 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: EmailTemplateDeleteSuccessRes
+        Model: metaObj
         Used By: Communication
     */
 
-    class EmailTemplateDeleteSuccessRes: Codable {
+    class metaObj: Codable {
         
         
-        public var success: Bool?
+        public var type: String?
         
-        public var message: String?
+        public var isSystem: Bool?
+        
+        public var template: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case type = "type"
             
-            case message = "message"
+            case isSystem = "is_system"
+            
+            case template = "template"
             
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
+        public init(isSystem: Bool? = nil, template: String? = nil, type: String? = nil) {
             
-            self.success = success
+            self.type = type
             
-            self.message = message
+            self.isSystem = isSystem
+            
+            self.template = template
             
         }
 
@@ -117,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +158,19 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    isSystem = try container.decode(Bool.self, forKey: .isSystem)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +187,17 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(isSystem, forKey: .isSystem)
+            
+            
+            
+            
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
         }

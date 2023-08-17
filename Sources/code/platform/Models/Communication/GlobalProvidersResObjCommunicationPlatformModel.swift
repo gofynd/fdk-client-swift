@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: SmsTemplateDeleteFailureRes
+        Model: GlobalProvidersResObj
         Used By: Communication
     */
 
-    class SmsTemplateDeleteFailureRes: Codable {
+    class GlobalProvidersResObj: Codable {
         
         
-        public var success: Bool?
+        public var id: String?
         
-        public var message: String?
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case id = "_id"
             
-            case message = "message"
+            case name = "name"
             
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
+        public init(name: String? = nil, id: String? = nil) {
             
-            self.success = success
+            self.id = id
             
-            self.message = message
+            self.name = name
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }
@@ -84,31 +84,31 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: SmsTemplateDeleteFailureRes
+        Model: GlobalProvidersResObj
         Used By: Communication
     */
 
-    class SmsTemplateDeleteFailureRes: Codable {
+    class GlobalProvidersResObj: Codable {
         
         
-        public var success: Bool?
+        public var id: String?
         
-        public var message: String?
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case id = "_id"
             
-            case message = "message"
+            case name = "name"
             
         }
 
-        public init(message: String? = nil, success: Bool? = nil) {
+        public init(name: String? = nil, id: String? = nil) {
             
-            self.success = success
+            self.id = id
             
-            self.message = message
+            self.name = name
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    success = try container.decode(Bool.self, forKey: .success)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

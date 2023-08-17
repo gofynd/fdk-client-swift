@@ -5,25 +5,25 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: SystemEmailTemplates
+        Model: DummyDatasourcesMetaObj
         Used By: Communication
     */
 
-    class SystemEmailTemplates: Codable {
+    class DummyDatasourcesMetaObj: Codable {
         
         
-        public var items: [SystemEmailTemplate]?
+        public var b: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case b = "b"
             
         }
 
-        public init(items: [SystemEmailTemplate]? = nil) {
+        public init(b: Int? = nil) {
             
-            self.items = items
+            self.b = b
             
         }
 
@@ -32,7 +32,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    items = try container.decode([SystemEmailTemplate].self, forKey: .items)
+                    b = try container.decode(Int.self, forKey: .b)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +49,7 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(b, forKey: .b)
             
             
         }
@@ -61,25 +61,25 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: SystemEmailTemplates
+        Model: DummyDatasourcesMetaObj
         Used By: Communication
     */
 
-    class SystemEmailTemplates: Codable {
+    class DummyDatasourcesMetaObj: Codable {
         
         
-        public var items: [SystemEmailTemplate]?
+        public var b: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case b = "b"
             
         }
 
-        public init(items: [SystemEmailTemplate]? = nil) {
+        public init(b: Int? = nil) {
             
-            self.items = items
+            self.b = b
             
         }
 
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    items = try container.decode([SystemEmailTemplate].self, forKey: .items)
+                    b = try container.decode(Int.self, forKey: .b)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(b, forKey: .b)
             
             
         }

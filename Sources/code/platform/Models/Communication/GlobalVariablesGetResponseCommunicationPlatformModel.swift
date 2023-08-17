@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.Communication {
     /*
-        Model: BigqueryHeadersResHeaders
+        Model: GlobalVariablesGetResponse
         Used By: Communication
     */
 
-    class BigqueryHeadersResHeaders: Codable {
+    class GlobalVariablesGetResponse: Codable {
         
         
-        public var name: String?
+        public var readOnly: [String: Any]?
         
-        public var type: String?
+        public var editable: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
+            case readOnly = "read_only"
             
-            case type = "type"
+            case editable = "editable"
             
         }
 
-        public init(name: String? = nil, type: String? = nil) {
+        public init(editable: [String: Any]? = nil, readOnly: [String: Any]? = nil) {
             
-            self.name = name
+            self.readOnly = readOnly
             
-            self.type = type
+            self.editable = editable
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    name = try container.decode(String.self, forKey: .name)
+                    readOnly = try container.decode([String: Any].self, forKey: .readOnly)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    editable = try container.decode([String: Any].self, forKey: .editable)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(readOnly, forKey: .readOnly)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(editable, forKey: .editable)
             
             
         }
@@ -84,31 +84,31 @@ public extension PlatformClient.Communication {
 
 public extension PlatformClient.ApplicationClient.Communication {
     /*
-        Model: BigqueryHeadersResHeaders
+        Model: GlobalVariablesGetResponse
         Used By: Communication
     */
 
-    class BigqueryHeadersResHeaders: Codable {
+    class GlobalVariablesGetResponse: Codable {
         
         
-        public var name: String?
+        public var readOnly: [String: Any]?
         
-        public var type: String?
+        public var editable: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
+            case readOnly = "read_only"
             
-            case type = "type"
+            case editable = "editable"
             
         }
 
-        public init(name: String? = nil, type: String? = nil) {
+        public init(editable: [String: Any]? = nil, readOnly: [String: Any]? = nil) {
             
-            self.name = name
+            self.readOnly = readOnly
             
-            self.type = type
+            self.editable = editable
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    name = try container.decode(String.self, forKey: .name)
+                    readOnly = try container.decode([String: Any].self, forKey: .readOnly)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
+                    editable = try container.decode([String: Any].self, forKey: .editable)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(readOnly, forKey: .readOnly)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(editable, forKey: .editable)
             
             
         }

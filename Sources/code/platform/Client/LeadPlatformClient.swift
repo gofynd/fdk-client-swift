@@ -19,7 +19,7 @@ extension PlatformClient {
         * Summary: Gets the list of company level tickets and/or ticket filters depending on query params
         * Description: Gets the list of company level tickets and/or ticket filters
         **/
-        public func getTickets(
+        public func getPlatformTickets(
             items: Bool?,
             filters: Bool?,
             q: String?,
@@ -183,10 +183,10 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: get paginator for getTickets
+        * Summary: get paginator for getPlatformTickets
         * Description: fetch the next page by calling .next(...) function
         **/
-        public func getTicketsPaginator(
+        public func getPlatformTicketsPaginator(
             items: Bool?,
             filters: Bool?,
             q: String?,
@@ -199,7 +199,7 @@ if let value = pageSize {
             let pageSize = pageSize ?? 20
             let paginator = Paginator<TicketList>(pageSize: pageSize, type: "number")
             paginator.onPage = {
-                self.getTickets(
+                self.getPlatformTickets(
                         
                         items: items,
                         filters: filters,
@@ -279,7 +279,7 @@ if let value = pageSize {
         * Summary: Retreives ticket details of a company level ticket with ticket ID
         * Description: Retreives ticket details of a company level ticket
         **/
-        public func getTicket(
+        public func getPlatformTicket(
             id: String,
             
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
@@ -328,7 +328,7 @@ if let value = pageSize {
         * Summary: Edits ticket details of a company level ticket
         * Description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
         **/
-        public func editTicket(
+        public func editPlatformTicket(
             id: String,
             body: EditTicketPayload,
             onResponse: @escaping (_ response: Ticket?, _ error: FDKError?) -> Void
@@ -379,7 +379,7 @@ if let value = pageSize {
         * Summary: Create history for specific company level ticket
         * Description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
         **/
-        public func createHistory(
+        public func createPlatformTicketHistory(
             id: String,
             body: TicketHistoryPayload,
             onResponse: @escaping (_ response: TicketHistory?, _ error: FDKError?) -> Void
@@ -428,7 +428,7 @@ if let value = pageSize {
         * Summary: Gets history list for specific company level ticket
         * Description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
         **/
-        public func getTicketHistory(
+        public func getPlatformTicketHistory(
             id: String,
             
             onResponse: @escaping (_ response: TicketHistoryList?, _ error: FDKError?) -> Void
@@ -581,7 +581,7 @@ if let value = pageSize {
         * Summary: Get Token to join a specific Video Room using it's unqiue name
         * Description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
         **/
-        public func getTokenForVideoRoom(
+        public func getTokenForPlatformVideoRoom(
             uniqueName: String,
             
             onResponse: @escaping (_ response: GetTokenForVideoRoomResponse?, _ error: FDKError?) -> Void
@@ -631,7 +631,7 @@ if let value = pageSize {
         * Summary: Get participants of a specific Video Room using it's unique name
         * Description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
         **/
-        public func getVideoParticipants(
+        public func getPlatformVideoParticipants(
             uniqueName: String,
             
             onResponse: @escaping (_ response: GetParticipantsInsideVideoRoomResponse?, _ error: FDKError?) -> Void

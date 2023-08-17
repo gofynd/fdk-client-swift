@@ -12,56 +12,78 @@ public extension PlatformClient.Communication {
     class EmailTemplate: Codable {
         
         
+        public var application: String?
+        
         public var isSystem: Bool?
         
         public var isInternal: Bool?
         
-        public var description: String?
-        
-        public var staticTo: [[String: Any]]?
-        
-        public var staticCc: [[String: Any]]?
-        
-        public var staticBcc: [[String: Any]]?
-        
-        public var tags: [[String: Any]]?
-        
-        public var priority: String?
-        
-        public var published: Bool?
-        
-        public var id: String?
-        
-        public var slug: String?
-        
         public var name: String?
         
-        public var fromName: String?
+        public var description: String?
+        
+        public var editorType: String?
+        
+        public var editorMeta: String?
+        
+        public var staticTo: [String]?
+        
+        public var staticCc: [String]?
+        
+        public var staticBcc: [String]?
+        
+        public var replyTo: String?
+        
+        public var tags: [String]?
         
         public var subject: TemplateAndType?
         
         public var html: TemplateAndType?
         
-        public var text: TemplateAndType?
+        public var urlShorten: EnabledObj?
         
-        public var headers: [[String: Any]]?
+        public var priority: String?
         
-        public var attachments: [[String: Any]]?
+        public var templateVariables: [String: Any]?
+        
+        public var published: Bool?
+        
+        public var category: String?
+        
+        public var id: String?
+        
+        public var headers: [EmailTemplateHeaders]?
+        
+        public var attachments: [Int]?
         
         public var createdAt: String?
         
         public var updatedAt: String?
         
+        public var slug: String?
+        
         public var v: Int?
+        
+        public var fromName: String?
+        
+        public var text: TemplateAndType?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case application = "application"
             
             case isSystem = "is_system"
             
             case isInternal = "is_internal"
             
+            case name = "name"
+            
             case description = "description"
+            
+            case editorType = "editor_type"
+            
+            case editorMeta = "editor_meta"
             
             case staticTo = "static_to"
             
@@ -69,25 +91,25 @@ public extension PlatformClient.Communication {
             
             case staticBcc = "static_bcc"
             
+            case replyTo = "reply_to"
+            
             case tags = "tags"
-            
-            case priority = "priority"
-            
-            case published = "published"
-            
-            case id = "_id"
-            
-            case slug = "slug"
-            
-            case name = "name"
-            
-            case fromName = "from_name"
             
             case subject = "subject"
             
             case html = "html"
             
-            case text = "text"
+            case urlShorten = "url_shorten"
+            
+            case priority = "priority"
+            
+            case templateVariables = "template_variables"
+            
+            case published = "published"
+            
+            case category = "category"
+            
+            case id = "_id"
             
             case headers = "headers"
             
@@ -97,17 +119,31 @@ public extension PlatformClient.Communication {
             
             case updatedAt = "updated_at"
             
+            case slug = "slug"
+            
             case v = "__v"
+            
+            case fromName = "from_name"
+            
+            case text = "text"
             
         }
 
-        public init(attachments: [[String: Any]]? = nil, createdAt: String? = nil, description: String? = nil, fromName: String? = nil, headers: [[String: Any]]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, slug: String? = nil, staticBcc: [[String: Any]]? = nil, staticCc: [[String: Any]]? = nil, staticTo: [[String: Any]]? = nil, subject: TemplateAndType? = nil, tags: [[String: Any]]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, attachments: [Int]? = nil, category: String? = nil, createdAt: String? = nil, description: String? = nil, editorMeta: String? = nil, editorType: String? = nil, fromName: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, replyTo: String? = nil, slug: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, tags: [String]? = nil, templateVariables: [String: Any]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, urlShorten: EnabledObj? = nil, id: String? = nil, v: Int? = nil) {
+            
+            self.application = application
             
             self.isSystem = isSystem
             
             self.isInternal = isInternal
             
+            self.name = name
+            
             self.description = description
+            
+            self.editorType = editorType
+            
+            self.editorMeta = editorMeta
             
             self.staticTo = staticTo
             
@@ -115,25 +151,25 @@ public extension PlatformClient.Communication {
             
             self.staticBcc = staticBcc
             
+            self.replyTo = replyTo
+            
             self.tags = tags
-            
-            self.priority = priority
-            
-            self.published = published
-            
-            self.id = id
-            
-            self.slug = slug
-            
-            self.name = name
-            
-            self.fromName = fromName
             
             self.subject = subject
             
             self.html = html
             
-            self.text = text
+            self.urlShorten = urlShorten
+            
+            self.priority = priority
+            
+            self.templateVariables = templateVariables
+            
+            self.published = published
+            
+            self.category = category
+            
+            self.id = id
             
             self.headers = headers
             
@@ -143,12 +179,30 @@ public extension PlatformClient.Communication {
             
             self.updatedAt = updatedAt
             
+            self.slug = slug
+            
             self.v = v
+            
+            self.fromName = fromName
+            
+            self.text = text
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -176,114 +230,6 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    description = try container.decode(String.self, forKey: .description)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    staticTo = try container.decode([[String: Any]].self, forKey: .staticTo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    staticCc = try container.decode([[String: Any]].self, forKey: .staticCc)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    staticBcc = try container.decode([[String: Any]].self, forKey: .staticBcc)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    tags = try container.decode([[String: Any]].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    priority = try container.decode(String.self, forKey: .priority)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    published = try container.decode(Bool.self, forKey: .published)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -296,7 +242,91 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    fromName = try container.decode(String.self, forKey: .fromName)
+                    description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    editorType = try container.decode(String.self, forKey: .editorType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    editorMeta = try container.decode(String.self, forKey: .editorMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    staticTo = try container.decode([String].self, forKey: .staticTo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    staticCc = try container.decode([String].self, forKey: .staticCc)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    staticBcc = try container.decode([String].self, forKey: .staticBcc)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    replyTo = try container.decode(String.self, forKey: .replyTo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -332,7 +362,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    text = try container.decode(TemplateAndType.self, forKey: .text)
+                    urlShorten = try container.decode(EnabledObj.self, forKey: .urlShorten)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -344,7 +374,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    headers = try container.decode([[String: Any]].self, forKey: .headers)
+                    priority = try container.decode(String.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -356,7 +386,67 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    attachments = try container.decode([[String: Any]].self, forKey: .attachments)
+                    templateVariables = try container.decode([String: Any].self, forKey: .templateVariables)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    published = try container.decode(Bool.self, forKey: .published)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    category = try container.decode(String.self, forKey: .category)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    headers = try container.decode([EmailTemplateHeaders].self, forKey: .headers)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    attachments = try container.decode([Int].self, forKey: .attachments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -392,7 +482,43 @@ public extension PlatformClient.Communication {
             
             
                 do {
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     v = try container.decode(Int.self, forKey: .v)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fromName = try container.decode(String.self, forKey: .fromName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    text = try container.decode(TemplateAndType.self, forKey: .text)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -409,6 +535,11 @@ public extension PlatformClient.Communication {
             
             
             
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            
+            
+            
             try? container.encodeIfPresent(isSystem, forKey: .isSystem)
             
             
@@ -419,7 +550,22 @@ public extension PlatformClient.Communication {
             
             
             
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(editorType, forKey: .editorType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(editorMeta, forKey: .editorMeta)
             
             
             
@@ -439,37 +585,12 @@ public extension PlatformClient.Communication {
             
             
             
+            try? container.encodeIfPresent(replyTo, forKey: .replyTo)
+            
+            
+            
+            
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(priority, forKey: .priority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(published, forKey: .published)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(fromName, forKey: .fromName)
             
             
             
@@ -484,7 +605,32 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(urlShorten, forKey: .urlShorten)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(templateVariables, forKey: .templateVariables)
+            
+            
+            
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+            
+            
+            
+            try? container.encodeIfPresent(category, forKey: .category)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -509,7 +655,22 @@ public extension PlatformClient.Communication {
             
             
             
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
             try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fromName, forKey: .fromName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(text, forKey: .text)
             
             
         }
@@ -528,56 +689,78 @@ public extension PlatformClient.ApplicationClient.Communication {
     class EmailTemplate: Codable {
         
         
+        public var application: String?
+        
         public var isSystem: Bool?
         
         public var isInternal: Bool?
         
-        public var description: String?
-        
-        public var staticTo: [[String: Any]]?
-        
-        public var staticCc: [[String: Any]]?
-        
-        public var staticBcc: [[String: Any]]?
-        
-        public var tags: [[String: Any]]?
-        
-        public var priority: String?
-        
-        public var published: Bool?
-        
-        public var id: String?
-        
-        public var slug: String?
-        
         public var name: String?
         
-        public var fromName: String?
+        public var description: String?
+        
+        public var editorType: String?
+        
+        public var editorMeta: String?
+        
+        public var staticTo: [String]?
+        
+        public var staticCc: [String]?
+        
+        public var staticBcc: [String]?
+        
+        public var replyTo: String?
+        
+        public var tags: [String]?
         
         public var subject: TemplateAndType?
         
         public var html: TemplateAndType?
         
-        public var text: TemplateAndType?
+        public var urlShorten: EnabledObj?
         
-        public var headers: [[String: Any]]?
+        public var priority: String?
         
-        public var attachments: [[String: Any]]?
+        public var templateVariables: [String: Any]?
+        
+        public var published: Bool?
+        
+        public var category: String?
+        
+        public var id: String?
+        
+        public var headers: [EmailTemplateHeaders]?
+        
+        public var attachments: [Int]?
         
         public var createdAt: String?
         
         public var updatedAt: String?
         
+        public var slug: String?
+        
         public var v: Int?
+        
+        public var fromName: String?
+        
+        public var text: TemplateAndType?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case application = "application"
             
             case isSystem = "is_system"
             
             case isInternal = "is_internal"
             
+            case name = "name"
+            
             case description = "description"
+            
+            case editorType = "editor_type"
+            
+            case editorMeta = "editor_meta"
             
             case staticTo = "static_to"
             
@@ -585,25 +768,25 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case staticBcc = "static_bcc"
             
+            case replyTo = "reply_to"
+            
             case tags = "tags"
-            
-            case priority = "priority"
-            
-            case published = "published"
-            
-            case id = "_id"
-            
-            case slug = "slug"
-            
-            case name = "name"
-            
-            case fromName = "from_name"
             
             case subject = "subject"
             
             case html = "html"
             
-            case text = "text"
+            case urlShorten = "url_shorten"
+            
+            case priority = "priority"
+            
+            case templateVariables = "template_variables"
+            
+            case published = "published"
+            
+            case category = "category"
+            
+            case id = "_id"
             
             case headers = "headers"
             
@@ -613,17 +796,31 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case updatedAt = "updated_at"
             
+            case slug = "slug"
+            
             case v = "__v"
+            
+            case fromName = "from_name"
+            
+            case text = "text"
             
         }
 
-        public init(attachments: [[String: Any]]? = nil, createdAt: String? = nil, description: String? = nil, fromName: String? = nil, headers: [[String: Any]]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, slug: String? = nil, staticBcc: [[String: Any]]? = nil, staticCc: [[String: Any]]? = nil, staticTo: [[String: Any]]? = nil, subject: TemplateAndType? = nil, tags: [[String: Any]]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, attachments: [Int]? = nil, category: String? = nil, createdAt: String? = nil, description: String? = nil, editorMeta: String? = nil, editorType: String? = nil, fromName: String? = nil, headers: [EmailTemplateHeaders]? = nil, html: TemplateAndType? = nil, isInternal: Bool? = nil, isSystem: Bool? = nil, name: String? = nil, priority: String? = nil, published: Bool? = nil, replyTo: String? = nil, slug: String? = nil, staticBcc: [String]? = nil, staticCc: [String]? = nil, staticTo: [String]? = nil, subject: TemplateAndType? = nil, tags: [String]? = nil, templateVariables: [String: Any]? = nil, text: TemplateAndType? = nil, updatedAt: String? = nil, urlShorten: EnabledObj? = nil, id: String? = nil, v: Int? = nil) {
+            
+            self.application = application
             
             self.isSystem = isSystem
             
             self.isInternal = isInternal
             
+            self.name = name
+            
             self.description = description
+            
+            self.editorType = editorType
+            
+            self.editorMeta = editorMeta
             
             self.staticTo = staticTo
             
@@ -631,25 +828,25 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             self.staticBcc = staticBcc
             
+            self.replyTo = replyTo
+            
             self.tags = tags
-            
-            self.priority = priority
-            
-            self.published = published
-            
-            self.id = id
-            
-            self.slug = slug
-            
-            self.name = name
-            
-            self.fromName = fromName
             
             self.subject = subject
             
             self.html = html
             
-            self.text = text
+            self.urlShorten = urlShorten
+            
+            self.priority = priority
+            
+            self.templateVariables = templateVariables
+            
+            self.published = published
+            
+            self.category = category
+            
+            self.id = id
             
             self.headers = headers
             
@@ -659,12 +856,30 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             self.updatedAt = updatedAt
             
+            self.slug = slug
+            
             self.v = v
+            
+            self.fromName = fromName
+            
+            self.text = text
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -692,114 +907,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    description = try container.decode(String.self, forKey: .description)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    staticTo = try container.decode([[String: Any]].self, forKey: .staticTo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    staticCc = try container.decode([[String: Any]].self, forKey: .staticCc)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    staticBcc = try container.decode([[String: Any]].self, forKey: .staticBcc)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    tags = try container.decode([[String: Any]].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    priority = try container.decode(String.self, forKey: .priority)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    published = try container.decode(Bool.self, forKey: .published)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    slug = try container.decode(String.self, forKey: .slug)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -812,7 +919,91 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    fromName = try container.decode(String.self, forKey: .fromName)
+                    description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    editorType = try container.decode(String.self, forKey: .editorType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    editorMeta = try container.decode(String.self, forKey: .editorMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    staticTo = try container.decode([String].self, forKey: .staticTo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    staticCc = try container.decode([String].self, forKey: .staticCc)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    staticBcc = try container.decode([String].self, forKey: .staticBcc)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    replyTo = try container.decode(String.self, forKey: .replyTo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -848,7 +1039,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    text = try container.decode(TemplateAndType.self, forKey: .text)
+                    urlShorten = try container.decode(EnabledObj.self, forKey: .urlShorten)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -860,7 +1051,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    headers = try container.decode([[String: Any]].self, forKey: .headers)
+                    priority = try container.decode(String.self, forKey: .priority)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -872,7 +1063,67 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    attachments = try container.decode([[String: Any]].self, forKey: .attachments)
+                    templateVariables = try container.decode([String: Any].self, forKey: .templateVariables)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    published = try container.decode(Bool.self, forKey: .published)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    category = try container.decode(String.self, forKey: .category)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    headers = try container.decode([EmailTemplateHeaders].self, forKey: .headers)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    attachments = try container.decode([Int].self, forKey: .attachments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -908,7 +1159,43 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     v = try container.decode(Int.self, forKey: .v)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fromName = try container.decode(String.self, forKey: .fromName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    text = try container.decode(TemplateAndType.self, forKey: .text)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -925,6 +1212,11 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            
+            
+            
             try? container.encodeIfPresent(isSystem, forKey: .isSystem)
             
             
@@ -935,7 +1227,22 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(editorType, forKey: .editorType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(editorMeta, forKey: .editorMeta)
             
             
             
@@ -955,37 +1262,12 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
+            try? container.encodeIfPresent(replyTo, forKey: .replyTo)
+            
+            
+            
+            
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(priority, forKey: .priority)
-            
-            
-            
-            
-            try? container.encodeIfPresent(published, forKey: .published)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(fromName, forKey: .fromName)
             
             
             
@@ -1000,7 +1282,32 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(text, forKey: .text)
+            try? container.encodeIfPresent(urlShorten, forKey: .urlShorten)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(templateVariables, forKey: .templateVariables)
+            
+            
+            
+            
+            try? container.encodeIfPresent(published, forKey: .published)
+            
+            
+            
+            
+            try? container.encodeIfPresent(category, forKey: .category)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
@@ -1025,7 +1332,22 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
             try? container.encodeIfPresent(v, forKey: .v)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fromName, forKey: .fromName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(text, forKey: .text)
             
             
         }
