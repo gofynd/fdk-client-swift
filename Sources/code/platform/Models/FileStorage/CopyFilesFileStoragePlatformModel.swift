@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: BulkUploadResponse
+        Model: CopyFiles
         Used By: FileStorage
     */
 
-    class BulkUploadResponse: Codable {
+    class CopyFiles: Codable {
         
         
-        public var trackingUrl: String
+        public var urls: [String]
         
-        public var task: CopyFileTask
+        public var destination: DestinationNamespace
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case trackingUrl = "tracking_url"
+            case urls = "urls"
             
-            case task = "task"
+            case destination = "destination"
             
         }
 
-        public init(task: CopyFileTask, trackingUrl: String) {
+        public init(destination: DestinationNamespace, urls: [String]) {
             
-            self.trackingUrl = trackingUrl
+            self.urls = urls
             
-            self.task = task
+            self.destination = destination
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                trackingUrl = try container.decode(String.self, forKey: .trackingUrl)
+                urls = try container.decode([String].self, forKey: .urls)
                 
             
             
             
-                task = try container.decode(CopyFileTask.self, forKey: .task)
+                destination = try container.decode(DestinationNamespace.self, forKey: .destination)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(trackingUrl, forKey: .trackingUrl)
+            try? container.encodeIfPresent(urls, forKey: .urls)
             
             
             
             
-            try? container.encodeIfPresent(task, forKey: .task)
+            try? container.encodeIfPresent(destination, forKey: .destination)
             
             
         }
@@ -70,31 +70,31 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: BulkUploadResponse
+        Model: CopyFiles
         Used By: FileStorage
     */
 
-    class BulkUploadResponse: Codable {
+    class CopyFiles: Codable {
         
         
-        public var trackingUrl: String
+        public var urls: [String]
         
-        public var task: CopyFileTask
+        public var destination: DestinationNamespace
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case trackingUrl = "tracking_url"
+            case urls = "urls"
             
-            case task = "task"
+            case destination = "destination"
             
         }
 
-        public init(task: CopyFileTask, trackingUrl: String) {
+        public init(destination: DestinationNamespace, urls: [String]) {
             
-            self.trackingUrl = trackingUrl
+            self.urls = urls
             
-            self.task = task
+            self.destination = destination
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                trackingUrl = try container.decode(String.self, forKey: .trackingUrl)
+                urls = try container.decode([String].self, forKey: .urls)
                 
             
             
             
-                task = try container.decode(CopyFileTask.self, forKey: .task)
+                destination = try container.decode(DestinationNamespace.self, forKey: .destination)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(trackingUrl, forKey: .trackingUrl)
+            try? container.encodeIfPresent(urls, forKey: .urls)
             
             
             
             
-            try? container.encodeIfPresent(task, forKey: .task)
+            try? container.encodeIfPresent(destination, forKey: .destination)
             
             
         }

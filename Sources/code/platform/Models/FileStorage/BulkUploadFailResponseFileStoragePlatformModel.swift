@@ -14,22 +14,16 @@ public extension PlatformClient.FileStorage {
         
         public var status: Status
         
-        public var files: [BulkUploadFailFileResponseItems]
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case status = "status"
             
-            case files = "files"
-            
         }
 
-        public init(files: [BulkUploadFailFileResponseItems], status: Status) {
+        public init(status: Status) {
             
             self.status = status
-            
-            self.files = files
             
         }
 
@@ -41,11 +35,6 @@ public extension PlatformClient.FileStorage {
                 
             
             
-            
-                files = try container.decode([BulkUploadFailFileResponseItems].self, forKey: .files)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -54,11 +43,6 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(files, forKey: .files)
             
             
         }
@@ -79,22 +63,16 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var status: Status
         
-        public var files: [BulkUploadFailFileResponseItems]
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case status = "status"
             
-            case files = "files"
-            
         }
 
-        public init(files: [BulkUploadFailFileResponseItems], status: Status) {
+        public init(status: Status) {
             
             self.status = status
-            
-            self.files = files
             
         }
 
@@ -106,11 +84,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 
             
             
-            
-                files = try container.decode([BulkUploadFailFileResponseItems].self, forKey: .files)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -119,11 +92,6 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(files, forKey: .files)
             
             
         }

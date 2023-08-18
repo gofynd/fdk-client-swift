@@ -5,43 +5,37 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: BulkUploadFailFileResponseItems
+        Model: pdfRender
         Used By: FileStorage
     */
 
-    class BulkUploadFailFileResponseItems: Codable {
+    class pdfRender: Codable {
         
         
-        public var success: Bool
+        public var format: String?
         
-        public var error: String?
+        public var payload: [String: Any]?
         
-        public var file: File?
-        
-        public var stage: String?
+        public var template: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case format = "format"
             
-            case error = "error"
+            case payload = "payload"
             
-            case file = "file"
-            
-            case stage = "stage"
+            case template = "template"
             
         }
 
-        public init(error: String? = nil, file: File? = nil, stage: String? = nil, success: Bool) {
+        public init(format: String? = nil, payload: [String: Any]? = nil, template: String? = nil) {
             
-            self.success = success
+            self.format = format
             
-            self.error = error
+            self.payload = payload
             
-            self.file = file
-            
-            self.stage = stage
+            self.template = template
             
         }
 
@@ -49,13 +43,8 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                success = try container.decode(Bool.self, forKey: .success)
-                
-            
-            
-            
                 do {
-                    error = try container.decode(String.self, forKey: .error)
+                    format = try container.decode(String.self, forKey: .format)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,7 +56,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    file = try container.decode(File.self, forKey: .file)
+                    payload = try container.decode([String: Any].self, forKey: .payload)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,7 +68,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    stage = try container.decode(String.self, forKey: .stage)
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,22 +85,17 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(format, forKey: .format)
             
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(payload, forKey: .payload)
             
             
             
             
-            try? container.encodeIfPresent(file, forKey: .file)
-            
-            
-            
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
         }
@@ -123,43 +107,37 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: BulkUploadFailFileResponseItems
+        Model: pdfRender
         Used By: FileStorage
     */
 
-    class BulkUploadFailFileResponseItems: Codable {
+    class pdfRender: Codable {
         
         
-        public var success: Bool
+        public var format: String?
         
-        public var error: String?
+        public var payload: [String: Any]?
         
-        public var file: File?
-        
-        public var stage: String?
+        public var template: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case format = "format"
             
-            case error = "error"
+            case payload = "payload"
             
-            case file = "file"
-            
-            case stage = "stage"
+            case template = "template"
             
         }
 
-        public init(error: String? = nil, file: File? = nil, stage: String? = nil, success: Bool) {
+        public init(format: String? = nil, payload: [String: Any]? = nil, template: String? = nil) {
             
-            self.success = success
+            self.format = format
             
-            self.error = error
+            self.payload = payload
             
-            self.file = file
-            
-            self.stage = stage
+            self.template = template
             
         }
 
@@ -167,13 +145,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                success = try container.decode(Bool.self, forKey: .success)
-                
-            
-            
-            
                 do {
-                    error = try container.decode(String.self, forKey: .error)
+                    format = try container.decode(String.self, forKey: .format)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -185,7 +158,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    file = try container.decode(File.self, forKey: .file)
+                    payload = try container.decode([String: Any].self, forKey: .payload)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -197,7 +170,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    stage = try container.decode(String.self, forKey: .stage)
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -214,22 +187,17 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(format, forKey: .format)
             
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encodeIfPresent(payload, forKey: .payload)
             
             
             
             
-            try? container.encodeIfPresent(file, forKey: .file)
-            
-            
-            
-            
-            try? container.encodeIfPresent(stage, forKey: .stage)
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
         }

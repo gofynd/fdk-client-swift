@@ -205,8 +205,8 @@ This operation will return the url for the uploaded file.
         **/
         public func copyFiles(
             sync: Bool?,
-            body: BulkRequest,
-            onResponse: @escaping (_ response: BulkUploadResponse?, _ error: FDKError?) -> Void
+            body: CopyFiles,
+            onResponse: @escaping (_ response: BulkUploadSyncMode?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -238,7 +238,7 @@ if let value = sync {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkUploadResponse.self, from: data)
+                        let response = Utility.decode(BulkUploadSyncMode.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -370,6 +370,12 @@ var xQuery: [String: Any] = [:]
                     }
             });
         }
+        
+        
+        
+        
+        
+        
         
         
     }

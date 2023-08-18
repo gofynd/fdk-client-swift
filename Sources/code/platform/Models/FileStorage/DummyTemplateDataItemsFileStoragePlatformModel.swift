@@ -5,37 +5,43 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: Opts
+        Model: DummyTemplateDataItems
         Used By: FileStorage
     */
 
-    class Opts: Codable {
+    class DummyTemplateDataItems: Codable {
         
         
-        public var attempts: Int?
+        public var id: String?
         
-        public var timestamp: Int?
+        public var pdfTypeId: Double?
         
-        public var delay: Int?
+        public var payload: [String: Any]
+        
+        public var v: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case attempts = "attempts"
+            case id = "_id"
             
-            case timestamp = "timestamp"
+            case pdfTypeId = "pdf_type_id"
             
-            case delay = "delay"
+            case payload = "payload"
+            
+            case v = "__v"
             
         }
 
-        public init(attempts: Int? = nil, delay: Int? = nil, timestamp: Int? = nil) {
+        public init(payload: [String: Any], pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
             
-            self.attempts = attempts
+            self.id = id
             
-            self.timestamp = timestamp
+            self.pdfTypeId = pdfTypeId
             
-            self.delay = delay
+            self.payload = payload
+            
+            self.v = v
             
         }
 
@@ -44,7 +50,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    attempts = try container.decode(Int.self, forKey: .attempts)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +62,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    timestamp = try container.decode(Int.self, forKey: .timestamp)
+                    pdfTypeId = try container.decode(Double.self, forKey: .pdfTypeId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,8 +73,13 @@ public extension PlatformClient.FileStorage {
                 
             
             
+                payload = try container.decode([String: Any].self, forKey: .payload)
+                
+            
+            
+            
                 do {
-                    delay = try container.decode(Int.self, forKey: .delay)
+                    v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,17 +96,22 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(attempts, forKey: .attempts)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
+            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
             
             
             
             
-            try? container.encodeIfPresent(delay, forKey: .delay)
+            try? container.encodeIfPresent(payload, forKey: .payload)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -107,37 +123,43 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: Opts
+        Model: DummyTemplateDataItems
         Used By: FileStorage
     */
 
-    class Opts: Codable {
+    class DummyTemplateDataItems: Codable {
         
         
-        public var attempts: Int?
+        public var id: String?
         
-        public var timestamp: Int?
+        public var pdfTypeId: Double?
         
-        public var delay: Int?
+        public var payload: [String: Any]
+        
+        public var v: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case attempts = "attempts"
+            case id = "_id"
             
-            case timestamp = "timestamp"
+            case pdfTypeId = "pdf_type_id"
             
-            case delay = "delay"
+            case payload = "payload"
+            
+            case v = "__v"
             
         }
 
-        public init(attempts: Int? = nil, delay: Int? = nil, timestamp: Int? = nil) {
+        public init(payload: [String: Any], pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
             
-            self.attempts = attempts
+            self.id = id
             
-            self.timestamp = timestamp
+            self.pdfTypeId = pdfTypeId
             
-            self.delay = delay
+            self.payload = payload
+            
+            self.v = v
             
         }
 
@@ -146,7 +168,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    attempts = try container.decode(Int.self, forKey: .attempts)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +180,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    timestamp = try container.decode(Int.self, forKey: .timestamp)
+                    pdfTypeId = try container.decode(Double.self, forKey: .pdfTypeId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -169,8 +191,13 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 
             
             
+                payload = try container.decode([String: Any].self, forKey: .payload)
+                
+            
+            
+            
                 do {
-                    delay = try container.decode(Int.self, forKey: .delay)
+                    v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,17 +214,22 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(attempts, forKey: .attempts)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(timestamp, forKey: .timestamp)
+            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
             
             
             
             
-            try? container.encodeIfPresent(delay, forKey: .delay)
+            try? container.encodeIfPresent(payload, forKey: .payload)
+            
+            
+            
+            
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

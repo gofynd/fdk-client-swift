@@ -5,37 +5,31 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: Destination
+        Model: BulkUploadSyncMode
         Used By: FileStorage
     */
 
-    class Destination: Codable {
+    class BulkUploadSyncMode: Codable {
         
         
-        public var namespace: String
+        public var status: Status
         
-        public var rewrite: String
-        
-        public var basepath: String?
+        public var files: [FilesSuccess]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case namespace = "namespace"
+            case status = "status"
             
-            case rewrite = "rewrite"
-            
-            case basepath = "basepath"
+            case files = "files"
             
         }
 
-        public init(basepath: String? = nil, namespace: String, rewrite: String) {
+        public init(files: [FilesSuccess]? = nil, status: Status) {
             
-            self.namespace = namespace
+            self.status = status
             
-            self.rewrite = rewrite
-            
-            self.basepath = basepath
+            self.files = files
             
         }
 
@@ -43,18 +37,13 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                namespace = try container.decode(String.self, forKey: .namespace)
-                
-            
-            
-            
-                rewrite = try container.decode(String.self, forKey: .rewrite)
+                status = try container.decode(Status.self, forKey: .status)
                 
             
             
             
                 do {
-                    basepath = try container.decode(String.self, forKey: .basepath)
+                    files = try container.decode([FilesSuccess].self, forKey: .files)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -71,17 +60,12 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(rewrite, forKey: .rewrite)
-            
-            
-            
-            
-            try? container.encodeIfPresent(basepath, forKey: .basepath)
+            try? container.encodeIfPresent(files, forKey: .files)
             
             
         }
@@ -93,37 +77,31 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: Destination
+        Model: BulkUploadSyncMode
         Used By: FileStorage
     */
 
-    class Destination: Codable {
+    class BulkUploadSyncMode: Codable {
         
         
-        public var namespace: String
+        public var status: Status
         
-        public var rewrite: String
-        
-        public var basepath: String?
+        public var files: [FilesSuccess]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case namespace = "namespace"
+            case status = "status"
             
-            case rewrite = "rewrite"
-            
-            case basepath = "basepath"
+            case files = "files"
             
         }
 
-        public init(basepath: String? = nil, namespace: String, rewrite: String) {
+        public init(files: [FilesSuccess]? = nil, status: Status) {
             
-            self.namespace = namespace
+            self.status = status
             
-            self.rewrite = rewrite
-            
-            self.basepath = basepath
+            self.files = files
             
         }
 
@@ -131,18 +109,13 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                namespace = try container.decode(String.self, forKey: .namespace)
-                
-            
-            
-            
-                rewrite = try container.decode(String.self, forKey: .rewrite)
+                status = try container.decode(Status.self, forKey: .status)
                 
             
             
             
                 do {
-                    basepath = try container.decode(String.self, forKey: .basepath)
+                    files = try container.decode([FilesSuccess].self, forKey: .files)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,17 +132,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(rewrite, forKey: .rewrite)
-            
-            
-            
-            
-            try? container.encodeIfPresent(basepath, forKey: .basepath)
+            try? container.encodeIfPresent(files, forKey: .files)
             
             
         }
