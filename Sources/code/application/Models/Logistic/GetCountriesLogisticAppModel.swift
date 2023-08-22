@@ -3,52 +3,75 @@
 import Foundation
 public extension ApplicationClient.Logistic {
     /*
-         Model: GetCountries
-         Used By: Logistic
-     */
+        Model: GetCountries
+        Used By: Logistic
+    */
     class GetCountries: Codable {
-        public var page: [String: Any]?
-
-        public var items: [[String: Any]]?
+        
+        public var items: [CountryObject]?
+        
+        public var page: Page?
+        
 
         public enum CodingKeys: String, CodingKey {
-            case page
-
-            case items
+            
+            case items = "items"
+            
+            case page = "page"
+            
         }
 
-        public init(items: [[String: Any]]? = nil, page: [String: Any]? = nil) {
-            self.page = page
-
+        public init(items: [CountryObject]? = nil, page: Page? = nil) {
+            
             self.items = items
+            
+            self.page = page
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
+            
+            
             do {
-                page = try container.decode([String: Any].self, forKey: .page)
-
+                items = try container.decode([CountryObject].self, forKey: .items)
+            
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {}
-
+            } catch {
+                
+            }
+            
+            
+            
             do {
-                items = try container.decode([[String: Any]].self, forKey: .items)
-
+                page = try container.decode(Page.self, forKey: .page)
+            
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {}
+            } catch {
+                
+            }
+            
+            
         }
-
+        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(page, forKey: .page)
-
+            
+            
+            
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
+            
+            
         }
+        
     }
 }

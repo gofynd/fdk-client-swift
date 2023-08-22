@@ -109,8 +109,8 @@ Get pincode data
         "lat_long": {
           "type": "Point",
           "coordinates": [
-            "3.8858955",
-            "7.2272335"
+            3.8858955,
+            7.2272335
           ]
         }
       }
@@ -293,7 +293,7 @@ Get TAT  data
             },
             "manufacturing_time": 2,
             "manufacturing_time_unit": "days",
-            "promise": {},
+            "promise": null,
             "error": {
               "type": "ValueError",
               "value": "99999",
@@ -497,7 +497,7 @@ Get all countries and associated data.
 
 
 ```swift
-applicationClient.logistic.getCountries(onboarding: onboarding) { (response, error) in
+applicationClient.logistic.getCountries(onboarding: onboarding, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -508,7 +508,10 @@ applicationClient.logistic.getCountries(onboarding: onboarding) { (response, err
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| onboarding | Bool? | no | Only fetch countries which allowed for onboard on Platform. |  
+| onboarding | Bool? | no | Only fetch countries which allowed for onboard on Platform. |   
+| pageNo | Int? | no | page number. |   
+| pageSize | Int? | no | page size. |   
+| q | String? | no | search. |  
 
 
 
@@ -538,9 +541,10 @@ Successfully retrieved all countries with associated data.
   "value": {
     "items": [
       {
+        "id": "64c6ac280000000000000000",
         "name": "INDIA",
-        "sub_type": "country",
-        "uid": "64c6ac280000000000000000",
+        "type": "country",
+        "display_name": "India",
         "iso2": "IN",
         "iso3": "IND",
         "timezones": [
@@ -565,8 +569,9 @@ Successfully retrieved all countries with associated data.
       },
       {
         "name": "UNITED STATES",
-        "sub_type": "country",
-        "uid": "66a931280000000000000000",
+        "display_name": "USA",
+        "type": "country",
+        "id": "66a931280000000000000000",
         "iso2": "US",
         "iso3": "USA",
         "timezones": [
@@ -596,22 +601,20 @@ Successfully retrieved all countries with associated data.
         ],
         "currency": "USD",
         "phone_code": "+1",
-        "hierarchy": {
-          "value": [
-            {
-              "name": "State",
-              "slug": "state"
-            },
-            {
-              "name": "City",
-              "slug": "city"
-            },
-            {
-              "name": "Zipcode",
-              "slug": "pincode"
-            }
-          ]
-        }
+        "hierarchy": [
+          {
+            "name": "State",
+            "slug": "state"
+          },
+          {
+            "name": "City",
+            "slug": "city"
+          },
+          {
+            "name": "Zipcode",
+            "slug": "pincode"
+          }
+        ]
       }
     ],
     "page": {
@@ -635,9 +638,10 @@ Successfully retrieved all countries with associated data.
   "value": {
     "items": [
       {
+        "id": "669ea5280000000000000000",
         "name": "United Arab Emirates",
-        "sub_type": "country",
-        "uid": "669ea5280000000000000000",
+        "display_name": "United Arab Emirates",
+        "type": "country",
         "iso2": "AE",
         "iso3": "ARE",
         "timezones": [
@@ -730,8 +734,9 @@ Get country data.
 {
   "value": {
     "name": "INDIA",
-    "sub_type": "country",
-    "uid": "64c6ac280000000000000000",
+    "display_name": "India",
+    "type": "country",
+    "id": "64c6ac280000000000000000",
     "iso2": "IN",
     "iso3": "IND",
     "timezones": [
@@ -739,43 +744,166 @@ Get country data.
     ],
     "currency": "INR",
     "phone_code": "+91",
-    "hierarchy": {
-      "value": [
-        {
-          "name": "State",
-          "slug": "state"
-        },
-        {
-          "name": "City",
-          "slug": "city"
-        },
-        {
-          "name": "Pincode",
-          "slug": "pincode"
-        }
-      ]
-    },
+    "hierarchy": [
+      {
+        "name": "Pincode",
+        "slug": "pincode"
+      },
+      {
+        "name": "City",
+        "slug": "city"
+      },
+      {
+        "name": "State",
+        "slug": "state"
+      }
+    ],
     "fields": {
       "serviceability_fields": [
         "pincode"
       ],
-      "form_template": [
+      "address_template": {
+        "checkout_form": "{address} {area}_{landmark} {pincode}_{city} {state}_{name} {phone}_{email}",
+        "invoice_display": "{address} {area}_{landmark}_{city} {pincode}_{state} {country}"
+      },
+      "address": [
         {
-          "form_app_checkout": "{address} {area}_{landmark} {pincode}_{city}_{state}_{address_type}_{name} {phonenumber}_{email}"
+          "display_name": "Flat No/House No",
+          "slug": "address",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": null,
+          "error_text": null
         },
         {
-          "form_pltm_store": "{address}_{area}_{pincode}_{city}_{state}"
+          "display_name": "Building Name/street",
+          "slug": "area",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": null,
+          "error_text": null
         },
         {
-          "form_pln_onboarding": "{pincode}_{city}{state}"
+          "display_name": "Locality/Landmark",
+          "slug": "landmark",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": null,
+          "error_text": null
         },
         {
-          "display": "{address}{area}_{landmark}_{city} {pincode}_{state}{country}"
+          "display_name": "Pincode",
+          "slug": "pincode",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": {
+            "get_one": {
+              "operation_id": "getLocality",
+              "params": {
+                "path": {
+                  "locality_value": "400601",
+                  "locality_type": "pincode"
+                }
+              }
+            }
+          },
+          "validation": {
+            "type": "regex",
+            "regex": {
+              "value": "^[0-9]{6}$",
+              "length": {
+                "min": 6,
+                "max": 6
+              }
+            }
+          },
+          "error_text": "Invalid Pincode"
+        },
+        {
+          "display_name": "City",
+          "slug": "city",
+          "input": "textbox",
+          "required": true,
+          "edit": false,
+          "values": null,
+          "validation": null,
+          "error_text": "Invalid City"
+        },
+        {
+          "display_name": "State",
+          "slug": "state",
+          "input": "textbox",
+          "required": true,
+          "edit": false,
+          "values": null,
+          "validation": null,
+          "error_text": "Invalid State"
+        },
+        {
+          "display_name": "Full Name",
+          "slug": "name",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": {
+            "type": "regex",
+            "regex": {
+              "value": ".*",
+              "length": {
+                "min": null,
+                "max": null
+              }
+            }
+          },
+          "error_text": null
+        },
+        {
+          "display_name": "Mobile Number",
+          "slug": "phone",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": {
+            "type": "regex",
+            "regex": {
+              "value": "^\\\\+[0-9]{2}\\\\s[0-9]{10}$",
+              "length": {
+                "min": 13,
+                "max": 13
+              }
+            }
+          },
+          "error_text": "Invalid Phone Number"
+        },
+        {
+          "display_name": "Email",
+          "slug": "email",
+          "input": "textbox",
+          "required": false,
+          "edit": true,
+          "values": null,
+          "validation": {
+            "type": "regex",
+            "regex": {
+              "value": "^[\\w\\.-]+@[a-zA-Z\\d\\.-]+\\.[a-zA-Z]{2,}$",
+              "length": {
+                "min": null,
+                "max": null
+              }
+            }
+          },
+          "error_text": "Invalid Email"
         }
-      ],
-      "address": {
-        "$ref": "#/components/examples/AddressFields"
-      }
+      ]
     }
   }
 }
@@ -789,8 +917,9 @@ Get country data.
 {
   "value": {
     "name": "United Arab Emirates",
-    "sub_type": "country",
-    "uid": "669ea5280000000000000000",
+    "display_name": "United Arab Emirates",
+    "type": "country",
+    "id": "669ea5280000000000000000",
     "iso2": "AE",
     "iso3": "ARE",
     "timezones": [
@@ -798,39 +927,155 @@ Get country data.
     ],
     "currency": "DIR",
     "phone_code": "+971",
-    "hierarchy": {
-      "value": [
-        {
-          "name": "City",
-          "slug": "city"
-        },
-        {
-          "name": "Area",
-          "slug": "sector"
-        }
-      ]
-    },
+    "hierarchy": [
+      {
+        "name": "Area",
+        "slug": "sector"
+      },
+      {
+        "name": "City",
+        "slug": "city"
+      }
+    ],
     "fields": {
       "serviceability_fields": [
-        "pincode"
+        "city",
+        "sector"
       ],
-      "form_template": [
+      "address_template": {
+        "checkout_form": "{address} {area}_{landmark}_{city} {sector}_{name} {phone}_{email}",
+        "invoice_display": "{address} {area}_{landmark}_{city}_{sector} {country}"
+      },
+      "address": [
         {
-          "form_app_checkout": "{address}_{area}_{city}{sector}_{landmark}_{address_type}_{name} {phonenumber}_{email}"
+          "display_name": "Flat No/House No",
+          "slug": "address",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": null,
+          "error_text": null
         },
         {
-          "form_pltm_store": "{city}_{sector}"
+          "display_name": "Building Name/street",
+          "slug": "area",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": null,
+          "error_text": null
         },
         {
-          "form_pln_onboarding": "{city}{sector}"
+          "display_name": "Locality/Landmark",
+          "slug": "landmark",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": null,
+          "error_text": null
         },
         {
-          "address_display": "{address}_{area}_{city} {sector}_{country}"
+          "display_name": "City",
+          "slug": "city",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": {
+            "get_all": {
+              "operation_id": "getLocalities",
+              "params": {
+                "path": {
+                  "locality_type": "city"
+                }
+              }
+            }
+          },
+          "validation": null,
+          "error_text": "Invalid Pincode"
+        },
+        {
+          "display_name": "Area",
+          "slug": "sector",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": {
+            "get_all": {
+              "operation_id": "getLocalities",
+              "params": {
+                "path": {
+                  "locality_type": "sector"
+                },
+                "query": {
+                  "city": "THANE"
+                }
+              }
+            }
+          },
+          "validation": null,
+          "error_text": "Invalid Area"
+        },
+        {
+          "display_name": "Full Name",
+          "slug": "name",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": {
+            "type": "regex",
+            "regex": {
+              "value": ".*",
+              "length": {
+                "min": null,
+                "max": null
+              }
+            }
+          },
+          "error_text": null
+        },
+        {
+          "display_name": "Mobile Number",
+          "slug": "phone",
+          "input": "textbox",
+          "required": true,
+          "edit": true,
+          "values": null,
+          "validation": {
+            "type": "regex",
+            "regex": {
+              "value": "^\\\\+[0-9]{2}\\\\s[0-9]{10}$",
+              "length": {
+                "min": 13,
+                "max": 13
+              }
+            }
+          },
+          "error_text": "Invalid Phone Number"
+        },
+        {
+          "display_name": "Email",
+          "slug": "email",
+          "input": "textbox",
+          "required": false,
+          "edit": true,
+          "values": null,
+          "validation": {
+            "type": "regex",
+            "regex": {
+              "value": "^[\\w\\.-]+@[a-zA-Z\\d\\.-]+\\.[a-zA-Z]{2,}$",
+              "length": {
+                "min": null,
+                "max": null
+              }
+            }
+          },
+          "error_text": "Invalid Email"
         }
-      ],
-      "address": {
-        "$ref": "#/components/examples/AddressFields"
-      }
+      ]
     }
   }
 }
@@ -857,7 +1102,7 @@ Get Localities.
 
 
 ```swift
-applicationClient.logistic.getLocalities(localityType: localityType, country: country, state: state, city: city) { (response, error) in
+applicationClient.logistic.getLocalities(localityType: localityType, country: country, state: state, city: city, pageNo: pageNo, pageSize: pageSize, q: q) { (response, error) in
     // Use response
 }
 ```
@@ -871,7 +1116,10 @@ applicationClient.logistic.getLocalities(localityType: localityType, country: co
 | localityType | String | yes | A `locality_type` contains unique geographical division. |   
 | country | String? | no | A `country` contains a specific value of the country iso2 code. |   
 | state | String? | no | A `state` contains a specific value of the state, province. |   
-| city | String? | no | A `city` contains a specific value of the city. |  
+| city | String? | no | A `city` contains a specific value of the city. |   
+| pageNo | Int? | no | page number. |   
+| pageSize | Int? | no | page size. |   
+| q | String? | no | search. |  
 
 
 
@@ -901,22 +1149,20 @@ Get Localities data
   "value": {
     "items": [
       {
-        "uid": "64b78b60707446a37f2afbbb",
+        "id": "64b78b60707446a37f2afbbb",
         "name": "Maharashtra",
         "display_name": "Maharashtra",
-        "type": "region",
-        "sub_type": "state",
-        "parent_id": [
+        "type": "state",
+        "parent_ids": [
           "64b78b60707446a37f2aec6f"
         ]
       },
       {
-        "uid": "64c7fda80000000000000000",
+        "id": "64c7fda80000000000000000",
         "name": "400603",
         "display_name": "400603",
-        "type": "region",
-        "sub_type": "pincode",
-        "parent_id": [
+        "type": "pincode",
+        "parent_ids": [
           "64b78b60707446a37f2aec6f",
           "64b78b60707446a37f2aec4b",
           "64b78b60707446a37f2aec43"
@@ -944,12 +1190,11 @@ Get Localities data
   "value": {
     "items": [
       {
-        "uid": "63d95e280000000000000000",
+        "id": "63d95e280000000000000000",
         "name": "Thane",
         "display_name": "Thane",
-        "type": "region",
-        "sub_type": "city",
-        "parent_id": [
+        "type": "city",
+        "parent_ids": [
           "64b78b60707446a37f2aec6f",
           "64b78b60707446a37f2aec4b"
         ]
@@ -1000,7 +1245,7 @@ applicationClient.logistic.getLocality(localityType: localityType, localityValue
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | localityType | String | yes | A `locality_type` contains value geographical division. |   
-| localityValue | String | yes | A `locality_value` contains a specific value of the locality. |   
+| localityValue | String | yes | A `locality_value` contains a specific name of the locality. |   
 | country | String? | no | A `country` contains a specific value of the country iso2 code. |   
 | state | String? | no | A `state` contains a specific value of the state, province. |   
 | city | String? | no | A `city` contains a specific value of the city. |  
@@ -1031,13 +1276,21 @@ Get Locality data
 ```json
 {
   "value": {
-    "uid": "649f1f280000000000000000",
-    "name": "Abu Dhabi",
+    "id": "649f1f280000000000000000",
+    "name": "ABU DHABI",
     "display_name": "Abu Dhabi",
-    "type": "region",
-    "sub_type": "city",
-    "parent_id": [
+    "type": "city",
+    "parent_ids": [
       "64b78b60707446a37f2aec6f"
+    ],
+    "localities": [
+      {
+        "name": "United Arab Emirates",
+        "id": "64b78b60707486a37f2apd00",
+        "display_name": "United Arab Emirates",
+        "type": "country",
+        "parent_ids": []
+      }
     ]
   }
 }
@@ -1050,14 +1303,41 @@ Get Locality data
 ```json
 {
   "value": {
-    "uid": "649887a80000000000000000",
-    "name": "Sila",
-    "display_name": "Sila",
-    "type": "region",
-    "sub_type": "sector",
-    "parent_id": [
+    "id": "649887a80000000000000000",
+    "name": "400603",
+    "display_name": "400603",
+    "type": "pincode",
+    "parent_ids": [
       "64b78b60707446a37f2aec6f",
       "64b78b60707446a37f2aec4b"
+    ],
+    "localities": [
+      {
+        "name": "THANE",
+        "id": "64b78b60707446a37f2aed00",
+        "display_name": "Thane",
+        "type": "city",
+        "parent_ids": [
+          "64b78b60707446a37f2aec6f",
+          "64b78b60707446a37f2aec4b"
+        ]
+      },
+      {
+        "name": "MAHARASHTRA",
+        "id": "64b78b60707446a37f2aed00",
+        "display_name": "Maharashtra",
+        "type": "state",
+        "parent_ids": [
+          "64b78b60707446a37f2aec6f"
+        ]
+      },
+      {
+        "name": "INDIA",
+        "id": "64b78b60707486a37f2apd00",
+        "display_name": "India",
+        "type": "country",
+        "parent_ids": []
+      }
     ]
   }
 }
@@ -1448,12 +1728,185 @@ Get Locality data
 
  
  
+ #### [CountryHierarchy](#CountryHierarchy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | slug | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CountryObject](#CountryObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | displayName | String? |  yes  |  |
+ | iso2 | String? |  yes  |  |
+ | iso3 | String? |  yes  |  |
+ | timezones | [String]? |  yes  |  |
+ | hierarchy | [[CountryHierarchy](#CountryHierarchy)]? |  yes  |  |
+ | phoneCode | String? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | type | String? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [GetCountries](#GetCountries)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | page | [String: Any]? |  yes  |  |
- | items | [[String: Any]]? |  yes  |  |
+ | items | [[CountryObject](#CountryObject)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetOneOrAllPath](#GetOneOrAllPath)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | localityType | String? |  yes  |  |
+ | localityValue | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetOneOrAllQuery](#GetOneOrAllQuery)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country | String? |  yes  |  |
+ | state | String? |  yes  |  |
+ | city | String? |  yes  |  |
+ | sector | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetOneOrAllParams](#GetOneOrAllParams)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | path | [GetOneOrAllPath](#GetOneOrAllPath)? |  yes  |  |
+ | query | [GetOneOrAllQuery](#GetOneOrAllQuery)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetOneOrAll](#GetOneOrAll)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | operationId | String? |  yes  |  |
+ | params | [GetOneOrAllParams](#GetOneOrAllParams)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [LengthValidation](#LengthValidation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | min | Int? |  yes  |  |
+ | max | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FieldValidationRegex](#FieldValidationRegex)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String? |  yes  |  |
+ | length | [LengthValidation](#LengthValidation)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [FieldValidation](#FieldValidation)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  |  |
+ | regex | [FieldValidationRegex](#FieldValidationRegex)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCountryFieldsAddressValues](#GetCountryFieldsAddressValues)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | getOne | [GetOneOrAll](#GetOneOrAll)? |  yes  |  |
+ | getAll | [GetOneOrAll](#GetOneOrAll)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCountryFieldsAddress](#GetCountryFieldsAddress)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | displayName | String |  no  |  |
+ | slug | String |  no  |  |
+ | required | Bool |  no  |  |
+ | edit | Bool? |  yes  |  |
+ | input | String |  no  |  |
+ | validation | [FieldValidation](#FieldValidation)? |  yes  |  |
+ | values | [GetCountryFieldsAddressValues](#GetCountryFieldsAddressValues)? |  yes  |  |
+ | errorText | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCountryFieldsAddressTemplate](#GetCountryFieldsAddressTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | checkoutForm | String |  no  |  |
+ | invoiceDisplay | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GetCountryFields](#GetCountryFields)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | [[GetCountryFieldsAddress](#GetCountryFieldsAddress)] |  no  |  |
+ | serviceabilityFields | [String] |  no  |  |
+ | addressTemplate | [GetCountryFieldsAddressTemplate](#GetCountryFieldsAddressTemplate) |  no  |  |
 
 ---
 
@@ -1464,16 +1917,17 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | actions | [String: Any]? |  yes  |  |
- | ios2 | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | displayName | String? |  yes  |  |
+ | iso2 | String? |  yes  |  |
+ | iso3 | String? |  yes  |  |
  | timezones | [String]? |  yes  |  |
- | hierarchy | [String: Any]? |  yes  |  |
- | ios3 | String? |  yes  |  |
+ | hierarchy | [[CountryHierarchy](#CountryHierarchy)]? |  yes  |  |
  | phoneCode | String? |  yes  |  |
  | currency | String? |  yes  |  |
- | subType | String? |  yes  |  |
- | name | String? |  yes  |  |
- | uid | String? |  yes  |  |
+ | type | String? |  yes  |  |
+ | fields | [GetCountryFields](#GetCountryFields)? |  yes  |  |
 
 ---
 
@@ -1496,30 +1950,15 @@ Get Locality data
 
  
  
- #### [LogisticsDPSchema](#LogisticsDPSchema)
+ #### [Localities](#Localities)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dp | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [Locality](#Locality)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isActive | Bool? |  yes  |  |
- | parentId | [String]? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | logistics | [LogisticsDPSchema](#LogisticsDPSchema)? |  yes  |  |
- | uid | String? |  yes  |  |
- | subType | String? |  yes  |  |
+ | id | String? |  yes  |  |
  | name | String? |  yes  |  |
- | type | String? |  yes  |  |
  | displayName | String? |  yes  |  |
+ | parentIds | [String]? |  yes  |  |
+ | type | String? |  yes  |  |
 
 ---
 
@@ -1530,8 +1969,8 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | items | [[Localities](#Localities)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
- | regions | [[Locality](#Locality)]? |  yes  |  |
 
 ---
 
@@ -1542,7 +1981,12 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | regions | [Locality](#Locality)? |  yes  |  |
+ | id | String? |  yes  |  |
+ | name | String? |  yes  |  |
+ | displayName | String? |  yes  |  |
+ | parentIds | [String]? |  yes  |  |
+ | type | String? |  yes  |  |
+ | localities | [[Localities](#Localities)]? |  yes  |  |
 
 ---
 
@@ -1553,7 +1997,7 @@ Get Locality data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | String? |  yes  |  |
+ | message | String? |  yes  |  |
 
 ---
 

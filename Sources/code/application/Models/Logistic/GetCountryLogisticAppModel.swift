@@ -3,180 +3,282 @@
 import Foundation
 public extension ApplicationClient.Logistic {
     /*
-         Model: GetCountry
-         Used By: Logistic
-     */
+        Model: GetCountry
+        Used By: Logistic
+    */
     class GetCountry: Codable {
-        public var actions: [String: Any]?
-
-        public var ios2: String?
-
-        public var timezones: [String]?
-
-        public var hierarchy: [String: Any]?
-
-        public var ios3: String?
-
-        public var phoneCode: String?
-
-        public var currency: String?
-
-        public var subType: String?
-
+        
+        public var id: String?
+        
         public var name: String?
-
-        public var uid: String?
+        
+        public var displayName: String?
+        
+        public var iso2: String?
+        
+        public var iso3: String?
+        
+        public var timezones: [String]?
+        
+        public var hierarchy: [CountryHierarchy]?
+        
+        public var phoneCode: String?
+        
+        public var currency: String?
+        
+        public var type: String?
+        
+        public var fields: GetCountryFields?
+        
 
         public enum CodingKeys: String, CodingKey {
-            case actions
-
-            case ios2
-
-            case timezones
-
-            case hierarchy
-
-            case ios3
-
+            
+            case id = "id"
+            
+            case name = "name"
+            
+            case displayName = "display_name"
+            
+            case iso2 = "iso2"
+            
+            case iso3 = "iso3"
+            
+            case timezones = "timezones"
+            
+            case hierarchy = "hierarchy"
+            
             case phoneCode = "phone_code"
-
-            case currency
-
-            case subType = "sub_type"
-
-            case name
-
-            case uid
+            
+            case currency = "currency"
+            
+            case type = "type"
+            
+            case fields = "fields"
+            
         }
 
-        public init(actions: [String: Any]? = nil, currency: String? = nil, hierarchy: [String: Any]? = nil, ios2: String? = nil, ios3: String? = nil, name: String? = nil, phoneCode: String? = nil, subType: String? = nil, timezones: [String]? = nil, uid: String? = nil) {
-            self.actions = actions
-
-            self.ios2 = ios2
-
-            self.timezones = timezones
-
-            self.hierarchy = hierarchy
-
-            self.ios3 = ios3
-
-            self.phoneCode = phoneCode
-
-            self.currency = currency
-
-            self.subType = subType
-
+        public init(currency: String? = nil, displayName: String? = nil, fields: GetCountryFields? = nil, hierarchy: [CountryHierarchy]? = nil, id: String? = nil, iso2: String? = nil, iso3: String? = nil, name: String? = nil, phoneCode: String? = nil, timezones: [String]? = nil, type: String? = nil) {
+            
+            self.id = id
+            
             self.name = name
-
-            self.uid = uid
+            
+            self.displayName = displayName
+            
+            self.iso2 = iso2
+            
+            self.iso3 = iso3
+            
+            self.timezones = timezones
+            
+            self.hierarchy = hierarchy
+            
+            self.phoneCode = phoneCode
+            
+            self.currency = currency
+            
+            self.type = type
+            
+            self.fields = fields
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-
+            
+            
             do {
-                actions = try container.decode([String: Any].self, forKey: .actions)
-
+                id = try container.decode(String.self, forKey: .id)
+            
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                ios2 = try container.decode(String.self, forKey: .ios2)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                timezones = try container.decode([String].self, forKey: .timezones)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                hierarchy = try container.decode([String: Any].self, forKey: .hierarchy)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                ios3 = try container.decode(String.self, forKey: .ios3)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                phoneCode = try container.decode(String.self, forKey: .phoneCode)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                currency = try container.decode(String.self, forKey: .currency)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
-            do {
-                subType = try container.decode(String.self, forKey: .subType)
-
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {}
-
+            } catch {
+                
+            }
+            
+            
+            
             do {
                 name = try container.decode(String.self, forKey: .name)
-
+            
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {}
-
+            } catch {
+                
+            }
+            
+            
+            
             do {
-                uid = try container.decode(String.self, forKey: .uid)
-
+                displayName = try container.decode(String.self, forKey: .displayName)
+            
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
                 print("codingPath:", context.codingPath)
-            } catch {}
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                iso2 = try container.decode(String.self, forKey: .iso2)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                iso3 = try container.decode(String.self, forKey: .iso3)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                timezones = try container.decode([String].self, forKey: .timezones)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                hierarchy = try container.decode([CountryHierarchy].self, forKey: .hierarchy)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                phoneCode = try container.decode(String.self, forKey: .phoneCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                currency = try container.decode(String.self, forKey: .currency)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                type = try container.decode(String.self, forKey: .type)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                fields = try container.decode(GetCountryFields.self, forKey: .fields)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
-
+        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-
-            try? container.encodeIfPresent(actions, forKey: .actions)
-
-            try? container.encodeIfPresent(ios2, forKey: .ios2)
-
-            try? container.encode(timezones, forKey: .timezones)
-
-            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
-
-            try? container.encodeIfPresent(ios3, forKey: .ios3)
-
-            try? container.encodeIfPresent(phoneCode, forKey: .phoneCode)
-
-            try? container.encodeIfPresent(currency, forKey: .currency)
-
-            try? container.encodeIfPresent(subType, forKey: .subType)
-
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
             try? container.encodeIfPresent(name, forKey: .name)
-
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(iso2, forKey: .iso2)
+            
+            
+            
+            
+            try? container.encodeIfPresent(iso3, forKey: .iso3)
+            
+            
+            
+            
+            try? container.encode(timezones, forKey: .timezones)
+            
+            
+            
+            
+            try? container.encodeIfPresent(hierarchy, forKey: .hierarchy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(phoneCode, forKey: .phoneCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fields, forKey: .fields)
+            
+            
         }
+        
     }
 }
