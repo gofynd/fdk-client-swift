@@ -23783,7 +23783,7 @@ if let value = pageNo {
             * Description: Add a theme to an application by providing the marketplace theme ID.
             **/
             public func addThemeToApplication(
-                body: CompanyThemeSchema,
+                body: ThemeReq,
                 onResponse: @escaping (_ response: ThemesSchema?, _ error: FDKError?) -> Void
             ) {
                 
