@@ -34,6 +34,8 @@ Handles all platform order and shipment api(s)
 * [sendUserMobileOTP](#sendusermobileotp)
 * [verifyMobileOTP](#verifymobileotp)
 * [downloadLanesReport](#downloadlanesreport)
+* [trackShipment](#trackshipment)
+* [updateShipmentTracking](#updateshipmenttracking)
 * [getShipments](#getshipments)
 * [getShipmentById](#getshipmentbyid)
 * [getOrderById](#getorderbyid)
@@ -1992,6 +1994,171 @@ Bulk Report creation initiated.
 ---
 
 
+#### trackShipment
+Get courier partner tracking details
+
+
+
+
+```swift
+platformClient.order.trackShipment(shipmentId: shipmentId, awb: awb, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| shipmentId | String? | no | Shipment ID |   
+| awb | String? | no | AWB number |   
+| pageNo | Int? | no | Page number |   
+| pageSize | Int? | no | Page size |  
+
+
+
+This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms.
+
+*Returned Response:*
+
+
+
+
+[CourierPartnerTrackingResponse](#CourierPartnerTrackingResponse)
+
+Shipment Tracking fetched successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "awb": "713191641",
+        "dp_location": "Mumbai",
+        "dp_name": "Ecom b2b",
+        "dp_status": "dp_assigned",
+        "dp_status_updated_at": "2023-07-12T20:17:46.384Z",
+        "estimated_delivery_date": "2023-07-12T20:17:46.384Z",
+        "id": 370,
+        "journey": "forward",
+        "operational_status": "dp_assigned",
+        "promised_delivery_date": "2023-07-12T20:17:46.384Z",
+        "remark": "UD -Manifested",
+        "shipment_id": "16908065964581066182"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "size": 200,
+      "current": 1,
+      "has_next": true,
+      "item_total": 3
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateShipmentTracking
+Post courier partner tracking details
+
+
+
+
+```swift
+platformClient.order.updateShipmentTracking(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | CourierPartnerTrackingDetails | yes | Request body |
+
+
+This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms.
+
+*Returned Response:*
+
+
+
+
+[CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails)
+
+Shipment Tracking updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "awb": "713191641",
+    "dp_location": "Mumbai",
+    "dp_name": "Ecom b2b",
+    "dp_status": "dp_assigned",
+    "dp_status_updated_at": "2023-07-12T20:17:46.384Z",
+    "estimated_delivery_date": "2023-07-12T20:17:46.384Z",
+    "id": 370,
+    "journey": "forward",
+    "operational_status": "dp_assigned",
+    "promised_delivery_date": "2023-07-12T20:17:46.384Z",
+    "remark": "UD -Manifested",
+    "shipment_id": "16908065964581066182"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 #### getShipments
 
 
@@ -1999,7 +2166,7 @@ Bulk Report creation initiated.
 
 
 ```swift
-platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId, tags: tags, customerId: customerId) { (response, error) in
+platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId, sortType: sortType, showCrossCompanyData: showCrossCompanyData, tags: tags, customerId: customerId) { (response, error) in
     // Use response
 }
 ```
@@ -2033,6 +2200,8 @@ platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverri
 | companyAffiliateTag | String? | no |  |   
 | myOrders | Bool? | no |  |   
 | platformUserId | String? | no |  |   
+| sortType | String? | no | Sort the result data on basis of input |   
+| showCrossCompanyData | Bool? | no | Flag to view cross & non-cross company order |   
 | tags | String? | no | Comma separated values of tags |   
 | customerId | String? | no |  |  
 
@@ -3257,7 +3426,7 @@ We are processing the report!
 
 
 ```swift
-platformClient.order.getLaneConfig(superLane: superLane, groupEntity: groupEntity, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, paymentMode: paymentMode, bagStatus: bagStatus, searchType: searchType, searchValue: searchValue, tags: tags, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, myOrders: myOrders) { (response, error) in
+platformClient.order.getLaneConfig(superLane: superLane, groupEntity: groupEntity, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, paymentMode: paymentMode, bagStatus: bagStatus, searchType: searchType, searchValue: searchValue, tags: tags, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, myOrders: myOrders, showCrossCompanyData: showCrossCompanyData) { (response, error) in
     // Use response
 }
 ```
@@ -3282,7 +3451,8 @@ platformClient.order.getLaneConfig(superLane: superLane, groupEntity: groupEntit
 | tags | String? | no |  |   
 | timeToDispatch | String? | no |  |   
 | paymentMethods | String? | no |  |   
-| myOrders | Bool? | no |  |  
+| myOrders | Bool? | no |  |   
+| showCrossCompanyData | Bool? | no | Flag to view cross & non-cross company order |  
 
 
 
@@ -3399,7 +3569,7 @@ Response containing count of shipments of the given status
 
 
 ```swift
-platformClient.order.getOrders(lane: lane, searchType: searchType, bagStatus: bagStatus, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, tags: tags, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, isPrioritySort: isPrioritySort, customMeta: customMeta, myOrders: myOrders, customerId: customerId) { (response, error) in
+platformClient.order.getOrders(lane: lane, searchType: searchType, bagStatus: bagStatus, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, tags: tags, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, isPrioritySort: isPrioritySort, customMeta: customMeta, myOrders: myOrders, showCrossCompanyData: showCrossCompanyData, customerId: customerId) { (response, error) in
     // Use response
 }
 ```
@@ -3427,6 +3597,7 @@ platformClient.order.getOrders(lane: lane, searchType: searchType, bagStatus: ba
 | isPrioritySort | Bool? | no |  |   
 | customMeta | String? | no |  |   
 | myOrders | Bool? | no |  |   
+| showCrossCompanyData | Bool? | no | Flag to view cross & non-cross company order |   
 | customerId | String? | no |  |  
 
 
@@ -6269,6 +6440,56 @@ We are processing the request!
  | success | Bool? |  yes  |  |
  | message | String? |  yes  |  |
  | data | [VerifyOtpResponseData](#VerifyOtpResponseData)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | operationalStatus | String |  no  | Operational status of OMS |
+ | dpStatus | String |  no  | Status at Courier partner end |
+ | shipmentId | String |  no  | Shipment ID |
+ | awb | String |  no  | AWB Number |
+ | dpStatusUpdatedAt | String |  no  | Date Time at which status was updated at Courier partner |
+ | remark | String? |  yes  | Remark from courier partner |
+ | id | Int? |  yes  | Id of Tracking history |
+ | dpLocation | String? |  yes  | Current location of Courier partner |
+ | estimatedDeliveryDate | String? |  yes  | Estimated delivery date received from Courier partner |
+ | journey | String |  no  | Journey type of the shipment |
+ | meta | [String: Any]? |  yes  | Meta field to store Courier partner's meta data |
+ | dpName | String |  no  | Courier Partner name |
+ | promisedDeliveryDate | String? |  yes  | Promised delivery date received from Courier partner |
+
+---
+
+
+ 
+ 
+ #### [PageDetails](#PageDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | itemTotal | Int |  no  | Total count of the results present in the requested filter |
+ | current | Int? |  yes  | Current page number |
+ | size | Int? |  yes  | Page size |
+ | type | String? |  yes  | Type of the page |
+ | hasNext | Bool? |  yes  | if next page contains any result |
+
+---
+
+
+ 
+ 
+ #### [CourierPartnerTrackingResponse](#CourierPartnerTrackingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails)]? |  yes  |  |
+ | page | [PageDetails](#PageDetails)? |  yes  |  |
 
 ---
 

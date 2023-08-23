@@ -1523,6 +1523,134 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
+        * Summary: Get courier partner tracking details
+        * Description: This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms.
+        **/
+        public func trackShipment(
+            shipmentId: String?,
+            awb: String?,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: CourierPartnerTrackingResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = shipmentId {
+    
+    xQuery["shipment_id"] = value
+    
+}
+
+
+if let value = awb {
+    
+    xQuery["awb"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CourierPartnerTrackingResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Post courier partner tracking details
+        * Description: This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms.
+        **/
+        public func updateShipmentTracking(
+            body: CourierPartnerTrackingDetails,
+            onResponse: @escaping (_ response: CourierPartnerTrackingDetails?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CourierPartnerTrackingDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: 
         * Description: Get Shipments Listing for the company id
         **/
@@ -1550,6 +1678,8 @@ var xQuery: [String: Any] = [:]
             companyAffiliateTag: String?,
             myOrders: Bool?,
             platformUserId: String?,
+            sortType: String?,
+            showCrossCompanyData: Bool?,
             tags: String?,
             customerId: String?,
             
@@ -1715,6 +1845,20 @@ if let value = myOrders {
 if let value = platformUserId {
     
     xQuery["platform_user_id"] = value
+    
+}
+
+
+if let value = sortType {
+    
+    xQuery["sort_type"] = value
+    
+}
+
+
+if let value = showCrossCompanyData {
+    
+    xQuery["show_cross_company_data"] = value
     
 }
 
@@ -1908,6 +2052,7 @@ var xQuery: [String: Any] = [:]
             timeToDispatch: String?,
             paymentMethods: String?,
             myOrders: Bool?,
+            showCrossCompanyData: Bool?,
             
             onResponse: @escaping (_ response: LaneConfigResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2019,6 +2164,13 @@ if let value = myOrders {
 }
 
 
+if let value = showCrossCompanyData {
+    
+    xQuery["show_cross_company_data"] = value
+    
+}
+
+
  
 
 
@@ -2078,6 +2230,7 @@ if let value = myOrders {
             isPrioritySort: Bool?,
             customMeta: String?,
             myOrders: Bool?,
+            showCrossCompanyData: Bool?,
             customerId: String?,
             
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
@@ -2200,6 +2353,13 @@ if let value = customMeta {
 if let value = myOrders {
     
     xQuery["my_orders"] = value
+    
+}
+
+
+if let value = showCrossCompanyData {
+    
+    xQuery["show_cross_company_data"] = value
     
 }
 
