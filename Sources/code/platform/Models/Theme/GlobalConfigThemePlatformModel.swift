@@ -14,28 +14,22 @@ public extension PlatformClient.Theme {
         
         public var statics: StaticConfig?
         
-        public var auth: AuthConfig?
-        
-        public var palette: PaletteConfig?
+        public var custom: CustomConfig?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case statics = "statics"
             
-            case auth = "auth"
-            
-            case palette = "palette"
+            case custom = "custom"
             
         }
 
-        public init(auth: AuthConfig? = nil, palette: PaletteConfig? = nil, statics: StaticConfig? = nil) {
+        public init(custom: CustomConfig? = nil, statics: StaticConfig? = nil) {
             
             self.statics = statics
             
-            self.auth = auth
-            
-            self.palette = palette
+            self.custom = custom
             
         }
 
@@ -56,19 +50,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    auth = try container.decode(AuthConfig.self, forKey: .auth)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    palette = try container.decode(PaletteConfig.self, forKey: .palette)
+                    custom = try container.decode(CustomConfig.self, forKey: .custom)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -90,12 +72,7 @@ public extension PlatformClient.Theme {
             
             
             
-            try? container.encodeIfPresent(auth, forKey: .auth)
-            
-            
-            
-            
-            try? container.encodeIfPresent(palette, forKey: .palette)
+            try? container.encodeIfPresent(custom, forKey: .custom)
             
             
         }
@@ -116,28 +93,22 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var statics: StaticConfig?
         
-        public var auth: AuthConfig?
-        
-        public var palette: PaletteConfig?
+        public var custom: CustomConfig?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case statics = "statics"
             
-            case auth = "auth"
-            
-            case palette = "palette"
+            case custom = "custom"
             
         }
 
-        public init(auth: AuthConfig? = nil, palette: PaletteConfig? = nil, statics: StaticConfig? = nil) {
+        public init(custom: CustomConfig? = nil, statics: StaticConfig? = nil) {
             
             self.statics = statics
             
-            self.auth = auth
-            
-            self.palette = palette
+            self.custom = custom
             
         }
 
@@ -158,19 +129,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    auth = try container.decode(AuthConfig.self, forKey: .auth)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    palette = try container.decode(PaletteConfig.self, forKey: .palette)
+                    custom = try container.decode(CustomConfig.self, forKey: .custom)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -192,12 +151,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             
-            try? container.encodeIfPresent(auth, forKey: .auth)
-            
-            
-            
-            
-            try? container.encodeIfPresent(palette, forKey: .palette)
+            try? container.encodeIfPresent(custom, forKey: .custom)
             
             
         }

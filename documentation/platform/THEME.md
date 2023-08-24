@@ -43826,7 +43826,7 @@ Successful upgrade
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | name | String? |  yes  | The name of the configuration |
- | globalConfig | [GlobalConfig](#GlobalConfig)? |  yes  |  |
+ | globalConfig | [String: Any]? |  yes  |  |
  | custom | [CustomConfig](#CustomConfig)? |  yes  |  |
  | page | [String]? |  yes  | An array of pages |
 
@@ -43840,8 +43840,7 @@ Successful upgrade
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | statics | [StaticConfig](#StaticConfig)? |  yes  |  |
- | auth | [AuthConfig](#AuthConfig)? |  yes  |  |
- | palette | [PaletteConfig](#PaletteConfig)? |  yes  |  |
+ | custom | [CustomConfig](#CustomConfig)? |  yes  |  |
 
 ---
 
@@ -43853,30 +43852,6 @@ Successful upgrade
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | props | [StaticProps](#StaticProps)? |  yes  |  |
-
----
-
-
- 
- 
- #### [AuthConfig](#AuthConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | showHeaderAuth | Bool? |  yes  | Whether to show header authentication or not |
- | showFooterAuth | Bool? |  yes  | Whether to show footer authentication or not |
-
----
-
-
- 
- 
- #### [PaletteConfig](#PaletteConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | generalSetting | [GeneralSetting](#GeneralSetting)? |  yes  |  |
- | advanceSetting | [AdvanceSetting](#AdvanceSetting)? |  yes  |  |
 
 ---
 
@@ -43941,6 +43916,7 @@ Successful upgrade
  | ---------- | ---- | -------- | ----------- |
  | colors | [Colors](#Colors)? |  yes  |  |
  | auth | [AuthConfig](#AuthConfig)? |  yes  |  |
+ | palette | [PaletteConfig](#PaletteConfig)? |  yes  |  |
 
 ---
 
@@ -43957,6 +43933,30 @@ Successful upgrade
  | linkColor | String? |  yes  | The link color |
  | buttonSecondaryColor | String? |  yes  | The secondary button color |
  | bgColor | String? |  yes  | The background color |
+
+---
+
+
+ 
+ 
+ #### [AuthConfig](#AuthConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | showHeaderAuth | Bool? |  yes  | Whether to show header authentication or not |
+ | showFooterAuth | Bool? |  yes  | Whether to show footer authentication or not |
+
+---
+
+
+ 
+ 
+ #### [PaletteConfig](#PaletteConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | generalSetting | [GeneralSetting](#GeneralSetting)? |  yes  |  |
+ | advanceSetting | [AdvanceSetting](#AdvanceSetting)? |  yes  |  |
 
 ---
 

@@ -14,7 +14,7 @@ public extension PlatformClient.Theme {
         
         public var name: String?
         
-        public var globalConfig: GlobalConfig?
+        public var globalConfig: [String: Any]?
         
         public var custom: CustomConfig?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Theme {
             
         }
 
-        public init(custom: CustomConfig? = nil, globalConfig: GlobalConfig? = nil, name: String? = nil, page: [String]? = nil) {
+        public init(custom: CustomConfig? = nil, globalConfig: [String: Any]? = nil, name: String? = nil, page: [String]? = nil) {
             
             self.name = name
             
@@ -62,7 +62,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    globalConfig = try container.decode(GlobalConfig.self, forKey: .globalConfig)
+                    globalConfig = try container.decode([String: Any].self, forKey: .globalConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,7 +139,7 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var name: String?
         
-        public var globalConfig: GlobalConfig?
+        public var globalConfig: [String: Any]?
         
         public var custom: CustomConfig?
         
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
         }
 
-        public init(custom: CustomConfig? = nil, globalConfig: GlobalConfig? = nil, name: String? = nil, page: [String]? = nil) {
+        public init(custom: CustomConfig? = nil, globalConfig: [String: Any]? = nil, name: String? = nil, page: [String]? = nil) {
             
             self.name = name
             
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    globalConfig = try container.decode(GlobalConfig.self, forKey: .globalConfig)
+                    globalConfig = try container.decode([String: Any].self, forKey: .globalConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
