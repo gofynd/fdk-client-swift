@@ -1523,6 +1523,54 @@ var xQuery: [String: Any] = [:]
         
         /**
         *
+        * Summary: 
+        * Description: Retry e-invoice after failure
+        **/
+        public func eInvoiceRetry(
+            body: EInvoiceRetry,
+            onResponse: @escaping (_ response: EInvoiceRetryResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/einvoice/retry/irn",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(EInvoiceRetryResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: Get courier partner tracking details
         * Description: This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms.
         **/

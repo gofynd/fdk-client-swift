@@ -34,6 +34,7 @@ Handles all platform order and shipment api(s)
 * [sendUserMobileOTP](#sendusermobileotp)
 * [verifyMobileOTP](#verifymobileotp)
 * [downloadLanesReport](#downloadlanesreport)
+* [eInvoiceRetry](#einvoiceretry)
 * [trackShipment](#trackshipment)
 * [updateShipmentTracking](#updateshipmenttracking)
 * [getShipments](#getshipments)
@@ -1976,6 +1977,79 @@ Bulk Report creation initiated.
   "value": {
     "success": true,
     "batch_id": "0000-1111-2222-3333"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### eInvoiceRetry
+
+
+
+
+
+```swift
+platformClient.order.eInvoiceRetry(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | EInvoiceRetry | yes | Request body |
+
+
+Retry e-invoice after failure
+
+*Returned Response:*
+
+
+
+
+[EInvoiceRetryResponse](#EInvoiceRetryResponse)
+
+E-invoice Retry Successfully!!
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; sample1</i></summary>
+
+```json
+{
+  "value": {
+    "response_data": [
+      {
+        "shipment_id": "16342342342343423",
+        "success": true,
+        "message": "IRN already generated, for e-invoice type: invoice"
+      }
+    ],
+    "success_count": 1,
+    "message": "Success Count: 1 out of 1",
+    "success": true
   }
 }
 ```
@@ -6534,6 +6608,60 @@ We are processing the request!
  | ---------- | ---- | -------- | ----------- |
  | status | Bool? |  yes  |  |
  | error | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipmentId | String |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [EInvoiceRetry](#EInvoiceRetry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipmentsData | [[EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EInvoiceResponseData](#EInvoiceResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipmentId | String |  no  |  |
+ | message | String |  no  |  |
+ | success | Bool |  no  |  |
+ | ackNo | String? |  yes  |  |
+ | irn | String? |  yes  |  |
+ | ackDt | String? |  yes  |  |
+ | timeout | Int? |  yes  |  |
+ | timeoutUnit | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [EInvoiceRetryResponse](#EInvoiceRetryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | Bool? |  yes  |  |
+ | successCount | Int |  no  |  |
+ | message | String? |  yes  |  |
+ | responseData | [[EInvoiceResponseData](#EInvoiceResponseData)] |  no  |  |
 
 ---
 
