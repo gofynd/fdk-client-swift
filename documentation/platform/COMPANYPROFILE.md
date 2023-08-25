@@ -1999,6 +1999,11 @@ Tags list. See example below or refer `StoreTagsResponseSchema` for details
  | verifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
  | notificationEmails | [String]? |  yes  |  |
  | modifiedBy | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | defaultOrderAcceptanceTiming | Bool? |  yes  |  |
+ | orderAcceptanceTiming | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | avgOrderProcessingTime | [AverageOrderProcessingTime](#AverageOrderProcessingTime)? |  yes  |  |
+ | bulkShipment | Bool? |  yes  |  |
 
 ---
 
@@ -2063,8 +2068,8 @@ Tags list. See example below or refer `StoreTagsResponseSchema` for details
  | displayName | String |  no  |  |
  | notificationEmails | [String]? |  yes  |  |
  | tags | [String]? |  yes  |  |
- | defaultOrderAcceptanceTiming | Bool? |  yes  |  |
- | orderAcceptanceTiming | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | defaultOrderAcceptanceTiming | Bool? |  yes  | Flag to set order_acceptance_timing as default timing |
+ | orderAcceptanceTiming | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  | Order acceptance timing of the store |
  | avgOrderProcessingTime | [AverageOrderProcessingTime](#AverageOrderProcessingTime)? |  yes  |  |
  | bulkShipment | Bool? |  yes  |  |
 

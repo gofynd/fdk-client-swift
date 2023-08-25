@@ -66,6 +66,16 @@ public extension PlatformClient.CompanyProfile {
         
         public var modifiedBy: UserSerializer?
         
+        public var tags: [String]?
+        
+        public var defaultOrderAcceptanceTiming: Bool?
+        
+        public var orderAcceptanceTiming: [LocationDayWiseSerializer]?
+        
+        public var avgOrderProcessingTime: AverageOrderProcessingTime?
+        
+        public var bulkShipment: Bool?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -123,9 +133,19 @@ public extension PlatformClient.CompanyProfile {
             
             case modifiedBy = "modified_by"
             
+            case tags = "tags"
+            
+            case defaultOrderAcceptanceTiming = "default_order_acceptance_timing"
+            
+            case orderAcceptanceTiming = "order_acceptance_timing"
+            
+            case avgOrderProcessingTime = "avg_order_processing_time"
+            
+            case bulkShipment = "bulk_shipment"
+            
         }
 
-        public init(address: GetAddressSerializer, autoInvoice: Bool? = nil, code: String, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, creditNote: Bool? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, holiday: [HolidaySchemaSerializer]? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSerializer, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, holiday: [HolidaySchemaSerializer]? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSerializer]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.code = code
             
@@ -180,6 +200,16 @@ public extension PlatformClient.CompanyProfile {
             self.notificationEmails = notificationEmails
             
             self.modifiedBy = modifiedBy
+            
+            self.tags = tags
+            
+            self.defaultOrderAcceptanceTiming = defaultOrderAcceptanceTiming
+            
+            self.orderAcceptanceTiming = orderAcceptanceTiming
+            
+            self.avgOrderProcessingTime = avgOrderProcessingTime
+            
+            self.bulkShipment = bulkShipment
             
         }
 
@@ -482,6 +512,66 @@ public extension PlatformClient.CompanyProfile {
                 }
                 
             
+            
+                do {
+                    tags = try container.decode([String].self, forKey: .tags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    defaultOrderAcceptanceTiming = try container.decode(Bool.self, forKey: .defaultOrderAcceptanceTiming)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderAcceptanceTiming = try container.decode([LocationDayWiseSerializer].self, forKey: .orderAcceptanceTiming)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    avgOrderProcessingTime = try container.decode(AverageOrderProcessingTime.self, forKey: .avgOrderProcessingTime)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bulkShipment = try container.decode(Bool.self, forKey: .bulkShipment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -620,6 +710,31 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
+            
+            
+            
+            
+            try? container.encodeIfPresent(tags, forKey: .tags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(defaultOrderAcceptanceTiming, forKey: .defaultOrderAcceptanceTiming)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderAcceptanceTiming, forKey: .orderAcceptanceTiming)
+            
+            
+            
+            
+            try? container.encodeIfPresent(avgOrderProcessingTime, forKey: .avgOrderProcessingTime)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bulkShipment, forKey: .bulkShipment)
             
             
         }
