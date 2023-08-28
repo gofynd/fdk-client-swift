@@ -3,57 +3,43 @@
 import Foundation
 
 
-
-
-public extension PlatformClient.ApplicationClient.Cart {
+public extension PlatformClient.Billing {
     /*
-        Model: Article
-        Used By: Cart
+        Model: SubscribePlanRes
+        Used By: Billing
     */
 
-    class Article: Codable {
+    class SubscribePlanRes: Codable {
         
         
-        public var value: Double?
+        public var redirectUrl: String?
         
-        public var code: String?
+        public var transactionId: String?
         
-        public var type: String?
+        public var currentStatus: String?
         
-        public var articleId: String
-        
-        public var quantity: Int?
-        
-        public var meta: [String: Any]?
+        public var meta: Meta?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
+            case redirectUrl = "redirect_url"
             
-            case code = "code"
+            case transactionId = "transaction_id"
             
-            case type = "type"
-            
-            case articleId = "article_id"
-            
-            case quantity = "quantity"
+            case currentStatus = "current_status"
             
             case meta = "meta"
             
         }
 
-        public init(articleId: String, code: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
+        public init(currentStatus: String? = nil, meta: Meta? = nil, redirectUrl: String? = nil, transactionId: String? = nil) {
             
-            self.value = value
+            self.redirectUrl = redirectUrl
             
-            self.code = code
+            self.transactionId = transactionId
             
-            self.type = type
-            
-            self.articleId = articleId
-            
-            self.quantity = quantity
+            self.currentStatus = currentStatus
             
             self.meta = meta
             
@@ -64,7 +50,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    value = try container.decode(Double.self, forKey: .value)
+                    redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +62,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    code = try container.decode(String.self, forKey: .code)
+                    transactionId = try container.decode(String.self, forKey: .transactionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,24 +74,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                articleId = try container.decode(String.self, forKey: .articleId)
-                
-            
-            
-            
-                do {
-                    quantity = try container.decode(Int.self, forKey: .quantity)
+                    currentStatus = try container.decode(String.self, forKey: .currentStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +86,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    meta = try container.decode(Meta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,27 +103,17 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
             
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(currentStatus, forKey: .currentStatus)
             
             
             
@@ -166,5 +125,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
     }
 }
+
+
 
 

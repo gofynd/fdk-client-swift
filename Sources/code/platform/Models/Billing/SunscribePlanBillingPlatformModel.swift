@@ -3,57 +3,49 @@
 import Foundation
 
 
-
-
-public extension PlatformClient.ApplicationClient.Cart {
+public extension PlatformClient.Billing {
     /*
-        Model: Article
-        Used By: Cart
+        Model: SunscribePlan
+        Used By: Billing
     */
 
-    class Article: Codable {
+    class SunscribePlan: Codable {
         
         
-        public var value: Double?
+        public var entityType: String?
         
-        public var code: String?
+        public var collectionType: String?
         
-        public var type: String?
+        public var planId: String?
         
-        public var articleId: String
+        public var callbackUrl: String?
         
-        public var quantity: Int?
-        
-        public var meta: [String: Any]?
+        public var meta: Meta?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
+            case entityType = "entity_type"
             
-            case code = "code"
+            case collectionType = "collection_type"
             
-            case type = "type"
+            case planId = "plan_id"
             
-            case articleId = "article_id"
-            
-            case quantity = "quantity"
+            case callbackUrl = "callback_url"
             
             case meta = "meta"
             
         }
 
-        public init(articleId: String, code: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, type: String? = nil, value: Double? = nil) {
+        public init(callbackUrl: String? = nil, collectionType: String? = nil, entityType: String? = nil, meta: Meta? = nil, planId: String? = nil) {
             
-            self.value = value
+            self.entityType = entityType
             
-            self.code = code
+            self.collectionType = collectionType
             
-            self.type = type
+            self.planId = planId
             
-            self.articleId = articleId
-            
-            self.quantity = quantity
+            self.callbackUrl = callbackUrl
             
             self.meta = meta
             
@@ -64,7 +56,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    value = try container.decode(Double.self, forKey: .value)
+                    entityType = try container.decode(String.self, forKey: .entityType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -76,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    code = try container.decode(String.self, forKey: .code)
+                    collectionType = try container.decode(String.self, forKey: .collectionType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -88,24 +80,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                articleId = try container.decode(String.self, forKey: .articleId)
-                
-            
-            
-            
-                do {
-                    quantity = try container.decode(Int.self, forKey: .quantity)
+                    planId = try container.decode(String.self, forKey: .planId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -117,7 +92,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    callbackUrl = try container.decode(String.self, forKey: .callbackUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode(Meta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -134,27 +121,22 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
+            try? container.encodeIfPresent(entityType, forKey: .entityType)
             
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encodeIfPresent(collectionType, forKey: .collectionType)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
+            try? container.encodeIfPresent(planId, forKey: .planId)
             
             
             
             
-            try? container.encodeIfPresent(articleId, forKey: .articleId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encodeIfPresent(callbackUrl, forKey: .callbackUrl)
             
             
             
@@ -166,5 +148,7 @@ public extension PlatformClient.ApplicationClient.Cart {
         
     }
 }
+
+
 
 
