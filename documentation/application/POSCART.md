@@ -8811,6 +8811,7 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
  | promoId | String? |  yes  | Promotion id |
  | appliedFreeArticles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | ownership | [Ownership](#Ownership)? |  yes  | Ownership of promotion |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | promotionGroup | String? |  yes  | Promotion group for the promotion |
 
 ---

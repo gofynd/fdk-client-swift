@@ -18,6 +18,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var ownership: Ownership2?
         
+        public var currency: CartCurrency?
+        
         public var discountRules: [DiscountRulesApp]?
         
         public var appliedFreeArticles: [AppliedFreeArticles]?
@@ -45,6 +47,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case ownership = "ownership"
             
+            case currency = "currency"
+            
             case discountRules = "discount_rules"
             
             case appliedFreeArticles = "applied_free_articles"
@@ -67,11 +71,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, discountRules: [DiscountRulesApp]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.articleQuantity = articleQuantity
             
             self.ownership = ownership
+            
+            self.currency = currency
             
             self.discountRules = discountRules
             
@@ -113,6 +119,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     ownership = try container.decode(Ownership2.self, forKey: .ownership)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currency = try container.decode(CartCurrency.self, forKey: .currency)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -255,6 +273,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(ownership, forKey: .ownership)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             

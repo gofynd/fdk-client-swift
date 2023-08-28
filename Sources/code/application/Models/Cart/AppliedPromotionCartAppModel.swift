@@ -26,6 +26,8 @@ public extension ApplicationClient.Cart {
         
         public var ownership: Ownership?
         
+        public var currency: CartCurrency?
+        
         public var articleQuantity: Int?
         
         public var appliedFreeArticles: [AppliedFreeArticles]?
@@ -53,6 +55,8 @@ public extension ApplicationClient.Cart {
             
             case ownership = "ownership"
             
+            case currency = "currency"
+            
             case articleQuantity = "article_quantity"
             
             case appliedFreeArticles = "applied_free_articles"
@@ -61,7 +65,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, discountRules: [DiscountRulesApp]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.promoId = promoId
             
@@ -80,6 +84,8 @@ public extension ApplicationClient.Cart {
             self.discountRules = discountRules
             
             self.ownership = ownership
+            
+            self.currency = currency
             
             self.articleQuantity = articleQuantity
             
@@ -202,6 +208,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                currency = try container.decode(CartCurrency.self, forKey: .currency)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 articleQuantity = try container.decode(Int.self, forKey: .articleQuantity)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -284,6 +302,11 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(ownership, forKey: .ownership)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
