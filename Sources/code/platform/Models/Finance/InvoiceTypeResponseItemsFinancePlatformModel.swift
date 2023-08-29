@@ -12,24 +12,24 @@ public extension PlatformClient.Finance {
     class InvoiceTypeResponseItems: Codable {
         
         
-        public var value: String?
-        
         public var text: String?
+        
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
-            
             case text = "text"
+            
+            case value = "value"
             
         }
 
         public init(text: String? = nil, value: String? = nil) {
             
-            self.value = value
-            
             self.text = text
+            
+            self.value = value
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    value = try container.decode(String.self, forKey: .value)
+                    text = try container.decode(String.self, forKey: .text)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    text = try container.decode(String.self, forKey: .text)
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
-            
-            
-            
-            
             try? container.encodeIfPresent(text, forKey: .text)
+            
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }

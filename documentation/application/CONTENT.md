@@ -765,7 +765,7 @@ Success. Returns the landing page details. Check the example shown below or refe
   "value": {
     "_id": "5eaa451a21a4dd75f0fd96c5",
     "application": "5d3ebd89f540e7506b8b3548",
-    "_custom_json": null,
+    "_custom_json": {},
     "slug": "pnc-landing",
     "action": {
       "page": {
@@ -916,7 +916,7 @@ applicationClient.content.getNavigations(pageNo: pageNo, pageSize: pageSize) { (
 
 
 
-Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
+Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
 
 *Returned Response:*
 
@@ -1843,35 +1843,6 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [PathMappingSchema](#PathMappingSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | String? |  yes  |  |
- | id | String? |  yes  |  |
- | redirectFrom | String? |  yes  |  |
- | redirectTo | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | source | [PathSourceSchema](#PathSourceSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [PathSourceSchema](#PathSourceSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | id | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [SeoComponent](#SeoComponent)
 
  | Properties | Type | Nullable | Description |
@@ -1922,65 +1893,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | title | String? |  yes  |  |
  | description | String? |  yes  |  |
  | imageUrl | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AnnouncementPageSchema](#AnnouncementPageSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pageSlug | String? |  yes  |  |
- | type | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [EditorMeta](#EditorMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | foregroundColor | String? |  yes  |  |
- | backgroundColor | String? |  yes  |  |
- | contentType | String? |  yes  |  |
- | content | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AnnouncementAuthorSchema](#AnnouncementAuthorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | createdBy | String? |  yes  |  |
- | modifiedBy | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AdminAnnouncementSchema](#AdminAnnouncementSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | platforms | [String]? |  yes  |  |
- | title | String? |  yes  |  |
- | announcement | String? |  yes  |  |
- | pages | [[AnnouncementPageSchema](#AnnouncementPageSchema)]? |  yes  |  |
- | editorMeta | [EditorMeta](#EditorMeta)? |  yes  |  |
- | author | [AnnouncementAuthorSchema](#AnnouncementAuthorSchema)? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | app | String? |  yes  |  |
- | modifiedAt | String? |  yes  |  |
- | schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
 
 ---
 
@@ -2149,103 +2061,6 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [BlogRequest](#BlogRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | String? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | author | [Author](#Author)? |  yes  |  |
- | content | [[ResourceContent](#ResourceContent)]? |  yes  |  |
- | featureImage | [Asset](#Asset)? |  yes  |  |
- | published | Bool? |  yes  |  |
- | readingTime | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | title | String? |  yes  |  |
- | seo | [SEO](#SEO)? |  yes  |  |
- | schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
-
----
-
-
- 
- 
- #### [GetAnnouncementListSchema](#GetAnnouncementListSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[AdminAnnouncementSchema](#AdminAnnouncementSchema)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateAnnouncementSchema](#CreateAnnouncementSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String? |  yes  |  |
- | data | [AdminAnnouncementSchema](#AdminAnnouncementSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [DataLoaderResponseSchema](#DataLoaderResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | String? |  yes  |  |
- | company | String? |  yes  |  |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
- | service | String? |  yes  |  |
- | operationId | String? |  yes  |  |
- | type | String? |  yes  |  |
- | url | String? |  yes  |  |
- | content | String? |  yes  |  |
- | source | [DataLoaderSourceSchema](#DataLoaderSourceSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reset | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [Navigation](#Navigation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | orientation | String? |  yes  |  |
- | createdBy | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
- | dateMeta | [DateMeta](#DateMeta)? |  yes  |  |
- | id | String? |  yes  |  |
- | position | String? |  yes  |  |
- | application | String? |  yes  |  |
- | platform | String? |  yes  |  |
- | navigation | [NavigationReference](#NavigationReference)? |  yes  |  |
-
----
-
-
- 
- 
  #### [LocaleLanguage](#LocaleLanguage)
 
  | Properties | Type | Nullable | Description |
@@ -2317,18 +2132,6 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [LandingPage](#LandingPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [LandingPageSchema](#LandingPageSchema)? |  yes  |  |
- | success | Bool? |  yes  |  |
-
----
-
-
- 
- 
  #### [ConfigurationSchema](#ConfigurationSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2359,18 +2162,6 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [Slideshow](#Slideshow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [SlideshowSchema](#SlideshowSchema)? |  yes  |  |
- | success | Bool? |  yes  |  |
-
----
-
-
- 
- 
  #### [AnnouncementsResponseSchema](#AnnouncementsResponseSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2389,75 +2180,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | faqs | [[FaqSchema](#FaqSchema)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [UpdateHandpickedSchema](#UpdateHandpickedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tag | [HandpickedTagSchema](#HandpickedTagSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [HandpickedTagSchema](#HandpickedTagSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | position | String? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | name | String? |  yes  |  |
- | url | String? |  yes  |  |
- | type | String? |  yes  |  |
- | subType | String? |  yes  |  |
- | content | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [RemoveHandpickedSchema](#RemoveHandpickedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | [String]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateTagSchema](#CreateTagSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | subType | String? |  yes  |  |
- | id | String? |  yes  |  |
- | type | String? |  yes  |  |
- | url | String? |  yes  |  |
- | position | String? |  yes  |  |
- | attributes | [String: Any]? |  yes  |  |
- | pages | [[String: Any]]? |  yes  |  |
- | content | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateTagRequestSchema](#CreateTagRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | [[CreateTagSchema](#CreateTagSchema)]? |  yes  |  |
 
 ---
 
@@ -2499,17 +2221,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[DataLoaderSchema](#DataLoaderSchema)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [TagDeleteSuccessResponse](#TagDeleteSuccessResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | Bool? |  yes  |  |
 
 ---
 
@@ -2579,18 +2290,6 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [CategoryRequestSchema](#CategoryRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slug | String? |  yes  |  |
- | title | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [FAQCategorySchema](#FAQCategorySchema)
 
  | Properties | Type | Nullable | Description |
@@ -2626,79 +2325,11 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [FAQ](#FAQ)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slug | String? |  yes  |  |
- | question | String? |  yes  |  |
- | answer | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateFaqResponseSchema](#CreateFaqResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | faq | [FaqSchema](#FaqSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateFaqSchema](#CreateFaqSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | faq | [FAQ](#FAQ)? |  yes  |  |
-
----
-
-
- 
- 
  #### [GetFaqSchema](#GetFaqSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | faqs | [[FaqSchema](#FaqSchema)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [CategorySchema](#CategorySchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [CategoryRequestSchema](#CategoryRequestSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [CreateFaqCategorySchema](#CreateFaqCategorySchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [CategorySchema](#CategorySchema)? |  yes  |  |
 
 ---
 
@@ -2744,18 +2375,6 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [LandingPageGetResponse](#LandingPageGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[LandingPageSchema](#LandingPageSchema)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
-
----
-
-
- 
- 
  #### [LandingPageSchema](#LandingPageSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2769,17 +2388,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | application | String? |  yes  |  |
  | archived | Bool? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [DefaultNavigationResponse](#DefaultNavigationResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
 
 ---
 
@@ -2831,122 +2439,12 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [NavigationRequest](#NavigationRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | platform | [String]? |  yes  |  |
- | orientation | [Orientation](#Orientation)? |  yes  |  |
- | navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomPageSchema](#CustomPageSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | platform | String? |  yes  |  |
- | title | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | type | String? |  yes  |  |
- | orientation | String? |  yes  |  |
- | application | String? |  yes  |  |
- | description | String? |  yes  |  |
- | published | Bool? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | content | [[String: Any]]? |  yes  |  |
- | createdBy | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
- | dateMeta | [DateMeta](#DateMeta)? |  yes  |  |
- | schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [ContentSchema](#ContentSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | value | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomPage](#CustomPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [CustomPageSchema](#CustomPageSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [FeatureImage](#FeatureImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secureUrl | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [PageGetResponse](#PageGetResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[PageSchema](#PageSchema)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
-
----
-
-
- 
- 
- #### [PageSpec](#PageSpec)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | specifications | [[PageSpecItem](#PageSpecItem)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [PageSpecParam](#PageSpecParam)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String? |  yes  |  |
- | required | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [PageSpecItem](#PageSpecItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | pageType | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | params | [[PageSpecParam](#PageSpecParam)]? |  yes  |  |
- | query | [[PageSpecParam](#PageSpecParam)]? |  yes  |  |
 
 ---
 
@@ -2996,53 +2494,6 @@ Success. Returns a list of pages along with their details. Check the example sho
 
  
  
- #### [PageContent](#PageContent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  |  |
- | value | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [PageMeta](#PageMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String? |  yes  |  |
- | value | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [PageRequest](#PageRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
- | application | String? |  yes  |  |
- | author | [Author](#Author)? |  yes  |  |
- | customJson | [String: Any]? |  yes  |  |
- | orientation | String? |  yes  |  |
- | content | [[String: Any]]? |  yes  |  |
- | featureImage | [Asset](#Asset)? |  yes  |  |
- | published | Bool? |  yes  |  |
- | readingTime | String? |  yes  |  |
- | slug | String? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | seo | [SEO](#SEO)? |  yes  |  |
- | title | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [CronSchedule](#CronSchedule)
 
  | Properties | Type | Nullable | Description |
@@ -3051,30 +2502,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | start | String? |  yes  |  |
  | end | String? |  yes  |  |
  | duration | Double? |  yes  |  |
-
----
-
-
- 
- 
- #### [PagePublishRequest](#PagePublishRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | publish | Bool? |  yes  |  |
-
----
-
-
- 
- 
- #### [PageMetaSchema](#PageMetaSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | systemPages | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
- | customPages | [[PageSchema](#PageSchema)]? |  yes  |  |
- | applicationId | String? |  yes  |  |
 
 ---
 
@@ -3107,21 +2534,6 @@ Success. Returns a list of pages along with their details. Check the example sho
  | active | Bool? |  yes  |  |
  | archived | Bool? |  yes  |  |
  | customJson | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [SlideshowRequest](#SlideshowRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slug | String? |  yes  |  |
- | platform | String? |  yes  |  |
- | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
- | media | [SlideshowMedia](#SlideshowMedia)? |  yes  |  |
- | active | Bool? |  yes  |  |
 
 ---
 

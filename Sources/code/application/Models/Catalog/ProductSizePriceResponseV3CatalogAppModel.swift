@@ -34,6 +34,8 @@ public extension ApplicationClient.Catalog {
         
         public var pricePerPiece: ProductStockPriceV3?
         
+        public var discountMeta: DiscountMeta?
+        
         public var discount: String?
         
         public var longLat: [Double]?
@@ -49,6 +51,8 @@ public extension ApplicationClient.Catalog {
         public var marketplaceAttributes: [MarketPlaceSttributesSchemaV3]?
         
         public var seller: SellerV3?
+        
+        public var deliveryPromise: PromiseSchema?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -79,6 +83,8 @@ public extension ApplicationClient.Catalog {
             
             case pricePerPiece = "price_per_piece"
             
+            case discountMeta = "discount_meta"
+            
             case discount = "discount"
             
             case longLat = "long_lat"
@@ -95,9 +101,11 @@ public extension ApplicationClient.Catalog {
             
             case seller = "seller"
             
+            case deliveryPromise = "delivery_promise"
+            
         }
 
-        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, discount: String? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pincode: Int? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil) {
+        public init(articleAssignment: ArticleAssignmentV3? = nil, articleId: String? = nil, deliveryPromise: PromiseSchema? = nil, discount: String? = nil, discountMeta: DiscountMeta? = nil, groupedAttributes: [SellerGroupAttributes]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, itemType: String? = nil, longLat: [Double]? = nil, marketplaceAttributes: [MarketPlaceSttributesSchemaV3]? = nil, pincode: Int? = nil, price: ProductStockPriceV3? = nil, pricePerPiece: ProductStockPriceV3? = nil, pricePerUnit: ProductStockUnitPriceV3? = nil, quantity: Int? = nil, returnConfig: ReturnConfigSchemaV3? = nil, seller: SellerV3? = nil, sellerCount: Int? = nil, set: ProductSetV3? = nil, specialBadge: String? = nil, store: StoreV3? = nil, strategyWiseListing: [StrategyWiseListingSchemaV3]? = nil) {
             
             self.store = store
             
@@ -125,6 +133,8 @@ public extension ApplicationClient.Catalog {
             
             self.pricePerPiece = pricePerPiece
             
+            self.discountMeta = discountMeta
+            
             self.discount = discount
             
             self.longLat = longLat
@@ -140,6 +150,8 @@ public extension ApplicationClient.Catalog {
             self.marketplaceAttributes = marketplaceAttributes
             
             self.seller = seller
+            
+            self.deliveryPromise = deliveryPromise
             
         }
 
@@ -304,6 +316,18 @@ public extension ApplicationClient.Catalog {
             
             
             do {
+                discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 discount = try container.decode(String.self, forKey: .discount)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -398,6 +422,18 @@ public extension ApplicationClient.Catalog {
             }
             
             
+            
+            do {
+                deliveryPromise = try container.decode(PromiseSchema.self, forKey: .deliveryPromise)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -470,6 +506,11 @@ public extension ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
+            
+            
+            
+            
             try? container.encodeIfPresent(discount, forKey: .discount)
             
             
@@ -506,6 +547,11 @@ public extension ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(seller, forKey: .seller)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deliveryPromise, forKey: .deliveryPromise)
             
             
         }

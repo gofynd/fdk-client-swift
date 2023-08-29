@@ -12,42 +12,42 @@ public extension PlatformClient.Finance {
     class PaymentProcessResponse: Codable {
         
         
-        public var message: String?
+        public var code: Int?
         
-        public var transactionId: String?
+        public var message: String?
         
         public var meta: [String: Any]?
         
-        public var redirectUrl: String?
+        public var transactionId: String?
         
-        public var code: Int?
+        public var redirectUrl: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
+            case code = "code"
             
-            case transactionId = "transaction_id"
+            case message = "message"
             
             case meta = "meta"
             
-            case redirectUrl = "redirect_url"
+            case transactionId = "transaction_id"
             
-            case code = "code"
+            case redirectUrl = "redirect_url"
             
         }
 
         public init(code: Int? = nil, message: String? = nil, meta: [String: Any]? = nil, redirectUrl: String? = nil, transactionId: String? = nil) {
             
-            self.message = message
+            self.code = code
             
-            self.transactionId = transactionId
+            self.message = message
             
             self.meta = meta
             
-            self.redirectUrl = redirectUrl
+            self.transactionId = transactionId
             
-            self.code = code
+            self.redirectUrl = redirectUrl
             
         }
 
@@ -56,7 +56,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    message = try container.decode(String.self, forKey: .message)
+                    code = try container.decode(Int.self, forKey: .code)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    transactionId = try container.decode(String.self, forKey: .transactionId)
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +92,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
+                    transactionId = try container.decode(String.self, forKey: .transactionId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    code = try container.decode(Int.self, forKey: .code)
+                    redirectUrl = try container.decode(String.self, forKey: .redirectUrl)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,12 +121,12 @@ public extension PlatformClient.Finance {
             
             
             
+            try? container.encodeIfPresent(code, forKey: .code)
+            
+            
+            
+            
             try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
             
             
             
@@ -136,12 +136,12 @@ public extension PlatformClient.Finance {
             
             
             
+            try? container.encodeIfPresent(transactionId, forKey: .transactionId)
+            
+            
+            
+            
             try? container.encodeIfPresent(redirectUrl, forKey: .redirectUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(code, forKey: .code)
             
             
         }

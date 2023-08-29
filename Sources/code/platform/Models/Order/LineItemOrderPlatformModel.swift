@@ -16,7 +16,7 @@ public extension PlatformClient.Order {
         
         public var meta: [String: Any]?
         
-        public var customMessasge: String?
+        public var customMessage: String?
         
         public var quantity: Int?
         
@@ -31,7 +31,7 @@ public extension PlatformClient.Order {
             
             case meta = "meta"
             
-            case customMessasge = "custom_messasge"
+            case customMessage = "custom_message"
             
             case quantity = "quantity"
             
@@ -41,13 +41,13 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(charges: [Charge]? = nil, customMessasge: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
+        public init(charges: [Charge]? = nil, customMessage: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
             
             self.charges = charges
             
             self.meta = meta
             
-            self.customMessasge = customMessasge
+            self.customMessage = customMessage
             
             self.quantity = quantity
             
@@ -86,7 +86,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    customMessasge = try container.decode(String.self, forKey: .customMessasge)
+                    customMessage = try container.decode(String.self, forKey: .customMessage)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -142,7 +142,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(customMessasge, forKey: .customMessasge)
+            try? container.encodeIfPresent(customMessage, forKey: .customMessage)
             
             
             
@@ -180,7 +180,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var meta: [String: Any]?
         
-        public var customMessasge: String?
+        public var customMessage: String?
         
         public var quantity: Int?
         
@@ -195,7 +195,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case meta = "meta"
             
-            case customMessasge = "custom_messasge"
+            case customMessage = "custom_message"
             
             case quantity = "quantity"
             
@@ -205,13 +205,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(charges: [Charge]? = nil, customMessasge: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
+        public init(charges: [Charge]? = nil, customMessage: String? = nil, externalLineId: String? = nil, meta: [String: Any]? = nil, quantity: Int? = nil, sellerIdentifier: String) {
             
             self.charges = charges
             
             self.meta = meta
             
-            self.customMessasge = customMessasge
+            self.customMessage = customMessage
             
             self.quantity = quantity
             
@@ -250,7 +250,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    customMessasge = try container.decode(String.self, forKey: .customMessasge)
+                    customMessage = try container.decode(String.self, forKey: .customMessage)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -306,7 +306,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(customMessasge, forKey: .customMessasge)
+            try? container.encodeIfPresent(customMessage, forKey: .customMessage)
             
             
             

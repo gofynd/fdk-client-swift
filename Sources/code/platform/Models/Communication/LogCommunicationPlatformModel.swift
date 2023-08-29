@@ -26,10 +26,6 @@ public extension PlatformClient.Communication {
         
         public var step: String?
         
-        public var source: String?
-        
-        public var channelType: String?
-        
         public var status: String?
         
         public var data: [String: Any]?
@@ -55,10 +51,6 @@ public extension PlatformClient.Communication {
             
             case step = "step"
             
-            case source = "source"
-            
-            case channelType = "channel_type"
-            
             case status = "status"
             
             case data = "data"
@@ -69,7 +61,7 @@ public extension PlatformClient.Communication {
             
         }
 
-        public init(application: String? = nil, channelType: String? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, source: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
             
             self.email = email
             
@@ -84,10 +76,6 @@ public extension PlatformClient.Communication {
             self.service = service
             
             self.step = step
-            
-            self.source = source
-            
-            self.channelType = channelType
             
             self.status = status
             
@@ -188,30 +176,6 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    source = try container.decode(String.self, forKey: .source)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    channelType = try container.decode(String.self, forKey: .channelType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -296,16 +260,6 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(step, forKey: .step)
-            
-            
-            
-            
-            try? container.encodeIfPresent(source, forKey: .source)
-            
-            
-            
-            
-            try? container.encodeIfPresent(channelType, forKey: .channelType)
             
             
             
@@ -358,10 +312,6 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var step: String?
         
-        public var source: String?
-        
-        public var channelType: String?
-        
         public var status: String?
         
         public var data: [String: Any]?
@@ -387,10 +337,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case step = "step"
             
-            case source = "source"
-            
-            case channelType = "channel_type"
-            
             case status = "status"
             
             case data = "data"
@@ -401,7 +347,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
         }
 
-        public init(application: String? = nil, channelType: String? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, source: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
+        public init(application: String? = nil, createdAt: String? = nil, data: [String: Any]? = nil, email: LogEmail? = nil, expireAt: String? = nil, meta: LogMeta? = nil, pushnotification: LogPushnotification? = nil, service: String? = nil, status: String? = nil, step: String? = nil, id: String? = nil) {
             
             self.email = email
             
@@ -416,10 +362,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             self.service = service
             
             self.step = step
-            
-            self.source = source
-            
-            self.channelType = channelType
             
             self.status = status
             
@@ -520,30 +462,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    source = try container.decode(String.self, forKey: .source)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    channelType = try container.decode(String.self, forKey: .channelType)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     status = try container.decode(String.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -628,16 +546,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(step, forKey: .step)
-            
-            
-            
-            
-            try? container.encodeIfPresent(source, forKey: .source)
-            
-            
-            
-            
-            try? container.encodeIfPresent(channelType, forKey: .channelType)
             
             
             

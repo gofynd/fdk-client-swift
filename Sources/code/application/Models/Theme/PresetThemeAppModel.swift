@@ -8,7 +8,7 @@ public extension ApplicationClient.Theme {
     */
     class Preset: Codable {
         
-        public var pages: [AvailablePageSchema]?
+        public var pages: [Page]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -17,7 +17,7 @@ public extension ApplicationClient.Theme {
             
         }
 
-        public init(pages: [AvailablePageSchema]? = nil) {
+        public init(pages: [Page]? = nil) {
             
             self.pages = pages
             
@@ -28,7 +28,7 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                pages = try container.decode([AvailablePageSchema].self, forKey: .pages)
+                pages = try container.decode([Page].self, forKey: .pages)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

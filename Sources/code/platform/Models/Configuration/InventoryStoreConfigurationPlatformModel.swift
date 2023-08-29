@@ -16,7 +16,7 @@ public extension PlatformClient.Configuration {
         
         public var stores: [[String: Any]]?
         
-        public var rules: AppStoreRules?
+        public var rules: [AppStoreRules]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(criteria: String? = nil, rules: AppStoreRules? = nil, stores: [[String: Any]]? = nil) {
+        public init(criteria: String? = nil, rules: [AppStoreRules]? = nil, stores: [[String: Any]]? = nil) {
             
             self.criteria = criteria
             
@@ -68,7 +68,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    rules = try container.decode(AppStoreRules.self, forKey: .rules)
+                    rules = try container.decode([AppStoreRules].self, forKey: .rules)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -118,7 +118,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var stores: [[String: Any]]?
         
-        public var rules: AppStoreRules?
+        public var rules: [AppStoreRules]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(criteria: String? = nil, rules: AppStoreRules? = nil, stores: [[String: Any]]? = nil) {
+        public init(criteria: String? = nil, rules: [AppStoreRules]? = nil, stores: [[String: Any]]? = nil) {
             
             self.criteria = criteria
             
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    rules = try container.decode(AppStoreRules.self, forKey: .rules)
+                    rules = try container.decode([AppStoreRules].self, forKey: .rules)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

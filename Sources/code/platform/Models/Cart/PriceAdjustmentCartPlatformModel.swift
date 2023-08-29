@@ -14,95 +14,99 @@ public extension PlatformClient.ApplicationClient.Cart {
     class PriceAdjustment: Codable {
         
         
-        public var applyExpiry: String?
-        
-        public var cartId: String
-        
-        public var cartValue: Double?
-        
-        public var meta: [String: Any]?
-        
-        public var type: String
-        
         public var value: Double
-        
-        public var articleLevelDistribution: Bool
-        
-        public var articleIds: [Article]
-        
-        public var id: String?
-        
-        public var isAuthenticated: Bool
-        
-        public var allowedRefund: Bool?
         
         public var message: String
         
+        public var applyExpiry: String?
+        
+        public var articleLevelDistribution: Bool
+        
+        public var id: String?
+        
         public var collection: Collection
+        
+        public var type: String
+        
+        public var allowedRefund: Bool?
+        
+        public var isAuthenticated: Bool
+        
+        public var articleIds: [Article]
+        
+        public var meta: [String: Any]?
+        
+        public var cartId: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case applyExpiry = "apply_expiry"
-            
-            case cartId = "cart_id"
-            
-            case cartValue = "cart_value"
-            
-            case meta = "meta"
-            
-            case type = "type"
-            
             case value = "value"
-            
-            case articleLevelDistribution = "article_level_distribution"
-            
-            case articleIds = "article_ids"
-            
-            case id = "id"
-            
-            case isAuthenticated = "is_authenticated"
-            
-            case allowedRefund = "allowed_refund"
             
             case message = "message"
             
+            case applyExpiry = "apply_expiry"
+            
+            case articleLevelDistribution = "article_level_distribution"
+            
+            case id = "id"
+            
             case collection = "collection"
+            
+            case type = "type"
+            
+            case allowedRefund = "allowed_refund"
+            
+            case isAuthenticated = "is_authenticated"
+            
+            case articleIds = "article_ids"
+            
+            case meta = "meta"
+            
+            case cartId = "cart_id"
             
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, cartValue: Double? = nil, collection: Collection, id: String? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, type: String, value: Double) {
-            
-            self.applyExpiry = applyExpiry
-            
-            self.cartId = cartId
-            
-            self.cartValue = cartValue
-            
-            self.meta = meta
-            
-            self.type = type
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collection, id: String? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, type: String, value: Double) {
             
             self.value = value
             
-            self.articleLevelDistribution = articleLevelDistribution
+            self.message = message
             
-            self.articleIds = articleIds
+            self.applyExpiry = applyExpiry
+            
+            self.articleLevelDistribution = articleLevelDistribution
             
             self.id = id
             
-            self.isAuthenticated = isAuthenticated
+            self.collection = collection
+            
+            self.type = type
             
             self.allowedRefund = allowedRefund
             
-            self.message = message
+            self.isAuthenticated = isAuthenticated
             
-            self.collection = collection
+            self.articleIds = articleIds
+            
+            self.meta = meta
+            
+            self.cartId = cartId
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                value = try container.decode(Double.self, forKey: .value)
+                
+            
+            
+            
+                message = try container.decode(String.self, forKey: .message)
+                
+            
             
             
                 do {
@@ -117,51 +121,7 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                cartId = try container.decode(String.self, forKey: .cartId)
-                
-            
-            
-            
-                do {
-                    cartValue = try container.decode(Double.self, forKey: .cartValue)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
-                value = try container.decode(Double.self, forKey: .value)
-                
-            
-            
-            
                 articleLevelDistribution = try container.decode(Bool.self, forKey: .articleLevelDistribution)
-                
-            
-            
-            
-                articleIds = try container.decode([Article].self, forKey: .articleIds)
                 
             
             
@@ -178,7 +138,12 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                isAuthenticated = try container.decode(Bool.self, forKey: .isAuthenticated)
+                collection = try container.decode(Collection.self, forKey: .collection)
+                
+            
+            
+            
+                type = try container.decode(String.self, forKey: .type)
                 
             
             
@@ -195,12 +160,29 @@ public extension PlatformClient.ApplicationClient.Cart {
                 
             
             
-                message = try container.decode(String.self, forKey: .message)
+                isAuthenticated = try container.decode(Bool.self, forKey: .isAuthenticated)
                 
             
             
             
-                collection = try container.decode(Collection.self, forKey: .collection)
+                articleIds = try container.decode([Article].self, forKey: .articleIds)
+                
+            
+            
+            
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                cartId = try container.decode(String.self, forKey: .cartId)
                 
             
             
@@ -211,57 +193,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(applyExpiry, forKey: .applyExpiry)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cartValue, forKey: .cartValue)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
             try? container.encodeIfPresent(value, forKey: .value)
-            
-            
-            
-            
-            try? container.encodeIfPresent(articleLevelDistribution, forKey: .articleLevelDistribution)
-            
-            
-            
-            
-            try? container.encodeIfPresent(articleIds, forKey: .articleIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isAuthenticated, forKey: .isAuthenticated)
-            
-            
-            
-            
-            try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
             
             
             
@@ -271,7 +203,52 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(applyExpiry, forKey: .applyExpiry)
+            
+            
+            
+            
+            try? container.encodeIfPresent(articleLevelDistribution, forKey: .articleLevelDistribution)
+            
+            
+            
+            
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
             try? container.encodeIfPresent(collection, forKey: .collection)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(allowedRefund, forKey: .allowedRefund)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isAuthenticated, forKey: .isAuthenticated)
+            
+            
+            
+            
+            try? container.encodeIfPresent(articleIds, forKey: .articleIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
             
             
         }

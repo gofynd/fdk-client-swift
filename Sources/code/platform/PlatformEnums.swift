@@ -152,22 +152,6 @@ public extension PlatformClient.Lead {
     }
 
     
-    
-    /*
-        Enum: TicketIntegrationDetails
-        Used By: Lead
-    */
-    enum TicketIntegrationDetails: String, Codable {
-        
-        case defaultCase = "default"
-        
-        case freshdesk = "freshdesk"
-        
-        case kapture = "kapture"
-        
-    }
-
-    
 }
 
 
@@ -250,22 +234,6 @@ public extension PlatformClient.ApplicationClient.Lead {
     }
 
     
-    
-    /*
-        Enum: TicketIntegrationDetails
-        Used By: Lead
-    */
-    enum TicketIntegrationDetails: String, Codable {
-        
-        case defaultCase = "default"
-        
-        case freshdesk = "freshdesk"
-        
-        case kapture = "kapture"
-        
-    }
-
-    
 }
 
 
@@ -283,32 +251,6 @@ public extension PlatformClient.ApplicationClient.Lead {
 
 
 
-
-
-
-
-
-
-
-public extension PlatformClient.Webhook {
-    
-    
-    /*
-        Enum: SubscriberStatus
-        Used By: Webhook
-    */
-    enum SubscriberStatus: String, Codable {
-        
-        case active = "active"
-        
-        case inactive = "inactive"
-        
-        case blocked = "blocked"
-        
-    }
-
-    
-}
 
 
 

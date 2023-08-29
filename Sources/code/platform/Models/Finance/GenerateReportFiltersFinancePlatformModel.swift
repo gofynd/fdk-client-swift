@@ -12,18 +12,18 @@ public extension PlatformClient.Finance {
     class GenerateReportFilters: Codable {
         
         
-        public var company: [String]?
-        
         public var brand: [String]?
+        
+        public var company: [String]?
         
         public var channel: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case company = "company"
-            
             case brand = "brand"
+            
+            case company = "company"
             
             case channel = "channel"
             
@@ -31,9 +31,9 @@ public extension PlatformClient.Finance {
 
         public init(brand: [String]? = nil, channel: [String]? = nil, company: [String]? = nil) {
             
-            self.company = company
-            
             self.brand = brand
+            
+            self.company = company
             
             self.channel = channel
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    company = try container.decode([String].self, forKey: .company)
+                    brand = try container.decode([String].self, forKey: .brand)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    brand = try container.decode([String].self, forKey: .brand)
+                    company = try container.decode([String].self, forKey: .company)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,12 +85,12 @@ public extension PlatformClient.Finance {
             
             
             
-            try? container.encodeIfPresent(company, forKey: .company)
-            
-            
-            
-            
             try? container.encodeIfPresent(brand, forKey: .brand)
+            
+            
+            
+            
+            try? container.encodeIfPresent(company, forKey: .company)
             
             
             

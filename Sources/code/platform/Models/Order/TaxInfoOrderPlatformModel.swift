@@ -16,6 +16,8 @@ public extension PlatformClient.Order {
         
         public var gstin: String?
         
+        public var panNo: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Order {
             
             case gstin = "gstin"
             
+            case panNo = "pan_no"
+            
         }
 
-        public init(b2BGstinNumber: String? = nil, gstin: String? = nil) {
+        public init(b2BGstinNumber: String? = nil, gstin: String? = nil, panNo: String? = nil) {
             
             self.b2BGstinNumber = b2BGstinNumber
             
             self.gstin = gstin
+            
+            self.panNo = panNo
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    panNo = try container.decode(String.self, forKey: .panNo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +91,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(panNo, forKey: .panNo)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var gstin: String?
         
+        public var panNo: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case gstin = "gstin"
             
+            case panNo = "pan_no"
+            
         }
 
-        public init(b2BGstinNumber: String? = nil, gstin: String? = nil) {
+        public init(b2BGstinNumber: String? = nil, gstin: String? = nil, panNo: String? = nil) {
             
             self.b2BGstinNumber = b2BGstinNumber
             
             self.gstin = gstin
+            
+            self.panNo = panNo
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    panNo = try container.decode(String.self, forKey: .panNo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(gstin, forKey: .gstin)
+            
+            
+            
+            
+            try? container.encodeIfPresent(panNo, forKey: .panNo)
             
             
         }

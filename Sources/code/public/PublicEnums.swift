@@ -9,22 +9,10 @@ public extension PublicClient.Inventory {
     
 }
 
-public extension PublicClient.Webhook {
+public extension PublicClient.Partner {
     
-    
-    /*
-        Enum: SubscriberStatus
-        Used By: Webhook
-    */
-    enum SubscriberStatus: String, Codable {
-        
-        case active = "active"
-        
-        case inactive = "inactive"
-        
-        case blocked = "blocked"
-        
-    }
+}
 
+public extension PublicClient.Webhook {
     
 }

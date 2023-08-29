@@ -15,9 +15,9 @@ extension ApplicationClient {
             
             ulrs["getPage"] = config.domain.appendAsPath("/service/application/theme/v1.0/{theme_id}/{page_value}") 
             
-            ulrs["getAppliedTheme"] = config.domain.appendAsPath("/service/application/theme/v1.0/applied-theme") 
+            ulrs["getAppliedTheme"] = config.domain.appendAsPath("/service/application/theme/v2.0/applied-theme") 
             
-            ulrs["getThemeForPreview"] = config.domain.appendAsPath("/service/application/theme/v1.0/{theme_id}/preview") 
+            ulrs["getThemeForPreview"] = config.domain.appendAsPath("/service/application/theme/v2.0/{theme_id}/preview") 
             
             self.relativeUrls = ulrs
         }

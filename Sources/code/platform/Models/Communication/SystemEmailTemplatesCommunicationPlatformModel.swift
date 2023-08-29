@@ -14,22 +14,16 @@ public extension PlatformClient.Communication {
         
         public var items: [SystemEmailTemplate]?
         
-        public var page: Page?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case items = "items"
             
-            case page = "page"
-            
         }
 
-        public init(items: [SystemEmailTemplate]? = nil, page: Page? = nil) {
+        public init(items: [SystemEmailTemplate]? = nil) {
             
             self.items = items
-            
-            self.page = page
             
         }
 
@@ -48,18 +42,6 @@ public extension PlatformClient.Communication {
                 }
                 
             
-            
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -68,11 +50,6 @@ public extension PlatformClient.Communication {
             
             
             try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }
@@ -93,22 +70,16 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var items: [SystemEmailTemplate]?
         
-        public var page: Page?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case items = "items"
             
-            case page = "page"
-            
         }
 
-        public init(items: [SystemEmailTemplate]? = nil, page: Page? = nil) {
+        public init(items: [SystemEmailTemplate]? = nil) {
             
             self.items = items
-            
-            self.page = page
             
         }
 
@@ -127,18 +98,6 @@ public extension PlatformClient.ApplicationClient.Communication {
                 }
                 
             
-            
-                do {
-                    page = try container.decode(Page.self, forKey: .page)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -147,11 +106,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             try? container.encodeIfPresent(items, forKey: .items)
-            
-            
-            
-            
-            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }

@@ -122,44 +122,51 @@ Coupon List for sent page_size and page_no
 ```json
 {
   "value": {
-    "items": [
-      {
-        "_id": "5e1d9bec6d6b7e000146c840",
-        "display_meta": {
-          "title": "percent50 title"
-        },
-        "_schedule": {
-          "next_schedule": [
-            {
-              "start": "2020-01-14T10:45:03.600000+00:00",
-              "end": "2020-01-16T10:45:03+00:00"
-            }
-          ],
-          "duration": null,
-          "start": "2020-01-14T10:45:03.600000+00:00",
-          "end": "2020-01-16T10:45:03+00:00",
-          "cron": ""
-        },
-        "state": {
-          "is_public": true,
-          "is_display": true,
-          "is_archived": false
-        },
-        "ownership": {
-          "payable_category": "seller",
-          "payable_by": ""
-        },
-        "code": "percent50",
-        "rule_definition": {
-          "type": "percentage",
-          "scope": [
-            "category_id"
-          ],
-          "applicable_on": "quantity"
-        }
+    "items": {
+      "_id": "5e1d9bec6d6b7e000146c840",
+      "rule": [],
+      "identifiers": {},
+      "validity": {
+        "priority": 0
+      },
+      "type_slug": "bundle_quantity_absolute",
+      "display_meta": {
+        "title": "percent50 title"
+      },
+      "_schedule": {
+        "next_schedule": [
+          {
+            "start": "2020-01-14T10:45:03.600000+00:00",
+            "end": "2020-01-16T10:45:03+00:00"
+          }
+        ],
+        "duration": null,
+        "start": "2020-01-14T10:45:03.600000+00:00",
+        "end": "2020-01-16T10:45:03+00:00",
+        "cron": ""
+      },
+      "state": {
+        "is_public": true,
+        "is_display": true,
+        "is_archived": false
+      },
+      "ownership": {
+        "payable_category": "seller",
+        "payable_by": ""
+      },
+      "code": "percent50",
+      "rule_definition": {
+        "type": "percentage",
+        "scope": [
+          "category_id"
+        ],
+        "applicable_on": "quantity",
+        "calculate_on": "esp",
+        "value_type": "percentage"
       }
-    ],
+    },
     "page": {
+      "type": "",
       "has_next": true,
       "size": 10,
       "current": 1,
@@ -628,7 +635,9 @@ Promotion List for sent page_size and page_no
     "items": [
       {
         "_id": "61dc8dc9adf45b2273a70a6e",
+        "application_id": "000000000000000000000004",
         "promo_group": "product",
+        "promotion_type": "bogo",
         "date_meta": {
           "modified_on": "2022-01-11T05:47:11.503000+00:00",
           "created_on": "2022-01-10T19:49:29.917000+00:00"
@@ -636,26 +645,66 @@ Promotion List for sent page_size and page_no
         "display_meta": {
           "name": "Test BOGO promo"
         },
+        "ownership": {
+          "payable_category": "seller",
+          "payable_by": ""
+        },
         "author": {
           "created_by": "5",
           "modified_by": "5"
         },
         "_schedule": {
           "start": "2022-01-10T18:45:36.311000+00:00",
-          "end": null,
+          "end": "2025-01-10T18:45:36.311000+00:00",
           "published": true,
           "next_schedule": [
             {
               "start": "2022-01-10T18:45:36.311000+00:00",
-              "end": null
+              "end": null,
+              "cron": ""
             }
           ],
-          "cron": "",
           "duration": 0
-        }
+        },
+        "discount_rules": [
+          {
+            "buy_condition": "( rule#1 )",
+            "offer": {
+              "max_offer_quantity": 2
+            },
+            "discount_type": "bogo",
+            "item_criteria": {
+              "item_brand": [
+                2,
+                14,
+                65
+              ]
+            }
+          }
+        ],
+        "buy_rules": {
+          "rule#1": {
+            "cart_quantity": {
+              "greater_than_equals": 5
+            },
+            "item_brand": [
+              1,
+              2,
+              14,
+              16,
+              29,
+              39,
+              43,
+              65,
+              73
+            ]
+          }
+        },
+        "mode": "promotion"
       }
     ],
     "page": {
+      "type": "number",
       "has_next": true,
       "size": 10,
       "current": 1,
@@ -764,7 +813,7 @@ Promotion Created successfully
   "display_meta": {
     "offer_text": "Test",
     "name": "Test BOGO promo",
-    "description": "<p>Test</p>"
+    "description": "Test"
   },
   "apply_all_discount": false,
   "apply_exclusive": null,
@@ -800,12 +849,12 @@ Promotion Created successfully
   },
   "_schedule": {
     "start": "2022-01-10T18:45:36.311Z",
-    "end": null,
+    "end": "2025-01-10T18:45:36.311Z",
     "published": true,
     "next_schedule": [
       {
         "start": "2022-01-10T18:45:36.311Z",
-        "end": null
+        "end": "2025-01-10T18:45:36.311Z"
       }
     ],
     "cron": "",
@@ -933,7 +982,7 @@ Promotion object for sent `id`
   "display_meta": {
     "offer_text": "Test",
     "name": "Test BOGO promo",
-    "description": "<p>Test</p>"
+    "description": "test"
   },
   "apply_all_discount": false,
   "apply_exclusive": null,
@@ -969,12 +1018,12 @@ Promotion object for sent `id`
   },
   "_schedule": {
     "start": "2022-01-10T18:45:36.311Z",
-    "end": null,
+    "end": "2025-01-10T18:45:36.311Z",
     "published": true,
     "next_schedule": [
       {
         "start": "2022-01-10T18:45:36.311Z",
-        "end": null
+        "end": "2025-01-10T18:45:36.311Z"
       }
     ],
     "cron": "",
@@ -1102,7 +1151,7 @@ Promotion updated successfully
   "display_meta": {
     "offer_text": "Test",
     "name": "Test BOGO promo",
-    "description": "<p>Test</p>"
+    "description": "Test"
   },
   "apply_all_discount": false,
   "apply_exclusive": null,
@@ -1138,12 +1187,12 @@ Promotion updated successfully
   },
   "_schedule": {
     "start": "2022-01-10T18:45:36.311Z",
-    "end": null,
+    "end": "2025-01-10T18:45:36.311Z",
     "published": true,
     "next_schedule": [
       {
         "start": "2022-01-10T18:45:36.311Z",
-        "end": null
+        "end": "2025-01-10T18:45:36.311Z"
       }
     ],
     "cron": "",
@@ -1313,8 +1362,7 @@ Success. Returns a list of all the curently active coupons/promos
       "entity_slug": "percentage_quantity_percentage",
       "title": "X Percentage Value",
       "subtitle": "Get a fixed percentage discount on the effective selling price",
-      "example": "FLAT50 | Flat 50% OFF",
-      "description": "Here, <b>Buy items(BI)</b> is the minimum number of items eligible for a discount <b>Percentage Value(D)</b> is the fixed percentage discount <b>Maximum Discount Amount(MD)</b> (optional) is a limit to the discount <b>Minimum Cart Value(MCV)</b> (optional) is the minimum price of the cart items <b>Apply coupon on exact quantities</b> (optional) if checked, will apply the coupon only to the specified <b>Buy items</b> and if unchecked, will apply the coupon to more than the specified <b>Buy items</b>",
+      "description": "Here, Buy items(BI) is the minimum number of items eligible for a discount Percentage Value(D) is the fixed percentage discount Maximum Discount Amount(MD) (optional) is a limit to the discount Minimum Cart Value(MCV) (optional) is the minimum price of the cart items Apply coupon on exact quantities (optional) if checked, will apply the coupon only to the specified Buy items and if unchecked, will apply the coupon to more than the specified Buy items",
       "is_hidden": true,
       "entity_type": "promotion",
       "type": "percentage",
@@ -1588,7 +1636,6 @@ Price Adjustment Updated successfully
   "success": true,
   "data": {
     "id": "cc8154592ccb42c88b481ce4c21ab602",
-    "cart_value": 250,
     "cart_id": "fa45f5cbd3764a6297bfa79d6bedf71c",
     "is_authenticated": true,
     "article_ids": [
@@ -1596,7 +1643,8 @@ Price Adjustment Updated successfully
         "article_id": "f322167ce70f4dca8f8ac0efdc496abe",
         "value": 100,
         "code": "abs120",
-        "meta": {}
+        "meta": {},
+        "quantity": 2
       }
     ],
     "type": "discount",
@@ -1726,7 +1774,6 @@ Price Adjustment Created successfully
   "success": true,
   "data": {
     "id": "cc8154592ccb42c88b481ce4c21ab602",
-    "cart_value": 250,
     "cart_id": "fa45f5cbd3764a6297bfa79d6bedf71c",
     "is_authenticated": true,
     "article_ids": [
@@ -1734,7 +1781,8 @@ Price Adjustment Created successfully
         "article_id": "f322167ce70f4dca8f8ac0efdc496abe",
         "value": 100,
         "code": "abs120",
-        "meta": {}
+        "meta": {},
+        "quantity": 2
       }
     ],
     "type": "discount",
@@ -1806,6 +1854,12 @@ Cart details with breakup
   "items": [
     {
       "quantity": 1,
+      "identifiers": {
+        "user_id": [],
+        "brand_id": [
+          9
+        ]
+      },
       "message": "",
       "coupon_message": "",
       "product": {
@@ -1932,6 +1986,12 @@ Cart details with breakup
     },
     {
       "quantity": 1,
+      "identifiers": {
+        "user_id": [],
+        "brand_id": [
+          9
+        ]
+      },
       "message": "Out of stock. Please remove item",
       "coupon_message": "",
       "product": {
@@ -2139,6 +2199,9 @@ Cart details with pincode validity information at item level
     "items": [
       {
         "quantity": 1,
+        "identifiers": {
+          "identifier": "5mPyy88URXuh3Lo35uaTg"
+        },
         "message": "",
         "coupon_message": "",
         "product": {
@@ -2275,6 +2338,9 @@ Cart details with pincode validity information at item level
       },
       {
         "quantity": 1,
+        "identifiers": {
+          "identifier": "5mPyy88URXuh3Lo35uaTg"
+        },
         "message": "Out of stock. Please remove item",
         "coupon_message": "",
         "product": {
@@ -2413,6 +2479,9 @@ Cart details with pincode validity information at item level
     "items": [
       {
         "discount": "15% OFF",
+        "identifiers": {
+          "identifier": "5mPyy88URXuh3Lo35uaTg"
+        },
         "price": {
           "base": {
             "add_on": 0,
@@ -2465,7 +2534,16 @@ Cart details with pincode validity information at item level
         "bulk_offer": {},
         "key": "876245_6",
         "message": "We are not delivering to 800108",
-        "delivery_promise": null,
+        "delivery_promise": {
+          "timestamp": {
+            "min": 1646257339,
+            "max": 1646689339,
+            "formatted": {
+              "min": "03 Mar, Thursday",
+              "max": "08 Mar, Tuesday"
+            }
+          }
+        },
         "coupon_message": "",
         "availability": {
           "sizes": [
@@ -2536,6 +2614,9 @@ Cart details with pincode validity information at item level
       },
       {
         "discount": "15% OFF",
+        "identifiers": {
+          "identifier": "gIq0E94RSMueSdDRAk_Txg"
+        },
         "price": {
           "base": {
             "add_on": 0,
@@ -2718,7 +2799,7 @@ Checkout cart and create Fynd order id
   "success": true,
   "order_id": "FY5E182A9D0A5E405446",
   "message": "Order initiation completed",
-  "order_ref_id": null
+  "order_ref_id": "5d64e3500bcad8693a821c0d"
 }
 ```
 </details>
@@ -2877,7 +2958,7 @@ Abandoned Cart List for sent page_size and page_no
           "currency_code": "INR",
           "code": null,
           "type": "cart",
-          "uid": null,
+          "uid": "",
           "id": null
         },
         "promotion": {
@@ -2904,7 +2985,7 @@ Abandoned Cart List for sent page_size and page_no
         "cashback": {
           "amount": 0,
           "currency_code": "FC",
-          "uid": null
+          "uid": ""
         },
         "payments": {},
         "is_archive": false,
@@ -3003,6 +3084,9 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
     {
       "bulk_offer": {},
       "discount": "67% OFF",
+      "identifiers": {
+        "identifier": "5mPyy88URXuh3Lo35uaTg"
+      },
       "article": {
         "type": "article",
         "uid": "604_902_SSTC60401_636BLUE_1",
@@ -3120,7 +3204,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
     "coupon": {
       "type": "cash",
       "code": "",
-      "uid": null,
+      "uid": "21755",
       "value": 0,
       "is_applied": false,
       "message": "Sorry! Invalid Coupon"
@@ -3160,11 +3244,11 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
   },
   "delivery_charge_info": "",
   "coupon_text": "View all offers",
-  "gstin": null,
+  "gstin": "",
   "checkout_mode": "self",
   "restrict_checkout": false,
   "is_valid": true,
-  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
+  "last_modified": "2022-06-28"
 }
 ```
 </details>
@@ -3280,7 +3364,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "25_44_A7050_NEMIEL@GREENBRITISH_S",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid Coupon"
@@ -3289,6 +3373,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "items": [
         {
           "key": "751083_10",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "parent_item_identifiers": {
             "identifier": "ZASFF",
             "parent_item_id": 7501190,
@@ -3384,7 +3471,10 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           "discount": "41% OFF"
         },
         {
-          "key": "246228_S",
+          "key": "246228_",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "article": {
             "type": "article",
             "uid": "46_235_TM62_M11029ONDSXNS_S",
@@ -3479,7 +3569,10 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
           "discount": ""
         },
         {
-          "key": "443175_S",
+          "key": "443175_s",
+          "identifiers": {
+            "identifier": "gIq0E94RSMueSdDRAk_Txg"
+          },
           "article": {
             "type": "article",
             "uid": "162_207_1271_LJ03LBLUDN88_S",
@@ -3574,6 +3667,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         },
         {
           "key": "778937_OS",
+          "identifiers": {
+            "identifier": "gIq0E94RSMueSdDRAk_Txg"
+          },
           "article": {
             "type": "article",
             "uid": "686_963_IC68601_PWUPC01977_OS",
@@ -3669,9 +3765,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "buy_now": false,
       "cart_id": 7927,
       "uid": "7927",
-      "gstin": null,
+      "gstin": "",
       "checkout_mode": "self",
-      "last_modified": "Tue, 03 Sep 2019 06:00:43 GMT",
+      "last_modified": "2023-03-03",
       "restrict_checkout": false,
       "is_valid": true
     },
@@ -3708,7 +3804,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid Coupon"
@@ -3749,6 +3845,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "items": [
         {
           "bulk_offer": {},
+          "identifiers": {
+            "identifier": "gIq0E94RSMueSdDRAk_Txg"
+          },
           "discount": "67% OFF",
           "parent_item_identifiers": {
             "identifier": "ZASFF",
@@ -3856,11 +3955,11 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "buy_now": false,
       "cart_id": 54,
       "uid": "54",
-      "gstin": null,
+      "gstin": "",
       "checkout_mode": "self",
       "restrict_checkout": false,
       "is_valid": false,
-      "last_modified": "Tue, 03 Sep 2019 09:55:40 GMT"
+      "last_modified": "2023-03-03"
     },
     "result": {}
   }
@@ -3904,7 +4003,7 @@ platformClient.application("<APPLICATION_ID>").cart.updateCart(cartId: cartId, b
 | body | UpdateCartRequest | yes | Request body |
 
 
-<p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call.update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/"  item position in the cart (must be greater than or equal to 0)
 
 *Returned Response:*
 
@@ -3947,7 +4046,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid Coupon"
@@ -3988,6 +4087,9 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
       "items": [
         {
           "bulk_offer": {},
+          "identifiers": {
+            "identifier": "gIq0E94RSMueSdDRAk_Txg"
+          },
           "discount": "67% OFF",
           "parent_item_identifiers": {
             "identifier": "ZASFF",
@@ -4095,11 +4197,11 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
       "buy_now": false,
       "cart_id": 54,
       "uid": "54",
-      "gstin": null,
+      "gstin": "",
       "checkout_mode": "self",
       "restrict_checkout": false,
       "is_valid": true,
-      "last_modified": "Tue, 03 Sep 2019 10:19:20 GMT"
+      "last_modified": "2023-03-03"
     },
     "result": {
       "707569_90": {
@@ -4141,7 +4243,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid coupon"
@@ -4230,7 +4332,9 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
             "type": "article",
             "uid": "618c1a6874b93908c98f6d18",
             "size": "XL",
-            "product_group_tags": null,
+            "product_group_tags": [
+              "tag1"
+            ],
             "seller": {
               "uid": 61,
               "name": "FUCHSIA VINE DESIGNS PRIVATE LIMITED"
@@ -4407,7 +4511,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
             }
           ],
           "key": "75252592_XL",
-          "delivery_promise": null,
+          "delivery_promise": {},
           "coupon_message": ""
         }
       ],
@@ -4415,7 +4519,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
       "id": "62d4ff76d6aec8db897de407",
       "uid": "22251",
       "buy_now": false,
-      "gstin": null,
+      "gstin": "",
       "comment": "",
       "checkout_mode": "self",
       "restrict_checkout": false,
@@ -4424,7 +4528,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
         "code": "INR",
         "symbol": "₹"
       },
-      "last_modified": "Mon, 01 Aug 2022 09:33:20 GMT"
+      "last_modified": "2023-03-03"
     },
     "message": "Quantity of item updated",
     "success": true
@@ -4482,51 +4586,30 @@ Coupon options enums
 
 ```json
 {
-  "types": {
-    "absolute": "Absolute",
-    "percentage": "Percentage",
-    "bogo": "BOGO",
-    "bundle": "Bundle"
-  },
-  "scopes": {
-    "category_id": "Categories",
-    "brand_id": "Brands",
-    "company_id": "Sellers",
-    "store_id": "Stores",
-    "collection_id": "Collections"
-  },
-  "applicable_on": {
-    "amount": "Amount",
-    "quantity": "Quantity"
-  },
-  "value_types": {
-    "absolute": "Absolute",
-    "percentage": "Percentage",
-    "quantity": "Quantity",
-    "flat_price": "Absolute Price"
-  },
-  "calculate_on": {
-    "mrp": "MRP",
-    "esp": "ESP",
-    "tp": "TP"
-  },
-  "payable_category": {
-    "fynd": "Fynd",
-    "seller": "Seller"
-  },
-  "txn_mode": {
-    "fynd_cash": "Fynd Cash",
-    "cash": "Cashback",
-    "coupon": "Coupon Discount"
-  },
-  "payable_by": {
-    "Fynd Marketing": "Fynd Marketing",
-    "Fynd": "Fynd",
-    "Fynd Store": "Fynd Store",
-    "Fynd Delights": "Fynd Delights",
-    "Fynd Ops": "Fynd Ops",
-    "Fynd Inventory": "Fynd Inventory"
-  }
+  "types": [
+    "Absolute"
+  ],
+  "scopes": [
+    "Categories"
+  ],
+  "applicable_on": [
+    "Amount"
+  ],
+  "value_types": [
+    "Absolute"
+  ],
+  "calculate_on": [
+    "Mrp"
+  ],
+  "payable_category": [
+    "Fynd"
+  ],
+  "txn_mode": [
+    "Fynd Cash"
+  ],
+  "payable_by": [
+    "Fynd Marketing"
+  ]
 }
 ```
 </details>
@@ -4740,7 +4823,7 @@ Checkout cart and create Fynd order id
 
 ```json
 {
-  "success": true,
+  "success": "true",
   "cart": {
     "success": true,
     "delivery_charges": 0,
@@ -4775,7 +4858,7 @@ Checkout cart and create Fynd order id
       "coupon": {
         "type": "cash",
         "code": "",
-        "uid": null,
+        "uid": "",
         "value": 0,
         "is_applied": false,
         "message": "Coupon not applicable with Reward point"
@@ -5033,7 +5116,7 @@ Checkout cart and create Fynd order id
     "cart_id": 21755,
     "id": "63007e85f7df71d5a89758cf",
     "uid": "21755",
-    "gstin": null,
+    "gstin": "",
     "comment": "",
     "checkout_mode": "self",
     "payment_selection_lock": {
@@ -5047,7 +5130,7 @@ Checkout cart and create Fynd order id
       "code": "INR",
       "symbol": "₹"
     },
-    "last_modified": "Tue, 30 Aug 2022 09:59:34 GMT"
+    "last_modified": "2023-03-03T00:00:00.000Z"
   },
   "message": "",
   "data": {
@@ -5200,6 +5283,9 @@ Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse
     "items": [
       {
         "key": "791651_6",
+        "identifiers": {
+          "identifier": "5mPyy88URXuh3Lo35uaTg"
+        },
         "discount": "",
         "bulk_offer": {},
         "coupon_message": "",
@@ -5295,6 +5381,9 @@ Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse
       },
       {
         "key": "791651_7",
+        "identifiers": {
+          "identifier": "5mPyy88URXuh3Lo35uaTg"
+        },
         "discount": "",
         "bulk_offer": {},
         "coupon_message": "",
@@ -5415,7 +5504,7 @@ Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse
       "coupon": {
         "type": "cash",
         "code": "",
-        "uid": null,
+        "uid": "",
         "value": 0,
         "is_applied": false,
         "message": "Sorry! Invalid coupon"
@@ -5443,17 +5532,17 @@ Success. Returns a Cart object as per the valid token. Refer `SharedCartResponse
     },
     "delivery_charge_info": "",
     "coupon_text": "View all offers",
-    "gstin": null,
+    "gstin": "",
     "comment": "",
     "checkout_mode": "self",
     "payment_selection_lock": {
       "enabled": false,
       "default_options": "COD",
-      "payment_identifier": null
+      "payment_identifier": "JIOPP"
     },
     "restrict_checkout": false,
     "is_valid": true,
-    "last_modified": "Mon, 16 Dec 2019 07:02:18 GMT"
+    "last_modified": "2023-03-03"
   },
   "error": ""
 }
@@ -5538,6 +5627,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
       "items": [
         {
           "key": "791651_6",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "discount": "",
           "bulk_offer": {},
           "coupon_message": "",
@@ -5633,6 +5725,9 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
         },
         {
           "key": "791651_7",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "discount": "",
           "bulk_offer": {},
           "coupon_message": "",
@@ -5753,7 +5848,7 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid coupon"
@@ -5781,17 +5876,17 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
       },
       "delivery_charge_info": "",
       "coupon_text": "View all offers",
-      "gstin": null,
+      "gstin": "",
       "comment": "",
       "checkout_mode": "self",
       "payment_selection_lock": {
         "enabled": false,
         "default_options": "COD",
-        "payment_identifier": null
+        "payment_identifier": "JIOPP"
       },
       "restrict_checkout": false,
       "is_valid": true,
-      "last_modified": "Mon, 16 Dec 2019 07:02:18 GMT"
+      "last_modified": "2023-03-03"
     }
   }
 }
@@ -5865,7 +5960,7 @@ Platform user cart list
           "mobile": 7777996559,
           "email": "test_pickup_customer@gmail.com"
         },
-        "created_on": 1675780233,
+        "created_on": "1675780233",
         "cart_value": 1999,
         "cart_id": "63e213d45e4206d94485935f",
         "item_counts": 1,
@@ -5873,7 +5968,7 @@ Platform user cart list
       },
       {
         "pick_up_customer_details": {},
-        "created_on": 1675779508,
+        "created_on": "1675779508",
         "cart_value": 5997,
         "cart_id": "63e210d03437dfb6c731062a",
         "item_counts": 3,
@@ -5991,7 +6086,7 @@ Update user id for store os customer after creating customer
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid coupon"
@@ -6239,7 +6334,7 @@ Update user id for store os customer after creating customer
       "id": "63e210d03437dfb6c731062a",
       "uid": "436470",
       "buy_now": false,
-      "gstin": null,
+      "gstin": "",
       "comment": "",
       "checkout_mode": "self",
       "restrict_checkout": false,
@@ -6248,7 +6343,7 @@ Update user id for store os customer after creating customer
         "code": "INR",
         "symbol": "₹"
       },
-      "last_modified": "Tue, 07 Feb 2023 09:01:56 GMT"
+      "last_modified": "2023-03-03T00:00:00.000Z"
     },
     "user": {
       "uid": "63693036ef136d40c32c0ac8",
@@ -6258,9 +6353,9 @@ Update user id for store os customer after creating customer
       "email": "neelgajjar@gofynd.com",
       "mobile": "7096263966",
       "gender": "male",
-      "created_at": 1667838020,
-      "modified_on": 1668514790,
-      "external_id": null
+      "created_at": "1667838020",
+      "modified_on": "1668514790",
+      "external_id": ""
     }
   }
 }
@@ -6329,6 +6424,9 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
   "items": [
     {
       "bulk_offer": {},
+      "identifiers": {
+        "identifier": "5mPyy88URXuh3Lo35uaTg"
+      },
       "discount": "67% OFF",
       "article": {
         "type": "article",
@@ -6447,7 +6545,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
     "coupon": {
       "type": "cash",
       "code": "",
-      "uid": null,
+      "uid": "304_1054_9036_R1005753_6",
       "value": 0,
       "is_applied": false,
       "message": "Sorry! Invalid Coupon"
@@ -6487,11 +6585,11 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
   },
   "delivery_charge_info": "",
   "coupon_text": "View all offers",
-  "gstin": null,
+  "gstin": "",
   "checkout_mode": "self",
   "restrict_checkout": false,
   "is_valid": true,
-  "last_modified": "Tue, 03 Sep 2019 05:35:59 GMT"
+  "last_modified": "2023-03-03"
 }
 ```
 </details>
@@ -6609,7 +6707,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid Coupon"
@@ -6618,6 +6716,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "items": [
         {
           "key": "751083_10",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "parent_item_identifiers": {
             "identifier": "ZASFF",
             "parent_item_id": 7501190,
@@ -6714,6 +6815,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         },
         {
           "key": "246228_S",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "article": {
             "type": "article",
             "uid": "46_235_TM62_M11029ONDSXNS_S",
@@ -6809,6 +6913,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         },
         {
           "key": "443175_S",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "article": {
             "type": "article",
             "uid": "162_207_1271_LJ03LBLUDN88_S",
@@ -6903,6 +7010,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         },
         {
           "key": "778937_OS",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "article": {
             "type": "article",
             "uid": "686_963_IC68601_PWUPC01977_OS",
@@ -6998,9 +7108,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "buy_now": false,
       "cart_id": 7927,
       "uid": "7927",
-      "gstin": null,
+      "gstin": "",
       "checkout_mode": "self",
-      "last_modified": "Tue, 03 Sep 2019 06:00:43 GMT",
+      "last_modified": "2023-03-03T00:00:00.000Z",
       "restrict_checkout": false,
       "is_valid": true
     },
@@ -7037,7 +7147,7 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid Coupon"
@@ -7078,6 +7188,9 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "items": [
         {
           "bulk_offer": {},
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "discount": "67% OFF",
           "parent_item_identifiers": {
             "identifier": "ZASFF",
@@ -7185,11 +7298,11 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
       "buy_now": false,
       "cart_id": 54,
       "uid": "54",
-      "gstin": null,
+      "gstin": "",
       "checkout_mode": "self",
       "restrict_checkout": false,
       "is_valid": false,
-      "last_modified": "Tue, 03 Sep 2019 09:55:40 GMT"
+      "last_modified": "2023-03-03T00:00:00.000Z"
     },
     "result": {}
   }
@@ -7235,7 +7348,7 @@ platformClient.application("<APPLICATION_ID>").cart.platformUpdateCart(id: id, i
 | body | PlatformUpdateCartRequest | yes | Request body |
 
 
-<p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul>
+Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call. update_item for update items. remove_item for removing items.item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity  item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0)
 
 *Returned Response:*
 
@@ -7278,7 +7391,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid Coupon"
@@ -7319,6 +7432,9 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
       "items": [
         {
           "bulk_offer": {},
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "discount": "67% OFF",
           "parent_item_identifiers": {
             "identifier": "ZASFF",
@@ -7426,11 +7542,11 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
       "buy_now": false,
       "cart_id": 54,
       "uid": "54",
-      "gstin": null,
+      "gstin": "",
       "checkout_mode": "self",
       "restrict_checkout": false,
       "is_valid": true,
-      "last_modified": "Tue, 03 Sep 2019 10:19:20 GMT"
+      "last_modified": "2023-03-03T00:00:00.000Z"
     },
     "result": {
       "707569_90": {
@@ -7456,7 +7572,7 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid Coupon"
@@ -7505,6 +7621,9 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
       "items": [
         {
           "key": "437414_7",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "message": "",
           "bulk_offer": {},
           "price": {
@@ -7610,9 +7729,9 @@ Success. Updates and returns a cart object as shown below. Refer `UpdateCartDeta
       "buy_now": false,
       "cart_id": 12426,
       "uid": "12426",
-      "gstin": null,
+      "gstin": "",
       "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:51:42 GMT",
+      "last_modified": "2023-02-02T00:00:00.000Z",
       "restrict_checkout": false,
       "is_valid": true
     },
@@ -7913,7 +8032,7 @@ Success. Returns coupons applied to the cart along with item details and price b
     "coupon": {
       "type": "cash",
       "code": "PRISMC22250111",
-      "uid": 17743,
+      "uid": "17743",
       "value": 2250,
       "is_applied": true,
       "message": "coupn applied"
@@ -7959,7 +8078,11 @@ Success. Returns coupons applied to the cart along with item details and price b
   },
   "items": [
     {
+      "identifiers": {},
       "availability": {
+        "identifiers": {
+          "identifier": "5mPyy88URXuh3Lo35uaTg"
+        },
         "sizes": [
           "10"
         ],
@@ -8050,6 +8173,7 @@ Success. Returns coupons applied to the cart along with item details and price b
       }
     },
     {
+      "identifiers": {},
       "availability": {
         "sizes": [
           "L",
@@ -8145,6 +8269,7 @@ Success. Returns coupons applied to the cart along with item details and price b
       }
     },
     {
+      "identifiers": {},
       "availability": {
         "sizes": [
           "XL",
@@ -8239,6 +8364,7 @@ Success. Returns coupons applied to the cart along with item details and price b
       }
     },
     {
+      "identifiers": {},
       "availability": {
         "sizes": [
           "OS"
@@ -8330,6 +8456,7 @@ Success. Returns coupons applied to the cart along with item details and price b
       }
     },
     {
+      "identifiers": {},
       "availability": {
         "sizes": [
           "OS"
@@ -8426,9 +8553,9 @@ Success. Returns coupons applied to the cart along with item details and price b
   "buy_now": false,
   "cart_id": 7927,
   "uid": "7927",
-  "gstin": null,
+  "gstin": "",
   "checkout_mode": "self",
-  "last_modified": "Wed, 04 Sep 2019 04:52:21 GMT",
+  "last_modified": "2023-03-03T00:00:00.000Z",
   "restrict_checkout": false,
   "is_valid": true
 }
@@ -8506,7 +8633,7 @@ Success. Returns coupons removed from the cart along with item details and price
     "coupon": {
       "type": "cash",
       "code": "prismc22250111",
-      "uid": 17743,
+      "uid": "17743",
       "value": 0,
       "is_applied": false,
       "message": "Coupon successfully removed"
@@ -8541,6 +8668,9 @@ Success. Returns coupons removed from the cart along with item details and price
   "items": [
     {
       "message": "",
+      "identifiers": {
+        "identifier": "5mPyy88URXuh3Lo35uaTg"
+      },
       "availability": {
         "sizes": [
           "M",
@@ -8640,9 +8770,9 @@ Success. Returns coupons removed from the cart along with item details and price
   "buy_now": false,
   "cart_id": 7477,
   "uid": "7477",
-  "gstin": null,
+  "gstin": "",
   "checkout_mode": "self",
-  "last_modified": "Thu, 22 Aug 2019 10:55:05 GMT",
+  "last_modified": "2023-02-02T00:00:00.000Z",
   "restrict_checkout": false,
   "is_valid": true
 }
@@ -8688,7 +8818,7 @@ platformClient.application("<APPLICATION_ID>").cart.getAddresses(cartId: cartId,
 
 
 
-Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id  mobile_no checkout_mode tags default
 
 *Returned Response:*
 
@@ -8710,17 +8840,14 @@ Success. Returns an Address object containing a list of address saved in the acc
   "address": [
     {
       "landmark": "",
-      "area_code": {
-        "slug": "pincode",
-        "id": 400093
-      },
+      "area_code": "410218",
       "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
       "state": "Maharashtra",
       "meta": {},
       "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
       "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
       "country_code": "IND",
-      "phone": 9915347757,
+      "phone": "99999999",
       "geo_location": {},
       "country": "India",
       "is_default_address": true,
@@ -8839,7 +8966,7 @@ platformClient.application("<APPLICATION_ID>").cart.getAddressById(id: id, cartI
 
 
 
-Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul>
+Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `PlatformAddress`. Attibutes listed below are optional mobile_no checkout_mode tags default
 
 *Returned Response:*
 
@@ -8859,16 +8986,13 @@ Success. Returns an PlatformAddress object containing a list of address saved in
 ```json
 {
   "landmark": "",
-  "area_code": {
-    "slug": "pincode",
-    "id": 400093
-  },
+  "area_code": "410218",
   "state": "Maharashtra",
   "meta": {},
   "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "country_code": "IND",
-  "phone": 9915347757,
+  "phone": "9915347757",
   "geo_location": {},
   "country": "India",
   "is_default_address": true,
@@ -8922,7 +9046,7 @@ platformClient.application("<APPLICATION_ID>").cart.updateAddress(id: id, body: 
 | body | PlatformAddress | yes | Request body |
 
 
-<p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul>
+Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are:is_default_address landmark area pincode email address_type name address_id address
 
 *Returned Response:*
 
@@ -9044,7 +9168,7 @@ platformClient.application("<APPLICATION_ID>").cart.selectAddress(cartId: cartId
 | body | PlatformSelectCartAddressRequest | yes | Request body |
 
 
-<p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p>
+Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid
 
 *Returned Response:*
 
@@ -9109,7 +9233,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
     "coupon": {
       "type": "cash",
       "code": "PRISMC22250111",
-      "uid": 17743,
+      "uid": "17743",
       "value": 2250,
       "is_applied": true,
       "message": "coupn applied"
@@ -9124,6 +9248,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
   "items": [
     {
       "message": "",
+      "identifiers": {
+        "identifier": "5mPyy88URXuh3Lo35uaTg"
+      },
       "quantity": 1,
       "availability": {
         "sizes": [
@@ -9219,6 +9346,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
     },
     {
       "message": "",
+      "identifiers": {
+        "identifier": "5mPyy88URXuh3Lo35uaTg"
+      },
       "quantity": 1,
       "availability": {
         "sizes": [
@@ -9314,9 +9444,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
   "delivery_charge_info": "",
   "coupon_text": "View all offers",
   "uid": "7477",
-  "gstin": null,
+  "gstin": "",
   "checkout_mode": "self",
-  "last_modified": "Fri, 23 Aug 2019 08:03:12 GMT",
+  "last_modified": "2023-02-02T00:00:00.000Z",
   "restrict_checkout": false
 }
 ```
@@ -9579,7 +9709,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
       "coupon": {
         "type": "cash",
         "code": "",
-        "uid": null,
+        "uid": "304_1054_9036_R1005753_7",
         "value": 0,
         "is_applied": false,
         "message": "Sorry! Invalid Coupon"
@@ -9663,6 +9793,9 @@ Success. Returns delivery promise along with shipment details and price breakup.
         "items": [
           {
             "quantity": 1,
+            "identifiers": {
+              "identifier": "5mPyy88URXuh3Lo35uaTg"
+            },
             "product": {
               "type": "product",
               "uid": 820312,
@@ -9759,9 +9892,9 @@ Success. Returns delivery promise along with shipment details and price breakup.
     ],
     "delivery_charge_info": "",
     "coupon_text": "View all offers",
-    "gstin": null,
+    "gstin": "",
     "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
+    "last_modified": "2023-03-03",
     "restrict_checkout": false,
     "is_valid": true
   }
@@ -9968,7 +10101,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
       "coupon": {
         "type": "cash",
         "code": "",
-        "uid": null,
+        "uid": "304_1054_9036_R1005753_7",
         "value": 0,
         "is_applied": false,
         "message": "Sorry! Invalid Coupon"
@@ -10012,9 +10145,9 @@ Success. Returns delivery promise along with shipment details and price breakup.
     "message": "Shipments could not be generated. Please Try again after some time.",
     "delivery_charge_info": "",
     "coupon_text": "View all offers",
-    "gstin": null,
+    "gstin": "",
     "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
+    "last_modified": "2023-03-03",
     "restrict_checkout": false,
     "is_valid": false
   }
@@ -10279,7 +10412,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
       "coupon": {
         "type": "cash",
         "code": "",
-        "uid": null,
+        "uid": "304_1054_9036_R1005753_6",
         "value": 0,
         "is_applied": false,
         "message": "Sorry! Invalid Coupon"
@@ -10364,6 +10497,9 @@ Success. Returns delivery promise along with shipment details and price breakup.
         "items": [
           {
             "quantity": 1,
+            "identifiers": {
+              "identifier": "5mPyy88URXuh3Lo35uaTg"
+            },
             "product": {
               "type": "product",
               "uid": 820312,
@@ -10460,9 +10596,9 @@ Success. Returns delivery promise along with shipment details and price breakup.
     ],
     "delivery_charge_info": "",
     "coupon_text": "View all offers",
-    "gstin": null,
+    "gstin": "",
     "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
+    "last_modified": "2023-03-03",
     "restrict_checkout": false,
     "is_valid": true
   }
@@ -10669,7 +10805,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
       "coupon": {
         "type": "cash",
         "code": "",
-        "uid": null,
+        "uid": "304_1054_9036_R1005753_6",
         "value": 0,
         "is_applied": false,
         "message": "Sorry! Invalid Coupon"
@@ -10713,9 +10849,9 @@ Success. Returns delivery promise along with shipment details and price breakup.
     "message": "Shipments could not be generated. Please Try again after some time.",
     "delivery_charge_info": "",
     "coupon_text": "View all offers",
-    "gstin": null,
+    "gstin": "",
     "checkout_mode": "self",
-    "last_modified": "Thu, 22 Aug 2019 20:21:48 GMT",
+    "last_modified": "2023-03-03",
     "restrict_checkout": false,
     "is_valid": false
   }
@@ -11053,7 +11189,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponse` for m
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid Coupon"
@@ -11102,6 +11238,9 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponse` for m
       "items": [
         {
           "key": "820312_L",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "message": "",
           "bulk_offer": {},
           "price": {
@@ -11198,9 +11337,9 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponse` for m
       "coupon_text": "View all offers",
       "cart_id": 7483,
       "uid": "7483",
-      "gstin": null,
+      "gstin": "",
       "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:58:44 GMT",
+      "last_modified": "2023-03-03T00:00:00.000Z",
       "restrict_checkout": false,
       "is_valid": true
     },
@@ -11343,7 +11482,7 @@ Success. Returns available store information with its address as shown below.
       "address": "NO",
       "area": "",
       "pincode": 400072,
-      "area_code": 400072,
+      "area_code": "400072",
       "area_code_slug": "pincode",
       "landmark": "",
       "country": "INDIA",
@@ -11470,7 +11609,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
     "coupon": {
       "type": "cash",
       "code": "PRISMC22250111",
-      "uid": 17743,
+      "uid": "17743",
       "value": 2250,
       "is_applied": true,
       "message": "coupn applied"
@@ -11485,6 +11624,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
   "items": [
     {
       "message": "",
+      "identifiers": {
+        "identifier": "5mPyy88URXuh3Lo35uaTg"
+      },
       "quantity": 1,
       "availability": {
         "sizes": [
@@ -11580,6 +11722,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
     },
     {
       "message": "",
+      "identifiers": {
+        "identifier": "5mPyy88URXuh3Lo35uaTg"
+      },
       "quantity": 1,
       "availability": {
         "sizes": [
@@ -11677,9 +11822,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
   "buy_now": false,
   "cart_id": 7477,
   "uid": "7477",
-  "gstin": null,
+  "gstin": "",
   "checkout_mode": "self",
-  "last_modified": "Fri, 23 Aug 2019 08:03:04 GMT",
+  "last_modified": "2023-02-02T00:00:00.000Z",
   "restrict_checkout": false,
   "is_valid": true
 }
@@ -12027,7 +12172,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
         "coupon": {
           "type": "cash",
           "code": "",
-          "uid": null,
+          "uid": "",
           "value": 0,
           "is_applied": false,
           "message": "Sorry! Invalid Coupon"
@@ -12076,6 +12221,9 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
       "items": [
         {
           "key": "820312_L",
+          "identifiers": {
+            "identifier": "5mPyy88URXuh3Lo35uaTg"
+          },
           "message": "",
           "bulk_offer": {},
           "price": {
@@ -12172,9 +12320,9 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
       "coupon_text": "View all offers",
       "cart_id": 7483,
       "uid": "7483",
-      "gstin": null,
+      "gstin": "",
       "checkout_mode": "self",
-      "last_modified": "Thu, 22 Aug 2019 04:58:44 GMT",
+      "last_modified": "2023-02-02T00:00:00.000Z",
       "restrict_checkout": false,
       "is_valid": true
     },
@@ -12301,7 +12449,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
     "coupon": {
       "type": "cash",
       "code": "PRISMC22250111",
-      "uid": 17743,
+      "uid": "17743",
       "value": 2250,
       "is_applied": true,
       "message": "coupn applied"
@@ -12316,6 +12464,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
   "items": [
     {
       "message": "",
+      "identifiers": {
+        "identifier": "5mPyy88URXuh3Lo35uaTg"
+      },
       "quantity": 1,
       "availability": {
         "sizes": [
@@ -12411,6 +12562,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
     },
     {
       "message": "",
+      "identifiers": {
+        "identifier": "5mPyy88URXuh3Lo35uaTg"
+      },
       "quantity": 1,
       "availability": {
         "sizes": [
@@ -12508,9 +12662,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
   "buy_now": false,
   "cart_id": 7477,
   "uid": "7477",
-  "gstin": null,
+  "gstin": "",
   "checkout_mode": "self",
-  "last_modified": "Fri, 23 Aug 2019 08:03:04 GMT",
+  "last_modified": "2023-02-02T00:00:00.000Z",
   "restrict_checkout": false,
   "is_valid": true
 }
@@ -13211,28 +13365,29 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | stackable | Bool? |  yes  |  |
+ | stackable | Bool? |  yes  | Allows more than one promotion to get combined benefits |
  | calculateOn | String? |  yes  | Only available for Contract pricing and Ladder pricing promotion type |
- | applyExclusive | String? |  yes  |  |
- | promoGroup | String |  no  |  |
- | mode | String |  no  |  |
- | applyAllDiscount | Bool? |  yes  |  |
+ | applyExclusive | String? |  yes  | Doesn't allow other promotion after current promotion applied on cart or article |
+ | promoGroup | String |  no  | Group into which promotion fall |
+ | mode | String |  no  | Promotion mode |
+ | applyAllDiscount | Bool? |  yes  | Prevents more than one promotion discounts |
  | displayMeta | [DisplayMeta1](#DisplayMeta1) |  no  |  |
  | ownership | [Ownership1](#Ownership1) |  no  |  |
- | promotionType | String |  no  |  |
- | discountRules | [[DiscountRule](#DiscountRule)] |  no  |  |
+ | promotionType | String |  no  | Type of the promotion |
+ | discountRules | [[DiscountRule](#DiscountRule)] |  no  | Discount rules based on which promotion will be applied |
  | restrictions | [Restrictions1](#Restrictions1)? |  yes  |  |
- | currency | String? |  yes  |  |
- | code | String? |  yes  |  |
+ | currency | String? |  yes  | Currency used for promotion |
+ | code | String? |  yes  | Promotion code |
  | schedule | [PromotionSchedule](#PromotionSchedule)? |  yes  |  |
  | postOrderAction | [PromotionAction](#PromotionAction)? |  yes  |  |
- | applyPriority | Int? |  yes  |  |
+ | applyPriority | Int? |  yes  | Priority based on which promotion are applied on articles |
  | author | [PromotionAuthor](#PromotionAuthor)? |  yes  |  |
  | visiblility | [Visibility](#Visibility)? |  yes  |  |
- | applicationId | String |  no  |  |
- | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  |  |
- | customJson | [String: Any]? |  yes  |  |
+ | applicationId | String |  no  | App id in which promotion will be used |
+ | buyRules | [String: [ItemCriteria](#ItemCriteria)] |  no  | Buy rules for the promotion |
+ | customJson | [String: Any]? |  yes  | custom data stored in promotion |
  | dateMeta | [PromotionDateMeta](#PromotionDateMeta)? |  yes  |  |
+ | id | String? |  yes  | Promotion id |
 
 ---
 
@@ -13411,11 +13566,12 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [String: Any]? |  yes  |  |
- | articleId | String |  no  |  |
- | type | String? |  yes  |  |
- | value | Double? |  yes  |  |
- | code | String? |  yes  |  |
+ | value | Double? |  yes  | value of price adjustment for article |
+ | code | String? |  yes  | code to identify price adjustment on article |
+ | type | String? |  yes  | type of price adjusment |
+ | articleId | String |  no  | id of article |
+ | quantity | Int? |  yes  | total quantity of the article to be considered (currently used only in discount type) |
+ | meta | [String: Any]? |  yes  | meta related to article |
 
 ---
 
@@ -13438,19 +13594,18 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applyExpiry | String? |  yes  |  |
- | cartId | String |  no  |  |
- | cartValue | Double? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | type | String |  no  |  |
+ | modifiedBy | String? |  yes  | The entity that modified the field |
  | value | Double |  no  |  |
- | articleLevelDistribution | Bool |  no  |  |
- | articleIds | [[Article](#Article)] |  no  |  |
- | modifiedBy | String? |  yes  |  |
- | isAuthenticated | Bool |  no  |  |
- | allowedRefund | Bool? |  yes  |  |
- | message | String |  no  |  |
+ | message | String |  no  | The message associated with the price adjustment |
+ | applyExpiry | String? |  yes  | The date and time when the expiry should be applied |
+ | articleLevelDistribution | Bool |  no  | Flag indicating whether the distribution should is done at the article level |
  | collection | [Collection](#Collection) |  no  |  |
+ | type | String |  no  | type of price adjusment |
+ | allowedRefund | Bool? |  yes  | Flag indicating whether refunds are allowed (default: False) |
+ | isAuthenticated | Bool |  no  | Flag indicating whether the user is authenticated |
+ | articleIds | [[Article](#Article)] |  no  | The list of article object in the price adjustment |
+ | meta | [String: Any]? |  yes  |  |
+ | cartId | String |  no  | The ID of the cart |
 
 ---
 
@@ -13461,19 +13616,18 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applyExpiry | String? |  yes  |  |
- | cartId | String |  no  |  |
- | cartValue | Double? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | type | String |  no  |  |
  | value | Double |  no  |  |
- | articleLevelDistribution | Bool |  no  |  |
- | articleIds | [[Article](#Article)] |  no  |  |
+ | message | String |  no  | The message associated with the price adjustment |
+ | applyExpiry | String? |  yes  | The date and time when the expiry should be applied |
+ | articleLevelDistribution | Bool |  no  | Flag indicating whether the distribution should is done at the article level |
  | id | String? |  yes  |  |
- | isAuthenticated | Bool |  no  |  |
- | allowedRefund | Bool? |  yes  |  |
- | message | String |  no  |  |
  | collection | [Collection](#Collection) |  no  |  |
+ | type | String |  no  | type of price adjusment |
+ | allowedRefund | Bool? |  yes  | Flag indicating whether refunds are allowed (default: False) |
+ | isAuthenticated | Bool |  no  | Flag indicating whether the user is authenticated |
+ | articleIds | [[Article](#Article)] |  no  | The list of article object in the price adjustment |
+ | meta | [String: Any]? |  yes  |  |
+ | cartId | String |  no  | The ID of the cart |
 
 ---
 
@@ -13495,19 +13649,18 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applyExpiry | String? |  yes  |  |
- | cartId | String |  no  |  |
- | cartValue | Double? |  yes  |  |
- | meta | [String: Any]? |  yes  |  |
- | type | String |  no  |  |
- | createdBy | String? |  yes  |  |
  | value | Double |  no  |  |
- | articleLevelDistribution | Bool |  no  |  |
- | articleIds | [[Article](#Article)] |  no  |  |
- | isAuthenticated | Bool |  no  |  |
- | allowedRefund | Bool? |  yes  |  |
- | message | String |  no  |  |
+ | message | String |  no  | The message associated with the price adjustment |
+ | applyExpiry | String? |  yes  | The date and time when the expiry should be applied |
+ | createdBy | String? |  yes  | The entity that created the field |
+ | articleLevelDistribution | Bool |  no  | Flag indicating whether the distribution should is done at the article level |
  | collection | [Collection](#Collection) |  no  |  |
+ | type | String |  no  | type of price adjusment |
+ | allowedRefund | Bool? |  yes  | Flag indicating whether refunds are allowed (default: False) |
+ | isAuthenticated | Bool |  no  | Flag indicating whether the user is authenticated |
+ | articleIds | [[Article](#Article)] |  no  | The list of article object in the price adjustment |
+ | meta | [String: Any]? |  yes  |  |
+ | cartId | String |  no  | The ID of the cart |
 
 ---
 
@@ -15064,6 +15217,19 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  
  
+ #### [CustomerDetails](#CustomerDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  |  |
+ | email | String? |  yes  |  |
+ | mobile | String |  no  |  |
+
+---
+
+
+ 
+ 
  #### [Files](#Files)
 
  | Properties | Type | Nullable | Description |
@@ -15076,10 +15242,23 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  
  
+ #### [CartCheckoutCustomMeta](#CartCheckoutCustomMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | String |  no  |  |
+ | value | String |  no  |  |
+
+---
+
+
+ 
+ 
  #### [PlatformCartCheckoutDetailRequest](#PlatformCartCheckoutDetailRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | customMeta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
  | addressId | String? |  yes  |  |
  | paymentIdentifier | String? |  yes  |  |
  | paymentParams | [String: Any]? |  yes  |  |
@@ -15094,6 +15273,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | deliveryAddress | [String: Any]? |  yes  |  |
  | paymentMode | String |  no  |  |
  | checkoutMode | String? |  yes  |  |
+ | customerDetails | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
  | meta | [String: Any]? |  yes  |  |
  | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
  | employeeCode | String? |  yes  |  |
@@ -15309,6 +15489,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | deliveryAddress | [String: Any]? |  yes  |  |
  | paymentMode | String? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
+ | customerDetails | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
  | meta | [String: Any]? |  yes  |  |
  | paymentMethods | [[PaymentMethod](#PaymentMethod)] |  no  |  |
  | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |

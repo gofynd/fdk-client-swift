@@ -38,6 +38,8 @@ public extension PlatformClient.Discount {
         
         public var validity: ValidityObject
         
+        public var discountMeta: DiscountMeta?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -67,9 +69,11 @@ public extension PlatformClient.Discount {
             
             case validity = "validity"
             
+            case discountMeta = "discount_meta"
+            
         }
 
-        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountType: String, extensionIds: [String], filePath: String? = nil, isActive: Bool, jobType: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil) {
+        public init(appIds: [String], brandIds: [Int]? = nil, companyId: Int, discountLevel: String, discountMeta: DiscountMeta? = nil, discountType: String, extensionIds: [String], filePath: String? = nil, isActive: Bool, jobType: String, name: String, storeIds: [Int]? = nil, validity: ValidityObject, value: Int? = nil) {
             
             self.name = name
             
@@ -96,6 +100,8 @@ public extension PlatformClient.Discount {
             self.storeIds = storeIds
             
             self.validity = validity
+            
+            self.discountMeta = discountMeta
             
         }
 
@@ -195,6 +201,18 @@ public extension PlatformClient.Discount {
                 
             
             
+            
+                do {
+                    discountMeta = try container.decode(DiscountMeta.self, forKey: .discountMeta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -263,6 +281,11 @@ public extension PlatformClient.Discount {
             
             
             try? container.encodeIfPresent(validity, forKey: .validity)
+            
+            
+            
+            
+            try? container.encodeIfPresent(discountMeta, forKey: .discountMeta)
             
             
         }

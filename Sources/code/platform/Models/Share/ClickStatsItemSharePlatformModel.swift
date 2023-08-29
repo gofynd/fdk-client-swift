@@ -14,9 +14,9 @@ public extension PlatformClient.ApplicationClient.Share {
     class ClickStatsItem: Codable {
         
         
-        public var display: String?
+        public var display: String
         
-        public var total: Int?
+        public var total: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,7 +27,7 @@ public extension PlatformClient.ApplicationClient.Share {
             
         }
 
-        public init(display: String? = nil, total: Int? = nil) {
+        public init(display: String, total: Int) {
             
             self.display = display
             
@@ -39,28 +39,14 @@ public extension PlatformClient.ApplicationClient.Share {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    display = try container.decode(String.self, forKey: .display)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                display = try container.decode(String.self, forKey: .display)
                 
             
             
-                do {
-                    total = try container.decode(Int.self, forKey: .total)
+            
+                total = try container.decode(Int.self, forKey: .total)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         

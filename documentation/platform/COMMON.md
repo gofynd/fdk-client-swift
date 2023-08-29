@@ -149,12 +149,12 @@ platformClient.common.getLocations(locationType: locationType, id: id) { (respon
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| locationType | String? | no | Provide location type to query on. Possible values : country, state, city |   
-| id | String? | no | Field is optional when location_type is country. If querying for state, provide id of country. If querying for city, provide id of state. |  
+| locationType | String? | no |  |   
+| id | String? | no | Field is optional when location_type is country. If querying for state, provide id of the country. If querying for city, provide id of the state. |  
 
 
 
-
+Retrieve a list of countries, states, or cities based on the provided location_type and id parameters.
 
 *Returned Response:*
 
@@ -197,16 +197,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application | [Application](#Application)? |  yes  |  |
-
----
-
-
- 
- 
- #### [Currency](#Currency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the current sales channel supported currency |
  | isActive | Bool? |  yes  | Shows currency is enabled or not in current sales channel |
  | name | String? |  yes  | Name of the currency, e.g. Indian Rupee |
@@ -364,23 +354,6 @@ Success
 
  
  
- #### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String |  no  | Page type |
- | size | Int? |  yes  | The number of items to retrieve in each page. Default value is 10. |
- | current | Int? |  yes  | Current page number |
- | hasNext | Bool? |  yes  | Next page is present or not |
- | itemTotal | Int? |  yes  | Total number of items to retrieve |
- | nextId | String? |  yes  | Next page ID |
- | hasPrevious | Bool? |  yes  | Previous page is present or not |
-
----
-
-
- 
- 
  #### [LocationDefaultLanguage](#LocationDefaultLanguage)
 
  | Properties | Type | Nullable | Description |
@@ -437,7 +410,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[LocationCountry](#LocationCountry)]? |  yes  |  |
+ | items | [[LocationCountry](#LocationCountry)]? |  yes  | Object Containing Country Locations Details |
 
 ---
 

@@ -102,22 +102,6 @@ public extension ApplicationClient.Lead {
     }
 
     
-    
-    /*
-        Enum: TicketIntegrationDetails
-        Used By: Lead
-    */
-    enum TicketIntegrationDetails: String, Codable {
-        
-        case defaultCase = "default"
-        
-        case freshdesk = "freshdesk"
-        
-        case kapture = "kapture"
-        
-    }
-
-    
 }
 
 

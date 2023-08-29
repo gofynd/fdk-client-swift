@@ -3,9 +3,7 @@
 import Foundation
 
 
-
-
-public extension PlatformClient.ApplicationClient.Theme {
+public extension PlatformClient.Theme {
     /*
         Model: Images
         Used By: Theme
@@ -14,36 +12,24 @@ public extension PlatformClient.ApplicationClient.Theme {
     class Images: Codable {
         
         
-        public var desktop: [String]?
+        public var desktop: String?
         
-        public var android: [String]?
-        
-        public var ios: [String]?
-        
-        public var thumbnail: [String]?
+        public var mobile: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case desktop = "desktop"
             
-            case android = "android"
-            
-            case ios = "ios"
-            
-            case thumbnail = "thumbnail"
+            case mobile = "mobile"
             
         }
 
-        public init(android: [String]? = nil, desktop: [String]? = nil, ios: [String]? = nil, thumbnail: [String]? = nil) {
+        public init(desktop: String? = nil, mobile: String? = nil) {
             
             self.desktop = desktop
             
-            self.android = android
-            
-            self.ios = ios
-            
-            self.thumbnail = thumbnail
+            self.mobile = mobile
             
         }
 
@@ -52,7 +38,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    desktop = try container.decode([String].self, forKey: .desktop)
+                    desktop = try container.decode(String.self, forKey: .desktop)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -64,31 +50,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    android = try container.decode([String].self, forKey: .android)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    ios = try container.decode([String].self, forKey: .ios)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    thumbnail = try container.decode([String].self, forKey: .thumbnail)
+                    mobile = try container.decode(String.self, forKey: .mobile)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,17 +72,86 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             
-            try? container.encodeIfPresent(android, forKey: .android)
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
+            
+            
+        }
+        
+    }
+}
+
+
+
+public extension PlatformClient.ApplicationClient.Theme {
+    /*
+        Model: Images
+        Used By: Theme
+    */
+
+    class Images: Codable {
+        
+        
+        public var desktop: String?
+        
+        public var mobile: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case desktop = "desktop"
+            
+            case mobile = "mobile"
+            
+        }
+
+        public init(desktop: String? = nil, mobile: String? = nil) {
+            
+            self.desktop = desktop
+            
+            self.mobile = mobile
+            
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    desktop = try container.decode(String.self, forKey: .desktop)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mobile = try container.decode(String.self, forKey: .mobile)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(desktop, forKey: .desktop)
             
             
             
             
-            try? container.encodeIfPresent(ios, forKey: .ios)
-            
-            
-            
-            
-            try? container.encodeIfPresent(thumbnail, forKey: .thumbnail)
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
             
             
         }

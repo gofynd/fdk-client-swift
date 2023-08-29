@@ -12,25 +12,25 @@ public extension PlatformClient.Communication {
     class Audience: Codable {
         
         
+        public var id: String?
+        
+        public var application: String?
+        
+        public var name: String?
+        
         public var description: String?
+        
+        public var recordsCount: Int?
+        
+        public var type: String?
         
         public var tags: [String]?
         
         public var headers: [String]?
         
-        public var isActive: Bool?
-        
-        public var id: String?
-        
-        public var name: String?
-        
         public var fileUrl: String?
         
-        public var type: String?
-        
-        public var recordsCount: Int?
-        
-        public var application: String?
+        public var isActive: Bool?
         
         public var createdAt: String?
         
@@ -43,25 +43,25 @@ public extension PlatformClient.Communication {
 
         public enum CodingKeys: String, CodingKey {
             
+            case id = "_id"
+            
+            case application = "application"
+            
+            case name = "name"
+            
             case description = "description"
+            
+            case recordsCount = "records_count"
+            
+            case type = "type"
             
             case tags = "tags"
             
             case headers = "headers"
             
-            case isActive = "is_active"
-            
-            case id = "_id"
-            
-            case name = "name"
-            
             case fileUrl = "file_url"
             
-            case type = "type"
-            
-            case recordsCount = "records_count"
-            
-            case application = "application"
+            case isActive = "is_active"
             
             case createdAt = "created_at"
             
@@ -75,25 +75,25 @@ public extension PlatformClient.Communication {
 
         public init(application: String? = nil, createdAt: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, slug: String? = nil, tags: [String]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
+            self.id = id
+            
+            self.application = application
+            
+            self.name = name
+            
             self.description = description
+            
+            self.recordsCount = recordsCount
+            
+            self.type = type
             
             self.tags = tags
             
             self.headers = headers
             
-            self.isActive = isActive
-            
-            self.id = id
-            
-            self.name = name
-            
             self.fileUrl = fileUrl
             
-            self.type = type
-            
-            self.recordsCount = recordsCount
-            
-            self.application = application
+            self.isActive = isActive
             
             self.createdAt = createdAt
             
@@ -110,7 +110,67 @@ public extension PlatformClient.Communication {
             
             
                 do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    recordsCount = try container.decode(Int.self, forKey: .recordsCount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,42 +206,6 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     fileUrl = try container.decode(String.self, forKey: .fileUrl)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -194,31 +218,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    recordsCount = try container.decode(Int.self, forKey: .recordsCount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    application = try container.decode(String.self, forKey: .application)
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -283,7 +283,32 @@ public extension PlatformClient.Communication {
             
             
             
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(recordsCount, forKey: .recordsCount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
@@ -298,37 +323,12 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
             try? container.encodeIfPresent(fileUrl, forKey: .fileUrl)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(recordsCount, forKey: .recordsCount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(application, forKey: .application)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             
@@ -367,25 +367,25 @@ public extension PlatformClient.ApplicationClient.Communication {
     class Audience: Codable {
         
         
+        public var id: String?
+        
+        public var application: String?
+        
+        public var name: String?
+        
         public var description: String?
+        
+        public var recordsCount: Int?
+        
+        public var type: String?
         
         public var tags: [String]?
         
         public var headers: [String]?
         
-        public var isActive: Bool?
-        
-        public var id: String?
-        
-        public var name: String?
-        
         public var fileUrl: String?
         
-        public var type: String?
-        
-        public var recordsCount: Int?
-        
-        public var application: String?
+        public var isActive: Bool?
         
         public var createdAt: String?
         
@@ -398,25 +398,25 @@ public extension PlatformClient.ApplicationClient.Communication {
 
         public enum CodingKeys: String, CodingKey {
             
+            case id = "_id"
+            
+            case application = "application"
+            
+            case name = "name"
+            
             case description = "description"
+            
+            case recordsCount = "records_count"
+            
+            case type = "type"
             
             case tags = "tags"
             
             case headers = "headers"
             
-            case isActive = "is_active"
-            
-            case id = "_id"
-            
-            case name = "name"
-            
             case fileUrl = "file_url"
             
-            case type = "type"
-            
-            case recordsCount = "records_count"
-            
-            case application = "application"
+            case isActive = "is_active"
             
             case createdAt = "created_at"
             
@@ -430,25 +430,25 @@ public extension PlatformClient.ApplicationClient.Communication {
 
         public init(application: String? = nil, createdAt: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, slug: String? = nil, tags: [String]? = nil, type: String? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
+            self.id = id
+            
+            self.application = application
+            
+            self.name = name
+            
             self.description = description
+            
+            self.recordsCount = recordsCount
+            
+            self.type = type
             
             self.tags = tags
             
             self.headers = headers
             
-            self.isActive = isActive
-            
-            self.id = id
-            
-            self.name = name
-            
             self.fileUrl = fileUrl
             
-            self.type = type
-            
-            self.recordsCount = recordsCount
-            
-            self.application = application
+            self.isActive = isActive
             
             self.createdAt = createdAt
             
@@ -465,7 +465,67 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
+                    id = try container.decode(String.self, forKey: .id)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    application = try container.decode(String.self, forKey: .application)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     description = try container.decode(String.self, forKey: .description)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    recordsCount = try container.decode(Int.self, forKey: .recordsCount)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -501,42 +561,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     fileUrl = try container.decode(String.self, forKey: .fileUrl)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -549,31 +573,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    type = try container.decode(String.self, forKey: .type)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    recordsCount = try container.decode(Int.self, forKey: .recordsCount)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    application = try container.decode(String.self, forKey: .application)
+                    isActive = try container.decode(Bool.self, forKey: .isActive)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -638,7 +638,32 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
+            try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(application, forKey: .application)
+            
+            
+            
+            
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(recordsCount, forKey: .recordsCount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
             
@@ -653,37 +678,12 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
             try? container.encodeIfPresent(fileUrl, forKey: .fileUrl)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(recordsCount, forKey: .recordsCount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(application, forKey: .application)
+            try? container.encodeIfPresent(isActive, forKey: .isActive)
             
             
             

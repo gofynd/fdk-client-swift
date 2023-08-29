@@ -8,36 +8,36 @@ public extension ApplicationClient.Theme {
     */
     class Config: Codable {
         
-        public var preset: Preset?
+        public var current: String
+        
+        public var list: [ThemeConfiguration]
         
         public var globalSchema: GlobalSchema?
         
-        public var current: String?
-        
-        public var list: [ListSchemaItem]?
+        public var preset: Preset?
         
 
         public enum CodingKeys: String, CodingKey {
-            
-            case preset = "preset"
-            
-            case globalSchema = "global_schema"
             
             case current = "current"
             
             case list = "list"
             
+            case globalSchema = "global_schema"
+            
+            case preset = "preset"
+            
         }
 
-        public init(current: String? = nil, globalSchema: GlobalSchema? = nil, list: [ListSchemaItem]? = nil, preset: Preset? = nil) {
-            
-            self.preset = preset
-            
-            self.globalSchema = globalSchema
+        public init(current: String, globalSchema: GlobalSchema? = nil, list: [ThemeConfiguration], preset: Preset? = nil) {
             
             self.current = current
             
             self.list = list
+            
+            self.globalSchema = globalSchema
+            
+            self.preset = preset
             
         }
 
@@ -45,15 +45,13 @@ public extension ApplicationClient.Theme {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            do {
-                preset = try container.decode(Preset.self, forKey: .preset)
+            current = try container.decode(String.self, forKey: .current)
             
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
+            
+            
+            
+            list = try container.decode([ThemeConfiguration].self, forKey: .list)
+            
             
             
             
@@ -70,19 +68,7 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                current = try container.decode(String.self, forKey: .current)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                list = try container.decode([ListSchemaItem].self, forKey: .list)
+                preset = try container.decode(Preset.self, forKey: .preset)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -99,7 +85,12 @@ public extension ApplicationClient.Theme {
             
             
             
-            try? container.encodeIfPresent(preset, forKey: .preset)
+            try? container.encodeIfPresent(current, forKey: .current)
+            
+            
+            
+            
+            try? container.encodeIfPresent(list, forKey: .list)
             
             
             
@@ -109,12 +100,7 @@ public extension ApplicationClient.Theme {
             
             
             
-            try? container.encodeIfPresent(current, forKey: .current)
-            
-            
-            
-            
-            try? container.encodeIfPresent(list, forKey: .list)
+            try? container.encodeIfPresent(preset, forKey: .preset)
             
             
         }

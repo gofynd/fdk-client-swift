@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class HttpErrorCodeAndResponse: Codable {
         
-        public var error: ErrorCodeAndDescription
+        public var error: ErrorCodeAndDescription?
         
         public var success: Bool
         
@@ -21,7 +21,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(error: ErrorCodeAndDescription, success: Bool) {
+        public init(error: ErrorCodeAndDescription? = nil, success: Bool) {
             
             self.error = error
             
@@ -33,8 +33,15 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            error = try container.decode(ErrorCodeAndDescription.self, forKey: .error)
+            do {
+                error = try container.decode(ErrorCodeAndDescription.self, forKey: .error)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

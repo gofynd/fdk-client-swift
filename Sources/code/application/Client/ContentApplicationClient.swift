@@ -691,7 +691,7 @@ if let value = pageSize {
         /**
         *
         * Summary: Get the navigation
-        * Description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
+        * Description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
         **/
         public func getNavigations(
             pageNo: Int?,

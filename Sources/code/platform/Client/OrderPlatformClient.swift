@@ -161,7 +161,7 @@ extension PlatformClient {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get Announcements
         **/
         public func getAnnouncements(
             date: String?,
@@ -217,7 +217,7 @@ if let value = date {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Update Address for the order
         **/
         public func updateAddress(
             shipmentId: String,
@@ -357,7 +357,7 @@ if let value = country {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Click to Call
         **/
         public func click2Call(
             caller: String,
@@ -487,7 +487,7 @@ if let value = method {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Process Manifest
         **/
         public func processManifest(
             body: CreateOrderPayload,
@@ -535,7 +535,7 @@ if let value = method {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Dispatch Manifest
         **/
         public func dispatchManifest(
             body: DispatchManifest,
@@ -583,7 +583,7 @@ if let value = method {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get Role Based Actions
         **/
         public func getRoleBasedActions(
             
@@ -631,7 +631,7 @@ if let value = method {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get Shipment History
         **/
         public func getShipmentHistory(
             shipmentId: String?,
@@ -695,7 +695,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Post shipment history
         **/
         public func postShipmentHistory(
             body: PostShipmentHistory,
@@ -743,7 +743,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Send SMS Ninja Panel
         **/
         public func sendSmsNinja(
             body: SendSmsPayload,
@@ -791,7 +791,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Update Packaging Dimensions
         **/
         public func updatePackagingDimensions(
             body: UpdatePackagingDimensionsPayload,
@@ -839,7 +839,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Create Order
         **/
         public func createOrder(
             body: CreateOrderAPI,
@@ -983,7 +983,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Upload Consent
         **/
         public func uploadConsent(
             body: UploadConsent,
@@ -1031,7 +1031,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Update Order
         **/
         public func orderUpdate(
             body: PlatformOrderUpdate,
@@ -1079,7 +1079,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Check order status
         **/
         public func checkOrderStatus(
             body: OrderStatus,
@@ -1127,7 +1127,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get State Transition Map
         **/
         public func getStateTransitionMap(
             
@@ -1174,8 +1174,69 @@ if let value = bagId {
         
         /**
         *
+        * Summary: To fetch next state transitions.
+        * Description: This endpoint will fetch next possible states based on logged in user
+
+        **/
+        public func getAllowedStateTransition(
+            orderingChannel: String,
+            status: String,
+            
+            onResponse: @escaping (_ response: RoleBaseStateTransitionMapping?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["ordering_channel"] = orderingChannel
+
+
+
+
+    xQuery["status"] = status
+
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/allowed/state/transition",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(RoleBaseStateTransitionMapping.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
         * Summary: 
-        * Description: 
+        * Description: Fetch Credit Balance Detail
         **/
         public func fetchCreditBalanceDetail(
             body: FetchCreditBalanceRequestPayload,
@@ -1223,7 +1284,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Fetch Refund Mode Config
         **/
         public func fetchRefundModeConfig(
             body: RefundModeConfigRequestPayload,
@@ -1271,7 +1332,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Attach Order User
         **/
         public func attachOrderUser(
             body: AttachOrderUser,
@@ -1319,7 +1380,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Send User Mobile OTP
         **/
         public func sendUserMobileOTP(
             body: SendUserMobileOTP,
@@ -1367,7 +1428,7 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Verify Mobile OTP
         **/
         public func verifyMobileOTP(
             body: VerifyMobileOTP,
@@ -1415,13 +1476,237 @@ if let value = bagId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: downloads lanes shipment/orders.
+        **/
+        public func downloadLanesReport(
+            body: BulkReportsDownloadRequest,
+            onResponse: @escaping (_ response: BulkReportsDownloadResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/reports/lanes/download",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(BulkReportsDownloadResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: 
+        * Description: Retry e-invoice after failure
+        **/
+        public func eInvoiceRetry(
+            body: EInvoiceRetry,
+            onResponse: @escaping (_ response: EInvoiceRetryResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/einvoice/retry/irn",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(EInvoiceRetryResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get courier partner tracking details
+        * Description: This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms.
+        **/
+        public func trackShipment(
+            shipmentId: String?,
+            awb: String?,
+            pageNo: Int?,
+            pageSize: Int?,
+            
+            onResponse: @escaping (_ response: CourierPartnerTrackingResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = shipmentId {
+    
+    xQuery["shipment_id"] = value
+    
+}
+
+
+if let value = awb {
+    
+    xQuery["awb"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "get",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CourierPartnerTrackingResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Post courier partner tracking details
+        * Description: This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms.
+        **/
+        public func updateShipmentTracking(
+            body: CourierPartnerTrackingDetails,
+            onResponse: @escaping (_ response: CourierPartnerTrackingDetails?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "post",
+                url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(CourierPartnerTrackingDetails.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: 
+        * Description: Get Shipments Listing for the company id
         **/
         public func getShipments(
             lane: String?,
             bagStatus: String?,
             statusOverrideLane: Bool?,
-            timeToDispatch: String?,
+            timeToDispatch: Double?,
             searchType: String?,
             searchValue: String?,
             fromDate: String?,
@@ -1441,7 +1726,10 @@ if let value = bagId {
             companyAffiliateTag: String?,
             myOrders: Bool?,
             platformUserId: String?,
+            sortType: String?,
+            showCrossCompanyData: Bool?,
             tags: String?,
+            customerId: String?,
             
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1609,9 +1897,30 @@ if let value = platformUserId {
 }
 
 
+if let value = sortType {
+    
+    xQuery["sort_type"] = value
+    
+}
+
+
+if let value = showCrossCompanyData {
+    
+    xQuery["show_cross_company_data"] = value
+    
+}
+
+
 if let value = tags {
     
     xQuery["tags"] = value
+    
+}
+
+
+if let value = customerId {
+    
+    xQuery["customer_id"] = value
     
 }
 
@@ -1655,7 +1964,7 @@ if let value = tags {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get shipment details for the given shipment.
         **/
         public func getShipmentById(
             channelShipmentId: String?,
@@ -1719,7 +2028,7 @@ if let value = shipmentId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get Order Details by ID
         **/
         public func getOrderById(
             orderId: String,
@@ -1773,7 +2082,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get lane config for the order
         **/
         public func getLaneConfig(
             superLane: String?,
@@ -1791,6 +2100,7 @@ var xQuery: [String: Any] = [:]
             timeToDispatch: String?,
             paymentMethods: String?,
             myOrders: Bool?,
+            showCrossCompanyData: Bool?,
             
             onResponse: @escaping (_ response: LaneConfigResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1902,6 +2212,13 @@ if let value = myOrders {
 }
 
 
+if let value = showCrossCompanyData {
+    
+    xQuery["show_cross_company_data"] = value
+    
+}
+
+
  
 
 
@@ -1941,7 +2258,7 @@ if let value = myOrders {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get Orders Listing
         **/
         public func getOrders(
             lane: String?,
@@ -1961,6 +2278,8 @@ if let value = myOrders {
             isPrioritySort: Bool?,
             customMeta: String?,
             myOrders: Bool?,
+            showCrossCompanyData: Bool?,
+            customerId: String?,
             
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2086,6 +2405,20 @@ if let value = myOrders {
 }
 
 
+if let value = showCrossCompanyData {
+    
+    xQuery["show_cross_company_data"] = value
+    
+}
+
+
+if let value = customerId {
+    
+    xQuery["customer_id"] = value
+    
+}
+
+
  
 
 
@@ -2126,7 +2459,7 @@ if let value = myOrders {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get Listing Filters
         **/
         public func getfilters(
             view: String,
@@ -2188,7 +2521,7 @@ if let value = groupEntity {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Generate Bulk Shipment Excel Report.
         **/
         public func getBulkShipmentExcelFile(
             salesChannels: String?,
@@ -2332,7 +2665,7 @@ if let value = pageSize {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get Bulk Action seller templates.
         **/
         public func getBulkActionTemplate(
             
@@ -2380,7 +2713,7 @@ if let value = pageSize {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Download bulk actions seller templates.
         **/
         public func downloadBulkActionTemplate(
             templateSlug: String?,
@@ -2488,7 +2821,7 @@ if let value = templateSlug {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get Order Bag Details.
         **/
         public func getBagById(
             bagId: String?,
@@ -2560,7 +2893,7 @@ if let value = channelId {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Get Bags for the order
         **/
         public func getBags(
             bagIds: String?,
@@ -2680,7 +3013,7 @@ if let value = pageSize {
         /**
         *
         * Summary: 
-        * Description: 
+        * Description: Generate POS recipt by order id.
         **/
         public func generatePOSReceiptByOrderId(
             orderId: String,

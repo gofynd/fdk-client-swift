@@ -8,8 +8,6 @@ public extension ApplicationClient.Theme {
     */
     class Colors: Codable {
         
-        public var bgColor: String?
-        
         public var primaryColor: String?
         
         public var secondaryColor: String?
@@ -20,10 +18,10 @@ public extension ApplicationClient.Theme {
         
         public var buttonSecondaryColor: String?
         
+        public var bgColor: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case bgColor = "bg_color"
             
             case primaryColor = "primary_color"
             
@@ -35,11 +33,11 @@ public extension ApplicationClient.Theme {
             
             case buttonSecondaryColor = "button_secondary_color"
             
+            case bgColor = "bg_color"
+            
         }
 
         public init(accentColor: String? = nil, bgColor: String? = nil, buttonSecondaryColor: String? = nil, linkColor: String? = nil, primaryColor: String? = nil, secondaryColor: String? = nil) {
-            
-            self.bgColor = bgColor
             
             self.primaryColor = primaryColor
             
@@ -51,22 +49,12 @@ public extension ApplicationClient.Theme {
             
             self.buttonSecondaryColor = buttonSecondaryColor
             
+            self.bgColor = bgColor
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                bgColor = try container.decode(String.self, forKey: .bgColor)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -128,15 +116,22 @@ public extension ApplicationClient.Theme {
             }
             
             
+            
+            do {
+                bgColor = try container.decode(String.self, forKey: .bgColor)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(bgColor, forKey: .bgColor)
-            
             
             
             
@@ -161,6 +156,11 @@ public extension ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(buttonSecondaryColor, forKey: .buttonSecondaryColor)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bgColor, forKey: .bgColor)
             
             
         }

@@ -42,6 +42,7 @@ extension PlatformClient {
         
         
         
+        
         /**
         *
         * Summary: Create a new sales channel
@@ -1204,7 +1205,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "get",
-                url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications/",
+                url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications",
                 query: xQuery,
                 body: nil,
                 headers: [],

@@ -12,15 +12,11 @@ public extension PlatformClient.Communication {
     class AudienceReq: Codable {
         
         
+        public var name: String?
+        
         public var description: String?
         
         public var tags: [String]?
-        
-        public var headers: [String]?
-        
-        public var isActive: Bool?
-        
-        public var name: String?
         
         public var fileUrl: String?
         
@@ -28,20 +24,16 @@ public extension PlatformClient.Communication {
         
         public var recordsCount: Int?
         
-        public var application: String?
+        public var headers: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case name = "name"
+            
             case description = "description"
             
             case tags = "tags"
-            
-            case headers = "headers"
-            
-            case isActive = "is_active"
-            
-            case name = "name"
             
             case fileUrl = "file_url"
             
@@ -49,21 +41,17 @@ public extension PlatformClient.Communication {
             
             case recordsCount = "records_count"
             
-            case application = "application"
+            case headers = "headers"
             
         }
 
-        public init(application: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
+        public init(description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
+            
+            self.name = name
             
             self.description = description
             
             self.tags = tags
-            
-            self.headers = headers
-            
-            self.isActive = isActive
-            
-            self.name = name
             
             self.fileUrl = fileUrl
             
@@ -71,12 +59,24 @@ public extension PlatformClient.Communication {
             
             self.recordsCount = recordsCount
             
-            self.application = application
+            self.headers = headers
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -93,42 +93,6 @@ public extension PlatformClient.Communication {
             
                 do {
                     tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    headers = try container.decode([String].self, forKey: .headers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -176,7 +140,7 @@ public extension PlatformClient.Communication {
             
             
                 do {
-                    application = try container.decode(String.self, forKey: .application)
+                    headers = try container.decode([String].self, forKey: .headers)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -193,27 +157,17 @@ public extension PlatformClient.Communication {
             
             
             
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(description, forKey: .description)
             
             
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(headers, forKey: .headers)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
@@ -233,7 +187,7 @@ public extension PlatformClient.Communication {
             
             
             
-            try? container.encodeIfPresent(application, forKey: .application)
+            try? container.encodeIfPresent(headers, forKey: .headers)
             
             
         }
@@ -252,15 +206,11 @@ public extension PlatformClient.ApplicationClient.Communication {
     class AudienceReq: Codable {
         
         
+        public var name: String?
+        
         public var description: String?
         
         public var tags: [String]?
-        
-        public var headers: [String]?
-        
-        public var isActive: Bool?
-        
-        public var name: String?
         
         public var fileUrl: String?
         
@@ -268,20 +218,16 @@ public extension PlatformClient.ApplicationClient.Communication {
         
         public var recordsCount: Int?
         
-        public var application: String?
+        public var headers: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
+            case name = "name"
+            
             case description = "description"
             
             case tags = "tags"
-            
-            case headers = "headers"
-            
-            case isActive = "is_active"
-            
-            case name = "name"
             
             case fileUrl = "file_url"
             
@@ -289,21 +235,17 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             case recordsCount = "records_count"
             
-            case application = "application"
+            case headers = "headers"
             
         }
 
-        public init(application: String? = nil, description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, isActive: Bool? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
+        public init(description: String? = nil, fileUrl: String? = nil, headers: [String]? = nil, name: String? = nil, recordsCount: Int? = nil, tags: [String]? = nil, type: String? = nil) {
+            
+            self.name = name
             
             self.description = description
             
             self.tags = tags
-            
-            self.headers = headers
-            
-            self.isActive = isActive
-            
-            self.name = name
             
             self.fileUrl = fileUrl
             
@@ -311,12 +253,24 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             self.recordsCount = recordsCount
             
-            self.application = application
+            self.headers = headers
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -333,42 +287,6 @@ public extension PlatformClient.ApplicationClient.Communication {
             
                 do {
                     tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    headers = try container.decode([String].self, forKey: .headers)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -416,7 +334,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
                 do {
-                    application = try container.decode(String.self, forKey: .application)
+                    headers = try container.decode([String].self, forKey: .headers)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -433,27 +351,17 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
+            try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
             try? container.encodeIfPresent(description, forKey: .description)
             
             
             
             
             try? container.encodeIfPresent(tags, forKey: .tags)
-            
-            
-            
-            
-            try? container.encodeIfPresent(headers, forKey: .headers)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
@@ -473,7 +381,7 @@ public extension PlatformClient.ApplicationClient.Communication {
             
             
             
-            try? container.encodeIfPresent(application, forKey: .application)
+            try? container.encodeIfPresent(headers, forKey: .headers)
             
             
         }
