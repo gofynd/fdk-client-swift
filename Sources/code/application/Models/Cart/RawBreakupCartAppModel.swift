@@ -24,6 +24,8 @@ public extension ApplicationClient.Cart {
         
         public var mrpTotal: Double?
         
+        public var mopTotal: Double?
+        
         public var coupon: Double?
         
         public var total: Double?
@@ -53,6 +55,8 @@ public extension ApplicationClient.Cart {
             
             case mrpTotal = "mrp_total"
             
+            case mopTotal = "mop_total"
+            
             case coupon = "coupon"
             
             case total = "total"
@@ -65,7 +69,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
+        public init(codCharge: Double? = nil, convenienceFee: Double? = nil, coupon: Double? = nil, deliveryCharge: Double? = nil, discount: Double? = nil, fyndCash: Double? = nil, giftCard: Double? = nil, gstCharges: Double? = nil, mopTotal: Double? = nil, mrpTotal: Double? = nil, subtotal: Double? = nil, total: Double? = nil, vog: Double? = nil, youSaved: Double? = nil) {
             
             self.vog = vog
             
@@ -82,6 +86,8 @@ public extension ApplicationClient.Cart {
             self.gstCharges = gstCharges
             
             self.mrpTotal = mrpTotal
+            
+            self.mopTotal = mopTotal
             
             self.coupon = coupon
             
@@ -196,6 +202,18 @@ public extension ApplicationClient.Cart {
             
             
             do {
+                mopTotal = try container.decode(Double.self, forKey: .mopTotal)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 coupon = try container.decode(Double.self, forKey: .coupon)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -297,6 +315,11 @@ public extension ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(mrpTotal, forKey: .mrpTotal)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mopTotal, forKey: .mopTotal)
             
             
             

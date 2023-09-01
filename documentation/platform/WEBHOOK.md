@@ -758,7 +758,7 @@ platformClient.webhook.getSubscribersByCompany(pageNo: pageNo, pageSize: pageSiz
 | -------- | ---- | -------- | ----------- | 
 | pageNo | Int? | no | Page Number |   
 | pageSize | Int? | no | Page Size |   
-| extensionId | Int? | no | extension_id |  
+| extensionId | String? | no | extension_id |  
 
 
 
@@ -1044,7 +1044,7 @@ platformClient.webhook.getSubscriberById(subscriberId: subscriberId) { (response
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| subscriberId | Int | yes | The ID of the company for which manual retry is to be initiated. |  
+| subscriberId | Int | yes | subscriber id |  
 
 
 
@@ -1458,7 +1458,7 @@ platformClient.webhook.getSubscribersByExtensionId(pageNo: pageNo, pageSize: pag
 | -------- | ---- | -------- | ----------- | 
 | pageNo | Int? | no | Page Number |   
 | pageSize | Int? | no | Page Size |   
-| extensionId | Int | yes | The ID of the company for which manual retry is to be initiated. |  
+| extensionId | String | yes | extension id |  
 
 
 

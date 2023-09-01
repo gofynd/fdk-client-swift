@@ -555,7 +555,7 @@ extension PlatformClient {
         public func getSubscribersByCompany(
             pageNo: Int?,
             pageSize: Int?,
-            extensionId: Int?,
+            extensionId: String?,
             
             onResponse: @escaping (_ response: SubscriberResponse?, _ error: FDKError?) -> Void
         ) {
@@ -772,7 +772,7 @@ if let value = extensionId {
         public func getSubscribersByExtensionId(
             pageNo: Int?,
             pageSize: Int?,
-            extensionId: Int,
+            extensionId: String,
             
             onResponse: @escaping (_ response: SubscriberConfigList?, _ error: FDKError?) -> Void
         ) {
