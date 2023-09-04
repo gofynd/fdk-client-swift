@@ -29,7 +29,7 @@ extension PublicClient {
 
             PublicAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/webhook/v1.0/events",
                 query: nil,
                 extraHeaders:  [],
@@ -76,7 +76,7 @@ extension PublicClient {
 
             PublicAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/common/webhook/v1.0/events/query-event-details",
                 query: nil,
                 extraHeaders:  [],

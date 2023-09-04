@@ -30,7 +30,7 @@ extension PublicClient {
 
             PublicAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/panel/partners/v1.0/extensions/\(slug)",
                 query: nil,
                 extraHeaders:  [],

@@ -43,7 +43,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/coupon/check-validity",
                 query: xQuery,
                 body: nil,
@@ -92,7 +92,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/extension/\(extensionId)/subscription",
                 query: nil,
                 body: body.dictionary,
@@ -142,7 +142,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/extension/\(extensionId)/subscription/\(subscriptionId)",
                 query: nil,
                 body: nil,
@@ -192,7 +192,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/extension/\(extensionId)/subscription/\(subscriptionId)/cancel",
                 query: nil,
                 body: nil,
@@ -241,7 +241,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/extension/\(extensionId)/one_time_charge",
                 query: nil,
                 body: body.dictionary,
@@ -291,7 +291,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/extension/\(extensionId)/charge/\(chargeId)",
                 query: nil,
                 body: nil,
@@ -339,7 +339,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/invoice/list",
                 query: nil,
                 body: nil,
@@ -388,7 +388,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/invoice/\(invoiceId)",
                 query: nil,
                 body: nil,
@@ -436,7 +436,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/subscription/customer-detail",
                 query: nil,
                 body: nil,
@@ -484,7 +484,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/subscription/customer-detail",
                 query: nil,
                 body: body.dictionary,
@@ -533,7 +533,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/subscription/current",
                 query: nil,
                 body: nil,
@@ -581,7 +581,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/subscription/current-limit",
                 query: nil,
                 body: nil,
@@ -629,7 +629,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/subscription/activate",
                 query: nil,
                 body: body.dictionary,
@@ -677,7 +677,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/subscription/cancel",
                 query: nil,
                 body: body.dictionary,
@@ -726,7 +726,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/plans",
                 query: nil,
                 body: nil,
@@ -774,7 +774,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "patch",
+                method: "PATCH",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/plan/status",
                 query: nil,
                 body: body.dictionary,
@@ -822,7 +822,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/payment/initiate",
                 query: nil,
                 body: body.dictionary,

@@ -58,7 +58,7 @@ extension ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -111,7 +111,7 @@ extension ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -161,7 +161,7 @@ extension ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -214,7 +214,7 @@ extension ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -267,7 +267,7 @@ extension ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -320,7 +320,7 @@ extension ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -373,7 +373,7 @@ extension ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],

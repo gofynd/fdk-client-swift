@@ -79,7 +79,7 @@ extension ApplicationClient {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -140,7 +140,7 @@ if let value = rootId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -206,7 +206,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -299,7 +299,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -349,7 +349,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -399,7 +399,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -452,7 +452,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -505,7 +505,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -558,7 +558,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -608,7 +608,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -658,7 +658,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -724,7 +724,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -817,7 +817,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -883,7 +883,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -979,7 +979,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1029,7 +1029,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1079,7 +1079,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1140,7 +1140,7 @@ if let value = rootId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1206,7 +1206,7 @@ if let value = pageSize {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],

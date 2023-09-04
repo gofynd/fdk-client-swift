@@ -60,7 +60,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/application",
                 query: nil,
                 body: body.dictionary,
@@ -132,7 +132,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/application",
                 query: xQuery,
                 body: nil,
@@ -240,7 +240,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/currencies",
                 query: nil,
                 body: nil,
@@ -288,7 +288,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/domain/suggestions",
                 query: nil,
                 body: body.dictionary,
@@ -337,7 +337,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integration/\(id)",
                 query: nil,
                 body: nil,
@@ -401,7 +401,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integration-opt-in/available",
                 query: xQuery,
                 body: nil,
@@ -518,7 +518,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/selected/\(level)/\(uid)",
                 query: xQuery,
                 body: nil,
@@ -651,7 +651,7 @@ if let value = checkPermission {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/\(id)/\(level)",
                 query: xQuery,
                 body: nil,
@@ -701,7 +701,7 @@ if let value = checkPermission {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/\(id)/\(level)",
                 query: nil,
                 body: body.dictionary,
@@ -752,7 +752,7 @@ if let value = checkPermission {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/\(id)/\(level)/\(uid)",
                 query: nil,
                 body: nil,
@@ -803,7 +803,7 @@ if let value = checkPermission {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/configuration/\(id)/\(level)/\(uid)",
                 query: nil,
                 body: body.dictionary,
@@ -854,7 +854,7 @@ if let value = checkPermission {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/integrationOptIn/check/configuration/\(id)/\(level)/\(uid)",
                 query: nil,
                 body: nil,
@@ -910,7 +910,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/brands-by-companies",
                 query: xQuery,
                 body: nil,
@@ -974,7 +974,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/companies-by-brands",
                 query: xQuery,
                 body: body.dictionary,
@@ -1089,7 +1089,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/inventory/stores-by-brands",
                 query: xQuery,
                 body: body.dictionary,
@@ -1204,7 +1204,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/other-seller-applications",
                 query: xQuery,
                 body: nil,
@@ -1304,7 +1304,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/otherSellerApplications/\(id)",
                 query: nil,
                 body: nil,
@@ -1353,7 +1353,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/configuration/v1.0/company/\(companyId)/otherSellerApplications/\(id)/opt_out",
                 query: nil,
                 body: body.dictionary,

@@ -95,7 +95,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
                 query: xQuery,
                 body: nil,
@@ -242,7 +242,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket",
                 query: nil,
                 body: body.dictionary,
@@ -292,7 +292,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)",
                 query: nil,
                 body: nil,
@@ -341,7 +341,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)",
                 query: nil,
                 body: body.dictionary,
@@ -392,7 +392,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/history",
                 query: nil,
                 body: body.dictionary,
@@ -441,7 +441,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/history",
                 query: nil,
                 body: nil,
@@ -490,7 +490,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/feedback",
                 query: nil,
                 body: nil,
@@ -539,7 +539,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/ticket/\(id)/feedback",
                 query: nil,
                 body: body.dictionary,
@@ -594,7 +594,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/video/room/\(uniqueName)/token",
                 query: nil,
                 body: nil,
@@ -644,7 +644,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/video/room/\(uniqueName)/participants",
                 query: nil,
                 body: nil,
@@ -695,7 +695,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/lead/v1.0/company/\(companyId)/general-config",
                 query: nil,
                 body: nil,

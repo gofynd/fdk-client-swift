@@ -50,7 +50,7 @@ This operation will return the url for the uploaded file.
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/start",
                 query: nil,
                 body: body.dictionary,
@@ -117,7 +117,7 @@ This operation will return the url for the uploaded file.
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/upload/complete",
                 query: nil,
                 body: body.dictionary,
@@ -167,7 +167,7 @@ This operation will return the url for the uploaded file.
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/sign-urls",
                 query: nil,
                 body: body.dictionary,
@@ -223,7 +223,7 @@ if let value = sync {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/uploads/copy",
                 query: xQuery,
                 body: body.dictionary,
@@ -289,7 +289,7 @@ if let value = limit {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/namespaces/\(namespace)/browse",
                 query: xQuery,
                 body: nil,
@@ -344,7 +344,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/assets/v1.0/company/\(companyId)/proxy",
                 query: xQuery,
                 body: nil,

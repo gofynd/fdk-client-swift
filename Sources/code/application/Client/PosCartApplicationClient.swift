@@ -143,7 +143,7 @@ if let value = buyNow {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -201,7 +201,7 @@ if let value = id {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "head",
+                method: "HEAD",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -291,7 +291,7 @@ if let value = id {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -381,7 +381,7 @@ if let value = buyNow {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -447,7 +447,7 @@ if let value = buyNow {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -513,7 +513,7 @@ if let value = buyNow {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -603,7 +603,7 @@ if let value = buyNow {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -669,7 +669,7 @@ if let value = buyNow {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -751,7 +751,7 @@ if let value = slug {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -833,7 +833,7 @@ if let value = buyNow {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -931,7 +931,7 @@ if let value = isDefault {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -981,7 +981,7 @@ if let value = isDefault {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1082,7 +1082,7 @@ if let value = isDefault {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1135,7 +1135,7 @@ if let value = isDefault {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1188,7 +1188,7 @@ if let value = isDefault {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1270,7 +1270,7 @@ if let value = b {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1336,7 +1336,7 @@ if let value = buyNow {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1474,7 +1474,7 @@ if let value = cardId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1580,7 +1580,7 @@ if let value = orderType {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1678,7 +1678,7 @@ if let value = orderType {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1736,7 +1736,7 @@ if let value = id {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1802,7 +1802,7 @@ if let value = buyNow {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1866,7 +1866,7 @@ if let value = id {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1922,7 +1922,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1972,7 +1972,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -2025,7 +2025,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -2081,7 +2081,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],

@@ -140,7 +140,7 @@ if let value = xApiToken {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  xHeaders,
@@ -190,7 +190,7 @@ if let value = xApiToken {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -248,7 +248,7 @@ if let value = refresh {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -306,7 +306,7 @@ if let value = forceRefresh {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -356,7 +356,7 @@ if let value = forceRefresh {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -406,7 +406,7 @@ if let value = forceRefresh {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -456,7 +456,7 @@ if let value = forceRefresh {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -506,7 +506,7 @@ if let value = forceRefresh {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -556,7 +556,7 @@ if let value = forceRefresh {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -654,7 +654,7 @@ if let value = userDetails {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -758,7 +758,7 @@ if let value = userDetails {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -808,7 +808,7 @@ if let value = userDetails {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -858,7 +858,7 @@ if let value = userDetails {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -908,7 +908,7 @@ if let value = userDetails {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -958,7 +958,7 @@ if let value = userDetails {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1008,7 +1008,7 @@ if let value = userDetails {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1069,7 +1069,7 @@ if let value = aggregator {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1119,7 +1119,7 @@ if let value = aggregator {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1169,7 +1169,7 @@ if let value = aggregator {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1225,7 +1225,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1283,7 +1283,7 @@ if let value = ifscCode {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1339,7 +1339,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1389,7 +1389,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1439,7 +1439,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1489,7 +1489,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1539,7 +1539,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1589,7 +1589,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1647,7 +1647,7 @@ if let value = paymentLinkId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1697,7 +1697,7 @@ if let value = paymentLinkId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1747,7 +1747,7 @@ if let value = paymentLinkId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1797,7 +1797,7 @@ if let value = paymentLinkId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1853,7 +1853,7 @@ var xQuery: [String: Any] = [:]
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1911,7 +1911,7 @@ if let value = paymentLinkId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1961,7 +1961,7 @@ if let value = paymentLinkId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -2011,7 +2011,7 @@ if let value = paymentLinkId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -2061,7 +2061,7 @@ if let value = paymentLinkId {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -2119,7 +2119,7 @@ if let value = aggregator {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -2185,7 +2185,7 @@ if let value = aggregator {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -2243,7 +2243,7 @@ if let value = aggregator {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -2293,7 +2293,7 @@ if let value = aggregator {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -2351,7 +2351,7 @@ if let value = aggregator {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -2409,7 +2409,7 @@ if let value = aggregator {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],

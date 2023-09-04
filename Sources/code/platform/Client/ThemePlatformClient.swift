@@ -45,7 +45,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/theme/v2.0/company/\(companyId)/themes",
                 query: nil,
                 body: nil,
@@ -93,7 +93,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/theme/v2.0/company/\(companyId)",
                 query: nil,
                 body: body.dictionary,
@@ -142,7 +142,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/theme/v2.0/company/\(companyId)/\(themeId)",
                 query: nil,
                 body: nil,

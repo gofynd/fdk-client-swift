@@ -53,7 +53,7 @@ if let value = sort {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs/",
                 query: xQuery,
                 body: nil,
@@ -101,7 +101,7 @@ if let value = sort {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs/",
                 query: nil,
                 body: body.dictionary,
@@ -150,7 +150,7 @@ if let value = sort {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/audit-trail/v1.0/company/\(companyId)/logs/\(id)",
                 query: nil,
                 body: nil,
@@ -198,7 +198,7 @@ if let value = sort {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/audit-trail/v1.0/company/\(companyId)/entity-types",
                 query: nil,
                 body: nil,

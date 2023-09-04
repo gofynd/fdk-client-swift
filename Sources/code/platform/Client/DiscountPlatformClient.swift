@@ -103,7 +103,7 @@ if let value = appIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/",
                 query: xQuery,
                 body: nil,
@@ -258,7 +258,7 @@ if let value = appIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/",
                 query: nil,
                 body: body.dictionary,
@@ -307,7 +307,7 @@ if let value = appIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/\(id)/",
                 query: nil,
                 body: nil,
@@ -356,7 +356,7 @@ if let value = appIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/\(id)/",
                 query: nil,
                 body: body.dictionary,
@@ -405,7 +405,7 @@ if let value = appIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/job/\(id)/items/",
                 query: nil,
                 body: body.dictionary,
@@ -461,7 +461,7 @@ if let value = discount {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/validation/",
                 query: xQuery,
                 body: body.dictionary,
@@ -510,7 +510,7 @@ if let value = discount {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/\(type)/download/",
                 query: nil,
                 body: body.dictionary,
@@ -559,7 +559,7 @@ if let value = discount {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/validation/\(id)/",
                 query: nil,
                 body: nil,
@@ -608,7 +608,7 @@ if let value = discount {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/validation/\(id)/",
                 query: nil,
                 body: nil,
@@ -657,7 +657,7 @@ if let value = discount {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/download/\(id)/",
                 query: nil,
                 body: nil,
@@ -706,7 +706,7 @@ if let value = discount {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/discount/v1.0/company/\(companyId)/file/download/\(id)/",
                 query: nil,
                 body: nil,

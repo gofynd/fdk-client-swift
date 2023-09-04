@@ -31,7 +31,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)",
                 query: nil,
                 body: nil,
@@ -79,7 +79,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "patch",
+                method: "PATCH",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)",
                 query: nil,
                 body: body.dictionary,
@@ -127,7 +127,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/metrics",
                 query: nil,
                 body: nil,
@@ -176,7 +176,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: nil,
@@ -225,7 +225,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/\(brandId)",
                 query: nil,
                 body: body.dictionary,
@@ -273,7 +273,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/brand/",
                 query: nil,
                 body: body.dictionary,
@@ -345,7 +345,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
                 query: xQuery,
                 body: nil,
@@ -452,7 +452,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/company-brand",
                 query: nil,
                 body: body.dictionary,
@@ -548,7 +548,7 @@ if let value = locationIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
                 query: xQuery,
                 body: nil,
@@ -679,7 +679,7 @@ if let value = locationIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location",
                 query: nil,
                 body: body.dictionary,
@@ -728,7 +728,7 @@ if let value = locationIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: nil,
@@ -777,7 +777,7 @@ if let value = locationIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/\(locationId)",
                 query: nil,
                 body: body.dictionary,
@@ -825,7 +825,7 @@ if let value = locationIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/bulk",
                 query: nil,
                 body: body.dictionary,
@@ -873,7 +873,7 @@ if let value = locationIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/company-profile/v1.0/company/\(companyId)/location/tags",
                 query: nil,
                 body: nil,

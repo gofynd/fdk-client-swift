@@ -31,7 +31,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/generate-report",
                 query: nil,
                 body: body.dictionary,
@@ -79,7 +79,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/download-report",
                 query: nil,
                 body: body.dictionary,
@@ -127,7 +127,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/get-data",
                 query: nil,
                 body: body.dictionary,
@@ -175,7 +175,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/get-reason",
                 query: nil,
                 body: body.dictionary,
@@ -223,7 +223,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/get-report-list",
                 query: nil,
                 body: body.dictionary,
@@ -271,7 +271,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/get-affiliate-list",
                 query: nil,
                 body: body.dictionary,
@@ -319,7 +319,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/download-credit-debit-note",
                 query: nil,
                 body: body.dictionary,
@@ -367,7 +367,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/payment-process",
                 query: nil,
                 body: body.dictionary,
@@ -415,7 +415,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/credit-line-data",
                 query: nil,
                 body: body.dictionary,
@@ -463,7 +463,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/creditline-opted",
                 query: nil,
                 body: body.dictionary,
@@ -511,7 +511,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/invoice-type",
                 query: nil,
                 body: body.dictionary,
@@ -559,7 +559,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/invoice/listing",
                 query: nil,
                 body: body.dictionary,
@@ -607,7 +607,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/invoice/pdf-view",
                 query: nil,
                 body: body.dictionary,
@@ -655,7 +655,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/cn-as-refund-method",
                 query: nil,
                 body: body.dictionary,
@@ -703,7 +703,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/create-update-credit-note-config",
                 query: nil,
                 body: body.dictionary,
@@ -751,7 +751,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/delete-seller-config",
                 query: nil,
                 body: body.dictionary,
@@ -805,7 +805,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/channel-display-names",
                 query: xQuery,
                 body: nil,
@@ -853,7 +853,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/get-cn-pdf-link",
                 query: nil,
                 body: body.dictionary,
@@ -901,7 +901,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/credit-note-details",
                 query: nil,
                 body: body.dictionary,
@@ -949,7 +949,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/customer-credit-balance",
                 query: nil,
                 body: body.dictionary,
@@ -997,7 +997,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/get-seller-cn-config",
                 query: nil,
                 body: body.dictionary,
@@ -1045,7 +1045,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/generate-report-customer-cn",
                 query: nil,
                 body: body.dictionary,
@@ -1093,7 +1093,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/download-report-customer-cn",
                 query: nil,
                 body: body.dictionary,
@@ -1155,7 +1155,7 @@ if let value = affiliateId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/finance/v1.0/company/\(companyId)/reporting-filters",
                 query: xQuery,
                 body: nil,

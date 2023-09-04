@@ -45,7 +45,7 @@ if let value = jobCode {
 
             PublicAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/inventory/v1.0/company/email/jobCode",
                 query: xQuery,
                 extraHeaders:  [],
@@ -92,7 +92,7 @@ if let value = jobCode {
 
             PublicAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/common/inventory/v1.0/company/email/jobCode",
                 query: nil,
                 extraHeaders:  [],
@@ -145,7 +145,7 @@ var xQuery: [String: Any] = [:]
 
             PublicAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/inventory/v1.0/company/slingshot",
                 query: xQuery,
                 extraHeaders:  [],
@@ -204,7 +204,7 @@ var xQuery: [String: Any] = [:]
 
             PublicAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/inventory/v1.0/company/slingshot/apikey",
                 query: xQuery,
                 extraHeaders:  [],
@@ -252,7 +252,7 @@ var xQuery: [String: Any] = [:]
 
             PublicAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/inventory/v1.0/company/jobs/code/\(code)",
                 query: nil,
                 extraHeaders:  [],
@@ -313,7 +313,7 @@ if let value = disable {
 
             PublicAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/inventory/v1.0/company/job/config",
                 query: xQuery,
                 extraHeaders:  [],

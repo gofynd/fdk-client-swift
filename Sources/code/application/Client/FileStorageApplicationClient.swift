@@ -68,7 +68,7 @@ This operation will return the URL of the uploaded file.
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -139,7 +139,7 @@ This operation will return the URL of the uploaded file.
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -189,7 +189,7 @@ This operation will return the URL of the uploaded file.
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],

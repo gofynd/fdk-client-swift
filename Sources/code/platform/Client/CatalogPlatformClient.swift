@@ -41,7 +41,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/product-bundle/",
                 query: nil,
                 body: body.dictionary,
@@ -105,7 +105,7 @@ if let value = slug {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/product-bundle/",
                 query: xQuery,
                 body: nil,
@@ -154,7 +154,7 @@ if let value = slug {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
                 query: nil,
                 body: body.dictionary,
@@ -203,7 +203,7 @@ if let value = slug {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/productBundle/\(id)/",
                 query: nil,
                 body: nil,
@@ -251,7 +251,7 @@ if let value = slug {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide",
                 query: nil,
                 body: body.dictionary,
@@ -339,7 +339,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide",
                 query: xQuery,
                 body: nil,
@@ -388,7 +388,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
                 query: nil,
                 body: body.dictionary,
@@ -437,7 +437,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/sizeguide/\(id)/",
                 query: nil,
                 body: nil,
@@ -513,7 +513,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/crossSelling/\(sellerAppId)/analytics/insights/",
                 query: nil,
                 body: nil,
@@ -562,7 +562,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/\(marketplace)/optin/",
                 query: nil,
                 body: body.dictionary,
@@ -610,7 +610,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/",
                 query: nil,
                 body: nil,
@@ -658,7 +658,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-details/",
                 query: nil,
                 body: nil,
@@ -746,7 +746,7 @@ if let value = marketplace {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-brand-details/",
                 query: xQuery,
                 body: nil,
@@ -794,7 +794,7 @@ if let value = marketplace {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/company-metrics/",
                 query: nil,
                 body: nil,
@@ -866,7 +866,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/marketplaces/location-details/",
                 query: xQuery,
                 body: nil,
@@ -915,7 +915,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/productAttributes/\(attributeSlug)",
                 query: nil,
                 body: nil,
@@ -975,7 +975,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/categories/",
                 query: xQuery,
                 body: nil,
@@ -1023,7 +1023,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/",
                 query: nil,
                 body: body.dictionary,
@@ -1119,7 +1119,7 @@ if let value = isActive {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/",
                 query: xQuery,
                 body: nil,
@@ -1168,7 +1168,7 @@ if let value = isActive {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/\(uid)/",
                 query: nil,
                 body: body.dictionary,
@@ -1217,7 +1217,7 @@ if let value = isActive {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/departments/\(uid)/",
                 query: nil,
                 body: nil,
@@ -1271,7 +1271,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/",
                 query: xQuery,
                 body: nil,
@@ -1336,7 +1336,7 @@ if let value = bulk {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/\(slug)/validation/schema/",
                 query: xQuery,
                 body: nil,
@@ -1401,7 +1401,7 @@ if let value = type {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/templates/\(slug)/download/",
                 query: xQuery,
                 body: nil,
@@ -1455,7 +1455,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/templates/download/",
                 query: xQuery,
                 body: nil,
@@ -1509,7 +1509,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/templates/validation/schema/",
                 query: xQuery,
                 body: nil,
@@ -1557,7 +1557,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/hsn/",
                 query: nil,
                 body: nil,
@@ -1605,7 +1605,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/downloads/",
                 query: nil,
                 body: nil,
@@ -1653,7 +1653,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/",
                 query: nil,
                 body: body.dictionary,
@@ -1733,7 +1733,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/downloads/",
                 query: xQuery,
                 body: nil,
@@ -1803,7 +1803,7 @@ if let value = itemType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/downloads/configuration/",
                 query: xQuery,
                 body: nil,
@@ -1851,7 +1851,7 @@ if let value = itemType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/category/",
                 query: nil,
                 body: body.dictionary,
@@ -1939,7 +1939,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/category/",
                 query: xQuery,
                 body: nil,
@@ -1988,7 +1988,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
                 query: nil,
                 body: body.dictionary,
@@ -2037,7 +2037,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/category/\(uid)/",
                 query: nil,
                 body: nil,
@@ -2085,7 +2085,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/",
                 query: nil,
                 body: body.dictionary,
@@ -2205,7 +2205,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/",
                 query: xQuery,
                 body: nil,
@@ -2271,7 +2271,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/variants/\(variantType)",
                 query: xQuery,
                 body: nil,
@@ -2333,7 +2333,7 @@ if let value = filter {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/product-attributes/",
                 query: xQuery,
                 body: nil,
@@ -2382,7 +2382,7 @@ if let value = filter {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
                 body: nil,
@@ -2431,7 +2431,7 @@ if let value = filter {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: nil,
                 body: body.dictionary,
@@ -2496,7 +2496,7 @@ if let value = itemCode {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/",
                 query: xQuery,
                 body: nil,
@@ -2545,7 +2545,7 @@ if let value = itemCode {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/all_sizes",
                 query: nil,
                 body: nil,
@@ -2593,7 +2593,7 @@ if let value = itemCode {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/validation/",
                 query: nil,
                 body: nil,
@@ -2666,7 +2666,7 @@ if let value = uid {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/",
                 query: xQuery,
                 body: nil,
@@ -2714,7 +2714,7 @@ if let value = uid {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk",
                 query: nil,
                 body: body.dictionary,
@@ -2786,7 +2786,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk",
                 query: xQuery,
                 body: nil,
@@ -2846,7 +2846,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/bulk",
                 query: xQuery,
                 body: body.dictionary,
@@ -2895,7 +2895,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk/\(batchId)",
                 query: nil,
                 body: nil,
@@ -2944,7 +2944,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/bulk/\(batchId)",
                 query: nil,
                 body: body.dictionary,
@@ -2992,7 +2992,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/tags",
                 query: nil,
                 body: nil,
@@ -3040,7 +3040,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/assets/bulk/",
                 query: nil,
                 body: body.dictionary,
@@ -3104,7 +3104,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/assets/bulk/",
                 query: xQuery,
                 body: nil,
@@ -3154,7 +3154,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
                 query: nil,
                 body: nil,
@@ -3204,7 +3204,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
                 query: nil,
                 body: body.dictionary,
@@ -3286,7 +3286,7 @@ if let value = sellable {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)",
                 query: xQuery,
                 body: nil,
@@ -3368,7 +3368,7 @@ if let value = locationIds {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/inventory/\(sizeIdentifier)",
                 query: xQuery,
                 body: nil,
@@ -3480,7 +3480,7 @@ if let value = sizeIdentifier {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventories",
                 query: xQuery,
                 body: nil,
@@ -3532,7 +3532,7 @@ if let value = sizeIdentifier {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/products/\(itemId)/sizes/\(size)/location/\(locationId)/",
                 query: nil,
                 body: nil,
@@ -3580,7 +3580,7 @@ if let value = sizeIdentifier {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/",
                 query: nil,
                 body: body.dictionary,
@@ -3644,7 +3644,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/",
                 query: xQuery,
                 body: nil,
@@ -3693,7 +3693,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
                 query: nil,
                 body: nil,
@@ -3742,7 +3742,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/bulk/\(batchId)/",
                 query: nil,
                 body: body.dictionary,
@@ -3790,7 +3790,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/",
                 query: nil,
                 body: body.dictionary,
@@ -3838,7 +3838,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/",
                 query: nil,
                 body: nil,
@@ -3886,7 +3886,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/",
                 query: nil,
                 body: body.dictionary,
@@ -3966,7 +3966,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/download/",
                 query: xQuery,
                 body: nil,
@@ -4022,7 +4022,7 @@ if let value = filterType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/inventory/download/configuration/",
                 query: xQuery,
                 body: nil,
@@ -4072,7 +4072,7 @@ if let value = filterType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)",
                 query: nil,
                 body: body.dictionary,
@@ -4122,7 +4122,7 @@ if let value = filterType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/products/\(itemId)/inventory/\(sellerIdentifier)",
                 query: nil,
                 body: body.dictionary,
@@ -4170,7 +4170,7 @@ if let value = filterType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/inventory/",
                 query: nil,
                 body: body.dictionary,
@@ -4219,7 +4219,7 @@ if let value = filterType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
                 query: nil,
                 body: body.dictionary,
@@ -4268,7 +4268,7 @@ if let value = filterType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/\(id)/",
                 query: nil,
                 body: nil,
@@ -4316,7 +4316,7 @@ if let value = filterType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/hsn/bulk/",
                 query: nil,
                 body: body.dictionary,
@@ -4396,7 +4396,7 @@ if let value = type {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/hsn/",
                 query: xQuery,
                 body: nil,
@@ -4445,7 +4445,7 @@ if let value = type {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/catalog/v2.0/company/\(companyId)/hsn/\(reportingHsn)",
                 query: nil,
                 body: nil,
@@ -4500,7 +4500,7 @@ if let value = type {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/catalog/v1.0/company/\(companyId)/location/reassign/",
                 query: nil,
                 body: body.dictionary,

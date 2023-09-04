@@ -119,7 +119,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -177,7 +177,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -235,7 +235,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -293,7 +293,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -351,7 +351,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -409,7 +409,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -459,7 +459,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -517,7 +517,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -575,7 +575,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -625,7 +625,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -675,7 +675,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -725,7 +725,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -783,7 +783,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -833,7 +833,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -883,7 +883,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -933,7 +933,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -983,7 +983,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1033,7 +1033,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1083,7 +1083,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1141,7 +1141,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1199,7 +1199,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1257,7 +1257,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1315,7 +1315,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1365,7 +1365,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1415,7 +1415,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1473,7 +1473,7 @@ if let value = name {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1531,7 +1531,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1589,7 +1589,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1677,7 +1677,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1727,7 +1727,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -1785,7 +1785,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1843,7 +1843,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1925,7 +1925,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],
@@ -1975,7 +1975,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: nil,
                 extraHeaders:  [],
@@ -2033,7 +2033,7 @@ if let value = platform {
             
             ApplicationAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: fullUrl,
                 query: xQuery,
                 extraHeaders:  [],

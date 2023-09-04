@@ -104,7 +104,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/communication/v1.0/company/\(companyId)/notification/system-notifications/",
                 query: xQuery,
                 body: nil,

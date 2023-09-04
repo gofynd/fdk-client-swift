@@ -32,7 +32,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/retry",
                 query: nil,
                 body: body.dictionary,
@@ -81,7 +81,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/retry/events/counts",
                 query: nil,
                 body: body.dictionary,
@@ -130,7 +130,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/retry/status",
                 query: nil,
                 body: nil,
@@ -179,7 +179,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/retry/cancel",
                 query: nil,
                 body: nil,
@@ -227,7 +227,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/event_processed",
                 query: nil,
                 body: body.dictionary,
@@ -275,7 +275,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/download",
                 query: nil,
                 body: body.dictionary,
@@ -323,7 +323,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/ping",
                 query: nil,
                 body: body.dictionary,
@@ -371,7 +371,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/events",
                 query: nil,
                 body: nil,
@@ -419,7 +419,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/filters",
                 query: nil,
                 body: body.dictionary,
@@ -467,7 +467,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/history",
                 query: nil,
                 body: body.dictionary,
@@ -516,7 +516,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/cancel/file/\(filename)",
                 query: nil,
                 body: nil,
@@ -588,7 +588,7 @@ if let value = extensionId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber",
                 query: xQuery,
                 body: nil,
@@ -636,7 +636,7 @@ if let value = extensionId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber",
                 query: nil,
                 body: body.dictionary,
@@ -684,7 +684,7 @@ if let value = extensionId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber",
                 query: nil,
                 body: body.dictionary,
@@ -733,7 +733,7 @@ if let value = extensionId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/\(subscriberId)",
                 query: nil,
                 body: nil,
@@ -798,7 +798,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/webhook/v1.0/company/\(companyId)/extension/\(extensionId)/subscriber",
                 query: xQuery,
                 body: nil,

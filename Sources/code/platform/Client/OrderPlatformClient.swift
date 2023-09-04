@@ -31,7 +31,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/update-cache",
                 query: nil,
                 body: body.dictionary,
@@ -79,7 +79,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/store/reassign-internal",
                 query: nil,
                 body: body.dictionary,
@@ -127,7 +127,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/entity/lock-manager",
                 query: nil,
                 body: body.dictionary,
@@ -183,7 +183,7 @@ if let value = date {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/announcements",
                 query: xQuery,
                 body: nil,
@@ -323,7 +323,7 @@ if let value = country {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/delight/update-address",
                 query: xQuery,
                 body: nil,
@@ -405,7 +405,7 @@ if let value = method {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/ninja/click2call",
                 query: xQuery,
                 body: nil,
@@ -453,7 +453,7 @@ if let value = method {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/status-internal",
                 query: nil,
                 body: body.dictionary,
@@ -501,7 +501,7 @@ if let value = method {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/process-manifest",
                 query: nil,
                 body: body.dictionary,
@@ -549,7 +549,7 @@ if let value = method {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/dispatch",
                 query: nil,
                 body: body.dictionary,
@@ -597,7 +597,7 @@ if let value = method {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/roles",
                 query: nil,
                 body: nil,
@@ -661,7 +661,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/history",
                 query: xQuery,
                 body: nil,
@@ -709,7 +709,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/shipment/history",
                 query: nil,
                 body: body.dictionary,
@@ -757,7 +757,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/ninja/send-sms",
                 query: nil,
                 body: body.dictionary,
@@ -805,7 +805,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/update-packaging-dimension",
                 query: nil,
                 body: body.dictionary,
@@ -853,7 +853,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/create-order",
                 query: nil,
                 body: body.dictionary,
@@ -901,7 +901,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
                 query: nil,
                 body: nil,
@@ -949,7 +949,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/order-config",
                 query: nil,
                 body: body.dictionary,
@@ -997,7 +997,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/manifest/uploadConsent",
                 query: nil,
                 body: body.dictionary,
@@ -1045,7 +1045,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/order/validation",
                 query: nil,
                 body: body.dictionary,
@@ -1093,7 +1093,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/debug/order_status",
                 query: nil,
                 body: body.dictionary,
@@ -1141,7 +1141,7 @@ if let value = bagId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/bag/state/transition",
                 query: nil,
                 body: nil,
@@ -1202,7 +1202,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/allowed/state/transition",
                 query: xQuery,
                 body: nil,
@@ -1250,7 +1250,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/customer-credit-balance",
                 query: nil,
                 body: body.dictionary,
@@ -1298,7 +1298,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/refund-mode-config",
                 query: nil,
                 body: body.dictionary,
@@ -1346,7 +1346,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/user/attach",
                 query: nil,
                 body: body.dictionary,
@@ -1394,7 +1394,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/user/send/otp/mobile",
                 query: nil,
                 body: body.dictionary,
@@ -1442,7 +1442,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/user/verify/otp",
                 query: nil,
                 body: body.dictionary,
@@ -1490,7 +1490,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/reports/lanes/download",
                 query: nil,
                 body: body.dictionary,
@@ -1538,7 +1538,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/einvoice/retry/irn",
                 query: nil,
                 body: body.dictionary,
@@ -1618,7 +1618,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
                 query: xQuery,
                 body: nil,
@@ -1666,7 +1666,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/order-manage/v1.0/company/\(companyId)/tracking",
                 query: nil,
                 body: body.dictionary,
@@ -1930,7 +1930,7 @@ if let value = customerId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/shipments-listing",
                 query: xQuery,
                 body: nil,
@@ -1994,7 +1994,7 @@ if let value = shipmentId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/shipment-details",
                 query: xQuery,
                 body: nil,
@@ -2048,7 +2048,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/order-details",
                 query: xQuery,
                 body: nil,
@@ -2224,7 +2224,7 @@ if let value = showCrossCompanyData {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/lane-config/",
                 query: xQuery,
                 body: nil,
@@ -2424,7 +2424,7 @@ if let value = customerId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/orders-listing",
                 query: xQuery,
                 body: nil,
@@ -2487,7 +2487,7 @@ if let value = groupEntity {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/filter-listing",
                 query: xQuery,
                 body: nil,
@@ -2631,7 +2631,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/generate/file",
                 query: xQuery,
                 body: nil,
@@ -2679,7 +2679,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/bulk-action/get-seller-templates",
                 query: nil,
                 body: nil,
@@ -2735,7 +2735,7 @@ if let value = templateSlug {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/bulk-action/download-seller-templates",
                 query: xQuery,
                 body: nil,
@@ -2786,7 +2786,7 @@ if let value = templateSlug {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/shipments/\(shipmentId)/bags/\(bagId)/state/\(state)/reasons",
                 query: nil,
                 body: nil,
@@ -2859,7 +2859,7 @@ if let value = channelId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/bag-details/",
                 query: xQuery,
                 body: nil,
@@ -2979,7 +2979,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/bags",
                 query: xQuery,
                 body: nil,
@@ -3044,7 +3044,7 @@ if let value = documentType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/order/v1.0/company/\(companyId)/orders/\(orderId)/generate/pos-receipt",
                 query: xQuery,
                 body: nil,

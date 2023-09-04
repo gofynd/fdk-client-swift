@@ -46,7 +46,7 @@ if let value = authorization {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/configuration/v1.0/application/search-application",
                 query: xQuery,
                 body: nil,
@@ -110,7 +110,7 @@ if let value = id {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/configuration/v1.0/location",
                 query: xQuery,
                 body: nil,

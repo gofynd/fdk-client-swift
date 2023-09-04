@@ -44,7 +44,7 @@ if let value = authorization {
 
             PublicAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/configuration/v1.0/application/search-application",
                 query: xQuery,
                 extraHeaders:  xHeaders,
@@ -107,7 +107,7 @@ if let value = id {
 
             PublicAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/common/configuration/v1.0/location",
                 query: xQuery,
                 extraHeaders:  [],

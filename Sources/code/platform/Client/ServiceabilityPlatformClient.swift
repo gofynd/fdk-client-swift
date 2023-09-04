@@ -33,7 +33,7 @@ extension PlatformClient {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/regions",
                 query: nil,
                 body: body.dictionary,
@@ -129,7 +129,7 @@ if let value = q {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/zones",
                 query: xQuery,
                 body: nil,
@@ -193,7 +193,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/all-stores",
                 query: xQuery,
                 body: nil,
@@ -242,7 +242,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/zone/\(zoneId)",
                 query: nil,
                 body: body.dictionary,
@@ -291,7 +291,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/zone/\(zoneId)",
                 query: nil,
                 body: nil,
@@ -339,7 +339,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/zone",
                 query: nil,
                 body: body.dictionary,
@@ -453,7 +453,7 @@ if let value = zoneId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/zones-list",
                 query: xQuery,
                 body: nil,
@@ -502,7 +502,7 @@ if let value = zoneId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/stores/\(storeUid)",
                 query: nil,
                 body: nil,
@@ -550,7 +550,7 @@ if let value = zoneId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/logistics/stores",
                 query: nil,
                 body: nil,
@@ -598,7 +598,7 @@ if let value = zoneId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/reassign",
                 query: nil,
                 body: body.dictionary,
@@ -652,7 +652,7 @@ if let value = zoneId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/account",
                 query: nil,
                 body: body.dictionary,
@@ -740,7 +740,7 @@ if let value = transportType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/account",
                 query: xQuery,
                 body: nil,
@@ -789,7 +789,7 @@ if let value = transportType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/rules/\(ruleUid)",
                 query: nil,
                 body: body.dictionary,
@@ -838,7 +838,7 @@ if let value = transportType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/rules/\(ruleUid)",
                 query: nil,
                 body: nil,
@@ -886,7 +886,7 @@ if let value = transportType {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/rules",
                 query: nil,
                 body: body.dictionary,
@@ -950,7 +950,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/rules",
                 query: xQuery,
                 body: nil,
@@ -998,7 +998,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/priority",
                 query: nil,
                 body: body.dictionary,
@@ -1046,7 +1046,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/logistics/v1.0/company/\(companyId)/courier/priority",
                 query: nil,
                 body: nil,

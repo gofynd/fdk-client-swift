@@ -47,7 +47,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs",
                 query: xQuery,
                 body: nil,
@@ -95,7 +95,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs",
                 query: nil,
                 body: body.dictionary,
@@ -143,7 +143,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs",
                 query: nil,
                 body: body.dictionary,
@@ -191,7 +191,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/kafka/suppressStore",
                 query: nil,
                 body: body.dictionary,
@@ -239,7 +239,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/slingshot",
                 query: nil,
                 body: nil,
@@ -288,7 +288,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs/steps/\(jobId)",
                 query: nil,
                 body: nil,
@@ -353,7 +353,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs/integration/\(integrationId)",
                 query: xQuery,
                 body: nil,
@@ -402,7 +402,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs/disable/integration/\(integrationId)",
                 query: nil,
                 body: nil,
@@ -450,7 +450,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs/defaults",
                 query: nil,
                 body: nil,
@@ -499,7 +499,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs/code/\(code)",
                 query: nil,
                 body: nil,
@@ -580,7 +580,7 @@ if let value = date {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs/code/\(code)/metrics",
                 query: xQuery,
                 body: nil,
@@ -645,7 +645,7 @@ if let value = pageSize {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/inventory/v1.0/company/\(companyId)/jobs/code/integration/\(integrationId)",
                 query: xQuery,
                 body: nil,

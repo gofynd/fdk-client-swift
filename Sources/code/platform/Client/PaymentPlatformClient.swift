@@ -42,7 +42,7 @@ if let value = uniqueExternalId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts",
                 query: xQuery,
                 body: nil,
@@ -90,7 +90,7 @@ if let value = uniqueExternalId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts",
                 query: nil,
                 body: body.dictionary,
@@ -139,7 +139,7 @@ if let value = uniqueExternalId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "put",
+                method: "PUT",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts/\(uniqueTransferNo)",
                 query: nil,
                 body: body.dictionary,
@@ -188,7 +188,7 @@ if let value = uniqueExternalId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "patch",
+                method: "PATCH",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts/\(uniqueTransferNo)",
                 query: nil,
                 body: body.dictionary,
@@ -237,7 +237,7 @@ if let value = uniqueExternalId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/payouts/\(uniqueTransferNo)",
                 query: nil,
                 body: nil,
@@ -293,7 +293,7 @@ if let value = uniqueExternalId {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/methods",
                 query: xQuery,
                 body: nil,
@@ -353,7 +353,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "delete",
+                method: "DELETE",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/methods",
                 query: xQuery,
                 body: nil,
@@ -401,7 +401,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/configs",
                 query: nil,
                 body: nil,
@@ -449,7 +449,7 @@ var xQuery: [String: Any] = [:]
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "post",
+                method: "POST",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/subscription/setup/intent",
                 query: nil,
                 body: body.dictionary,
@@ -507,7 +507,7 @@ if let value = ifscCode {
 
             PlatformAPIClient.execute(
                 config: config,
-                method: "get",
+                method: "GET",
                 url: "/service/platform/payment/v1.0/company/\(companyId)/ifsc-code/verify",
                 query: xQuery,
                 body: nil,
