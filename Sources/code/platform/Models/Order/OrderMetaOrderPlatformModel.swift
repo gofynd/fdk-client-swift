@@ -40,7 +40,7 @@ public extension PlatformClient.Order {
         
         public var orderPlatform: String?
         
-        public var employeeId: Int?
+        public var employeeId: String?
         
         public var orderTags: [[String: Any]]?
         
@@ -93,7 +93,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: Int? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
+        public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: String? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
             
             self.platformUserDetails = platformUserDetails
             
@@ -308,7 +308,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    employeeId = try container.decode(Int.self, forKey: .employeeId)
+                    employeeId = try container.decode(String.self, forKey: .employeeId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -510,7 +510,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderPlatform: String?
         
-        public var employeeId: Int?
+        public var employeeId: String?
         
         public var orderTags: [[String: Any]]?
         
@@ -563,7 +563,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: Int? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
+        public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: String? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
             
             self.platformUserDetails = platformUserDetails
             
@@ -778,7 +778,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    employeeId = try container.decode(Int.self, forKey: .employeeId)
+                    employeeId = try container.decode(String.self, forKey: .employeeId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

@@ -64,6 +64,10 @@ public extension PlatformClient.Payment {
         
         public var aggregatorName: String
         
+        public var codCharges: Double?
+        
+        public var productCodData: ProductCODData?
+        
         public var codLimit: Double?
         
         public var intentApp: [IntentApp]?
@@ -133,6 +137,10 @@ public extension PlatformClient.Payment {
             
             case aggregatorName = "aggregator_name"
             
+            case codCharges = "cod_charges"
+            
+            case productCodData = "product_cod_data"
+            
             case codLimit = "cod_limit"
             
             case intentApp = "intent_app"
@@ -149,7 +157,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
+        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codCharges: Double? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, productCodData: ProductCODData? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
             
             self.remainingLimit = remainingLimit
             
@@ -202,6 +210,10 @@ public extension PlatformClient.Payment {
             self.cardToken = cardToken
             
             self.aggregatorName = aggregatorName
+            
+            self.codCharges = codCharges
+            
+            self.productCodData = productCodData
             
             self.codLimit = codLimit
             
@@ -529,6 +541,30 @@ public extension PlatformClient.Payment {
             
             
                 do {
+                    codCharges = try container.decode(Double.self, forKey: .codCharges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    productCodData = try container.decode(ProductCODData.self, forKey: .productCodData)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     codLimit = try container.decode(Double.self, forKey: .codLimit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -744,6 +780,16 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            
+            
+            
+            
+            try? container.encode(codCharges, forKey: .codCharges)
+            
+            
+            
+            
+            try? container.encode(productCodData, forKey: .productCodData)
             
             
             
@@ -849,6 +895,10 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var aggregatorName: String
         
+        public var codCharges: Double?
+        
+        public var productCodData: ProductCODData?
+        
         public var codLimit: Double?
         
         public var intentApp: [IntentApp]?
@@ -918,6 +968,10 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case aggregatorName = "aggregator_name"
             
+            case codCharges = "cod_charges"
+            
+            case productCodData = "product_cod_data"
+            
             case codLimit = "cod_limit"
             
             case intentApp = "intent_app"
@@ -934,7 +988,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
+        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codCharges: Double? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, productCodData: ProductCODData? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
             
             self.remainingLimit = remainingLimit
             
@@ -987,6 +1041,10 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.cardToken = cardToken
             
             self.aggregatorName = aggregatorName
+            
+            self.codCharges = codCharges
+            
+            self.productCodData = productCodData
             
             self.codLimit = codLimit
             
@@ -1314,6 +1372,30 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
+                    codCharges = try container.decode(Double.self, forKey: .codCharges)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    productCodData = try container.decode(ProductCODData.self, forKey: .productCodData)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     codLimit = try container.decode(Double.self, forKey: .codLimit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1529,6 +1611,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(aggregatorName, forKey: .aggregatorName)
+            
+            
+            
+            
+            try? container.encode(codCharges, forKey: .codCharges)
+            
+            
+            
+            
+            try? container.encode(productCodData, forKey: .productCodData)
             
             
             

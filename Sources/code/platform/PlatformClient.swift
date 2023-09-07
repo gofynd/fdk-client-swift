@@ -18939,11 +18939,27 @@ if let value = category {
             * Description: Get All Brand Payment Gateway Config Secret
             **/
             public func getBrandPaymentGatewayConfig(
+                aggregator: String?,
+                configType: String?,
                 
                 onResponse: @escaping (_ response: PaymentGatewayConfigResponse?, _ error: FDKError?) -> Void
             ) {
                 
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = aggregator {
+    
+    xQuery["aggregator"] = value
+    
+}
+
+
+if let value = configType {
+    
+    xQuery["config_type"] = value
+    
+}
+
 
  
 
@@ -18952,7 +18968,7 @@ if let value = category {
                     config: config,
                     method: "GET",
                     url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/aggregator/request",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     responseType: "application/json",

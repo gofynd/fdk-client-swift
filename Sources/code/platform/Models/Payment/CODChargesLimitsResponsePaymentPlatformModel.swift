@@ -3,39 +3,39 @@
 import Foundation
 
 
-public extension PlatformClient.Theme {
+public extension PlatformClient.Payment {
     /*
-        Model: AdvanceSetting
-        Used By: Theme
+        Model: CODChargesLimitsResponse
+        Used By: Payment
     */
 
-    class AdvanceSetting: Codable {
+    class CODChargesLimitsResponse: Codable {
         
         
-        public var overlayPopup: OverlayPopupSetting?
+        public var maxCartValue: Double?
         
-        public var dividerStrokeHighlight: DividerStrokeHighlightSetting?
+        public var minCartValue: Double?
         
-        public var userAlerts: UserAlertsSetting?
+        public var codCharge: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case overlayPopup = "overlay_popup"
+            case maxCartValue = "max_cart_value"
             
-            case dividerStrokeHighlight = "divider_stroke_highlight"
+            case minCartValue = "min_cart_value"
             
-            case userAlerts = "user_alerts"
+            case codCharge = "cod_charge"
             
         }
 
-        public init(dividerStrokeHighlight: DividerStrokeHighlightSetting? = nil, overlayPopup: OverlayPopupSetting? = nil, userAlerts: UserAlertsSetting? = nil) {
+        public init(codCharge: Double? = nil, maxCartValue: Double? = nil, minCartValue: Double? = nil) {
             
-            self.overlayPopup = overlayPopup
+            self.maxCartValue = maxCartValue
             
-            self.dividerStrokeHighlight = dividerStrokeHighlight
+            self.minCartValue = minCartValue
             
-            self.userAlerts = userAlerts
+            self.codCharge = codCharge
             
         }
 
@@ -44,7 +44,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    overlayPopup = try container.decode(OverlayPopupSetting.self, forKey: .overlayPopup)
+                    maxCartValue = try container.decode(Double.self, forKey: .maxCartValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    dividerStrokeHighlight = try container.decode(DividerStrokeHighlightSetting.self, forKey: .dividerStrokeHighlight)
+                    minCartValue = try container.decode(Double.self, forKey: .minCartValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    userAlerts = try container.decode(UserAlertsSetting.self, forKey: .userAlerts)
+                    codCharge = try container.decode(Double.self, forKey: .codCharge)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,17 +85,17 @@ public extension PlatformClient.Theme {
             
             
             
-            try? container.encodeIfPresent(overlayPopup, forKey: .overlayPopup)
+            try? container.encode(maxCartValue, forKey: .maxCartValue)
             
             
             
             
-            try? container.encodeIfPresent(dividerStrokeHighlight, forKey: .dividerStrokeHighlight)
+            try? container.encode(minCartValue, forKey: .minCartValue)
             
             
             
             
-            try? container.encodeIfPresent(userAlerts, forKey: .userAlerts)
+            try? container.encode(codCharge, forKey: .codCharge)
             
             
         }
@@ -105,39 +105,39 @@ public extension PlatformClient.Theme {
 
 
 
-public extension PlatformClient.ApplicationClient.Theme {
+public extension PlatformClient.ApplicationClient.Payment {
     /*
-        Model: AdvanceSetting
-        Used By: Theme
+        Model: CODChargesLimitsResponse
+        Used By: Payment
     */
 
-    class AdvanceSetting: Codable {
+    class CODChargesLimitsResponse: Codable {
         
         
-        public var overlayPopup: OverlayPopupSetting?
+        public var maxCartValue: Double?
         
-        public var dividerStrokeHighlight: DividerStrokeHighlightSetting?
+        public var minCartValue: Double?
         
-        public var userAlerts: UserAlertsSetting?
+        public var codCharge: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case overlayPopup = "overlay_popup"
+            case maxCartValue = "max_cart_value"
             
-            case dividerStrokeHighlight = "divider_stroke_highlight"
+            case minCartValue = "min_cart_value"
             
-            case userAlerts = "user_alerts"
+            case codCharge = "cod_charge"
             
         }
 
-        public init(dividerStrokeHighlight: DividerStrokeHighlightSetting? = nil, overlayPopup: OverlayPopupSetting? = nil, userAlerts: UserAlertsSetting? = nil) {
+        public init(codCharge: Double? = nil, maxCartValue: Double? = nil, minCartValue: Double? = nil) {
             
-            self.overlayPopup = overlayPopup
+            self.maxCartValue = maxCartValue
             
-            self.dividerStrokeHighlight = dividerStrokeHighlight
+            self.minCartValue = minCartValue
             
-            self.userAlerts = userAlerts
+            self.codCharge = codCharge
             
         }
 
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    overlayPopup = try container.decode(OverlayPopupSetting.self, forKey: .overlayPopup)
+                    maxCartValue = try container.decode(Double.self, forKey: .maxCartValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    dividerStrokeHighlight = try container.decode(DividerStrokeHighlightSetting.self, forKey: .dividerStrokeHighlight)
+                    minCartValue = try container.decode(Double.self, forKey: .minCartValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    userAlerts = try container.decode(UserAlertsSetting.self, forKey: .userAlerts)
+                    codCharge = try container.decode(Double.self, forKey: .codCharge)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             
-            try? container.encodeIfPresent(overlayPopup, forKey: .overlayPopup)
+            try? container.encode(maxCartValue, forKey: .maxCartValue)
             
             
             
             
-            try? container.encodeIfPresent(dividerStrokeHighlight, forKey: .dividerStrokeHighlight)
+            try? container.encode(minCartValue, forKey: .minCartValue)
             
             
             
             
-            try? container.encodeIfPresent(userAlerts, forKey: .userAlerts)
+            try? container.encode(codCharge, forKey: .codCharge)
             
             
         }

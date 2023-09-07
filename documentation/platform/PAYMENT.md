@@ -68,13 +68,19 @@ Get All Brand Payment Gateway Config Secret
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig() { (response, error) in
+platformClient.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig(aggregator: aggregator, configType: configType) { (response, error) in
     // Use response
 }
 ```
 
 
 
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| aggregator | String? | no | aggregator slug |   
+| configType | String? | no |  |  
 
 
 
@@ -6127,6 +6133,31 @@ Success.
 
  
  
+ #### [ProductCODData](#ProductCODData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [String: Any]? |  yes  | item id with its cod availability. |
+ | codCharges | [CODChargesLimitsResponse](#CODChargesLimitsResponse)? |  yes  | cod charges and its allowed limits. |
+
+---
+
+
+ 
+ 
+ #### [CODChargesLimitsResponse](#CODChargesLimitsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | maxCartValue | Double? |  yes  | max allowed cart value for cod order. |
+ | minCartValue | Double? |  yes  | min allowed cart value for cod order. |
+ | codCharge | Double? |  yes  | cod charges to be applied on order. |
+
+---
+
+
+ 
+ 
  #### [PaymentModeLogo](#PaymentModeLogo)
 
  | Properties | Type | Nullable | Description |
@@ -6183,6 +6214,8 @@ Success.
  | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
  | cardToken | String? |  yes  | card_token |
  | aggregatorName | String |  no  | aggregator_name |
+ | codCharges | Double? |  yes  | cod charges to be applied on order. |
+ | productCodData | [ProductCODData](#ProductCODData)? |  yes  | product cod configurations. |
  | codLimit | Double? |  yes  | cod limit |
  | intentApp | [[IntentApp](#IntentApp)]? |  yes  | intent_app |
  | nickname | String? |  yes  | nickname |

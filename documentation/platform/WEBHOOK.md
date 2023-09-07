@@ -1949,7 +1949,7 @@ Success
  | association | [Association](#Association)? |  yes  |  |
  | customHeaders | [String: Any]? |  yes  |  |
  | emailId | String? |  yes  |  |
- | status | String? |  yes  | active: Status is active inactive: Status is inactive blocked: Subscriber is blocked by system due to multiple failed delivery attempts. |
+ | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
  | authMeta | [AuthMeta](#AuthMeta)? |  yes  |  |
  | createdOn | String? |  yes  |  |
  | updatedOn | String? |  yes  |  |
@@ -1995,7 +1995,7 @@ Success
  | webhookUrl | String? |  yes  |  |
  | association | [Association](#Association)? |  yes  |  |
  | customHeaders | [String: Any]? |  yes  |  |
- | status | String? |  yes  | active: Status is active inactive: Status is inactive blocked: Subscriber is blocked by system due to multiple failed delivery attempts. |
+ | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
  | emailId | String? |  yes  |  |
  | authMeta | [AuthMeta](#AuthMeta)? |  yes  |  |
  | eventId | [Int]? |  yes  |  |
@@ -2013,6 +2013,28 @@ Success
  | page | [Page](#Page)? |  yes  |  |
 
 ---
+
+
+
+
+### Enums
+
+
+
+
+
+ #### [SubscriberStatus](#SubscriberStatus)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | active | active | Status is active |
+ | inactive | inactive | Status is inactive |
+ | blocked | blocked | Subscriber is blocked by system due to multiple failed delivery attempts. |
+
+---
+
+
 
 
 

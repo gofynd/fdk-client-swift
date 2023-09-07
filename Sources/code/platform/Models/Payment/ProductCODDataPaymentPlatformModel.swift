@@ -3,33 +3,33 @@
 import Foundation
 
 
-public extension PlatformClient.Theme {
+public extension PlatformClient.Payment {
     /*
-        Model: GlobalConfig
-        Used By: Theme
+        Model: ProductCODData
+        Used By: Payment
     */
 
-    class GlobalConfig: Codable {
+    class ProductCODData: Codable {
         
         
-        public var statics: StaticConfig?
+        public var items: [String: Any]?
         
-        public var custom: CustomConfig?
+        public var codCharges: CODChargesLimitsResponse?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case statics = "statics"
+            case items = "items"
             
-            case custom = "custom"
+            case codCharges = "cod_charges"
             
         }
 
-        public init(custom: CustomConfig? = nil, statics: StaticConfig? = nil) {
+        public init(codCharges: CODChargesLimitsResponse? = nil, items: [String: Any]? = nil) {
             
-            self.statics = statics
+            self.items = items
             
-            self.custom = custom
+            self.codCharges = codCharges
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    statics = try container.decode(StaticConfig.self, forKey: .statics)
+                    items = try container.decode([String: Any].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    custom = try container.decode(CustomConfig.self, forKey: .custom)
+                    codCharges = try container.decode(CODChargesLimitsResponse.self, forKey: .codCharges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Theme {
             
             
             
-            try? container.encodeIfPresent(statics, forKey: .statics)
+            try? container.encode(items, forKey: .items)
             
             
             
             
-            try? container.encodeIfPresent(custom, forKey: .custom)
+            try? container.encode(codCharges, forKey: .codCharges)
             
             
         }
@@ -82,33 +82,33 @@ public extension PlatformClient.Theme {
 
 
 
-public extension PlatformClient.ApplicationClient.Theme {
+public extension PlatformClient.ApplicationClient.Payment {
     /*
-        Model: GlobalConfig
-        Used By: Theme
+        Model: ProductCODData
+        Used By: Payment
     */
 
-    class GlobalConfig: Codable {
+    class ProductCODData: Codable {
         
         
-        public var statics: StaticConfig?
+        public var items: [String: Any]?
         
-        public var custom: CustomConfig?
+        public var codCharges: CODChargesLimitsResponse?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case statics = "statics"
+            case items = "items"
             
-            case custom = "custom"
+            case codCharges = "cod_charges"
             
         }
 
-        public init(custom: CustomConfig? = nil, statics: StaticConfig? = nil) {
+        public init(codCharges: CODChargesLimitsResponse? = nil, items: [String: Any]? = nil) {
             
-            self.statics = statics
+            self.items = items
             
-            self.custom = custom
+            self.codCharges = codCharges
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    statics = try container.decode(StaticConfig.self, forKey: .statics)
+                    items = try container.decode([String: Any].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    custom = try container.decode(CustomConfig.self, forKey: .custom)
+                    codCharges = try container.decode(CODChargesLimitsResponse.self, forKey: .codCharges)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             
-            try? container.encodeIfPresent(statics, forKey: .statics)
+            try? container.encode(items, forKey: .items)
             
             
             
             
-            try? container.encodeIfPresent(custom, forKey: .custom)
+            try? container.encode(codCharges, forKey: .codCharges)
             
             
         }

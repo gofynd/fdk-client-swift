@@ -26,17 +26,17 @@ public extension PlatformClient.Order {
         
         public var hsnCodeId: String?
         
-        public var igstGstFee: String?
+        public var igstGstFee: Double?
         
         public var isDefaultHsnCode: Bool?
         
-        public var sgstGstFee: String?
+        public var sgstGstFee: Double?
         
         public var taxCollectedAtSource: Double
         
         public var brandCalculatedAmount: Double
         
-        public var cgstGstFee: String?
+        public var cgstGstFee: Double?
         
         public var gstTag: String?
         
@@ -81,7 +81,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(brandCalculatedAmount: Double, cgstGstFee: String? = nil, cgstTaxPercentage: Double? = nil, gstinCode: String? = nil, gstFee: Double, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, hsnCodeId: String? = nil, igstGstFee: String? = nil, igstTaxPercentage: Double? = nil, isDefaultHsnCode: Bool? = nil, sgstGstFee: String? = nil, sgstTaxPercentage: Double? = nil, taxCollectedAtSource: Double, valueOfGood: Double) {
+        public init(brandCalculatedAmount: Double, cgstGstFee: Double? = nil, cgstTaxPercentage: Double? = nil, gstinCode: String? = nil, gstFee: Double, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, hsnCodeId: String? = nil, igstGstFee: Double? = nil, igstTaxPercentage: Double? = nil, isDefaultHsnCode: Bool? = nil, sgstGstFee: Double? = nil, sgstTaxPercentage: Double? = nil, taxCollectedAtSource: Double, valueOfGood: Double) {
             
             self.cgstTaxPercentage = cgstTaxPercentage
             
@@ -192,7 +192,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    igstGstFee = try container.decode(String.self, forKey: .igstGstFee)
+                    igstGstFee = try container.decode(Double.self, forKey: .igstGstFee)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,7 +216,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    sgstGstFee = try container.decode(String.self, forKey: .sgstGstFee)
+                    sgstGstFee = try container.decode(Double.self, forKey: .sgstGstFee)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -238,7 +238,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    cgstGstFee = try container.decode(String.self, forKey: .cgstGstFee)
+                    cgstGstFee = try container.decode(Double.self, forKey: .cgstGstFee)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -399,17 +399,17 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var hsnCodeId: String?
         
-        public var igstGstFee: String?
+        public var igstGstFee: Double?
         
         public var isDefaultHsnCode: Bool?
         
-        public var sgstGstFee: String?
+        public var sgstGstFee: Double?
         
         public var taxCollectedAtSource: Double
         
         public var brandCalculatedAmount: Double
         
-        public var cgstGstFee: String?
+        public var cgstGstFee: Double?
         
         public var gstTag: String?
         
@@ -454,7 +454,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(brandCalculatedAmount: Double, cgstGstFee: String? = nil, cgstTaxPercentage: Double? = nil, gstinCode: String? = nil, gstFee: Double, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, hsnCodeId: String? = nil, igstGstFee: String? = nil, igstTaxPercentage: Double? = nil, isDefaultHsnCode: Bool? = nil, sgstGstFee: String? = nil, sgstTaxPercentage: Double? = nil, taxCollectedAtSource: Double, valueOfGood: Double) {
+        public init(brandCalculatedAmount: Double, cgstGstFee: Double? = nil, cgstTaxPercentage: Double? = nil, gstinCode: String? = nil, gstFee: Double, gstTag: String? = nil, gstTaxPercentage: Double? = nil, hsnCode: String? = nil, hsnCodeId: String? = nil, igstGstFee: Double? = nil, igstTaxPercentage: Double? = nil, isDefaultHsnCode: Bool? = nil, sgstGstFee: Double? = nil, sgstTaxPercentage: Double? = nil, taxCollectedAtSource: Double, valueOfGood: Double) {
             
             self.cgstTaxPercentage = cgstTaxPercentage
             
@@ -565,7 +565,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    igstGstFee = try container.decode(String.self, forKey: .igstGstFee)
+                    igstGstFee = try container.decode(Double.self, forKey: .igstGstFee)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -589,7 +589,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    sgstGstFee = try container.decode(String.self, forKey: .sgstGstFee)
+                    sgstGstFee = try container.decode(Double.self, forKey: .sgstGstFee)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -611,7 +611,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    cgstGstFee = try container.decode(String.self, forKey: .cgstGstFee)
+                    cgstGstFee = try container.decode(Double.self, forKey: .cgstGstFee)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
