@@ -16,6 +16,8 @@ public extension PlatformClient.Order {
         
         public var inventory: AffiliateInventoryConfig?
         
+        public var appCompanyId: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Order {
             
             case inventory = "inventory"
             
+            case appCompanyId = "app_company_id"
+            
         }
 
-        public init(app: AffiliateAppConfig? = nil, inventory: AffiliateInventoryConfig? = nil) {
+        public init(app: AffiliateAppConfig? = nil, appCompanyId: Int? = nil, inventory: AffiliateInventoryConfig? = nil) {
             
             self.app = app
             
             self.inventory = inventory
+            
+            self.appCompanyId = appCompanyId
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    appCompanyId = try container.decode(Int.self, forKey: .appCompanyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +91,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(inventory, forKey: .inventory)
+            
+            
+            
+            
+            try? container.encode(appCompanyId, forKey: .appCompanyId)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var inventory: AffiliateInventoryConfig?
         
+        public var appCompanyId: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case inventory = "inventory"
             
+            case appCompanyId = "app_company_id"
+            
         }
 
-        public init(app: AffiliateAppConfig? = nil, inventory: AffiliateInventoryConfig? = nil) {
+        public init(app: AffiliateAppConfig? = nil, appCompanyId: Int? = nil, inventory: AffiliateInventoryConfig? = nil) {
             
             self.app = app
             
             self.inventory = inventory
+            
+            self.appCompanyId = appCompanyId
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    appCompanyId = try container.decode(Int.self, forKey: .appCompanyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(inventory, forKey: .inventory)
+            
+            
+            
+            
+            try? container.encode(appCompanyId, forKey: .appCompanyId)
             
             
         }

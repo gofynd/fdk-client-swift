@@ -24,6 +24,8 @@ public extension PlatformClient.Order {
         
         public var pdfLinks: PDFLinks?
         
+        public var config: AffiliateConfig?
+        
         public var affiliateId: String?
         
         public var affiliateStoreId: String
@@ -47,6 +49,8 @@ public extension PlatformClient.Order {
             
             case pdfLinks = "pdf_links"
             
+            case config = "config"
+            
             case affiliateId = "affiliate_id"
             
             case affiliateStoreId = "affiliate_store_id"
@@ -57,7 +61,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(adId: String? = nil, affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
+        public init(adId: String? = nil, affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, config: AffiliateConfig? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
             
             self.shipmentMeta = shipmentMeta
             
@@ -70,6 +74,8 @@ public extension PlatformClient.Order {
             self.affiliateOrderId = affiliateOrderId
             
             self.pdfLinks = pdfLinks
+            
+            self.config = config
             
             self.affiliateId = affiliateId
             
@@ -119,6 +125,18 @@ public extension PlatformClient.Order {
             
                 do {
                     pdfLinks = try container.decode(PDFLinks.self, forKey: .pdfLinks)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    config = try container.decode(AffiliateConfig.self, forKey: .config)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -195,6 +213,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
+            
+            
+            
+            
+            try? container.encodeIfPresent(config, forKey: .config)
             
             
             
@@ -245,6 +268,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var pdfLinks: PDFLinks?
         
+        public var config: AffiliateConfig?
+        
         public var affiliateId: String?
         
         public var affiliateStoreId: String
@@ -268,6 +293,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case pdfLinks = "pdf_links"
             
+            case config = "config"
+            
             case affiliateId = "affiliate_id"
             
             case affiliateStoreId = "affiliate_store_id"
@@ -278,7 +305,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(adId: String? = nil, affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
+        public init(adId: String? = nil, affiliateBagId: String, affiliateId: String? = nil, affiliateMeta: AffiliateMeta, affiliateOrderId: String, affiliateShipmentId: String, affiliateStoreId: String, companyAffiliateTag: String? = nil, config: AffiliateConfig? = nil, pdfLinks: PDFLinks? = nil, shipmentMeta: ShipmentMeta) {
             
             self.shipmentMeta = shipmentMeta
             
@@ -291,6 +318,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.affiliateOrderId = affiliateOrderId
             
             self.pdfLinks = pdfLinks
+            
+            self.config = config
             
             self.affiliateId = affiliateId
             
@@ -340,6 +369,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     pdfLinks = try container.decode(PDFLinks.self, forKey: .pdfLinks)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    config = try container.decode(AffiliateConfig.self, forKey: .config)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -416,6 +457,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(pdfLinks, forKey: .pdfLinks)
+            
+            
+            
+            
+            try? container.encodeIfPresent(config, forKey: .config)
             
             
             

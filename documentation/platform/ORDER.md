@@ -2979,7 +2979,7 @@ We are processing the report!
           "payment_type": "self",
           "mongo_cart_id": 1835,
           "order_platform": "platform-site",
-          "ordering_store": null,
+          "ordering_store": 1,
           "order_child_entities": [
             "bag",
             "shipment"
@@ -5491,6 +5491,7 @@ We are processing the request!
  | ---------- | ---- | -------- | ----------- |
  | app | [AffiliateAppConfig](#AffiliateAppConfig)? |  yes  |  |
  | inventory | [AffiliateInventoryConfig](#AffiliateInventoryConfig)? |  yes  |  |
+ | appCompanyId | Int? |  yes  |  |
 
 ---
 
@@ -7370,6 +7371,7 @@ We are processing the request!
  | orderingChannelLogo | [String: Any]? |  yes  |  |
  | orderValue | String? |  yes  |  |
  | orderingChannel | String? |  yes  |  |
+ | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
 
 ---
 
@@ -7602,6 +7604,7 @@ We are processing the request!
  | companyAffiliateTag | String? |  yes  |  |
  | affiliateOrderId | String |  no  |  |
  | pdfLinks | [PDFLinks](#PDFLinks)? |  yes  |  |
+ | config | [AffiliateConfig](#AffiliateConfig)? |  yes  |  |
  | affiliateId | String? |  yes  |  |
  | affiliateStoreId | String |  no  |  |
  | affiliateBagId | String |  no  |  |
@@ -7985,6 +7988,10 @@ We are processing the request!
  | status | [ShipmentStatusData](#ShipmentStatusData)? |  yes  |  |
  | totalBags | Int? |  yes  |  |
  | shipmentCreatedAt | String? |  yes  |  |
+ | previousShipmentId | String? |  yes  |  |
+ | shipmentUpdateTime | Double? |  yes  |  |
+ | rtoAddress | [PlatformDeliveryAddress](#PlatformDeliveryAddress)? |  yes  |  |
+ | creditNoteId | String? |  yes  |  |
 
 ---
 
