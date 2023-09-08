@@ -7835,7 +7835,7 @@ We are processing the request!
  | id | Int |  no  |  |
  | createdAt | String? |  yes  |  |
  | shipmentId | String? |  yes  |  |
- | updatedAt | Int? |  yes  |  |
+ | updatedAt | String? |  yes  |  |
  | bagStateMapper | [BagStateMapper](#BagStateMapper)? |  yes  |  |
  | bagId | Int? |  yes  |  |
  | status | String? |  yes  |  |

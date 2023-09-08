@@ -30,7 +30,7 @@ public extension PlatformClient.Order {
         
         public var shipmentId: String?
         
-        public var updatedAt: Int?
+        public var updatedAt: String?
         
         public var bagStateMapper: BagStateMapper?
         
@@ -69,7 +69,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, id: Int, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: Int? = nil) {
+        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, id: Int, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: String? = nil) {
             
             self.storeId = storeId
             
@@ -205,7 +205,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    updatedAt = try container.decode(Int.self, forKey: .updatedAt)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -355,7 +355,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shipmentId: String?
         
-        public var updatedAt: Int?
+        public var updatedAt: String?
         
         public var bagStateMapper: BagStateMapper?
         
@@ -394,7 +394,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, id: Int, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: Int? = nil) {
+        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, id: Int, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: String? = nil) {
             
             self.storeId = storeId
             
@@ -530,7 +530,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    updatedAt = try container.decode(Int.self, forKey: .updatedAt)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
