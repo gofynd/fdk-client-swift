@@ -6869,7 +6869,7 @@ if let value = itemIds {
                 pageSize: Int?,
                 q: String?,
                 
-                onResponse: @escaping (_ response: ProductListingResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: RawProductListingResponse?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -6950,7 +6950,7 @@ if let value = q {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(ProductListingResponse.self, from: data)
+                            let response = Utility.decode(RawProductListingResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

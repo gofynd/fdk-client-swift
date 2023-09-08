@@ -14356,7 +14356,7 @@ Products are the core resource of an application. Products can be associated by 
 
 
 
-[ProductListingResponse](#ProductListingResponse)
+[RawProductListingResponse](#RawProductListingResponse)
 
 The Product object. See example below or refer `ApplicationProductListingResponseDatabasePowered` for details.
 
@@ -14506,12 +14506,10 @@ The Product object. See example below or refer `ApplicationProductListingRespons
         "uid": 13
       },
       "images": [
-        {
-          "aspect_ratio": "16:25",
-          "aspect_ratio_f": 0.64,
-          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
-          "secure_url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png"
-        }
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/8hn0-cPlN0-1.jpg",
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/1ODGjR9NLY-2.jpg",
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/mJqqfEQilY-3.jpg",
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/htM1r1aHwa-4.jpg"
       ],
       "price": {
         "marked": {
@@ -18353,6 +18351,90 @@ Returns a success response
  | manufacturingTimeUnit | String? |  yes  |  |
  | isCustomOrder | Bool? |  yes  |  |
  | manufacturingTime | Int? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RawProduct](#RawProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customJson | [String: Any]? |  yes  |  |
+ | allCompanyIds | [Int]? |  yes  |  |
+ | allIdentifiers | [String]? |  yes  |  |
+ | allSizes | [[String: Any]]? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
+ | brand | [Brand](#Brand)? |  yes  |  |
+ | brandUid | Int? |  yes  |  |
+ | category | [String: Any]? |  yes  |  |
+ | categorySlug | String? |  yes  |  |
+ | categoryUid | Int? |  yes  |  |
+ | color | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
+ | countryOfOrigin | String? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | createdOn | String? |  yes  |  |
+ | currency | String? |  yes  |  |
+ | customOrder | [String: Any]? |  yes  |  |
+ | departments | [Int]? |  yes  |  |
+ | description | String? |  yes  |  |
+ | highlights | [String]? |  yes  |  |
+ | hsnCode | String? |  yes  |  |
+ | id | String? |  yes  |  |
+ | imageNature | String? |  yes  |  |
+ | images | [String]? |  yes  |  |
+ | isActive | Bool? |  yes  |  |
+ | isDependent | Bool? |  yes  |  |
+ | isExpirable | Bool? |  yes  |  |
+ | isImageLessProduct | Bool? |  yes  |  |
+ | isPhysical | Bool? |  yes  |  |
+ | isSet | Bool? |  yes  |  |
+ | itemCode | String? |  yes  |  |
+ | itemType | String? |  yes  |  |
+ | l3Mapping | [String]? |  yes  |  |
+ | media | [[Media](#Media)]? |  yes  |  |
+ | modifiedBy | [String: Any]? |  yes  |  |
+ | modifiedOn | String? |  yes  |  |
+ | moq | [String: Any]? |  yes  |  |
+ | multiSize | Bool? |  yes  |  |
+ | name | String? |  yes  |  |
+ | netQuantity | [NetQuantityResponse](#NetQuantityResponse)? |  yes  |  |
+ | noOfBoxes | Int? |  yes  |  |
+ | pending | String? |  yes  |  |
+ | primaryColor | String? |  yes  |  |
+ | productGroupTag | [String]? |  yes  |  |
+ | productPublish | [ProductPublished](#ProductPublished)? |  yes  |  |
+ | returnConfig | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
+ | shortDescription | String? |  yes  |  |
+ | sizeGuide | String? |  yes  |  |
+ | sizes | [[String: Any]]? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | stage | String? |  yes  |  |
+ | tags | [String]? |  yes  |  |
+ | taxIdentifier | [String: Any]? |  yes  |  |
+ | teaserTag | [String: Any]? |  yes  |  |
+ | templateTag | String? |  yes  |  |
+ | trader | [[Trader](#Trader)]? |  yes  |  |
+ | uid | Int? |  yes  |  |
+ | variantGroup | [String: Any]? |  yes  |  |
+ | variantMedia | [String: Any]? |  yes  |  |
+ | variants | [String: Any]? |  yes  |  |
+ | verifiedBy | [VerifiedBy](#VerifiedBy)? |  yes  |  |
+ | verifiedOn | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [RawProductListingResponse](#RawProductListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[RawProduct](#RawProduct)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
 
 ---
 
