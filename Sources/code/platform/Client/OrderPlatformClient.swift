@@ -1730,6 +1730,7 @@ if let value = pageSize {
             showCrossCompanyData: Bool?,
             tags: String?,
             customerId: String?,
+            orderType: String?,
             
             onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
         ) {
@@ -1925,6 +1926,13 @@ if let value = customerId {
 }
 
 
+if let value = orderType {
+    
+    xQuery["order_type"] = value
+    
+}
+
+
  
 
 
@@ -1957,6 +1965,265 @@ if let value = customerId {
             });
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getShipments
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getShipmentsPaginator(
+            lane: String?,
+            bagStatus: String?,
+            statusOverrideLane: Bool?,
+            timeToDispatch: Double?,
+            searchType: String?,
+            searchValue: String?,
+            fromDate: String?,
+            toDate: String?,
+            dpIds: String?,
+            stores: String?,
+            salesChannels: String?,
+            pageSize: Int?,
+            fetchActiveShipment: Bool?,
+            excludeLockedShipments: Bool?,
+            paymentMethods: String?,
+            channelShipmentId: String?,
+            channelOrderId: String?,
+            customMeta: String?,
+            orderingChannel: String?,
+            companyAffiliateTag: String?,
+            myOrders: Bool?,
+            platformUserId: String?,
+            sortType: String?,
+            showCrossCompanyData: Bool?,
+            tags: String?,
+            customerId: String?,
+            orderType: String?
+            
+            ) -> Paginator<ShipmentInternalPlatformViewResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<ShipmentInternalPlatformViewResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getShipments(
+                        
+                        lane: lane,
+                        bagStatus: bagStatus,
+                        statusOverrideLane: statusOverrideLane,
+                        timeToDispatch: timeToDispatch,
+                        searchType: searchType,
+                        searchValue: searchValue,
+                        fromDate: fromDate,
+                        toDate: toDate,
+                        dpIds: dpIds,
+                        stores: stores,
+                        salesChannels: salesChannels,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        fetchActiveShipment: fetchActiveShipment,
+                        excludeLockedShipments: excludeLockedShipments,
+                        paymentMethods: paymentMethods,
+                        channelShipmentId: channelShipmentId,
+                        channelOrderId: channelOrderId,
+                        customMeta: customMeta,
+                        orderingChannel: orderingChannel,
+                        companyAffiliateTag: companyAffiliateTag,
+                        myOrders: myOrders,
+                        platformUserId: platformUserId,
+                        sortType: sortType,
+                        showCrossCompanyData: showCrossCompanyData,
+                        tags: tags,
+                        customerId: customerId,
+                        orderType: orderType
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
         
         
         
@@ -2101,6 +2368,7 @@ var xQuery: [String: Any] = [:]
             paymentMethods: String?,
             myOrders: Bool?,
             showCrossCompanyData: Bool?,
+            orderType: String?,
             
             onResponse: @escaping (_ response: LaneConfigResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2219,6 +2487,13 @@ if let value = showCrossCompanyData {
 }
 
 
+if let value = orderType {
+    
+    xQuery["order_type"] = value
+    
+}
+
+
  
 
 
@@ -2280,6 +2555,7 @@ if let value = showCrossCompanyData {
             myOrders: Bool?,
             showCrossCompanyData: Bool?,
             customerId: String?,
+            orderType: String?,
             
             onResponse: @escaping (_ response: OrderListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2419,6 +2695,13 @@ if let value = customerId {
 }
 
 
+if let value = orderType {
+    
+    xQuery["order_type"] = value
+    
+}
+
+
  
 
 
@@ -2451,6 +2734,201 @@ if let value = customerId {
             });
         }
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: get paginator for getOrders
+        * Description: fetch the next page by calling .next(...) function
+        **/
+        public func getOrdersPaginator(
+            lane: String?,
+            searchType: String?,
+            bagStatus: String?,
+            timeToDispatch: String?,
+            paymentMethods: String?,
+            tags: String?,
+            searchValue: String?,
+            fromDate: String?,
+            toDate: String?,
+            dpIds: String?,
+            stores: String?,
+            salesChannels: String?,
+            pageSize: Int?,
+            isPrioritySort: Bool?,
+            customMeta: String?,
+            myOrders: Bool?,
+            showCrossCompanyData: Bool?,
+            customerId: String?,
+            orderType: String?
+            
+            ) -> Paginator<OrderListingResponse> {
+            let pageSize = pageSize ?? 20
+            let paginator = Paginator<OrderListingResponse>(pageSize: pageSize, type: "number")
+            paginator.onPage = {
+                self.getOrders(
+                        
+                        lane: lane,
+                        searchType: searchType,
+                        bagStatus: bagStatus,
+                        timeToDispatch: timeToDispatch,
+                        paymentMethods: paymentMethods,
+                        tags: tags,
+                        searchValue: searchValue,
+                        fromDate: fromDate,
+                        toDate: toDate,
+                        dpIds: dpIds,
+                        stores: stores,
+                        salesChannels: salesChannels,
+                        pageNo: paginator.pageNo
+                        ,
+                        pageSize: paginator.pageSize
+                        ,
+                        isPrioritySort: isPrioritySort,
+                        customMeta: customMeta,
+                        myOrders: myOrders,
+                        showCrossCompanyData: showCrossCompanyData,
+                        customerId: customerId,
+                        orderType: orderType
+                    ) { response, error in                    
+                    if let response = response {
+                        paginator.hasNext = response.page?.hasNext ?? false
+                        paginator.pageNo = (paginator.pageNo ?? 0) + 1
+                    }
+                    paginator.onNext?(response, error)
+                }
+            }
+            return paginator
+        }
         
         
         

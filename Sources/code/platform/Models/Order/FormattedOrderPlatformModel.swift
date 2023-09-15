@@ -67,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encode(max, forKey: .max)
             
             
             
             
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encode(min, forKey: .min)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(max, forKey: .max)
+            try? container.encode(max, forKey: .max)
             
             
             
             
-            try? container.encodeIfPresent(min, forKey: .min)
+            try? container.encode(min, forKey: .min)
             
             
         }

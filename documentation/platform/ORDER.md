@@ -2240,7 +2240,7 @@ Shipment Tracking updated successfully
 
 
 ```swift
-platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId, sortType: sortType, showCrossCompanyData: showCrossCompanyData, tags: tags, customerId: customerId) { (response, error) in
+platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId, sortType: sortType, showCrossCompanyData: showCrossCompanyData, tags: tags, customerId: customerId, orderType: orderType) { (response, error) in
     // Use response
 }
 ```
@@ -2277,7 +2277,8 @@ platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverri
 | sortType | String? | no | Sort the result data on basis of input |   
 | showCrossCompanyData | Bool? | no | Flag to view cross & non-cross company order |   
 | tags | String? | no | Comma separated values of tags |   
-| customerId | String? | no |  |  
+| customerId | String? | no |  |   
+| orderType | String? | no |  |  
 
 
 
@@ -3500,7 +3501,7 @@ We are processing the report!
 
 
 ```swift
-platformClient.order.getLaneConfig(superLane: superLane, groupEntity: groupEntity, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, paymentMode: paymentMode, bagStatus: bagStatus, searchType: searchType, searchValue: searchValue, tags: tags, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, myOrders: myOrders, showCrossCompanyData: showCrossCompanyData) { (response, error) in
+platformClient.order.getLaneConfig(superLane: superLane, groupEntity: groupEntity, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, paymentMode: paymentMode, bagStatus: bagStatus, searchType: searchType, searchValue: searchValue, tags: tags, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, myOrders: myOrders, showCrossCompanyData: showCrossCompanyData, orderType: orderType) { (response, error) in
     // Use response
 }
 ```
@@ -3526,7 +3527,8 @@ platformClient.order.getLaneConfig(superLane: superLane, groupEntity: groupEntit
 | timeToDispatch | String? | no |  |   
 | paymentMethods | String? | no |  |   
 | myOrders | Bool? | no |  |   
-| showCrossCompanyData | Bool? | no | Flag to view cross & non-cross company order |  
+| showCrossCompanyData | Bool? | no | Flag to view cross & non-cross company order |   
+| orderType | String? | no |  |  
 
 
 
@@ -3643,7 +3645,7 @@ Response containing count of shipments of the given status
 
 
 ```swift
-platformClient.order.getOrders(lane: lane, searchType: searchType, bagStatus: bagStatus, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, tags: tags, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, isPrioritySort: isPrioritySort, customMeta: customMeta, myOrders: myOrders, showCrossCompanyData: showCrossCompanyData, customerId: customerId) { (response, error) in
+platformClient.order.getOrders(lane: lane, searchType: searchType, bagStatus: bagStatus, timeToDispatch: timeToDispatch, paymentMethods: paymentMethods, tags: tags, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, isPrioritySort: isPrioritySort, customMeta: customMeta, myOrders: myOrders, showCrossCompanyData: showCrossCompanyData, customerId: customerId, orderType: orderType) { (response, error) in
     // Use response
 }
 ```
@@ -3672,7 +3674,8 @@ platformClient.order.getOrders(lane: lane, searchType: searchType, bagStatus: ba
 | customMeta | String? | no |  |   
 | myOrders | Bool? | no |  |   
 | showCrossCompanyData | Bool? | no | Flag to view cross & non-cross company order |   
-| customerId | String? | no |  |  
+| customerId | String? | no |  |   
+| orderType | String? | no |  |  
 
 
 
@@ -7277,6 +7280,7 @@ We are processing the request!
  | customerNote | String? |  yes  |  |
  | totalBags | Int |  no  |  |
  | shipmentCreatedAt | String |  no  |  |
+ | modeOfPayment | String? |  yes  |  |
 
 ---
 
@@ -7562,6 +7566,7 @@ We are processing the request!
  | forwardAffiliateOrderId | String? |  yes  |  |
  | returnAffiliateOrderId | String? |  yes  |  |
  | bagWeight | [String: Any]? |  yes  |  |
+ | refundTo | String? |  yes  |  |
 
 ---
 
@@ -7876,6 +7881,7 @@ We are processing the request!
  | currentStatus | [CurrentStatus](#CurrentStatus)? |  yes  |  |
  | bagId | Int |  no  |  |
  | entityType | String? |  yes  |  |
+ | isParent | Bool? |  yes  |  |
 
 ---
 
@@ -7992,6 +7998,8 @@ We are processing the request!
  | shipmentUpdateTime | Double? |  yes  |  |
  | rtoAddress | [PlatformDeliveryAddress](#PlatformDeliveryAddress)? |  yes  |  |
  | creditNoteId | String? |  yes  |  |
+ | isSelfShip | Bool? |  yes  |  |
+ | modeOfPayment | String? |  yes  |  |
 
 ---
 
@@ -8093,6 +8101,7 @@ We are processing the request!
  | customerNote | String? |  yes  |  |
  | staff | [String: Any]? |  yes  |  |
  | cartId | Int? |  yes  |  |
+ | cartObjectId | String? |  yes  |  |
 
 ---
 

@@ -107,7 +107,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
+            try? container.encode(isPassed, forKey: .isPassed)
             
             
             
@@ -117,12 +117,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
+            try? container.encode(isCurrent, forKey: .isCurrent)
             
             
             
             
-            try? container.encodeIfPresent(time, forKey: .time)
+            try? container.encode(time, forKey: .time)
             
             
             
@@ -241,7 +241,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isPassed, forKey: .isPassed)
+            try? container.encode(isPassed, forKey: .isPassed)
             
             
             
@@ -251,12 +251,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isCurrent, forKey: .isCurrent)
+            try? container.encode(isCurrent, forKey: .isCurrent)
             
             
             
             
-            try? container.encodeIfPresent(time, forKey: .time)
+            try? container.encode(time, forKey: .time)
             
             
             

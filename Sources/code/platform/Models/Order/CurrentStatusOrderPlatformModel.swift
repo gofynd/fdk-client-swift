@@ -258,7 +258,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            try? container.encode(storeId, forKey: .storeId)
             
             
             
@@ -268,7 +268,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
+            try? container.encode(kafkaSync, forKey: .kafkaSync)
             
             
             
@@ -278,12 +278,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(stateType, forKey: .stateType)
+            try? container.encode(stateType, forKey: .stateType)
             
             
             
             
-            try? container.encodeIfPresent(stateId, forKey: .stateId)
+            try? container.encode(stateId, forKey: .stateId)
             
             
             
@@ -298,12 +298,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encode(shipmentId, forKey: .shipmentId)
             
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encode(updatedAt, forKey: .updatedAt)
             
             
             
@@ -313,12 +313,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
+            try? container.encode(bagId, forKey: .bagId)
             
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(status, forKey: .status)
             
             
         }
@@ -583,7 +583,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(storeId, forKey: .storeId)
+            try? container.encode(storeId, forKey: .storeId)
             
             
             
@@ -593,7 +593,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(kafkaSync, forKey: .kafkaSync)
+            try? container.encode(kafkaSync, forKey: .kafkaSync)
             
             
             
@@ -603,12 +603,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(stateType, forKey: .stateType)
+            try? container.encode(stateType, forKey: .stateType)
             
             
             
             
-            try? container.encodeIfPresent(stateId, forKey: .stateId)
+            try? container.encode(stateId, forKey: .stateId)
             
             
             
@@ -623,12 +623,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encode(shipmentId, forKey: .shipmentId)
             
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encode(updatedAt, forKey: .updatedAt)
             
             
             
@@ -638,12 +638,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(bagId, forKey: .bagId)
+            try? container.encode(bagId, forKey: .bagId)
             
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(status, forKey: .status)
             
             
         }

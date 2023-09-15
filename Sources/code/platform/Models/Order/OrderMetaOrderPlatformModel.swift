@@ -50,6 +50,8 @@ public extension PlatformClient.Order {
         
         public var cartId: Int?
         
+        public var cartObjectId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -91,9 +93,11 @@ public extension PlatformClient.Order {
             
             case cartId = "cart_id"
             
+            case cartObjectId = "cart_object_id"
+            
         }
 
-        public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: String? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
+        public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, cartObjectId: String? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: String? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
             
             self.platformUserDetails = platformUserDetails
             
@@ -132,6 +136,8 @@ public extension PlatformClient.Order {
             self.staff = staff
             
             self.cartId = cartId
+            
+            self.cartObjectId = cartObjectId
             
         }
 
@@ -366,6 +372,18 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    cartObjectId = try container.decode(String.self, forKey: .cartObjectId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -378,27 +396,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(companyLogo, forKey: .companyLogo)
+            try? container.encode(companyLogo, forKey: .companyLogo)
             
             
             
             
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+            try? container.encode(currencySymbol, forKey: .currencySymbol)
             
             
             
             
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encode(comment, forKey: .comment)
             
             
             
             
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            try? container.encode(extraMeta, forKey: .extraMeta)
             
             
             
             
-            try? container.encodeIfPresent(files, forKey: .files)
+            try? container.encode(files, forKey: .files)
             
             
             
@@ -413,32 +431,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
+            try? container.encode(orderingStore, forKey: .orderingStore)
             
             
             
             
-            try? container.encodeIfPresent(paymentType, forKey: .paymentType)
+            try? container.encode(paymentType, forKey: .paymentType)
             
             
             
             
-            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
+            try? container.encode(mongoCartId, forKey: .mongoCartId)
             
             
             
             
-            try? container.encodeIfPresent(orderChildEntities, forKey: .orderChildEntities)
+            try? container.encode(orderChildEntities, forKey: .orderChildEntities)
             
             
             
             
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encode(orderType, forKey: .orderType)
             
             
             
             
-            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
+            try? container.encode(orderPlatform, forKey: .orderPlatform)
             
             
             
@@ -453,17 +471,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(customerNote, forKey: .customerNote)
+            try? container.encode(customerNote, forKey: .customerNote)
             
             
             
             
-            try? container.encodeIfPresent(staff, forKey: .staff)
+            try? container.encode(staff, forKey: .staff)
             
             
             
             
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            try? container.encode(cartId, forKey: .cartId)
+            
+            
+            
+            
+            try? container.encode(cartObjectId, forKey: .cartObjectId)
             
             
         }
@@ -520,6 +543,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var cartId: Int?
         
+        public var cartObjectId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -561,9 +586,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case cartId = "cart_id"
             
+            case cartObjectId = "cart_object_id"
+            
         }
 
-        public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: String? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
+        public init(billingStaffDetails: BillingStaffDetails? = nil, cartId: Int? = nil, cartObjectId: String? = nil, comment: String? = nil, companyLogo: String? = nil, currencySymbol: String? = nil, customerNote: String? = nil, employeeId: String? = nil, extraMeta: [String: Any]? = nil, files: [[String: Any]]? = nil, mongoCartId: Int? = nil, orderingStore: Int? = nil, orderChildEntities: [String]? = nil, orderPlatform: String? = nil, orderTags: [[String: Any]]? = nil, orderType: String? = nil, paymentType: String? = nil, platformUserDetails: PlatformUserDetails? = nil, staff: [String: Any]? = nil, transactionData: TransactionData? = nil) {
             
             self.platformUserDetails = platformUserDetails
             
@@ -602,6 +629,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.staff = staff
             
             self.cartId = cartId
+            
+            self.cartObjectId = cartObjectId
             
         }
 
@@ -836,6 +865,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    cartObjectId = try container.decode(String.self, forKey: .cartObjectId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -848,27 +889,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(companyLogo, forKey: .companyLogo)
+            try? container.encode(companyLogo, forKey: .companyLogo)
             
             
             
             
-            try? container.encodeIfPresent(currencySymbol, forKey: .currencySymbol)
+            try? container.encode(currencySymbol, forKey: .currencySymbol)
             
             
             
             
-            try? container.encodeIfPresent(comment, forKey: .comment)
+            try? container.encode(comment, forKey: .comment)
             
             
             
             
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            try? container.encode(extraMeta, forKey: .extraMeta)
             
             
             
             
-            try? container.encodeIfPresent(files, forKey: .files)
+            try? container.encode(files, forKey: .files)
             
             
             
@@ -883,32 +924,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderingStore, forKey: .orderingStore)
+            try? container.encode(orderingStore, forKey: .orderingStore)
             
             
             
             
-            try? container.encodeIfPresent(paymentType, forKey: .paymentType)
+            try? container.encode(paymentType, forKey: .paymentType)
             
             
             
             
-            try? container.encodeIfPresent(mongoCartId, forKey: .mongoCartId)
+            try? container.encode(mongoCartId, forKey: .mongoCartId)
             
             
             
             
-            try? container.encodeIfPresent(orderChildEntities, forKey: .orderChildEntities)
+            try? container.encode(orderChildEntities, forKey: .orderChildEntities)
             
             
             
             
-            try? container.encodeIfPresent(orderType, forKey: .orderType)
+            try? container.encode(orderType, forKey: .orderType)
             
             
             
             
-            try? container.encodeIfPresent(orderPlatform, forKey: .orderPlatform)
+            try? container.encode(orderPlatform, forKey: .orderPlatform)
             
             
             
@@ -923,17 +964,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(customerNote, forKey: .customerNote)
+            try? container.encode(customerNote, forKey: .customerNote)
             
             
             
             
-            try? container.encodeIfPresent(staff, forKey: .staff)
+            try? container.encode(staff, forKey: .staff)
             
             
             
             
-            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            try? container.encode(cartId, forKey: .cartId)
+            
+            
+            
+            
+            try? container.encode(cartObjectId, forKey: .cartObjectId)
             
             
         }

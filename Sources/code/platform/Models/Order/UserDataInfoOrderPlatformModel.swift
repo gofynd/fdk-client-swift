@@ -193,17 +193,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encode(uid, forKey: .uid)
             
             
             
             
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            try? container.encode(firstName, forKey: .firstName)
             
             
             
             
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            try? container.encode(lastName, forKey: .lastName)
             
             
             
@@ -218,17 +218,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
+            try? container.encode(isAnonymousUser, forKey: .isAnonymousUser)
             
             
             
             
-            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
+            try? container.encode(avisUserId, forKey: .avisUserId)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             
@@ -433,17 +433,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encode(uid, forKey: .uid)
             
             
             
             
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            try? container.encode(firstName, forKey: .firstName)
             
             
             
             
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            try? container.encode(lastName, forKey: .lastName)
             
             
             
@@ -458,17 +458,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isAnonymousUser, forKey: .isAnonymousUser)
+            try? container.encode(isAnonymousUser, forKey: .isAnonymousUser)
             
             
             
             
-            try? container.encodeIfPresent(avisUserId, forKey: .avisUserId)
+            try? container.encode(avisUserId, forKey: .avisUserId)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             

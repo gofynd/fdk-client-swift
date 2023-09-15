@@ -233,7 +233,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encode(phone, forKey: .phone)
             
             
             
@@ -243,7 +243,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             
@@ -258,7 +258,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(locationType, forKey: .locationType)
+            try? container.encode(locationType, forKey: .locationType)
             
             
             
@@ -273,22 +273,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
+            try? container.encode(storeEmail, forKey: .storeEmail)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encode(state, forKey: .state)
             
             
             
             
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encode(city, forKey: .city)
             
             
         }
@@ -528,7 +528,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encode(phone, forKey: .phone)
             
             
             
@@ -538,7 +538,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             
@@ -553,7 +553,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(locationType, forKey: .locationType)
+            try? container.encode(locationType, forKey: .locationType)
             
             
             
@@ -568,22 +568,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(storeEmail, forKey: .storeEmail)
+            try? container.encode(storeEmail, forKey: .storeEmail)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encode(state, forKey: .state)
             
             
             
             
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encode(city, forKey: .city)
             
             
         }

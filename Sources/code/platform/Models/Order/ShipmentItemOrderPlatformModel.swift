@@ -60,6 +60,8 @@ public extension PlatformClient.Order {
         
         public var shipmentCreatedAt: String
         
+        public var modeOfPayment: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -111,9 +113,11 @@ public extension PlatformClient.Order {
             
             case shipmentCreatedAt = "shipment_created_at"
             
+            case modeOfPayment = "mode_of_payment"
+            
         }
 
-        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: ShipmentItemMeta? = nil, orderingChannnel: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: ShipmentItemMeta? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
             
@@ -162,6 +166,8 @@ public extension PlatformClient.Order {
             self.totalBags = totalBags
             
             self.shipmentCreatedAt = shipmentCreatedAt
+            
+            self.modeOfPayment = modeOfPayment
             
         }
 
@@ -435,6 +441,18 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                do {
+                    modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -442,7 +460,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+            try? container.encode(orderDate, forKey: .orderDate)
             
             
             
@@ -477,7 +495,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encode(lockStatus, forKey: .lockStatus)
             
             
             
@@ -487,7 +505,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            try? container.encode(paymentMethods, forKey: .paymentMethods)
             
             
             
@@ -497,7 +515,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encode(displayName, forKey: .displayName)
             
             
             
@@ -517,12 +535,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encode(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encodeIfPresent(canProcess, forKey: .canProcess)
+            try? container.encode(canProcess, forKey: .canProcess)
             
             
             
@@ -537,27 +555,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderingChannnel, forKey: .orderingChannnel)
+            try? container.encode(orderingChannnel, forKey: .orderingChannnel)
             
             
             
             
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encode(shipmentId, forKey: .shipmentId)
             
             
             
             
-            try? container.encodeIfPresent(customerNote, forKey: .customerNote)
+            try? container.encode(customerNote, forKey: .customerNote)
             
             
             
             
-            try? container.encodeIfPresent(totalBags, forKey: .totalBags)
+            try? container.encode(totalBags, forKey: .totalBags)
             
             
             
             
             try? container.encodeIfPresent(shipmentCreatedAt, forKey: .shipmentCreatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
             
             
         }
@@ -624,6 +647,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shipmentCreatedAt: String
         
+        public var modeOfPayment: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -675,9 +700,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case shipmentCreatedAt = "shipment_created_at"
             
+            case modeOfPayment = "mode_of_payment"
+            
         }
 
-        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: ShipmentItemMeta? = nil, orderingChannnel: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: ShipmentItemMeta? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
             
@@ -726,6 +753,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.totalBags = totalBags
             
             self.shipmentCreatedAt = shipmentCreatedAt
+            
+            self.modeOfPayment = modeOfPayment
             
         }
 
@@ -999,6 +1028,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                do {
+                    modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1006,7 +1047,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+            try? container.encode(orderDate, forKey: .orderDate)
             
             
             
@@ -1041,7 +1082,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encode(lockStatus, forKey: .lockStatus)
             
             
             
@@ -1051,7 +1092,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            try? container.encode(paymentMethods, forKey: .paymentMethods)
             
             
             
@@ -1061,7 +1102,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encode(displayName, forKey: .displayName)
             
             
             
@@ -1081,12 +1122,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encode(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encodeIfPresent(canProcess, forKey: .canProcess)
+            try? container.encode(canProcess, forKey: .canProcess)
             
             
             
@@ -1101,27 +1142,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderingChannnel, forKey: .orderingChannnel)
+            try? container.encode(orderingChannnel, forKey: .orderingChannnel)
             
             
             
             
-            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            try? container.encode(shipmentId, forKey: .shipmentId)
             
             
             
             
-            try? container.encodeIfPresent(customerNote, forKey: .customerNote)
+            try? container.encode(customerNote, forKey: .customerNote)
             
             
             
             
-            try? container.encodeIfPresent(totalBags, forKey: .totalBags)
+            try? container.encode(totalBags, forKey: .totalBags)
             
             
             
             
             try? container.encodeIfPresent(shipmentCreatedAt, forKey: .shipmentCreatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
             
             
         }

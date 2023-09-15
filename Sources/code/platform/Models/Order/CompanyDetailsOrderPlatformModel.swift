@@ -139,12 +139,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(companyName, forKey: .companyName)
+            try? container.encode(companyName, forKey: .companyName)
             
             
             
             
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encode(address, forKey: .address)
             
             
             
@@ -154,12 +154,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encode(companyId, forKey: .companyId)
             
             
             
             
-            try? container.encodeIfPresent(companyGst, forKey: .companyGst)
+            try? container.encode(companyGst, forKey: .companyGst)
             
             
             
@@ -310,12 +310,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(companyName, forKey: .companyName)
+            try? container.encode(companyName, forKey: .companyName)
             
             
             
             
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encode(address, forKey: .address)
             
             
             
@@ -325,12 +325,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encode(companyId, forKey: .companyId)
             
             
             
             
-            try? container.encodeIfPresent(companyGst, forKey: .companyGst)
+            try? container.encode(companyGst, forKey: .companyGst)
             
             
             

@@ -157,37 +157,37 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(returned, forKey: .returned)
+            try? container.encode(returned, forKey: .returned)
             
             
             
             
-            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
+            try? container.encode(actionCentre, forKey: .actionCentre)
             
             
             
             
-            try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
+            try? container.encode(unfulfilled, forKey: .unfulfilled)
             
             
             
             
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encode(filters, forKey: .filters)
             
             
             
             
-            try? container.encodeIfPresent(processed, forKey: .processed)
+            try? container.encode(processed, forKey: .processed)
             
             
             
             
-            try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
+            try? container.encode(appliedFilters, forKey: .appliedFilters)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encode(page, forKey: .page)
             
             
         }
@@ -351,37 +351,37 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(returned, forKey: .returned)
+            try? container.encode(returned, forKey: .returned)
             
             
             
             
-            try? container.encodeIfPresent(actionCentre, forKey: .actionCentre)
+            try? container.encode(actionCentre, forKey: .actionCentre)
             
             
             
             
-            try? container.encodeIfPresent(unfulfilled, forKey: .unfulfilled)
+            try? container.encode(unfulfilled, forKey: .unfulfilled)
             
             
             
             
-            try? container.encodeIfPresent(filters, forKey: .filters)
+            try? container.encode(filters, forKey: .filters)
             
             
             
             
-            try? container.encodeIfPresent(processed, forKey: .processed)
+            try? container.encode(processed, forKey: .processed)
             
             
             
             
-            try? container.encodeIfPresent(appliedFilters, forKey: .appliedFilters)
+            try? container.encode(appliedFilters, forKey: .appliedFilters)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encode(page, forKey: .page)
             
             
         }

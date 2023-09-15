@@ -72,7 +72,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(cartConditions, forKey: .cartConditions)
+            try? container.encode(cartConditions, forKey: .cartConditions)
             
             
         }
@@ -151,7 +151,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(cartConditions, forKey: .cartConditions)
+            try? container.encode(cartConditions, forKey: .cartConditions)
             
             
         }

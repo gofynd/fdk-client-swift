@@ -113,7 +113,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encode(url, forKey: .url)
             
             
         }
@@ -233,7 +233,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encode(url, forKey: .url)
             
             
         }

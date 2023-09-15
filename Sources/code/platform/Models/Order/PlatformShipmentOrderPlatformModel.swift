@@ -120,6 +120,10 @@ public extension PlatformClient.Order {
         
         public var creditNoteId: String?
         
+        public var isSelfShip: Bool?
+        
+        public var modeOfPayment: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -231,9 +235,13 @@ public extension PlatformClient.Order {
             
             case creditNoteId = "credit_note_id"
             
+            case isSelfShip = "is_self_ship"
+            
+            case modeOfPayment = "mode_of_payment"
+            
         }
 
-        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: ShipmentMeta? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
+        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: ShipmentMeta? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
             
             self.pickedDate = pickedDate
             
@@ -342,6 +350,10 @@ public extension PlatformClient.Order {
             self.rtoAddress = rtoAddress
             
             self.creditNoteId = creditNoteId
+            
+            self.isSelfShip = isSelfShip
+            
+            self.modeOfPayment = modeOfPayment
             
         }
 
@@ -989,6 +1001,30 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -996,7 +1032,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(pickedDate, forKey: .pickedDate)
+            try? container.encode(pickedDate, forKey: .pickedDate)
             
             
             
@@ -1011,7 +1047,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
+            try? container.encode(shipmentStatus, forKey: .shipmentStatus)
             
             
             
@@ -1021,7 +1057,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(deliverySlot, forKey: .deliverySlot)
+            try? container.encode(deliverySlot, forKey: .deliverySlot)
             
             
             
@@ -1036,27 +1072,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(enableDpTracking, forKey: .enableDpTracking)
+            try? container.encode(enableDpTracking, forKey: .enableDpTracking)
             
             
             
             
-            try? container.encodeIfPresent(customMessage, forKey: .customMessage)
+            try? container.encode(customMessage, forKey: .customMessage)
             
             
             
             
-            try? container.encodeIfPresent(estimatedSlaTime, forKey: .estimatedSlaTime)
+            try? container.encode(estimatedSlaTime, forKey: .estimatedSlaTime)
             
             
             
             
-            try? container.encodeIfPresent(canUpdateDimension, forKey: .canUpdateDimension)
+            try? container.encode(canUpdateDimension, forKey: .canUpdateDimension)
             
             
             
             
-            try? container.encodeIfPresent(shipmentImages, forKey: .shipmentImages)
+            try? container.encode(shipmentImages, forKey: .shipmentImages)
             
             
             
@@ -1076,7 +1112,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
+            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
             
             
             
@@ -1086,12 +1122,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+            try? container.encode(customMeta, forKey: .customMeta)
             
             
             
             
-            try? container.encodeIfPresent(shipmentQuantity, forKey: .shipmentQuantity)
+            try? container.encode(shipmentQuantity, forKey: .shipmentQuantity)
             
             
             
@@ -1106,17 +1142,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encode(lockStatus, forKey: .lockStatus)
             
             
             
             
-            try? container.encodeIfPresent(platformLogo, forKey: .platformLogo)
+            try? container.encode(platformLogo, forKey: .platformLogo)
             
             
             
             
-            try? container.encodeIfPresent(userAgent, forKey: .userAgent)
+            try? container.encode(userAgent, forKey: .userAgent)
             
             
             
@@ -1126,17 +1162,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
+            try? container.encode(invoiceId, forKey: .invoiceId)
             
             
             
             
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            try? container.encode(paymentMethods, forKey: .paymentMethods)
             
             
             
             
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encode(coupon, forKey: .coupon)
             
             
             
@@ -1156,7 +1192,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isDpAssignEnabled, forKey: .isDpAssignEnabled)
+            try? container.encode(isDpAssignEnabled, forKey: .isDpAssignEnabled)
             
             
             
@@ -1166,12 +1202,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(dpAssignment, forKey: .dpAssignment)
+            try? container.encode(dpAssignment, forKey: .dpAssignment)
             
             
             
             
-            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
+            try? container.encode(totalItems, forKey: .totalItems)
             
             
             
@@ -1191,17 +1227,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encode(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
+            try? container.encode(packagingType, forKey: .packagingType)
             
             
             
             
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
+            try? container.encode(journeyType, forKey: .journeyType)
             
             
             
@@ -1226,7 +1262,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(operationalStatus, forKey: .operationalStatus)
+            try? container.encode(operationalStatus, forKey: .operationalStatus)
             
             
             
@@ -1236,12 +1272,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(totalBags, forKey: .totalBags)
+            try? container.encode(totalBags, forKey: .totalBags)
             
             
             
             
-            try? container.encodeIfPresent(shipmentCreatedAt, forKey: .shipmentCreatedAt)
+            try? container.encode(shipmentCreatedAt, forKey: .shipmentCreatedAt)
             
             
             
@@ -1262,6 +1298,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(creditNoteId, forKey: .creditNoteId)
+            
+            
+            
+            
+            try? container.encode(isSelfShip, forKey: .isSelfShip)
+            
+            
+            
+            
+            try? container.encode(modeOfPayment, forKey: .modeOfPayment)
             
             
         }
@@ -1388,6 +1434,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var creditNoteId: String?
         
+        public var isSelfShip: Bool?
+        
+        public var modeOfPayment: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -1499,9 +1549,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case creditNoteId = "credit_note_id"
             
+            case isSelfShip = "is_self_ship"
+            
+            case modeOfPayment = "mode_of_payment"
+            
         }
 
-        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: ShipmentMeta? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
+        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: ShipmentMeta? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
             
             self.pickedDate = pickedDate
             
@@ -1610,6 +1664,10 @@ public extension PlatformClient.ApplicationClient.Order {
             self.rtoAddress = rtoAddress
             
             self.creditNoteId = creditNoteId
+            
+            self.isSelfShip = isSelfShip
+            
+            self.modeOfPayment = modeOfPayment
             
         }
 
@@ -2257,6 +2315,30 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modeOfPayment = try container.decode(String.self, forKey: .modeOfPayment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -2264,7 +2346,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(pickedDate, forKey: .pickedDate)
+            try? container.encode(pickedDate, forKey: .pickedDate)
             
             
             
@@ -2279,7 +2361,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(shipmentStatus, forKey: .shipmentStatus)
+            try? container.encode(shipmentStatus, forKey: .shipmentStatus)
             
             
             
@@ -2289,7 +2371,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(deliverySlot, forKey: .deliverySlot)
+            try? container.encode(deliverySlot, forKey: .deliverySlot)
             
             
             
@@ -2304,27 +2386,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(enableDpTracking, forKey: .enableDpTracking)
+            try? container.encode(enableDpTracking, forKey: .enableDpTracking)
             
             
             
             
-            try? container.encodeIfPresent(customMessage, forKey: .customMessage)
+            try? container.encode(customMessage, forKey: .customMessage)
             
             
             
             
-            try? container.encodeIfPresent(estimatedSlaTime, forKey: .estimatedSlaTime)
+            try? container.encode(estimatedSlaTime, forKey: .estimatedSlaTime)
             
             
             
             
-            try? container.encodeIfPresent(canUpdateDimension, forKey: .canUpdateDimension)
+            try? container.encode(canUpdateDimension, forKey: .canUpdateDimension)
             
             
             
             
-            try? container.encodeIfPresent(shipmentImages, forKey: .shipmentImages)
+            try? container.encode(shipmentImages, forKey: .shipmentImages)
             
             
             
@@ -2344,7 +2426,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(fulfilmentPriority, forKey: .fulfilmentPriority)
+            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
             
             
             
@@ -2354,12 +2436,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(customMeta, forKey: .customMeta)
+            try? container.encode(customMeta, forKey: .customMeta)
             
             
             
             
-            try? container.encodeIfPresent(shipmentQuantity, forKey: .shipmentQuantity)
+            try? container.encode(shipmentQuantity, forKey: .shipmentQuantity)
             
             
             
@@ -2374,17 +2456,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(lockStatus, forKey: .lockStatus)
+            try? container.encode(lockStatus, forKey: .lockStatus)
             
             
             
             
-            try? container.encodeIfPresent(platformLogo, forKey: .platformLogo)
+            try? container.encode(platformLogo, forKey: .platformLogo)
             
             
             
             
-            try? container.encodeIfPresent(userAgent, forKey: .userAgent)
+            try? container.encode(userAgent, forKey: .userAgent)
             
             
             
@@ -2394,17 +2476,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
+            try? container.encode(invoiceId, forKey: .invoiceId)
             
             
             
             
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            try? container.encode(paymentMethods, forKey: .paymentMethods)
             
             
             
             
-            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            try? container.encode(coupon, forKey: .coupon)
             
             
             
@@ -2424,7 +2506,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isDpAssignEnabled, forKey: .isDpAssignEnabled)
+            try? container.encode(isDpAssignEnabled, forKey: .isDpAssignEnabled)
             
             
             
@@ -2434,12 +2516,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(dpAssignment, forKey: .dpAssignment)
+            try? container.encode(dpAssignment, forKey: .dpAssignment)
             
             
             
             
-            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
+            try? container.encode(totalItems, forKey: .totalItems)
             
             
             
@@ -2459,17 +2541,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentMode, forKey: .paymentMode)
+            try? container.encode(paymentMode, forKey: .paymentMode)
             
             
             
             
-            try? container.encodeIfPresent(packagingType, forKey: .packagingType)
+            try? container.encode(packagingType, forKey: .packagingType)
             
             
             
             
-            try? container.encodeIfPresent(journeyType, forKey: .journeyType)
+            try? container.encode(journeyType, forKey: .journeyType)
             
             
             
@@ -2494,7 +2576,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(operationalStatus, forKey: .operationalStatus)
+            try? container.encode(operationalStatus, forKey: .operationalStatus)
             
             
             
@@ -2504,12 +2586,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(totalBags, forKey: .totalBags)
+            try? container.encode(totalBags, forKey: .totalBags)
             
             
             
             
-            try? container.encodeIfPresent(shipmentCreatedAt, forKey: .shipmentCreatedAt)
+            try? container.encode(shipmentCreatedAt, forKey: .shipmentCreatedAt)
             
             
             
@@ -2530,6 +2612,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(creditNoteId, forKey: .creditNoteId)
+            
+            
+            
+            
+            try? container.encode(isSelfShip, forKey: .isSelfShip)
+            
+            
+            
+            
+            try? container.encode(modeOfPayment, forKey: .modeOfPayment)
             
             
         }

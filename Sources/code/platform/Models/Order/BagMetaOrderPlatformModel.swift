@@ -180,27 +180,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(customMessage, forKey: .customMessage)
+            try? container.encode(customMessage, forKey: .customMessage)
             
             
             
             
-            try? container.encodeIfPresent(docketNumber, forKey: .docketNumber)
+            try? container.encode(docketNumber, forKey: .docketNumber)
             
             
             
             
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encode(groupId, forKey: .groupId)
             
             
             
             
-            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+            try? container.encode(partialCanRet, forKey: .partialCanRet)
             
             
             
             
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            try? container.encode(extraMeta, forKey: .extraMeta)
             
             
             
@@ -210,7 +210,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encode(customJson, forKey: .customJson)
             
             
         }
@@ -397,27 +397,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(customMessage, forKey: .customMessage)
+            try? container.encode(customMessage, forKey: .customMessage)
             
             
             
             
-            try? container.encodeIfPresent(docketNumber, forKey: .docketNumber)
+            try? container.encode(docketNumber, forKey: .docketNumber)
             
             
             
             
-            try? container.encodeIfPresent(groupId, forKey: .groupId)
+            try? container.encode(groupId, forKey: .groupId)
             
             
             
             
-            try? container.encodeIfPresent(partialCanRet, forKey: .partialCanRet)
+            try? container.encode(partialCanRet, forKey: .partialCanRet)
             
             
             
             
-            try? container.encodeIfPresent(extraMeta, forKey: .extraMeta)
+            try? container.encode(extraMeta, forKey: .extraMeta)
             
             
             
@@ -427,7 +427,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
+            try? container.encode(customJson, forKey: .customJson)
             
             
         }

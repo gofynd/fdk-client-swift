@@ -229,57 +229,57 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encode(phone, forKey: .phone)
             
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encode(meta, forKey: .meta)
             
             
             
             
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encode(address, forKey: .address)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encode(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encode(code, forKey: .code)
             
             
             
             
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
+            try? container.encode(storeName, forKey: .storeName)
             
             
             
             
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encode(country, forKey: .country)
             
             
             
             
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+            try? container.encode(contactPerson, forKey: .contactPerson)
             
             
             
             
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encode(state, forKey: .state)
             
             
             
             
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encode(city, forKey: .city)
             
             
         }
@@ -515,57 +515,57 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(phone, forKey: .phone)
+            try? container.encode(phone, forKey: .phone)
             
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encode(meta, forKey: .meta)
             
             
             
             
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encode(address, forKey: .address)
             
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encode(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encode(code, forKey: .code)
             
             
             
             
-            try? container.encodeIfPresent(storeName, forKey: .storeName)
+            try? container.encode(storeName, forKey: .storeName)
             
             
             
             
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encode(country, forKey: .country)
             
             
             
             
-            try? container.encodeIfPresent(contactPerson, forKey: .contactPerson)
+            try? container.encode(contactPerson, forKey: .contactPerson)
             
             
             
             
-            try? container.encodeIfPresent(state, forKey: .state)
+            try? container.encode(state, forKey: .state)
             
             
             
             
-            try? container.encodeIfPresent(city, forKey: .city)
+            try? container.encode(city, forKey: .city)
             
             
         }

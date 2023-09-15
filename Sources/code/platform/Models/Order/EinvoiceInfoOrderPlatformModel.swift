@@ -67,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(creditNote, forKey: .creditNote)
+            try? container.encode(creditNote, forKey: .creditNote)
             
             
             
             
-            try? container.encodeIfPresent(invoice, forKey: .invoice)
+            try? container.encode(invoice, forKey: .invoice)
             
             
         }
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(creditNote, forKey: .creditNote)
+            try? container.encode(creditNote, forKey: .creditNote)
             
             
             
             
-            try? container.encodeIfPresent(invoice, forKey: .invoice)
+            try? container.encode(invoice, forKey: .invoice)
             
             
         }

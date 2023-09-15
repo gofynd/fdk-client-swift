@@ -421,7 +421,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(bagType, forKey: .bagType)
+            try? container.encode(bagType, forKey: .bagType)
             
             
             
@@ -471,7 +471,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(reasons, forKey: .reasons)
+            try? container.encode(reasons, forKey: .reasons)
             
             
             
@@ -481,32 +481,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+            try? container.encode(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encode(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+            try? container.encode(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encode(size, forKey: .size)
             
             
             
             
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encode(lineNumber, forKey: .lineNumber)
             
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encode(meta, forKey: .meta)
             
             
             
@@ -531,7 +531,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
+            try? container.encode(entityType, forKey: .entityType)
             
             
             
@@ -964,7 +964,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(bagType, forKey: .bagType)
+            try? container.encode(bagType, forKey: .bagType)
             
             
             
@@ -1014,7 +1014,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(reasons, forKey: .reasons)
+            try? container.encode(reasons, forKey: .reasons)
             
             
             
@@ -1024,32 +1024,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(canReturn, forKey: .canReturn)
+            try? container.encode(canReturn, forKey: .canReturn)
             
             
             
             
-            try? container.encodeIfPresent(displayName, forKey: .displayName)
+            try? container.encode(displayName, forKey: .displayName)
             
             
             
             
-            try? container.encodeIfPresent(canCancel, forKey: .canCancel)
+            try? container.encode(canCancel, forKey: .canCancel)
             
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encode(size, forKey: .size)
             
             
             
             
-            try? container.encodeIfPresent(lineNumber, forKey: .lineNumber)
+            try? container.encode(lineNumber, forKey: .lineNumber)
             
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encode(meta, forKey: .meta)
             
             
             
@@ -1074,7 +1074,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(entityType, forKey: .entityType)
+            try? container.encode(entityType, forKey: .entityType)
             
             
             

@@ -540,7 +540,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encode(isActive, forKey: .isActive)
             
             
             
@@ -550,7 +550,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
+            try? container.encode(alohomoraUserId, forKey: .alohomoraUserId)
             
             
             
@@ -575,7 +575,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
+            try? container.encode(isEnabledForRecon, forKey: .isEnabledForRecon)
             
             
             
@@ -620,17 +620,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(brandStoreTags, forKey: .brandStoreTags)
+            try? container.encode(brandStoreTags, forKey: .brandStoreTags)
             
             
             
             
-            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
+            try? container.encode(orderIntegrationId, forKey: .orderIntegrationId)
             
             
             
             
-            try? container.encodeIfPresent(parentStoreId, forKey: .parentStoreId)
+            try? container.encode(parentStoreId, forKey: .parentStoreId)
             
             
             
@@ -640,7 +640,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encode(code, forKey: .code)
             
             
             
@@ -680,12 +680,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
+            try? container.encode(packagingMaterialCount, forKey: .packagingMaterialCount)
             
             
             
             
-            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
+            try? container.encode(isArchived, forKey: .isArchived)
             
             
             
@@ -705,7 +705,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(address2, forKey: .address2)
+            try? container.encode(address2, forKey: .address2)
             
             
         }
@@ -1252,7 +1252,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
+            try? container.encode(isActive, forKey: .isActive)
             
             
             
@@ -1262,7 +1262,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(alohomoraUserId, forKey: .alohomoraUserId)
+            try? container.encode(alohomoraUserId, forKey: .alohomoraUserId)
             
             
             
@@ -1287,7 +1287,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isEnabledForRecon, forKey: .isEnabledForRecon)
+            try? container.encode(isEnabledForRecon, forKey: .isEnabledForRecon)
             
             
             
@@ -1332,17 +1332,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(brandStoreTags, forKey: .brandStoreTags)
+            try? container.encode(brandStoreTags, forKey: .brandStoreTags)
             
             
             
             
-            try? container.encodeIfPresent(orderIntegrationId, forKey: .orderIntegrationId)
+            try? container.encode(orderIntegrationId, forKey: .orderIntegrationId)
             
             
             
             
-            try? container.encodeIfPresent(parentStoreId, forKey: .parentStoreId)
+            try? container.encode(parentStoreId, forKey: .parentStoreId)
             
             
             
@@ -1352,7 +1352,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encode(code, forKey: .code)
             
             
             
@@ -1392,12 +1392,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(packagingMaterialCount, forKey: .packagingMaterialCount)
+            try? container.encode(packagingMaterialCount, forKey: .packagingMaterialCount)
             
             
             
             
-            try? container.encodeIfPresent(isArchived, forKey: .isArchived)
+            try? container.encode(isArchived, forKey: .isArchived)
             
             
             
@@ -1417,7 +1417,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(address2, forKey: .address2)
+            try? container.encode(address2, forKey: .address2)
             
             
         }

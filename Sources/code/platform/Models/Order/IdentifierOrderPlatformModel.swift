@@ -121,27 +121,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(alu, forKey: .alu)
+            try? container.encode(alu, forKey: .alu)
             
             
             
             
-            try? container.encodeIfPresent(ean, forKey: .ean)
+            try? container.encode(ean, forKey: .ean)
             
             
             
             
-            try? container.encodeIfPresent(skuCode, forKey: .skuCode)
+            try? container.encode(skuCode, forKey: .skuCode)
             
             
             
             
-            try? container.encodeIfPresent(upc, forKey: .upc)
+            try? container.encode(upc, forKey: .upc)
             
             
             
             
-            try? container.encodeIfPresent(isbn, forKey: .isbn)
+            try? container.encode(isbn, forKey: .isbn)
             
             
         }
@@ -269,27 +269,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(alu, forKey: .alu)
+            try? container.encode(alu, forKey: .alu)
             
             
             
             
-            try? container.encodeIfPresent(ean, forKey: .ean)
+            try? container.encode(ean, forKey: .ean)
             
             
             
             
-            try? container.encodeIfPresent(skuCode, forKey: .skuCode)
+            try? container.encode(skuCode, forKey: .skuCode)
             
             
             
             
-            try? container.encodeIfPresent(upc, forKey: .upc)
+            try? container.encode(upc, forKey: .upc)
             
             
             
             
-            try? container.encodeIfPresent(isbn, forKey: .isbn)
+            try? container.encode(isbn, forKey: .isbn)
             
             
         }

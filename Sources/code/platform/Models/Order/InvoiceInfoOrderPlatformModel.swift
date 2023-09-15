@@ -144,22 +144,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
+            try? container.encode(invoiceUrl, forKey: .invoiceUrl)
             
             
             
             
-            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
+            try? container.encode(updatedDate, forKey: .updatedDate)
             
             
             
             
-            try? container.encodeIfPresent(externalInvoiceId, forKey: .externalInvoiceId)
+            try? container.encode(externalInvoiceId, forKey: .externalInvoiceId)
             
             
             
             
-            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+            try? container.encode(labelUrl, forKey: .labelUrl)
             
             
             
@@ -315,22 +315,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(invoiceUrl, forKey: .invoiceUrl)
+            try? container.encode(invoiceUrl, forKey: .invoiceUrl)
             
             
             
             
-            try? container.encodeIfPresent(updatedDate, forKey: .updatedDate)
+            try? container.encode(updatedDate, forKey: .updatedDate)
             
             
             
             
-            try? container.encodeIfPresent(externalInvoiceId, forKey: .externalInvoiceId)
+            try? container.encode(externalInvoiceId, forKey: .externalInvoiceId)
             
             
             
             
-            try? container.encodeIfPresent(labelUrl, forKey: .labelUrl)
+            try? container.encode(labelUrl, forKey: .labelUrl)
             
             
             

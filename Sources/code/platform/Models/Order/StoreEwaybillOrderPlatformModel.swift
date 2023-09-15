@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encode(enabled, forKey: .enabled)
             
             
         }
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(enabled, forKey: .enabled)
+            try? container.encode(enabled, forKey: .enabled)
             
             
         }

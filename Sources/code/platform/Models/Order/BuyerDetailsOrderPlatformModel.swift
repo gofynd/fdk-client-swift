@@ -115,7 +115,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
+            try? container.encode(ajioSiteId, forKey: .ajioSiteId)
             
             
             
@@ -267,7 +267,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(ajioSiteId, forKey: .ajioSiteId)
+            try? container.encode(ajioSiteId, forKey: .ajioSiteId)
             
             
             

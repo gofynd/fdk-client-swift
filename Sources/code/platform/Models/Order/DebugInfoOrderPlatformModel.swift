@@ -49,7 +49,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(stormbreakerUuid, forKey: .stormbreakerUuid)
+            try? container.encode(stormbreakerUuid, forKey: .stormbreakerUuid)
             
             
         }
@@ -105,7 +105,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(stormbreakerUuid, forKey: .stormbreakerUuid)
+            try? container.encode(stormbreakerUuid, forKey: .stormbreakerUuid)
             
             
         }
