@@ -14,18 +14,18 @@ public extension PlatformClient.Catalog {
         
         public var landscape: String
         
-        public var portrait: String
-        
         public var logo: String
+        
+        public var portrait: String
         
 
         public enum CodingKeys: String, CodingKey {
             
             case landscape = "landscape"
             
-            case portrait = "portrait"
-            
             case logo = "logo"
+            
+            case portrait = "portrait"
             
         }
 
@@ -33,9 +33,9 @@ public extension PlatformClient.Catalog {
             
             self.landscape = landscape
             
-            self.portrait = portrait
-            
             self.logo = logo
+            
+            self.portrait = portrait
             
         }
 
@@ -48,12 +48,12 @@ public extension PlatformClient.Catalog {
             
             
             
-                portrait = try container.decode(String.self, forKey: .portrait)
+                logo = try container.decode(String.self, forKey: .logo)
                 
             
             
             
-                logo = try container.decode(String.self, forKey: .logo)
+                portrait = try container.decode(String.self, forKey: .portrait)
                 
             
             
@@ -69,12 +69,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(portrait, forKey: .portrait)
-            
-            
-            
-            
             try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(portrait, forKey: .portrait)
             
             
         }
@@ -95,18 +95,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var landscape: String
         
-        public var portrait: String
-        
         public var logo: String
+        
+        public var portrait: String
         
 
         public enum CodingKeys: String, CodingKey {
             
             case landscape = "landscape"
             
-            case portrait = "portrait"
-            
             case logo = "logo"
+            
+            case portrait = "portrait"
             
         }
 
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.landscape = landscape
             
-            self.portrait = portrait
-            
             self.logo = logo
+            
+            self.portrait = portrait
             
         }
 
@@ -129,12 +129,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                portrait = try container.decode(String.self, forKey: .portrait)
+                logo = try container.decode(String.self, forKey: .logo)
                 
             
             
             
-                logo = try container.decode(String.self, forKey: .logo)
+                portrait = try container.decode(String.self, forKey: .portrait)
                 
             
             
@@ -150,12 +150,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(portrait, forKey: .portrait)
-            
-            
-            
-            
             try? container.encodeIfPresent(logo, forKey: .logo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(portrait, forKey: .portrait)
             
             
         }

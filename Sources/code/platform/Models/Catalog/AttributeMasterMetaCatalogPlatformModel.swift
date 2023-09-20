@@ -12,34 +12,29 @@ public extension PlatformClient.Catalog {
     class AttributeMasterMeta: Codable {
         
         
-        public var mandatoryDetails: AttributeMasterMandatoryDetails
-        
         public var enriched: Bool?
+        
+        public var mandatoryDetails: AttributeMasterMandatoryDetails
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case mandatoryDetails = "mandatory_details"
-            
             case enriched = "enriched"
+            
+            case mandatoryDetails = "mandatory_details"
             
         }
 
         public init(enriched: Bool? = nil, mandatoryDetails: AttributeMasterMandatoryDetails) {
             
-            self.mandatoryDetails = mandatoryDetails
-            
             self.enriched = enriched
+            
+            self.mandatoryDetails = mandatoryDetails
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                mandatoryDetails = try container.decode(AttributeMasterMandatoryDetails.self, forKey: .mandatoryDetails)
-                
-            
             
             
                 do {
@@ -53,6 +48,11 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                mandatoryDetails = try container.decode(AttributeMasterMandatoryDetails.self, forKey: .mandatoryDetails)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -60,12 +60,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(mandatoryDetails, forKey: .mandatoryDetails)
-            
-            
-            
-            
             try? container.encodeIfPresent(enriched, forKey: .enriched)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mandatoryDetails, forKey: .mandatoryDetails)
             
             
         }
@@ -84,34 +84,29 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AttributeMasterMeta: Codable {
         
         
-        public var mandatoryDetails: AttributeMasterMandatoryDetails
-        
         public var enriched: Bool?
+        
+        public var mandatoryDetails: AttributeMasterMandatoryDetails
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case mandatoryDetails = "mandatory_details"
-            
             case enriched = "enriched"
+            
+            case mandatoryDetails = "mandatory_details"
             
         }
 
         public init(enriched: Bool? = nil, mandatoryDetails: AttributeMasterMandatoryDetails) {
             
-            self.mandatoryDetails = mandatoryDetails
-            
             self.enriched = enriched
+            
+            self.mandatoryDetails = mandatoryDetails
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                mandatoryDetails = try container.decode(AttributeMasterMandatoryDetails.self, forKey: .mandatoryDetails)
-                
-            
             
             
                 do {
@@ -125,6 +120,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                mandatoryDetails = try container.decode(AttributeMasterMandatoryDetails.self, forKey: .mandatoryDetails)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -132,12 +132,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(mandatoryDetails, forKey: .mandatoryDetails)
-            
-            
-            
-            
             try? container.encodeIfPresent(enriched, forKey: .enriched)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mandatoryDetails, forKey: .mandatoryDetails)
             
             
         }

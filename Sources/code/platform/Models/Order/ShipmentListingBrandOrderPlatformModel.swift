@@ -103,22 +103,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encode(logo, forKey: .logo)
             
             
             
             
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encode(createdOn, forKey: .createdOn)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
+            try? container.encode(logoBase64, forKey: .logoBase64)
             
             
         }
@@ -228,22 +228,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encode(logo, forKey: .logo)
             
             
             
             
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encode(createdOn, forKey: .createdOn)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(logoBase64, forKey: .logoBase64)
+            try? container.encode(logoBase64, forKey: .logoBase64)
             
             
         }

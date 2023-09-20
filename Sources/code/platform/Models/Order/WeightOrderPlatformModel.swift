@@ -85,17 +85,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encode(isDefault, forKey: .isDefault)
             
             
             
             
-            try? container.encodeIfPresent(shipping, forKey: .shipping)
+            try? container.encode(shipping, forKey: .shipping)
             
             
             
             
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encode(unit, forKey: .unit)
             
             
         }
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encode(isDefault, forKey: .isDefault)
             
             
             
             
-            try? container.encodeIfPresent(shipping, forKey: .shipping)
+            try? container.encode(shipping, forKey: .shipping)
             
             
             
             
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encode(unit, forKey: .unit)
             
             
         }

@@ -175,7 +175,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             
@@ -195,7 +195,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encode(country, forKey: .country)
             
             
             
@@ -205,7 +205,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
+            try? container.encode(gstTag, forKey: .gstTag)
             
             
             
@@ -392,7 +392,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(pincode, forKey: .pincode)
+            try? container.encode(pincode, forKey: .pincode)
             
             
             
@@ -412,7 +412,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(country, forKey: .country)
+            try? container.encode(country, forKey: .country)
             
             
             
@@ -422,7 +422,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(gstTag, forKey: .gstTag)
+            try? container.encode(gstTag, forKey: .gstTag)
             
             
             

@@ -14,26 +14,26 @@ public extension PlatformClient.Catalog {
         
         public var code: String?
         
-        public var message: String?
-        
-        public var status: Int?
-        
         public var errors: [String: Any]?
         
+        public var message: String?
+        
         public var meta: [String: Any]?
+        
+        public var status: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case code = "code"
             
-            case message = "message"
-            
-            case status = "status"
-            
             case errors = "errors"
             
+            case message = "message"
+            
             case meta = "meta"
+            
+            case status = "status"
             
         }
 
@@ -41,13 +41,13 @@ public extension PlatformClient.Catalog {
             
             self.code = code
             
-            self.message = message
-            
-            self.status = status
-            
             self.errors = errors
             
+            self.message = message
+            
             self.meta = meta
+            
+            self.status = status
             
         }
 
@@ -57,30 +57,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     code = try container.decode(String.self, forKey: .code)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +80,31 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -126,22 +126,22 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
             try? container.encodeIfPresent(errors, forKey: .errors)
             
             
             
             
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }
@@ -162,26 +162,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var code: String?
         
-        public var message: String?
-        
-        public var status: Int?
-        
         public var errors: [String: Any]?
         
+        public var message: String?
+        
         public var meta: [String: Any]?
+        
+        public var status: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case code = "code"
             
-            case message = "message"
-            
-            case status = "status"
-            
             case errors = "errors"
             
+            case message = "message"
+            
             case meta = "meta"
+            
+            case status = "status"
             
         }
 
@@ -189,13 +189,13 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.code = code
             
-            self.message = message
-            
-            self.status = status
-            
             self.errors = errors
             
+            self.message = message
+            
             self.meta = meta
+            
+            self.status = status
             
         }
 
@@ -205,30 +205,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     code = try container.decode(String.self, forKey: .code)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    message = try container.decode(String.self, forKey: .message)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -252,7 +228,31 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    status = try container.decode(Int.self, forKey: .status)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -274,22 +274,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
-            try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
             try? container.encodeIfPresent(errors, forKey: .errors)
             
             
             
             
+            try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
         }

@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class QuantityBase: Codable {
         
         
-        public var updatedAt: String?
-        
         public var count: Int?
+        
+        public var updatedAt: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case updatedAt = "updated_at"
-            
             case count = "count"
+            
+            case updatedAt = "updated_at"
             
         }
 
         public init(count: Int? = nil, updatedAt: String? = nil) {
             
-            self.updatedAt = updatedAt
-            
             self.count = count
+            
+            self.updatedAt = updatedAt
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    count = try container.decode(Int.self, forKey: .count)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    count = try container.decode(Int.self, forKey: .count)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
-            
-            
-            
             try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class QuantityBase: Codable {
         
         
-        public var updatedAt: String?
-        
         public var count: Int?
+        
+        public var updatedAt: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case updatedAt = "updated_at"
-            
             case count = "count"
+            
+            case updatedAt = "updated_at"
             
         }
 
         public init(count: Int? = nil, updatedAt: String? = nil) {
             
-            self.updatedAt = updatedAt
-            
             self.count = count
+            
+            self.updatedAt = updatedAt
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    count = try container.decode(Int.self, forKey: .count)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    count = try container.decode(Int.self, forKey: .count)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-            
-            
-            
-            
             try? container.encodeIfPresent(count, forKey: .count)
+            
+            
+            
+            
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
         }

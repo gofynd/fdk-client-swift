@@ -305,7 +305,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(version, forKey: .version)
+            try? container.encode(version, forKey: .version)
             
             
             
@@ -330,12 +330,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(area, forKey: .area)
+            try? container.encode(area, forKey: .area)
             
             
             
             
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encode(email, forKey: .email)
             
             
             
@@ -677,7 +677,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(version, forKey: .version)
+            try? container.encode(version, forKey: .version)
             
             
             
@@ -702,12 +702,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(area, forKey: .area)
+            try? container.encode(area, forKey: .area)
             
             
             
             
-            try? container.encodeIfPresent(email, forKey: .email)
+            try? container.encode(email, forKey: .email)
             
             
             

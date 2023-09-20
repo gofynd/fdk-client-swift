@@ -12,9 +12,9 @@ public extension PlatformClient.Catalog {
     class MetaFields: Codable {
         
         
-        public var key: [String: Any]
+        public var key: String
         
-        public var value: [String: Any]
+        public var value: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(key: [String: Any], value: [String: Any]) {
+        public init(key: String, value: String) {
             
             self.key = key
             
@@ -37,12 +37,12 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                key = try container.decode([String: Any].self, forKey: .key)
+                key = try container.decode(String.self, forKey: .key)
                 
             
             
             
-                value = try container.decode([String: Any].self, forKey: .value)
+                value = try container.decode(String.self, forKey: .value)
                 
             
             
@@ -77,9 +77,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class MetaFields: Codable {
         
         
-        public var key: [String: Any]
+        public var key: String
         
-        public var value: [String: Any]
+        public var value: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(key: [String: Any], value: [String: Any]) {
+        public init(key: String, value: String) {
             
             self.key = key
             
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                key = try container.decode([String: Any].self, forKey: .key)
+                key = try container.decode(String.self, forKey: .key)
                 
             
             
             
-                value = try container.decode([String: Any].self, forKey: .value)
+                value = try container.decode(String.self, forKey: .value)
                 
             
             

@@ -18,10 +18,6 @@ public extension PlatformClient.Catalog {
         
         public var username: String?
         
-        public var uid: String?
-        
-        public var id: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -31,23 +27,15 @@ public extension PlatformClient.Catalog {
             
             case username = "username"
             
-            case uid = "uid"
-            
-            case id = "_id"
-            
         }
 
-        public init(contact: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(contact: String? = nil, username: String? = nil, userId: String? = nil) {
             
             self.contact = contact
             
             self.userId = userId
             
             self.username = username
-            
-            self.uid = uid
-            
-            self.id = id
             
         }
 
@@ -90,30 +78,6 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                do {
-                    uid = try container.decode(String.self, forKey: .uid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -132,16 +96,6 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(username, forKey: .username)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }
@@ -166,10 +120,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var username: String?
         
-        public var uid: String?
-        
-        public var id: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -179,23 +129,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case username = "username"
             
-            case uid = "uid"
-            
-            case id = "_id"
-            
         }
 
-        public init(contact: String? = nil, uid: String? = nil, username: String? = nil, userId: String? = nil, id: String? = nil) {
+        public init(contact: String? = nil, username: String? = nil, userId: String? = nil) {
             
             self.contact = contact
             
             self.userId = userId
             
             self.username = username
-            
-            self.uid = uid
-            
-            self.id = id
             
         }
 
@@ -238,30 +180,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                do {
-                    uid = try container.decode(String.self, forKey: .uid)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -280,16 +198,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(username, forKey: .username)
-            
-            
-            
-            
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }

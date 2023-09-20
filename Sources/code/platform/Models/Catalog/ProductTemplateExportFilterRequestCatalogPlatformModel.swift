@@ -12,42 +12,42 @@ public extension PlatformClient.Catalog {
     class ProductTemplateExportFilterRequest: Codable {
         
         
-        public var fromDate: String?
-        
-        public var toDate: String?
-        
         public var brands: [String]?
+        
+        public var catalogueTypes: [String]
+        
+        public var fromDate: String?
         
         public var templates: [String]
         
-        public var catalogueTypes: [String]
+        public var toDate: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case fromDate = "from_date"
-            
-            case toDate = "to_date"
-            
             case brands = "brands"
+            
+            case catalogueTypes = "catalogue_types"
+            
+            case fromDate = "from_date"
             
             case templates = "templates"
             
-            case catalogueTypes = "catalogue_types"
+            case toDate = "to_date"
             
         }
 
         public init(brands: [String]? = nil, catalogueTypes: [String], fromDate: String? = nil, templates: [String], toDate: String? = nil) {
             
-            self.fromDate = fromDate
-            
-            self.toDate = toDate
-            
             self.brands = brands
+            
+            self.catalogueTypes = catalogueTypes
+            
+            self.fromDate = fromDate
             
             self.templates = templates
             
-            self.catalogueTypes = catalogueTypes
+            self.toDate = toDate
             
         }
 
@@ -56,31 +56,24 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    fromDate = try container.decode(String.self, forKey: .fromDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    toDate = try container.decode(String.self, forKey: .toDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     brands = try container.decode([String].self, forKey: .brands)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
+                
+            
+            
+            
+                do {
+                    fromDate = try container.decode(String.self, forKey: .fromDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -96,9 +89,16 @@ public extension PlatformClient.Catalog {
             
             
             
-                catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
+                do {
+                    toDate = try container.decode(String.self, forKey: .toDate)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -107,17 +107,17 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
-            
-            
-            
-            
             try? container.encodeIfPresent(brands, forKey: .brands)
+            
+            
+            
+            
+            try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
             
             
             
@@ -127,7 +127,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
+            try? container.encodeIfPresent(toDate, forKey: .toDate)
             
             
         }
@@ -146,42 +146,42 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductTemplateExportFilterRequest: Codable {
         
         
-        public var fromDate: String?
-        
-        public var toDate: String?
-        
         public var brands: [String]?
+        
+        public var catalogueTypes: [String]
+        
+        public var fromDate: String?
         
         public var templates: [String]
         
-        public var catalogueTypes: [String]
+        public var toDate: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case fromDate = "from_date"
-            
-            case toDate = "to_date"
-            
             case brands = "brands"
+            
+            case catalogueTypes = "catalogue_types"
+            
+            case fromDate = "from_date"
             
             case templates = "templates"
             
-            case catalogueTypes = "catalogue_types"
+            case toDate = "to_date"
             
         }
 
         public init(brands: [String]? = nil, catalogueTypes: [String], fromDate: String? = nil, templates: [String], toDate: String? = nil) {
             
-            self.fromDate = fromDate
-            
-            self.toDate = toDate
-            
             self.brands = brands
+            
+            self.catalogueTypes = catalogueTypes
+            
+            self.fromDate = fromDate
             
             self.templates = templates
             
-            self.catalogueTypes = catalogueTypes
+            self.toDate = toDate
             
         }
 
@@ -190,31 +190,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    fromDate = try container.decode(String.self, forKey: .fromDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    toDate = try container.decode(String.self, forKey: .toDate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     brands = try container.decode([String].self, forKey: .brands)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
+                
+            
+            
+            
+                do {
+                    fromDate = try container.decode(String.self, forKey: .fromDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -230,9 +223,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                catalogueTypes = try container.decode([String].self, forKey: .catalogueTypes)
+                do {
+                    toDate = try container.decode(String.self, forKey: .toDate)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -241,17 +241,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
-            
-            
-            
-            
             try? container.encodeIfPresent(brands, forKey: .brands)
+            
+            
+            
+            
+            try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
+            
+            
+            
+            
+            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
             
             
             
@@ -261,7 +261,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(catalogueTypes, forKey: .catalogueTypes)
+            try? container.encodeIfPresent(toDate, forKey: .toDate)
             
             
         }

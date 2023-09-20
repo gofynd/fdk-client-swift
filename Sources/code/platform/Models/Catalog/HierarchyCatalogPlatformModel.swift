@@ -12,18 +12,18 @@ public extension PlatformClient.Catalog {
     class Hierarchy: Codable {
         
         
-        public var l1: Int
-        
         public var department: Int
+        
+        public var l1: Int
         
         public var l2: Int
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case l1 = "l1"
-            
             case department = "department"
+            
+            case l1 = "l1"
             
             case l2 = "l2"
             
@@ -31,9 +31,9 @@ public extension PlatformClient.Catalog {
 
         public init(department: Int, l1: Int, l2: Int) {
             
-            self.l1 = l1
-            
             self.department = department
+            
+            self.l1 = l1
             
             self.l2 = l2
             
@@ -43,12 +43,12 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                l1 = try container.decode(Int.self, forKey: .l1)
+                department = try container.decode(Int.self, forKey: .department)
                 
             
             
             
-                department = try container.decode(Int.self, forKey: .department)
+                l1 = try container.decode(Int.self, forKey: .l1)
                 
             
             
@@ -64,12 +64,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(l1, forKey: .l1)
-            
-            
-            
-            
             try? container.encodeIfPresent(department, forKey: .department)
+            
+            
+            
+            
+            try? container.encodeIfPresent(l1, forKey: .l1)
             
             
             
@@ -93,18 +93,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Hierarchy: Codable {
         
         
-        public var l1: Int
-        
         public var department: Int
+        
+        public var l1: Int
         
         public var l2: Int
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case l1 = "l1"
-            
             case department = "department"
+            
+            case l1 = "l1"
             
             case l2 = "l2"
             
@@ -112,9 +112,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public init(department: Int, l1: Int, l2: Int) {
             
-            self.l1 = l1
-            
             self.department = department
+            
+            self.l1 = l1
             
             self.l2 = l2
             
@@ -124,12 +124,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                l1 = try container.decode(Int.self, forKey: .l1)
+                department = try container.decode(Int.self, forKey: .department)
                 
             
             
             
-                department = try container.decode(Int.self, forKey: .department)
+                l1 = try container.decode(Int.self, forKey: .l1)
                 
             
             
@@ -145,12 +145,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(l1, forKey: .l1)
-            
-            
-            
-            
             try? container.encodeIfPresent(department, forKey: .department)
+            
+            
+            
+            
+            try? container.encodeIfPresent(l1, forKey: .l1)
             
             
             

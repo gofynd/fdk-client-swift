@@ -249,7 +249,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encode(logo, forKey: .logo)
             
             
             
@@ -259,7 +259,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(creditNoteAllowed, forKey: .creditNoteAllowed)
+            try? container.encode(creditNoteAllowed, forKey: .creditNoteAllowed)
             
             
             
@@ -289,7 +289,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encode(createdOn, forKey: .createdOn)
             
             
             
@@ -304,7 +304,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encode(modifiedOn, forKey: .modifiedOn)
             
             
         }
@@ -560,7 +560,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encode(logo, forKey: .logo)
             
             
             
@@ -570,7 +570,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(creditNoteAllowed, forKey: .creditNoteAllowed)
+            try? container.encode(creditNoteAllowed, forKey: .creditNoteAllowed)
             
             
             
@@ -600,7 +600,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            try? container.encode(createdOn, forKey: .createdOn)
             
             
             
@@ -615,7 +615,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            try? container.encode(modifiedOn, forKey: .modifiedOn)
             
             
         }

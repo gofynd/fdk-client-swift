@@ -193,47 +193,47 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(primaryMaterial, forKey: .primaryMaterial)
+            try? container.encode(primaryMaterial, forKey: .primaryMaterial)
             
             
             
             
-            try? container.encodeIfPresent(essential, forKey: .essential)
+            try? container.encode(essential, forKey: .essential)
             
             
             
             
-            try? container.encodeIfPresent(marketerName, forKey: .marketerName)
+            try? container.encode(marketerName, forKey: .marketerName)
             
             
             
             
-            try? container.encodeIfPresent(primaryColor, forKey: .primaryColor)
+            try? container.encode(primaryColor, forKey: .primaryColor)
             
             
             
             
-            try? container.encodeIfPresent(marketerAddress, forKey: .marketerAddress)
+            try? container.encode(marketerAddress, forKey: .marketerAddress)
             
             
             
             
-            try? container.encodeIfPresent(primaryColorHex, forKey: .primaryColorHex)
+            try? container.encode(primaryColorHex, forKey: .primaryColorHex)
             
             
             
             
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
+            try? container.encode(brandName, forKey: .brandName)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encode(gender, forKey: .gender)
             
             
         }
@@ -433,47 +433,47 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(primaryMaterial, forKey: .primaryMaterial)
+            try? container.encode(primaryMaterial, forKey: .primaryMaterial)
             
             
             
             
-            try? container.encodeIfPresent(essential, forKey: .essential)
+            try? container.encode(essential, forKey: .essential)
             
             
             
             
-            try? container.encodeIfPresent(marketerName, forKey: .marketerName)
+            try? container.encode(marketerName, forKey: .marketerName)
             
             
             
             
-            try? container.encodeIfPresent(primaryColor, forKey: .primaryColor)
+            try? container.encode(primaryColor, forKey: .primaryColor)
             
             
             
             
-            try? container.encodeIfPresent(marketerAddress, forKey: .marketerAddress)
+            try? container.encode(marketerAddress, forKey: .marketerAddress)
             
             
             
             
-            try? container.encodeIfPresent(primaryColorHex, forKey: .primaryColorHex)
+            try? container.encode(primaryColorHex, forKey: .primaryColorHex)
             
             
             
             
-            try? container.encodeIfPresent(brandName, forKey: .brandName)
+            try? container.encode(brandName, forKey: .brandName)
             
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encode(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encode(gender, forKey: .gender)
             
             
         }

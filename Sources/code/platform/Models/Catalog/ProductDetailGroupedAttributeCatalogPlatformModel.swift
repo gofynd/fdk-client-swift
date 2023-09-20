@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class ProductDetailGroupedAttribute: Codable {
         
         
-        public var title: String?
-        
         public var details: [ProductDetailAttribute]?
+        
+        public var title: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case title = "title"
-            
             case details = "details"
+            
+            case title = "title"
             
         }
 
         public init(details: [ProductDetailAttribute]? = nil, title: String? = nil) {
             
-            self.title = title
-            
             self.details = details
+            
+            self.title = title
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    title = try container.decode(String.self, forKey: .title)
+                    details = try container.decode([ProductDetailAttribute].self, forKey: .details)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    details = try container.decode([ProductDetailAttribute].self, forKey: .details)
+                    title = try container.decode(String.self, forKey: .title)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
             try? container.encodeIfPresent(details, forKey: .details)
+            
+            
+            
+            
+            try? container.encodeIfPresent(title, forKey: .title)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductDetailGroupedAttribute: Codable {
         
         
-        public var title: String?
-        
         public var details: [ProductDetailAttribute]?
+        
+        public var title: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case title = "title"
-            
             case details = "details"
+            
+            case title = "title"
             
         }
 
         public init(details: [ProductDetailAttribute]? = nil, title: String? = nil) {
             
-            self.title = title
-            
             self.details = details
+            
+            self.title = title
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    title = try container.decode(String.self, forKey: .title)
+                    details = try container.decode([ProductDetailAttribute].self, forKey: .details)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    details = try container.decode([ProductDetailAttribute].self, forKey: .details)
+                    title = try container.decode(String.self, forKey: .title)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
             try? container.encodeIfPresent(details, forKey: .details)
+            
+            
+            
+            
+            try? container.encodeIfPresent(title, forKey: .title)
             
             
         }

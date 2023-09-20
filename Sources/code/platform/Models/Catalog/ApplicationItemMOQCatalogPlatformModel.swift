@@ -12,18 +12,18 @@ public extension PlatformClient.Catalog {
     class ApplicationItemMOQ: Codable {
         
         
-        public var maximum: Int?
-        
         public var incrementUnit: Int?
+        
+        public var maximum: Int?
         
         public var minimum: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case maximum = "maximum"
-            
             case incrementUnit = "increment_unit"
+            
+            case maximum = "maximum"
             
             case minimum = "minimum"
             
@@ -31,9 +31,9 @@ public extension PlatformClient.Catalog {
 
         public init(incrementUnit: Int? = nil, maximum: Int? = nil, minimum: Int? = nil) {
             
-            self.maximum = maximum
-            
             self.incrementUnit = incrementUnit
+            
+            self.maximum = maximum
             
             self.minimum = minimum
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    maximum = try container.decode(Int.self, forKey: .maximum)
+                    incrementUnit = try container.decode(Int.self, forKey: .incrementUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    incrementUnit = try container.decode(Int.self, forKey: .incrementUnit)
+                    maximum = try container.decode(Int.self, forKey: .maximum)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,12 +85,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(maximum, forKey: .maximum)
-            
-            
-            
-            
             try? container.encodeIfPresent(incrementUnit, forKey: .incrementUnit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(maximum, forKey: .maximum)
             
             
             
@@ -114,18 +114,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ApplicationItemMOQ: Codable {
         
         
-        public var maximum: Int?
-        
         public var incrementUnit: Int?
+        
+        public var maximum: Int?
         
         public var minimum: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case maximum = "maximum"
-            
             case incrementUnit = "increment_unit"
+            
+            case maximum = "maximum"
             
             case minimum = "minimum"
             
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public init(incrementUnit: Int? = nil, maximum: Int? = nil, minimum: Int? = nil) {
             
-            self.maximum = maximum
-            
             self.incrementUnit = incrementUnit
+            
+            self.maximum = maximum
             
             self.minimum = minimum
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    maximum = try container.decode(Int.self, forKey: .maximum)
+                    incrementUnit = try container.decode(Int.self, forKey: .incrementUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    incrementUnit = try container.decode(Int.self, forKey: .incrementUnit)
+                    maximum = try container.decode(Int.self, forKey: .maximum)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,12 +187,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(maximum, forKey: .maximum)
-            
-            
-            
-            
             try? container.encodeIfPresent(incrementUnit, forKey: .incrementUnit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(maximum, forKey: .maximum)
             
             
             

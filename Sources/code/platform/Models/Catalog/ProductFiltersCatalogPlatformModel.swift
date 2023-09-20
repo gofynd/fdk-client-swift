@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class ProductFilters: Codable {
         
         
-        public var values: [ProductFiltersValue]
-        
         public var key: ProductFiltersKey
+        
+        public var values: [ProductFiltersValue]
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case values = "values"
-            
             case key = "key"
+            
+            case values = "values"
             
         }
 
         public init(key: ProductFiltersKey, values: [ProductFiltersValue]) {
             
-            self.values = values
-            
             self.key = key
+            
+            self.values = values
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                values = try container.decode([ProductFiltersValue].self, forKey: .values)
+                key = try container.decode(ProductFiltersKey.self, forKey: .key)
                 
             
             
             
-                key = try container.decode(ProductFiltersKey.self, forKey: .key)
+                values = try container.decode([ProductFiltersValue].self, forKey: .values)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
-            
-            
-            
-            
             try? container.encodeIfPresent(key, forKey: .key)
+            
+            
+            
+            
+            try? container.encodeIfPresent(values, forKey: .values)
             
             
         }
@@ -77,24 +77,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductFilters: Codable {
         
         
-        public var values: [ProductFiltersValue]
-        
         public var key: ProductFiltersKey
+        
+        public var values: [ProductFiltersValue]
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case values = "values"
-            
             case key = "key"
+            
+            case values = "values"
             
         }
 
         public init(key: ProductFiltersKey, values: [ProductFiltersValue]) {
             
-            self.values = values
-            
             self.key = key
+            
+            self.values = values
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                values = try container.decode([ProductFiltersValue].self, forKey: .values)
+                key = try container.decode(ProductFiltersKey.self, forKey: .key)
                 
             
             
             
-                key = try container.decode(ProductFiltersKey.self, forKey: .key)
+                values = try container.decode([ProductFiltersValue].self, forKey: .values)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
-            
-            
-            
-            
             try? container.encodeIfPresent(key, forKey: .key)
+            
+            
+            
+            
+            try? container.encodeIfPresent(values, forKey: .values)
             
             
         }

@@ -85,17 +85,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(locked, forKey: .locked)
+            try? container.encode(locked, forKey: .locked)
             
             
             
             
-            try? container.encodeIfPresent(mto, forKey: .mto)
+            try? container.encode(mto, forKey: .mto)
             
             
             
             
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
+            try? container.encode(lockMessage, forKey: .lockMessage)
             
             
         }
@@ -187,17 +187,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(locked, forKey: .locked)
+            try? container.encode(locked, forKey: .locked)
             
             
             
             
-            try? container.encodeIfPresent(mto, forKey: .mto)
+            try? container.encode(mto, forKey: .mto)
             
             
             
             
-            try? container.encodeIfPresent(lockMessage, forKey: .lockMessage)
+            try? container.encode(lockMessage, forKey: .lockMessage)
             
             
         }

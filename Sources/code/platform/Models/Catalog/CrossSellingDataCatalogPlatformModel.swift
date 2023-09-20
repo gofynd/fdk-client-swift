@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class CrossSellingData: Codable {
         
         
-        public var products: Int?
-        
         public var articles: Int?
+        
+        public var products: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case products = "products"
-            
             case articles = "articles"
+            
+            case products = "products"
             
         }
 
         public init(articles: Int? = nil, products: Int? = nil) {
             
-            self.products = products
-            
             self.articles = articles
+            
+            self.products = products
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    products = try container.decode(Int.self, forKey: .products)
+                    articles = try container.decode(Int.self, forKey: .articles)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    articles = try container.decode(Int.self, forKey: .articles)
+                    products = try container.decode(Int.self, forKey: .products)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(products, forKey: .products)
-            
-            
-            
-            
             try? container.encodeIfPresent(articles, forKey: .articles)
+            
+            
+            
+            
+            try? container.encodeIfPresent(products, forKey: .products)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CrossSellingData: Codable {
         
         
-        public var products: Int?
-        
         public var articles: Int?
+        
+        public var products: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case products = "products"
-            
             case articles = "articles"
+            
+            case products = "products"
             
         }
 
         public init(articles: Int? = nil, products: Int? = nil) {
             
-            self.products = products
-            
             self.articles = articles
+            
+            self.products = products
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    products = try container.decode(Int.self, forKey: .products)
+                    articles = try container.decode(Int.self, forKey: .articles)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    articles = try container.decode(Int.self, forKey: .articles)
+                    products = try container.decode(Int.self, forKey: .products)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(products, forKey: .products)
-            
-            
-            
-            
             try? container.encodeIfPresent(articles, forKey: .articles)
+            
+            
+            
+            
+            try? container.encodeIfPresent(products, forKey: .products)
             
             
         }

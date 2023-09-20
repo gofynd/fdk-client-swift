@@ -12,18 +12,18 @@ public extension PlatformClient.Catalog {
     class ArticleQuery: Codable {
         
         
-        public var itemId: Int
-        
         public var ignoredStores: [Int]?
+        
+        public var itemId: Int
         
         public var size: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case itemId = "item_id"
-            
             case ignoredStores = "ignored_stores"
+            
+            case itemId = "item_id"
             
             case size = "size"
             
@@ -31,9 +31,9 @@ public extension PlatformClient.Catalog {
 
         public init(ignoredStores: [Int]? = nil, itemId: Int, size: String) {
             
-            self.itemId = itemId
-            
             self.ignoredStores = ignoredStores
+            
+            self.itemId = itemId
             
             self.size = size
             
@@ -41,11 +41,6 @@ public extension PlatformClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                itemId = try container.decode(Int.self, forKey: .itemId)
-                
-            
             
             
                 do {
@@ -60,6 +55,11 @@ public extension PlatformClient.Catalog {
                 
             
             
+                itemId = try container.decode(Int.self, forKey: .itemId)
+                
+            
+            
+            
                 size = try container.decode(String.self, forKey: .size)
                 
             
@@ -71,12 +71,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-            
-            
-            
-            
             try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             
@@ -100,18 +100,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ArticleQuery: Codable {
         
         
-        public var itemId: Int
-        
         public var ignoredStores: [Int]?
+        
+        public var itemId: Int
         
         public var size: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case itemId = "item_id"
-            
             case ignoredStores = "ignored_stores"
+            
+            case itemId = "item_id"
             
             case size = "size"
             
@@ -119,9 +119,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public init(ignoredStores: [Int]? = nil, itemId: Int, size: String) {
             
-            self.itemId = itemId
-            
             self.ignoredStores = ignoredStores
+            
+            self.itemId = itemId
             
             self.size = size
             
@@ -129,11 +129,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                itemId = try container.decode(Int.self, forKey: .itemId)
-                
-            
             
             
                 do {
@@ -148,6 +143,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
+                itemId = try container.decode(Int.self, forKey: .itemId)
+                
+            
+            
+            
                 size = try container.decode(String.self, forKey: .size)
                 
             
@@ -159,12 +159,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(itemId, forKey: .itemId)
-            
-            
-            
-            
             try? container.encodeIfPresent(ignoredStores, forKey: .ignoredStores)
+            
+            
+            
+            
+            try? container.encodeIfPresent(itemId, forKey: .itemId)
             
             
             

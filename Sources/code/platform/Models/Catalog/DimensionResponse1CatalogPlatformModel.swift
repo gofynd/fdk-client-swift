@@ -16,9 +16,9 @@ public extension PlatformClient.Catalog {
         
         public var length: Double?
         
-        public var width: Double?
-        
         public var unit: String?
+        
+        public var width: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,9 +27,9 @@ public extension PlatformClient.Catalog {
             
             case length = "length"
             
-            case width = "width"
-            
             case unit = "unit"
+            
+            case width = "width"
             
         }
 
@@ -39,9 +39,9 @@ public extension PlatformClient.Catalog {
             
             self.length = length
             
-            self.width = width
-            
             self.unit = unit
+            
+            self.width = width
             
         }
 
@@ -74,7 +74,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    width = try container.decode(Double.self, forKey: .width)
+                    unit = try container.decode(String.self, forKey: .unit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -86,7 +86,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    unit = try container.decode(String.self, forKey: .unit)
+                    width = try container.decode(Double.self, forKey: .width)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -113,12 +113,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(width, forKey: .width)
-            
-            
-            
-            
             try? container.encodeIfPresent(unit, forKey: .unit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(width, forKey: .width)
             
             
         }
@@ -141,9 +141,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var length: Double?
         
-        public var width: Double?
-        
         public var unit: String?
+        
+        public var width: Double?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -152,9 +152,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case length = "length"
             
-            case width = "width"
-            
             case unit = "unit"
+            
+            case width = "width"
             
         }
 
@@ -164,9 +164,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.length = length
             
-            self.width = width
-            
             self.unit = unit
+            
+            self.width = width
             
         }
 
@@ -199,7 +199,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    width = try container.decode(Double.self, forKey: .width)
+                    unit = try container.decode(String.self, forKey: .unit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -211,7 +211,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    unit = try container.decode(String.self, forKey: .unit)
+                    width = try container.decode(Double.self, forKey: .width)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -238,12 +238,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(width, forKey: .width)
-            
-            
-            
-            
             try? container.encodeIfPresent(unit, forKey: .unit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(width, forKey: .width)
             
             
         }

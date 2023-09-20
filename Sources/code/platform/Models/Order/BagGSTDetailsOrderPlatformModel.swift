@@ -281,7 +281,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
+            try? container.encode(isDefaultHsnCode, forKey: .isDefaultHsnCode)
             
             
             
@@ -584,7 +584,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isDefaultHsnCode, forKey: .isDefaultHsnCode)
+            try? container.encode(isDefaultHsnCode, forKey: .isDefaultHsnCode)
             
             
             

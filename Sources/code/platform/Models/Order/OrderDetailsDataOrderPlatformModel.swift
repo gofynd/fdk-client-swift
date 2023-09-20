@@ -204,22 +204,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+            try? container.encode(orderDate, forKey: .orderDate)
             
             
             
             
-            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
+            try? container.encode(taxDetails, forKey: .taxDetails)
             
             
             
             
-            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+            try? container.encode(codCharges, forKey: .codCharges)
             
             
             
             
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encode(source, forKey: .source)
             
             
             
@@ -229,22 +229,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            try? container.encode(affiliateId, forKey: .affiliateId)
             
             
             
             
-            try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
+            try? container.encode(orderingChannelLogo, forKey: .orderingChannelLogo)
             
             
             
             
-            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
+            try? container.encode(orderValue, forKey: .orderValue)
             
             
             
             
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            try? container.encode(orderingChannel, forKey: .orderingChannel)
             
             
             
@@ -460,22 +460,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+            try? container.encode(orderDate, forKey: .orderDate)
             
             
             
             
-            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
+            try? container.encode(taxDetails, forKey: .taxDetails)
             
             
             
             
-            try? container.encodeIfPresent(codCharges, forKey: .codCharges)
+            try? container.encode(codCharges, forKey: .codCharges)
             
             
             
             
-            try? container.encodeIfPresent(source, forKey: .source)
+            try? container.encode(source, forKey: .source)
             
             
             
@@ -485,22 +485,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
+            try? container.encode(affiliateId, forKey: .affiliateId)
             
             
             
             
-            try? container.encodeIfPresent(orderingChannelLogo, forKey: .orderingChannelLogo)
+            try? container.encode(orderingChannelLogo, forKey: .orderingChannelLogo)
             
             
             
             
-            try? container.encodeIfPresent(orderValue, forKey: .orderValue)
+            try? container.encode(orderValue, forKey: .orderValue)
             
             
             
             
-            try? container.encodeIfPresent(orderingChannel, forKey: .orderingChannel)
+            try? container.encode(orderingChannel, forKey: .orderingChannel)
             
             
             

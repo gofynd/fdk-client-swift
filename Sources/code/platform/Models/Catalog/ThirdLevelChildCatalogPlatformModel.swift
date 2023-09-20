@@ -12,71 +12,59 @@ public extension PlatformClient.Catalog {
     class ThirdLevelChild: Codable {
         
         
-        public var action: Action?
-        
         public var customJson: [String: Any]?
         
-        public var slug: String?
+        public var action: Action?
         
         public var banners: ImageUrls?
         
         public var childs: [[String: Any]]?
         
-        public var uid: Int?
-        
         public var name: String?
+        
+        public var slug: String?
+        
+        public var uid: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case action = "action"
-            
             case customJson = "_custom_json"
             
-            case slug = "slug"
+            case action = "action"
             
             case banners = "banners"
             
             case childs = "childs"
             
-            case uid = "uid"
-            
             case name = "name"
+            
+            case slug = "slug"
+            
+            case uid = "uid"
             
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [[String: Any]]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
-            self.action = action
-            
             self.customJson = customJson
             
-            self.slug = slug
+            self.action = action
             
             self.banners = banners
             
             self.childs = childs
             
-            self.uid = uid
-            
             self.name = name
+            
+            self.slug = slug
+            
+            self.uid = uid
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    action = try container.decode(Action.self, forKey: .action)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -92,7 +80,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    action = try container.decode(Action.self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,7 +116,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +128,19 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    name = try container.decode(String.self, forKey: .name)
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uid = try container.decode(Int.self, forKey: .uid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,17 +157,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(action, forKey: .action)
-            
-            
-            
-            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(action, forKey: .action)
             
             
             
@@ -182,12 +177,17 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            
-            
-            
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
         }
@@ -206,71 +206,59 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ThirdLevelChild: Codable {
         
         
-        public var action: Action?
-        
         public var customJson: [String: Any]?
         
-        public var slug: String?
+        public var action: Action?
         
         public var banners: ImageUrls?
         
         public var childs: [[String: Any]]?
         
-        public var uid: Int?
-        
         public var name: String?
+        
+        public var slug: String?
+        
+        public var uid: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case action = "action"
-            
             case customJson = "_custom_json"
             
-            case slug = "slug"
+            case action = "action"
             
             case banners = "banners"
             
             case childs = "childs"
             
-            case uid = "uid"
-            
             case name = "name"
+            
+            case slug = "slug"
+            
+            case uid = "uid"
             
         }
 
         public init(action: Action? = nil, banners: ImageUrls? = nil, childs: [[String: Any]]? = nil, name: String? = nil, slug: String? = nil, uid: Int? = nil, customJson: [String: Any]? = nil) {
             
-            self.action = action
-            
             self.customJson = customJson
             
-            self.slug = slug
+            self.action = action
             
             self.banners = banners
             
             self.childs = childs
             
-            self.uid = uid
-            
             self.name = name
+            
+            self.slug = slug
+            
+            self.uid = uid
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    action = try container.decode(Action.self, forKey: .action)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -286,7 +274,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    slug = try container.decode(String.self, forKey: .slug)
+                    action = try container.decode(Action.self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -322,7 +310,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -334,7 +322,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    name = try container.decode(String.self, forKey: .name)
+                    slug = try container.decode(String.self, forKey: .slug)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uid = try container.decode(Int.self, forKey: .uid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -351,17 +351,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(action, forKey: .action)
-            
-            
-            
-            
             try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
             
             
-            try? container.encodeIfPresent(slug, forKey: .slug)
+            try? container.encodeIfPresent(action, forKey: .action)
             
             
             
@@ -376,12 +371,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
-            
-            
-            
-            
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(slug, forKey: .slug)
+            
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
         }

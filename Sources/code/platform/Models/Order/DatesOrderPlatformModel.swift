@@ -72,7 +72,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderCreated, forKey: .orderCreated)
+            try? container.encode(orderCreated, forKey: .orderCreated)
             
             
         }
@@ -151,7 +151,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderCreated, forKey: .orderCreated)
+            try? container.encode(orderCreated, forKey: .orderCreated)
             
             
         }

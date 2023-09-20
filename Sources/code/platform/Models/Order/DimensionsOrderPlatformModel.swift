@@ -121,27 +121,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(height, forKey: .height)
+            try? container.encode(height, forKey: .height)
             
             
             
             
-            try? container.encodeIfPresent(width, forKey: .width)
+            try? container.encode(width, forKey: .width)
             
             
             
             
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encode(isDefault, forKey: .isDefault)
             
             
             
             
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encode(unit, forKey: .unit)
             
             
             
             
-            try? container.encodeIfPresent(length, forKey: .length)
+            try? container.encode(length, forKey: .length)
             
             
         }
@@ -269,27 +269,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(height, forKey: .height)
+            try? container.encode(height, forKey: .height)
             
             
             
             
-            try? container.encodeIfPresent(width, forKey: .width)
+            try? container.encode(width, forKey: .width)
             
             
             
             
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
+            try? container.encode(isDefault, forKey: .isDefault)
             
             
             
             
-            try? container.encodeIfPresent(unit, forKey: .unit)
+            try? container.encode(unit, forKey: .unit)
             
             
             
             
-            try? container.encodeIfPresent(length, forKey: .length)
+            try? container.encode(length, forKey: .length)
             
             
         }

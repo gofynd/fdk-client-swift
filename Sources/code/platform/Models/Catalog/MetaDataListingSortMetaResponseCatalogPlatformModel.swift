@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class MetaDataListingSortMetaResponse: Codable {
         
         
-        public var key: String?
-        
         public var display: String?
+        
+        public var key: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case key = "key"
-            
             case display = "display"
+            
+            case key = "key"
             
         }
 
         public init(display: String? = nil, key: String? = nil) {
             
-            self.key = key
-            
             self.display = display
+            
+            self.key = key
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    key = try container.decode(String.self, forKey: .key)
+                    display = try container.decode(String.self, forKey: .display)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    display = try container.decode(String.self, forKey: .display)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(key, forKey: .key)
-            
-            
-            
-            
             try? container.encodeIfPresent(display, forKey: .display)
+            
+            
+            
+            
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class MetaDataListingSortMetaResponse: Codable {
         
         
-        public var key: String?
-        
         public var display: String?
+        
+        public var key: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case key = "key"
-            
             case display = "display"
+            
+            case key = "key"
             
         }
 
         public init(display: String? = nil, key: String? = nil) {
             
-            self.key = key
-            
             self.display = display
+            
+            self.key = key
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    key = try container.decode(String.self, forKey: .key)
+                    display = try container.decode(String.self, forKey: .display)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    display = try container.decode(String.self, forKey: .display)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(key, forKey: .key)
-            
-            
-            
-            
             try? container.encodeIfPresent(display, forKey: .display)
+            
+            
+            
+            
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
         }

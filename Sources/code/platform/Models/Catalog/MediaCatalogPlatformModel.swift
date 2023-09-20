@@ -12,40 +12,35 @@ public extension PlatformClient.Catalog {
     class Media: Codable {
         
         
-        public var url: String
-        
         public var meta: [String: Any]?
         
         public var type: String?
         
+        public var url: String
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case url = "url"
             
             case meta = "meta"
             
             case type = "type"
             
+            case url = "url"
+            
         }
 
         public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
-            
-            self.url = url
             
             self.meta = meta
             
             self.type = type
             
+            self.url = url
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                url = try container.decode(String.self, forKey: .url)
-                
-            
             
             
                 do {
@@ -71,15 +66,15 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                url = try container.decode(String.self, forKey: .url)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(url, forKey: .url)
-            
             
             
             
@@ -89,6 +84,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
         }
@@ -107,40 +107,35 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Media: Codable {
         
         
-        public var url: String
-        
         public var meta: [String: Any]?
         
         public var type: String?
         
+        public var url: String
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case url = "url"
             
             case meta = "meta"
             
             case type = "type"
             
+            case url = "url"
+            
         }
 
         public init(meta: [String: Any]? = nil, type: String? = nil, url: String) {
-            
-            self.url = url
             
             self.meta = meta
             
             self.type = type
             
+            self.url = url
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                url = try container.decode(String.self, forKey: .url)
-                
-            
             
             
                 do {
@@ -166,15 +161,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                url = try container.decode(String.self, forKey: .url)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(url, forKey: .url)
-            
             
             
             
@@ -184,6 +179,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
         }

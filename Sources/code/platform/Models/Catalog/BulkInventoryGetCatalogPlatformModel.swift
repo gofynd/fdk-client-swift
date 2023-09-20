@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class BulkInventoryGet: Codable {
         
         
-        public var page: Page?
-        
         public var items: [BulkInventoryGetItems]?
+        
+        public var page: Page?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case page = "page"
-            
             case items = "items"
+            
+            case page = "page"
             
         }
 
         public init(items: [BulkInventoryGetItems]? = nil, page: Page? = nil) {
             
-            self.page = page
-            
             self.items = items
+            
+            self.page = page
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    items = try container.decode([BulkInventoryGetItems].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    items = try container.decode([BulkInventoryGetItems].self, forKey: .items)
+                    page = try container.decode(Page.self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class BulkInventoryGet: Codable {
         
         
-        public var page: Page?
-        
         public var items: [BulkInventoryGetItems]?
+        
+        public var page: Page?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case page = "page"
-            
             case items = "items"
+            
+            case page = "page"
             
         }
 
         public init(items: [BulkInventoryGetItems]? = nil, page: Page? = nil) {
             
-            self.page = page
-            
             self.items = items
+            
+            self.page = page
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    items = try container.decode([BulkInventoryGetItems].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    items = try container.decode([BulkInventoryGetItems].self, forKey: .items)
+                    page = try container.decode(Page.self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }

@@ -12,30 +12,30 @@ public extension PlatformClient.Catalog {
     class ManufacturerResponse: Codable {
         
         
-        public var name: String
+        public var address: String
         
         public var isDefault: Bool
         
-        public var address: String
+        public var name: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
+            case address = "address"
             
             case isDefault = "is_default"
             
-            case address = "address"
+            case name = "name"
             
         }
 
         public init(address: String, isDefault: Bool, name: String) {
             
-            self.name = name
+            self.address = address
             
             self.isDefault = isDefault
             
-            self.address = address
+            self.name = name
             
         }
 
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                name = try container.decode(String.self, forKey: .name)
+                address = try container.decode(String.self, forKey: .address)
                 
             
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Catalog {
             
             
             
-                address = try container.decode(String.self, forKey: .address)
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
@@ -64,7 +64,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(address, forKey: .address)
             
             
             
@@ -74,7 +74,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }
@@ -93,30 +93,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ManufacturerResponse: Codable {
         
         
-        public var name: String
+        public var address: String
         
         public var isDefault: Bool
         
-        public var address: String
+        public var name: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case name = "name"
+            case address = "address"
             
             case isDefault = "is_default"
             
-            case address = "address"
+            case name = "name"
             
         }
 
         public init(address: String, isDefault: Bool, name: String) {
             
-            self.name = name
+            self.address = address
             
             self.isDefault = isDefault
             
-            self.address = address
+            self.name = name
             
         }
 
@@ -124,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                name = try container.decode(String.self, forKey: .name)
+                address = try container.decode(String.self, forKey: .address)
                 
             
             
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                address = try container.decode(String.self, forKey: .address)
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
@@ -145,7 +145,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(name, forKey: .name)
+            try? container.encodeIfPresent(address, forKey: .address)
             
             
             
@@ -155,7 +155,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(address, forKey: .address)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

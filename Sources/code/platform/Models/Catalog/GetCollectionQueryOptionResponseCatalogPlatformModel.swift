@@ -12,18 +12,18 @@ public extension PlatformClient.Catalog {
     class GetCollectionQueryOptionResponse: Codable {
         
         
-        public var operators: [String: String]
-        
         public var filters: [ProductFilters]?
+        
+        public var operators: [String: String]
         
         public var sortOn: [ProductSortOn]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case operators = "operators"
-            
             case filters = "filters"
+            
+            case operators = "operators"
             
             case sortOn = "sort_on"
             
@@ -31,9 +31,9 @@ public extension PlatformClient.Catalog {
 
         public init(filters: [ProductFilters]? = nil, operators: [String: String], sortOn: [ProductSortOn]? = nil) {
             
-            self.operators = operators
-            
             self.filters = filters
+            
+            self.operators = operators
             
             self.sortOn = sortOn
             
@@ -41,11 +41,6 @@ public extension PlatformClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                operators = try container.decode([String: String].self, forKey: .operators)
-                
-            
             
             
                 do {
@@ -58,6 +53,11 @@ public extension PlatformClient.Catalog {
                     
                 }
                 
+            
+            
+                operators = try container.decode([String: String].self, forKey: .operators)
+                
+            
             
             
                 do {
@@ -78,12 +78,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(operators, forKey: .operators)
-            
-            
-            
-            
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(operators, forKey: .operators)
             
             
             
@@ -107,18 +107,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetCollectionQueryOptionResponse: Codable {
         
         
-        public var operators: [String: String]
-        
         public var filters: [ProductFilters]?
+        
+        public var operators: [String: String]
         
         public var sortOn: [ProductSortOn]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case operators = "operators"
-            
             case filters = "filters"
+            
+            case operators = "operators"
             
             case sortOn = "sort_on"
             
@@ -126,9 +126,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public init(filters: [ProductFilters]? = nil, operators: [String: String], sortOn: [ProductSortOn]? = nil) {
             
-            self.operators = operators
-            
             self.filters = filters
+            
+            self.operators = operators
             
             self.sortOn = sortOn
             
@@ -136,11 +136,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                operators = try container.decode([String: String].self, forKey: .operators)
-                
-            
             
             
                 do {
@@ -153,6 +148,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
                     
                 }
                 
+            
+            
+                operators = try container.decode([String: String].self, forKey: .operators)
+                
+            
             
             
                 do {
@@ -173,12 +173,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(operators, forKey: .operators)
-            
-            
-            
-            
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(operators, forKey: .operators)
             
             
             

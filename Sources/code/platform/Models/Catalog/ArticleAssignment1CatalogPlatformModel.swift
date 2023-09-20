@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class ArticleAssignment1: Codable {
         
         
-        public var strategy: String?
-        
         public var level: String?
+        
+        public var strategy: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case strategy = "strategy"
-            
             case level = "level"
+            
+            case strategy = "strategy"
             
         }
 
         public init(level: String? = nil, strategy: String? = nil) {
             
-            self.strategy = strategy
-            
             self.level = level
+            
+            self.strategy = strategy
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    strategy = try container.decode(String.self, forKey: .strategy)
+                    level = try container.decode(String.self, forKey: .level)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    level = try container.decode(String.self, forKey: .level)
+                    strategy = try container.decode(String.self, forKey: .strategy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(strategy, forKey: .strategy)
-            
-            
-            
-            
             try? container.encodeIfPresent(level, forKey: .level)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategy, forKey: .strategy)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ArticleAssignment1: Codable {
         
         
-        public var strategy: String?
-        
         public var level: String?
+        
+        public var strategy: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case strategy = "strategy"
-            
             case level = "level"
+            
+            case strategy = "strategy"
             
         }
 
         public init(level: String? = nil, strategy: String? = nil) {
             
-            self.strategy = strategy
-            
             self.level = level
+            
+            self.strategy = strategy
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    strategy = try container.decode(String.self, forKey: .strategy)
+                    level = try container.decode(String.self, forKey: .level)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    level = try container.decode(String.self, forKey: .level)
+                    strategy = try container.decode(String.self, forKey: .strategy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(strategy, forKey: .strategy)
-            
-            
-            
-            
             try? container.encodeIfPresent(level, forKey: .level)
+            
+            
+            
+            
+            try? container.encodeIfPresent(strategy, forKey: .strategy)
             
             
         }

@@ -12,30 +12,30 @@ public extension PlatformClient.Catalog {
     class GetConfigMetadataResponse: Codable {
         
         
-        public var values: [[String: Any]]?
+        public var condition: [[String: Any]]?
         
         public var data: [[String: Any]]
         
-        public var condition: [[String: Any]]?
+        public var values: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case values = "values"
+            case condition = "condition"
             
             case data = "data"
             
-            case condition = "condition"
+            case values = "values"
             
         }
 
         public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
             
-            self.values = values
+            self.condition = condition
             
             self.data = data
             
-            self.condition = condition
+            self.values = values
             
         }
 
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    values = try container.decode([[String: Any]].self, forKey: .values)
+                    condition = try container.decode([[String: Any]].self, forKey: .condition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -61,7 +61,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    condition = try container.decode([[String: Any]].self, forKey: .condition)
+                    values = try container.decode([[String: Any]].self, forKey: .values)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,7 +78,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(condition, forKey: .condition)
             
             
             
@@ -88,7 +88,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(condition, forKey: .condition)
+            try? container.encodeIfPresent(values, forKey: .values)
             
             
         }
@@ -107,30 +107,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetConfigMetadataResponse: Codable {
         
         
-        public var values: [[String: Any]]?
+        public var condition: [[String: Any]]?
         
         public var data: [[String: Any]]
         
-        public var condition: [[String: Any]]?
+        public var values: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case values = "values"
+            case condition = "condition"
             
             case data = "data"
             
-            case condition = "condition"
+            case values = "values"
             
         }
 
         public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
             
-            self.values = values
+            self.condition = condition
             
             self.data = data
             
-            self.condition = condition
+            self.values = values
             
         }
 
@@ -139,7 +139,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    values = try container.decode([[String: Any]].self, forKey: .values)
+                    condition = try container.decode([[String: Any]].self, forKey: .condition)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -156,7 +156,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    condition = try container.decode([[String: Any]].self, forKey: .condition)
+                    values = try container.decode([[String: Any]].self, forKey: .values)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,7 +173,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(values, forKey: .values)
+            try? container.encodeIfPresent(condition, forKey: .condition)
             
             
             
@@ -183,7 +183,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(condition, forKey: .condition)
+            try? container.encodeIfPresent(values, forKey: .values)
             
             
         }

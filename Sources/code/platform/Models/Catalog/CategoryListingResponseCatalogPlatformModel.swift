@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class CategoryListingResponse: Codable {
         
         
-        public var departments: [DepartmentIdentifier]?
-        
         public var data: [DepartmentCategoryTree]?
+        
+        public var departments: [DepartmentIdentifier]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case departments = "departments"
-            
             case data = "data"
+            
+            case departments = "departments"
             
         }
 
         public init(data: [DepartmentCategoryTree]? = nil, departments: [DepartmentIdentifier]? = nil) {
             
-            self.departments = departments
-            
             self.data = data
+            
+            self.departments = departments
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    departments = try container.decode([DepartmentIdentifier].self, forKey: .departments)
+                    data = try container.decode([DepartmentCategoryTree].self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    data = try container.decode([DepartmentCategoryTree].self, forKey: .data)
+                    departments = try container.decode([DepartmentIdentifier].self, forKey: .departments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(departments, forKey: .departments)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(departments, forKey: .departments)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CategoryListingResponse: Codable {
         
         
-        public var departments: [DepartmentIdentifier]?
-        
         public var data: [DepartmentCategoryTree]?
+        
+        public var departments: [DepartmentIdentifier]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case departments = "departments"
-            
             case data = "data"
+            
+            case departments = "departments"
             
         }
 
         public init(data: [DepartmentCategoryTree]? = nil, departments: [DepartmentIdentifier]? = nil) {
             
-            self.departments = departments
-            
             self.data = data
+            
+            self.departments = departments
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    departments = try container.decode([DepartmentIdentifier].self, forKey: .departments)
+                    data = try container.decode([DepartmentCategoryTree].self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    data = try container.decode([DepartmentCategoryTree].self, forKey: .data)
+                    departments = try container.decode([DepartmentIdentifier].self, forKey: .departments)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(departments, forKey: .departments)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(departments, forKey: .departments)
             
             
         }

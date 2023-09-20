@@ -306,7 +306,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encode(code, forKey: .code)
             
             
             
@@ -336,7 +336,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encode(isSet, forKey: .isSet)
             
             
         }
@@ -649,7 +649,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(code, forKey: .code)
+            try? container.encode(code, forKey: .code)
             
             
             
@@ -679,7 +679,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isSet, forKey: .isSet)
+            try? container.encode(isSet, forKey: .isSet)
             
             
         }

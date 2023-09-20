@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class LocationIntegrationType: Codable {
         
         
-        public var order: String?
-        
         public var inventory: String?
+        
+        public var order: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case order = "order"
-            
             case inventory = "inventory"
+            
+            case order = "order"
             
         }
 
         public init(inventory: String? = nil, order: String? = nil) {
             
-            self.order = order
-            
             self.inventory = inventory
+            
+            self.order = order
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    order = try container.decode(String.self, forKey: .order)
+                    inventory = try container.decode(String.self, forKey: .inventory)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    inventory = try container.decode(String.self, forKey: .inventory)
+                    order = try container.decode(String.self, forKey: .order)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(order, forKey: .order)
-            
-            
-            
-            
             try? container.encodeIfPresent(inventory, forKey: .inventory)
+            
+            
+            
+            
+            try? container.encodeIfPresent(order, forKey: .order)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class LocationIntegrationType: Codable {
         
         
-        public var order: String?
-        
         public var inventory: String?
+        
+        public var order: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case order = "order"
-            
             case inventory = "inventory"
+            
+            case order = "order"
             
         }
 
         public init(inventory: String? = nil, order: String? = nil) {
             
-            self.order = order
-            
             self.inventory = inventory
+            
+            self.order = order
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    order = try container.decode(String.self, forKey: .order)
+                    inventory = try container.decode(String.self, forKey: .inventory)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    inventory = try container.decode(String.self, forKey: .inventory)
+                    order = try container.decode(String.self, forKey: .order)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(order, forKey: .order)
-            
-            
-            
-            
             try? container.encodeIfPresent(inventory, forKey: .inventory)
+            
+            
+            
+            
+            try? container.encodeIfPresent(order, forKey: .order)
             
             
         }

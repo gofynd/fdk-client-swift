@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class GetConfigResponse: Codable {
         
         
-        public var page: PageResponseType
-        
         public var data: [[String: Any]]
+        
+        public var page: PageResponseType
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case page = "page"
-            
             case data = "data"
+            
+            case page = "page"
             
         }
 
         public init(data: [[String: Any]], page: PageResponseType) {
             
-            self.page = page
-            
             self.data = data
+            
+            self.page = page
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                page = try container.decode(PageResponseType.self, forKey: .page)
+                data = try container.decode([[String: Any]].self, forKey: .data)
                 
             
             
             
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                page = try container.decode(PageResponseType.self, forKey: .page)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }
@@ -77,24 +77,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetConfigResponse: Codable {
         
         
-        public var page: PageResponseType
-        
         public var data: [[String: Any]]
+        
+        public var page: PageResponseType
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case page = "page"
-            
             case data = "data"
+            
+            case page = "page"
             
         }
 
         public init(data: [[String: Any]], page: PageResponseType) {
             
-            self.page = page
-            
             self.data = data
+            
+            self.page = page
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                page = try container.decode(PageResponseType.self, forKey: .page)
+                data = try container.decode([[String: Any]].self, forKey: .data)
                 
             
             
             
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                page = try container.decode(PageResponseType.self, forKey: .page)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }

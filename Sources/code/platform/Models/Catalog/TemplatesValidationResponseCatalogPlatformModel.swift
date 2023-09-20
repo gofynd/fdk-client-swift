@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class TemplatesValidationResponse: Codable {
         
         
-        public var templateDetails: TemplateDetails?
-        
         public var data: TemplateValidationData?
+        
+        public var templateDetails: TemplateDetails?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case templateDetails = "template_details"
-            
             case data = "data"
+            
+            case templateDetails = "template_details"
             
         }
 
         public init(data: TemplateValidationData? = nil, templateDetails: TemplateDetails? = nil) {
             
-            self.templateDetails = templateDetails
-            
             self.data = data
+            
+            self.templateDetails = templateDetails
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    templateDetails = try container.decode(TemplateDetails.self, forKey: .templateDetails)
+                    data = try container.decode(TemplateValidationData.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    data = try container.decode(TemplateValidationData.self, forKey: .data)
+                    templateDetails = try container.decode(TemplateDetails.self, forKey: .templateDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(templateDetails, forKey: .templateDetails)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(templateDetails, forKey: .templateDetails)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class TemplatesValidationResponse: Codable {
         
         
-        public var templateDetails: TemplateDetails?
-        
         public var data: TemplateValidationData?
+        
+        public var templateDetails: TemplateDetails?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case templateDetails = "template_details"
-            
             case data = "data"
+            
+            case templateDetails = "template_details"
             
         }
 
         public init(data: TemplateValidationData? = nil, templateDetails: TemplateDetails? = nil) {
             
-            self.templateDetails = templateDetails
-            
             self.data = data
+            
+            self.templateDetails = templateDetails
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    templateDetails = try container.decode(TemplateDetails.self, forKey: .templateDetails)
+                    data = try container.decode(TemplateValidationData.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    data = try container.decode(TemplateValidationData.self, forKey: .data)
+                    templateDetails = try container.decode(TemplateDetails.self, forKey: .templateDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(templateDetails, forKey: .templateDetails)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(templateDetails, forKey: .templateDetails)
             
             
         }

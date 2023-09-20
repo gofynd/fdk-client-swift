@@ -107,22 +107,22 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encode(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+            try? container.encode(errorTrace, forKey: .errorTrace)
             
             
             
@@ -241,22 +241,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encode(status, forKey: .status)
             
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encode(success, forKey: .success)
             
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encode(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(errorTrace, forKey: .errorTrace)
+            try? container.encode(errorTrace, forKey: .errorTrace)
             
             
             

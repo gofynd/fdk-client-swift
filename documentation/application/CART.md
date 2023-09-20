@@ -9735,6 +9735,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | paymentParams | [String: Any]? |  yes  |  |
  | billingAddressId | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
+ | paymentExtraIdentifiers | [String: Any]? |  yes  |  |
 
 ---
 
@@ -10094,6 +10095,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | payment | String? |  yes  |  |
  | amount | Double? |  yes  |  |
  | name | String? |  yes  |  |
+ | paymentExtraIdentifiers | [String: Any]? |  yes  |  |
 
 ---
 

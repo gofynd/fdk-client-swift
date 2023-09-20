@@ -12,22 +12,26 @@ public extension PlatformClient.Catalog {
     class AssignStore: Codable {
         
         
+        public var appId: String
+        
+        public var articles: [AssignStoreArticle]
+        
         public var channelIdentifier: String?
         
         public var channelType: String?
         
         public var companyId: Int?
         
-        public var storeIds: [Int]?
-        
-        public var articles: [AssignStoreArticle]
-        
-        public var appId: String
-        
         public var pincode: String
+        
+        public var storeIds: [Int]?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case appId = "app_id"
+            
+            case articles = "articles"
             
             case channelIdentifier = "channel_identifier"
             
@@ -35,17 +39,17 @@ public extension PlatformClient.Catalog {
             
             case companyId = "company_id"
             
-            case storeIds = "store_ids"
-            
-            case articles = "articles"
-            
-            case appId = "app_id"
-            
             case pincode = "pincode"
+            
+            case storeIds = "store_ids"
             
         }
 
         public init(appId: String, articles: [AssignStoreArticle], channelIdentifier: String? = nil, channelType: String? = nil, companyId: Int? = nil, pincode: String, storeIds: [Int]? = nil) {
+            
+            self.appId = appId
+            
+            self.articles = articles
             
             self.channelIdentifier = channelIdentifier
             
@@ -53,18 +57,24 @@ public extension PlatformClient.Catalog {
             
             self.companyId = companyId
             
-            self.storeIds = storeIds
-            
-            self.articles = articles
-            
-            self.appId = appId
-            
             self.pincode = pincode
+            
+            self.storeIds = storeIds
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                appId = try container.decode(String.self, forKey: .appId)
+                
+            
+            
+            
+                articles = try container.decode([AssignStoreArticle].self, forKey: .articles)
+                
+            
             
             
                 do {
@@ -103,6 +113,11 @@ public extension PlatformClient.Catalog {
                 
             
             
+                pincode = try container.decode(String.self, forKey: .pincode)
+                
+            
+            
+            
                 do {
                     storeIds = try container.decode([Int].self, forKey: .storeIds)
                 
@@ -114,25 +129,20 @@ public extension PlatformClient.Catalog {
                 }
                 
             
-            
-                articles = try container.decode([AssignStoreArticle].self, forKey: .articles)
-                
-            
-            
-            
-                appId = try container.decode(String.self, forKey: .appId)
-                
-            
-            
-            
-                pincode = try container.decode(String.self, forKey: .pincode)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(appId, forKey: .appId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(articles, forKey: .articles)
+            
             
             
             
@@ -151,22 +161,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(articles, forKey: .articles)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appId, forKey: .appId)
-            
-            
-            
-            
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
             
             
         }
@@ -185,22 +185,26 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class AssignStore: Codable {
         
         
+        public var appId: String
+        
+        public var articles: [AssignStoreArticle]
+        
         public var channelIdentifier: String?
         
         public var channelType: String?
         
         public var companyId: Int?
         
-        public var storeIds: [Int]?
-        
-        public var articles: [AssignStoreArticle]
-        
-        public var appId: String
-        
         public var pincode: String
+        
+        public var storeIds: [Int]?
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case appId = "app_id"
+            
+            case articles = "articles"
             
             case channelIdentifier = "channel_identifier"
             
@@ -208,17 +212,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case companyId = "company_id"
             
-            case storeIds = "store_ids"
-            
-            case articles = "articles"
-            
-            case appId = "app_id"
-            
             case pincode = "pincode"
+            
+            case storeIds = "store_ids"
             
         }
 
         public init(appId: String, articles: [AssignStoreArticle], channelIdentifier: String? = nil, channelType: String? = nil, companyId: Int? = nil, pincode: String, storeIds: [Int]? = nil) {
+            
+            self.appId = appId
+            
+            self.articles = articles
             
             self.channelIdentifier = channelIdentifier
             
@@ -226,18 +230,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.companyId = companyId
             
-            self.storeIds = storeIds
-            
-            self.articles = articles
-            
-            self.appId = appId
-            
             self.pincode = pincode
+            
+            self.storeIds = storeIds
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                appId = try container.decode(String.self, forKey: .appId)
+                
+            
+            
+            
+                articles = try container.decode([AssignStoreArticle].self, forKey: .articles)
+                
+            
             
             
                 do {
@@ -276,6 +286,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
+                pincode = try container.decode(String.self, forKey: .pincode)
+                
+            
+            
+            
                 do {
                     storeIds = try container.decode([Int].self, forKey: .storeIds)
                 
@@ -287,25 +302,20 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
-            
-                articles = try container.decode([AssignStoreArticle].self, forKey: .articles)
-                
-            
-            
-            
-                appId = try container.decode(String.self, forKey: .appId)
-                
-            
-            
-            
-                pincode = try container.decode(String.self, forKey: .pincode)
-                
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(appId, forKey: .appId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(articles, forKey: .articles)
+            
             
             
             
@@ -324,22 +334,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
-            
-            
-            
-            
-            try? container.encodeIfPresent(articles, forKey: .articles)
-            
-            
-            
-            
-            try? container.encodeIfPresent(appId, forKey: .appId)
-            
-            
-            
-            
             try? container.encodeIfPresent(pincode, forKey: .pincode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeIds, forKey: .storeIds)
             
             
         }

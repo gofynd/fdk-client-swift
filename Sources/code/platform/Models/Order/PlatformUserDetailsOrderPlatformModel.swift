@@ -108,7 +108,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
+            try? container.encode(platformUserFirstName, forKey: .platformUserFirstName)
             
             
             
@@ -118,7 +118,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(platformUserLastName, forKey: .platformUserLastName)
+            try? container.encode(platformUserLastName, forKey: .platformUserLastName)
             
             
         }
@@ -233,7 +233,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(platformUserFirstName, forKey: .platformUserFirstName)
+            try? container.encode(platformUserFirstName, forKey: .platformUserFirstName)
             
             
             
@@ -243,7 +243,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(platformUserLastName, forKey: .platformUserLastName)
+            try? container.encode(platformUserLastName, forKey: .platformUserLastName)
             
             
         }

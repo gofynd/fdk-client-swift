@@ -12,18 +12,18 @@ public extension PlatformClient.Catalog {
     class ProductTemplateDownloadsExport: Codable {
         
         
-        public var notificationEmails: [String]?
-        
         public var filters: ProductTemplateExportFilterRequest?
+        
+        public var notificationEmails: [String]?
         
         public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case notificationEmails = "notification_emails"
-            
             case filters = "filters"
+            
+            case notificationEmails = "notification_emails"
             
             case type = "type"
             
@@ -31,9 +31,9 @@ public extension PlatformClient.Catalog {
 
         public init(filters: ProductTemplateExportFilterRequest? = nil, notificationEmails: [String]? = nil, type: String? = nil) {
             
-            self.notificationEmails = notificationEmails
-            
             self.filters = filters
+            
+            self.notificationEmails = notificationEmails
             
             self.type = type
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+                    filters = try container.decode(ProductTemplateExportFilterRequest.self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    filters = try container.decode(ProductTemplateExportFilterRequest.self, forKey: .filters)
+                    notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,12 +85,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-            
-            
-            
-            
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
             
             
             
@@ -114,18 +114,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductTemplateDownloadsExport: Codable {
         
         
-        public var notificationEmails: [String]?
-        
         public var filters: ProductTemplateExportFilterRequest?
+        
+        public var notificationEmails: [String]?
         
         public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case notificationEmails = "notification_emails"
-            
             case filters = "filters"
+            
+            case notificationEmails = "notification_emails"
             
             case type = "type"
             
@@ -133,9 +133,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public init(filters: ProductTemplateExportFilterRequest? = nil, notificationEmails: [String]? = nil, type: String? = nil) {
             
-            self.notificationEmails = notificationEmails
-            
             self.filters = filters
+            
+            self.notificationEmails = notificationEmails
             
             self.type = type
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
+                    filters = try container.decode(ProductTemplateExportFilterRequest.self, forKey: .filters)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    filters = try container.decode(ProductTemplateExportFilterRequest.self, forKey: .filters)
+                    notificationEmails = try container.decode([String].self, forKey: .notificationEmails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,12 +187,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
-            
-            
-            
-            
             try? container.encodeIfPresent(filters, forKey: .filters)
+            
+            
+            
+            
+            try? container.encodeIfPresent(notificationEmails, forKey: .notificationEmails)
             
             
             

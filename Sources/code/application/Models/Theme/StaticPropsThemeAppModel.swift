@@ -12,6 +12,8 @@ public extension ApplicationClient.Theme {
         
         public var auth: AuthConfig?
         
+        public var palette: PaletteConfig?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -19,13 +21,17 @@ public extension ApplicationClient.Theme {
             
             case auth = "auth"
             
+            case palette = "palette"
+            
         }
 
-        public init(auth: AuthConfig? = nil, colors: Colors? = nil) {
+        public init(auth: AuthConfig? = nil, colors: Colors? = nil, palette: PaletteConfig? = nil) {
             
             self.colors = colors
             
             self.auth = auth
+            
+            self.palette = palette
             
         }
 
@@ -56,6 +62,18 @@ public extension ApplicationClient.Theme {
             }
             
             
+            
+            do {
+                palette = try container.decode(PaletteConfig.self, forKey: .palette)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -69,6 +87,11 @@ public extension ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(auth, forKey: .auth)
+            
+            
+            
+            
+            try? container.encodeIfPresent(palette, forKey: .palette)
             
             
         }

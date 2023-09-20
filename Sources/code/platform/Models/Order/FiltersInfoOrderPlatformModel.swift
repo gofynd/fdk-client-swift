@@ -138,12 +138,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+            try? container.encode(placeholderText, forKey: .placeholderText)
             
             
             
             
-            try? container.encodeIfPresent(required, forKey: .required)
+            try? container.encode(required, forKey: .required)
             
             
         }
@@ -288,12 +288,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+            try? container.encode(placeholderText, forKey: .placeholderText)
             
             
             
             
-            try? container.encodeIfPresent(required, forKey: .required)
+            try? container.encode(required, forKey: .required)
             
             
         }

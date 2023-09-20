@@ -149,17 +149,17 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(showUi, forKey: .showUi)
+            try? container.encode(showUi, forKey: .showUi)
             
             
             
             
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+            try? container.encode(placeholderText, forKey: .placeholderText)
             
             
             
             
-            try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
+            try? container.encode(minSearchSize, forKey: .minSearchSize)
             
             
             
@@ -320,17 +320,17 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(showUi, forKey: .showUi)
+            try? container.encode(showUi, forKey: .showUi)
             
             
             
             
-            try? container.encodeIfPresent(placeholderText, forKey: .placeholderText)
+            try? container.encode(placeholderText, forKey: .placeholderText)
             
             
             
             
-            try? container.encodeIfPresent(minSearchSize, forKey: .minSearchSize)
+            try? container.encode(minSearchSize, forKey: .minSearchSize)
             
             
             

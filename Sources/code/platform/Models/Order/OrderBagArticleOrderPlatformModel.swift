@@ -103,7 +103,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            try? container.encode(identifiers, forKey: .identifiers)
             
             
             
@@ -113,12 +113,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encode(uid, forKey: .uid)
             
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encode(size, forKey: .size)
             
             
         }
@@ -228,7 +228,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(identifiers, forKey: .identifiers)
+            try? container.encode(identifiers, forKey: .identifiers)
             
             
             
@@ -238,12 +238,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encode(uid, forKey: .uid)
             
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encode(size, forKey: .size)
             
             
         }

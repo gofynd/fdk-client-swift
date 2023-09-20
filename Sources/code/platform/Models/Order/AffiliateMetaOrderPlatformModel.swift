@@ -265,7 +265,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderItemId, forKey: .orderItemId)
+            try? container.encode(orderItemId, forKey: .orderItemId)
             
             
             
@@ -275,7 +275,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
+            try? container.encode(employeeDiscount, forKey: .employeeDiscount)
             
             
             
@@ -285,7 +285,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encode(quantity, forKey: .quantity)
             
             
             
@@ -295,7 +295,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
+            try? container.encode(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
             
@@ -325,7 +325,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(isPriority, forKey: .isPriority)
+            try? container.encode(isPriority, forKey: .isPriority)
             
             
         }
@@ -597,7 +597,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderItemId, forKey: .orderItemId)
+            try? container.encode(orderItemId, forKey: .orderItemId)
             
             
             
@@ -607,7 +607,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(employeeDiscount, forKey: .employeeDiscount)
+            try? container.encode(employeeDiscount, forKey: .employeeDiscount)
             
             
             
@@ -617,7 +617,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(quantity, forKey: .quantity)
+            try? container.encode(quantity, forKey: .quantity)
             
             
             
@@ -627,7 +627,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(loyaltyDiscount, forKey: .loyaltyDiscount)
+            try? container.encode(loyaltyDiscount, forKey: .loyaltyDiscount)
             
             
             
@@ -657,7 +657,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(isPriority, forKey: .isPriority)
+            try? container.encode(isPriority, forKey: .isPriority)
             
             
         }

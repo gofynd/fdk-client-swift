@@ -150,7 +150,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            try? container.encode(paymentMethods, forKey: .paymentMethods)
             
             
         }
@@ -307,7 +307,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            try? container.encode(paymentMethods, forKey: .paymentMethods)
             
             
         }
