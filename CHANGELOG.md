@@ -27,19 +27,19 @@
 #### getAppliedTheme
 
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property `config.list[].custom` of schema `CustomConfig` in response with status code 200
-	- [Breaking] [Deleted] property `config.list[].globalConfig.statics` of schema `StaticConfig` in response with status code 200
-	- [Breaking] [Deleted] property `config.list[].globalConfig.auth` of schema `AuthConfig` in response with status code 200
-	- [Breaking] [Deleted] property `config.list[].globalConfig.palette` of schema `PaletteConfig` in response with status code 200
+	- [Breaking] [Deleted] property `config.list[].custom` of schema `ThemeConfiguration` in response with status code 200
+	- [Breaking] [Deleted] property `config.list[].globalConfig.statics` of schema `GlobalConfig` in response with status code 200
+	- [Breaking] [Deleted] property `config.list[].globalConfig.auth` of schema `GlobalConfig` in response with status code 200
+	- [Breaking] [Deleted] property `config.list[].globalConfig.palette` of schema `GlobalConfig` in response with status code 200
 
 
 #### getThemeForPreview
 
 - ##### What's Deprecated
-	- [Breaking] [Deleted] property `config.list[].custom` of schema `CustomConfig` in response with status code 200
-	- [Breaking] [Deleted] property `config.list[].globalConfig.statics` of schema `StaticConfig` in response with status code 200
-	- [Breaking] [Deleted] property `config.list[].globalConfig.auth` of schema `AuthConfig` in response with status code 200
-	- [Breaking] [Deleted] property `config.list[].globalConfig.palette` of schema `PaletteConfig` in response with status code 200
+	- [Breaking] [Deleted] property `config.list[].custom` of schema `ThemeConfiguration` in response with status code 200
+	- [Breaking] [Deleted] property `config.list[].globalConfig.statics` of schema `GlobalConfig` in response with status code 200
+	- [Breaking] [Deleted] property `config.list[].globalConfig.auth` of schema `GlobalConfig` in response with status code 200
+	- [Breaking] [Deleted] property `config.list[].globalConfig.palette` of schema `GlobalConfig` in response with status code 200
 
 
 ## Platform Client
@@ -53,7 +53,7 @@
 #### getCoupons
 
 - ##### What's New
-	- [Added] property `items[]` of schema `CouponAdd` in response with status code 200
+	- [Added] property `items[]` of schema `CouponsResponse` in response with status code 200
 
 - ##### What's Deprecated
 	- [Deleted] properties `items.ownership`, `items.author`, `items.state`, `items.restrictions`, `items.validation`, `items.action`, `items.tags`, `items.rule`, `items.code`, `items.identifiers`, `items.validity`, `items.dateMeta`, `items.schedule`, `items.displayMeta`, `items.typeSlug`, `items.ruleDefinition` in response with status code 200
@@ -91,487 +91,22 @@
 
 
 
-#### getSearchKeywords
+#### updateAppProduct
 
 - ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `GetSearchWordsData` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getSearchKeywords` to `updateSearchKeywords`
-	- [Changed] http method type from `get` To `put`
+	- [Breaking] [Added] Type `string` to property `customMeta[].key` of schema `MetaFields` in request body
+	- [Breaking] [Added] Type `string` to property `customMeta[].value` of schema `MetaFields` in request body
 
 
-#### getAllSearchKeyword
+#### updateDepartment
 
 - ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `GetSearchWordsResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getAllSearchKeyword` to `createCustomKeyword`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getAutocompleteKeywordDetail
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getAutocompleteKeywordDetail` to `updateAutocompleteKeyword`
-	- [Changed] http method type from `get` To `put`
-
-
-#### getAutocompleteConfig
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `GetAutocompleteWordsResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getAutocompleteConfig` to `createCustomAutocompleteRule`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getProductBundle
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `q` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `slug` (type: `array`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `GetProductBundleListingResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getProductBundle` to `createProductBundle`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getProductBundleDetail
-
-- ##### What's New
-	- [Breaking] [Added] maximum validator for products[].maxQuantity in response with status code 200
-	- [Breaking] [Added] minimum validator for products[].maxQuantity in response with status code 200
-	- [Breaking] [Added] maximum validator for products[].minQuantity in response with status code 200
-	- [Breaking] [Added] minimum validator for products[].minQuantity in response with status code 200
-	- [Breaking] [Added] maxItems validator for products in response with status code 200
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `products[].sizes` of schema `GetProducts` in response with status code 200
-	- [Breaking] [Deleted] property `products[].price` of schema `Price` in response with status code 200
-	- [Breaking] [Deleted] property `products[].productDetails` of schema `LimitedProductData` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getProductBundleDetail` to `updateProductBundle`
-	- [Changed] http method type from `get` To `put`
-
-
-#### getSizeGuides
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `active` (type: `boolean`)
-
-	- [Breaking] [Deleted] `query` parameter `q` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `tag` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] property `page` of schema `ListSizeGuide` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `ListSizeGuide` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getSizeGuides` to `createSizeGuide`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getSizeGuide
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `title` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `id` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `guide` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `subtitle` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `active` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `tag` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `name` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `modifiedOn` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `companyId` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `brandId` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `createdOn` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `modifiedBy` of schema `SizeGuideResponse` in response with status code 200
-	- [Breaking] [Deleted] property `createdBy` of schema `SizeGuideResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getSizeGuide` to `updateSizeGuide`
-	- [Changed] http method type from `get` To `put`
-
-
-#### getAppProduct
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `moq` of schema `OwnerAppItemResponse` in response with status code 200
-	- [Breaking] [Deleted] property `seo` of schema `OwnerAppItemResponse` in response with status code 200
-	- [Breaking] [Deleted] property `isGift` of schema `OwnerAppItemResponse` in response with status code 200
-	- [Breaking] [Deleted] property `isCod` of schema `OwnerAppItemResponse` in response with status code 200
-	- [Breaking] [Deleted] property `altText` of schema `OwnerAppItemResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getAppProduct` to `updateAppProduct`
-	- [Changed] http method type from `get` To `patch`
-
-
-#### getGroupConfigurations
-
-- ##### What's New
-	- [Breaking] [Added] Required status to property `undefined` in response with status code 200
-	- [Breaking] [Added] Required status to property `undefined` in response with status code 200
-	- [Breaking] [Added] Required status to property `undefined` in response with status code 200
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `search` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `templateSlug` (type: `string`)
-
-	- [Breaking] [Deleted] property `page` of schema `PageResponseType` in response with status code 200
-	- [Breaking] [Deleted] property `data` of schema `GetConfigResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getGroupConfigurations` to `createGroupConfiguration`
-	- [Breaking] [Changed] Required status of property `data` in response with status code 200
-	- [Breaking] [Changed] Required status of property `page` in response with status code 200
-	- [Changed] http method type from `get` To `post`
-
-
-#### getListingConfigurations
-
-- ##### What's New
-	- [Breaking] [Added] Required status to property `undefined` in response with status code 200
-	- [Breaking] [Added] Required status to property `undefined` in response with status code 200
-	- [Breaking] [Added] Required status to property `undefined` in response with status code 200
-	- [Breaking] [Added] Required status to property `undefined` in response with status code 200
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `search` (type: `string`)
-
-	- [Breaking] [Deleted] property `page` of schema `PageResponseType` in response with status code 200
-	- [Breaking] [Deleted] property `data` of schema `GetConfigResponse` in response with status code 200
-	- [Deleted] Required status from property `message` in response with status code 4XX
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getListingConfigurations` to `createListingConfiguration`
-	- [Breaking] [Changed] Required status of property `data` in response with status code 200
-	- [Breaking] [Changed] Required status of property `page` in response with status code 200
-	- [Changed] http method type from `get` To `post`
-
-
-#### getConfigurations
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getConfigurations` to `createConfigurationProductListing`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getConfigurationByType
-
-- ##### What's New
-	- [Breaking] [Added] properties  in response with status code 200
-	- [Breaking] [Added] properties  in response with status code 200
-	- [Breaking] [Added] properties  in response with status code 200
-	- [Breaking] [Added] properties  in response with status code 200
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `data.product.compare` of schema `GetCatalogConfigurationDetailsProduct` in response with status code 200
-	- [Breaking] [Deleted] property `data.product.detail` of schema `GetCatalogConfigurationDetailsProduct` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getConfigurationByType` to `createConfigurationByType`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getAllCollections
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `q` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `scheduleStatus` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `type` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `tags` (type: `array`)
-
-	- [Breaking] [Deleted] `query` parameter `isActive` (type: `boolean`)
-
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `filters` of schema `CollectionListingFilter` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `GetCollectionListingResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getAllCollections` to `createCollection`
-	- [Changed] http method type from `get` To `post`
-
-
-#### deleteCollection
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `message` of schema `DeleteResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `deleteCollection` to `updateCollection`
-	- [Changed] http method type from `delete` To `put`
-
-
-#### updateCollection
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] Body content in Request
-	- [Deleted] properties `badge.color`, `badge.text` in response with status code 200
-	- [Breaking] [Deleted] property `logo.aspectRatio` of schema `CollectionImage` in response with status code 200
-	- [Deleted] Required status from property `logo.aspect_ratio` in response with status code 200
-	- [Breaking] [Deleted] property `seo` of schema `SeoDetail` in response with status code 200
-	- [Deleted] Required status from properties `banners.landscape.aspect_ratio`, `banners.landscape.url` in response with status code 200
-	- [Deleted] Required status from properties `banners.portrait.aspect_ratio`, `banners.portrait.url` in response with status code 200
-	- [Deleted] Required status from properties `banners.landscape`, `banners.portrait` in response with status code 200
-	- [Breaking] [Deleted] property `tags` of schema `UpdateCollection` in response with status code 200
-	- [Breaking] [Deleted] property `published` of schema `UpdateCollection` in response with status code 200
-	- [Breaking] [Deleted] property `isVisible` of schema `UpdateCollection` in response with status code 200
-	- [Breaking] [Deleted] property `modifiedBy` of schema `UpdateCollection` in response with status code 200
-	- [Deleted] properties `schedule.duration`, `schedule.end`, `schedule.start`, `schedule.cron`, `schedule.nextSchedule` in response with status code 200
-	- [Breaking] [Deleted] property `localeLanguage` of schema `UpdateCollection` in response with status code 200
-	- [Breaking] [Deleted] property `customJson` of schema `UpdateCollection` in response with status code 200
-	- [Breaking] [Deleted] property `sortOn` of schema `UpdateCollection` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `updateCollection` to `getCollectionDetail`
-	- [Changed] http method type from `put` To `get`
-
-
-#### getCollectionItems
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `sortOn` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `pageId` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `filters` of schema `GetCollectionItemsResponse` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `GetCollectionItemsResponse` in response with status code 200
-	- [Breaking] [Deleted] property `sortOn` of schema `GetCollectionItemsResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getCollectionItems` to `addCollectionItems`
-	- [Changed] http method type from `get` To `post`
-
-
-#### listDepartmentsData
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `itemType` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `name` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `search` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `isActive` (type: `boolean`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `DepartmentsResponse` in response with status code 200
-	- [Breaking] [Deleted] property `code` of schema `DepartmentErrorResponse` in response with status code 4XX
-	- [Breaking] [Deleted] property `message` of schema `DepartmentErrorResponse` in response with status code 4XX
-	- [Breaking] [Deleted] property `status` of schema `DepartmentErrorResponse` in response with status code 4XX
-	- [Breaking] [Deleted] property `errors` of schema `DepartmentErrorResponse` in response with status code 4XX
-	- [Breaking] [Deleted] property `meta` of schema `DepartmentErrorResponse` in response with status code 4XX
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `listDepartmentsData` to `createDepartments`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getDepartmentData
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `DepartmentsResponse` in response with status code 200
-	- [Breaking] [Deleted] property `code` of schema `DepartmentErrorResponse` in response with status code 4XX
-	- [Breaking] [Deleted] property `message` of schema `DepartmentErrorResponse` in response with status code 4XX
-	- [Breaking] [Deleted] property `status` of schema `DepartmentErrorResponse` in response with status code 4XX
-	- [Breaking] [Deleted] property `errors` of schema `DepartmentErrorResponse` in response with status code 4XX
-	- [Breaking] [Deleted] property `meta` of schema `DepartmentErrorResponse` in response with status code 4XX
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getDepartmentData` to `updateDepartment`
-	- [Changed] http method type from `get` To `put`
-
-
-#### getProductExportJobs
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `status` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `fromDate` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `toDate` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `q` (type: `string`)
-
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getProductExportJobs` to `createProductExportJob`
-	- [Changed] http method type from `get` To `post`
-
-
-#### listCategories
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `level` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `departments` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `q` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `CategoryResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `listCategories` to `createCategories`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getCategoryData
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `data` of schema `Category` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getCategoryData` to `updateCategory`
-	- [Changed] http method type from `get` To `put`
-
-
-#### getProducts
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `brandIds` (type: `array`)
-
-	- [Breaking] [Deleted] `query` parameter `categoryIds` (type: `array`)
-
-	- [Breaking] [Deleted] `query` parameter `itemIds` (type: `array`)
-
-	- [Breaking] [Deleted] `query` parameter `departmentIds` (type: `array`)
-
-	- [Breaking] [Deleted] `query` parameter `itemCode` (type: `array`)
-
-	- [Breaking] [Deleted] `query` parameter `q` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `tags` (type: `array`)
-
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `ProductListingResponseV2` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getProducts` to `createProduct`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getProduct
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `brandUid` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `itemCode` (type: `string`)
-
-	- [Breaking] [Deleted] property `data` of schema `ProductSchemaV2` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getProduct` to `editProduct`
-	- [Changed] http method type from `get` To `put`
+	- [Breaking] [Added] Type `string` to property `synonyms[]` of schema `DepartmentModel` in response with status code 200
+	- [Breaking] [Added] Type `string` to property `logo` of schema `DepartmentModel` in response with status code 200
+	- [Breaking] [Added] Type `string` to property `slug` of schema `DepartmentModel` in response with status code 200
+	- [Breaking] [Added] Type `string` to property `name` of schema `DepartmentModel` in response with status code 200
+	- [Breaking] [Added] Type `string` to property `cls` of schema `DepartmentModel` in response with status code 200
+	- [Breaking] [Added] Type `string` to property `id` of schema `DepartmentModel` in response with status code 200
 
 
 #### allSizes
@@ -581,24 +116,14 @@
 	- [Breaking] [Added] Type `string` to property `allSizes[].itemWeightUnitOfMeasure` of schema `AllSizes` in response with status code 200
 
 
-#### getProductBulkUploadHistory
+#### createBulkProductUploadJob
 
 - ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `search` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `ProductBulkRequest` in response with status code 200
+	- [Breaking] [Added] Type `string` to property `modifiedBy` of schema `BulkJob` in request body
 
 - ##### What's Changed
-	- [Breaking] [Changed] operationId from `getProductBulkUploadHistory` to `createBulkProductUploadJob`
-	- [Changed] http method type from `get` To `post`
+	- [Breaking] [Changed] Default value from `2023-07-11T00:42:55.835166` to `2023-08-16T12:07:13.817348` of property `modifiedOn` of schema `BulkJob` in request body
+	- [Breaking] [Changed] Default value from `2023-07-11T00:42:55.835166` to `2023-08-16T12:07:13.817348` of property `modifiedOn` of schema `BulkResponse` in response with status code 200
 
 
 #### uploadBulkProducts
@@ -611,110 +136,32 @@
 	- [Breaking] [Changed] Default value from `2023-07-11T00:42:55.835166` to `2023-08-16T12:07:13.817348` of property `modifiedOn` of schema `BulkResponse` in response with status code 200
 
 
-#### getProductAssetsInBulk
+#### addInventory
 
 - ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `BulkAssetResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getProductAssetsInBulk` to `createProductAssetsInBulk`
-	- [Changed] http method type from `get` To `post`
+	- [Breaking] [Added] Type `string` to property `sizes[].size` of schema `InvSize` in request body
+	- [Breaking] [Added] Type `string` to property `sizes[].identifiers[].gtinValue` of schema `GTIN` in request body
 
 
-#### getInventoryBySize
+#### createBulkInventoryJob
 
 - ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `q` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `sellable` (type: `boolean`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `InventoryResponsePaginated` in response with status code 200
+	- [Breaking] [Added] Type `string` to property `modifiedBy` of schema `BulkJob` in request body
 
 - ##### What's Changed
-	- [Breaking] [Changed] operationId from `getInventoryBySize` to `addInventory`
-	- [Changed] http method type from `get` To `post`
+	- [Breaking] [Changed] Default value from `2023-07-11T00:42:55.835166` to `2023-08-16T12:07:13.817348` of property `modifiedOn` of schema `BulkJob` in request body
+	- [Breaking] [Changed] Default value from `2023-07-11T00:42:55.835166` to `2023-08-16T12:07:13.817348` of property `modifiedOn` of schema `BulkResponse` in response with status code 200
 
 
-#### getInventoryBulkUploadHistory
+#### updateHsnCode
 
 - ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `pageNo` (type: `integer`)
-
-	- [Breaking] [Deleted] `query` parameter `pageSize` (type: `integer`)
-
-	- [Breaking] [Deleted] property `page` of schema `Page` in response with status code 200
-	- [Breaking] [Deleted] property `items` of schema `BulkInventoryGet` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getInventoryBulkUploadHistory` to `createBulkInventoryJob`
-	- [Changed] http method type from `get` To `post`
-
-
-#### getInventoryExport
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] property `url` of schema `InventoryExportJob` in response with status code 200
-	- [Breaking] [Deleted] property `completedOn` of schema `InventoryExportJob` in response with status code 200
-	- [Deleted] Required status from property `type` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getInventoryExport` to `createInventoryExportJob`
-	- [Changed] http method type from `get` To `post`
-
-
-#### listInventoryExport
-
-- ##### What's New
-	- [Breaking] [Added] Required status to property `undefined` in response with status code 200
-	- [Added] Body content in Request
-
-- ##### What's Deprecated
-	- [Breaking] [Deleted] `query` parameter `status` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `fromDate` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `toDate` (type: `string`)
-
-	- [Breaking] [Deleted] `query` parameter `q` (type: `string`)
-
-	- [Breaking] [Deleted] property `items` of schema `InventoryExportJobListResponse` in response with status code 200
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `listInventoryExport` to `createInventoryExport`
-	- [Breaking] [Changed] Required status of property `items` in response with status code 200
-	- [Changed] http method type from `get` To `post`
-
-
-#### getHsnCode
-
-- ##### What's New
-	- [Added] Body content in Request
-
-- ##### What's Changed
-	- [Breaking] [Changed] operationId from `getHsnCode` to `updateHsnCode`
-	- [Changed] http method type from `get` To `put`
+	- [Added] Possible values `0.25` to property `tax2` of schema `HsnUpsert` in request body
+	- [Added] Possible values `1.5` to property `tax2` of schema `HsnUpsert` in request body
+	- [Added] Possible values `2.5` to property `tax2` of schema `HsnUpsert` in request body
+	- [Added] Possible values `0.25` to property `tax1` of schema `HsnUpsert` in request body
+	- [Added] Possible values `1.5` to property `tax1` of schema `HsnUpsert` in request body
+	- [Added] Possible values `2.5` to property `tax1` of schema `HsnUpsert` in request body
 
 
 #### bulkHsnCode
@@ -1270,7 +717,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].order.orderingChannelLogo` of schema `OrderDetailsData` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].order.orderValue` of schema `OrderDetailsData` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].order.orderingChannel` of schema `OrderDetailsData` in response with status code 200
-	- [Added] property `shipments[].order.meta` of schema `OrderMeta` in response with status code 200
+	- [Added] property `shipments[].order.meta` of schema `OrderDetailsData` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].user.uid` of schema `UserDataInfo` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].user.name` of schema `UserDataInfo` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].user.firstName` of schema `UserDataInfo` in response with status code 200
@@ -1622,7 +1069,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].affiliateDetails.pdfLinks.poInvoice` of schema `PDFLinks` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].affiliateDetails.affiliateId` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].affiliateDetails.adId` of schema `AffiliateDetails` in response with status code 200
-	- [Added] property `shipments[].affiliateDetails.config` of schema `AffiliateConfig` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.config` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].bagStatusHistory[].reasons` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].bagStatusHistory[].storeId` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].bagStatusHistory[].kafkaSync` of schema `BagStatusHistory` in response with status code 200
@@ -1651,7 +1098,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].shipmentCreatedAt` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].previousShipmentId` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].shipmentUpdateTime` of schema `PlatformShipment` in response with status code 200
-	- [Added] property `shipments[].rtoAddress` of schema `PlatformDeliveryAddress` in response with status code 200
+	- [Added] property `shipments[].rtoAddress` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].creditNoteId` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].isSelfShip` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].modeOfPayment` of schema `PlatformShipment` in response with status code 200
@@ -1726,7 +1173,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].order.orderingChannelLogo` of schema `OrderDetailsData` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].order.orderValue` of schema `OrderDetailsData` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].order.orderingChannel` of schema `OrderDetailsData` in response with status code 200
-	- [Added] property `shipments[].order.meta` of schema `OrderMeta` in response with status code 200
+	- [Added] property `shipments[].order.meta` of schema `OrderDetailsData` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].user.uid` of schema `UserDataInfo` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].user.name` of schema `UserDataInfo` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].user.firstName` of schema `UserDataInfo` in response with status code 200
@@ -2078,7 +1525,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].affiliateDetails.pdfLinks.poInvoice` of schema `PDFLinks` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].affiliateDetails.affiliateId` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].affiliateDetails.adId` of schema `AffiliateDetails` in response with status code 200
-	- [Added] property `shipments[].affiliateDetails.config` of schema `AffiliateConfig` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.config` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].bagStatusHistory[].reasons` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].bagStatusHistory[].storeId` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].bagStatusHistory[].kafkaSync` of schema `BagStatusHistory` in response with status code 200
@@ -2107,7 +1554,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `shipments[].shipmentCreatedAt` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].previousShipmentId` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].shipmentUpdateTime` of schema `PlatformShipment` in response with status code 200
-	- [Added] property `shipments[].rtoAddress` of schema `PlatformDeliveryAddress` in response with status code 200
+	- [Added] property `shipments[].rtoAddress` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].creditNoteId` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].isSelfShip` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `shipments[].modeOfPayment` of schema `PlatformShipment` in response with status code 200
@@ -2147,7 +1594,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].order.orderingChannelLogo` of schema `OrderDetailsData` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].order.orderValue` of schema `OrderDetailsData` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].order.orderingChannel` of schema `OrderDetailsData` in response with status code 200
-	- [Added] property `items[].shipments[].order.meta` of schema `OrderMeta` in response with status code 200
+	- [Added] property `items[].shipments[].order.meta` of schema `OrderDetailsData` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].user.uid` of schema `UserDataInfo` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].user.name` of schema `UserDataInfo` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].user.firstName` of schema `UserDataInfo` in response with status code 200
@@ -2499,7 +1946,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].affiliateDetails.pdfLinks.poInvoice` of schema `PDFLinks` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].affiliateDetails.affiliateId` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].affiliateDetails.adId` of schema `AffiliateDetails` in response with status code 200
-	- [Added] property `items[].shipments[].affiliateDetails.config` of schema `AffiliateConfig` in response with status code 200
+	- [Added] property `items[].shipments[].affiliateDetails.config` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].bagStatusHistory[].reasons` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].bagStatusHistory[].storeId` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].bagStatusHistory[].kafkaSync` of schema `BagStatusHistory` in response with status code 200
@@ -2528,7 +1975,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].shipments[].shipmentCreatedAt` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `items[].shipments[].previousShipmentId` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `items[].shipments[].shipmentUpdateTime` of schema `PlatformShipment` in response with status code 200
-	- [Added] property `items[].shipments[].rtoAddress` of schema `PlatformDeliveryAddress` in response with status code 200
+	- [Added] property `items[].shipments[].rtoAddress` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `items[].shipments[].creditNoteId` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `items[].shipments[].isSelfShip` of schema `PlatformShipment` in response with status code 200
 	- [Added] property `items[].shipments[].modeOfPayment` of schema `PlatformShipment` in response with status code 200
@@ -2845,7 +2292,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `affiliateDetails.pdfLinks.poInvoice` of schema `PDFLinks` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `affiliateDetails.affiliateId` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `affiliateDetails.adId` of schema `AffiliateDetails` in response with status code 200
-	- [Added] property `affiliateDetails.config` of schema `AffiliateConfig` in response with status code 200
+	- [Added] property `affiliateDetails.config` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `bagStatusHistory.reasons` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `bagStatusHistory.storeId` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `bagStatusHistory.kafkaSync` of schema `BagStatusHistory` in response with status code 200
@@ -3154,7 +2601,7 @@
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].affiliateDetails.pdfLinks.poInvoice` of schema `PDFLinks` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].affiliateDetails.affiliateId` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].affiliateDetails.adId` of schema `AffiliateDetails` in response with status code 200
-	- [Added] property `items[].affiliateDetails.config` of schema `AffiliateConfig` in response with status code 200
+	- [Added] property `items[].affiliateDetails.config` of schema `AffiliateDetails` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].bagStatusHistory.reasons` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].bagStatusHistory.storeId` of schema `BagStatusHistory` in response with status code 200
 	- [Breaking] [Added] Possible nullable value `true` to property `items[].bagStatusHistory.kafkaSync` of schema `BagStatusHistory` in response with status code 200
