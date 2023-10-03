@@ -12,18 +12,16 @@ public extension PlatformClient.Catalog {
     class DateMeta: Codable {
         
         
-        public var modifiedOn: String?
-        
         public var addedOnStore: String?
         
         public var createdOn: String?
         
         public var inventoryUpdatedOn: String?
         
+        public var modifiedOn: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case modifiedOn = "modified_on"
             
             case addedOnStore = "added_on_store"
             
@@ -31,11 +29,11 @@ public extension PlatformClient.Catalog {
             
             case inventoryUpdatedOn = "inventory_updated_on"
             
+            case modifiedOn = "modified_on"
+            
         }
 
         public init(addedOnStore: String? = nil, createdOn: String? = nil, inventoryUpdatedOn: String? = nil, modifiedOn: String? = nil) {
-            
-            self.modifiedOn = modifiedOn
             
             self.addedOnStore = addedOnStore
             
@@ -43,22 +41,12 @@ public extension PlatformClient.Catalog {
             
             self.inventoryUpdatedOn = inventoryUpdatedOn
             
+            self.modifiedOn = modifiedOn
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -96,15 +84,22 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
             
             
             
@@ -119,6 +114,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(inventoryUpdatedOn, forKey: .inventoryUpdatedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }
@@ -137,18 +137,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class DateMeta: Codable {
         
         
-        public var modifiedOn: String?
-        
         public var addedOnStore: String?
         
         public var createdOn: String?
         
         public var inventoryUpdatedOn: String?
         
+        public var modifiedOn: String?
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case modifiedOn = "modified_on"
             
             case addedOnStore = "added_on_store"
             
@@ -156,11 +154,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case inventoryUpdatedOn = "inventory_updated_on"
             
+            case modifiedOn = "modified_on"
+            
         }
 
         public init(addedOnStore: String? = nil, createdOn: String? = nil, inventoryUpdatedOn: String? = nil, modifiedOn: String? = nil) {
-            
-            self.modifiedOn = modifiedOn
             
             self.addedOnStore = addedOnStore
             
@@ -168,22 +166,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.inventoryUpdatedOn = inventoryUpdatedOn
             
+            self.modifiedOn = modifiedOn
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -221,15 +209,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
-            
             
             
             
@@ -244,6 +239,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(inventoryUpdatedOn, forKey: .inventoryUpdatedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
         }

@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class InventoryResponseItem: Codable {
         
         
-        public var reason: InventoryFailedReason?
-        
         public var data: InventoryPayload?
+        
+        public var reason: InventoryFailedReason?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case reason = "reason"
-            
             case data = "data"
+            
+            case reason = "reason"
             
         }
 
         public init(data: InventoryPayload? = nil, reason: InventoryFailedReason? = nil) {
             
-            self.reason = reason
-            
             self.data = data
+            
+            self.reason = reason
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    reason = try container.decode(InventoryFailedReason.self, forKey: .reason)
+                    data = try container.decode(InventoryPayload.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    data = try container.decode(InventoryPayload.self, forKey: .data)
+                    reason = try container.decode(InventoryFailedReason.self, forKey: .reason)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(reason, forKey: .reason)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(reason, forKey: .reason)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventoryResponseItem: Codable {
         
         
-        public var reason: InventoryFailedReason?
-        
         public var data: InventoryPayload?
+        
+        public var reason: InventoryFailedReason?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case reason = "reason"
-            
             case data = "data"
+            
+            case reason = "reason"
             
         }
 
         public init(data: InventoryPayload? = nil, reason: InventoryFailedReason? = nil) {
             
-            self.reason = reason
-            
             self.data = data
+            
+            self.reason = reason
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    reason = try container.decode(InventoryFailedReason.self, forKey: .reason)
+                    data = try container.decode(InventoryPayload.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    data = try container.decode(InventoryPayload.self, forKey: .data)
+                    reason = try container.decode(InventoryFailedReason.self, forKey: .reason)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(reason, forKey: .reason)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(reason, forKey: .reason)
             
             
         }

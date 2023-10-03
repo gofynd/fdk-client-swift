@@ -12,30 +12,30 @@ public extension PlatformClient.Catalog {
     class Brand: Codable {
         
         
-        public var uid: Int?
+        public var logo: Logo?
         
         public var name: String?
         
-        public var logo: Logo?
+        public var uid: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case uid = "uid"
+            case logo = "logo"
             
             case name = "name"
             
-            case logo = "logo"
+            case uid = "uid"
             
         }
 
         public init(logo: Logo? = nil, name: String? = nil, uid: Int? = nil) {
             
-            self.uid = uid
+            self.logo = logo
             
             self.name = name
             
-            self.logo = logo
+            self.uid = uid
             
         }
 
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    logo = try container.decode(Logo.self, forKey: .logo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    logo = try container.decode(Logo.self, forKey: .logo)
+                    uid = try container.decode(Int.self, forKey: .uid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
@@ -95,7 +95,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
         }
@@ -114,30 +114,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class Brand: Codable {
         
         
-        public var uid: Int?
+        public var logo: Logo?
         
         public var name: String?
         
-        public var logo: Logo?
+        public var uid: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case uid = "uid"
+            case logo = "logo"
             
             case name = "name"
             
-            case logo = "logo"
+            case uid = "uid"
             
         }
 
         public init(logo: Logo? = nil, name: String? = nil, uid: Int? = nil) {
             
-            self.uid = uid
+            self.logo = logo
             
             self.name = name
             
-            self.logo = logo
+            self.uid = uid
             
         }
 
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    uid = try container.decode(Int.self, forKey: .uid)
+                    logo = try container.decode(Logo.self, forKey: .logo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    logo = try container.decode(Logo.self, forKey: .logo)
+                    uid = try container.decode(Int.self, forKey: .uid)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(uid, forKey: .uid)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
@@ -197,7 +197,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(logo, forKey: .logo)
+            try? container.encodeIfPresent(uid, forKey: .uid)
             
             
         }

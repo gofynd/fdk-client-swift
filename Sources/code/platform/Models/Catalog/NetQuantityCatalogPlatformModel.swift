@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class NetQuantity: Codable {
         
         
-        public var value: Double?
-        
         public var unit: String?
+        
+        public var value: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
-            
             case unit = "unit"
+            
+            case value = "value"
             
         }
 
         public init(unit: String? = nil, value: Double? = nil) {
             
-            self.value = value
-            
             self.unit = unit
+            
+            self.value = value
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    value = try container.decode(Double.self, forKey: .value)
+                    unit = try container.decode(String.self, forKey: .unit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    unit = try container.decode(String.self, forKey: .unit)
+                    value = try container.decode(Double.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
-            
-            
-            
-            
             try? container.encodeIfPresent(unit, forKey: .unit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class NetQuantity: Codable {
         
         
-        public var value: Double?
-        
         public var unit: String?
+        
+        public var value: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case value = "value"
-            
             case unit = "unit"
+            
+            case value = "value"
             
         }
 
         public init(unit: String? = nil, value: Double? = nil) {
             
-            self.value = value
-            
             self.unit = unit
+            
+            self.value = value
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    value = try container.decode(Double.self, forKey: .value)
+                    unit = try container.decode(String.self, forKey: .unit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    unit = try container.decode(String.self, forKey: .unit)
+                    value = try container.decode(Double.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(value, forKey: .value)
-            
-            
-            
-            
             try? container.encodeIfPresent(unit, forKey: .unit)
+            
+            
+            
+            
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }

@@ -12,34 +12,29 @@ public extension PlatformClient.Catalog {
     class InventoryStockResponse: Codable {
         
         
-        public var page: InventoryPage
-        
         public var items: [[String: Any]]?
+        
+        public var page: InventoryPage
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case page = "page"
-            
             case items = "items"
+            
+            case page = "page"
             
         }
 
         public init(items: [[String: Any]]? = nil, page: InventoryPage) {
             
-            self.page = page
-            
             self.items = items
+            
+            self.page = page
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                page = try container.decode(InventoryPage.self, forKey: .page)
-                
-            
             
             
                 do {
@@ -53,6 +48,11 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                page = try container.decode(InventoryPage.self, forKey: .page)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -60,12 +60,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }
@@ -84,34 +84,29 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventoryStockResponse: Codable {
         
         
-        public var page: InventoryPage
-        
         public var items: [[String: Any]]?
+        
+        public var page: InventoryPage
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case page = "page"
-            
             case items = "items"
+            
+            case page = "page"
             
         }
 
         public init(items: [[String: Any]]? = nil, page: InventoryPage) {
             
-            self.page = page
-            
             self.items = items
+            
+            self.page = page
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                page = try container.decode(InventoryPage.self, forKey: .page)
-                
-            
             
             
                 do {
@@ -125,6 +120,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                page = try container.decode(InventoryPage.self, forKey: .page)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -132,12 +132,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }

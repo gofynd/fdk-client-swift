@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class NextSchedule: Codable {
         
         
-        public var start: String?
-        
         public var end: String?
+        
+        public var start: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case start = "start"
-            
             case end = "end"
+            
+            case start = "start"
             
         }
 
         public init(end: String? = nil, start: String? = nil) {
             
-            self.start = start
-            
             self.end = end
+            
+            self.start = start
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    start = try container.decode(String.self, forKey: .start)
+                    end = try container.decode(String.self, forKey: .end)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    end = try container.decode(String.self, forKey: .end)
+                    start = try container.decode(String.self, forKey: .start)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(start, forKey: .start)
-            
-            
-            
-            
             try? container.encode(end, forKey: .end)
+            
+            
+            
+            
+            try? container.encodeIfPresent(start, forKey: .start)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class NextSchedule: Codable {
         
         
-        public var start: String?
-        
         public var end: String?
+        
+        public var start: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case start = "start"
-            
             case end = "end"
+            
+            case start = "start"
             
         }
 
         public init(end: String? = nil, start: String? = nil) {
             
-            self.start = start
-            
             self.end = end
+            
+            self.start = start
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    start = try container.decode(String.self, forKey: .start)
+                    end = try container.decode(String.self, forKey: .end)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    end = try container.decode(String.self, forKey: .end)
+                    start = try container.decode(String.self, forKey: .start)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(start, forKey: .start)
-            
-            
-            
-            
             try? container.encode(end, forKey: .end)
+            
+            
+            
+            
+            try? container.encodeIfPresent(start, forKey: .start)
             
             
         }

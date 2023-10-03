@@ -12,30 +12,30 @@ public extension PlatformClient.Catalog {
     class InventoryRequest: Codable {
         
         
-        public var sizes: [InvSize]
+        public var companyId: Int
         
         public var item: ItemQuery
         
-        public var companyId: Int
+        public var sizes: [InvSize]
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case sizes = "sizes"
+            case companyId = "company_id"
             
             case item = "item"
             
-            case companyId = "company_id"
+            case sizes = "sizes"
             
         }
 
         public init(companyId: Int, item: ItemQuery, sizes: [InvSize]) {
             
-            self.sizes = sizes
+            self.companyId = companyId
             
             self.item = item
             
-            self.companyId = companyId
+            self.sizes = sizes
             
         }
 
@@ -43,7 +43,7 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                sizes = try container.decode([InvSize].self, forKey: .sizes)
+                companyId = try container.decode(Int.self, forKey: .companyId)
                 
             
             
@@ -53,7 +53,7 @@ public extension PlatformClient.Catalog {
             
             
             
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                sizes = try container.decode([InvSize].self, forKey: .sizes)
                 
             
             
@@ -64,7 +64,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
@@ -74,7 +74,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
             
             
         }
@@ -93,30 +93,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventoryRequest: Codable {
         
         
-        public var sizes: [InvSize]
+        public var companyId: Int
         
         public var item: ItemQuery
         
-        public var companyId: Int
+        public var sizes: [InvSize]
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case sizes = "sizes"
+            case companyId = "company_id"
             
             case item = "item"
             
-            case companyId = "company_id"
+            case sizes = "sizes"
             
         }
 
         public init(companyId: Int, item: ItemQuery, sizes: [InvSize]) {
             
-            self.sizes = sizes
+            self.companyId = companyId
             
             self.item = item
             
-            self.companyId = companyId
+            self.sizes = sizes
             
         }
 
@@ -124,7 +124,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                sizes = try container.decode([InvSize].self, forKey: .sizes)
+                companyId = try container.decode(Int.self, forKey: .companyId)
                 
             
             
@@ -134,7 +134,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                companyId = try container.decode(Int.self, forKey: .companyId)
+                sizes = try container.decode([InvSize].self, forKey: .sizes)
                 
             
             
@@ -145,7 +145,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(sizes, forKey: .sizes)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
@@ -155,7 +155,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            try? container.encodeIfPresent(sizes, forKey: .sizes)
             
             
         }

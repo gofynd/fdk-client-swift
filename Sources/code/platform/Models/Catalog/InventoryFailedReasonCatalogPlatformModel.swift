@@ -12,34 +12,29 @@ public extension PlatformClient.Catalog {
     class InventoryFailedReason: Codable {
         
         
-        public var message: String
-        
         public var errors: String?
+        
+        public var message: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
-            
             case errors = "errors"
+            
+            case message = "message"
             
         }
 
         public init(errors: String? = nil, message: String) {
             
-            self.message = message
-            
             self.errors = errors
+            
+            self.message = message
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                message = try container.decode(String.self, forKey: .message)
-                
-            
             
             
                 do {
@@ -53,6 +48,11 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                message = try container.decode(String.self, forKey: .message)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -60,12 +60,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
             try? container.encodeIfPresent(errors, forKey: .errors)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }
@@ -84,34 +84,29 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class InventoryFailedReason: Codable {
         
         
-        public var message: String
-        
         public var errors: String?
+        
+        public var message: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
-            
             case errors = "errors"
+            
+            case message = "message"
             
         }
 
         public init(errors: String? = nil, message: String) {
             
-            self.message = message
-            
             self.errors = errors
+            
+            self.message = message
             
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                message = try container.decode(String.self, forKey: .message)
-                
-            
             
             
                 do {
@@ -125,6 +120,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                message = try container.decode(String.self, forKey: .message)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -132,12 +132,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
-            
-            
-            
-            
             try? container.encodeIfPresent(errors, forKey: .errors)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

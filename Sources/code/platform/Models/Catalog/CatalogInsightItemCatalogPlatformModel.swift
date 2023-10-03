@@ -12,30 +12,30 @@ public extension PlatformClient.Catalog {
     class CatalogInsightItem: Codable {
         
         
-        public var sellableCount: Int?
+        public var count: Int?
         
         public var outOfStockCount: Int?
         
-        public var count: Int?
+        public var sellableCount: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case sellableCount = "sellable_count"
+            case count = "count"
             
             case outOfStockCount = "out_of_stock_count"
             
-            case count = "count"
+            case sellableCount = "sellable_count"
             
         }
 
         public init(count: Int? = nil, outOfStockCount: Int? = nil, sellableCount: Int? = nil) {
             
-            self.sellableCount = sellableCount
+            self.count = count
             
             self.outOfStockCount = outOfStockCount
             
-            self.count = count
+            self.sellableCount = sellableCount
             
         }
 
@@ -44,7 +44,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    sellableCount = try container.decode(Int.self, forKey: .sellableCount)
+                    count = try container.decode(Int.self, forKey: .count)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    count = try container.decode(Int.self, forKey: .count)
+                    sellableCount = try container.decode(Int.self, forKey: .sellableCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,7 +85,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(sellableCount, forKey: .sellableCount)
+            try? container.encodeIfPresent(count, forKey: .count)
             
             
             
@@ -95,7 +95,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(count, forKey: .count)
+            try? container.encodeIfPresent(sellableCount, forKey: .sellableCount)
             
             
         }
@@ -114,30 +114,30 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CatalogInsightItem: Codable {
         
         
-        public var sellableCount: Int?
+        public var count: Int?
         
         public var outOfStockCount: Int?
         
-        public var count: Int?
+        public var sellableCount: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case sellableCount = "sellable_count"
+            case count = "count"
             
             case outOfStockCount = "out_of_stock_count"
             
-            case count = "count"
+            case sellableCount = "sellable_count"
             
         }
 
         public init(count: Int? = nil, outOfStockCount: Int? = nil, sellableCount: Int? = nil) {
             
-            self.sellableCount = sellableCount
+            self.count = count
             
             self.outOfStockCount = outOfStockCount
             
-            self.count = count
+            self.sellableCount = sellableCount
             
         }
 
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    sellableCount = try container.decode(Int.self, forKey: .sellableCount)
+                    count = try container.decode(Int.self, forKey: .count)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +170,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    count = try container.decode(Int.self, forKey: .count)
+                    sellableCount = try container.decode(Int.self, forKey: .sellableCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(sellableCount, forKey: .sellableCount)
+            try? container.encodeIfPresent(count, forKey: .count)
             
             
             
@@ -197,7 +197,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(count, forKey: .count)
+            try? container.encodeIfPresent(sellableCount, forKey: .sellableCount)
             
             
         }

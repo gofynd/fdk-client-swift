@@ -24,6 +24,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var name: String?
         
+        public var paymentExtraIdentifiers: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,9 +39,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case name = "name"
             
+            case paymentExtraIdentifiers = "payment_extra_identifiers"
+            
         }
 
-        public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentMeta: PaymentMeta) {
+        public init(amount: Double? = nil, mode: String, name: String? = nil, payment: String? = nil, paymentExtraIdentifiers: [String: Any]? = nil, paymentMeta: PaymentMeta) {
             
             self.mode = mode
             
@@ -50,6 +54,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.amount = amount
             
             self.name = name
+            
+            self.paymentExtraIdentifiers = paymentExtraIdentifiers
             
         }
 
@@ -102,6 +108,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    paymentExtraIdentifiers = try container.decode([String: Any].self, forKey: .paymentExtraIdentifiers)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -130,6 +148,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentExtraIdentifiers, forKey: .paymentExtraIdentifiers)
             
             
         }

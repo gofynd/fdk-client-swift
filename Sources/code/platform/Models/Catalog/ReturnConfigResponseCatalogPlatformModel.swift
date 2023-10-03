@@ -14,18 +14,18 @@ public extension PlatformClient.Catalog {
         
         public var returnable: Bool?
         
-        public var unit: String?
-        
         public var time: Int?
+        
+        public var unit: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case returnable = "returnable"
             
-            case unit = "unit"
-            
             case time = "time"
+            
+            case unit = "unit"
             
         }
 
@@ -33,9 +33,9 @@ public extension PlatformClient.Catalog {
             
             self.returnable = returnable
             
-            self.unit = unit
-            
             self.time = time
+            
+            self.unit = unit
             
         }
 
@@ -45,18 +45,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     returnable = try container.decode(Bool.self, forKey: .returnable)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    unit = try container.decode(String.self, forKey: .unit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,6 +66,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    unit = try container.decode(String.self, forKey: .unit)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -90,12 +90,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(unit, forKey: .unit)
-            
-            
-            
-            
             try? container.encodeIfPresent(time, forKey: .time)
+            
+            
+            
+            
+            try? container.encodeIfPresent(unit, forKey: .unit)
             
             
         }
@@ -116,18 +116,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var returnable: Bool?
         
-        public var unit: String?
-        
         public var time: Int?
+        
+        public var unit: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case returnable = "returnable"
             
-            case unit = "unit"
-            
             case time = "time"
+            
+            case unit = "unit"
             
         }
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.returnable = returnable
             
-            self.unit = unit
-            
             self.time = time
+            
+            self.unit = unit
             
         }
 
@@ -147,18 +147,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     returnable = try container.decode(Bool.self, forKey: .returnable)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    unit = try container.decode(String.self, forKey: .unit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    unit = try container.decode(String.self, forKey: .unit)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -192,12 +192,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(unit, forKey: .unit)
-            
-            
-            
-            
             try? container.encodeIfPresent(time, forKey: .time)
+            
+            
+            
+            
+            try? container.encodeIfPresent(unit, forKey: .unit)
             
             
         }

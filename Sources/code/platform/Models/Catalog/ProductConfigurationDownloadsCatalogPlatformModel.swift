@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class ProductConfigurationDownloads: Codable {
         
         
-        public var multivalue: Bool?
-        
         public var data: [[String: Any]]?
+        
+        public var multivalue: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case multivalue = "multivalue"
-            
             case data = "data"
+            
+            case multivalue = "multivalue"
             
         }
 
         public init(data: [[String: Any]]? = nil, multivalue: Bool? = nil) {
             
-            self.multivalue = multivalue
-            
             self.data = data
+            
+            self.multivalue = multivalue
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    multivalue = try container.decode(Bool.self, forKey: .multivalue)
+                    data = try container.decode([[String: Any]].self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    data = try container.decode([[String: Any]].self, forKey: .data)
+                    multivalue = try container.decode(Bool.self, forKey: .multivalue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(multivalue, forKey: .multivalue)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(multivalue, forKey: .multivalue)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductConfigurationDownloads: Codable {
         
         
-        public var multivalue: Bool?
-        
         public var data: [[String: Any]]?
+        
+        public var multivalue: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case multivalue = "multivalue"
-            
             case data = "data"
+            
+            case multivalue = "multivalue"
             
         }
 
         public init(data: [[String: Any]]? = nil, multivalue: Bool? = nil) {
             
-            self.multivalue = multivalue
-            
             self.data = data
+            
+            self.multivalue = multivalue
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    multivalue = try container.decode(Bool.self, forKey: .multivalue)
+                    data = try container.decode([[String: Any]].self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    data = try container.decode([[String: Any]].self, forKey: .data)
+                    multivalue = try container.decode(Bool.self, forKey: .multivalue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(multivalue, forKey: .multivalue)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(multivalue, forKey: .multivalue)
             
             
         }

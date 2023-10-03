@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class GetAppCatalogEntityConfiguration: Codable {
         
         
-        public var isDefault: Bool?
-        
         public var data: EntityConfiguration?
+        
+        public var isDefault: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case isDefault = "is_default"
-            
             case data = "data"
+            
+            case isDefault = "is_default"
             
         }
 
         public init(data: EntityConfiguration? = nil, isDefault: Bool? = nil) {
             
-            self.isDefault = isDefault
-            
             self.data = data
+            
+            self.isDefault = isDefault
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                    data = try container.decode(EntityConfiguration.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    data = try container.decode(EntityConfiguration.self, forKey: .data)
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetAppCatalogEntityConfiguration: Codable {
         
         
-        public var isDefault: Bool?
-        
         public var data: EntityConfiguration?
+        
+        public var isDefault: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case isDefault = "is_default"
-            
             case data = "data"
+            
+            case isDefault = "is_default"
             
         }
 
         public init(data: EntityConfiguration? = nil, isDefault: Bool? = nil) {
             
-            self.isDefault = isDefault
-            
             self.data = data
+            
+            self.isDefault = isDefault
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
+                    data = try container.decode(EntityConfiguration.self, forKey: .data)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    data = try container.decode(EntityConfiguration.self, forKey: .data)
+                    isDefault = try container.decode(Bool.self, forKey: .isDefault)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isDefault, forKey: .isDefault)
             
             
         }

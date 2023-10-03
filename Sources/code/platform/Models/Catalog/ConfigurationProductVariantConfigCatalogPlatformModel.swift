@@ -12,54 +12,54 @@ public extension PlatformClient.Catalog {
     class ConfigurationProductVariantConfig: Codable {
         
         
-        public var size: ProductSize
-        
         public var displayType: String
-        
-        public var logo: String?
         
         public var isActive: Bool
         
         public var key: String
         
-        public var priority: Int
+        public var logo: String?
         
         public var name: String
+        
+        public var priority: Int
+        
+        public var size: ProductSize
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case size = "size"
-            
             case displayType = "display_type"
-            
-            case logo = "logo"
             
             case isActive = "is_active"
             
             case key = "key"
             
-            case priority = "priority"
+            case logo = "logo"
             
             case name = "name"
+            
+            case priority = "priority"
+            
+            case size = "size"
             
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
             
-            self.size = size
-            
             self.displayType = displayType
-            
-            self.logo = logo
             
             self.isActive = isActive
             
             self.key = key
             
-            self.priority = priority
+            self.logo = logo
             
             self.name = name
+            
+            self.priority = priority
+            
+            self.size = size
             
         }
 
@@ -67,12 +67,17 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                size = try container.decode(ProductSize.self, forKey: .size)
+                displayType = try container.decode(String.self, forKey: .displayType)
                 
             
             
             
-                displayType = try container.decode(String.self, forKey: .displayType)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+            
+            
+            
+                key = try container.decode(String.self, forKey: .key)
                 
             
             
@@ -89,12 +94,7 @@ public extension PlatformClient.Catalog {
                 
             
             
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
-                key = try container.decode(String.self, forKey: .key)
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
@@ -104,7 +104,7 @@ public extension PlatformClient.Catalog {
             
             
             
-                name = try container.decode(String.self, forKey: .name)
+                size = try container.decode(ProductSize.self, forKey: .size)
                 
             
             
@@ -115,17 +115,7 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            
             try? container.encodeIfPresent(displayType, forKey: .displayType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
@@ -140,12 +130,22 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
         }
@@ -164,54 +164,54 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ConfigurationProductVariantConfig: Codable {
         
         
-        public var size: ProductSize
-        
         public var displayType: String
-        
-        public var logo: String?
         
         public var isActive: Bool
         
         public var key: String
         
-        public var priority: Int
+        public var logo: String?
         
         public var name: String
+        
+        public var priority: Int
+        
+        public var size: ProductSize
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case size = "size"
-            
             case displayType = "display_type"
-            
-            case logo = "logo"
             
             case isActive = "is_active"
             
             case key = "key"
             
-            case priority = "priority"
+            case logo = "logo"
             
             case name = "name"
+            
+            case priority = "priority"
+            
+            case size = "size"
             
         }
 
         public init(displayType: String, isActive: Bool, key: String, logo: String? = nil, name: String, priority: Int, size: ProductSize) {
             
-            self.size = size
-            
             self.displayType = displayType
-            
-            self.logo = logo
             
             self.isActive = isActive
             
             self.key = key
             
-            self.priority = priority
+            self.logo = logo
             
             self.name = name
+            
+            self.priority = priority
+            
+            self.size = size
             
         }
 
@@ -219,12 +219,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                size = try container.decode(ProductSize.self, forKey: .size)
+                displayType = try container.decode(String.self, forKey: .displayType)
                 
             
             
             
-                displayType = try container.decode(String.self, forKey: .displayType)
+                isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+            
+            
+            
+                key = try container.decode(String.self, forKey: .key)
                 
             
             
@@ -241,12 +246,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-            
-            
-            
-                key = try container.decode(String.self, forKey: .key)
+                name = try container.decode(String.self, forKey: .name)
                 
             
             
@@ -256,7 +256,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                name = try container.decode(String.self, forKey: .name)
+                size = try container.decode(ProductSize.self, forKey: .size)
                 
             
             
@@ -267,17 +267,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(size, forKey: .size)
-            
-            
-            
-            
             try? container.encodeIfPresent(displayType, forKey: .displayType)
-            
-            
-            
-            
-            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
@@ -292,12 +282,22 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(priority, forKey: .priority)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
             try? container.encodeIfPresent(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encodeIfPresent(priority, forKey: .priority)
+            
+            
+            
+            
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
         }

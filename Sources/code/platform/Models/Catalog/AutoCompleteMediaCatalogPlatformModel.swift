@@ -14,18 +14,18 @@ public extension PlatformClient.Catalog {
         
         public var aspectRatio: String?
         
-        public var url: String?
-        
         public var type: String?
+        
+        public var url: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case aspectRatio = "aspect_ratio"
             
-            case url = "url"
-            
             case type = "type"
+            
+            case url = "url"
             
         }
 
@@ -33,9 +33,9 @@ public extension PlatformClient.Catalog {
             
             self.aspectRatio = aspectRatio
             
-            self.url = url
-            
             self.type = type
+            
+            self.url = url
             
         }
 
@@ -45,18 +45,6 @@ public extension PlatformClient.Catalog {
             
                 do {
                     aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    url = try container.decode(String.self, forKey: .url)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,6 +66,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -90,12 +90,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(url, forKey: .url)
-            
-            
-            
-            
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
         }
@@ -116,18 +116,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var aspectRatio: String?
         
-        public var url: String?
-        
         public var type: String?
+        
+        public var url: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case aspectRatio = "aspect_ratio"
             
-            case url = "url"
-            
             case type = "type"
+            
+            case url = "url"
             
         }
 
@@ -135,9 +135,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.aspectRatio = aspectRatio
             
-            self.url = url
-            
             self.type = type
+            
+            self.url = url
             
         }
 
@@ -147,18 +147,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     aspectRatio = try container.decode(String.self, forKey: .aspectRatio)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    url = try container.decode(String.self, forKey: .url)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -180,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    url = try container.decode(String.self, forKey: .url)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -192,12 +192,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(url, forKey: .url)
-            
-            
-            
-            
             try? container.encodeIfPresent(type, forKey: .type)
+            
+            
+            
+            
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
         }

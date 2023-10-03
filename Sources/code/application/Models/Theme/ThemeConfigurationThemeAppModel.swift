@@ -10,9 +10,7 @@ public extension ApplicationClient.Theme {
         
         public var name: String?
         
-        public var globalConfig: GlobalConfig?
-        
-        public var custom: CustomConfig?
+        public var globalConfig: [String: Any]?
         
         public var page: [String]?
         
@@ -23,19 +21,15 @@ public extension ApplicationClient.Theme {
             
             case globalConfig = "global_config"
             
-            case custom = "custom"
-            
             case page = "page"
             
         }
 
-        public init(custom: CustomConfig? = nil, globalConfig: GlobalConfig? = nil, name: String? = nil, page: [String]? = nil) {
+        public init(globalConfig: [String: Any]? = nil, name: String? = nil, page: [String]? = nil) {
             
             self.name = name
             
             self.globalConfig = globalConfig
-            
-            self.custom = custom
             
             self.page = page
             
@@ -58,19 +52,7 @@ public extension ApplicationClient.Theme {
             
             
             do {
-                globalConfig = try container.decode(GlobalConfig.self, forKey: .globalConfig)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                custom = try container.decode(CustomConfig.self, forKey: .custom)
+                globalConfig = try container.decode([String: Any].self, forKey: .globalConfig)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -105,11 +87,6 @@ public extension ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(globalConfig, forKey: .globalConfig)
-            
-            
-            
-            
-            try? container.encodeIfPresent(custom, forKey: .custom)
             
             
             

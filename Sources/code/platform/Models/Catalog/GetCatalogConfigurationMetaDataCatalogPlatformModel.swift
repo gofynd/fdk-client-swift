@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class GetCatalogConfigurationMetaData: Codable {
         
         
-        public var product: GetCatalogConfigurationDetailsProduct?
-        
         public var listing: MetaDataListingResponse?
+        
+        public var product: GetCatalogConfigurationDetailsProduct?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case product = "product"
-            
             case listing = "listing"
+            
+            case product = "product"
             
         }
 
         public init(listing: MetaDataListingResponse? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             
-            self.product = product
-            
             self.listing = listing
+            
+            self.product = product
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    product = try container.decode(GetCatalogConfigurationDetailsProduct.self, forKey: .product)
+                    listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
+                    product = try container.decode(GetCatalogConfigurationDetailsProduct.self, forKey: .product)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(product, forKey: .product)
-            
-            
-            
-            
             try? container.encodeIfPresent(listing, forKey: .listing)
+            
+            
+            
+            
+            try? container.encodeIfPresent(product, forKey: .product)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetCatalogConfigurationMetaData: Codable {
         
         
-        public var product: GetCatalogConfigurationDetailsProduct?
-        
         public var listing: MetaDataListingResponse?
+        
+        public var product: GetCatalogConfigurationDetailsProduct?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case product = "product"
-            
             case listing = "listing"
+            
+            case product = "product"
             
         }
 
         public init(listing: MetaDataListingResponse? = nil, product: GetCatalogConfigurationDetailsProduct? = nil) {
             
-            self.product = product
-            
             self.listing = listing
+            
+            self.product = product
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    product = try container.decode(GetCatalogConfigurationDetailsProduct.self, forKey: .product)
+                    listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    listing = try container.decode(MetaDataListingResponse.self, forKey: .listing)
+                    product = try container.decode(GetCatalogConfigurationDetailsProduct.self, forKey: .product)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(product, forKey: .product)
-            
-            
-            
-            
             try? container.encodeIfPresent(listing, forKey: .listing)
+            
+            
+            
+            
+            try? container.encodeIfPresent(product, forKey: .product)
             
             
         }

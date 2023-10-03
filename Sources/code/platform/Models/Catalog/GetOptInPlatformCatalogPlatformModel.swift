@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class GetOptInPlatform: Codable {
         
         
-        public var page: Page
-        
         public var items: [CompanyOptIn]
+        
+        public var page: Page
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case page = "page"
-            
             case items = "items"
+            
+            case page = "page"
             
         }
 
         public init(items: [CompanyOptIn], page: Page) {
             
-            self.page = page
-            
             self.items = items
+            
+            self.page = page
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                page = try container.decode(Page.self, forKey: .page)
+                items = try container.decode([CompanyOptIn].self, forKey: .items)
                 
             
             
             
-                items = try container.decode([CompanyOptIn].self, forKey: .items)
+                page = try container.decode(Page.self, forKey: .page)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }
@@ -77,24 +77,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class GetOptInPlatform: Codable {
         
         
-        public var page: Page
-        
         public var items: [CompanyOptIn]
+        
+        public var page: Page
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case page = "page"
-            
             case items = "items"
+            
+            case page = "page"
             
         }
 
         public init(items: [CompanyOptIn], page: Page) {
             
-            self.page = page
-            
             self.items = items
+            
+            self.page = page
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                page = try container.decode(Page.self, forKey: .page)
+                items = try container.decode([CompanyOptIn].self, forKey: .items)
                 
             
             
             
-                items = try container.decode([CompanyOptIn].self, forKey: .items)
+                page = try container.decode(Page.self, forKey: .page)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
             try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
         }

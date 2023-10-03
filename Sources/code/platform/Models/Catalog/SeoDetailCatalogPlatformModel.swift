@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class SeoDetail: Codable {
         
         
-        public var title: String?
-        
         public var description: String?
+        
+        public var title: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case title = "title"
-            
             case description = "description"
+            
+            case title = "title"
             
         }
 
         public init(description: String? = nil, title: String? = nil) {
             
-            self.title = title
-            
             self.description = description
+            
+            self.title = title
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    title = try container.decode(String.self, forKey: .title)
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    description = try container.decode(String.self, forKey: .description)
+                    title = try container.decode(String.self, forKey: .title)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(title, forKey: .title)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class SeoDetail: Codable {
         
         
-        public var title: String?
-        
         public var description: String?
+        
+        public var title: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case title = "title"
-            
             case description = "description"
+            
+            case title = "title"
             
         }
 
         public init(description: String? = nil, title: String? = nil) {
             
-            self.title = title
-            
             self.description = description
+            
+            self.title = title
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    title = try container.decode(String.self, forKey: .title)
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    description = try container.decode(String.self, forKey: .description)
+                    title = try container.decode(String.self, forKey: .title)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(title, forKey: .title)
-            
-            
-            
-            
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(title, forKey: .title)
             
             
         }

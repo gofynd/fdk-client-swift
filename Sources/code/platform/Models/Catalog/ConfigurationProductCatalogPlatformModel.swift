@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class ConfigurationProduct: Codable {
         
         
-        public var variant: ConfigurationProductVariant
-        
         public var similar: ConfigurationProductSimilar
+        
+        public var variant: ConfigurationProductVariant
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case variant = "variant"
-            
             case similar = "similar"
+            
+            case variant = "variant"
             
         }
 
         public init(similar: ConfigurationProductSimilar, variant: ConfigurationProductVariant) {
             
-            self.variant = variant
-            
             self.similar = similar
+            
+            self.variant = variant
             
         }
 
@@ -37,12 +37,12 @@ public extension PlatformClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                variant = try container.decode(ConfigurationProductVariant.self, forKey: .variant)
+                similar = try container.decode(ConfigurationProductSimilar.self, forKey: .similar)
                 
             
             
             
-                similar = try container.decode(ConfigurationProductSimilar.self, forKey: .similar)
+                variant = try container.decode(ConfigurationProductVariant.self, forKey: .variant)
                 
             
             
@@ -53,12 +53,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(variant, forKey: .variant)
-            
-            
-            
-            
             try? container.encodeIfPresent(similar, forKey: .similar)
+            
+            
+            
+            
+            try? container.encodeIfPresent(variant, forKey: .variant)
             
             
         }
@@ -77,24 +77,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ConfigurationProduct: Codable {
         
         
-        public var variant: ConfigurationProductVariant
-        
         public var similar: ConfigurationProductSimilar
+        
+        public var variant: ConfigurationProductVariant
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case variant = "variant"
-            
             case similar = "similar"
+            
+            case variant = "variant"
             
         }
 
         public init(similar: ConfigurationProductSimilar, variant: ConfigurationProductVariant) {
             
-            self.variant = variant
-            
             self.similar = similar
+            
+            self.variant = variant
             
         }
 
@@ -102,12 +102,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                variant = try container.decode(ConfigurationProductVariant.self, forKey: .variant)
+                similar = try container.decode(ConfigurationProductSimilar.self, forKey: .similar)
                 
             
             
             
-                similar = try container.decode(ConfigurationProductSimilar.self, forKey: .similar)
+                variant = try container.decode(ConfigurationProductVariant.self, forKey: .variant)
                 
             
             
@@ -118,12 +118,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(variant, forKey: .variant)
-            
-            
-            
-            
             try? container.encodeIfPresent(similar, forKey: .similar)
+            
+            
+            
+            
+            try? container.encodeIfPresent(variant, forKey: .variant)
             
             
         }

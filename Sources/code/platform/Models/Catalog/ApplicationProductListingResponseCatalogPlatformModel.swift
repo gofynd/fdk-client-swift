@@ -14,11 +14,11 @@ public extension PlatformClient.Catalog {
         
         public var filters: [ProductFilters]?
         
+        public var items: [ProductListingDetail]?
+        
         public var operators: [String: Any]?
         
         public var page: Page
-        
-        public var items: [ProductListingDetail]?
         
         public var sortOn: [ProductSortOn]?
         
@@ -27,11 +27,11 @@ public extension PlatformClient.Catalog {
             
             case filters = "filters"
             
+            case items = "items"
+            
             case operators = "operators"
             
             case page = "page"
-            
-            case items = "items"
             
             case sortOn = "sort_on"
             
@@ -41,11 +41,11 @@ public extension PlatformClient.Catalog {
             
             self.filters = filters
             
+            self.items = items
+            
             self.operators = operators
             
             self.page = page
-            
-            self.items = items
             
             self.sortOn = sortOn
             
@@ -57,6 +57,18 @@ public extension PlatformClient.Catalog {
             
                 do {
                     filters = try container.decode([ProductFilters].self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    items = try container.decode([ProductListingDetail].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,18 +97,6 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    items = try container.decode([ProductListingDetail].self, forKey: .items)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -119,17 +119,17 @@ public extension PlatformClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
             try? container.encodeIfPresent(operators, forKey: .operators)
             
             
             
             
             try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
-            try? container.encodeIfPresent(items, forKey: .items)
             
             
             
@@ -155,11 +155,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var filters: [ProductFilters]?
         
+        public var items: [ProductListingDetail]?
+        
         public var operators: [String: Any]?
         
         public var page: Page
-        
-        public var items: [ProductListingDetail]?
         
         public var sortOn: [ProductSortOn]?
         
@@ -168,11 +168,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case filters = "filters"
             
+            case items = "items"
+            
             case operators = "operators"
             
             case page = "page"
-            
-            case items = "items"
             
             case sortOn = "sort_on"
             
@@ -182,11 +182,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.filters = filters
             
+            self.items = items
+            
             self.operators = operators
             
             self.page = page
-            
-            self.items = items
             
             self.sortOn = sortOn
             
@@ -198,6 +198,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
                 do {
                     filters = try container.decode([ProductFilters].self, forKey: .filters)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    items = try container.decode([ProductListingDetail].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -226,18 +238,6 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    items = try container.decode([ProductListingDetail].self, forKey: .items)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     sortOn = try container.decode([ProductSortOn].self, forKey: .sortOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -260,17 +260,17 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
+            try? container.encodeIfPresent(items, forKey: .items)
+            
+            
+            
+            
             try? container.encodeIfPresent(operators, forKey: .operators)
             
             
             
             
             try? container.encodeIfPresent(page, forKey: .page)
-            
-            
-            
-            
-            try? container.encodeIfPresent(items, forKey: .items)
             
             
             

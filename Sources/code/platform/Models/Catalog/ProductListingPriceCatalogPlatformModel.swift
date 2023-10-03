@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class ProductListingPrice: Codable {
         
         
-        public var marked: Price1?
-        
         public var effective: Price1?
+        
+        public var marked: Price1?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case marked = "marked"
-            
             case effective = "effective"
+            
+            case marked = "marked"
             
         }
 
         public init(effective: Price1? = nil, marked: Price1? = nil) {
             
-            self.marked = marked
-            
             self.effective = effective
+            
+            self.marked = marked
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    marked = try container.decode(Price1.self, forKey: .marked)
+                    effective = try container.decode(Price1.self, forKey: .effective)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    effective = try container.decode(Price1.self, forKey: .effective)
+                    marked = try container.decode(Price1.self, forKey: .marked)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(marked, forKey: .marked)
-            
-            
-            
-            
             try? container.encodeIfPresent(effective, forKey: .effective)
+            
+            
+            
+            
+            try? container.encodeIfPresent(marked, forKey: .marked)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class ProductListingPrice: Codable {
         
         
-        public var marked: Price1?
-        
         public var effective: Price1?
+        
+        public var marked: Price1?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case marked = "marked"
-            
             case effective = "effective"
+            
+            case marked = "marked"
             
         }
 
         public init(effective: Price1? = nil, marked: Price1? = nil) {
             
-            self.marked = marked
-            
             self.effective = effective
+            
+            self.marked = marked
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    marked = try container.decode(Price1.self, forKey: .marked)
+                    effective = try container.decode(Price1.self, forKey: .effective)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    effective = try container.decode(Price1.self, forKey: .effective)
+                    marked = try container.decode(Price1.self, forKey: .marked)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(marked, forKey: .marked)
-            
-            
-            
-            
             try? container.encodeIfPresent(effective, forKey: .effective)
+            
+            
+            
+            
+            try? container.encodeIfPresent(marked, forKey: .marked)
             
             
         }

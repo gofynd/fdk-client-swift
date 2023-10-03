@@ -12,24 +12,24 @@ public extension PlatformClient.Catalog {
     class TeaserTag: Codable {
         
         
-        public var url: String?
-        
         public var tag: String?
+        
+        public var url: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case url = "url"
-            
             case tag = "tag"
+            
+            case url = "url"
             
         }
 
         public init(tag: String? = nil, url: String? = nil) {
             
-            self.url = url
-            
             self.tag = tag
+            
+            self.url = url
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    url = try container.decode(String.self, forKey: .url)
+                    tag = try container.decode(String.self, forKey: .tag)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    tag = try container.decode(String.self, forKey: .tag)
+                    url = try container.decode(String.self, forKey: .url)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encode(url, forKey: .url)
-            
-            
-            
-            
             try? container.encode(tag, forKey: .tag)
+            
+            
+            
+            
+            try? container.encode(url, forKey: .url)
             
             
         }
@@ -91,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class TeaserTag: Codable {
         
         
-        public var url: String?
-        
         public var tag: String?
+        
+        public var url: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case url = "url"
-            
             case tag = "tag"
+            
+            case url = "url"
             
         }
 
         public init(tag: String? = nil, url: String? = nil) {
             
-            self.url = url
-            
             self.tag = tag
+            
+            self.url = url
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    url = try container.decode(String.self, forKey: .url)
+                    tag = try container.decode(String.self, forKey: .tag)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    tag = try container.decode(String.self, forKey: .tag)
+                    url = try container.decode(String.self, forKey: .url)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encode(url, forKey: .url)
-            
-            
-            
-            
             try? container.encode(tag, forKey: .tag)
+            
+            
+            
+            
+            try? container.encode(url, forKey: .url)
             
             
         }

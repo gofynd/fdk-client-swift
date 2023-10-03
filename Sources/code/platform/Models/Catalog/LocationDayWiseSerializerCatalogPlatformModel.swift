@@ -12,58 +12,41 @@ public extension PlatformClient.Catalog {
     class LocationDayWiseSerializer: Codable {
         
         
-        public var opening: LocationTimingSerializer?
-        
-        public var weekday: String
-        
         public var closing: LocationTimingSerializer?
         
         public var open: Bool
         
+        public var opening: LocationTimingSerializer?
+        
+        public var weekday: String
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case opening = "opening"
-            
-            case weekday = "weekday"
             
             case closing = "closing"
             
             case open = "open"
             
+            case opening = "opening"
+            
+            case weekday = "weekday"
+            
         }
 
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
-            
-            self.opening = opening
-            
-            self.weekday = weekday
             
             self.closing = closing
             
             self.open = open
             
+            self.opening = opening
+            
+            self.weekday = weekday
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                weekday = try container.decode(String.self, forKey: .weekday)
-                
-            
             
             
                 do {
@@ -82,20 +65,27 @@ public extension PlatformClient.Catalog {
                 
             
             
+            
+                do {
+                    opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                weekday = try container.decode(String.self, forKey: .weekday)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(opening, forKey: .opening)
-            
-            
-            
-            
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
-            
             
             
             
@@ -105,6 +95,16 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(open, forKey: .open)
+            
+            
+            
+            
+            try? container.encodeIfPresent(opening, forKey: .opening)
+            
+            
+            
+            
+            try? container.encodeIfPresent(weekday, forKey: .weekday)
             
             
         }
@@ -123,58 +123,41 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class LocationDayWiseSerializer: Codable {
         
         
-        public var opening: LocationTimingSerializer?
-        
-        public var weekday: String
-        
         public var closing: LocationTimingSerializer?
         
         public var open: Bool
         
+        public var opening: LocationTimingSerializer?
+        
+        public var weekday: String
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case opening = "opening"
-            
-            case weekday = "weekday"
             
             case closing = "closing"
             
             case open = "open"
             
+            case opening = "opening"
+            
+            case weekday = "weekday"
+            
         }
 
         public init(closing: LocationTimingSerializer? = nil, open: Bool, opening: LocationTimingSerializer? = nil, weekday: String) {
-            
-            self.opening = opening
-            
-            self.weekday = weekday
             
             self.closing = closing
             
             self.open = open
             
+            self.opening = opening
+            
+            self.weekday = weekday
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                weekday = try container.decode(String.self, forKey: .weekday)
-                
-            
             
             
                 do {
@@ -193,20 +176,27 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
+            
+                do {
+                    opening = try container.decode(LocationTimingSerializer.self, forKey: .opening)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                weekday = try container.decode(String.self, forKey: .weekday)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(opening, forKey: .opening)
-            
-            
-            
-            
-            try? container.encodeIfPresent(weekday, forKey: .weekday)
-            
             
             
             
@@ -216,6 +206,16 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(open, forKey: .open)
+            
+            
+            
+            
+            try? container.encodeIfPresent(opening, forKey: .opening)
+            
+            
+            
+            
+            try? container.encodeIfPresent(weekday, forKey: .weekday)
             
             
         }

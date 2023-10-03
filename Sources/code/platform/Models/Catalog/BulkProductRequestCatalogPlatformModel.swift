@@ -16,9 +16,9 @@ public extension PlatformClient.Catalog {
         
         public var companyId: Int
         
-        public var templateTag: String
-        
         public var data: [[String: Any]]
+        
+        public var templateTag: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,9 +27,9 @@ public extension PlatformClient.Catalog {
             
             case companyId = "company_id"
             
-            case templateTag = "template_tag"
-            
             case data = "data"
+            
+            case templateTag = "template_tag"
             
         }
 
@@ -39,9 +39,9 @@ public extension PlatformClient.Catalog {
             
             self.companyId = companyId
             
-            self.templateTag = templateTag
-            
             self.data = data
+            
+            self.templateTag = templateTag
             
         }
 
@@ -59,12 +59,12 @@ public extension PlatformClient.Catalog {
             
             
             
-                templateTag = try container.decode(String.self, forKey: .templateTag)
+                data = try container.decode([[String: Any]].self, forKey: .data)
                 
             
             
             
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                templateTag = try container.decode(String.self, forKey: .templateTag)
                 
             
             
@@ -85,12 +85,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
             
             
         }
@@ -113,9 +113,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var companyId: Int
         
-        public var templateTag: String
-        
         public var data: [[String: Any]]
+        
+        public var templateTag: String
         
 
         public enum CodingKeys: String, CodingKey {
@@ -124,9 +124,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case companyId = "company_id"
             
-            case templateTag = "template_tag"
-            
             case data = "data"
+            
+            case templateTag = "template_tag"
             
         }
 
@@ -136,9 +136,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             self.companyId = companyId
             
-            self.templateTag = templateTag
-            
             self.data = data
+            
+            self.templateTag = templateTag
             
         }
 
@@ -156,12 +156,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-                templateTag = try container.decode(String.self, forKey: .templateTag)
+                data = try container.decode([[String: Any]].self, forKey: .data)
                 
             
             
             
-                data = try container.decode([[String: Any]].self, forKey: .data)
+                templateTag = try container.decode(String.self, forKey: .templateTag)
                 
             
             
@@ -182,12 +182,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
-            
-            
-            
-            
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(templateTag, forKey: .templateTag)
             
             
         }
