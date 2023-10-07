@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var sameStoreAvailable: Bool?
         
+        public var isSelfShip: Bool?
+        
         public var isInternational: Bool?
         
         public var formatted: Formatted?
@@ -75,6 +77,8 @@ public extension PlatformClient.Order {
             
             case sameStoreAvailable = "same_store_available"
             
+            case isSelfShip = "is_self_ship"
+            
             case isInternational = "is_international"
             
             case formatted = "formatted"
@@ -133,9 +137,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(activityComment: String? = nil, assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool, bagWeight: [String: Any]? = nil, debugInfo: [String: Any]? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, ewaybillInfo: [String: Any]? = nil, existingDpList: [String]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, fulfilmentPriorityText: String? = nil, isInternational: Bool? = nil, lockData: LockData? = nil, orderType: String? = nil, packagingName: String? = nil, parentDpId: String? = nil, pdfMedia: [[String: Any]]? = nil, sameStoreAvailable: Bool? = nil, shipmentChargeableWeight: Double? = nil, shipmentTags: [ShipmentTags]? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, shippingZone: String? = nil, sla: Double? = nil, storeInvoiceUpdatedDate: String? = nil, tags: [[String: Any]]? = nil, timestamp: ShipmentTimeStamp? = nil, weight: Double? = nil) {
+        public init(activityComment: String? = nil, assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool, bagWeight: [String: Any]? = nil, debugInfo: [String: Any]? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, ewaybillInfo: [String: Any]? = nil, existingDpList: [String]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, fulfilmentPriorityText: String? = nil, isInternational: Bool? = nil, isSelfShip: Bool? = nil, lockData: LockData? = nil, orderType: String? = nil, packagingName: String? = nil, parentDpId: String? = nil, pdfMedia: [[String: Any]]? = nil, sameStoreAvailable: Bool? = nil, shipmentChargeableWeight: Double? = nil, shipmentTags: [ShipmentTags]? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, shippingZone: String? = nil, sla: Double? = nil, storeInvoiceUpdatedDate: String? = nil, tags: [[String: Any]]? = nil, timestamp: ShipmentTimeStamp? = nil, weight: Double? = nil) {
             
             self.sameStoreAvailable = sameStoreAvailable
+            
+            self.isSelfShip = isSelfShip
             
             self.isInternational = isInternational
             
@@ -201,6 +207,18 @@ public extension PlatformClient.Order {
             
                 do {
                     sameStoreAvailable = try container.decode(Bool.self, forKey: .sameStoreAvailable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -547,6 +565,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(sameStoreAvailable, forKey: .sameStoreAvailable)
+            
+            
+            
+            
+            try? container.encode(isSelfShip, forKey: .isSelfShip)
             
             
             
@@ -707,6 +730,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var sameStoreAvailable: Bool?
         
+        public var isSelfShip: Bool?
+        
         public var isInternational: Bool?
         
         public var formatted: Formatted?
@@ -768,6 +793,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case sameStoreAvailable = "same_store_available"
             
+            case isSelfShip = "is_self_ship"
+            
             case isInternational = "is_international"
             
             case formatted = "formatted"
@@ -826,9 +853,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(activityComment: String? = nil, assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool, bagWeight: [String: Any]? = nil, debugInfo: [String: Any]? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, ewaybillInfo: [String: Any]? = nil, existingDpList: [String]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, fulfilmentPriorityText: String? = nil, isInternational: Bool? = nil, lockData: LockData? = nil, orderType: String? = nil, packagingName: String? = nil, parentDpId: String? = nil, pdfMedia: [[String: Any]]? = nil, sameStoreAvailable: Bool? = nil, shipmentChargeableWeight: Double? = nil, shipmentTags: [ShipmentTags]? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, shippingZone: String? = nil, sla: Double? = nil, storeInvoiceUpdatedDate: String? = nil, tags: [[String: Any]]? = nil, timestamp: ShipmentTimeStamp? = nil, weight: Double? = nil) {
+        public init(activityComment: String? = nil, assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool, bagWeight: [String: Any]? = nil, debugInfo: [String: Any]? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, ewaybillInfo: [String: Any]? = nil, existingDpList: [String]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, fulfilmentPriorityText: String? = nil, isInternational: Bool? = nil, isSelfShip: Bool? = nil, lockData: LockData? = nil, orderType: String? = nil, packagingName: String? = nil, parentDpId: String? = nil, pdfMedia: [[String: Any]]? = nil, sameStoreAvailable: Bool? = nil, shipmentChargeableWeight: Double? = nil, shipmentTags: [ShipmentTags]? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, shippingZone: String? = nil, sla: Double? = nil, storeInvoiceUpdatedDate: String? = nil, tags: [[String: Any]]? = nil, timestamp: ShipmentTimeStamp? = nil, weight: Double? = nil) {
             
             self.sameStoreAvailable = sameStoreAvailable
+            
+            self.isSelfShip = isSelfShip
             
             self.isInternational = isInternational
             
@@ -894,6 +923,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     sameStoreAvailable = try container.decode(Bool.self, forKey: .sameStoreAvailable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1240,6 +1281,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(sameStoreAvailable, forKey: .sameStoreAvailable)
+            
+            
+            
+            
+            try? container.encode(isSelfShip, forKey: .isSelfShip)
             
             
             

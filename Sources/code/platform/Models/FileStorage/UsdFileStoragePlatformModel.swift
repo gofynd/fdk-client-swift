@@ -5,37 +5,43 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: pdfConfig
+        Model: Usd
         Used By: FileStorage
     */
 
-    class pdfConfig: Codable {
+    class Usd: Codable {
         
         
-        public var format: String?
+        public var name: String?
         
-        public var template: String?
+        public var value: Double?
         
-        public var pdfTypeId: Int?
+        public var symbol: String?
+        
+        public var subUnit: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case format = "format"
+            case name = "name"
             
-            case template = "template"
+            case value = "value"
             
-            case pdfTypeId = "pdf_type_id"
+            case symbol = "symbol"
+            
+            case subUnit = "sub_unit"
             
         }
 
-        public init(format: String? = nil, pdfTypeId: Int? = nil, template: String? = nil) {
+        public init(name: String? = nil, subUnit: String? = nil, symbol: String? = nil, value: Double? = nil) {
             
-            self.format = format
+            self.name = name
             
-            self.template = template
+            self.value = value
             
-            self.pdfTypeId = pdfTypeId
+            self.symbol = symbol
+            
+            self.subUnit = subUnit
             
         }
 
@@ -44,7 +50,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    format = try container.decode(String.self, forKey: .format)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +62,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    template = try container.decode(String.self, forKey: .template)
+                    value = try container.decode(Double.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +74,19 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    pdfTypeId = try container.decode(Int.self, forKey: .pdfTypeId)
+                    symbol = try container.decode(String.self, forKey: .symbol)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    subUnit = try container.decode(String.self, forKey: .subUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,17 +103,22 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(format, forKey: .format)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
             
-            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
+            try? container.encodeIfPresent(symbol, forKey: .symbol)
+            
+            
+            
+            
+            try? container.encodeIfPresent(subUnit, forKey: .subUnit)
             
             
         }
@@ -107,37 +130,43 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: pdfConfig
+        Model: Usd
         Used By: FileStorage
     */
 
-    class pdfConfig: Codable {
+    class Usd: Codable {
         
         
-        public var format: String?
+        public var name: String?
         
-        public var template: String?
+        public var value: Double?
         
-        public var pdfTypeId: Int?
+        public var symbol: String?
+        
+        public var subUnit: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case format = "format"
+            case name = "name"
             
-            case template = "template"
+            case value = "value"
             
-            case pdfTypeId = "pdf_type_id"
+            case symbol = "symbol"
+            
+            case subUnit = "sub_unit"
             
         }
 
-        public init(format: String? = nil, pdfTypeId: Int? = nil, template: String? = nil) {
+        public init(name: String? = nil, subUnit: String? = nil, symbol: String? = nil, value: Double? = nil) {
             
-            self.format = format
+            self.name = name
             
-            self.template = template
+            self.value = value
             
-            self.pdfTypeId = pdfTypeId
+            self.symbol = symbol
+            
+            self.subUnit = subUnit
             
         }
 
@@ -146,7 +175,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    format = try container.decode(String.self, forKey: .format)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +187,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    template = try container.decode(String.self, forKey: .template)
+                    value = try container.decode(Double.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -170,7 +199,19 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    pdfTypeId = try container.decode(Int.self, forKey: .pdfTypeId)
+                    symbol = try container.decode(String.self, forKey: .symbol)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    subUnit = try container.decode(String.self, forKey: .subUnit)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,17 +228,22 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(format, forKey: .format)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
             
             
-            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
+            try? container.encodeIfPresent(symbol, forKey: .symbol)
+            
+            
+            
+            
+            try? container.encodeIfPresent(subUnit, forKey: .subUnit)
             
             
         }

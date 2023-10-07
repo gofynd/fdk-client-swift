@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: BulkUploadSyncMode
+        Model: PaymentReceiptRequestBody
         Used By: FileStorage
     */
 
-    class BulkUploadSyncMode: Codable {
+    class PaymentReceiptRequestBody: Codable {
         
         
-        public var status: Status
+        public var payload: PaymentReceiptPayload?
         
-        public var files: [FilesSuccess]?
+        public var meta: PaymentReceiptMeta?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
+            case payload = "payload"
             
-            case files = "files"
+            case meta = "meta"
             
         }
 
-        public init(files: [FilesSuccess]? = nil, status: Status) {
+        public init(meta: PaymentReceiptMeta? = nil, payload: PaymentReceiptPayload? = nil) {
             
-            self.status = status
+            self.payload = payload
             
-            self.files = files
+            self.meta = meta
             
         }
 
@@ -37,13 +37,20 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                status = try container.decode(Status.self, forKey: .status)
+                do {
+                    payload = try container.decode(PaymentReceiptPayload.self, forKey: .payload)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
                 do {
-                    files = try container.decode([FilesSuccess].self, forKey: .files)
+                    meta = try container.decode(PaymentReceiptMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,12 +67,12 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(payload, forKey: .payload)
             
             
             
             
-            try? container.encodeIfPresent(files, forKey: .files)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }
@@ -77,31 +84,31 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: BulkUploadSyncMode
+        Model: PaymentReceiptRequestBody
         Used By: FileStorage
     */
 
-    class BulkUploadSyncMode: Codable {
+    class PaymentReceiptRequestBody: Codable {
         
         
-        public var status: Status
+        public var payload: PaymentReceiptPayload?
         
-        public var files: [FilesSuccess]?
+        public var meta: PaymentReceiptMeta?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
+            case payload = "payload"
             
-            case files = "files"
+            case meta = "meta"
             
         }
 
-        public init(files: [FilesSuccess]? = nil, status: Status) {
+        public init(meta: PaymentReceiptMeta? = nil, payload: PaymentReceiptPayload? = nil) {
             
-            self.status = status
+            self.payload = payload
             
-            self.files = files
+            self.meta = meta
             
         }
 
@@ -109,13 +116,20 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                status = try container.decode(Status.self, forKey: .status)
+                do {
+                    payload = try container.decode(PaymentReceiptPayload.self, forKey: .payload)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
                 do {
-                    files = try container.decode([FilesSuccess].self, forKey: .files)
+                    meta = try container.decode(PaymentReceiptMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,12 +146,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(payload, forKey: .payload)
             
             
             
             
-            try? container.encodeIfPresent(files, forKey: .files)
+            try? container.encodeIfPresent(meta, forKey: .meta)
             
             
         }

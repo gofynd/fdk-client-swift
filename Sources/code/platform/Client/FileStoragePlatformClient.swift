@@ -206,7 +206,7 @@ This operation will return the url for the uploaded file.
         public func copyFiles(
             sync: Bool?,
             body: CopyFiles,
-            onResponse: @escaping (_ response: BulkUploadSyncMode?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -238,7 +238,7 @@ if let value = sync {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BulkUploadSyncMode.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -265,7 +265,7 @@ if let value = sync {
             page: Int?,
             limit: Int?,
             
-            onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -304,7 +304,7 @@ if let value = limit {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(BrowseResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -329,7 +329,7 @@ if let value = limit {
         public func proxy(
             url: String,
             
-            onResponse: @escaping (_ response: Data?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -349,7 +349,7 @@ var xQuery: [String: Any] = [:]
                 query: xQuery,
                 body: nil,
                 headers: [],
-                responseType: "application/octet-stream",
+                responseType: "application/json",
                 onResponse: { (responseData, error, responseCode) in
                     if let _ = error, let data = responseData {
                         var err = Utility.decode(FDKError.self, from: data)
@@ -359,7 +359,7 @@ var xQuery: [String: Any] = [:]
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = data
+                        let response = String(decoding: data, as: UTF8.self)
                         
                         onResponse(response, nil)
                     } else {
@@ -370,6 +370,7 @@ var xQuery: [String: Any] = [:]
                     }
             });
         }
+        
         
         
         

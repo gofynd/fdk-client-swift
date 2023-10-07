@@ -12,7 +12,7 @@ public extension PlatformClient.FileStorage {
     class CopyFiles: Codable {
         
         
-        public var urls: [String]
+        public var urls: [String]?
         
         public var destination: DestinationNamespace
         
@@ -25,7 +25,7 @@ public extension PlatformClient.FileStorage {
             
         }
 
-        public init(destination: DestinationNamespace, urls: [String]) {
+        public init(destination: DestinationNamespace, urls: [String]? = nil) {
             
             self.urls = urls
             
@@ -37,9 +37,16 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                urls = try container.decode([String].self, forKey: .urls)
+                do {
+                    urls = try container.decode([String].self, forKey: .urls)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 destination = try container.decode(DestinationNamespace.self, forKey: .destination)
@@ -77,7 +84,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
     class CopyFiles: Codable {
         
         
-        public var urls: [String]
+        public var urls: [String]?
         
         public var destination: DestinationNamespace
         
@@ -90,7 +97,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
         }
 
-        public init(destination: DestinationNamespace, urls: [String]) {
+        public init(destination: DestinationNamespace, urls: [String]? = nil) {
             
             self.urls = urls
             
@@ -102,9 +109,16 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                urls = try container.decode([String].self, forKey: .urls)
+                do {
+                    urls = try container.decode([String].self, forKey: .urls)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 destination = try container.decode(DestinationNamespace.self, forKey: .destination)

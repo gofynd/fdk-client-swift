@@ -24,6 +24,8 @@ public extension PlatformClient.FileStorage {
         
         public var operation: String
         
+        public var companyId: Double
+        
         public var size: Int
         
         public var upload: Upload
@@ -37,6 +39,8 @@ public extension PlatformClient.FileStorage {
         public var createdOn: String
         
         public var modifiedOn: String
+        
+        public var createdBy: CreatedBy?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -53,6 +57,8 @@ public extension PlatformClient.FileStorage {
             
             case operation = "operation"
             
+            case companyId = "company_id"
+            
             case size = "size"
             
             case upload = "upload"
@@ -67,9 +73,11 @@ public extension PlatformClient.FileStorage {
             
             case modifiedOn = "modified_on"
             
+            case createdBy = "created_by"
+            
         }
 
-        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: Bool, tags: [String]? = nil, upload: Upload, id: String) {
+        public init(cdn: CDN, companyId: Double, contentType: String, createdBy: CreatedBy? = nil, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: Bool, tags: [String]? = nil, upload: Upload, id: String) {
             
             self.id = id
             
@@ -82,6 +90,8 @@ public extension PlatformClient.FileStorage {
             self.namespace = namespace
             
             self.operation = operation
+            
+            self.companyId = companyId
             
             self.size = size
             
@@ -96,6 +106,8 @@ public extension PlatformClient.FileStorage {
             self.createdOn = createdOn
             
             self.modifiedOn = modifiedOn
+            
+            self.createdBy = createdBy
             
         }
 
@@ -129,6 +141,11 @@ public extension PlatformClient.FileStorage {
             
             
                 operation = try container.decode(String.self, forKey: .operation)
+                
+            
+            
+            
+                companyId = try container.decode(Double.self, forKey: .companyId)
                 
             
             
@@ -174,6 +191,18 @@ public extension PlatformClient.FileStorage {
                 
             
             
+            
+                do {
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -211,6 +240,11 @@ public extension PlatformClient.FileStorage {
             
             
             
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
             try? container.encodeIfPresent(size, forKey: .size)
             
             
@@ -242,6 +276,11 @@ public extension PlatformClient.FileStorage {
             
             
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
         }
@@ -272,6 +311,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var operation: String
         
+        public var companyId: Double
+        
         public var size: Int
         
         public var upload: Upload
@@ -285,6 +326,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         public var createdOn: String
         
         public var modifiedOn: String
+        
+        public var createdBy: CreatedBy?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -301,6 +344,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case operation = "operation"
             
+            case companyId = "company_id"
+            
             case size = "size"
             
             case upload = "upload"
@@ -315,9 +360,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             case modifiedOn = "modified_on"
             
+            case createdBy = "created_by"
+            
         }
 
-        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: Bool, tags: [String]? = nil, upload: Upload, id: String) {
+        public init(cdn: CDN, companyId: Double, contentType: String, createdBy: CreatedBy? = nil, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: Bool, tags: [String]? = nil, upload: Upload, id: String) {
             
             self.id = id
             
@@ -330,6 +377,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.namespace = namespace
             
             self.operation = operation
+            
+            self.companyId = companyId
             
             self.size = size
             
@@ -344,6 +393,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             self.createdOn = createdOn
             
             self.modifiedOn = modifiedOn
+            
+            self.createdBy = createdBy
             
         }
 
@@ -377,6 +428,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 operation = try container.decode(String.self, forKey: .operation)
+                
+            
+            
+            
+                companyId = try container.decode(Double.self, forKey: .companyId)
                 
             
             
@@ -422,6 +478,18 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 
             
             
+            
+                do {
+                    createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -459,6 +527,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
             try? container.encodeIfPresent(size, forKey: .size)
             
             
@@ -490,6 +563,11 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
         }

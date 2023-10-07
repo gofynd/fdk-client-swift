@@ -5,61 +5,55 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: Page
+        Model: Document
         Used By: FileStorage
     */
 
-    class Page: Codable {
+    class Document: Codable {
         
         
-        public var itemTotal: Int?
+        public var id: String?
         
-        public var nextId: String?
+        public var pdfTypeId: Int?
         
-        public var hasPrevious: Bool?
+        public var format: String?
         
-        public var hasNext: Bool?
+        public var template: String?
         
-        public var current: Int?
+        public var countryCode: String?
         
-        public var type: String
-        
-        public var size: Int?
+        public var v: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case itemTotal = "item_total"
+            case id = "_id"
             
-            case nextId = "next_id"
+            case pdfTypeId = "pdf_type_id"
             
-            case hasPrevious = "has_previous"
+            case format = "format"
             
-            case hasNext = "has_next"
+            case template = "template"
             
-            case current = "current"
+            case countryCode = "country_code"
             
-            case type = "type"
-            
-            case size = "size"
+            case v = "__v"
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
+        public init(countryCode: String? = nil, format: String? = nil, pdfTypeId: Int? = nil, template: String? = nil, id: String? = nil, v: Int? = nil) {
             
-            self.itemTotal = itemTotal
+            self.id = id
             
-            self.nextId = nextId
+            self.pdfTypeId = pdfTypeId
             
-            self.hasPrevious = hasPrevious
+            self.format = format
             
-            self.hasNext = hasNext
+            self.template = template
             
-            self.current = current
+            self.countryCode = countryCode
             
-            self.type = type
-            
-            self.size = size
+            self.v = v
             
         }
 
@@ -68,7 +62,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +74,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    nextId = try container.decode(String.self, forKey: .nextId)
+                    pdfTypeId = try container.decode(Int.self, forKey: .pdfTypeId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +86,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                    format = try container.decode(String.self, forKey: .format)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +98,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +110,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    current = try container.decode(Int.self, forKey: .current)
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -127,13 +121,8 @@ public extension PlatformClient.FileStorage {
                 
             
             
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
                 do {
-                    size = try container.decode(Int.self, forKey: .size)
+                    v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,37 +139,32 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(nextId, forKey: .nextId)
+            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
             
             
             
             
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+            try? container.encodeIfPresent(format, forKey: .format)
             
             
             
             
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
             
             
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -192,61 +176,55 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: Page
+        Model: Document
         Used By: FileStorage
     */
 
-    class Page: Codable {
+    class Document: Codable {
         
         
-        public var itemTotal: Int?
+        public var id: String?
         
-        public var nextId: String?
+        public var pdfTypeId: Int?
         
-        public var hasPrevious: Bool?
+        public var format: String?
         
-        public var hasNext: Bool?
+        public var template: String?
         
-        public var current: Int?
+        public var countryCode: String?
         
-        public var type: String
-        
-        public var size: Int?
+        public var v: Int?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case itemTotal = "item_total"
+            case id = "_id"
             
-            case nextId = "next_id"
+            case pdfTypeId = "pdf_type_id"
             
-            case hasPrevious = "has_previous"
+            case format = "format"
             
-            case hasNext = "has_next"
+            case template = "template"
             
-            case current = "current"
+            case countryCode = "country_code"
             
-            case type = "type"
-            
-            case size = "size"
+            case v = "__v"
             
         }
 
-        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, nextId: String? = nil, size: Int? = nil, type: String) {
+        public init(countryCode: String? = nil, format: String? = nil, pdfTypeId: Int? = nil, template: String? = nil, id: String? = nil, v: Int? = nil) {
             
-            self.itemTotal = itemTotal
+            self.id = id
             
-            self.nextId = nextId
+            self.pdfTypeId = pdfTypeId
             
-            self.hasPrevious = hasPrevious
+            self.format = format
             
-            self.hasNext = hasNext
+            self.template = template
             
-            self.current = current
+            self.countryCode = countryCode
             
-            self.type = type
-            
-            self.size = size
+            self.v = v
             
         }
 
@@ -255,7 +233,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
+                    id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -267,7 +245,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    nextId = try container.decode(String.self, forKey: .nextId)
+                    pdfTypeId = try container.decode(Int.self, forKey: .pdfTypeId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -279,7 +257,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
+                    format = try container.decode(String.self, forKey: .format)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -291,7 +269,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
+                    template = try container.decode(String.self, forKey: .template)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -303,7 +281,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    current = try container.decode(Int.self, forKey: .current)
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -314,13 +292,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 
             
             
-                type = try container.decode(String.self, forKey: .type)
-                
-            
-            
-            
                 do {
-                    size = try container.decode(Int.self, forKey: .size)
+                    v = try container.decode(Int.self, forKey: .v)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -337,37 +310,32 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
+            try? container.encodeIfPresent(id, forKey: .id)
             
             
             
             
-            try? container.encodeIfPresent(nextId, forKey: .nextId)
+            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
             
             
             
             
-            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
+            try? container.encodeIfPresent(format, forKey: .format)
             
             
             
             
-            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
+            try? container.encodeIfPresent(template, forKey: .template)
             
             
             
             
-            try? container.encodeIfPresent(current, forKey: .current)
+            try? container.encodeIfPresent(countryCode, forKey: .countryCode)
             
             
             
             
-            try? container.encodeIfPresent(type, forKey: .type)
-            
-            
-            
-            
-            try? container.encodeIfPresent(size, forKey: .size)
+            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

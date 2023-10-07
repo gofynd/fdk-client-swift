@@ -5,37 +5,37 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: FileSrc
+        Model: Taxes
         Used By: FileStorage
     */
 
-    class FileSrc: Codable {
+    class Taxes: Codable {
         
         
-        public var method: String?
+        public var hsnCode: String?
         
-        public var url: String
+        public var tax: Tax?
         
-        public var namespace: String?
+        public var totalTaxValue: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case method = "method"
+            case hsnCode = "hsn_code"
             
-            case url = "url"
+            case tax = "tax"
             
-            case namespace = "namespace"
+            case totalTaxValue = "total_tax_value"
             
         }
 
-        public init(method: String? = nil, namespace: String? = nil, url: String) {
+        public init(hsnCode: String? = nil, tax: Tax? = nil, totalTaxValue: Double? = nil) {
             
-            self.method = method
+            self.hsnCode = hsnCode
             
-            self.url = url
+            self.tax = tax
             
-            self.namespace = namespace
+            self.totalTaxValue = totalTaxValue
             
         }
 
@@ -44,7 +44,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    method = try container.decode(String.self, forKey: .method)
+                    hsnCode = try container.decode(String.self, forKey: .hsnCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -55,13 +55,20 @@ public extension PlatformClient.FileStorage {
                 
             
             
-                url = try container.decode(String.self, forKey: .url)
+                do {
+                    tax = try container.decode(Tax.self, forKey: .tax)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
                 do {
-                    namespace = try container.decode(String.self, forKey: .namespace)
+                    totalTaxValue = try container.decode(Double.self, forKey: .totalTaxValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -78,17 +85,17 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(method, forKey: .method)
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
             
             
             
             
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(tax, forKey: .tax)
             
             
             
             
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
+            try? container.encodeIfPresent(totalTaxValue, forKey: .totalTaxValue)
             
             
         }
@@ -100,37 +107,37 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: FileSrc
+        Model: Taxes
         Used By: FileStorage
     */
 
-    class FileSrc: Codable {
+    class Taxes: Codable {
         
         
-        public var method: String?
+        public var hsnCode: String?
         
-        public var url: String
+        public var tax: Tax?
         
-        public var namespace: String?
+        public var totalTaxValue: Double?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case method = "method"
+            case hsnCode = "hsn_code"
             
-            case url = "url"
+            case tax = "tax"
             
-            case namespace = "namespace"
+            case totalTaxValue = "total_tax_value"
             
         }
 
-        public init(method: String? = nil, namespace: String? = nil, url: String) {
+        public init(hsnCode: String? = nil, tax: Tax? = nil, totalTaxValue: Double? = nil) {
             
-            self.method = method
+            self.hsnCode = hsnCode
             
-            self.url = url
+            self.tax = tax
             
-            self.namespace = namespace
+            self.totalTaxValue = totalTaxValue
             
         }
 
@@ -139,7 +146,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    method = try container.decode(String.self, forKey: .method)
+                    hsnCode = try container.decode(String.self, forKey: .hsnCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -150,13 +157,20 @@ public extension PlatformClient.ApplicationClient.FileStorage {
                 
             
             
-                url = try container.decode(String.self, forKey: .url)
+                do {
+                    tax = try container.decode(Tax.self, forKey: .tax)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
                 do {
-                    namespace = try container.decode(String.self, forKey: .namespace)
+                    totalTaxValue = try container.decode(Double.self, forKey: .totalTaxValue)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -173,17 +187,17 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(method, forKey: .method)
+            try? container.encodeIfPresent(hsnCode, forKey: .hsnCode)
             
             
             
             
-            try? container.encodeIfPresent(url, forKey: .url)
+            try? container.encodeIfPresent(tax, forKey: .tax)
             
             
             
             
-            try? container.encodeIfPresent(namespace, forKey: .namespace)
+            try? container.encodeIfPresent(totalTaxValue, forKey: .totalTaxValue)
             
             
         }

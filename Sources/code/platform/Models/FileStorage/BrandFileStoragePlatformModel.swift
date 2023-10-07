@@ -5,37 +5,31 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: pdfRender
+        Model: Brand
         Used By: FileStorage
     */
 
-    class pdfRender: Codable {
+    class Brand: Codable {
         
         
-        public var format: String?
+        public var logo: String?
         
-        public var payload: [String: Any]?
-        
-        public var template: String?
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case format = "format"
+            case logo = "logo"
             
-            case payload = "payload"
-            
-            case template = "template"
+            case name = "name"
             
         }
 
-        public init(format: String? = nil, payload: [String: Any]? = nil, template: String? = nil) {
+        public init(logo: String? = nil, name: String? = nil) {
             
-            self.format = format
+            self.logo = logo
             
-            self.payload = payload
-            
-            self.template = template
+            self.name = name
             
         }
 
@@ -44,7 +38,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    format = try container.decode(String.self, forKey: .format)
+                    logo = try container.decode(String.self, forKey: .logo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,19 +50,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    payload = try container.decode([String: Any].self, forKey: .payload)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    template = try container.decode(String.self, forKey: .template)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -85,17 +67,12 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(format, forKey: .format)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encodeIfPresent(payload, forKey: .payload)
-            
-            
-            
-            
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }
@@ -107,37 +84,31 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: pdfRender
+        Model: Brand
         Used By: FileStorage
     */
 
-    class pdfRender: Codable {
+    class Brand: Codable {
         
         
-        public var format: String?
+        public var logo: String?
         
-        public var payload: [String: Any]?
-        
-        public var template: String?
+        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case format = "format"
+            case logo = "logo"
             
-            case payload = "payload"
-            
-            case template = "template"
+            case name = "name"
             
         }
 
-        public init(format: String? = nil, payload: [String: Any]? = nil, template: String? = nil) {
+        public init(logo: String? = nil, name: String? = nil) {
             
-            self.format = format
+            self.logo = logo
             
-            self.payload = payload
-            
-            self.template = template
+            self.name = name
             
         }
 
@@ -146,7 +117,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    format = try container.decode(String.self, forKey: .format)
+                    logo = try container.decode(String.self, forKey: .logo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,19 +129,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    payload = try container.decode([String: Any].self, forKey: .payload)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    template = try container.decode(String.self, forKey: .template)
+                    name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,17 +146,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(format, forKey: .format)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encodeIfPresent(payload, forKey: .payload)
-            
-            
-            
-            
-            try? container.encodeIfPresent(template, forKey: .template)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

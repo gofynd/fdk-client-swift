@@ -5,25 +5,25 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: BulkUploadFailResponse
+        Model: Kwargs
         Used By: FileStorage
     */
 
-    class BulkUploadFailResponse: Codable {
+    class Kwargs: Codable {
         
         
-        public var status: Status
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
+            case value = "value"
             
         }
 
-        public init(status: Status) {
+        public init(value: String? = nil) {
             
-            self.status = status
+            self.value = value
             
         }
 
@@ -31,9 +31,16 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                status = try container.decode(Status.self, forKey: .status)
+                do {
+                    value = try container.decode(String.self, forKey: .value)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -42,7 +49,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }
@@ -54,25 +61,25 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: BulkUploadFailResponse
+        Model: Kwargs
         Used By: FileStorage
     */
 
-    class BulkUploadFailResponse: Codable {
+    class Kwargs: Codable {
         
         
-        public var status: Status
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case status = "status"
+            case value = "value"
             
         }
 
-        public init(status: Status) {
+        public init(value: String? = nil) {
             
-            self.status = status
+            self.value = value
             
         }
 
@@ -80,9 +87,16 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                status = try container.decode(Status.self, forKey: .status)
+                do {
+                    value = try container.decode(String.self, forKey: .value)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -91,7 +105,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(status, forKey: .status)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }

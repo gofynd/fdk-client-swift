@@ -1,0 +1,1680 @@
+
+
+import Foundation
+
+
+public extension PlatformClient.FileStorage {
+    /*
+        Model: DummyTemplateDataPayload
+        Used By: FileStorage
+    */
+
+    class DummyTemplateDataPayload: Codable {
+        
+        
+        public var isInternational: Bool?
+        
+        public var appDomainName: String?
+        
+        public var conversionRate: ConversionRate?
+        
+        public var currencyCode: String?
+        
+        public var shipmentId: String?
+        
+        public var deliveryPartnerDetail: DeliveryPartnerDetail?
+        
+        public var image: Image?
+        
+        public var payments: [PaymentData]?
+        
+        public var invoiceDetail: InvoiceDetail?
+        
+        public var companyDetail: CompanyDetail?
+        
+        public var storeDetail: StoreDetail?
+        
+        public var customerBillingDetail: CustomerBillingDetail?
+        
+        public var customerShippingDetail: CustomerShippingDetail?
+        
+        public var returnDetail: ReturnDetail?
+        
+        public var productTable: ProductTable?
+        
+        public var taxTable: TaxTable?
+        
+        public var declarationTexts: [String]?
+        
+        public var registeredCompanyDetail: RegisteredCompanyDetail?
+        
+        public var disclaimer: String?
+        
+        public var meta: Meta?
+        
+        public var isSelfShip: Bool?
+        
+        public var mode: String?
+        
+        public var isSelfPickup: Bool?
+        
+        public var platformName: String?
+        
+        public var amountToBeCollected: Double?
+        
+        public var amountPaid: Double?
+        
+        public var waybills: [[String: Any]]?
+        
+        public var totalItems: Double?
+        
+        public var brandLogo: String?
+        
+        public var shipmentIdBarcode: String?
+        
+        public var signedQrcode: String?
+        
+        public var upiQrcode: String?
+        
+        public var digitalsignature: String?
+        
+        public var awbNumberBarcode: String?
+        
+        public var uid: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case isInternational = "is_international"
+            
+            case appDomainName = "app_domain_name"
+            
+            case conversionRate = "conversion_rate"
+            
+            case currencyCode = "currency_code"
+            
+            case shipmentId = "shipment_id"
+            
+            case deliveryPartnerDetail = "delivery_partner_detail"
+            
+            case image = "image"
+            
+            case payments = "payments"
+            
+            case invoiceDetail = "invoice_detail"
+            
+            case companyDetail = "company_detail"
+            
+            case storeDetail = "store_detail"
+            
+            case customerBillingDetail = "customer_billing_detail"
+            
+            case customerShippingDetail = "customer_shipping_detail"
+            
+            case returnDetail = "return_detail"
+            
+            case productTable = "product_table"
+            
+            case taxTable = "tax_table"
+            
+            case declarationTexts = "declaration_texts"
+            
+            case registeredCompanyDetail = "registered_company_detail"
+            
+            case disclaimer = "disclaimer"
+            
+            case meta = "meta"
+            
+            case isSelfShip = "is_self_ship"
+            
+            case mode = "mode"
+            
+            case isSelfPickup = "is_self_pickup"
+            
+            case platformName = "platform_name"
+            
+            case amountToBeCollected = "amount_to_be_collected"
+            
+            case amountPaid = "amount_paid"
+            
+            case waybills = "waybills"
+            
+            case totalItems = "total_items"
+            
+            case brandLogo = "brand_logo"
+            
+            case shipmentIdBarcode = "shipment_id_barcode"
+            
+            case signedQrcode = "signed_qrcode"
+            
+            case upiQrcode = "upi_qrcode"
+            
+            case digitalsignature = "digitalsignature"
+            
+            case awbNumberBarcode = "awb_number_barcode"
+            
+            case uid = "uid"
+            
+        }
+
+        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, currencyCode: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isInternational: Bool? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, uid: String? = nil, upiQrcode: String? = nil, waybills: [[String: Any]]? = nil) {
+            
+            self.isInternational = isInternational
+            
+            self.appDomainName = appDomainName
+            
+            self.conversionRate = conversionRate
+            
+            self.currencyCode = currencyCode
+            
+            self.shipmentId = shipmentId
+            
+            self.deliveryPartnerDetail = deliveryPartnerDetail
+            
+            self.image = image
+            
+            self.payments = payments
+            
+            self.invoiceDetail = invoiceDetail
+            
+            self.companyDetail = companyDetail
+            
+            self.storeDetail = storeDetail
+            
+            self.customerBillingDetail = customerBillingDetail
+            
+            self.customerShippingDetail = customerShippingDetail
+            
+            self.returnDetail = returnDetail
+            
+            self.productTable = productTable
+            
+            self.taxTable = taxTable
+            
+            self.declarationTexts = declarationTexts
+            
+            self.registeredCompanyDetail = registeredCompanyDetail
+            
+            self.disclaimer = disclaimer
+            
+            self.meta = meta
+            
+            self.isSelfShip = isSelfShip
+            
+            self.mode = mode
+            
+            self.isSelfPickup = isSelfPickup
+            
+            self.platformName = platformName
+            
+            self.amountToBeCollected = amountToBeCollected
+            
+            self.amountPaid = amountPaid
+            
+            self.waybills = waybills
+            
+            self.totalItems = totalItems
+            
+            self.brandLogo = brandLogo
+            
+            self.shipmentIdBarcode = shipmentIdBarcode
+            
+            self.signedQrcode = signedQrcode
+            
+            self.upiQrcode = upiQrcode
+            
+            self.digitalsignature = digitalsignature
+            
+            self.awbNumberBarcode = awbNumberBarcode
+            
+            self.uid = uid
+            
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    isInternational = try container.decode(Bool.self, forKey: .isInternational)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    appDomainName = try container.decode(String.self, forKey: .appDomainName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    conversionRate = try container.decode(ConversionRate.self, forKey: .conversionRate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    deliveryPartnerDetail = try container.decode(DeliveryPartnerDetail.self, forKey: .deliveryPartnerDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    image = try container.decode(Image.self, forKey: .image)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    payments = try container.decode([PaymentData].self, forKey: .payments)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    invoiceDetail = try container.decode(InvoiceDetail.self, forKey: .invoiceDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    companyDetail = try container.decode(CompanyDetail.self, forKey: .companyDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeDetail = try container.decode(StoreDetail.self, forKey: .storeDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customerBillingDetail = try container.decode(CustomerBillingDetail.self, forKey: .customerBillingDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customerShippingDetail = try container.decode(CustomerShippingDetail.self, forKey: .customerShippingDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    returnDetail = try container.decode(ReturnDetail.self, forKey: .returnDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    productTable = try container.decode(ProductTable.self, forKey: .productTable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    taxTable = try container.decode(TaxTable.self, forKey: .taxTable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    declarationTexts = try container.decode([String].self, forKey: .declarationTexts)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    registeredCompanyDetail = try container.decode(RegisteredCompanyDetail.self, forKey: .registeredCompanyDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    disclaimer = try container.decode(String.self, forKey: .disclaimer)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode(Meta.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mode = try container.decode(String.self, forKey: .mode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isSelfPickup = try container.decode(Bool.self, forKey: .isSelfPickup)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    platformName = try container.decode(String.self, forKey: .platformName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    amountToBeCollected = try container.decode(Double.self, forKey: .amountToBeCollected)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    waybills = try container.decode([[String: Any]].self, forKey: .waybills)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    totalItems = try container.decode(Double.self, forKey: .totalItems)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    brandLogo = try container.decode(String.self, forKey: .brandLogo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    shipmentIdBarcode = try container.decode(String.self, forKey: .shipmentIdBarcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    signedQrcode = try container.decode(String.self, forKey: .signedQrcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    upiQrcode = try container.decode(String.self, forKey: .upiQrcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    digitalsignature = try container.decode(String.self, forKey: .digitalsignature)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    awbNumberBarcode = try container.decode(String.self, forKey: .awbNumberBarcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uid = try container.decode(String.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(isInternational, forKey: .isInternational)
+            
+            
+            
+            
+            try? container.encodeIfPresent(appDomainName, forKey: .appDomainName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(conversionRate, forKey: .conversionRate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deliveryPartnerDetail, forKey: .deliveryPartnerDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(image, forKey: .image)
+            
+            
+            
+            
+            try? container.encodeIfPresent(payments, forKey: .payments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(invoiceDetail, forKey: .invoiceDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyDetail, forKey: .companyDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeDetail, forKey: .storeDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customerBillingDetail, forKey: .customerBillingDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customerShippingDetail, forKey: .customerShippingDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(returnDetail, forKey: .returnDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productTable, forKey: .productTable)
+            
+            
+            
+            
+            try? container.encodeIfPresent(taxTable, forKey: .taxTable)
+            
+            
+            
+            
+            try? container.encodeIfPresent(declarationTexts, forKey: .declarationTexts)
+            
+            
+            
+            
+            try? container.encodeIfPresent(registeredCompanyDetail, forKey: .registeredCompanyDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(disclaimer, forKey: .disclaimer)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mode, forKey: .mode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isSelfPickup, forKey: .isSelfPickup)
+            
+            
+            
+            
+            try? container.encodeIfPresent(platformName, forKey: .platformName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(amountToBeCollected, forKey: .amountToBeCollected)
+            
+            
+            
+            
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(waybills, forKey: .waybills)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
+            
+            
+            
+            
+            try? container.encodeIfPresent(brandLogo, forKey: .brandLogo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipmentIdBarcode, forKey: .shipmentIdBarcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(signedQrcode, forKey: .signedQrcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(upiQrcode, forKey: .upiQrcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(digitalsignature, forKey: .digitalsignature)
+            
+            
+            
+            
+            try? container.encodeIfPresent(awbNumberBarcode, forKey: .awbNumberBarcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+        }
+        
+    }
+}
+
+
+
+public extension PlatformClient.ApplicationClient.FileStorage {
+    /*
+        Model: DummyTemplateDataPayload
+        Used By: FileStorage
+    */
+
+    class DummyTemplateDataPayload: Codable {
+        
+        
+        public var isInternational: Bool?
+        
+        public var appDomainName: String?
+        
+        public var conversionRate: ConversionRate?
+        
+        public var currencyCode: String?
+        
+        public var shipmentId: String?
+        
+        public var deliveryPartnerDetail: DeliveryPartnerDetail?
+        
+        public var image: Image?
+        
+        public var payments: [PaymentData]?
+        
+        public var invoiceDetail: InvoiceDetail?
+        
+        public var companyDetail: CompanyDetail?
+        
+        public var storeDetail: StoreDetail?
+        
+        public var customerBillingDetail: CustomerBillingDetail?
+        
+        public var customerShippingDetail: CustomerShippingDetail?
+        
+        public var returnDetail: ReturnDetail?
+        
+        public var productTable: ProductTable?
+        
+        public var taxTable: TaxTable?
+        
+        public var declarationTexts: [String]?
+        
+        public var registeredCompanyDetail: RegisteredCompanyDetail?
+        
+        public var disclaimer: String?
+        
+        public var meta: Meta?
+        
+        public var isSelfShip: Bool?
+        
+        public var mode: String?
+        
+        public var isSelfPickup: Bool?
+        
+        public var platformName: String?
+        
+        public var amountToBeCollected: Double?
+        
+        public var amountPaid: Double?
+        
+        public var waybills: [[String: Any]]?
+        
+        public var totalItems: Double?
+        
+        public var brandLogo: String?
+        
+        public var shipmentIdBarcode: String?
+        
+        public var signedQrcode: String?
+        
+        public var upiQrcode: String?
+        
+        public var digitalsignature: String?
+        
+        public var awbNumberBarcode: String?
+        
+        public var uid: String?
+        
+
+        public enum CodingKeys: String, CodingKey {
+            
+            case isInternational = "is_international"
+            
+            case appDomainName = "app_domain_name"
+            
+            case conversionRate = "conversion_rate"
+            
+            case currencyCode = "currency_code"
+            
+            case shipmentId = "shipment_id"
+            
+            case deliveryPartnerDetail = "delivery_partner_detail"
+            
+            case image = "image"
+            
+            case payments = "payments"
+            
+            case invoiceDetail = "invoice_detail"
+            
+            case companyDetail = "company_detail"
+            
+            case storeDetail = "store_detail"
+            
+            case customerBillingDetail = "customer_billing_detail"
+            
+            case customerShippingDetail = "customer_shipping_detail"
+            
+            case returnDetail = "return_detail"
+            
+            case productTable = "product_table"
+            
+            case taxTable = "tax_table"
+            
+            case declarationTexts = "declaration_texts"
+            
+            case registeredCompanyDetail = "registered_company_detail"
+            
+            case disclaimer = "disclaimer"
+            
+            case meta = "meta"
+            
+            case isSelfShip = "is_self_ship"
+            
+            case mode = "mode"
+            
+            case isSelfPickup = "is_self_pickup"
+            
+            case platformName = "platform_name"
+            
+            case amountToBeCollected = "amount_to_be_collected"
+            
+            case amountPaid = "amount_paid"
+            
+            case waybills = "waybills"
+            
+            case totalItems = "total_items"
+            
+            case brandLogo = "brand_logo"
+            
+            case shipmentIdBarcode = "shipment_id_barcode"
+            
+            case signedQrcode = "signed_qrcode"
+            
+            case upiQrcode = "upi_qrcode"
+            
+            case digitalsignature = "digitalsignature"
+            
+            case awbNumberBarcode = "awb_number_barcode"
+            
+            case uid = "uid"
+            
+        }
+
+        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, currencyCode: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isInternational: Bool? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, uid: String? = nil, upiQrcode: String? = nil, waybills: [[String: Any]]? = nil) {
+            
+            self.isInternational = isInternational
+            
+            self.appDomainName = appDomainName
+            
+            self.conversionRate = conversionRate
+            
+            self.currencyCode = currencyCode
+            
+            self.shipmentId = shipmentId
+            
+            self.deliveryPartnerDetail = deliveryPartnerDetail
+            
+            self.image = image
+            
+            self.payments = payments
+            
+            self.invoiceDetail = invoiceDetail
+            
+            self.companyDetail = companyDetail
+            
+            self.storeDetail = storeDetail
+            
+            self.customerBillingDetail = customerBillingDetail
+            
+            self.customerShippingDetail = customerShippingDetail
+            
+            self.returnDetail = returnDetail
+            
+            self.productTable = productTable
+            
+            self.taxTable = taxTable
+            
+            self.declarationTexts = declarationTexts
+            
+            self.registeredCompanyDetail = registeredCompanyDetail
+            
+            self.disclaimer = disclaimer
+            
+            self.meta = meta
+            
+            self.isSelfShip = isSelfShip
+            
+            self.mode = mode
+            
+            self.isSelfPickup = isSelfPickup
+            
+            self.platformName = platformName
+            
+            self.amountToBeCollected = amountToBeCollected
+            
+            self.amountPaid = amountPaid
+            
+            self.waybills = waybills
+            
+            self.totalItems = totalItems
+            
+            self.brandLogo = brandLogo
+            
+            self.shipmentIdBarcode = shipmentIdBarcode
+            
+            self.signedQrcode = signedQrcode
+            
+            self.upiQrcode = upiQrcode
+            
+            self.digitalsignature = digitalsignature
+            
+            self.awbNumberBarcode = awbNumberBarcode
+            
+            self.uid = uid
+            
+        }
+
+        required public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    isInternational = try container.decode(Bool.self, forKey: .isInternational)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    appDomainName = try container.decode(String.self, forKey: .appDomainName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    conversionRate = try container.decode(ConversionRate.self, forKey: .conversionRate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currencyCode = try container.decode(String.self, forKey: .currencyCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    shipmentId = try container.decode(String.self, forKey: .shipmentId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    deliveryPartnerDetail = try container.decode(DeliveryPartnerDetail.self, forKey: .deliveryPartnerDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    image = try container.decode(Image.self, forKey: .image)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    payments = try container.decode([PaymentData].self, forKey: .payments)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    invoiceDetail = try container.decode(InvoiceDetail.self, forKey: .invoiceDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    companyDetail = try container.decode(CompanyDetail.self, forKey: .companyDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    storeDetail = try container.decode(StoreDetail.self, forKey: .storeDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customerBillingDetail = try container.decode(CustomerBillingDetail.self, forKey: .customerBillingDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customerShippingDetail = try container.decode(CustomerShippingDetail.self, forKey: .customerShippingDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    returnDetail = try container.decode(ReturnDetail.self, forKey: .returnDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    productTable = try container.decode(ProductTable.self, forKey: .productTable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    taxTable = try container.decode(TaxTable.self, forKey: .taxTable)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    declarationTexts = try container.decode([String].self, forKey: .declarationTexts)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    registeredCompanyDetail = try container.decode(RegisteredCompanyDetail.self, forKey: .registeredCompanyDetail)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    disclaimer = try container.decode(String.self, forKey: .disclaimer)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    meta = try container.decode(Meta.self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    mode = try container.decode(String.self, forKey: .mode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isSelfPickup = try container.decode(Bool.self, forKey: .isSelfPickup)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    platformName = try container.decode(String.self, forKey: .platformName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    amountToBeCollected = try container.decode(Double.self, forKey: .amountToBeCollected)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    amountPaid = try container.decode(Double.self, forKey: .amountPaid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    waybills = try container.decode([[String: Any]].self, forKey: .waybills)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    totalItems = try container.decode(Double.self, forKey: .totalItems)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    brandLogo = try container.decode(String.self, forKey: .brandLogo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    shipmentIdBarcode = try container.decode(String.self, forKey: .shipmentIdBarcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    signedQrcode = try container.decode(String.self, forKey: .signedQrcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    upiQrcode = try container.decode(String.self, forKey: .upiQrcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    digitalsignature = try container.decode(String.self, forKey: .digitalsignature)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    awbNumberBarcode = try container.decode(String.self, forKey: .awbNumberBarcode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uid = try container.decode(String.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+        }
+        
+        public func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(isInternational, forKey: .isInternational)
+            
+            
+            
+            
+            try? container.encodeIfPresent(appDomainName, forKey: .appDomainName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(conversionRate, forKey: .conversionRate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currencyCode, forKey: .currencyCode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipmentId, forKey: .shipmentId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(deliveryPartnerDetail, forKey: .deliveryPartnerDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(image, forKey: .image)
+            
+            
+            
+            
+            try? container.encodeIfPresent(payments, forKey: .payments)
+            
+            
+            
+            
+            try? container.encodeIfPresent(invoiceDetail, forKey: .invoiceDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyDetail, forKey: .companyDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeDetail, forKey: .storeDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customerBillingDetail, forKey: .customerBillingDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(customerShippingDetail, forKey: .customerShippingDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(returnDetail, forKey: .returnDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(productTable, forKey: .productTable)
+            
+            
+            
+            
+            try? container.encodeIfPresent(taxTable, forKey: .taxTable)
+            
+            
+            
+            
+            try? container.encodeIfPresent(declarationTexts, forKey: .declarationTexts)
+            
+            
+            
+            
+            try? container.encodeIfPresent(registeredCompanyDetail, forKey: .registeredCompanyDetail)
+            
+            
+            
+            
+            try? container.encodeIfPresent(disclaimer, forKey: .disclaimer)
+            
+            
+            
+            
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isSelfShip, forKey: .isSelfShip)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mode, forKey: .mode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(isSelfPickup, forKey: .isSelfPickup)
+            
+            
+            
+            
+            try? container.encodeIfPresent(platformName, forKey: .platformName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(amountToBeCollected, forKey: .amountToBeCollected)
+            
+            
+            
+            
+            try? container.encodeIfPresent(amountPaid, forKey: .amountPaid)
+            
+            
+            
+            
+            try? container.encodeIfPresent(waybills, forKey: .waybills)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalItems, forKey: .totalItems)
+            
+            
+            
+            
+            try? container.encodeIfPresent(brandLogo, forKey: .brandLogo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipmentIdBarcode, forKey: .shipmentIdBarcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(signedQrcode, forKey: .signedQrcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(upiQrcode, forKey: .upiQrcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(digitalsignature, forKey: .digitalsignature)
+            
+            
+            
+            
+            try? container.encodeIfPresent(awbNumberBarcode, forKey: .awbNumberBarcode)
+            
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+        }
+        
+    }
+}
+
+

@@ -12,6 +12,10 @@ public extension PlatformClient.Order {
     class ShipmentMeta: Codable {
         
         
+        public var trackingUrl: String?
+        
+        public var estimatedDeliveryDate: String?
+        
         public var sameStoreAvailable: Bool
         
         public var b2BBuyerDetails: BuyerDetails?
@@ -21,6 +25,8 @@ public extension PlatformClient.Order {
         public var debugInfo: DebugInfo?
         
         public var returnAwbNumber: String?
+        
+        public var isSelfShip: Bool?
         
         public var boxType: String?
         
@@ -95,6 +101,10 @@ public extension PlatformClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
+            case trackingUrl = "tracking_url"
+            
+            case estimatedDeliveryDate = "estimated_delivery_date"
+            
             case sameStoreAvailable = "same_store_available"
             
             case b2BBuyerDetails = "b2b_buyer_details"
@@ -104,6 +114,8 @@ public extension PlatformClient.Order {
             case debugInfo = "debug_info"
             
             case returnAwbNumber = "return_awb_number"
+            
+            case isSelfShip = "is_self_ship"
             
             case boxType = "box_type"
             
@@ -177,7 +189,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool? = nil, awbNumber: String? = nil, b2BBuyerDetails: BuyerDetails? = nil, b2CBuyerDetails: [String: Any]? = nil, bagWeight: [String: Any]? = nil, boxType: String? = nil, debugInfo: DebugInfo? = nil, dimension: Dimensions? = nil, dpId: String? = nil, dpName: String? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, dueDate: String? = nil, einvoiceInfo: EinvoiceInfo? = nil, ewaybillInfo: [String: Any]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, forwardAffiliateOrderId: String? = nil, forwardAffiliateShipmentId: String? = nil, fulfilmentPriorityText: String? = nil, lockData: LockData? = nil, marketplaceStoreId: String? = nil, orderType: String? = nil, packagingName: String? = nil, parentDpId: String? = nil, poNumber: String? = nil, refundTo: String? = nil, returnAffiliateOrderId: String? = nil, returnAffiliateShipmentId: String? = nil, returnAwbNumber: String? = nil, returnDetails: [String: Any]? = nil, returnStoreNode: Int? = nil, sameStoreAvailable: Bool, shipmentTags: [ShipmentTags]? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, storeInvoiceUpdatedDate: String? = nil, timestamp: ShipmentTimeStamp? = nil, weight: Int) {
+        public init(assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool? = nil, awbNumber: String? = nil, b2BBuyerDetails: BuyerDetails? = nil, b2CBuyerDetails: [String: Any]? = nil, bagWeight: [String: Any]? = nil, boxType: String? = nil, debugInfo: DebugInfo? = nil, dimension: Dimensions? = nil, dpId: String? = nil, dpName: String? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, dueDate: String? = nil, einvoiceInfo: EinvoiceInfo? = nil, estimatedDeliveryDate: String? = nil, ewaybillInfo: [String: Any]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, forwardAffiliateOrderId: String? = nil, forwardAffiliateShipmentId: String? = nil, fulfilmentPriorityText: String? = nil, isSelfShip: Bool? = nil, lockData: LockData? = nil, marketplaceStoreId: String? = nil, orderType: String? = nil, packagingName: String? = nil, parentDpId: String? = nil, poNumber: String? = nil, refundTo: String? = nil, returnAffiliateOrderId: String? = nil, returnAffiliateShipmentId: String? = nil, returnAwbNumber: String? = nil, returnDetails: [String: Any]? = nil, returnStoreNode: Int? = nil, sameStoreAvailable: Bool, shipmentTags: [ShipmentTags]? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, storeInvoiceUpdatedDate: String? = nil, timestamp: ShipmentTimeStamp? = nil, trackingUrl: String? = nil, weight: Int) {
+            
+            self.trackingUrl = trackingUrl
+            
+            self.estimatedDeliveryDate = estimatedDeliveryDate
             
             self.sameStoreAvailable = sameStoreAvailable
             
@@ -188,6 +204,8 @@ public extension PlatformClient.Order {
             self.debugInfo = debugInfo
             
             self.returnAwbNumber = returnAwbNumber
+            
+            self.isSelfShip = isSelfShip
             
             self.boxType = boxType
             
@@ -265,6 +283,30 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+                do {
+                    trackingUrl = try container.decode(String.self, forKey: .trackingUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    estimatedDeliveryDate = try container.decode(String.self, forKey: .estimatedDeliveryDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 sameStoreAvailable = try container.decode(Bool.self, forKey: .sameStoreAvailable)
                 
             
@@ -308,6 +350,18 @@ public extension PlatformClient.Order {
             
                 do {
                     returnAwbNumber = try container.decode(String.self, forKey: .returnAwbNumber)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -737,6 +791,16 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encode(trackingUrl, forKey: .trackingUrl)
+            
+            
+            
+            
+            try? container.encode(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
+            
+            
+            
+            
             try? container.encodeIfPresent(sameStoreAvailable, forKey: .sameStoreAvailable)
             
             
@@ -758,6 +822,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(returnAwbNumber, forKey: .returnAwbNumber)
+            
+            
+            
+            
+            try? container.encode(isSelfShip, forKey: .isSelfShip)
             
             
             
@@ -951,6 +1020,10 @@ public extension PlatformClient.ApplicationClient.Order {
     class ShipmentMeta: Codable {
         
         
+        public var trackingUrl: String?
+        
+        public var estimatedDeliveryDate: String?
+        
         public var sameStoreAvailable: Bool
         
         public var b2BBuyerDetails: BuyerDetails?
@@ -960,6 +1033,8 @@ public extension PlatformClient.ApplicationClient.Order {
         public var debugInfo: DebugInfo?
         
         public var returnAwbNumber: String?
+        
+        public var isSelfShip: Bool?
         
         public var boxType: String?
         
@@ -1034,6 +1109,10 @@ public extension PlatformClient.ApplicationClient.Order {
 
         public enum CodingKeys: String, CodingKey {
             
+            case trackingUrl = "tracking_url"
+            
+            case estimatedDeliveryDate = "estimated_delivery_date"
+            
             case sameStoreAvailable = "same_store_available"
             
             case b2BBuyerDetails = "b2b_buyer_details"
@@ -1043,6 +1122,8 @@ public extension PlatformClient.ApplicationClient.Order {
             case debugInfo = "debug_info"
             
             case returnAwbNumber = "return_awb_number"
+            
+            case isSelfShip = "is_self_ship"
             
             case boxType = "box_type"
             
@@ -1116,7 +1197,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool? = nil, awbNumber: String? = nil, b2BBuyerDetails: BuyerDetails? = nil, b2CBuyerDetails: [String: Any]? = nil, bagWeight: [String: Any]? = nil, boxType: String? = nil, debugInfo: DebugInfo? = nil, dimension: Dimensions? = nil, dpId: String? = nil, dpName: String? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, dueDate: String? = nil, einvoiceInfo: EinvoiceInfo? = nil, ewaybillInfo: [String: Any]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, forwardAffiliateOrderId: String? = nil, forwardAffiliateShipmentId: String? = nil, fulfilmentPriorityText: String? = nil, lockData: LockData? = nil, marketplaceStoreId: String? = nil, orderType: String? = nil, packagingName: String? = nil, parentDpId: String? = nil, poNumber: String? = nil, refundTo: String? = nil, returnAffiliateOrderId: String? = nil, returnAffiliateShipmentId: String? = nil, returnAwbNumber: String? = nil, returnDetails: [String: Any]? = nil, returnStoreNode: Int? = nil, sameStoreAvailable: Bool, shipmentTags: [ShipmentTags]? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, storeInvoiceUpdatedDate: String? = nil, timestamp: ShipmentTimeStamp? = nil, weight: Int) {
+        public init(assignDpFromSb: Bool? = nil, autoTriggerDpAssignmentAcf: Bool? = nil, awbNumber: String? = nil, b2BBuyerDetails: BuyerDetails? = nil, b2CBuyerDetails: [String: Any]? = nil, bagWeight: [String: Any]? = nil, boxType: String? = nil, debugInfo: DebugInfo? = nil, dimension: Dimensions? = nil, dpId: String? = nil, dpName: String? = nil, dpOptions: [String: Any]? = nil, dpSortKey: String? = nil, dueDate: String? = nil, einvoiceInfo: EinvoiceInfo? = nil, estimatedDeliveryDate: String? = nil, ewaybillInfo: [String: Any]? = nil, externalLink: [String: Any]? = nil, formatted: Formatted? = nil, forwardAffiliateOrderId: String? = nil, forwardAffiliateShipmentId: String? = nil, fulfilmentPriorityText: String? = nil, isSelfShip: Bool? = nil, lockData: LockData? = nil, marketplaceStoreId: String? = nil, orderType: String? = nil, packagingName: String? = nil, parentDpId: String? = nil, poNumber: String? = nil, refundTo: String? = nil, returnAffiliateOrderId: String? = nil, returnAffiliateShipmentId: String? = nil, returnAwbNumber: String? = nil, returnDetails: [String: Any]? = nil, returnStoreNode: Int? = nil, sameStoreAvailable: Bool, shipmentTags: [ShipmentTags]? = nil, shipmentVolumetricWeight: Double? = nil, shipmentWeight: Double? = nil, storeInvoiceUpdatedDate: String? = nil, timestamp: ShipmentTimeStamp? = nil, trackingUrl: String? = nil, weight: Int) {
+            
+            self.trackingUrl = trackingUrl
+            
+            self.estimatedDeliveryDate = estimatedDeliveryDate
             
             self.sameStoreAvailable = sameStoreAvailable
             
@@ -1127,6 +1212,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.debugInfo = debugInfo
             
             self.returnAwbNumber = returnAwbNumber
+            
+            self.isSelfShip = isSelfShip
             
             self.boxType = boxType
             
@@ -1204,6 +1291,30 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+                do {
+                    trackingUrl = try container.decode(String.self, forKey: .trackingUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    estimatedDeliveryDate = try container.decode(String.self, forKey: .estimatedDeliveryDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 sameStoreAvailable = try container.decode(Bool.self, forKey: .sameStoreAvailable)
                 
             
@@ -1247,6 +1358,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     returnAwbNumber = try container.decode(String.self, forKey: .returnAwbNumber)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    isSelfShip = try container.decode(Bool.self, forKey: .isSelfShip)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1676,6 +1799,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encode(trackingUrl, forKey: .trackingUrl)
+            
+            
+            
+            
+            try? container.encode(estimatedDeliveryDate, forKey: .estimatedDeliveryDate)
+            
+            
+            
+            
             try? container.encodeIfPresent(sameStoreAvailable, forKey: .sameStoreAvailable)
             
             
@@ -1697,6 +1830,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(returnAwbNumber, forKey: .returnAwbNumber)
+            
+            
+            
+            
+            try? container.encode(isSelfShip, forKey: .isSelfShip)
             
             
             
