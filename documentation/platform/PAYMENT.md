@@ -55,6 +55,9 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getMerchantAggregatorPaymentModeDetails](#getmerchantaggregatorpaymentmodedetails)
 * [patchMerchantAggregatorPaymentModeDetails](#patchmerchantaggregatorpaymentmodedetails)
 * [getPGConfigAggregators](#getpgconfigaggregators)
+* [getMerchantRefundPriority](#getmerchantrefundpriority)
+* [createMerchantRefundPriority](#createmerchantrefundpriority)
+* [updateMerchantRefundPriority](#updatemerchantrefundpriority)
 
 
 
@@ -6023,6 +6026,279 @@ Success.
 ---
 
 
+#### getMerchantRefundPriority
+API to get merchant refund priority
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").payment.getMerchantRefundPriority(configType: configType) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| configType | String | yes | configuration for merchant or customer |  
+
+
+
+API to get merchant refund priority
+
+*Returned Response:*
+
+
+
+
+[RefundPriorityResponseSerializer](#RefundPriorityResponseSerializer)
+
+Success. Returns the status of Update or not. Check the example shown below or refer `RefundPriorityResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "summary": "success",
+  "value": {
+    "success": true,
+    "message": "Created successfully",
+    "apportion": true,
+    "configuration": "merchant",
+    "refund_sources_priority": [
+      {
+        "source": "back_to_online_source,",
+        "description": "Back to online payment source",
+        "priority": 0
+      },
+      {
+        "source": "RONE",
+        "description": "Rone wallet",
+        "priority": 1
+      },
+      {
+        "source": "FC",
+        "description": "Fynd Cash",
+        "priority": 2
+      },
+      {
+        "source": "CreditNote",
+        "description": "Credit Note",
+        "priority": 3
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### createMerchantRefundPriority
+API to create merchant refund priority
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").payment.createMerchantRefundPriority(configType: configType, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| configType | String | yes | configuration for merchant or customer |  
+| body | RefundPriorityRequestSerializer | yes | Request body |
+
+
+API to update merchant refund priority
+
+*Returned Response:*
+
+
+
+
+[RefundPriorityResponseSerializer](#RefundPriorityResponseSerializer)
+
+Success. Returns the status of Update or not. Check the example shown below or refer `RefundPriorityResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "summary": "success",
+  "value": {
+    "success": true,
+    "message": "Created successfully",
+    "apportion": true,
+    "configuration": "merchant",
+    "refund_sources_priority": [
+      {
+        "source": "back_to_online_source,",
+        "description": "Back to online payment source",
+        "priority": 0
+      },
+      {
+        "source": "RONE",
+        "description": "Rone wallet",
+        "priority": 1
+      },
+      {
+        "source": "FC",
+        "description": "Fynd Cash",
+        "priority": 2
+      },
+      {
+        "source": "CreditNote",
+        "description": "Credit Note",
+        "priority": 3
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### updateMerchantRefundPriority
+API to update merchant refund priority
+
+
+
+
+```swift
+platformClient.application("<APPLICATION_ID>").payment.updateMerchantRefundPriority(configType: configType, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| configType | String | yes | configuration for merchant or customer |  
+| body | RefundPriorityRequestSerializer | yes | Request body |
+
+
+API to update merchant refund priority
+
+*Returned Response:*
+
+
+
+
+[RefundPriorityResponseSerializer](#RefundPriorityResponseSerializer)
+
+Success. Returns the status of Update or not. Check the example shown below or refer `RefundPriorityResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "summary": "success",
+  "value": {
+    "success": true,
+    "message": "Created successfully",
+    "apportion": true,
+    "configuration": "merchant",
+    "refund_sources_priority": [
+      {
+        "source": "back_to_online_source,",
+        "description": "Back to online payment source",
+        "priority": 0
+      },
+      {
+        "source": "RONE",
+        "description": "Rone wallet",
+        "priority": 1
+      },
+      {
+        "source": "FC",
+        "description": "Fynd Cash",
+        "priority": 2
+      },
+      {
+        "source": "CreditNote",
+        "description": "Credit Note",
+        "priority": 3
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -7584,6 +7860,46 @@ Success.
  | platformRefundDetails | [[String: Any]] |  no  | details of the refund |
  | status | String |  no  | The status of the refund. |
  | currency | String |  no  | The currency of the payment. |
+
+---
+
+
+ 
+ 
+ #### [RefundSourcesPriority](#RefundSourcesPriority)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | String |  no  | description of refund source |
+ | priority | Int |  no  | priority of refund source, 0 being highest |
+ | source | String |  no  | source of refund |
+
+---
+
+
+ 
+ 
+ #### [RefundPriorityResponseSerializer](#RefundPriorityResponseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | configuration | String |  no  | configuration for merchant or customer |
+ | success | Bool |  no  | success |
+ | apportion | Bool |  no  | apportion refund to multiple sources |
+ | refundSourcesPriority | [[RefundSourcesPriority](#RefundSourcesPriority)] |  no  | refund sources priority |
+ | message | String? |  yes  | message |
+
+---
+
+
+ 
+ 
+ #### [RefundPriorityRequestSerializer](#RefundPriorityRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | apportion | Bool |  no  | apportion refund to multiple sources |
+ | refundSourcesPriority | [[RefundSourcesPriority](#RefundSourcesPriority)] |  no  | refund sources priority |
 
 ---
 

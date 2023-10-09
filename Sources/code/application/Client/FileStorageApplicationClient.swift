@@ -11,11 +11,11 @@ extension ApplicationClient {
             self.config = config;
             var ulrs = [String: String]()
             
-            ulrs["startUpload"] = config.domain.appendAsPath("/service/application/assets/v1.0/namespaces/{namespace}/upload/start/") 
+            ulrs["startUpload"] = config.domain.appendAsPath("/service/application/assets/v1.0/namespaces/{namespace}/upload/start") 
             
-            ulrs["completeUpload"] = config.domain.appendAsPath("/service/application/assets/v1.0/namespaces/{namespace}/upload/complete/") 
+            ulrs["completeUpload"] = config.domain.appendAsPath("/service/application/assets/v1.0/namespaces/{namespace}/upload/complete") 
             
-            ulrs["signUrls"] = config.domain.appendAsPath("/service/application/assets/v1.0/sign-urls/") 
+            ulrs["signUrls"] = config.domain.appendAsPath("/service/application/assets/v1.0/sign-urls") 
             
             self.relativeUrls = ulrs
         }

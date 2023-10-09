@@ -31,6 +31,8 @@ extension ApplicationClient {
             
             ulrs["forgotPassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset/forgot") 
             
+            ulrs["resetForgotPassword"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/forgot") 
+            
             ulrs["sendResetToken"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/password/reset/token") 
             
             ulrs["loginWithToken"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/login/token") 
@@ -51,11 +53,19 @@ extension ApplicationClient {
             
             ulrs["sendOTPOnMobile"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/mobile/send") 
             
+            ulrs["sendForgotOTPOnMobile"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/forgot/mobile/send") 
+            
             ulrs["verifyMobileOTP"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/mobile/verify") 
+            
+            ulrs["verifyMobileForgotOTP"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/forgot/mobile/verify") 
             
             ulrs["sendOTPOnEmail"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/email/send") 
             
+            ulrs["sendForgotOTPOnEmail"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/forgot/email/send") 
+            
             ulrs["verifyEmailOTP"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/email/verify") 
+            
+            ulrs["verifyEmailForgotOTP"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/otp/forgot/email/verify") 
             
             ulrs["getLoggedInUser"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/session") 
             
@@ -657,6 +667,56 @@ if let value = platform {
         
         /**
         *
+        * Summary: Reset forgot Password
+        * Description: Use this API to reset a password using the code sent on email or SMS.
+        **/
+        public func resetForgotPassword(
+            body: ForgotPasswordRequestSchema,
+            onResponse: @escaping (_ response: ResetForgotPasswordSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["resetForgotPassword"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(ResetForgotPasswordSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
         * Summary: Reset Password using token
         * Description: Use this API to send code to reset password.
         **/
@@ -1173,6 +1233,64 @@ if let value = platform {
         
         /**
         *
+        * Summary: Send Forgot OTP on mobile
+        * Description: Use this API to send an Forgot OTP to a mobile number.
+        **/
+        public func sendForgotOTPOnMobile(
+            platform: String?,
+            body: SendMobileForgotOtpRequestSchema,
+            onResponse: @escaping (_ response: OtpSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["sendForgotOTPOnMobile"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(OtpSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
         * Summary: Verify OTP on mobile
         * Description: Use this API to verify the OTP received on a mobile number.
         **/
@@ -1231,6 +1349,64 @@ if let value = platform {
         
         /**
         *
+        * Summary: Verify Forgot OTP on mobile
+        * Description: Use this API to verify the Forgot OTP received on a mobile number.
+        **/
+        public func verifyMobileForgotOTP(
+            platform: String?,
+            body: VerifyMobileForgotOtpRequestSchema,
+            onResponse: @escaping (_ response: VerifyForgotOtpSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["verifyMobileForgotOTP"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(VerifyForgotOtpSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
         * Summary: Send OTP on email
         * Description: Use this API to send an OTP to an email ID.
         **/
@@ -1254,6 +1430,64 @@ if let value = platform {
 
             
             let fullUrl = relativeUrls["sendOTPOnEmail"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(EmailOtpSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Send Forgot OTP on email
+        * Description: Use this API to send an Forgot OTP to an email ID.
+        **/
+        public func sendForgotOTPOnEmail(
+            platform: String?,
+            body: SendEmailForgotOtpRequestSchema,
+            onResponse: @escaping (_ response: EmailOtpSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["sendForgotOTPOnEmail"] ?? ""
             
             ApplicationAPIClient.execute(
                 config: config,
@@ -1331,6 +1565,64 @@ if let value = platform {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(VerifyOtpSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Verify Forgot OTP on email
+        * Description: Use this API to verify the Forgot OTP received on an email ID.
+        **/
+        public func verifyEmailForgotOTP(
+            platform: String?,
+            body: VerifyEmailForgotOtpRequestSchema,
+            onResponse: @escaping (_ response: VerifyForgotOtpSuccess?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = platform {
+    
+    xQuery["platform"] = value
+    
+}
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["verifyEmailForgotOTP"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(VerifyForgotOtpSuccess.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

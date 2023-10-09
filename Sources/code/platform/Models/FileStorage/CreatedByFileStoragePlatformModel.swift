@@ -5,25 +5,25 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: File
+        Model: CreatedBy
         Used By: FileStorage
     */
 
-    class File: Codable {
+    class CreatedBy: Codable {
         
         
-        public var src: FileSrc
+        public var username: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case src = "src"
+            case username = "username"
             
         }
 
-        public init(src: FileSrc) {
+        public init(username: String? = nil) {
             
-            self.src = src
+            self.username = username
             
         }
 
@@ -31,9 +31,16 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                src = try container.decode(FileSrc.self, forKey: .src)
+                do {
+                    username = try container.decode(String.self, forKey: .username)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -42,7 +49,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(src, forKey: .src)
+            try? container.encodeIfPresent(username, forKey: .username)
             
             
         }
@@ -54,25 +61,25 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: File
+        Model: CreatedBy
         Used By: FileStorage
     */
 
-    class File: Codable {
+    class CreatedBy: Codable {
         
         
-        public var src: FileSrc
+        public var username: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case src = "src"
+            case username = "username"
             
         }
 
-        public init(src: FileSrc) {
+        public init(username: String? = nil) {
             
-            self.src = src
+            self.username = username
             
         }
 
@@ -80,9 +87,16 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                src = try container.decode(FileSrc.self, forKey: .src)
+                do {
+                    username = try container.decode(String.self, forKey: .username)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -91,7 +105,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(src, forKey: .src)
+            try? container.encodeIfPresent(username, forKey: .username)
             
             
         }

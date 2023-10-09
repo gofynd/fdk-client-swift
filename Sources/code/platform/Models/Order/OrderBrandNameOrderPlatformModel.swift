@@ -14,7 +14,7 @@ public extension PlatformClient.Order {
         
         public var logo: String?
         
-        public var company: Int
+        public var company: Int?
         
         public var id: Int
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(brandName: String? = nil, company: Int, createdOn: String? = nil, id: Int, logo: String? = nil, modifiedOn: String? = nil) {
+        public init(brandName: String? = nil, company: Int? = nil, createdOn: String? = nil, id: Int, logo: String? = nil, modifiedOn: String? = nil) {
             
             self.logo = logo
             
@@ -73,9 +73,16 @@ public extension PlatformClient.Order {
                 
             
             
-                company = try container.decode(Int.self, forKey: .company)
+                do {
+                    company = try container.decode(Int.self, forKey: .company)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 id = try container.decode(Int.self, forKey: .id)
@@ -171,7 +178,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var logo: String?
         
-        public var company: Int
+        public var company: Int?
         
         public var id: Int
         
@@ -198,7 +205,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(brandName: String? = nil, company: Int, createdOn: String? = nil, id: Int, logo: String? = nil, modifiedOn: String? = nil) {
+        public init(brandName: String? = nil, company: Int? = nil, createdOn: String? = nil, id: Int, logo: String? = nil, modifiedOn: String? = nil) {
             
             self.logo = logo
             
@@ -230,9 +237,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                company = try container.decode(Int.self, forKey: .company)
+                do {
+                    company = try container.decode(Int.self, forKey: .company)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 id = try container.decode(Int.self, forKey: .id)

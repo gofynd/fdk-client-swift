@@ -16,7 +16,7 @@ public extension ApplicationClient.FileStorage {
         
         public var tags: [String]?
         
-        public var params: [String: Any]?
+        public var params: Params?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -33,7 +33,7 @@ public extension ApplicationClient.FileStorage {
             
         }
 
-        public init(contentType: String, fileName: String, params: [String: Any]? = nil, size: Int, tags: [String]? = nil) {
+        public init(contentType: String, fileName: String, params: Params? = nil, size: Int, tags: [String]? = nil) {
             
             self.fileName = fileName
             
@@ -79,7 +79,7 @@ public extension ApplicationClient.FileStorage {
             
             
             do {
-                params = try container.decode([String: Any].self, forKey: .params)
+                params = try container.decode(Params.self, forKey: .params)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

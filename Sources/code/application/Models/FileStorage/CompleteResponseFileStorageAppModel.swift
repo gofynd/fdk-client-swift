@@ -34,6 +34,8 @@ public extension ApplicationClient.FileStorage {
         
         public var modifiedOn: String
         
+        public var createdBy: CreatedBy?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -63,9 +65,11 @@ public extension ApplicationClient.FileStorage {
             
             case modifiedOn = "modified_on"
             
+            case createdBy = "created_by"
+            
         }
 
-        public init(cdn: CDN, contentType: String, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: Bool, tags: [String]? = nil, upload: Upload, id: String) {
+        public init(cdn: CDN, contentType: String, createdBy: CreatedBy? = nil, createdOn: String, fileName: String, filePath: String, modifiedOn: String, namespace: String, operation: String, size: Int, success: Bool, tags: [String]? = nil, upload: Upload, id: String) {
             
             self.id = id
             
@@ -92,6 +96,8 @@ public extension ApplicationClient.FileStorage {
             self.createdOn = createdOn
             
             self.modifiedOn = modifiedOn
+            
+            self.createdBy = createdBy
             
         }
 
@@ -170,6 +176,18 @@ public extension ApplicationClient.FileStorage {
             
             
             
+            
+            do {
+                createdBy = try container.decode(CreatedBy.self, forKey: .createdBy)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -238,6 +256,11 @@ public extension ApplicationClient.FileStorage {
             
             
             try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
         }

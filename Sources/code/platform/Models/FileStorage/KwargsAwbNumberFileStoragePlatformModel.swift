@@ -5,31 +5,25 @@ import Foundation
 
 public extension PlatformClient.FileStorage {
     /*
-        Model: FilesSuccess
+        Model: KwargsAwbNumber
         Used By: FileStorage
     */
 
-    class FilesSuccess: Codable {
+    class KwargsAwbNumber: Codable {
         
         
-        public var success: Bool
-        
-        public var file: File?
+        public var value: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
-            
-            case file = "file"
+            case value = "value"
             
         }
 
-        public init(file: File? = nil, success: Bool) {
+        public init(value: [[String: Any]]? = nil) {
             
-            self.success = success
-            
-            self.file = file
+            self.value = value
             
         }
 
@@ -37,13 +31,8 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                success = try container.decode(Bool.self, forKey: .success)
-                
-            
-            
-            
                 do {
-                    file = try container.decode(File.self, forKey: .file)
+                    value = try container.decode([[String: Any]].self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -60,12 +49,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(file, forKey: .file)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }
@@ -77,31 +61,25 @@ public extension PlatformClient.FileStorage {
 
 public extension PlatformClient.ApplicationClient.FileStorage {
     /*
-        Model: FilesSuccess
+        Model: KwargsAwbNumber
         Used By: FileStorage
     */
 
-    class FilesSuccess: Codable {
+    class KwargsAwbNumber: Codable {
         
         
-        public var success: Bool
-        
-        public var file: File?
+        public var value: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
-            
-            case file = "file"
+            case value = "value"
             
         }
 
-        public init(file: File? = nil, success: Bool) {
+        public init(value: [[String: Any]]? = nil) {
             
-            self.success = success
-            
-            self.file = file
+            self.value = value
             
         }
 
@@ -109,13 +87,8 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                success = try container.decode(Bool.self, forKey: .success)
-                
-            
-            
-            
                 do {
-                    file = try container.decode(File.self, forKey: .file)
+                    value = try container.decode([[String: Any]].self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -132,12 +105,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(file, forKey: .file)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }

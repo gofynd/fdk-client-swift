@@ -12,36 +12,24 @@ public extension PlatformClient.FileStorage {
     class DummyTemplateDataItems: Codable {
         
         
-        public var id: String?
+        public var data: [DummyTemplateData]
         
-        public var pdfTypeId: Double?
-        
-        public var payload: [String: Any]
-        
-        public var v: Int?
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case data = "data"
             
-            case pdfTypeId = "pdf_type_id"
-            
-            case payload = "payload"
-            
-            case v = "__v"
+            case success = "success"
             
         }
 
-        public init(payload: [String: Any], pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
+        public init(data: [DummyTemplateData], success: Bool) {
             
-            self.id = id
+            self.data = data
             
-            self.pdfTypeId = pdfTypeId
-            
-            self.payload = payload
-            
-            self.v = v
+            self.success = success
             
         }
 
@@ -49,45 +37,14 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    pdfTypeId = try container.decode(Double.self, forKey: .pdfTypeId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                payload = try container.decode([String: Any].self, forKey: .payload)
+                data = try container.decode([DummyTemplateData].self, forKey: .data)
                 
             
             
             
-                do {
-                    v = try container.decode(Int.self, forKey: .v)
+                success = try container.decode(Bool.self, forKey: .success)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -96,22 +53,12 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
             
-            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(payload, forKey: .payload)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -130,36 +77,24 @@ public extension PlatformClient.ApplicationClient.FileStorage {
     class DummyTemplateDataItems: Codable {
         
         
-        public var id: String?
+        public var data: [DummyTemplateData]
         
-        public var pdfTypeId: Double?
-        
-        public var payload: [String: Any]
-        
-        public var v: Int?
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case data = "data"
             
-            case pdfTypeId = "pdf_type_id"
-            
-            case payload = "payload"
-            
-            case v = "__v"
+            case success = "success"
             
         }
 
-        public init(payload: [String: Any], pdfTypeId: Double? = nil, id: String? = nil, v: Int? = nil) {
+        public init(data: [DummyTemplateData], success: Bool) {
             
-            self.id = id
+            self.data = data
             
-            self.pdfTypeId = pdfTypeId
-            
-            self.payload = payload
-            
-            self.v = v
+            self.success = success
             
         }
 
@@ -167,45 +102,14 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                do {
-                    id = try container.decode(String.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    pdfTypeId = try container.decode(Double.self, forKey: .pdfTypeId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                payload = try container.decode([String: Any].self, forKey: .payload)
+                data = try container.decode([DummyTemplateData].self, forKey: .data)
                 
             
             
             
-                do {
-                    v = try container.decode(Int.self, forKey: .v)
+                success = try container.decode(Bool.self, forKey: .success)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -214,22 +118,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
             
-            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(payload, forKey: .payload)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

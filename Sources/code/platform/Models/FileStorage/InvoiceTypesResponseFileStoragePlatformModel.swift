@@ -12,54 +12,24 @@ public extension PlatformClient.FileStorage {
     class InvoiceTypesResponse: Codable {
         
         
-        public var id: String
+        public var data: [InvoiceTypesDataResponse]
         
-        public var pdfTypeId: Int
-        
-        public var name: String
-        
-        public var format: [String]
-        
-        public var v: Int
-        
-        public var visibility: Bool
-        
-        public var schema: [String: Any]
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case data = "data"
             
-            case pdfTypeId = "pdf_type_id"
-            
-            case name = "name"
-            
-            case format = "format"
-            
-            case v = "__v"
-            
-            case visibility = "visibility"
-            
-            case schema = "schema"
+            case success = "success"
             
         }
 
-        public init(format: [String], name: String, pdfTypeId: Int, schema: [String: Any], visibility: Bool, id: String, v: Int) {
+        public init(data: [InvoiceTypesDataResponse], success: Bool) {
             
-            self.id = id
+            self.data = data
             
-            self.pdfTypeId = pdfTypeId
-            
-            self.name = name
-            
-            self.format = format
-            
-            self.v = v
-            
-            self.visibility = visibility
-            
-            self.schema = schema
+            self.success = success
             
         }
 
@@ -67,37 +37,12 @@ public extension PlatformClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                id = try container.decode(String.self, forKey: .id)
+                data = try container.decode([InvoiceTypesDataResponse].self, forKey: .data)
                 
             
             
             
-                pdfTypeId = try container.decode(Int.self, forKey: .pdfTypeId)
-                
-            
-            
-            
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                format = try container.decode([String].self, forKey: .format)
-                
-            
-            
-            
-                v = try container.decode(Int.self, forKey: .v)
-                
-            
-            
-            
-                visibility = try container.decode(Bool.self, forKey: .visibility)
-                
-            
-            
-            
-                schema = try container.decode([String: Any].self, forKey: .schema)
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             
@@ -108,37 +53,12 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
             
-            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(format, forKey: .format)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(visibility, forKey: .visibility)
-            
-            
-            
-            
-            try? container.encodeIfPresent(schema, forKey: .schema)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -157,54 +77,24 @@ public extension PlatformClient.ApplicationClient.FileStorage {
     class InvoiceTypesResponse: Codable {
         
         
-        public var id: String
+        public var data: [InvoiceTypesDataResponse]
         
-        public var pdfTypeId: Int
-        
-        public var name: String
-        
-        public var format: [String]
-        
-        public var v: Int
-        
-        public var visibility: Bool
-        
-        public var schema: [String: Any]
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case id = "_id"
+            case data = "data"
             
-            case pdfTypeId = "pdf_type_id"
-            
-            case name = "name"
-            
-            case format = "format"
-            
-            case v = "__v"
-            
-            case visibility = "visibility"
-            
-            case schema = "schema"
+            case success = "success"
             
         }
 
-        public init(format: [String], name: String, pdfTypeId: Int, schema: [String: Any], visibility: Bool, id: String, v: Int) {
+        public init(data: [InvoiceTypesDataResponse], success: Bool) {
             
-            self.id = id
+            self.data = data
             
-            self.pdfTypeId = pdfTypeId
-            
-            self.name = name
-            
-            self.format = format
-            
-            self.v = v
-            
-            self.visibility = visibility
-            
-            self.schema = schema
+            self.success = success
             
         }
 
@@ -212,37 +102,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                id = try container.decode(String.self, forKey: .id)
+                data = try container.decode([InvoiceTypesDataResponse].self, forKey: .data)
                 
             
             
             
-                pdfTypeId = try container.decode(Int.self, forKey: .pdfTypeId)
-                
-            
-            
-            
-                name = try container.decode(String.self, forKey: .name)
-                
-            
-            
-            
-                format = try container.decode([String].self, forKey: .format)
-                
-            
-            
-            
-                v = try container.decode(Int.self, forKey: .v)
-                
-            
-            
-            
-                visibility = try container.decode(Bool.self, forKey: .visibility)
-                
-            
-            
-            
-                schema = try container.decode([String: Any].self, forKey: .schema)
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             
@@ -253,37 +118,12 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(id, forKey: .id)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
             
-            try? container.encodeIfPresent(pdfTypeId, forKey: .pdfTypeId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(format, forKey: .format)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
-            
-            
-            
-            
-            try? container.encodeIfPresent(visibility, forKey: .visibility)
-            
-            
-            
-            
-            try? container.encodeIfPresent(schema, forKey: .schema)
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

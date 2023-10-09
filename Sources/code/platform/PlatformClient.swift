@@ -17035,8 +17035,8 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Update a tag
-            * Description: Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
+            * Summary: Update the exisitng tags for an application by replacing with provided tags
+            * Description: Use this API to edit and override all existing tags. All existing tags will be replaced by the new tags provided in body. 
             **/
             public func updateInjectableTag(
                 body: CreateTagRequestSchema,
@@ -17083,63 +17083,23 @@ var xQuery: [String: Any] = [:]
             
             /**
             *
-            * Summary: Delete tags in application
-            * Description: Use this API to delete all the existing tags at once.
-            **/
-            public func deleteAllInjectableTags(
-                
-                onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "DELETE",
-                    url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
-                    query: nil,
-                    body: nil,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = Utility.decode(TagsSchema.self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
             * Summary: Get all the tags in an application
-            * Description: Use this API to get all the CSS and JS injected in the application in the form of tags.
+            * Description: Use this API to get the CSS and JS injected in the application in the form of tags.
             **/
             public func getInjectableTags(
+                all: Bool?,
                 
                 onResponse: @escaping (_ response: TagsSchema?, _ error: FDKError?) -> Void
             ) {
                 
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = all {
+    
+    xQuery["all"] = value
+    
+}
+
 
  
 
@@ -17148,7 +17108,7 @@ var xQuery: [String: Any] = [:]
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/tags",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     responseType: "application/json",
@@ -17795,7 +17755,7 @@ This operation will return the url for the uploaded file.
             public func appCopyFiles(
                 sync: Bool?,
                 body: CopyFiles,
-                onResponse: @escaping (_ response: BulkUploadSyncMode?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -17827,7 +17787,7 @@ if let value = sync {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BulkUploadSyncMode.self, from: data)
+                            let response = data.dictionary
                             
                             onResponse(response, nil)
                         } else {
@@ -17854,7 +17814,7 @@ if let value = sync {
                 page: Int?,
                 limit: Int?,
                 
-                onResponse: @escaping (_ response: BrowseResponse?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -17893,7 +17853,7 @@ if let value = limit {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(BrowseResponse.self, from: data)
+                            let response = data.dictionary
                             
                             onResponse(response, nil)
                         } else {
@@ -17917,7 +17877,7 @@ if let value = limit {
             **/
             public func getPdfTypes(
                 
-                onResponse: @escaping (_ response: [InvoiceTypesResponse]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: InvoiceTypesResponse?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -17942,7 +17902,7 @@ if let value = limit {
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode([InvoiceTypesResponse].self, from: data)
+                            let response = Utility.decode(InvoiceTypesResponse.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -17966,7 +17926,7 @@ if let value = limit {
             public func getDefaultPdfData(
                 pdfTypeId: Int,
                 
-                onResponse: @escaping (_ response: [DummyTemplateDataItems]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: DummyTemplateDataItems?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -17996,7 +17956,56 @@ var xQuery: [String: Any] = [:]
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode([DummyTemplateDataItems].self, from: data)
+                            let response = Utility.decode(DummyTemplateDataItems.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Update html template for invoice or label
+            * Description: Update html template for invoice such as Invoice, Label, Deliver challan
+            **/
+            public func updateHtmlTemplate(
+                id: String,
+                body: PdfConfig,
+                onResponse: @escaping (_ response: PdfConfigSaveSuccess?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config/\(id)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(PdfConfigSaveSuccess.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18021,7 +18030,7 @@ var xQuery: [String: Any] = [:]
                 pdfTypeId: Int,
                 format: String,
                 
-                onResponse: @escaping (_ response: [PdfConfigSuccess]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PdfConfigSuccess?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -18056,7 +18065,7 @@ var xQuery: [String: Any] = [:]
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode([PdfConfigSuccess].self, from: data)
+                            let response = Utility.decode(PdfConfigSuccess.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18078,8 +18087,8 @@ var xQuery: [String: Any] = [:]
             * Description: Update html template for invoice such as Invoice, Label, Deliver challan
             **/
             public func saveHtmlTemplate(
-                body: pdfConfig,
-                onResponse: @escaping (_ response: [PdfConfigSaveSuccess]?, _ error: FDKError?) -> Void
+                body: PdfConfig,
+                onResponse: @escaping (_ response: PdfConfigSaveSuccess?, _ error: FDKError?) -> Void
             ) {
                 
  
@@ -18089,7 +18098,7 @@ var xQuery: [String: Any] = [:]
 
                 PlatformAPIClient.execute(
                     config: config,
-                    method: "PUT",
+                    method: "POST",
                     url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/config",
                     query: nil,
                     body: body.dictionary,
@@ -18104,55 +18113,7 @@ var xQuery: [String: Any] = [:]
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode([PdfConfigSaveSuccess].self, from: data)
-                            
-                            onResponse(response, nil)
-                        } else {
-                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                            onResponse(nil, err)
-                        }
-                });
-            }
-            
-            
-            
-            
-            
-            /**
-            *
-            * Summary: Preview HTML template
-            * Description: Rendered HTML template with dummy json data
-            **/
-            public func previewTemplate(
-                body: pdfRender,
-                onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
-            ) {
-                
- 
-
- 
-
-
-                PlatformAPIClient.execute(
-                    config: config,
-                    method: "POST",
-                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/render",
-                    query: nil,
-                    body: body.dictionary,
-                    headers: [],
-                    responseType: "application/json",
-                    onResponse: { (responseData, error, responseCode) in
-                        if let _ = error, let data = responseData {
-                            var err = Utility.decode(FDKError.self, from: data)
-                            if err?.status == nil {
-                                err?.status = responseCode
-                            }
-                            onResponse(nil, err)
-                        } else if let data = responseData {
-                            
-                            let response = String(decoding: data, as: UTF8.self)
+                            let response = Utility.decode(PdfConfigSaveSuccess.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -18177,7 +18138,7 @@ var xQuery: [String: Any] = [:]
                 pdfTypeId: Int,
                 format: String,
                 
-                onResponse: @escaping (_ response: [PdfDefaultTemplateSuccess]?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: PdfDefaultTemplateSuccess?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -18212,7 +18173,55 @@ var xQuery: [String: Any] = [:]
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode([PdfDefaultTemplateSuccess].self, from: data)
+                            let response = Utility.decode(PdfDefaultTemplateSuccess.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Generate Payment Receipt for Jiomart Digital
+            * Description: Generate Payment Receipt for Jiomart Digital
+            **/
+            public func generatePaymentReceipt(
+                body: PaymentReceiptRequestBody,
+                onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/assets/v1.0/company/\(companyId)/application/\(applicationId)/pdf/payment-receipt",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = data.dictionary
                             
                             onResponse(response, nil)
                         } else {
@@ -21301,6 +21310,153 @@ var xQuery: [String: Any] = [:]
                         } else if let data = responseData {
                             
                             let response = Utility.decode(MerchnatPaymentModeResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: API to get merchant refund priority
+            * Description: API to get merchant refund priority
+            **/
+            public func getMerchantRefundPriority(
+                configType: String,
+                
+                onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refundPriority/config/\(configType)",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RefundPriorityResponseSerializer.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: API to create merchant refund priority
+            * Description: API to update merchant refund priority
+            **/
+            public func createMerchantRefundPriority(
+                configType: String,
+                body: RefundPriorityRequestSerializer,
+                onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "POST",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refundPriority/config/\(configType)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RefundPriorityResponseSerializer.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: API to update merchant refund priority
+            * Description: API to update merchant refund priority
+            **/
+            public func updateMerchantRefundPriority(
+                configType: String,
+                body: RefundPriorityRequestSerializer,
+                onResponse: @escaping (_ response: RefundPriorityResponseSerializer?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PUT",
+                    url: "/service/platform/payment/v1.0/company/\(companyId)/application/\(applicationId)/refundPriority/config/\(configType)",
+                    query: nil,
+                    body: body.dictionary,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(RefundPriorityResponseSerializer.self, from: data)
                             
                             onResponse(response, nil)
                         } else {
@@ -25385,6 +25541,55 @@ if let value = groupUid {
                     url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userGroup/\(groupId)",
                     query: nil,
                     body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(UserGroupResponseSchema.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: Add or Remove an user from particular user group and update user group details
+            * Description: Use this API to update user group details and add or remove an user to the user group.
+            **/
+            public func updateUserGroupPartially(
+                groupId: String,
+                body: PartialUserGroupUpdateSchema,
+                onResponse: @escaping (_ response: UserGroupResponseSchema?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "PATCH",
+                    url: "/service/platform/user/v1.0/company/\(companyId)/application/\(applicationId)/userGroup/\(groupId)",
+                    query: nil,
+                    body: body.dictionary,
                     headers: [],
                     responseType: "application/json",
                     onResponse: { (responseData, error, responseCode) in

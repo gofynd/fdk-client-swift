@@ -3,23 +3,23 @@
 import Foundation
 public extension ApplicationClient.FileStorage {
     /*
-        Model: FailedResponse
+        Model: Params
         Used By: FileStorage
     */
-    class FailedResponse: Codable {
+    class Params: Codable {
         
-        public var message: String
+        public var subpath: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case message = "message"
+            case subpath = "subpath"
             
         }
 
-        public init(message: String) {
+        public init(subpath: String? = nil) {
             
-            self.message = message
+            self.subpath = subpath
             
         }
 
@@ -27,8 +27,15 @@ public extension ApplicationClient.FileStorage {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            message = try container.decode(String.self, forKey: .message)
+            do {
+                subpath = try container.decode(String.self, forKey: .subpath)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
         }
@@ -38,7 +45,7 @@ public extension ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(message, forKey: .message)
+            try? container.encodeIfPresent(subpath, forKey: .subpath)
             
             
         }
