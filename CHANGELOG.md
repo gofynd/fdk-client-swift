@@ -1,4 +1,24 @@
-# CHANGE LOG (1.3.5-beta.1) - v1.8.4-prerelease-v1
+# CHANGE LOG (1.3.5-beta.2) - v1.8.4-prerelease-v2
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### checkoutCart
+
+- ##### What's Deprecated
+	- [Deleted] Possible nullable value from `true` from property `id` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `customerDetails` of schema `CartCheckoutDetailRequest` in request body
+	- [Breaking] [Deleted] Default value from property `callbackUrl` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `callbackUrl` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `orderingStore` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `paymentIdentifier` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `paymentParams` of schema `CartCheckoutDetailRequest` in request body
+
 
 ## Platform Client
 
@@ -18,6 +38,34 @@
 
 - ##### What's Changed
 	- [Breaking] [Changed] Type from `object` to `array` of property `items` of schema `ProductBulkRequest` in response with status code 200
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] property `shipments[].orderType` of schema `Shipment` in request body
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].status.currentShipmentStatus` of schema `ShipmentStatusData` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `shipments[].status.currentShipmentStatus` of schema `ShipmentStatusData` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].status.currentShipmentStatus` of schema `ShipmentStatusData` in response with status code 200
 
 
 # CHANGE LOG (1.3.4) - fp-v1.8.3

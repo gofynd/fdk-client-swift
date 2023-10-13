@@ -13,7 +13,7 @@ class ApplicationAPIClient {
         var headers = [
             (key: "Authorization", value: "Bearer " + "\(config.applicationId):\(config.applicationToken)".asBase64)
         ]
-        headers.append((key: "x-fp-sdk-version", value: "1.3.5-beta.1"))
+        headers.append((key: "x-fp-sdk-version", value: "1.3.5-beta.2"))
         headers.append(contentsOf: extraHeaders)
         headers.append(contentsOf: config.extraHeaders)
         if let userAgent = config.userAgent {
