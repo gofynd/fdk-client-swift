@@ -1,11 +1,102 @@
-# CHANGE LOG (1.3.5-beta.3) - v1.8.4-prerelease-v3
+# CHANGE LOG (1.3.5-beta.4) - v1.8.4-prerelease-v4
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### checkoutCart
+
+- ##### What's Deprecated
+	- [Deleted] Possible nullable value from `true` from property `id` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `customerDetails` of schema `CartCheckoutDetailRequest` in request body
+	- [Breaking] [Deleted] Default value from property `callbackUrl` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `callbackUrl` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `orderingStore` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `paymentIdentifier` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `paymentParams` of schema `CartCheckoutDetailRequest` in request body
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].bags[].item.attributes` of schema `Item` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `order.shipments[].bags[].item.attributes` of schema `Item` in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property `order.shipments[].bags[].item.attributes` of schema `Item` in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipment.bags[].item.attributes` of schema `Item` in response with status code 200
+
 
 ## Platform Client
 
 
 
+### Cart
+
+
+
+#### getStoreAddressByUid
+
+- ##### What's New
+	- [Added] property `items[].storeManagerName` of schema `PickupStoreDetail` in response with status code 200
+
+
 ### Catalog
 
+
+
+#### createCollection
+
+- ##### What's New
+	- [Added] property `seo.sitemap` of schema `SeoDetail` in request body
+	- [Added] property `seo.breadcrumbs` of schema `SeoDetail` in request body
+	- [Added] property `seo.metaTags` of schema `SeoDetail` in request body
+
+
+#### updateCollection
+
+- ##### What's New
+	- [Added] property `seo.sitemap` of schema `SeoDetail` in request body
+	- [Added] property `seo.breadcrumbs` of schema `SeoDetail` in request body
+	- [Added] property `seo.metaTags` of schema `SeoDetail` in request body
+	- [Added] property `seo.sitemap` of schema `SeoDetail` in response with status code 200
+	- [Added] property `seo.breadcrumbs` of schema `SeoDetail` in response with status code 200
+	- [Added] property `seo.metaTags` of schema `SeoDetail` in response with status code 200
+
+
+#### getAppProduct
+
+- ##### What's New
+	- [Added] Default value to property `seo` of schema `OwnerAppItemResponse` in response with status code 200
+	- [Added] Default value `` to property `seo` of schema `OwnerAppItemResponse` in response with status code 200
+	- [Added] Default value `` to property `seo` of schema `OwnerAppItemResponse` in response with status code 200
+
+
+#### updateAppProduct
+
+- ##### What's New
+	- [Added] property `sizePromotionThreshold` of schema `ApplicationItemMeta` in request body
 
 
 #### getProductBulkUploadHistory
@@ -18,6 +109,99 @@
 
 - ##### What's Changed
 	- [Breaking] [Changed] Type from `object` to `array` of property `items` of schema `ProductBulkRequest` in response with status code 200
+
+
+### Discount
+
+
+
+#### validateDiscountFile
+
+- ##### What's New
+	- [Added] property `filePath` of schema `FileJobResponse` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from `validation` to `validate` of property `type` of schema `FileJobResponse` in response with status code 200
+
+
+#### downloadDiscountFile
+
+- ##### What's New
+	- [Added] property `filePath` of schema `FileJobResponse` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from `validation` to `validate` of property `type` of schema `FileJobResponse` in response with status code 200
+
+
+#### getValidationJob
+
+- ##### What's New
+	- [Added] property `filePath` of schema `FileJobResponse` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from `validation` to `validate` of property `type` of schema `FileJobResponse` in response with status code 200
+
+
+#### getDownloadJob
+
+- ##### What's New
+	- [Added] property `filePath` of schema `FileJobResponse` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from `validation` to `validate` of property `type` of schema `FileJobResponse` in response with status code 200
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] property `shipments[].orderType` of schema `Shipment` in request body
+	- [Added] property `userInfo` of schema `CreateOrderAPI` in request body
+	- [Breaking] [Added] Required status to property `user_info` in request body
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].status.currentShipmentStatus` of schema `ShipmentStatusData` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] `query` parameter `myOrders` (type: `boolean`)
+
+	- [Added] property `shipments[].status.currentShipmentStatus` of schema `ShipmentStatusData` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].status.currentShipmentStatus` of schema `ShipmentStatusData` in response with status code 200
+
+
+### Payment
+
+
+
+#### updatePaymentSession
+
+- ##### What's New
+	- [Added] property `meta` of schema `PaymentSessionRequestSerializer` in request body
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from `test,live` from property `paymentDetails[].mode` of schema `PaymentSessionDetail` in request body
+	- [Deleted] Required status from property `paymentDetails[].billing_address` in request body
+	- [Deleted] Required status from property `paymentDetails[].shipping_address` in request body
+
+
+#### updateRefundSession
+
+- ##### What's New
+	- [Added] property `meta` of schema `RefundSessionRequestSerializer` in request body
 
 
 ### User

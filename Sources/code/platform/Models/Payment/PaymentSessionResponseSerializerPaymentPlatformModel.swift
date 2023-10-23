@@ -16,11 +16,11 @@ public extension PlatformClient.Payment {
         
         public var platformTransactionDetails: [[String: Any]]
         
-        public var totalAmount: Int
-        
         public var status: String
         
         public var currency: String
+        
+        public var totalAmount: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -29,11 +29,11 @@ public extension PlatformClient.Payment {
             
             case platformTransactionDetails = "platform_transaction_details"
             
-            case totalAmount = "total_amount"
-            
             case status = "status"
             
             case currency = "currency"
+            
+            case totalAmount = "total_amount"
             
         }
 
@@ -43,11 +43,11 @@ public extension PlatformClient.Payment {
             
             self.platformTransactionDetails = platformTransactionDetails
             
-            self.totalAmount = totalAmount
-            
             self.status = status
             
             self.currency = currency
+            
+            self.totalAmount = totalAmount
             
         }
 
@@ -65,17 +65,17 @@ public extension PlatformClient.Payment {
             
             
             
-                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
-                
-            
-            
-            
                 status = try container.decode(String.self, forKey: .status)
                 
             
             
             
                 currency = try container.decode(String.self, forKey: .currency)
+                
+            
+            
+            
+                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
                 
             
             
@@ -96,17 +96,17 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
-            
-            
-            
-            
             try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
             
             
         }
@@ -129,11 +129,11 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var platformTransactionDetails: [[String: Any]]
         
-        public var totalAmount: Int
-        
         public var status: String
         
         public var currency: String
+        
+        public var totalAmount: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -142,11 +142,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case platformTransactionDetails = "platform_transaction_details"
             
-            case totalAmount = "total_amount"
-            
             case status = "status"
             
             case currency = "currency"
+            
+            case totalAmount = "total_amount"
             
         }
 
@@ -156,11 +156,11 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             self.platformTransactionDetails = platformTransactionDetails
             
-            self.totalAmount = totalAmount
-            
             self.status = status
             
             self.currency = currency
+            
+            self.totalAmount = totalAmount
             
         }
 
@@ -178,17 +178,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
-                
-            
-            
-            
                 status = try container.decode(String.self, forKey: .status)
                 
             
             
             
                 currency = try container.decode(String.self, forKey: .currency)
+                
+            
+            
+            
+                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
                 
             
             
@@ -209,17 +209,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
-            
-            
-            
-            
             try? container.encodeIfPresent(status, forKey: .status)
             
             
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
             
             
         }

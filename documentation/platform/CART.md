@@ -11492,6 +11492,7 @@ Success. Returns available store information with its address as shown below.
       "state": "MAHA",
       "store_code": "6462b3cd-9d64-4da9-a764-b0e6a52cf5e8",
       "uid": 20,
+      "store_manager_name": "Salma",
       "geo_location": {
         "longitude": 1,
         "latitude": 1
@@ -15377,6 +15378,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | addressType | String? |  yes  |  |
  | area | String? |  yes  |  |
  | id | Int? |  yes  |  |
+ | storeManagerName | String? |  yes  |  |
  | name | String? |  yes  |  |
  | storeCode | String? |  yes  |  |
  | landmark | String? |  yes  |  |

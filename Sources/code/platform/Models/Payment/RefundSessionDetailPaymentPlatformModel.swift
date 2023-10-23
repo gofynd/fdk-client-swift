@@ -14,54 +14,54 @@ public extension PlatformClient.Payment {
         
         public var refundUtr: String?
         
-        public var receiptNumber: String?
-        
-        public var balanceTransaction: String?
+        public var requestId: String
         
         public var paymentId: String
         
-        public var created: String
-        
-        public var requestId: String
-        
-        public var transferReversal: String?
-        
         public var amount: Int
+        
+        public var reason: String?
         
         public var status: String
         
+        public var created: String
+        
         public var sourceTransferReversal: String?
+        
+        public var receiptNumber: String?
         
         public var currency: String
         
-        public var reason: String?
+        public var transferReversal: String?
+        
+        public var balanceTransaction: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case refundUtr = "refund_utr"
             
-            case receiptNumber = "receipt_number"
-            
-            case balanceTransaction = "balance_transaction"
+            case requestId = "request_id"
             
             case paymentId = "payment_id"
             
-            case created = "created"
-            
-            case requestId = "request_id"
-            
-            case transferReversal = "transfer_reversal"
-            
             case amount = "amount"
+            
+            case reason = "reason"
             
             case status = "status"
             
+            case created = "created"
+            
             case sourceTransferReversal = "source_transfer_reversal"
+            
+            case receiptNumber = "receipt_number"
             
             case currency = "currency"
             
-            case reason = "reason"
+            case transferReversal = "transfer_reversal"
+            
+            case balanceTransaction = "balance_transaction"
             
         }
 
@@ -69,27 +69,27 @@ public extension PlatformClient.Payment {
             
             self.refundUtr = refundUtr
             
-            self.receiptNumber = receiptNumber
-            
-            self.balanceTransaction = balanceTransaction
+            self.requestId = requestId
             
             self.paymentId = paymentId
             
-            self.created = created
-            
-            self.requestId = requestId
-            
-            self.transferReversal = transferReversal
-            
             self.amount = amount
+            
+            self.reason = reason
             
             self.status = status
             
+            self.created = created
+            
             self.sourceTransferReversal = sourceTransferReversal
+            
+            self.receiptNumber = receiptNumber
             
             self.currency = currency
             
-            self.reason = reason
+            self.transferReversal = transferReversal
+            
+            self.balanceTransaction = balanceTransaction
             
         }
 
@@ -99,6 +99,55 @@ public extension PlatformClient.Payment {
             
                 do {
                     refundUtr = try container.decode(String.self, forKey: .refundUtr)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                requestId = try container.decode(String.self, forKey: .requestId)
+                
+            
+            
+            
+                paymentId = try container.decode(String.self, forKey: .paymentId)
+                
+            
+            
+            
+                amount = try container.decode(Int.self, forKey: .amount)
+                
+            
+            
+            
+                do {
+                    reason = try container.decode(String.self, forKey: .reason)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                status = try container.decode(String.self, forKey: .status)
+                
+            
+            
+            
+                created = try container.decode(String.self, forKey: .created)
+                
+            
+            
+            
+                do {
+                    sourceTransferReversal = try container.decode(String.self, forKey: .sourceTransferReversal)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -121,29 +170,7 @@ public extension PlatformClient.Payment {
                 
             
             
-                do {
-                    balanceTransaction = try container.decode(String.self, forKey: .balanceTransaction)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                paymentId = try container.decode(String.self, forKey: .paymentId)
-                
-            
-            
-            
-                created = try container.decode(String.self, forKey: .created)
-                
-            
-            
-            
-                requestId = try container.decode(String.self, forKey: .requestId)
+                currency = try container.decode(String.self, forKey: .currency)
                 
             
             
@@ -160,35 +187,8 @@ public extension PlatformClient.Payment {
                 
             
             
-                amount = try container.decode(Int.self, forKey: .amount)
-                
-            
-            
-            
-                status = try container.decode(String.self, forKey: .status)
-                
-            
-            
-            
                 do {
-                    sourceTransferReversal = try container.decode(String.self, forKey: .sourceTransferReversal)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                currency = try container.decode(String.self, forKey: .currency)
-                
-            
-            
-            
-                do {
-                    reason = try container.decode(String.self, forKey: .reason)
+                    balanceTransaction = try container.decode(String.self, forKey: .balanceTransaction)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -210,12 +210,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(receiptNumber, forKey: .receiptNumber)
-            
-            
-            
-            
-            try? container.encodeIfPresent(balanceTransaction, forKey: .balanceTransaction)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
             
             
             
@@ -225,22 +220,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(created, forKey: .created)
-            
-            
-            
-            
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(transferReversal, forKey: .transferReversal)
-            
-            
-            
-            
             try? container.encodeIfPresent(amount, forKey: .amount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(reason, forKey: .reason)
             
             
             
@@ -250,7 +235,17 @@ public extension PlatformClient.Payment {
             
             
             
+            try? container.encodeIfPresent(created, forKey: .created)
+            
+            
+            
+            
             try? container.encodeIfPresent(sourceTransferReversal, forKey: .sourceTransferReversal)
+            
+            
+            
+            
+            try? container.encodeIfPresent(receiptNumber, forKey: .receiptNumber)
             
             
             
@@ -260,7 +255,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(reason, forKey: .reason)
+            try? container.encodeIfPresent(transferReversal, forKey: .transferReversal)
+            
+            
+            
+            
+            try? container.encodeIfPresent(balanceTransaction, forKey: .balanceTransaction)
             
             
         }
@@ -281,54 +281,54 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var refundUtr: String?
         
-        public var receiptNumber: String?
-        
-        public var balanceTransaction: String?
+        public var requestId: String
         
         public var paymentId: String
         
-        public var created: String
-        
-        public var requestId: String
-        
-        public var transferReversal: String?
-        
         public var amount: Int
+        
+        public var reason: String?
         
         public var status: String
         
+        public var created: String
+        
         public var sourceTransferReversal: String?
+        
+        public var receiptNumber: String?
         
         public var currency: String
         
-        public var reason: String?
+        public var transferReversal: String?
+        
+        public var balanceTransaction: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case refundUtr = "refund_utr"
             
-            case receiptNumber = "receipt_number"
-            
-            case balanceTransaction = "balance_transaction"
+            case requestId = "request_id"
             
             case paymentId = "payment_id"
             
-            case created = "created"
-            
-            case requestId = "request_id"
-            
-            case transferReversal = "transfer_reversal"
-            
             case amount = "amount"
+            
+            case reason = "reason"
             
             case status = "status"
             
+            case created = "created"
+            
             case sourceTransferReversal = "source_transfer_reversal"
+            
+            case receiptNumber = "receipt_number"
             
             case currency = "currency"
             
-            case reason = "reason"
+            case transferReversal = "transfer_reversal"
+            
+            case balanceTransaction = "balance_transaction"
             
         }
 
@@ -336,27 +336,27 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             self.refundUtr = refundUtr
             
-            self.receiptNumber = receiptNumber
-            
-            self.balanceTransaction = balanceTransaction
+            self.requestId = requestId
             
             self.paymentId = paymentId
             
-            self.created = created
-            
-            self.requestId = requestId
-            
-            self.transferReversal = transferReversal
-            
             self.amount = amount
+            
+            self.reason = reason
             
             self.status = status
             
+            self.created = created
+            
             self.sourceTransferReversal = sourceTransferReversal
+            
+            self.receiptNumber = receiptNumber
             
             self.currency = currency
             
-            self.reason = reason
+            self.transferReversal = transferReversal
+            
+            self.balanceTransaction = balanceTransaction
             
         }
 
@@ -366,6 +366,55 @@ public extension PlatformClient.ApplicationClient.Payment {
             
                 do {
                     refundUtr = try container.decode(String.self, forKey: .refundUtr)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                requestId = try container.decode(String.self, forKey: .requestId)
+                
+            
+            
+            
+                paymentId = try container.decode(String.self, forKey: .paymentId)
+                
+            
+            
+            
+                amount = try container.decode(Int.self, forKey: .amount)
+                
+            
+            
+            
+                do {
+                    reason = try container.decode(String.self, forKey: .reason)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                status = try container.decode(String.self, forKey: .status)
+                
+            
+            
+            
+                created = try container.decode(String.self, forKey: .created)
+                
+            
+            
+            
+                do {
+                    sourceTransferReversal = try container.decode(String.self, forKey: .sourceTransferReversal)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -388,29 +437,7 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                do {
-                    balanceTransaction = try container.decode(String.self, forKey: .balanceTransaction)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                paymentId = try container.decode(String.self, forKey: .paymentId)
-                
-            
-            
-            
-                created = try container.decode(String.self, forKey: .created)
-                
-            
-            
-            
-                requestId = try container.decode(String.self, forKey: .requestId)
+                currency = try container.decode(String.self, forKey: .currency)
                 
             
             
@@ -427,35 +454,8 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                amount = try container.decode(Int.self, forKey: .amount)
-                
-            
-            
-            
-                status = try container.decode(String.self, forKey: .status)
-                
-            
-            
-            
                 do {
-                    sourceTransferReversal = try container.decode(String.self, forKey: .sourceTransferReversal)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                currency = try container.decode(String.self, forKey: .currency)
-                
-            
-            
-            
-                do {
-                    reason = try container.decode(String.self, forKey: .reason)
+                    balanceTransaction = try container.decode(String.self, forKey: .balanceTransaction)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -477,12 +477,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(receiptNumber, forKey: .receiptNumber)
-            
-            
-            
-            
-            try? container.encodeIfPresent(balanceTransaction, forKey: .balanceTransaction)
+            try? container.encodeIfPresent(requestId, forKey: .requestId)
             
             
             
@@ -492,22 +487,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(created, forKey: .created)
-            
-            
-            
-            
-            try? container.encodeIfPresent(requestId, forKey: .requestId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(transferReversal, forKey: .transferReversal)
-            
-            
-            
-            
             try? container.encodeIfPresent(amount, forKey: .amount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(reason, forKey: .reason)
             
             
             
@@ -517,7 +502,17 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
+            try? container.encodeIfPresent(created, forKey: .created)
+            
+            
+            
+            
             try? container.encodeIfPresent(sourceTransferReversal, forKey: .sourceTransferReversal)
+            
+            
+            
+            
+            try? container.encodeIfPresent(receiptNumber, forKey: .receiptNumber)
             
             
             
@@ -527,7 +522,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(reason, forKey: .reason)
+            try? container.encodeIfPresent(transferReversal, forKey: .transferReversal)
+            
+            
+            
+            
+            try? container.encodeIfPresent(balanceTransaction, forKey: .balanceTransaction)
             
             
         }

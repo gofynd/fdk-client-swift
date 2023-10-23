@@ -12,48 +12,54 @@ public extension PlatformClient.Payment {
     class RefundSessionRequestSerializer: Codable {
         
         
+        public var meta: [String: Any]?
+        
         public var gid: String
-        
-        public var paymentDetails: PaymentSessionDetail
-        
-        public var totalAmount: Int
-        
-        public var refundDetails: [RefundSessionDetail]?
         
         public var status: String
         
         public var currency: String
         
+        public var paymentDetails: PaymentSessionDetail
+        
+        public var refundDetails: [RefundSessionDetail]?
+        
+        public var totalAmount: Int
+        
 
         public enum CodingKeys: String, CodingKey {
             
+            case meta = "meta"
+            
             case gid = "gid"
-            
-            case paymentDetails = "payment_details"
-            
-            case totalAmount = "total_amount"
-            
-            case refundDetails = "refund_details"
             
             case status = "status"
             
             case currency = "currency"
             
+            case paymentDetails = "payment_details"
+            
+            case refundDetails = "refund_details"
+            
+            case totalAmount = "total_amount"
+            
         }
 
-        public init(currency: String, gid: String, paymentDetails: PaymentSessionDetail, refundDetails: [RefundSessionDetail]? = nil, status: String, totalAmount: Int) {
+        public init(currency: String, gid: String, meta: [String: Any]? = nil, paymentDetails: PaymentSessionDetail, refundDetails: [RefundSessionDetail]? = nil, status: String, totalAmount: Int) {
+            
+            self.meta = meta
             
             self.gid = gid
-            
-            self.paymentDetails = paymentDetails
-            
-            self.totalAmount = totalAmount
-            
-            self.refundDetails = refundDetails
             
             self.status = status
             
             self.currency = currency
+            
+            self.paymentDetails = paymentDetails
+            
+            self.refundDetails = refundDetails
+            
+            self.totalAmount = totalAmount
             
         }
 
@@ -61,17 +67,34 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 gid = try container.decode(String.self, forKey: .gid)
                 
             
             
             
-                paymentDetails = try container.decode(PaymentSessionDetail.self, forKey: .paymentDetails)
+                status = try container.decode(String.self, forKey: .status)
                 
             
             
             
-                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
+                currency = try container.decode(String.self, forKey: .currency)
+                
+            
+            
+            
+                paymentDetails = try container.decode(PaymentSessionDetail.self, forKey: .paymentDetails)
                 
             
             
@@ -88,12 +111,7 @@ public extension PlatformClient.Payment {
                 
             
             
-                status = try container.decode(String.self, forKey: .status)
-                
-            
-            
-            
-                currency = try container.decode(String.self, forKey: .currency)
+                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
                 
             
             
@@ -104,22 +122,12 @@ public extension PlatformClient.Payment {
             
             
             
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
             try? container.encodeIfPresent(gid, forKey: .gid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(refundDetails, forKey: .refundDetails)
             
             
             
@@ -130,6 +138,21 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundDetails, forKey: .refundDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
             
             
         }
@@ -148,48 +171,54 @@ public extension PlatformClient.ApplicationClient.Payment {
     class RefundSessionRequestSerializer: Codable {
         
         
+        public var meta: [String: Any]?
+        
         public var gid: String
-        
-        public var paymentDetails: PaymentSessionDetail
-        
-        public var totalAmount: Int
-        
-        public var refundDetails: [RefundSessionDetail]?
         
         public var status: String
         
         public var currency: String
         
+        public var paymentDetails: PaymentSessionDetail
+        
+        public var refundDetails: [RefundSessionDetail]?
+        
+        public var totalAmount: Int
+        
 
         public enum CodingKeys: String, CodingKey {
             
+            case meta = "meta"
+            
             case gid = "gid"
-            
-            case paymentDetails = "payment_details"
-            
-            case totalAmount = "total_amount"
-            
-            case refundDetails = "refund_details"
             
             case status = "status"
             
             case currency = "currency"
             
+            case paymentDetails = "payment_details"
+            
+            case refundDetails = "refund_details"
+            
+            case totalAmount = "total_amount"
+            
         }
 
-        public init(currency: String, gid: String, paymentDetails: PaymentSessionDetail, refundDetails: [RefundSessionDetail]? = nil, status: String, totalAmount: Int) {
+        public init(currency: String, gid: String, meta: [String: Any]? = nil, paymentDetails: PaymentSessionDetail, refundDetails: [RefundSessionDetail]? = nil, status: String, totalAmount: Int) {
+            
+            self.meta = meta
             
             self.gid = gid
-            
-            self.paymentDetails = paymentDetails
-            
-            self.totalAmount = totalAmount
-            
-            self.refundDetails = refundDetails
             
             self.status = status
             
             self.currency = currency
+            
+            self.paymentDetails = paymentDetails
+            
+            self.refundDetails = refundDetails
+            
+            self.totalAmount = totalAmount
             
         }
 
@@ -197,17 +226,34 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
+                do {
+                    meta = try container.decode([String: Any].self, forKey: .meta)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 gid = try container.decode(String.self, forKey: .gid)
                 
             
             
             
-                paymentDetails = try container.decode(PaymentSessionDetail.self, forKey: .paymentDetails)
+                status = try container.decode(String.self, forKey: .status)
                 
             
             
             
-                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
+                currency = try container.decode(String.self, forKey: .currency)
+                
+            
+            
+            
+                paymentDetails = try container.decode(PaymentSessionDetail.self, forKey: .paymentDetails)
                 
             
             
@@ -224,12 +270,7 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
-                status = try container.decode(String.self, forKey: .status)
-                
-            
-            
-            
-                currency = try container.decode(String.self, forKey: .currency)
+                totalAmount = try container.decode(Int.self, forKey: .totalAmount)
                 
             
             
@@ -240,22 +281,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
+            try? container.encodeIfPresent(meta, forKey: .meta)
+            
+            
+            
+            
             try? container.encodeIfPresent(gid, forKey: .gid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
-            
-            
-            
-            
-            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(refundDetails, forKey: .refundDetails)
             
             
             
@@ -266,6 +297,21 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentDetails, forKey: .paymentDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(refundDetails, forKey: .refundDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalAmount, forKey: .totalAmount)
             
             
         }

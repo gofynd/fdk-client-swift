@@ -30,6 +30,8 @@ public extension ApplicationClient.Order {
         
         public var size: String?
         
+        public var attributes: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -55,9 +57,11 @@ public extension ApplicationClient.Order {
             
             case size = "size"
             
+            case attributes = "attributes"
+            
         }
 
-        public init(brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, l1Categories: [String]? = nil, l2Categories: [String]? = nil, l3CategoryName: String? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, slugKey: String? = nil) {
+        public init(attributes: [String: Any]? = nil, brand: ItemBrand? = nil, code: String? = nil, id: Double? = nil, image: [String]? = nil, l1Categories: [String]? = nil, l2Categories: [String]? = nil, l3CategoryName: String? = nil, name: String? = nil, sellerIdentifier: String? = nil, size: String? = nil, slugKey: String? = nil) {
             
             self.image = image
             
@@ -80,6 +84,8 @@ public extension ApplicationClient.Order {
             self.l2Categories = l2Categories
             
             self.size = size
+            
+            self.attributes = attributes
             
         }
 
@@ -218,6 +224,18 @@ public extension ApplicationClient.Order {
             }
             
             
+            
+            do {
+                attributes = try container.decode([String: Any].self, forKey: .attributes)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -276,6 +294,11 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(size, forKey: .size)
+            
+            
+            
+            
+            try? container.encodeIfPresent(attributes, forKey: .attributes)
             
             
         }

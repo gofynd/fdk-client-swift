@@ -2299,6 +2299,7 @@ if let value = shipmentId {
         **/
         public func getOrderById(
             orderId: String,
+            myOrders: Bool?,
             
             onResponse: @escaping (_ response: OrderDetailsResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2308,6 +2309,13 @@ var xQuery: [String: Any] = [:]
 
     xQuery["order_id"] = orderId
 
+
+
+if let value = myOrders {
+    
+    xQuery["my_orders"] = value
+    
+}
 
 
  
