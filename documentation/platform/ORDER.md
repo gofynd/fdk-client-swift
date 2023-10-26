@@ -2723,7 +2723,7 @@ We are processing the report!
 
 
 ```swift
-platformClient.order.getOrderById(orderId: orderId) { (response, error) in
+platformClient.order.getOrderById(orderId: orderId, myOrders: myOrders) { (response, error) in
     // Use response
 }
 ```
@@ -2734,7 +2734,8 @@ platformClient.order.getOrderById(orderId: orderId) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| orderId | String | yes |  |  
+| orderId | String | yes |  |   
+| myOrders | Bool? | no |  |  
 
 
 
@@ -5965,6 +5966,7 @@ We are processing the request!
  | meta | [String: Any]? |  yes  |  |
  | priority | Int? |  yes  |  |
  | locationId | Int |  no  |  |
+ | orderType | String? |  yes  |  |
 
 ---
 
@@ -6038,6 +6040,23 @@ We are processing the request!
 
  
  
+ #### [UserInfo](#UserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | userId | String? |  yes  |  |
+ | userType | String? |  yes  |  |
+ | email | String |  no  |  |
+ | gender | String? |  yes  |  |
+ | firstName | String |  no  |  |
+ | lastName | String? |  yes  |  |
+ | mobile | String |  no  |  |
+
+---
+
+
+ 
+ 
  #### [TaxInfo](#TaxInfo)
 
  | Properties | Type | Nullable | Description |
@@ -6095,6 +6114,7 @@ We are processing the request!
  | taxInfo | [TaxInfo](#TaxInfo)? |  yes  |  |
  | config | [String: Any]? |  yes  |  |
  | paymentInfo | [PaymentInfo](#PaymentInfo) |  no  |  |
+ | userInfo | [UserInfo](#UserInfo)? |  yes  |  |
 
 ---
 
@@ -6697,6 +6717,8 @@ We are processing the request!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | uid | Int? |  yes  |  |
+ | userOid | String? |  yes  |  |
+ | externalCustomerId | String? |  yes  |  |
  | firstName | String? |  yes  |  |
  | lastName | String? |  yes  |  |
  | mobile | String? |  yes  |  |
@@ -7377,7 +7399,7 @@ We are processing the request!
  | orderingChannelLogo | [String: Any]? |  yes  |  |
  | orderValue | String? |  yes  |  |
  | orderingChannel | String? |  yes  |  |
- | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -7939,6 +7961,7 @@ We are processing the request!
  | shipmentId | String? |  yes  |  |
  | status | String? |  yes  |  |
  | displayName | String? |  yes  |  |
+ | currentShipmentStatus | String? |  yes  |  |
 
 ---
 
@@ -7986,7 +8009,7 @@ We are processing the request!
  | dpAssignment | Bool? |  yes  |  |
  | totalItems | Int? |  yes  |  |
  | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
- | meta | [ShipmentMeta](#ShipmentMeta)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | pdfLinks | [String: Any]? |  yes  |  |
  | paymentMode | String? |  yes  |  |
  | packagingType | String? |  yes  |  |
@@ -8764,7 +8787,7 @@ We are processing the request!
  | type | String? |  yes  |  |
  | lineNumber | Int? |  yes  |  |
  | restoreCoupon | Bool? |  yes  |  |
- | meta | [BagMeta](#BagMeta)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | noOfBagsOrder | Int? |  yes  |  |
  | appliedPromos | [[String: Any]]? |  yes  |  |
  | journeyType | String? |  yes  |  |

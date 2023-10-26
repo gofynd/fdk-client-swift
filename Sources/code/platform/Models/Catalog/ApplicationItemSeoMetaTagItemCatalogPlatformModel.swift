@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-        Model: ProductBulkRequestList
+        Model: ApplicationItemSeoMetaTagItem
         Used By: Catalog
     */
 
-    class ProductBulkRequestList: Codable {
+    class ApplicationItemSeoMetaTagItem: Codable {
         
         
-        public var items: [ProductBulkRequest]?
+        public var key: String?
         
-        public var page: Page?
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case key = "key"
             
-            case page = "page"
+            case value = "value"
             
         }
 
-        public init(items: [ProductBulkRequest]? = nil, page: Page? = nil) {
+        public init(key: String? = nil, value: String? = nil) {
             
-            self.items = items
+            self.key = key
             
-            self.page = page
+            self.value = value
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    items = try container.decode([ProductBulkRequest].self, forKey: .items)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }
@@ -84,31 +84,31 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: ProductBulkRequestList
+        Model: ApplicationItemSeoMetaTagItem
         Used By: Catalog
     */
 
-    class ProductBulkRequestList: Codable {
+    class ApplicationItemSeoMetaTagItem: Codable {
         
         
-        public var items: [ProductBulkRequest]?
+        public var key: String?
         
-        public var page: Page?
+        public var value: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case key = "key"
             
-            case page = "page"
+            case value = "value"
             
         }
 
-        public init(items: [ProductBulkRequest]? = nil, page: Page? = nil) {
+        public init(key: String? = nil, value: String? = nil) {
             
-            self.items = items
+            self.key = key
             
-            self.page = page
+            self.value = value
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    items = try container.decode([ProductBulkRequest].self, forKey: .items)
+                    key = try container.decode(String.self, forKey: .key)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    value = try container.decode(String.self, forKey: .value)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(key, forKey: .key)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(value, forKey: .value)
             
             
         }

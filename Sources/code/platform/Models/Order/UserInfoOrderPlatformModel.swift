@@ -3,51 +3,63 @@
 import Foundation
 
 
-public extension PlatformClient.Catalog {
+public extension PlatformClient.Order {
     /*
-        Model: SeoDetail
-        Used By: Catalog
+        Model: UserInfo
+        Used By: Order
     */
 
-    class SeoDetail: Codable {
+    class UserInfo: Codable {
         
         
-        public var description: String?
+        public var userId: String?
         
-        public var title: String?
+        public var userType: String?
         
-        public var sitemap: [String: Any]?
+        public var email: String
         
-        public var breadcrumbs: [ApplicationItemSeoBreadcrumbs]?
+        public var gender: String?
         
-        public var metaTags: [Metatags]?
+        public var firstName: String
+        
+        public var lastName: String?
+        
+        public var mobile: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case description = "description"
+            case userId = "user_id"
             
-            case title = "title"
+            case userType = "user_type"
             
-            case sitemap = "sitemap"
+            case email = "email"
             
-            case breadcrumbs = "breadcrumbs"
+            case gender = "gender"
             
-            case metaTags = "meta_tags"
+            case firstName = "first_name"
+            
+            case lastName = "last_name"
+            
+            case mobile = "mobile"
             
         }
 
-        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: [String: Any]? = nil, title: String? = nil) {
+        public init(email: String, firstName: String, gender: String? = nil, lastName: String? = nil, mobile: String, userId: String? = nil, userType: String? = nil) {
             
-            self.description = description
+            self.userId = userId
             
-            self.title = title
+            self.userType = userType
             
-            self.sitemap = sitemap
+            self.email = email
             
-            self.breadcrumbs = breadcrumbs
+            self.gender = gender
             
-            self.metaTags = metaTags
+            self.firstName = firstName
+            
+            self.lastName = lastName
+            
+            self.mobile = mobile
             
         }
 
@@ -56,7 +68,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    description = try container.decode(String.self, forKey: .description)
+                    userId = try container.decode(String.self, forKey: .userId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +80,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    title = try container.decode(String.self, forKey: .title)
+                    userType = try container.decode(String.self, forKey: .userType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -77,10 +89,15 @@ public extension PlatformClient.Catalog {
                     
                 }
                 
+            
+            
+                email = try container.decode(String.self, forKey: .email)
+                
+            
             
             
                 do {
-                    sitemap = try container.decode([String: Any].self, forKey: .sitemap)
+                    gender = try container.decode(String.self, forKey: .gender)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,10 +106,15 @@ public extension PlatformClient.Catalog {
                     
                 }
                 
+            
+            
+                firstName = try container.decode(String.self, forKey: .firstName)
+                
+            
             
             
                 do {
-                    breadcrumbs = try container.decode([ApplicationItemSeoBreadcrumbs].self, forKey: .breadcrumbs)
+                    lastName = try container.decode(String.self, forKey: .lastName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -103,16 +125,9 @@ public extension PlatformClient.Catalog {
                 
             
             
-                do {
-                    metaTags = try container.decode([Metatags].self, forKey: .metaTags)
+                mobile = try container.decode(String.self, forKey: .mobile)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -121,27 +136,37 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
             
             
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(userType, forKey: .userType)
             
             
             
             
-            try? container.encodeIfPresent(sitemap, forKey: .sitemap)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encodeIfPresent(breadcrumbs, forKey: .breadcrumbs)
+            try? container.encodeIfPresent(gender, forKey: .gender)
             
             
             
             
-            try? container.encodeIfPresent(metaTags, forKey: .metaTags)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
             
             
         }
@@ -151,51 +176,63 @@ public extension PlatformClient.Catalog {
 
 
 
-public extension PlatformClient.ApplicationClient.Catalog {
+public extension PlatformClient.ApplicationClient.Order {
     /*
-        Model: SeoDetail
-        Used By: Catalog
+        Model: UserInfo
+        Used By: Order
     */
 
-    class SeoDetail: Codable {
+    class UserInfo: Codable {
         
         
-        public var description: String?
+        public var userId: String?
         
-        public var title: String?
+        public var userType: String?
         
-        public var sitemap: [String: Any]?
+        public var email: String
         
-        public var breadcrumbs: [ApplicationItemSeoBreadcrumbs]?
+        public var gender: String?
         
-        public var metaTags: [Metatags]?
+        public var firstName: String
+        
+        public var lastName: String?
+        
+        public var mobile: String
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case description = "description"
+            case userId = "user_id"
             
-            case title = "title"
+            case userType = "user_type"
             
-            case sitemap = "sitemap"
+            case email = "email"
             
-            case breadcrumbs = "breadcrumbs"
+            case gender = "gender"
             
-            case metaTags = "meta_tags"
+            case firstName = "first_name"
+            
+            case lastName = "last_name"
+            
+            case mobile = "mobile"
             
         }
 
-        public init(breadcrumbs: [ApplicationItemSeoBreadcrumbs]? = nil, description: String? = nil, metaTags: [Metatags]? = nil, sitemap: [String: Any]? = nil, title: String? = nil) {
+        public init(email: String, firstName: String, gender: String? = nil, lastName: String? = nil, mobile: String, userId: String? = nil, userType: String? = nil) {
             
-            self.description = description
+            self.userId = userId
             
-            self.title = title
+            self.userType = userType
             
-            self.sitemap = sitemap
+            self.email = email
             
-            self.breadcrumbs = breadcrumbs
+            self.gender = gender
             
-            self.metaTags = metaTags
+            self.firstName = firstName
+            
+            self.lastName = lastName
+            
+            self.mobile = mobile
             
         }
 
@@ -204,7 +241,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    description = try container.decode(String.self, forKey: .description)
+                    userId = try container.decode(String.self, forKey: .userId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -216,7 +253,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    title = try container.decode(String.self, forKey: .title)
+                    userType = try container.decode(String.self, forKey: .userType)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -225,10 +262,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
                     
                 }
                 
+            
+            
+                email = try container.decode(String.self, forKey: .email)
+                
+            
             
             
                 do {
-                    sitemap = try container.decode([String: Any].self, forKey: .sitemap)
+                    gender = try container.decode(String.self, forKey: .gender)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -237,10 +279,15 @@ public extension PlatformClient.ApplicationClient.Catalog {
                     
                 }
                 
+            
+            
+                firstName = try container.decode(String.self, forKey: .firstName)
+                
+            
             
             
                 do {
-                    breadcrumbs = try container.decode([ApplicationItemSeoBreadcrumbs].self, forKey: .breadcrumbs)
+                    lastName = try container.decode(String.self, forKey: .lastName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,16 +298,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 
             
             
-                do {
-                    metaTags = try container.decode([Metatags].self, forKey: .metaTags)
+                mobile = try container.decode(String.self, forKey: .mobile)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
         }
         
@@ -269,27 +309,37 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(description, forKey: .description)
+            try? container.encodeIfPresent(userId, forKey: .userId)
             
             
             
             
-            try? container.encodeIfPresent(title, forKey: .title)
+            try? container.encodeIfPresent(userType, forKey: .userType)
             
             
             
             
-            try? container.encodeIfPresent(sitemap, forKey: .sitemap)
+            try? container.encodeIfPresent(email, forKey: .email)
             
             
             
             
-            try? container.encodeIfPresent(breadcrumbs, forKey: .breadcrumbs)
+            try? container.encodeIfPresent(gender, forKey: .gender)
             
             
             
             
-            try? container.encodeIfPresent(metaTags, forKey: .metaTags)
+            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(lastName, forKey: .lastName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(mobile, forKey: .mobile)
             
             
         }

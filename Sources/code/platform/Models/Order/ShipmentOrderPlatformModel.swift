@@ -24,6 +24,8 @@ public extension PlatformClient.Order {
         
         public var locationId: Int
         
+        public var orderType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -39,9 +41,11 @@ public extension PlatformClient.Order {
             
             case locationId = "location_id"
             
+            case orderType = "order_type"
+            
         }
 
-        public init(externalShipmentId: String? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
+        public init(externalShipmentId: String? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, orderType: String? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
             
             self.lineItems = lineItems
             
@@ -54,6 +58,8 @@ public extension PlatformClient.Order {
             self.priority = priority
             
             self.locationId = locationId
+            
+            self.orderType = orderType
             
         }
 
@@ -118,6 +124,18 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                do {
+                    orderType = try container.decode(String.self, forKey: .orderType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -151,6 +169,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(locationId, forKey: .locationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
         }
@@ -181,6 +204,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var locationId: Int
         
+        public var orderType: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -196,9 +221,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case locationId = "location_id"
             
+            case orderType = "order_type"
+            
         }
 
-        public init(externalShipmentId: String? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
+        public init(externalShipmentId: String? = nil, lineItems: [LineItem], locationId: Int, meta: [String: Any]? = nil, orderType: String? = nil, priority: Int? = nil, processingDates: ProcessingDates? = nil) {
             
             self.lineItems = lineItems
             
@@ -211,6 +238,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.priority = priority
             
             self.locationId = locationId
+            
+            self.orderType = orderType
             
         }
 
@@ -275,6 +304,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                do {
+                    orderType = try container.decode(String.self, forKey: .orderType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -308,6 +349,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(locationId, forKey: .locationId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(orderType, forKey: .orderType)
             
             
         }

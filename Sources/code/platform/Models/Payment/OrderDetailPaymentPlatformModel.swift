@@ -14,30 +14,30 @@ public extension PlatformClient.Payment {
         
         public var gid: String
         
-        public var aggregator: String
-        
         public var amount: Int
-        
-        public var aggregatorOrderDetails: [String: Any]
         
         public var status: String
         
         public var currency: String
+        
+        public var aggregatorOrderDetails: [String: Any]
+        
+        public var aggregator: String
         
 
         public enum CodingKeys: String, CodingKey {
             
             case gid = "gid"
             
-            case aggregator = "aggregator"
-            
             case amount = "amount"
-            
-            case aggregatorOrderDetails = "aggregator_order_details"
             
             case status = "status"
             
             case currency = "currency"
+            
+            case aggregatorOrderDetails = "aggregator_order_details"
+            
+            case aggregator = "aggregator"
             
         }
 
@@ -45,15 +45,15 @@ public extension PlatformClient.Payment {
             
             self.gid = gid
             
-            self.aggregator = aggregator
-            
             self.amount = amount
-            
-            self.aggregatorOrderDetails = aggregatorOrderDetails
             
             self.status = status
             
             self.currency = currency
+            
+            self.aggregatorOrderDetails = aggregatorOrderDetails
+            
+            self.aggregator = aggregator
             
         }
 
@@ -66,17 +66,7 @@ public extension PlatformClient.Payment {
             
             
             
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-            
-            
-            
                 amount = try container.decode(Int.self, forKey: .amount)
-                
-            
-            
-            
-                aggregatorOrderDetails = try container.decode([String: Any].self, forKey: .aggregatorOrderDetails)
                 
             
             
@@ -87,6 +77,16 @@ public extension PlatformClient.Payment {
             
             
                 currency = try container.decode(String.self, forKey: .currency)
+                
+            
+            
+            
+                aggregatorOrderDetails = try container.decode([String: Any].self, forKey: .aggregatorOrderDetails)
+                
+            
+            
+            
+                aggregator = try container.decode(String.self, forKey: .aggregator)
                 
             
             
@@ -102,17 +102,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-            
-            
-            
-            
             try? container.encodeIfPresent(amount, forKey: .amount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(aggregatorOrderDetails, forKey: .aggregatorOrderDetails)
             
             
             
@@ -123,6 +113,16 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(aggregatorOrderDetails, forKey: .aggregatorOrderDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
             
             
         }
@@ -143,30 +143,30 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var gid: String
         
-        public var aggregator: String
-        
         public var amount: Int
-        
-        public var aggregatorOrderDetails: [String: Any]
         
         public var status: String
         
         public var currency: String
+        
+        public var aggregatorOrderDetails: [String: Any]
+        
+        public var aggregator: String
         
 
         public enum CodingKeys: String, CodingKey {
             
             case gid = "gid"
             
-            case aggregator = "aggregator"
-            
             case amount = "amount"
-            
-            case aggregatorOrderDetails = "aggregator_order_details"
             
             case status = "status"
             
             case currency = "currency"
+            
+            case aggregatorOrderDetails = "aggregator_order_details"
+            
+            case aggregator = "aggregator"
             
         }
 
@@ -174,15 +174,15 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             self.gid = gid
             
-            self.aggregator = aggregator
-            
             self.amount = amount
-            
-            self.aggregatorOrderDetails = aggregatorOrderDetails
             
             self.status = status
             
             self.currency = currency
+            
+            self.aggregatorOrderDetails = aggregatorOrderDetails
+            
+            self.aggregator = aggregator
             
         }
 
@@ -195,17 +195,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                aggregator = try container.decode(String.self, forKey: .aggregator)
-                
-            
-            
-            
                 amount = try container.decode(Int.self, forKey: .amount)
-                
-            
-            
-            
-                aggregatorOrderDetails = try container.decode([String: Any].self, forKey: .aggregatorOrderDetails)
                 
             
             
@@ -216,6 +206,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 currency = try container.decode(String.self, forKey: .currency)
+                
+            
+            
+            
+                aggregatorOrderDetails = try container.decode([String: Any].self, forKey: .aggregatorOrderDetails)
+                
+            
+            
+            
+                aggregator = try container.decode(String.self, forKey: .aggregator)
                 
             
             
@@ -231,17 +231,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
-            
-            
-            
-            
             try? container.encodeIfPresent(amount, forKey: .amount)
-            
-            
-            
-            
-            try? container.encodeIfPresent(aggregatorOrderDetails, forKey: .aggregatorOrderDetails)
             
             
             
@@ -252,6 +242,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(aggregatorOrderDetails, forKey: .aggregatorOrderDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(aggregator, forKey: .aggregator)
             
             
         }

@@ -12,42 +12,42 @@ public extension PlatformClient.Payment {
     class RefundSessionResponseSerializer: Codable {
         
         
-        public var totalRefundAmount: Int
-        
         public var gid: String
-        
-        public var platformRefundDetails: [[String: Any]]
         
         public var status: String
         
         public var currency: String
         
+        public var platformRefundDetails: [[String: Any]]
+        
+        public var totalRefundAmount: Int
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case totalRefundAmount = "total_refund_amount"
-            
             case gid = "gid"
-            
-            case platformRefundDetails = "platform_refund_details"
             
             case status = "status"
             
             case currency = "currency"
             
+            case platformRefundDetails = "platform_refund_details"
+            
+            case totalRefundAmount = "total_refund_amount"
+            
         }
 
         public init(currency: String, gid: String, platformRefundDetails: [[String: Any]], status: String, totalRefundAmount: Int) {
             
-            self.totalRefundAmount = totalRefundAmount
-            
             self.gid = gid
-            
-            self.platformRefundDetails = platformRefundDetails
             
             self.status = status
             
             self.currency = currency
+            
+            self.platformRefundDetails = platformRefundDetails
+            
+            self.totalRefundAmount = totalRefundAmount
             
         }
 
@@ -55,17 +55,7 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                totalRefundAmount = try container.decode(Int.self, forKey: .totalRefundAmount)
-                
-            
-            
-            
                 gid = try container.decode(String.self, forKey: .gid)
-                
-            
-            
-            
-                platformRefundDetails = try container.decode([[String: Any]].self, forKey: .platformRefundDetails)
                 
             
             
@@ -79,6 +69,16 @@ public extension PlatformClient.Payment {
                 
             
             
+            
+                platformRefundDetails = try container.decode([[String: Any]].self, forKey: .platformRefundDetails)
+                
+            
+            
+            
+                totalRefundAmount = try container.decode(Int.self, forKey: .totalRefundAmount)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -86,17 +86,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(totalRefundAmount, forKey: .totalRefundAmount)
-            
-            
-            
-            
             try? container.encodeIfPresent(gid, forKey: .gid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(platformRefundDetails, forKey: .platformRefundDetails)
             
             
             
@@ -107,6 +97,16 @@ public extension PlatformClient.Payment {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(platformRefundDetails, forKey: .platformRefundDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalRefundAmount, forKey: .totalRefundAmount)
             
             
         }
@@ -125,42 +125,42 @@ public extension PlatformClient.ApplicationClient.Payment {
     class RefundSessionResponseSerializer: Codable {
         
         
-        public var totalRefundAmount: Int
-        
         public var gid: String
-        
-        public var platformRefundDetails: [[String: Any]]
         
         public var status: String
         
         public var currency: String
         
+        public var platformRefundDetails: [[String: Any]]
+        
+        public var totalRefundAmount: Int
+        
 
         public enum CodingKeys: String, CodingKey {
             
-            case totalRefundAmount = "total_refund_amount"
-            
             case gid = "gid"
-            
-            case platformRefundDetails = "platform_refund_details"
             
             case status = "status"
             
             case currency = "currency"
             
+            case platformRefundDetails = "platform_refund_details"
+            
+            case totalRefundAmount = "total_refund_amount"
+            
         }
 
         public init(currency: String, gid: String, platformRefundDetails: [[String: Any]], status: String, totalRefundAmount: Int) {
             
-            self.totalRefundAmount = totalRefundAmount
-            
             self.gid = gid
-            
-            self.platformRefundDetails = platformRefundDetails
             
             self.status = status
             
             self.currency = currency
+            
+            self.platformRefundDetails = platformRefundDetails
+            
+            self.totalRefundAmount = totalRefundAmount
             
         }
 
@@ -168,17 +168,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                totalRefundAmount = try container.decode(Int.self, forKey: .totalRefundAmount)
-                
-            
-            
-            
                 gid = try container.decode(String.self, forKey: .gid)
-                
-            
-            
-            
-                platformRefundDetails = try container.decode([[String: Any]].self, forKey: .platformRefundDetails)
                 
             
             
@@ -192,6 +182,16 @@ public extension PlatformClient.ApplicationClient.Payment {
                 
             
             
+            
+                platformRefundDetails = try container.decode([[String: Any]].self, forKey: .platformRefundDetails)
+                
+            
+            
+            
+                totalRefundAmount = try container.decode(Int.self, forKey: .totalRefundAmount)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -199,17 +199,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(totalRefundAmount, forKey: .totalRefundAmount)
-            
-            
-            
-            
             try? container.encodeIfPresent(gid, forKey: .gid)
-            
-            
-            
-            
-            try? container.encodeIfPresent(platformRefundDetails, forKey: .platformRefundDetails)
             
             
             
@@ -220,6 +210,16 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(platformRefundDetails, forKey: .platformRefundDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(totalRefundAmount, forKey: .totalRefundAmount)
             
             
         }

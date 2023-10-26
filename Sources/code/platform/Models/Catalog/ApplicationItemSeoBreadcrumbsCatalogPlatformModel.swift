@@ -5,31 +5,31 @@ import Foundation
 
 public extension PlatformClient.Catalog {
     /*
-        Model: ProductBulkRequestList
+        Model: ApplicationItemSeoBreadcrumbs
         Used By: Catalog
     */
 
-    class ProductBulkRequestList: Codable {
+    class ApplicationItemSeoBreadcrumbs: Codable {
         
         
-        public var items: [ProductBulkRequest]?
+        public var url: String?
         
-        public var page: Page?
+        public var action: [ApplicationItemSeoAction]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case url = "url"
             
-            case page = "page"
+            case action = "action"
             
         }
 
-        public init(items: [ProductBulkRequest]? = nil, page: Page? = nil) {
+        public init(action: [ApplicationItemSeoAction]? = nil, url: String? = nil) {
             
-            self.items = items
+            self.url = url
             
-            self.page = page
+            self.action = action
             
         }
 
@@ -38,7 +38,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    items = try container.decode([ProductBulkRequest].self, forKey: .items)
+                    url = try container.decode(String.self, forKey: .url)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -50,7 +50,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    action = try container.decode([ApplicationItemSeoAction].self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -67,12 +67,12 @@ public extension PlatformClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(action, forKey: .action)
             
             
         }
@@ -84,31 +84,31 @@ public extension PlatformClient.Catalog {
 
 public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: ProductBulkRequestList
+        Model: ApplicationItemSeoBreadcrumbs
         Used By: Catalog
     */
 
-    class ProductBulkRequestList: Codable {
+    class ApplicationItemSeoBreadcrumbs: Codable {
         
         
-        public var items: [ProductBulkRequest]?
+        public var url: String?
         
-        public var page: Page?
+        public var action: [ApplicationItemSeoAction]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case url = "url"
             
-            case page = "page"
+            case action = "action"
             
         }
 
-        public init(items: [ProductBulkRequest]? = nil, page: Page? = nil) {
+        public init(action: [ApplicationItemSeoAction]? = nil, url: String? = nil) {
             
-            self.items = items
+            self.url = url
             
-            self.page = page
+            self.action = action
             
         }
 
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    items = try container.decode([ProductBulkRequest].self, forKey: .items)
+                    url = try container.decode(String.self, forKey: .url)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -129,7 +129,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    page = try container.decode(Page.self, forKey: .page)
+                    action = try container.decode([ApplicationItemSeoAction].self, forKey: .action)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(url, forKey: .url)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(action, forKey: .action)
             
             
         }

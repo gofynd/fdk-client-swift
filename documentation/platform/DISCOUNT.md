@@ -770,6 +770,7 @@ Success
  | type | String |  no  |  |
  | fileType | String |  no  |  |
  | id | String |  no  | A unique identifier to distinguish and identify a job. |
+ | filePath | String |  no  |  |
 
 ---
 

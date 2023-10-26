@@ -14,7 +14,7 @@ public extension PlatformClient.Catalog {
         
         public var cancelled: Int?
         
-        public var cancelledRecords: [String]?
+        public var cancelledRecords: [[String: Any]]?
         
         public var companyId: Int?
         
@@ -24,7 +24,7 @@ public extension PlatformClient.Catalog {
         
         public var failed: Int?
         
-        public var failedRecords: [String]?
+        public var failedRecords: [[String: Any]]?
         
         public var filePath: String?
         
@@ -81,7 +81,7 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: UserDetail1? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [String]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserDetail1? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, template: ProductTemplate? = nil, templateTag: String? = nil, total: Int? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int? = nil, createdBy: UserDetail1? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserDetail1? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, template: ProductTemplate? = nil, templateTag: String? = nil, total: Int? = nil) {
             
             self.cancelled = cancelled
             
@@ -134,7 +134,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    cancelledRecords = try container.decode([String].self, forKey: .cancelledRecords)
+                    cancelledRecords = try container.decode([[String: Any]].self, forKey: .cancelledRecords)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,7 +194,7 @@ public extension PlatformClient.Catalog {
             
             
                 do {
-                    failedRecords = try container.decode([String].self, forKey: .failedRecords)
+                    failedRecords = try container.decode([[String: Any]].self, forKey: .failedRecords)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -415,7 +415,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var cancelled: Int?
         
-        public var cancelledRecords: [String]?
+        public var cancelledRecords: [[String: Any]]?
         
         public var companyId: Int?
         
@@ -425,7 +425,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var failed: Int?
         
-        public var failedRecords: [String]?
+        public var failedRecords: [[String: Any]]?
         
         public var filePath: String?
         
@@ -482,7 +482,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(cancelled: Int? = nil, cancelledRecords: [String]? = nil, companyId: Int? = nil, createdBy: UserDetail1? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [String]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserDetail1? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, template: ProductTemplate? = nil, templateTag: String? = nil, total: Int? = nil) {
+        public init(cancelled: Int? = nil, cancelledRecords: [[String: Any]]? = nil, companyId: Int? = nil, createdBy: UserDetail1? = nil, createdOn: String? = nil, failed: Int? = nil, failedRecords: [[String: Any]]? = nil, filePath: String? = nil, isActive: Bool? = nil, modifiedBy: UserDetail1? = nil, modifiedOn: String? = nil, stage: String? = nil, succeed: Int? = nil, template: ProductTemplate? = nil, templateTag: String? = nil, total: Int? = nil) {
             
             self.cancelled = cancelled
             
@@ -535,7 +535,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    cancelledRecords = try container.decode([String].self, forKey: .cancelledRecords)
+                    cancelledRecords = try container.decode([[String: Any]].self, forKey: .cancelledRecords)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -595,7 +595,7 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
-                    failedRecords = try container.decode([String].self, forKey: .failedRecords)
+                    failedRecords = try container.decode([[String: Any]].self, forKey: .failedRecords)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

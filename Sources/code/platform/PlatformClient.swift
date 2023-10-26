@@ -25187,7 +25187,7 @@ var xQuery: [String: Any] = [:]
                 id: String,
                 reason: String,
                 
-                onResponse: @escaping (_ response: SessionDeleteResponseSchema?, _ error: FDKError?) -> Void
+                onResponse: @escaping (_ response: SessionsDeleteResponseSchema?, _ error: FDKError?) -> Void
             ) {
                 
 var xQuery: [String: Any] = [:] 
@@ -25222,7 +25222,7 @@ var xQuery: [String: Any] = [:]
                             onResponse(nil, err)
                         } else if let data = responseData {
                             
-                            let response = Utility.decode(SessionDeleteResponseSchema.self, from: data)
+                            let response = Utility.decode(SessionsDeleteResponseSchema.self, from: data)
                             
                             onResponse(response, nil)
                         } else {

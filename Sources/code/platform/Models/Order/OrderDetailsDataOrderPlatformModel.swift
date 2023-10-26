@@ -30,7 +30,7 @@ public extension PlatformClient.Order {
         
         public var orderingChannel: String?
         
-        public var meta: OrderMeta?
+        public var meta: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, codCharges: String? = nil, fyndOrderId: String, meta: OrderMeta? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
+        public init(affiliateId: String? = nil, codCharges: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
             
             self.orderDate = orderDate
             
@@ -187,7 +187,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    meta = try container.decode(OrderMeta.self, forKey: .meta)
+                    meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -286,7 +286,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderingChannel: String?
         
-        public var meta: OrderMeta?
+        public var meta: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -313,7 +313,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateId: String? = nil, codCharges: String? = nil, fyndOrderId: String, meta: OrderMeta? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
+        public init(affiliateId: String? = nil, codCharges: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderingChannel: String? = nil, orderingChannelLogo: [String: Any]? = nil, orderDate: String? = nil, orderValue: String? = nil, source: String? = nil, taxDetails: [String: Any]? = nil) {
             
             self.orderDate = orderDate
             
@@ -443,7 +443,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    meta = try container.decode(OrderMeta.self, forKey: .meta)
+                    meta = try container.decode([String: Any].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

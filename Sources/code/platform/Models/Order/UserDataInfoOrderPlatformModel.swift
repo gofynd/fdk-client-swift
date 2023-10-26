@@ -14,6 +14,10 @@ public extension PlatformClient.Order {
         
         public var uid: Int?
         
+        public var userOid: String?
+        
+        public var externalCustomerId: String?
+        
         public var firstName: String?
         
         public var lastName: String?
@@ -35,6 +39,10 @@ public extension PlatformClient.Order {
             
             case uid = "uid"
             
+            case userOid = "user_oid"
+            
+            case externalCustomerId = "external_customer_id"
+            
             case firstName = "first_name"
             
             case lastName = "last_name"
@@ -53,9 +61,13 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(avisUserId: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, mobile: String? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(avisUserId: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, mobile: String? = nil, name: String? = nil, uid: Int? = nil, userOid: String? = nil) {
             
             self.uid = uid
+            
+            self.userOid = userOid
+            
+            self.externalCustomerId = externalCustomerId
             
             self.firstName = firstName
             
@@ -81,6 +93,30 @@ public extension PlatformClient.Order {
             
                 do {
                     uid = try container.decode(Int.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    userOid = try container.decode(String.self, forKey: .userOid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    externalCustomerId = try container.decode(String.self, forKey: .externalCustomerId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -194,6 +230,16 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(uid, forKey: .uid)
+            
+            
+            
+            
+            try? container.encode(userOid, forKey: .userOid)
+            
+            
+            
+            
+            try? container.encode(externalCustomerId, forKey: .externalCustomerId)
             
             
             
@@ -254,6 +300,10 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var uid: Int?
         
+        public var userOid: String?
+        
+        public var externalCustomerId: String?
+        
         public var firstName: String?
         
         public var lastName: String?
@@ -275,6 +325,10 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case uid = "uid"
             
+            case userOid = "user_oid"
+            
+            case externalCustomerId = "external_customer_id"
+            
             case firstName = "first_name"
             
             case lastName = "last_name"
@@ -293,9 +347,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(avisUserId: String? = nil, email: String? = nil, firstName: String? = nil, gender: String? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, mobile: String? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(avisUserId: String? = nil, email: String? = nil, externalCustomerId: String? = nil, firstName: String? = nil, gender: String? = nil, isAnonymousUser: Bool? = nil, lastName: String? = nil, mobile: String? = nil, name: String? = nil, uid: Int? = nil, userOid: String? = nil) {
             
             self.uid = uid
+            
+            self.userOid = userOid
+            
+            self.externalCustomerId = externalCustomerId
             
             self.firstName = firstName
             
@@ -321,6 +379,30 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     uid = try container.decode(Int.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    userOid = try container.decode(String.self, forKey: .userOid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    externalCustomerId = try container.decode(String.self, forKey: .externalCustomerId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -434,6 +516,16 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(uid, forKey: .uid)
+            
+            
+            
+            
+            try? container.encode(userOid, forKey: .userOid)
+            
+            
+            
+            
+            try? container.encode(externalCustomerId, forKey: .externalCustomerId)
             
             
             

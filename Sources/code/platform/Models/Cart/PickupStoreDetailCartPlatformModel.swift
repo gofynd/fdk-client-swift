@@ -34,6 +34,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var id: Int?
         
+        public var storeManagerName: String?
+        
         public var name: String?
         
         public var storeCode: String?
@@ -69,6 +71,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case id = "id"
             
+            case storeManagerName = "store_manager_name"
+            
             case name = "name"
             
             case storeCode = "store_code"
@@ -83,7 +87,7 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, country: String? = nil, email: String? = nil, id: Int? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: Int? = nil, state: String? = nil, storeCode: String? = nil, uid: Int? = nil) {
+        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, city: String? = nil, country: String? = nil, email: String? = nil, id: Int? = nil, landmark: String? = nil, name: String? = nil, phone: String? = nil, pincode: Int? = nil, state: String? = nil, storeCode: String? = nil, storeManagerName: String? = nil, uid: Int? = nil) {
             
             self.country = country
             
@@ -104,6 +108,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.area = area
             
             self.id = id
+            
+            self.storeManagerName = storeManagerName
             
             self.name = name
             
@@ -244,6 +250,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    storeManagerName = try container.decode(String.self, forKey: .storeManagerName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     name = try container.decode(String.self, forKey: .name)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -367,6 +385,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
+            
+            
+            
+            
+            try? container.encodeIfPresent(storeManagerName, forKey: .storeManagerName)
             
             
             

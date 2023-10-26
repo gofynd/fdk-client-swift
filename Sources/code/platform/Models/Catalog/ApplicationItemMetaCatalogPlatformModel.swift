@@ -26,6 +26,8 @@ public extension PlatformClient.Catalog {
         
         public var seo: ApplicationItemSEO?
         
+        public var sizePromotionThreshold: SizePromotionThreshold?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -43,9 +45,11 @@ public extension PlatformClient.Catalog {
             
             case seo = "seo"
             
+            case sizePromotionThreshold = "size_promotion_threshold"
+            
         }
 
-        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
+        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, sizePromotionThreshold: SizePromotionThreshold? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
             
             self.customJson = customJson
             
@@ -60,6 +64,8 @@ public extension PlatformClient.Catalog {
             self.moq = moq
             
             self.seo = seo
+            
+            self.sizePromotionThreshold = sizePromotionThreshold
             
         }
 
@@ -150,6 +156,18 @@ public extension PlatformClient.Catalog {
                 }
                 
             
+            
+                do {
+                    sizePromotionThreshold = try container.decode(SizePromotionThreshold.self, forKey: .sizePromotionThreshold)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -188,6 +206,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(seo, forKey: .seo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sizePromotionThreshold, forKey: .sizePromotionThreshold)
             
             
         }
@@ -220,6 +243,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var seo: ApplicationItemSEO?
         
+        public var sizePromotionThreshold: SizePromotionThreshold?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -237,9 +262,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case seo = "seo"
             
+            case sizePromotionThreshold = "size_promotion_threshold"
+            
         }
 
-        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
+        public init(altText: [String: Any]? = nil, isCod: Bool? = nil, isGift: Bool? = nil, moq: ApplicationItemMOQ? = nil, seo: ApplicationItemSEO? = nil, sizePromotionThreshold: SizePromotionThreshold? = nil, customJson: [String: Any]? = nil, customMeta: [MetaFields]? = nil) {
             
             self.customJson = customJson
             
@@ -254,6 +281,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
             self.moq = moq
             
             self.seo = seo
+            
+            self.sizePromotionThreshold = sizePromotionThreshold
             
         }
 
@@ -344,6 +373,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
                 }
                 
             
+            
+                do {
+                    sizePromotionThreshold = try container.decode(SizePromotionThreshold.self, forKey: .sizePromotionThreshold)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -382,6 +423,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(seo, forKey: .seo)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sizePromotionThreshold, forKey: .sizePromotionThreshold)
             
             
         }
