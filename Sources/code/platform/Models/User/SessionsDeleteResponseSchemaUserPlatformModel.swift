@@ -7,31 +7,31 @@ import Foundation
 
 public extension PlatformClient.ApplicationClient.User {
     /*
-        Model: SessionDeleteResponseSchema
+        Model: SessionsDeleteResponseSchema
         Used By: User
     */
 
-    class SessionDeleteResponseSchema: Codable {
+    class SessionsDeleteResponseSchema: Codable {
         
         
         public var userId: String?
         
-        public var sessionId: String?
+        public var sessionIds: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case userId = "user_id"
             
-            case sessionId = "session_id"
+            case sessionIds = "session_ids"
             
         }
 
-        public init(sessionId: String? = nil, userId: String? = nil) {
+        public init(sessionIds: [String]? = nil, userId: String? = nil) {
             
             self.userId = userId
             
-            self.sessionId = sessionId
+            self.sessionIds = sessionIds
             
         }
 
@@ -52,7 +52,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
                 do {
-                    sessionId = try container.decode(String.self, forKey: .sessionId)
+                    sessionIds = try container.decode([String].self, forKey: .sessionIds)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -74,7 +74,7 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             
-            try? container.encodeIfPresent(sessionId, forKey: .sessionId)
+            try? container.encodeIfPresent(sessionIds, forKey: .sessionIds)
             
             
         }

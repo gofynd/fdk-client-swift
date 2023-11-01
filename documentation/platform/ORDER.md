@@ -6114,7 +6114,7 @@ We are processing the request!
  | taxInfo | [TaxInfo](#TaxInfo)? |  yes  |  |
  | config | [String: Any]? |  yes  |  |
  | paymentInfo | [PaymentInfo](#PaymentInfo) |  no  |  |
- | userInfo | [UserInfo](#UserInfo) |  no  |  |
+ | userInfo | [UserInfo](#UserInfo)? |  yes  |  |
 
 ---
 
@@ -6717,6 +6717,8 @@ We are processing the request!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | uid | Int? |  yes  |  |
+ | userOid | String? |  yes  |  |
+ | externalCustomerId | String? |  yes  |  |
  | firstName | String? |  yes  |  |
  | lastName | String? |  yes  |  |
  | mobile | String? |  yes  |  |
@@ -7292,7 +7294,7 @@ We are processing the request!
  | displayName | String? |  yes  |  |
  | bags | [[BagUnit](#BagUnit)]? |  yes  |  |
  | fulfillingStore | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
- | meta | [ShipmentItemMeta](#ShipmentItemMeta)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | paymentMode | String? |  yes  |  |
  | canProcess | Bool? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
@@ -7378,6 +7380,7 @@ We are processing the request!
  | externalInvoiceId | String? |  yes  |  |
  | labelUrl | String? |  yes  |  |
  | creditNoteId | String? |  yes  |  |
+ | links | [String: Any]? |  yes  |  |
 
 ---
 
@@ -7397,7 +7400,7 @@ We are processing the request!
  | orderingChannelLogo | [String: Any]? |  yes  |  |
  | orderValue | String? |  yes  |  |
  | orderingChannel | String? |  yes  |  |
- | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
 
 ---
 
@@ -7900,7 +7903,7 @@ We are processing the request!
  | canCancel | Bool? |  yes  |  |
  | displayName | String? |  yes  |  |
  | lineNumber | Int? |  yes  |  |
- | meta | [BagMeta](#BagMeta)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | appliedPromos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | currentStatus | [CurrentStatus](#CurrentStatus)? |  yes  |  |
@@ -8007,7 +8010,7 @@ We are processing the request!
  | dpAssignment | Bool? |  yes  |  |
  | totalItems | Int? |  yes  |  |
  | fulfillingStore | [FulfillingStore](#FulfillingStore)? |  yes  |  |
- | meta | [ShipmentMeta](#ShipmentMeta)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | pdfLinks | [String: Any]? |  yes  |  |
  | paymentMode | String? |  yes  |  |
  | packagingType | String? |  yes  |  |
@@ -8140,7 +8143,7 @@ We are processing the request!
  | ---------- | ---- | -------- | ----------- |
  | orderDate | String |  no  |  |
  | taxDetails | [TaxDetails](#TaxDetails)? |  yes  |  |
- | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | fyndOrderId | String |  no  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | paymentMethods | [String: Any]? |  yes  |  |
@@ -8785,7 +8788,7 @@ We are processing the request!
  | type | String? |  yes  |  |
  | lineNumber | Int? |  yes  |  |
  | restoreCoupon | Bool? |  yes  |  |
- | meta | [BagMeta](#BagMeta)? |  yes  |  |
+ | meta | [String: Any]? |  yes  |  |
  | noOfBagsOrder | Int? |  yes  |  |
  | appliedPromos | [[String: Any]]? |  yes  |  |
  | journeyType | String? |  yes  |  |
