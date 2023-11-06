@@ -1,4 +1,4 @@
-# CHANGE LOG (1.3.6-beta.1) - v1.8.5-prerelease-v1
+# CHANGE LOG (1.3.6-beta.2) - v1.8.5-prerelease-v2
 
 ## Application Client
 
@@ -216,6 +216,21 @@
 
 
 
+#### createOrder
+
+- ##### What's New
+	- [Added] property `userInfo.primaryEmail` of schema `UserInfo` in request body
+	- [Added] property `userInfo.primaryMobileNumber` of schema `UserInfo` in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `userInfo.email` of schema `UserInfo` in request body
+	- [Breaking] [Deleted] property `userInfo.mobile` of schema `UserInfo` in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Required status of property `userInfo.email` in request body
+	- [Breaking] [Changed] Required status of property `userInfo.mobile` in request body
+
+
 #### getShipments
 
 - ##### What's Deprecated
@@ -249,6 +264,13 @@
 
 - ##### What's Deprecated
 	- [Deleted] properties `items[].shipments[].bags[].meta.giftCard`, `items[].shipments[].bags[].meta.customMessage`, `items[].shipments[].bags[].meta.docketNumber`, `items[].shipments[].bags[].meta.groupId`, `items[].shipments[].bags[].meta.partialCanRet`, `items[].shipments[].bags[].meta.extraMeta`, `items[].shipments[].bags[].meta.b2BPoDetails`, `items[].shipments[].bags[].meta.customJson` in response with status code 200
+
+
+#### getShipmentBagReasons
+
+- ##### What's New
+	- [Added] method `getShipmentBagReasons`
+
 
 
 # CHANGE LOG (1.3.5) - fp-v1.8.4
