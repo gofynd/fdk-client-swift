@@ -60,6 +60,13 @@ extension PlatformClient {
         
         
         
+        
+        
+        
+        
+        
+        
+        
         /**
         *
         * Summary: Get product categories list

@@ -3,63 +3,57 @@
 import Foundation
 
 
-public extension PlatformClient.Order {
+public extension PlatformClient.Catalog {
     /*
-        Model: UserInfo
-        Used By: Order
+        Model: PageResponse1
+        Used By: Catalog
     */
 
-    class UserInfo: Codable {
+    class PageResponse1: Codable {
         
         
-        public var userId: String?
+        public var current: Int?
         
-        public var userType: String?
+        public var hasNext: Bool?
         
-        public var primaryEmail: String
+        public var hasPrevious: Bool?
         
-        public var gender: String?
+        public var itemTotal: Int?
         
-        public var firstName: String
+        public var size: Int?
         
-        public var lastName: String?
-        
-        public var primaryMobileNumber: String
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case userId = "user_id"
+            case current = "current"
             
-            case userType = "user_type"
+            case hasNext = "has_next"
             
-            case primaryEmail = "primary_email"
+            case hasPrevious = "has_previous"
             
-            case gender = "gender"
+            case itemTotal = "item_total"
             
-            case firstName = "first_name"
+            case size = "size"
             
-            case lastName = "last_name"
-            
-            case primaryMobileNumber = "primary_mobile_number"
+            case type = "type"
             
         }
 
-        public init(firstName: String, gender: String? = nil, lastName: String? = nil, primaryEmail: String, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
             
-            self.userId = userId
+            self.current = current
             
-            self.userType = userType
+            self.hasNext = hasNext
             
-            self.primaryEmail = primaryEmail
+            self.hasPrevious = hasPrevious
             
-            self.gender = gender
+            self.itemTotal = itemTotal
             
-            self.firstName = firstName
+            self.size = size
             
-            self.lastName = lastName
-            
-            self.primaryMobileNumber = primaryMobileNumber
+            self.type = type
             
         }
 
@@ -68,7 +62,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    userId = try container.decode(String.self, forKey: .userId)
+                    current = try container.decode(Int.self, forKey: .current)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +74,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    userType = try container.decode(String.self, forKey: .userType)
+                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -89,15 +83,10 @@ public extension PlatformClient.Order {
                     
                 }
                 
-            
-            
-                primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
-                
-            
             
             
                 do {
-                    gender = try container.decode(String.self, forKey: .gender)
+                    hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -106,15 +95,10 @@ public extension PlatformClient.Order {
                     
                 }
                 
-            
-            
-                firstName = try container.decode(String.self, forKey: .firstName)
-                
-            
             
             
                 do {
-                    lastName = try container.decode(String.self, forKey: .lastName)
+                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,9 +109,28 @@ public extension PlatformClient.Order {
                 
             
             
-                primaryMobileNumber = try container.decode(String.self, forKey: .primaryMobileNumber)
+                do {
+                    size = try container.decode(Int.self, forKey: .size)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -136,37 +139,32 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(current, forKey: .current)
             
             
             
             
-            try? container.encodeIfPresent(userType, forKey: .userType)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
             
             
             
             
-            try? container.encodeIfPresent(primaryEmail, forKey: .primaryEmail)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
             
             
             
             
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
             
             
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
             
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(primaryMobileNumber, forKey: .primaryMobileNumber)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }
@@ -176,63 +174,57 @@ public extension PlatformClient.Order {
 
 
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: UserInfo
-        Used By: Order
+        Model: PageResponse1
+        Used By: Catalog
     */
 
-    class UserInfo: Codable {
+    class PageResponse1: Codable {
         
         
-        public var userId: String?
+        public var current: Int?
         
-        public var userType: String?
+        public var hasNext: Bool?
         
-        public var primaryEmail: String
+        public var hasPrevious: Bool?
         
-        public var gender: String?
+        public var itemTotal: Int?
         
-        public var firstName: String
+        public var size: Int?
         
-        public var lastName: String?
-        
-        public var primaryMobileNumber: String
+        public var type: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case userId = "user_id"
+            case current = "current"
             
-            case userType = "user_type"
+            case hasNext = "has_next"
             
-            case primaryEmail = "primary_email"
+            case hasPrevious = "has_previous"
             
-            case gender = "gender"
+            case itemTotal = "item_total"
             
-            case firstName = "first_name"
+            case size = "size"
             
-            case lastName = "last_name"
-            
-            case primaryMobileNumber = "primary_mobile_number"
+            case type = "type"
             
         }
 
-        public init(firstName: String, gender: String? = nil, lastName: String? = nil, primaryEmail: String, primaryMobileNumber: String, userId: String? = nil, userType: String? = nil) {
+        public init(current: Int? = nil, hasNext: Bool? = nil, hasPrevious: Bool? = nil, itemTotal: Int? = nil, size: Int? = nil, type: String? = nil) {
             
-            self.userId = userId
+            self.current = current
             
-            self.userType = userType
+            self.hasNext = hasNext
             
-            self.primaryEmail = primaryEmail
+            self.hasPrevious = hasPrevious
             
-            self.gender = gender
+            self.itemTotal = itemTotal
             
-            self.firstName = firstName
+            self.size = size
             
-            self.lastName = lastName
-            
-            self.primaryMobileNumber = primaryMobileNumber
+            self.type = type
             
         }
 
@@ -241,7 +233,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    userId = try container.decode(String.self, forKey: .userId)
+                    current = try container.decode(Int.self, forKey: .current)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -253,7 +245,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    userType = try container.decode(String.self, forKey: .userType)
+                    hasNext = try container.decode(Bool.self, forKey: .hasNext)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -262,15 +254,10 @@ public extension PlatformClient.ApplicationClient.Order {
                     
                 }
                 
-            
-            
-                primaryEmail = try container.decode(String.self, forKey: .primaryEmail)
-                
-            
             
             
                 do {
-                    gender = try container.decode(String.self, forKey: .gender)
+                    hasPrevious = try container.decode(Bool.self, forKey: .hasPrevious)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -279,15 +266,10 @@ public extension PlatformClient.ApplicationClient.Order {
                     
                 }
                 
-            
-            
-                firstName = try container.decode(String.self, forKey: .firstName)
-                
-            
             
             
                 do {
-                    lastName = try container.decode(String.self, forKey: .lastName)
+                    itemTotal = try container.decode(Int.self, forKey: .itemTotal)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -298,9 +280,28 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                primaryMobileNumber = try container.decode(String.self, forKey: .primaryMobileNumber)
+                do {
+                    size = try container.decode(Int.self, forKey: .size)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    type = try container.decode(String.self, forKey: .type)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -309,37 +310,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(userId, forKey: .userId)
+            try? container.encodeIfPresent(current, forKey: .current)
             
             
             
             
-            try? container.encodeIfPresent(userType, forKey: .userType)
+            try? container.encodeIfPresent(hasNext, forKey: .hasNext)
             
             
             
             
-            try? container.encodeIfPresent(primaryEmail, forKey: .primaryEmail)
+            try? container.encodeIfPresent(hasPrevious, forKey: .hasPrevious)
             
             
             
             
-            try? container.encodeIfPresent(gender, forKey: .gender)
+            try? container.encodeIfPresent(itemTotal, forKey: .itemTotal)
             
             
             
             
-            try? container.encodeIfPresent(firstName, forKey: .firstName)
+            try? container.encodeIfPresent(size, forKey: .size)
             
             
             
             
-            try? container.encodeIfPresent(lastName, forKey: .lastName)
-            
-            
-            
-            
-            try? container.encodeIfPresent(primaryMobileNumber, forKey: .primaryMobileNumber)
+            try? container.encodeIfPresent(type, forKey: .type)
             
             
         }

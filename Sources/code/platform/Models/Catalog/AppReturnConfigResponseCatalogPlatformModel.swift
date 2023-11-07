@@ -3,63 +3,63 @@
 import Foundation
 
 
-public extension PlatformClient.Order {
+public extension PlatformClient.Catalog {
     /*
-        Model: InvoiceInfo
-        Used By: Order
+        Model: AppReturnConfigResponse
+        Used By: Catalog
     */
 
-    class InvoiceInfo: Codable {
+    class AppReturnConfigResponse: Codable {
         
         
-        public var storeInvoiceId: String?
+        public var appId: String?
         
-        public var invoiceUrl: String?
+        public var categoryCount: Int?
         
-        public var updatedDate: String?
+        public var companyId: Int?
         
-        public var externalInvoiceId: String?
+        public var createdBy: [String: Any]?
         
-        public var labelUrl: String?
+        public var modifiedBy: [String: Any]?
         
-        public var creditNoteId: String?
+        public var modifiedOn: String?
         
-        public var links: [String: Any]?
+        public var returnConfigLevel: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case storeInvoiceId = "store_invoice_id"
+            case appId = "app_id"
             
-            case invoiceUrl = "invoice_url"
+            case categoryCount = "category_count"
             
-            case updatedDate = "updated_date"
+            case companyId = "company_id"
             
-            case externalInvoiceId = "external_invoice_id"
+            case createdBy = "created_by"
             
-            case labelUrl = "label_url"
+            case modifiedBy = "modified_by"
             
-            case creditNoteId = "credit_note_id"
+            case modifiedOn = "modified_on"
             
-            case links = "links"
+            case returnConfigLevel = "return_config_level"
             
         }
 
-        public init(creditNoteId: String? = nil, externalInvoiceId: String? = nil, invoiceUrl: String? = nil, labelUrl: String? = nil, links: [String: Any]? = nil, storeInvoiceId: String? = nil, updatedDate: String? = nil) {
+        public init(appId: String? = nil, categoryCount: Int? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, returnConfigLevel: String? = nil) {
             
-            self.storeInvoiceId = storeInvoiceId
+            self.appId = appId
             
-            self.invoiceUrl = invoiceUrl
+            self.categoryCount = categoryCount
             
-            self.updatedDate = updatedDate
+            self.companyId = companyId
             
-            self.externalInvoiceId = externalInvoiceId
+            self.createdBy = createdBy
             
-            self.labelUrl = labelUrl
+            self.modifiedBy = modifiedBy
             
-            self.creditNoteId = creditNoteId
+            self.modifiedOn = modifiedOn
             
-            self.links = links
+            self.returnConfigLevel = returnConfigLevel
             
         }
 
@@ -68,7 +68,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
+                    appId = try container.decode(String.self, forKey: .appId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -80,7 +80,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
+                    categoryCount = try container.decode(Int.self, forKey: .categoryCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -92,7 +92,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    updatedDate = try container.decode(String.self, forKey: .updatedDate)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +104,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    externalInvoiceId = try container.decode(String.self, forKey: .externalInvoiceId)
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +116,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    labelUrl = try container.decode(String.self, forKey: .labelUrl)
+                    modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -128,7 +128,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -140,7 +140,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    links = try container.decode([String: Any].self, forKey: .links)
+                    returnConfigLevel = try container.decode(String.self, forKey: .returnConfigLevel)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -157,37 +157,37 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encode(storeInvoiceId, forKey: .storeInvoiceId)
+            try? container.encodeIfPresent(appId, forKey: .appId)
             
             
             
             
-            try? container.encode(invoiceUrl, forKey: .invoiceUrl)
+            try? container.encodeIfPresent(categoryCount, forKey: .categoryCount)
             
             
             
             
-            try? container.encode(updatedDate, forKey: .updatedDate)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
             
-            try? container.encode(externalInvoiceId, forKey: .externalInvoiceId)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
             
             
-            try? container.encode(labelUrl, forKey: .labelUrl)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             
             
-            try? container.encode(creditNoteId, forKey: .creditNoteId)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
             
             
-            try? container.encodeIfPresent(links, forKey: .links)
+            try? container.encodeIfPresent(returnConfigLevel, forKey: .returnConfigLevel)
             
             
         }
@@ -197,63 +197,63 @@ public extension PlatformClient.Order {
 
 
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: InvoiceInfo
-        Used By: Order
+        Model: AppReturnConfigResponse
+        Used By: Catalog
     */
 
-    class InvoiceInfo: Codable {
+    class AppReturnConfigResponse: Codable {
         
         
-        public var storeInvoiceId: String?
+        public var appId: String?
         
-        public var invoiceUrl: String?
+        public var categoryCount: Int?
         
-        public var updatedDate: String?
+        public var companyId: Int?
         
-        public var externalInvoiceId: String?
+        public var createdBy: [String: Any]?
         
-        public var labelUrl: String?
+        public var modifiedBy: [String: Any]?
         
-        public var creditNoteId: String?
+        public var modifiedOn: String?
         
-        public var links: [String: Any]?
+        public var returnConfigLevel: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case storeInvoiceId = "store_invoice_id"
+            case appId = "app_id"
             
-            case invoiceUrl = "invoice_url"
+            case categoryCount = "category_count"
             
-            case updatedDate = "updated_date"
+            case companyId = "company_id"
             
-            case externalInvoiceId = "external_invoice_id"
+            case createdBy = "created_by"
             
-            case labelUrl = "label_url"
+            case modifiedBy = "modified_by"
             
-            case creditNoteId = "credit_note_id"
+            case modifiedOn = "modified_on"
             
-            case links = "links"
+            case returnConfigLevel = "return_config_level"
             
         }
 
-        public init(creditNoteId: String? = nil, externalInvoiceId: String? = nil, invoiceUrl: String? = nil, labelUrl: String? = nil, links: [String: Any]? = nil, storeInvoiceId: String? = nil, updatedDate: String? = nil) {
+        public init(appId: String? = nil, categoryCount: Int? = nil, companyId: Int? = nil, createdBy: [String: Any]? = nil, modifiedBy: [String: Any]? = nil, modifiedOn: String? = nil, returnConfigLevel: String? = nil) {
             
-            self.storeInvoiceId = storeInvoiceId
+            self.appId = appId
             
-            self.invoiceUrl = invoiceUrl
+            self.categoryCount = categoryCount
             
-            self.updatedDate = updatedDate
+            self.companyId = companyId
             
-            self.externalInvoiceId = externalInvoiceId
+            self.createdBy = createdBy
             
-            self.labelUrl = labelUrl
+            self.modifiedBy = modifiedBy
             
-            self.creditNoteId = creditNoteId
+            self.modifiedOn = modifiedOn
             
-            self.links = links
+            self.returnConfigLevel = returnConfigLevel
             
         }
 
@@ -262,7 +262,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    storeInvoiceId = try container.decode(String.self, forKey: .storeInvoiceId)
+                    appId = try container.decode(String.self, forKey: .appId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -274,7 +274,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    invoiceUrl = try container.decode(String.self, forKey: .invoiceUrl)
+                    categoryCount = try container.decode(Int.self, forKey: .categoryCount)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -286,7 +286,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    updatedDate = try container.decode(String.self, forKey: .updatedDate)
+                    companyId = try container.decode(Int.self, forKey: .companyId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -298,7 +298,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    externalInvoiceId = try container.decode(String.self, forKey: .externalInvoiceId)
+                    createdBy = try container.decode([String: Any].self, forKey: .createdBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -310,7 +310,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    labelUrl = try container.decode(String.self, forKey: .labelUrl)
+                    modifiedBy = try container.decode([String: Any].self, forKey: .modifiedBy)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -322,7 +322,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    creditNoteId = try container.decode(String.self, forKey: .creditNoteId)
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -334,7 +334,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    links = try container.decode([String: Any].self, forKey: .links)
+                    returnConfigLevel = try container.decode(String.self, forKey: .returnConfigLevel)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -351,37 +351,37 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encode(storeInvoiceId, forKey: .storeInvoiceId)
+            try? container.encodeIfPresent(appId, forKey: .appId)
             
             
             
             
-            try? container.encode(invoiceUrl, forKey: .invoiceUrl)
+            try? container.encodeIfPresent(categoryCount, forKey: .categoryCount)
             
             
             
             
-            try? container.encode(updatedDate, forKey: .updatedDate)
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             
             
-            try? container.encode(externalInvoiceId, forKey: .externalInvoiceId)
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
             
             
-            try? container.encode(labelUrl, forKey: .labelUrl)
+            try? container.encodeIfPresent(modifiedBy, forKey: .modifiedBy)
             
             
             
             
-            try? container.encode(creditNoteId, forKey: .creditNoteId)
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
             
             
             
             
-            try? container.encodeIfPresent(links, forKey: .links)
+            try? container.encodeIfPresent(returnConfigLevel, forKey: .returnConfigLevel)
             
             
         }

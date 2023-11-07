@@ -3,57 +3,51 @@
 import Foundation
 
 
-public extension PlatformClient.Order {
+public extension PlatformClient.Catalog {
     /*
-        Model: OrderData
-        Used By: Order
+        Model: AppCategoryReturnConfigResponse
+        Used By: Catalog
     */
 
-    class OrderData: Codable {
+    class AppCategoryReturnConfigResponse: Codable {
         
         
-        public var orderDate: String
+        public var appId: String?
         
-        public var taxDetails: TaxDetails?
+        public var categoryId: Int?
         
-        public var meta: [String: Any]?
+        public var logo: String?
         
-        public var fyndOrderId: String
+        public var name: String?
         
-        public var prices: Prices?
-        
-        public var paymentMethods: [String: Any]?
+        public var returnConfig: ProductReturnConfigBaseSerializer?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case orderDate = "order_date"
+            case appId = "app_id"
             
-            case taxDetails = "tax_details"
+            case categoryId = "category_id"
             
-            case meta = "meta"
+            case logo = "logo"
             
-            case fyndOrderId = "fynd_order_id"
+            case name = "name"
             
-            case prices = "prices"
-            
-            case paymentMethods = "payment_methods"
+            case returnConfig = "return_config"
             
         }
 
-        public init(fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
+        public init(appId: String? = nil, categoryId: Int? = nil, logo: String? = nil, name: String? = nil, returnConfig: ProductReturnConfigBaseSerializer? = nil) {
             
-            self.orderDate = orderDate
+            self.appId = appId
             
-            self.taxDetails = taxDetails
+            self.categoryId = categoryId
             
-            self.meta = meta
+            self.logo = logo
             
-            self.fyndOrderId = fyndOrderId
+            self.name = name
             
-            self.prices = prices
-            
-            self.paymentMethods = paymentMethods
+            self.returnConfig = returnConfig
             
         }
 
@@ -61,13 +55,8 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                orderDate = try container.decode(String.self, forKey: .orderDate)
-                
-            
-            
-            
                 do {
-                    taxDetails = try container.decode(TaxDetails.self, forKey: .taxDetails)
+                    appId = try container.decode(String.self, forKey: .appId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -79,24 +68,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
-                
-            
-            
-            
-                do {
-                    prices = try container.decode(Prices.self, forKey: .prices)
+                    categoryId = try container.decode(Int.self, forKey: .categoryId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -108,7 +80,31 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+                    logo = try container.decode(String.self, forKey: .logo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    returnConfig = try container.decode(ProductReturnConfigBaseSerializer.self, forKey: .returnConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -125,32 +121,27 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+            try? container.encodeIfPresent(appId, forKey: .appId)
             
             
             
             
-            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
+            try? container.encodeIfPresent(categoryId, forKey: .categoryId)
             
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(prices, forKey: .prices)
-            
-            
-            
-            
-            try? container.encode(paymentMethods, forKey: .paymentMethods)
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
             
             
         }
@@ -160,57 +151,51 @@ public extension PlatformClient.Order {
 
 
 
-public extension PlatformClient.ApplicationClient.Order {
+public extension PlatformClient.ApplicationClient.Catalog {
     /*
-        Model: OrderData
-        Used By: Order
+        Model: AppCategoryReturnConfigResponse
+        Used By: Catalog
     */
 
-    class OrderData: Codable {
+    class AppCategoryReturnConfigResponse: Codable {
         
         
-        public var orderDate: String
+        public var appId: String?
         
-        public var taxDetails: TaxDetails?
+        public var categoryId: Int?
         
-        public var meta: [String: Any]?
+        public var logo: String?
         
-        public var fyndOrderId: String
+        public var name: String?
         
-        public var prices: Prices?
-        
-        public var paymentMethods: [String: Any]?
+        public var returnConfig: ProductReturnConfigBaseSerializer?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case orderDate = "order_date"
+            case appId = "app_id"
             
-            case taxDetails = "tax_details"
+            case categoryId = "category_id"
             
-            case meta = "meta"
+            case logo = "logo"
             
-            case fyndOrderId = "fynd_order_id"
+            case name = "name"
             
-            case prices = "prices"
-            
-            case paymentMethods = "payment_methods"
+            case returnConfig = "return_config"
             
         }
 
-        public init(fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
+        public init(appId: String? = nil, categoryId: Int? = nil, logo: String? = nil, name: String? = nil, returnConfig: ProductReturnConfigBaseSerializer? = nil) {
             
-            self.orderDate = orderDate
+            self.appId = appId
             
-            self.taxDetails = taxDetails
+            self.categoryId = categoryId
             
-            self.meta = meta
+            self.logo = logo
             
-            self.fyndOrderId = fyndOrderId
+            self.name = name
             
-            self.prices = prices
-            
-            self.paymentMethods = paymentMethods
+            self.returnConfig = returnConfig
             
         }
 
@@ -218,13 +203,8 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                orderDate = try container.decode(String.self, forKey: .orderDate)
-                
-            
-            
-            
                 do {
-                    taxDetails = try container.decode(TaxDetails.self, forKey: .taxDetails)
+                    appId = try container.decode(String.self, forKey: .appId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -236,24 +216,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                fyndOrderId = try container.decode(String.self, forKey: .fyndOrderId)
-                
-            
-            
-            
-                do {
-                    prices = try container.decode(Prices.self, forKey: .prices)
+                    categoryId = try container.decode(Int.self, forKey: .categoryId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -265,7 +228,31 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    paymentMethods = try container.decode([String: Any].self, forKey: .paymentMethods)
+                    logo = try container.decode(String.self, forKey: .logo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    name = try container.decode(String.self, forKey: .name)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    returnConfig = try container.decode(ProductReturnConfigBaseSerializer.self, forKey: .returnConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -282,32 +269,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+            try? container.encodeIfPresent(appId, forKey: .appId)
             
             
             
             
-            try? container.encodeIfPresent(taxDetails, forKey: .taxDetails)
+            try? container.encodeIfPresent(categoryId, forKey: .categoryId)
             
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(logo, forKey: .logo)
             
             
             
             
-            try? container.encodeIfPresent(fyndOrderId, forKey: .fyndOrderId)
+            try? container.encodeIfPresent(name, forKey: .name)
             
             
             
             
-            try? container.encodeIfPresent(prices, forKey: .prices)
-            
-            
-            
-            
-            try? container.encode(paymentMethods, forKey: .paymentMethods)
+            try? container.encodeIfPresent(returnConfig, forKey: .returnConfig)
             
             
         }
