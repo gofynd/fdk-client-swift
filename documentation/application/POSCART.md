@@ -46,7 +46,7 @@ Fetch all items added to the cart
 
 
 ```swift
-applicationClient.poscart.getCart(id: id, i: i, b: b, c: c, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow) { (response, error) in
+applicationClient.poscart.getCart(id: id, i: i, b: b, assignCardId: assignCardId, areaCode: areaCode, buyNow: buyNow) { (response, error) in
     // Use response
 }
 ```
@@ -60,7 +60,6 @@ applicationClient.poscart.getCart(id: id, i: i, b: b, c: c, assignCardId: assign
 | id | String? | no |  |   
 | i | Bool? | no |  |   
 | b | Bool? | no |  |   
-| c | Bool? | no |  |   
 | assignCardId | Int? | no |  |   
 | areaCode | String? | no |  |   
 | buyNow | Bool? | no |  |  

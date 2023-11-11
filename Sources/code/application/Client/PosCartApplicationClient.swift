@@ -84,7 +84,6 @@ extension ApplicationClient {
             id: String?,
             i: Bool?,
             b: Bool?,
-            c: Bool?,
             assignCardId: Int?,
             areaCode: String?,
             buyNow: Bool?,
@@ -111,13 +110,6 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
-    
-}
-
-
-if let value = c {
-    
-    xQuery["c"] = value
     
 }
 

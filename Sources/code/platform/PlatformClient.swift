@@ -1694,7 +1694,6 @@ if let value = sortOn {
                 id: String?,
                 i: Bool?,
                 b: Bool?,
-                c: Bool?,
                 
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
@@ -1718,13 +1717,6 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
-    
-}
-
-
-if let value = c {
-    
-    xQuery["c"] = value
     
 }
 

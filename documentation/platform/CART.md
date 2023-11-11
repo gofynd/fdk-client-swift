@@ -3046,7 +3046,7 @@ Fetch all items added to the cart
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails(id: id, i: i, b: b, c: c) { (response, error) in
+platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails(id: id, i: i, b: b) { (response, error) in
     // Use response
 }
 ```
@@ -3059,8 +3059,7 @@ platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails(id: 
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |   
 | i | Bool? | no |  |   
-| b | Bool? | no |  |   
-| c | Bool? | no |  |  
+| b | Bool? | no |  |  
 
 
 
