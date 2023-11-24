@@ -6903,7 +6903,7 @@ Get store meta information.
 
 
 ```swift
-applicationClient.catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, city: city, range: range, latitude: latitude, longitude: longitude) { (response, error) in
+applicationClient.catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, city: city, range: range, latitude: latitude, longitude: longitude, tags: tags) { (response, error) in
     // Use response
 }
 ```
@@ -6920,7 +6920,8 @@ applicationClient.catalog.getStores(pageNo: pageNo, pageSize: pageSize, q: q, ci
 | city | String? | no | Search stores by the city in which they are situated. |   
 | range | Int? | no | Use this to retrieve stores within a particular range in meters, e.g. 10000, to indicate a 10km range |   
 | latitude | Double? | no | Latitude of the location from where one wants to retreive the nearest stores, e.g. 72.8691788 |   
-| longitude | Double? | no | Longitude of the location from where one wants to retreive the nearest stores, e.g. 19.1174114 |  
+| longitude | Double? | no | Longitude of the location from where one wants to retreive the nearest stores, e.g. 19.1174114 |   
+| tags | String? | no | Search stores based on tags. |  
 
 
 
@@ -6971,7 +6972,11 @@ Success. Returns a list of selling locations. Check the example shown below or r
       },
       "name": "RRL01",
       "store_code": "WH_8513",
-      "uid": 1
+      "uid": 1,
+      "tags": [
+        "test",
+        "digital"
+      ]
     }
   ]
 }
@@ -9047,6 +9052,7 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | storeCode | String? |  yes  |  |
  | latLong | [LatLong](#LatLong)? |  yes  |  |
  | name | String? |  yes  |  |
+ | tags | [String]? |  yes  |  |
 
 ---
 

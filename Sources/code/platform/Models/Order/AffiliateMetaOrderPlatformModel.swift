@@ -38,6 +38,12 @@ public extension PlatformClient.Order {
         
         public var isPriority: Bool?
         
+        public var isSerialNumberRequired: Bool?
+        
+        public var fulfilmentPriority: Int?
+        
+        public var customerSellingPrice: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -67,9 +73,15 @@ public extension PlatformClient.Order {
             
             case isPriority = "is_priority"
             
+            case isSerialNumberRequired = "is_serial_number_required"
+            
+            case fulfilmentPriority = "fulfilment_priority"
+            
+            case customerSellingPrice = "customer_selling_price"
+            
         }
 
-        public init(boxType: String? = nil, channelOrderId: String? = nil, channelShipmentId: String? = nil, couponCode: String? = nil, dueDate: String? = nil, employeeDiscount: Double? = nil, isPriority: Bool? = nil, loyaltyDiscount: Double? = nil, marketplaceInvoiceId: String? = nil, orderItemId: String? = nil, quantity: Int? = nil, replacementDetails: ReplacementDetails? = nil, sizeLevelTotalQty: Int? = nil) {
+        public init(boxType: String? = nil, channelOrderId: String? = nil, channelShipmentId: String? = nil, couponCode: String? = nil, customerSellingPrice: Double? = nil, dueDate: String? = nil, employeeDiscount: Double? = nil, fulfilmentPriority: Int? = nil, isPriority: Bool? = nil, isSerialNumberRequired: Bool? = nil, loyaltyDiscount: Double? = nil, marketplaceInvoiceId: String? = nil, orderItemId: String? = nil, quantity: Int? = nil, replacementDetails: ReplacementDetails? = nil, sizeLevelTotalQty: Int? = nil) {
             
             self.orderItemId = orderItemId
             
@@ -96,6 +108,12 @@ public extension PlatformClient.Order {
             self.couponCode = couponCode
             
             self.isPriority = isPriority
+            
+            self.isSerialNumberRequired = isSerialNumberRequired
+            
+            self.fulfilmentPriority = fulfilmentPriority
+            
+            self.customerSellingPrice = customerSellingPrice
             
         }
 
@@ -258,6 +276,42 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    isSerialNumberRequired = try container.decode(Bool.self, forKey: .isSerialNumberRequired)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fulfilmentPriority = try container.decode(Int.self, forKey: .fulfilmentPriority)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customerSellingPrice = try container.decode(Double.self, forKey: .customerSellingPrice)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -326,6 +380,21 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(isPriority, forKey: .isPriority)
+            
+            
+            
+            
+            try? container.encode(isSerialNumberRequired, forKey: .isSerialNumberRequired)
+            
+            
+            
+            
+            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
+            
+            
+            
+            
+            try? container.encode(customerSellingPrice, forKey: .customerSellingPrice)
             
             
         }
@@ -370,6 +439,12 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var isPriority: Bool?
         
+        public var isSerialNumberRequired: Bool?
+        
+        public var fulfilmentPriority: Int?
+        
+        public var customerSellingPrice: Double?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -399,9 +474,15 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case isPriority = "is_priority"
             
+            case isSerialNumberRequired = "is_serial_number_required"
+            
+            case fulfilmentPriority = "fulfilment_priority"
+            
+            case customerSellingPrice = "customer_selling_price"
+            
         }
 
-        public init(boxType: String? = nil, channelOrderId: String? = nil, channelShipmentId: String? = nil, couponCode: String? = nil, dueDate: String? = nil, employeeDiscount: Double? = nil, isPriority: Bool? = nil, loyaltyDiscount: Double? = nil, marketplaceInvoiceId: String? = nil, orderItemId: String? = nil, quantity: Int? = nil, replacementDetails: ReplacementDetails? = nil, sizeLevelTotalQty: Int? = nil) {
+        public init(boxType: String? = nil, channelOrderId: String? = nil, channelShipmentId: String? = nil, couponCode: String? = nil, customerSellingPrice: Double? = nil, dueDate: String? = nil, employeeDiscount: Double? = nil, fulfilmentPriority: Int? = nil, isPriority: Bool? = nil, isSerialNumberRequired: Bool? = nil, loyaltyDiscount: Double? = nil, marketplaceInvoiceId: String? = nil, orderItemId: String? = nil, quantity: Int? = nil, replacementDetails: ReplacementDetails? = nil, sizeLevelTotalQty: Int? = nil) {
             
             self.orderItemId = orderItemId
             
@@ -428,6 +509,12 @@ public extension PlatformClient.ApplicationClient.Order {
             self.couponCode = couponCode
             
             self.isPriority = isPriority
+            
+            self.isSerialNumberRequired = isSerialNumberRequired
+            
+            self.fulfilmentPriority = fulfilmentPriority
+            
+            self.customerSellingPrice = customerSellingPrice
             
         }
 
@@ -590,6 +677,42 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    isSerialNumberRequired = try container.decode(Bool.self, forKey: .isSerialNumberRequired)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    fulfilmentPriority = try container.decode(Int.self, forKey: .fulfilmentPriority)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    customerSellingPrice = try container.decode(Double.self, forKey: .customerSellingPrice)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -658,6 +781,21 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(isPriority, forKey: .isPriority)
+            
+            
+            
+            
+            try? container.encode(isSerialNumberRequired, forKey: .isSerialNumberRequired)
+            
+            
+            
+            
+            try? container.encode(fulfilmentPriority, forKey: .fulfilmentPriority)
+            
+            
+            
+            
+            try? container.encode(customerSellingPrice, forKey: .customerSellingPrice)
             
             
         }

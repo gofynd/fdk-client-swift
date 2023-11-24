@@ -1694,6 +1694,7 @@ if let value = sortOn {
                 id: String?,
                 i: Bool?,
                 b: Bool?,
+                c: Bool?,
                 
                 onResponse: @escaping (_ response: CartDetailResponse?, _ error: FDKError?) -> Void
             ) {
@@ -1717,6 +1718,13 @@ if let value = i {
 if let value = b {
     
     xQuery["b"] = value
+    
+}
+
+
+if let value = c {
+    
+    xQuery["c"] = value
     
 }
 
@@ -19326,7 +19334,224 @@ if let value = category {
             
             
             
+            /**
+            *
+            * Summary: Get reasons behind full or partial cancellation of a shipment
+            * Description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+            **/
+            public func getShipmentBagReasons(
+                shipmentId: String,
+                lineNumber: Int,
+                
+                onResponse: @escaping (_ response: ShipmentBagReasons?, _ error: FDKError?) -> Void
+            ) {
+                
+ 
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/orders/shipments/\(shipmentId)/lineNumber/\(lineNumber)/reasons",
+                    query: nil,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ShipmentBagReasons.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /**
+            *
+            * Summary: 
+            * Description: 
+            **/
+            public func getApplicationShipments(
+                lane: String?,
+                searchType: String?,
+                searchId: String?,
+                fromDate: String?,
+                toDate: String?,
+                dpIds: String?,
+                orderingCompanyId: String?,
+                stores: String?,
+                salesChannel: String?,
+                requestByExt: String?,
+                pageNo: Int?,
+                pageSize: Int?,
+                customerId: String?,
+                isPrioritySort: Bool?,
+                excludeLockedShipments: Bool?,
+                
+                onResponse: @escaping (_ response: ShipmentInternalPlatformViewResponse?, _ error: FDKError?) -> Void
+            ) {
+                
+var xQuery: [String: Any] = [:] 
+
+if let value = lane {
+    
+    xQuery["lane"] = value
+    
+}
+
+
+if let value = searchType {
+    
+    xQuery["search_type"] = value
+    
+}
+
+
+if let value = searchId {
+    
+    xQuery["search_id"] = value
+    
+}
+
+
+if let value = fromDate {
+    
+    xQuery["from_date"] = value
+    
+}
+
+
+if let value = toDate {
+    
+    xQuery["to_date"] = value
+    
+}
+
+
+if let value = dpIds {
+    
+    xQuery["dp_ids"] = value
+    
+}
+
+
+if let value = orderingCompanyId {
+    
+    xQuery["ordering_company_id"] = value
+    
+}
+
+
+if let value = stores {
+    
+    xQuery["stores"] = value
+    
+}
+
+
+if let value = salesChannel {
+    
+    xQuery["sales_channel"] = value
+    
+}
+
+
+if let value = requestByExt {
+    
+    xQuery["request_by_ext"] = value
+    
+}
+
+
+if let value = pageNo {
+    
+    xQuery["page_no"] = value
+    
+}
+
+
+if let value = pageSize {
+    
+    xQuery["page_size"] = value
+    
+}
+
+
+if let value = customerId {
+    
+    xQuery["customer_id"] = value
+    
+}
+
+
+if let value = isPrioritySort {
+    
+    xQuery["is_priority_sort"] = value
+    
+}
+
+
+if let value = excludeLockedShipments {
+    
+    xQuery["exclude_locked_shipments"] = value
+    
+}
+
+
+ 
+
+
+                PlatformAPIClient.execute(
+                    config: config,
+                    method: "GET",
+                    url: "/service/platform/order/v1.0/company/\(companyId)/application/\(applicationId)/shipments/",
+                    query: xQuery,
+                    body: nil,
+                    headers: [],
+                    responseType: "application/json",
+                    onResponse: { (responseData, error, responseCode) in
+                        if let _ = error, let data = responseData {
+                            var err = Utility.decode(FDKError.self, from: data)
+                            if err?.status == nil {
+                                err?.status = responseCode
+                            }
+                            onResponse(nil, err)
+                        } else if let data = responseData {
+                            
+                            let response = Utility.decode(ShipmentInternalPlatformViewResponse.self, from: data)
+                            
+                            onResponse(response, nil)
+                        } else {
+                            let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                            let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                            onResponse(nil, err)
+                        }
+                });
+            }
             
             
             

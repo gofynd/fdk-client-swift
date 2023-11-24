@@ -1,4 +1,836 @@
-# CHANGE LOG (1.3.6-beta.2) - v1.8.5-prerelease-v2
+# CHANGE LOG (1.3.9-beta.1) - v1.8.6-prerelease-v1
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property `cart.uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property `cart.uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+### Catalog
+
+
+
+#### getStores
+
+- ##### What's New
+	- [Added] `query` parameter `tags` (type: `string`)
+
+	- [Added] property `items[].tags` of schema `Store` in response with status code 200
+
+
+## Platform Client
+
+
+
+### Catalog
+
+
+
+#### createCollection
+
+- ##### What's New
+	- [Added] property `uid` of schema `CollectionCreateResponse` in response with status code 200
+
+
+### Order
+
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] `query` parameter `allowInactive` (type: `boolean`)
+
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].shipments[].affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].shipments[].affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getBagById
+
+- ##### What's New
+	- [Added] property `affiliateBagDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateBagDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateBagDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getBags
+
+- ##### What's New
+	- [Added] property `items[].affiliateBagDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateBagDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateBagDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+# CHANGE LOG (1.3.8) - fp-v1.8.5
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] `query` parameter `c` (type: `boolean`)
+
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 201
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 201
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 201
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 201
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 201
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 201
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property `shipments[].items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `shipments[].items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `shipments[].items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `shipments[].items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 404
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 404
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+### PosCart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] `query` parameter `c` (type: `boolean`)
+
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] `query` parameter `c` (type: `boolean`)
+
+
+
+### Catalog
+
+
+
+#### getAppReturnConfiguration
+
+- ##### What's New
+	- [Added] method `getAppReturnConfiguration`
+
+
+
+#### createAppReturnConfiguration
+
+- ##### What's New
+	- [Added] method `createAppReturnConfiguration`
+
+
+
+#### updateAppReturnConfiguration
+
+- ##### What's New
+	- [Added] method `updateAppReturnConfiguration`
+
+
+
+#### deleteAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] method `deleteAppCategoryReturnConfiguration`
+
+
+
+#### getAppCategoryReturnConfig
+
+- ##### What's New
+	- [Added] method `getAppCategoryReturnConfig`
+
+
+
+#### createAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] method `createAppCategoryReturnConfiguration`
+
+
+
+#### updateAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] method `updateAppCategoryReturnConfiguration`
+
+
+
+### Communication
+
+
+
+#### sendOtp
+
+- ##### What's New
+	- [Added] property `email.provider` of schema `SendOtpCommsReqEmail` in request body
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] property `userInfo.primaryEmail` of schema `UserInfo` in request body
+	- [Added] property `userInfo.primaryMobileNumber` of schema `UserInfo` in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `userInfo.email` of schema `UserInfo` in request body
+	- [Breaking] [Deleted] property `userInfo.mobile` of schema `UserInfo` in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Required status of property `userInfo.email` in request body
+	- [Breaking] [Changed] Required status of property `userInfo.mobile` in request body
+
+
+#### getShipments
+
+- ##### What's Deprecated
+	- [Deleted] properties `items[].meta.formatted`, `items[].meta.sla`, `items[].meta.tags`, `items[].meta.external`, `items[].meta.timestamp`, `items[].meta.weight`, `items[].meta.sameStoreAvailable`, `items[].meta.isSelfShip`, `items[].meta.isInternational`, `items[].meta.debugInfo`, `items[].meta.shipmentChargeableWeight`, `items[].meta.pdfMedia`, `items[].meta.existingDpList`, `items[].meta.parentDpId`, `items[].meta.shipmentWeight`, `items[].meta.dpOptions`, `items[].meta.assignDpFromSb`, `items[].meta.shippingZone`, `items[].meta.storeInvoiceUpdatedDate`, `items[].meta.activityComment`, `items[].meta.fulfilmentPriorityText`, `items[].meta.shipmentTags`, `items[].meta.ewaybillInfo`, `items[].meta.lockData`, `items[].meta.orderType`, `items[].meta.shipmentVolumetricWeight`, `items[].meta.dpSortKey`, `items[].meta.packagingName`, `items[].meta.autoTriggerDpAssignmentAcf`, `items[].meta.bagWeight` in response with status code 200
+	- [Deleted] Required status from property `items[].meta.auto_trigger_dp_assignment_acf` in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].invoice.links` of schema `InvoiceInfo` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `shipments[].bags[].meta.giftCard`, `shipments[].bags[].meta.customMessage`, `shipments[].bags[].meta.docketNumber`, `shipments[].bags[].meta.groupId`, `shipments[].bags[].meta.partialCanRet`, `shipments[].bags[].meta.extraMeta`, `shipments[].bags[].meta.b2BPoDetails`, `shipments[].bags[].meta.customJson` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `shipments[].invoice.links` of schema `InvoiceInfo` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `order.meta.comment`, `order.meta.files`, `order.meta.staff`, `order.meta.platformUserDetails`, `order.meta.companyLogo`, `order.meta.currencySymbol`, `order.meta.extraMeta`, `order.meta.transactionData`, `order.meta.billingStaffDetails`, `order.meta.orderingStore`, `order.meta.paymentType`, `order.meta.mongoCartId`, `order.meta.orderChildEntities`, `order.meta.orderType`, `order.meta.orderPlatform`, `order.meta.employeeId`, `order.meta.orderTags`, `order.meta.customerNote`, `order.meta.cartId`, `order.meta.cartObjectId` in response with status code 200
+	- [Deleted] properties `shipments[].bags[].meta.giftCard`, `shipments[].bags[].meta.customMessage`, `shipments[].bags[].meta.docketNumber`, `shipments[].bags[].meta.groupId`, `shipments[].bags[].meta.partialCanRet`, `shipments[].bags[].meta.extraMeta`, `shipments[].bags[].meta.b2BPoDetails`, `shipments[].bags[].meta.customJson` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].invoice.links` of schema `InvoiceInfo` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `items[].shipments[].bags[].meta.giftCard`, `items[].shipments[].bags[].meta.customMessage`, `items[].shipments[].bags[].meta.docketNumber`, `items[].shipments[].bags[].meta.groupId`, `items[].shipments[].bags[].meta.partialCanRet`, `items[].shipments[].bags[].meta.extraMeta`, `items[].shipments[].bags[].meta.b2BPoDetails`, `items[].shipments[].bags[].meta.customJson` in response with status code 200
+
+
+#### getShipmentBagReasons
+
+- ##### What's New
+	- [Added] method `getShipmentBagReasons`
+
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] method `getApplicationShipments`
+
+
+
+# CHANGE LOG (1.3.7) - fp-v1.8.5
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] `query` parameter `c` (type: `boolean`)
+
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 201
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 201
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 201
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 201
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 201
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 201
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property `items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property `shipments[].items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `shipments[].items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `shipments[].items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `shipments[].items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 404
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 404
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 404
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property `cart.items[].pricePerUnit.base.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+	- [Added] property `cart.items[].pricePerUnit.converted.sellingPrice` of schema `ProductPricePerUnit` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.base.selling` of schema `ProductPrice` in response with status code 200
+	- [Breaking] [Deleted] property `cart.items[].pricePerUnit.converted.selling` of schema `ProductPrice` in response with status code 200
+
+
+### PosCart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] `query` parameter `c` (type: `boolean`)
+
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] `query` parameter `c` (type: `boolean`)
+
+
+
+### Catalog
+
+
+
+#### getAppReturnConfiguration
+
+- ##### What's New
+	- [Added] method `getAppReturnConfiguration`
+
+
+
+#### createAppReturnConfiguration
+
+- ##### What's New
+	- [Added] method `createAppReturnConfiguration`
+
+
+
+#### updateAppReturnConfiguration
+
+- ##### What's New
+	- [Added] method `updateAppReturnConfiguration`
+
+
+
+#### deleteAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] method `deleteAppCategoryReturnConfiguration`
+
+
+
+#### getAppCategoryReturnConfig
+
+- ##### What's New
+	- [Added] method `getAppCategoryReturnConfig`
+
+
+
+#### createAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] method `createAppCategoryReturnConfiguration`
+
+
+
+#### updateAppCategoryReturnConfiguration
+
+- ##### What's New
+	- [Added] method `updateAppCategoryReturnConfiguration`
+
+
+
+### Communication
+
+
+
+#### sendOtp
+
+- ##### What's New
+	- [Added] property `email.provider` of schema `SendOtpCommsReqEmail` in request body
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] property `userInfo.primaryEmail` of schema `UserInfo` in request body
+	- [Added] property `userInfo.primaryMobileNumber` of schema `UserInfo` in request body
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `userInfo.email` of schema `UserInfo` in request body
+	- [Breaking] [Deleted] property `userInfo.mobile` of schema `UserInfo` in request body
+
+- ##### What's Changed
+	- [Breaking] [Changed] Required status of property `userInfo.email` in request body
+	- [Breaking] [Changed] Required status of property `userInfo.mobile` in request body
+
+
+#### getShipments
+
+- ##### What's Deprecated
+	- [Deleted] properties `items[].meta.formatted`, `items[].meta.sla`, `items[].meta.tags`, `items[].meta.external`, `items[].meta.timestamp`, `items[].meta.weight`, `items[].meta.sameStoreAvailable`, `items[].meta.isSelfShip`, `items[].meta.isInternational`, `items[].meta.debugInfo`, `items[].meta.shipmentChargeableWeight`, `items[].meta.pdfMedia`, `items[].meta.existingDpList`, `items[].meta.parentDpId`, `items[].meta.shipmentWeight`, `items[].meta.dpOptions`, `items[].meta.assignDpFromSb`, `items[].meta.shippingZone`, `items[].meta.storeInvoiceUpdatedDate`, `items[].meta.activityComment`, `items[].meta.fulfilmentPriorityText`, `items[].meta.shipmentTags`, `items[].meta.ewaybillInfo`, `items[].meta.lockData`, `items[].meta.orderType`, `items[].meta.shipmentVolumetricWeight`, `items[].meta.dpSortKey`, `items[].meta.packagingName`, `items[].meta.autoTriggerDpAssignmentAcf`, `items[].meta.bagWeight` in response with status code 200
+	- [Deleted] Required status from property `items[].meta.auto_trigger_dp_assignment_acf` in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].invoice.links` of schema `InvoiceInfo` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `shipments[].bags[].meta.giftCard`, `shipments[].bags[].meta.customMessage`, `shipments[].bags[].meta.docketNumber`, `shipments[].bags[].meta.groupId`, `shipments[].bags[].meta.partialCanRet`, `shipments[].bags[].meta.extraMeta`, `shipments[].bags[].meta.b2BPoDetails`, `shipments[].bags[].meta.customJson` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `shipments[].invoice.links` of schema `InvoiceInfo` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `order.meta.comment`, `order.meta.files`, `order.meta.staff`, `order.meta.platformUserDetails`, `order.meta.companyLogo`, `order.meta.currencySymbol`, `order.meta.extraMeta`, `order.meta.transactionData`, `order.meta.billingStaffDetails`, `order.meta.orderingStore`, `order.meta.paymentType`, `order.meta.mongoCartId`, `order.meta.orderChildEntities`, `order.meta.orderType`, `order.meta.orderPlatform`, `order.meta.employeeId`, `order.meta.orderTags`, `order.meta.customerNote`, `order.meta.cartId`, `order.meta.cartObjectId` in response with status code 200
+	- [Deleted] properties `shipments[].bags[].meta.giftCard`, `shipments[].bags[].meta.customMessage`, `shipments[].bags[].meta.docketNumber`, `shipments[].bags[].meta.groupId`, `shipments[].bags[].meta.partialCanRet`, `shipments[].bags[].meta.extraMeta`, `shipments[].bags[].meta.b2BPoDetails`, `shipments[].bags[].meta.customJson` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].invoice.links` of schema `InvoiceInfo` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `items[].shipments[].bags[].meta.giftCard`, `items[].shipments[].bags[].meta.customMessage`, `items[].shipments[].bags[].meta.docketNumber`, `items[].shipments[].bags[].meta.groupId`, `items[].shipments[].bags[].meta.partialCanRet`, `items[].shipments[].bags[].meta.extraMeta`, `items[].shipments[].bags[].meta.b2BPoDetails`, `items[].shipments[].bags[].meta.customJson` in response with status code 200
+
+
+#### getShipmentBagReasons
+
+- ##### What's New
+	- [Added] method `getShipmentBagReasons`
+
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] method `getApplicationShipments`
+
+
+
+# CHANGE LOG (1.3.6) - fp-v1.8.5
 
 ## Application Client
 
@@ -212,6 +1044,16 @@
 
 
 
+### Communication
+
+
+
+#### sendOtp
+
+- ##### What's New
+	- [Added] property `email.provider` of schema `SendOtpCommsReqEmail` in request body
+
+
 ### Order
 
 
@@ -270,6 +1112,13 @@
 
 - ##### What's New
 	- [Added] method `getShipmentBagReasons`
+
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] method `getApplicationShipments`
 
 
 
