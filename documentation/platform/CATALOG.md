@@ -17773,6 +17773,7 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | uid | String? |  yes  |  |
  | schedule | [String: Any]? |  yes  |  |
  | allowFacets | Bool? |  yes  |  |
  | allowSort | Bool? |  yes  |  |

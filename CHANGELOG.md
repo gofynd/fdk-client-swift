@@ -1,3 +1,203 @@
+# CHANGE LOG (1.3.8) - fp-v1.8.6
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property `cart.uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property `cart.uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cartId` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `commonConfig` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staffUserId` of schema `CartDetailResponse` in response with status code 200
+
+
+### Catalog
+
+
+
+#### getStores
+
+- ##### What's New
+	- [Added] `query` parameter `tags` (type: `string`)
+
+	- [Added] property `items[].tags` of schema `Store` in response with status code 200
+
+
+## Platform Client
+
+
+
+### Catalog
+
+
+
+#### createCollection
+
+- ##### What's New
+	- [Added] property `uid` of schema `CollectionCreateResponse` in response with status code 200
+
+
+### Order
+
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] `query` parameter `allowInactive` (type: `boolean`)
+
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `shipments[].affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].shipments[].affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].shipments[].affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's New
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].bags[].affiliateBagDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getBagById
+
+- ##### What's New
+	- [Added] property `affiliateBagDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateBagDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateBagDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
+#### getBags
+
+- ##### What's New
+	- [Added] property `items[].affiliateBagDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateBagDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateBagDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateDetails.affiliateMeta.isSerialNumberRequired` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateDetails.affiliateMeta.fulfilmentPriority` of schema `AffiliateMeta` in response with status code 200
+	- [Added] property `items[].affiliateDetails.affiliateMeta.customerSellingPrice` of schema `AffiliateMeta` in response with status code 200
+
+
 # CHANGE LOG (1.3.8) - fp-v1.8.5
 
 ## Application Client

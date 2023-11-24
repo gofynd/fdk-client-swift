@@ -2084,6 +2084,7 @@ if let value = collectionType {
             range: Int?,
             latitude: Double?,
             longitude: Double?,
+            tags: String?,
             
             onResponse: @escaping (_ response: StoreListingResponse?, _ error: FDKError?) -> Void
         ) {
@@ -2135,6 +2136,13 @@ if let value = latitude {
 if let value = longitude {
     
     xQuery["longitude"] = value
+    
+}
+
+
+if let value = tags {
+    
+    xQuery["tags"] = value
     
 }
 
@@ -2208,6 +2216,10 @@ if let value = longitude {
         
         
         
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getStores
@@ -2219,7 +2231,8 @@ if let value = longitude {
             city: String?,
             range: Int?,
             latitude: Double?,
-            longitude: Double?
+            longitude: Double?,
+            tags: String?
             
             ) -> Paginator<StoreListingResponse> {
             let pageSize = pageSize ?? 20
@@ -2235,7 +2248,8 @@ if let value = longitude {
                         city: city,
                         range: range,
                         latitude: latitude,
-                        longitude: longitude
+                        longitude: longitude,
+                        tags: tags
                     ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page.hasNext ?? false

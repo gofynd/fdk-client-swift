@@ -1718,6 +1718,7 @@ if let value = pageSize {
             pageNo: Int?,
             pageSize: Int?,
             fetchActiveShipment: Bool?,
+            allowInactive: Bool?,
             excludeLockedShipments: Bool?,
             paymentMethods: String?,
             channelShipmentId: String?,
@@ -1832,6 +1833,13 @@ if let value = pageSize {
 if let value = fetchActiveShipment {
     
     xQuery["fetch_active_shipment"] = value
+    
+}
+
+
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
     
 }
 
@@ -2145,6 +2153,12 @@ if let value = orderType {
         
         
         
+        
+        
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getShipments
@@ -2164,6 +2178,7 @@ if let value = orderType {
             salesChannels: String?,
             pageSize: Int?,
             fetchActiveShipment: Bool?,
+            allowInactive: Bool?,
             excludeLockedShipments: Bool?,
             paymentMethods: String?,
             channelShipmentId: String?,
@@ -2201,6 +2216,7 @@ if let value = orderType {
                         pageSize: paginator.pageSize
                         ,
                         fetchActiveShipment: fetchActiveShipment,
+                        allowInactive: allowInactive,
                         excludeLockedShipments: excludeLockedShipments,
                         paymentMethods: paymentMethods,
                         channelShipmentId: channelShipmentId,

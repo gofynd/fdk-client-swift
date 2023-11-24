@@ -2340,7 +2340,7 @@ Success. Check the example shown below or refer `ShipmentBagReasons` for more de
 
 
 ```swift
-platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId, sortType: sortType, showCrossCompanyData: showCrossCompanyData, tags: tags, customerId: customerId, orderType: orderType) { (response, error) in
+platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverrideLane: statusOverrideLane, timeToDispatch: timeToDispatch, searchType: searchType, searchValue: searchValue, fromDate: fromDate, toDate: toDate, dpIds: dpIds, stores: stores, salesChannels: salesChannels, pageNo: pageNo, pageSize: pageSize, fetchActiveShipment: fetchActiveShipment, allowInactive: allowInactive, excludeLockedShipments: excludeLockedShipments, paymentMethods: paymentMethods, channelShipmentId: channelShipmentId, channelOrderId: channelOrderId, customMeta: customMeta, orderingChannel: orderingChannel, companyAffiliateTag: companyAffiliateTag, myOrders: myOrders, platformUserId: platformUserId, sortType: sortType, showCrossCompanyData: showCrossCompanyData, tags: tags, customerId: customerId, orderType: orderType) { (response, error) in
     // Use response
 }
 ```
@@ -2365,6 +2365,7 @@ platformClient.order.getShipments(lane: lane, bagStatus: bagStatus, statusOverri
 | pageNo | Int? | no | Page number for paginated data |   
 | pageSize | Int? | no | Page size of data received per page |   
 | fetchActiveShipment | Bool? | no | flag to fetch active shipments |   
+| allowInactive | Bool? | no | Flag to allow inactive shipments |   
 | excludeLockedShipments | Bool? | no | flag to fetch locked shipments |   
 | paymentMethods | String? | no | Comma separated values of payment methods |   
 | channelShipmentId | String? | no | App Shipment Id |   
@@ -7229,6 +7230,9 @@ We are processing the request!
  | dueDate | String? |  yes  |  |
  | couponCode | String? |  yes  |  |
  | isPriority | Bool? |  yes  |  |
+ | isSerialNumberRequired | Bool? |  yes  |  |
+ | fulfilmentPriority | Int? |  yes  |  |
+ | customerSellingPrice | Double? |  yes  |  |
 
 ---
 

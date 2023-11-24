@@ -12,6 +12,8 @@ public extension PlatformClient.Catalog {
     class CollectionCreateResponse: Codable {
         
         
+        public var uid: String?
+        
         public var schedule: [String: Any]?
         
         public var allowFacets: Bool?
@@ -53,6 +55,8 @@ public extension PlatformClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
+            case uid = "uid"
+            
             case schedule = "_schedule"
             
             case allowFacets = "allow_facets"
@@ -93,7 +97,9 @@ public extension PlatformClient.Catalog {
             
         }
 
-        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: BannerImage? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, query: [CollectionQuery]? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil, schedule: [String: Any]? = nil) {
+        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: BannerImage? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, query: [CollectionQuery]? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, schedule: [String: Any]? = nil) {
+            
+            self.uid = uid
             
             self.schedule = schedule
             
@@ -137,6 +143,18 @@ public extension PlatformClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    uid = try container.decode(String.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -370,6 +388,11 @@ public extension PlatformClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
             
             
             
@@ -482,6 +505,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
     class CollectionCreateResponse: Codable {
         
         
+        public var uid: String?
+        
         public var schedule: [String: Any]?
         
         public var allowFacets: Bool?
@@ -523,6 +548,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         public enum CodingKeys: String, CodingKey {
             
+            case uid = "uid"
+            
             case schedule = "_schedule"
             
             case allowFacets = "allow_facets"
@@ -563,7 +590,9 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
         }
 
-        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: BannerImage? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, query: [CollectionQuery]? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, type: String? = nil, visibleFacetsKeys: [String]? = nil, schedule: [String: Any]? = nil) {
+        public init(allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: BannerImage? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, query: [CollectionQuery]? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, schedule: [String: Any]? = nil) {
+            
+            self.uid = uid
             
             self.schedule = schedule
             
@@ -607,6 +636,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    uid = try container.decode(String.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -840,6 +881,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
             
             
             
