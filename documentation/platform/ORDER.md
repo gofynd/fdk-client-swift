@@ -7963,6 +7963,7 @@ We are processing the request!
  | ---------- | ---- | -------- | ----------- |
  | affiliateBagId | String? |  yes  |  |
  | couponCode | String? |  yes  |  |
+ | affiliateMeta | [AffiliateMeta](#AffiliateMeta)? |  yes  |  |
 
 ---
 
