@@ -6,6 +6,8 @@
 
 ## Content Methods
 Content System
+
+Default
 * [getAnnouncements](#getannouncements)
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
@@ -28,7 +30,9 @@ Content System
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getAnnouncements
@@ -1805,6 +1809,7 @@ Success. Returns a list of pages along with their details. Check the example sho
 
 
 ---
+
 
 
 

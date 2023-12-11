@@ -6,6 +6,8 @@
 
 ## Order Methods
 Handles all platform order and shipment api(s)
+
+Default
 * [invalidateShipmentCache](#invalidateshipmentcache)
 * [reassignLocation](#reassignlocation)
 * [updateShipmentLock](#updateshipmentlock)
@@ -57,7 +59,9 @@ Handles all platform order and shipment api(s)
 
 
 
+
 ## Methods with example and description
+
 
 
 #### invalidateShipmentCache
@@ -4887,6 +4891,7 @@ We are processing the request!
 
 
 
+
 ### Schemas
 
  
@@ -7393,7 +7398,7 @@ We are processing the request!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | phone | String? |  yes  |  |
- | brandStoreTags | String? |  yes  |  |
+ | brandStoreTags | [String]? |  yes  |  |
  | pincode | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | address | String? |  yes  |  |
@@ -8111,6 +8116,7 @@ We are processing the request!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | gstDetails | [GSTDetailsData](#GSTDetailsData)? |  yes  |  |
+ | bagStatus | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | parentPromoBags | [String: Any]? |  yes  |  |
  | financialBreakup | [FinancialBreakup](#FinancialBreakup)? |  yes  |  |
  | bagConfigs | [BagConfigs](#BagConfigs)? |  yes  |  |

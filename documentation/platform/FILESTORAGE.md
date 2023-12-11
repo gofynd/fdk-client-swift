@@ -7,6 +7,8 @@
 ## FileStorage Methods
 This service provides functionality to manage assets and generate pdf. You can upload the assets, get the cdn link for the assets, proxy the assets and many more things.
 
+
+Default
 * [startUpload](#startupload)
 * [completeUpload](#completeupload)
 * [appStartUpload](#appstartupload)
@@ -27,7 +29,9 @@ This service provides functionality to manage assets and generate pdf. You can u
 
 
 
+
 ## Methods with example and description
+
 
 
 #### startUpload
@@ -1783,6 +1787,7 @@ Kafka response published to generate payment receipt
 
 
 ---
+
 
 
 

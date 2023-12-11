@@ -6,6 +6,8 @@
 
 ## Payment Methods
 Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
+
+Default
 * [getAggregatorsConfig](#getaggregatorsconfig)
 * [attachCardToCustomer](#attachcardtocustomer)
 * [getActiveCardAggregator](#getactivecardaggregator)
@@ -51,7 +53,9 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getAggregatorsConfig
@@ -3929,6 +3933,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
 
 ---
+
 
 
 

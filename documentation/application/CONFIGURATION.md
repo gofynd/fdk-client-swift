@@ -6,6 +6,8 @@
 
 ## Configuration Methods
 Application configuration apis
+
+Default
 * [getApplication](#getapplication)
 * [getOwnerInfo](#getownerinfo)
 * [getBasicDetails](#getbasicdetails)
@@ -25,7 +27,9 @@ Application configuration apis
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getApplication
@@ -1412,6 +1416,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
 
 ---
+
 
 
 

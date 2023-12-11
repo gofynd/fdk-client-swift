@@ -6,6 +6,8 @@
 
 ## Theme Methods
 Responsible for themes
+
+Default
 * [getAllPages](#getallpages)
 * [createPage](#createpage)
 * [updateMultiplePages](#updatemultiplepages)
@@ -40,7 +42,9 @@ Responsible for themes
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getAllPages
@@ -43421,6 +43425,7 @@ Successful upgrade
 
 
 ---
+
 
 
 

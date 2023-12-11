@@ -6,6 +6,8 @@
 
 ## Lead Methods
 Handles communication between Staff and Users
+
+Default
 * [getTicket](#getticket)
 * [createHistory](#createhistory)
 * [createTicket](#createticket)
@@ -16,7 +18,9 @@ Handles communication between Staff and Users
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getTicket
@@ -1115,6 +1119,7 @@ Success
 
 
 ---
+
 
 
 

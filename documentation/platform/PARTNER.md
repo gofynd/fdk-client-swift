@@ -6,12 +6,16 @@
 
 ## Partner Methods
 Partner configuration apis
+
+Default
 * [addProxyPath](#addproxypath)
 * [removeProxyPath](#removeproxypath)
 
 
 
+
 ## Methods with example and description
+
 
 
 #### addProxyPath
@@ -144,6 +148,7 @@ Success
 
 
 ---
+
 
 
 

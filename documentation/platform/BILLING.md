@@ -6,6 +6,8 @@
 
 ## Billing Methods
 Handle platform subscription
+
+Default
 * [checkCouponValidity](#checkcouponvalidity)
 * [createSubscriptionCharge](#createsubscriptioncharge)
 * [getSubscriptionCharge](#getsubscriptioncharge)
@@ -26,7 +28,9 @@ Handle platform subscription
 
 
 
+
 ## Methods with example and description
+
 
 
 #### checkCouponValidity
@@ -2476,6 +2480,7 @@ Success
 
 
 ---
+
 
 
 

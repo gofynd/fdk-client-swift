@@ -6,6 +6,8 @@
 
 ## Configuration Methods
 Application configuration apis
+
+Default
 * [getBuildConfig](#getbuildconfig)
 * [updateBuildConfig](#updatebuildconfig)
 * [getPreviousVersions](#getpreviousversions)
@@ -59,7 +61,9 @@ Application configuration apis
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getBuildConfig
@@ -5037,6 +5041,7 @@ Success
 
 
 ---
+
 
 
 

@@ -6,6 +6,8 @@
 
 ## Payment Methods
 Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
+
+Default
 * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
 * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
@@ -61,7 +63,9 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getBrandPaymentGatewayConfig
@@ -6297,6 +6301,7 @@ Success. Returns the status of Update or not. Check the example shown below or r
 
 
 ---
+
 
 
 

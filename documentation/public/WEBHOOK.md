@@ -6,12 +6,16 @@
 
 ## Webhook Methods
 Webhook dispatcher with retry and one event to many subscriber vice versa
+
+Default
 * [fetchAllWebhookEvents](#fetchallwebhookevents)
 * [queryWebhookEventDetails](#querywebhookeventdetails)
 
 
 
+
 ## Methods with example and description
+
 
 
 #### fetchAllWebhookEvents
@@ -116,6 +120,7 @@ Success
 
 
 ---
+
 
 
 

@@ -6,6 +6,8 @@
 
 ## Finance Methods
 Handles all finance related activities
+
+Default
 * [generateReport](#generatereport)
 * [downloadReport](#downloadreport)
 * [getData](#getdata)
@@ -33,7 +35,9 @@ Handles all finance related activities
 
 
 
+
 ## Methods with example and description
+
 
 
 #### generateReport
@@ -2180,6 +2184,7 @@ Success
 
 
 ---
+
 
 
 

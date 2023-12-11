@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var gstDetails: GSTDetailsData?
         
+        public var bagStatus: [BagStatusHistory]?
+        
         public var parentPromoBags: [String: Any]?
         
         public var financialBreakup: FinancialBreakup?
@@ -67,6 +69,8 @@ public extension PlatformClient.Order {
             
             case gstDetails = "gst_details"
             
+            case bagStatus = "bag_status"
+            
             case parentPromoBags = "parent_promo_bags"
             
             case financialBreakup = "financial_breakup"
@@ -117,9 +121,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
             
             self.gstDetails = gstDetails
+            
+            self.bagStatus = bagStatus
             
             self.parentPromoBags = parentPromoBags
             
@@ -177,6 +183,18 @@ public extension PlatformClient.Order {
             
                 do {
                     gstDetails = try container.decode(GSTDetailsData.self, forKey: .gstDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bagStatus = try container.decode([BagStatusHistory].self, forKey: .bagStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -475,6 +493,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(gstDetails, forKey: .gstDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bagStatus, forKey: .bagStatus)
             
             
             
@@ -615,6 +638,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var gstDetails: GSTDetailsData?
         
+        public var bagStatus: [BagStatusHistory]?
+        
         public var parentPromoBags: [String: Any]?
         
         public var financialBreakup: FinancialBreakup?
@@ -668,6 +693,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case gstDetails = "gst_details"
             
+            case bagStatus = "bag_status"
+            
             case parentPromoBags = "parent_promo_bags"
             
             case financialBreakup = "financial_breakup"
@@ -718,9 +745,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
+        public init(affiliateBagDetails: AffiliateBagsDetails? = nil, appliedPromos: [AppliedPromos]? = nil, article: OrderBagArticle? = nil, bagConfigs: BagConfigs? = nil, bagId: Int, bagStatus: [BagStatusHistory]? = nil, brand: OrderBrandName? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, currentStatus: CurrentStatus? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, entityType: String? = nil, financialBreakup: FinancialBreakup? = nil, groupId: String? = nil, gstDetails: GSTDetailsData? = nil, identifier: String? = nil, isParent: Bool? = nil, item: PlatformItem? = nil, lineNumber: Int? = nil, meta: [String: Any]? = nil, parentPromoBags: [String: Any]? = nil, paymentMethods: [BagPaymentMethods]? = nil, prices: Prices? = nil, quantity: Int? = nil, sellerIdentifier: String? = nil) {
             
             self.gstDetails = gstDetails
+            
+            self.bagStatus = bagStatus
             
             self.parentPromoBags = parentPromoBags
             
@@ -778,6 +807,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     gstDetails = try container.decode(GSTDetailsData.self, forKey: .gstDetails)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    bagStatus = try container.decode([BagStatusHistory].self, forKey: .bagStatus)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1076,6 +1117,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(gstDetails, forKey: .gstDetails)
+            
+            
+            
+            
+            try? container.encodeIfPresent(bagStatus, forKey: .bagStatus)
             
             
             

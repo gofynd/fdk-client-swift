@@ -6,6 +6,8 @@
 
 ## Logistic Methods
 Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features. 
+
+Default
 * [getPincodeCity](#getpincodecity)
 * [getTatProduct](#gettatproduct)
 * [getAllCountries](#getallcountries)
@@ -14,7 +16,9 @@ Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logist
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getPincodeCity
@@ -484,6 +488,7 @@ Response status_code
 
 
 ---
+
 
 
 

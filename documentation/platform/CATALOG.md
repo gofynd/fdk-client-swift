@@ -6,6 +6,8 @@
 
 ## Catalog Methods
 Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.
+
+Default
 * [getCatalogInsights](#getcataloginsights)
 * [getApplicationBrandListing](#getapplicationbrandlisting)
 * [updateAppBrand](#updateappbrand)
@@ -150,7 +152,9 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getCatalogInsights
@@ -16731,6 +16735,7 @@ Returns a success response
 
 
 ---
+
 
 
 

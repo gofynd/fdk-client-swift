@@ -14,7 +14,7 @@ public extension PlatformClient.Order {
         
         public var phone: String?
         
-        public var brandStoreTags: String?
+        public var brandStoreTags: [String]?
         
         public var pincode: String?
         
@@ -65,7 +65,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(address: String? = nil, brandStoreTags: String? = nil, city: String? = nil, code: String, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil) {
+        public init(address: String? = nil, brandStoreTags: [String]? = nil, city: String? = nil, code: String, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil) {
             
             self.phone = phone
             
@@ -110,7 +110,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    brandStoreTags = try container.decode(String.self, forKey: .brandStoreTags)
+                    brandStoreTags = try container.decode([String].self, forKey: .brandStoreTags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -309,7 +309,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var phone: String?
         
-        public var brandStoreTags: String?
+        public var brandStoreTags: [String]?
         
         public var pincode: String?
         
@@ -360,7 +360,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(address: String? = nil, brandStoreTags: String? = nil, city: String? = nil, code: String, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil) {
+        public init(address: String? = nil, brandStoreTags: [String]? = nil, city: String? = nil, code: String, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil) {
             
             self.phone = phone
             
@@ -405,7 +405,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    brandStoreTags = try container.decode(String.self, forKey: .brandStoreTags)
+                    brandStoreTags = try container.decode([String].self, forKey: .brandStoreTags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

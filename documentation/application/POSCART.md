@@ -6,6 +6,8 @@
 
 ## PosCart Methods
 Cart APIs
+
+Default
 * [getCart](#getcart)
 * [getCartLastModified](#getcartlastmodified)
 * [addItems](#additems)
@@ -36,7 +38,9 @@ Cart APIs
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getCart
@@ -8722,6 +8726,7 @@ Success. Returns a merged or replaced cart as per the valid token. Refer `Shared
 
 
 ---
+
 
 
 

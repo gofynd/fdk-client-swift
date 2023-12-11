@@ -6,6 +6,8 @@
 
 ## Cart Methods
 Cart APIs
+
+Default
 * [getCoupons](#getcoupons)
 * [createCoupon](#createcoupon)
 * [getCouponById](#getcouponbyid)
@@ -66,7 +68,9 @@ Cart APIs
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getCoupons
@@ -12684,6 +12688,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
 
 ---
+
 
 
 

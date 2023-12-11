@@ -6,6 +6,8 @@
 
 ## User Methods
 Authentication Service
+
+Default
 * [loginWithFacebook](#loginwithfacebook)
 * [loginWithGoogle](#loginwithgoogle)
 * [loginWithGoogleAndroid](#loginwithgoogleandroid)
@@ -49,7 +51,9 @@ Authentication Service
 
 
 
+
 ## Methods with example and description
+
 
 
 #### loginWithFacebook
@@ -3338,6 +3342,7 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
 
 ---
+
 
 
 
