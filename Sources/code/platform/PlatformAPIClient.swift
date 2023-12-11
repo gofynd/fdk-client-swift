@@ -13,7 +13,7 @@ public class PlatformAPIClient {
             if let token = token {
                 var finalHeaders = headers
                 finalHeaders.append((key: "Authorization", value: "Bearer " + token.accessToken))
-                finalHeaders.append((key: "x-fp-sdk-version", value: "1.3.10-beta.2"))
+                finalHeaders.append((key: "x-fp-sdk-version", value: "1.3.10-beta.3"))
                 finalHeaders.append(contentsOf: config.extraHeaders)
                 if let userAgent = config.userAgent {
                     finalHeaders.append((key: "User-Agent", value: userAgent))

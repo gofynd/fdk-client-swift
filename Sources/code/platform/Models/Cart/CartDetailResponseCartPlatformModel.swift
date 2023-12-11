@@ -14,6 +14,10 @@ public extension PlatformClient.ApplicationClient.Cart {
     class CartDetailResponse: Codable {
         
         
+        public var cartId: Int?
+        
+        public var uid: String?
+        
         public var couponText: String?
         
         public var id: String?
@@ -30,9 +34,19 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var deliveryChargeInfo: String?
         
+        public var commonConfig: CartCommonConfig?
+        
+        public var coupon: CartDetailCoupon?
+        
         public var restrictCheckout: Bool?
         
         public var message: String?
+        
+        public var notification: [String: Any]?
+        
+        public var staffUserId: String?
+        
+        public var success: Bool?
         
         public var breakupValues: CartBreakup?
         
@@ -55,6 +69,10 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         public enum CodingKeys: String, CodingKey {
             
+            case cartId = "cart_id"
+            
+            case uid = "uid"
+            
             case couponText = "coupon_text"
             
             case id = "id"
@@ -71,9 +89,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case deliveryChargeInfo = "delivery_charge_info"
             
+            case commonConfig = "common_config"
+            
+            case coupon = "coupon"
+            
             case restrictCheckout = "restrict_checkout"
             
             case message = "message"
+            
+            case notification = "notification"
+            
+            case staffUserId = "staff_user_id"
+            
+            case success = "success"
             
             case breakupValues = "breakup_values"
             
@@ -95,7 +123,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, checkoutMode: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil) {
+        public init(appliedPromoDetails: [AppliedPromotion]? = nil, breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, comment: String? = nil, commonConfig: CartCommonConfig? = nil, coupon: CartDetailCoupon? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryChargeInfo: String? = nil, deliveryPromise: ShipmentPromise? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, notification: [String: Any]? = nil, panConfig: [String: Any]? = nil, panNo: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, staffUserId: String? = nil, success: Bool? = nil, uid: String? = nil) {
+            
+            self.cartId = cartId
+            
+            self.uid = uid
             
             self.couponText = couponText
             
@@ -113,9 +145,19 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.deliveryChargeInfo = deliveryChargeInfo
             
+            self.commonConfig = commonConfig
+            
+            self.coupon = coupon
+            
             self.restrictCheckout = restrictCheckout
             
             self.message = message
+            
+            self.notification = notification
+            
+            self.staffUserId = staffUserId
+            
+            self.success = success
             
             self.breakupValues = breakupValues
             
@@ -139,6 +181,30 @@ public extension PlatformClient.ApplicationClient.Cart {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
+            
+            
+                do {
+                    cartId = try container.decode(Int.self, forKey: .cartId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    uid = try container.decode(String.self, forKey: .uid)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -238,6 +304,30 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
+                    commonConfig = try container.decode(CartCommonConfig.self, forKey: .commonConfig)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    coupon = try container.decode(CartDetailCoupon.self, forKey: .coupon)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     restrictCheckout = try container.decode(Bool.self, forKey: .restrictCheckout)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -251,6 +341,42 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     message = try container.decode(String.self, forKey: .message)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    notification = try container.decode([String: Any].self, forKey: .notification)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    staffUserId = try container.decode(String.self, forKey: .staffUserId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -375,6 +501,16 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(cartId, forKey: .cartId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(uid, forKey: .uid)
+            
+            
+            
+            
             try? container.encodeIfPresent(couponText, forKey: .couponText)
             
             
@@ -415,12 +551,37 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
+            try? container.encodeIfPresent(commonConfig, forKey: .commonConfig)
+            
+            
+            
+            
+            try? container.encodeIfPresent(coupon, forKey: .coupon)
+            
+            
+            
+            
             try? container.encodeIfPresent(restrictCheckout, forKey: .restrictCheckout)
             
             
             
             
             try? container.encodeIfPresent(message, forKey: .message)
+            
+            
+            
+            
+            try? container.encodeIfPresent(notification, forKey: .notification)
+            
+            
+            
+            
+            try? container.encodeIfPresent(staffUserId, forKey: .staffUserId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
             

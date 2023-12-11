@@ -9063,6 +9063,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
  | tags | [String]? |  yes  |  |
  | type | String? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
 
 ---
 
@@ -9096,6 +9097,7 @@ Success. Returns the status of cart checkout. Refer `CartCheckoutResponseSchema`
  | availability | [ProductAvailability](#ProductAvailability)? |  yes  |  |
  | deliveryPromise | [ShipmentPromise](#ShipmentPromise)? |  yes  |  |
  | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | productEanId | String? |  yes  |  |
  | bulkOffer | [String: Any]? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
  | coupon | [CouponDetails](#CouponDetails)? |  yes  |  |

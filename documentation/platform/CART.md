@@ -13879,6 +13879,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | name | String? |  yes  |  |
  | itemCode | String? |  yes  |  |
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
 
 ---
 
@@ -14176,6 +14177,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | ---------- | ---- | -------- | ----------- |
  | quantity | Int? |  yes  |  |
  | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | productEanId | String? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
  | isSet | Bool? |  yes  |  |
  | article | [ProductArticle](#ProductArticle)? |  yes  |  |
@@ -14488,10 +14490,73 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  
  
+ #### [CartDetailCoupon](#CartDetailCoupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cashbackAmount | Double? |  yes  |  |
+ | cashbackMessagePrimary | String? |  yes  |  |
+ | cashbackMessageSecondary | String? |  yes  |  |
+ | couponCode | String? |  yes  |  |
+ | couponDescription | String? |  yes  |  |
+ | couponId | String? |  yes  |  |
+ | couponSubtitle | String? |  yes  |  |
+ | couponTitle | String? |  yes  |  |
+ | couponType | String? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | maximumDiscountValue | Double? |  yes  |  |
+ | message | String? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ChargesThreshold](#ChargesThreshold)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charges | Double? |  yes  |  |
+ | threshold | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeliveryChargesConfig](#DeliveryChargesConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+ | charges | [[ChargesThreshold](#ChargesThreshold)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartCommonConfig](#CartCommonConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deliveryChargesConfig | [DeliveryChargesConfig](#DeliveryChargesConfig)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CartDetailResponse](#CartDetailResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cartId | Int? |  yes  |  |
+ | uid | String? |  yes  |  |
  | couponText | String? |  yes  |  |
  | id | String? |  yes  |  |
  | panConfig | [String: Any]? |  yes  |  |
@@ -14500,8 +14565,13 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | deliveryChargeInfo | String? |  yes  |  |
+ | commonConfig | [CartCommonConfig](#CartCommonConfig)? |  yes  |  |
+ | coupon | [CartDetailCoupon](#CartDetailCoupon)? |  yes  |  |
  | restrictCheckout | Bool? |  yes  |  |
  | message | String? |  yes  |  |
+ | notification | [String: Any]? |  yes  |  |
+ | staffUserId | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
  | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | isValid | Bool? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
