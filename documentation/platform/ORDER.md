@@ -39,6 +39,7 @@ Default
 * [eInvoiceRetry](#einvoiceretry)
 * [trackShipment](#trackshipment)
 * [updateShipmentTracking](#updateshipmenttracking)
+* [generateInvoiceID](#generateinvoiceid)
 * [getShipmentBagReasons](#getshipmentbagreasons)
 * [getShipments](#getshipments)
 * [getShipmentById](#getshipmentbyid)
@@ -2226,6 +2227,73 @@ Shipment Tracking updated successfully
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### generateInvoiceID
+
+
+
+
+
+```swift
+platformClient.order.generateInvoiceID(invoiceType: invoiceType, body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| invoiceType | String | yes | mention the type of invoice id to generate |  
+| body | GenerateInvoiceIDRequest | yes | Request body |
+
+
+This API is used to manually generate Invoice ID against shipments.
+
+*Returned Response:*
+
+
+
+
+[GenerateInvoiceIDResponse](#GenerateInvoiceIDResponse)
+
+NOTE success response can contains success and failed result as well
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": {
+    "type": "array",
+    "items": [
+      {
+        "shipment_id": "16838049724111283577",
+        "success": true,
+        "invoice_id": "A0B1C2D3",
+        "error_message": null
+      }
+    ]
+  }
+}
+```
 </details>
 
 
@@ -6862,6 +6930,67 @@ We are processing the request!
  | successCount | Int |  no  |  |
  | message | String? |  yes  |  |
  | responseData | [[EInvoiceResponseData](#EInvoiceResponseData)] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipmentId | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | invoiceId | String? |  yes  |  |
+ | errorMessage | Bool? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipmentId | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
+ | invoiceId | Bool? |  yes  |  |
+ | errorMessage | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateInvoiceIDRequest](#GenerateInvoiceIDRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipmentIds | [String] |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateInvoiceIDResponse](#GenerateInvoiceIDResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [GenerateInvoiceIDErrorResponse](#GenerateInvoiceIDErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)? |  yes  |  |
 
 ---
 
