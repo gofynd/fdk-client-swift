@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class GenerateInvoiceIDResponse: Codable {
         
         
-        public var items: GenerateInvoiceIDResponseData?
+        public var items: [GenerateInvoiceIDResponseData]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(items: GenerateInvoiceIDResponseData? = nil) {
+        public init(items: [GenerateInvoiceIDResponseData]? = nil) {
             
             self.items = items
             
@@ -32,7 +32,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    items = try container.decode(GenerateInvoiceIDResponseData.self, forKey: .items)
+                    items = try container.decode([GenerateInvoiceIDResponseData].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class GenerateInvoiceIDResponse: Codable {
         
         
-        public var items: GenerateInvoiceIDResponseData?
+        public var items: [GenerateInvoiceIDResponseData]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(items: GenerateInvoiceIDResponseData? = nil) {
+        public init(items: [GenerateInvoiceIDResponseData]? = nil) {
             
             self.items = items
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    items = try container.decode(GenerateInvoiceIDResponseData.self, forKey: .items)
+                    items = try container.decode([GenerateInvoiceIDResponseData].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

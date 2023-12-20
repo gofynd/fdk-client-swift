@@ -12,7 +12,7 @@ public extension PlatformClient.Order {
     class GenerateInvoiceIDErrorResponse: Codable {
         
         
-        public var items: GenerateInvoiceIDErrorResponseData?
+        public var items: [GenerateInvoiceIDErrorResponseData]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -21,7 +21,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(items: GenerateInvoiceIDErrorResponseData? = nil) {
+        public init(items: [GenerateInvoiceIDErrorResponseData]? = nil) {
             
             self.items = items
             
@@ -32,7 +32,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    items = try container.decode(GenerateInvoiceIDErrorResponseData.self, forKey: .items)
+                    items = try container.decode([GenerateInvoiceIDErrorResponseData].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -68,7 +68,7 @@ public extension PlatformClient.ApplicationClient.Order {
     class GenerateInvoiceIDErrorResponse: Codable {
         
         
-        public var items: GenerateInvoiceIDErrorResponseData?
+        public var items: [GenerateInvoiceIDErrorResponseData]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(items: GenerateInvoiceIDErrorResponseData? = nil) {
+        public init(items: [GenerateInvoiceIDErrorResponseData]? = nil) {
             
             self.items = items
             
@@ -88,7 +88,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    items = try container.decode(GenerateInvoiceIDErrorResponseData.self, forKey: .items)
+                    items = try container.decode([GenerateInvoiceIDErrorResponseData].self, forKey: .items)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

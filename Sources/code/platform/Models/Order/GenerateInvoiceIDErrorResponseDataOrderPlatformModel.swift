@@ -113,12 +113,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
+            try? container.encode(invoiceId, forKey: .invoiceId)
             
             
             
             
-            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
+            try? container.encode(errorMessage, forKey: .errorMessage)
             
             
         }
@@ -238,12 +238,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(invoiceId, forKey: .invoiceId)
+            try? container.encode(invoiceId, forKey: .invoiceId)
             
             
             
             
-            try? container.encodeIfPresent(errorMessage, forKey: .errorMessage)
+            try? container.encode(errorMessage, forKey: .errorMessage)
             
             
         }
