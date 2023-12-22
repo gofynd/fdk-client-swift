@@ -7524,7 +7524,7 @@ We are processing the request!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | phone | String? |  yes  |  |
- | brandStoreTags | [String]? |  yes  |  |
+ | brandStoreTags | String? |  yes  |  |
  | pincode | String? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | address | String? |  yes  |  |
