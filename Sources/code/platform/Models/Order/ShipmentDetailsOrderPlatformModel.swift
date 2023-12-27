@@ -26,12 +26,6 @@ public extension PlatformClient.Order {
         
         public var affiliateShipmentId: String
         
-        public var lockStatus: Bool?
-        
-        public var lockMessage: String?
-        
-        public var actionToStatus: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -49,15 +43,9 @@ public extension PlatformClient.Order {
             
             case affiliateShipmentId = "affiliate_shipment_id"
             
-            case lockStatus = "lock_status"
-            
-            case lockMessage = "lock_message"
-            
-            case actionToStatus = "action_to_status"
-            
         }
 
-        public init(actionToStatus: [String: Any]? = nil, affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, lockMessage: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, shipments: Int) {
+        public init(affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, meta: [String: Any]? = nil, shipments: Int) {
             
             self.boxType = boxType
             
@@ -72,12 +60,6 @@ public extension PlatformClient.Order {
             self.meta = meta
             
             self.affiliateShipmentId = affiliateShipmentId
-            
-            self.lockStatus = lockStatus
-            
-            self.lockMessage = lockMessage
-            
-            self.actionToStatus = actionToStatus
             
         }
 
@@ -140,42 +122,6 @@ public extension PlatformClient.Order {
                 
             
             
-            
-                do {
-                    lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    lockMessage = try container.decode(String.self, forKey: .lockMessage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -214,21 +160,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-            
-            
-            
-            
-            try? container.encode(lockStatus, forKey: .lockStatus)
-            
-            
-            
-            
-            try? container.encode(lockMessage, forKey: .lockMessage)
-            
-            
-            
-            
-            try? container.encode(actionToStatus, forKey: .actionToStatus)
             
             
         }
@@ -261,12 +192,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var affiliateShipmentId: String
         
-        public var lockStatus: Bool?
-        
-        public var lockMessage: String?
-        
-        public var actionToStatus: [String: Any]?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -284,15 +209,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case affiliateShipmentId = "affiliate_shipment_id"
             
-            case lockStatus = "lock_status"
-            
-            case lockMessage = "lock_message"
-            
-            case actionToStatus = "action_to_status"
-            
         }
 
-        public init(actionToStatus: [String: Any]? = nil, affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, lockMessage: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, shipments: Int) {
+        public init(affiliateShipmentId: String, articles: [ArticleDetails], boxType: String? = nil, dpId: Int? = nil, fulfillmentId: Int, meta: [String: Any]? = nil, shipments: Int) {
             
             self.boxType = boxType
             
@@ -307,12 +226,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.meta = meta
             
             self.affiliateShipmentId = affiliateShipmentId
-            
-            self.lockStatus = lockStatus
-            
-            self.lockMessage = lockMessage
-            
-            self.actionToStatus = actionToStatus
             
         }
 
@@ -375,42 +288,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-            
-                do {
-                    lockStatus = try container.decode(Bool.self, forKey: .lockStatus)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    lockMessage = try container.decode(String.self, forKey: .lockMessage)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    actionToStatus = try container.decode([String: Any].self, forKey: .actionToStatus)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -449,21 +326,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(affiliateShipmentId, forKey: .affiliateShipmentId)
-            
-            
-            
-            
-            try? container.encode(lockStatus, forKey: .lockStatus)
-            
-            
-            
-            
-            try? container.encode(lockMessage, forKey: .lockMessage)
-            
-            
-            
-            
-            try? container.encode(actionToStatus, forKey: .actionToStatus)
             
             
         }

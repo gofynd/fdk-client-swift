@@ -56,6 +56,8 @@ extension ApplicationClient {
             pageSize: Int?,
             fromDate: String?,
             toDate: String?,
+            startDate: String?,
+            endDate: String?,
             customMeta: String?,
             
             onResponse: @escaping (_ response: OrderList?, _ error: FDKError?) -> Void
@@ -94,6 +96,20 @@ if let value = fromDate {
 if let value = toDate {
     
     xQuery["to_date"] = value
+    
+}
+
+
+if let value = startDate {
+    
+    xQuery["start_date"] = value
+    
+}
+
+
+if let value = endDate {
+    
+    xQuery["end_date"] = value
     
 }
 
@@ -150,11 +166,19 @@ if let value = customMeta {
         **/
         public func getOrderById(
             orderId: String,
+            allowInactive: Bool?,
             
             onResponse: @escaping (_ response: OrderById?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
+    
+}
+
 
  
 
@@ -168,7 +192,7 @@ if let value = customMeta {
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 responseType: "application/json",
@@ -256,11 +280,19 @@ if let value = customMeta {
         **/
         public func getShipmentById(
             shipmentId: String,
+            allowInactive: Bool?,
             
             onResponse: @escaping (_ response: ShipmentById?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = allowInactive {
+    
+    xQuery["allow_inactive"] = value
+    
+}
+
 
  
 
@@ -274,7 +306,7 @@ if let value = customMeta {
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: nil,
+                query: xQuery,
                 extraHeaders:  [],
                 body: nil,
                 responseType: "application/json",

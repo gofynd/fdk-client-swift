@@ -34,6 +34,8 @@ public extension PlatformClient.Order {
         
         public var estimatedSlaTime: String?
         
+        public var estimatedSlaTs: String?
+        
         public var canUpdateDimension: Bool?
         
         public var shipmentImages: [String]?
@@ -46,7 +48,7 @@ public extension PlatformClient.Order {
         
         public var fulfilmentPriority: Int?
         
-        public var shipmentDetails: ShipmentDetails?
+        public var shipmentDetails: ShipmentLockDetails?
         
         public var customMeta: [[String: Any]]?
         
@@ -112,6 +114,12 @@ public extension PlatformClient.Order {
         
         public var shipmentCreatedAt: String?
         
+        public var shipmentCreatedTs: String?
+        
+        public var currency: Currency?
+        
+        public var currencyInfo: CurrencyInfo?
+        
         public var previousShipmentId: String?
         
         public var shipmentUpdateTime: Double?
@@ -148,6 +156,8 @@ public extension PlatformClient.Order {
             case customMessage = "custom_message"
             
             case estimatedSlaTime = "estimated_sla_time"
+            
+            case estimatedSlaTs = "estimated_sla_ts"
             
             case canUpdateDimension = "can_update_dimension"
             
@@ -227,6 +237,12 @@ public extension PlatformClient.Order {
             
             case shipmentCreatedAt = "shipment_created_at"
             
+            case shipmentCreatedTs = "shipment_created_ts"
+            
+            case currency = "currency"
+            
+            case currencyInfo = "currency_info"
+            
             case previousShipmentId = "previous_shipment_id"
             
             case shipmentUpdateTime = "shipment_update_time"
@@ -241,7 +257,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
+        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentDetails: ShipmentLockDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
             
             self.pickedDate = pickedDate
             
@@ -264,6 +280,8 @@ public extension PlatformClient.Order {
             self.customMessage = customMessage
             
             self.estimatedSlaTime = estimatedSlaTime
+            
+            self.estimatedSlaTs = estimatedSlaTs
             
             self.canUpdateDimension = canUpdateDimension
             
@@ -342,6 +360,12 @@ public extension PlatformClient.Order {
             self.totalBags = totalBags
             
             self.shipmentCreatedAt = shipmentCreatedAt
+            
+            self.shipmentCreatedTs = shipmentCreatedTs
+            
+            self.currency = currency
+            
+            self.currencyInfo = currencyInfo
             
             self.previousShipmentId = previousShipmentId
             
@@ -494,6 +518,18 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    estimatedSlaTs = try container.decode(String.self, forKey: .estimatedSlaTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     canUpdateDimension = try container.decode(Bool.self, forKey: .canUpdateDimension)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -566,7 +602,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    shipmentDetails = try container.decode(ShipmentDetails.self, forKey: .shipmentDetails)
+                    shipmentDetails = try container.decode(ShipmentLockDetails.self, forKey: .shipmentDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -955,6 +991,42 @@ public extension PlatformClient.Order {
             
             
                 do {
+                    shipmentCreatedTs = try container.decode(String.self, forKey: .shipmentCreatedTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currency = try container.decode(Currency.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currencyInfo = try container.decode(CurrencyInfo.self, forKey: .currencyInfo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     previousShipmentId = try container.decode(String.self, forKey: .previousShipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1083,6 +1155,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(estimatedSlaTime, forKey: .estimatedSlaTime)
+            
+            
+            
+            
+            try? container.encode(estimatedSlaTs, forKey: .estimatedSlaTs)
             
             
             
@@ -1278,6 +1355,21 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(shipmentCreatedAt, forKey: .shipmentCreatedAt)
+            
+            
+            
+            
+            try? container.encode(shipmentCreatedTs, forKey: .shipmentCreatedTs)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
             
             
             
@@ -1348,6 +1440,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var estimatedSlaTime: String?
         
+        public var estimatedSlaTs: String?
+        
         public var canUpdateDimension: Bool?
         
         public var shipmentImages: [String]?
@@ -1360,7 +1454,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var fulfilmentPriority: Int?
         
-        public var shipmentDetails: ShipmentDetails?
+        public var shipmentDetails: ShipmentLockDetails?
         
         public var customMeta: [[String: Any]]?
         
@@ -1426,6 +1520,12 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shipmentCreatedAt: String?
         
+        public var shipmentCreatedTs: String?
+        
+        public var currency: Currency?
+        
+        public var currencyInfo: CurrencyInfo?
+        
         public var previousShipmentId: String?
         
         public var shipmentUpdateTime: Double?
@@ -1462,6 +1562,8 @@ public extension PlatformClient.ApplicationClient.Order {
             case customMessage = "custom_message"
             
             case estimatedSlaTime = "estimated_sla_time"
+            
+            case estimatedSlaTs = "estimated_sla_ts"
             
             case canUpdateDimension = "can_update_dimension"
             
@@ -1541,6 +1643,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case shipmentCreatedAt = "shipment_created_at"
             
+            case shipmentCreatedTs = "shipment_created_ts"
+            
+            case currency = "currency"
+            
+            case currencyInfo = "currency_info"
+            
             case previousShipmentId = "previous_shipment_id"
             
             case shipmentUpdateTime = "shipment_update_time"
@@ -1555,7 +1663,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentDetails: ShipmentDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
+        public init(affiliateDetails: AffiliateDetails? = nil, bags: [OrderBags]? = nil, bagStatusHistory: [BagStatusHistory]? = nil, billingDetails: UserDetailsData? = nil, canUpdateDimension: Bool? = nil, companyDetails: CompanyDetails? = nil, coupon: [String: Any]? = nil, creditNoteId: String? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customMessage: String? = nil, customMeta: [[String: Any]]? = nil, deliveryDetails: UserDetailsData? = nil, deliverySlot: [String: Any]? = nil, dpAssignment: Bool? = nil, dpDetails: DPDetailsData? = nil, enableDpTracking: Bool? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, forwardShipmentId: String? = nil, fulfillingStore: FulfillingStore? = nil, fulfilmentPriority: Int? = nil, gstDetails: GSTDetailsData? = nil, invoice: InvoiceInfo? = nil, invoiceId: String? = nil, isDpAssignEnabled: Bool? = nil, isSelfShip: Bool? = nil, journeyType: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, operationalStatus: String? = nil, order: OrderDetailsData? = nil, orderingStore: OrderingStoreDetails? = nil, packagingType: String? = nil, payments: ShipmentPayments? = nil, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, pdfLinks: [String: Any]? = nil, pickedDate: String? = nil, platformLogo: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, priorityText: String? = nil, rtoAddress: PlatformDeliveryAddress? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentDetails: ShipmentLockDetails? = nil, shipmentId: String, shipmentImages: [String]? = nil, shipmentQuantity: Int? = nil, shipmentStatus: String? = nil, shipmentUpdateTime: Double? = nil, status: ShipmentStatusData? = nil, totalBags: Int? = nil, totalItems: Int? = nil, trackingList: [TrackingList]? = nil, user: UserDataInfo? = nil, userAgent: String? = nil, vertical: String? = nil) {
             
             self.pickedDate = pickedDate
             
@@ -1578,6 +1686,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.customMessage = customMessage
             
             self.estimatedSlaTime = estimatedSlaTime
+            
+            self.estimatedSlaTs = estimatedSlaTs
             
             self.canUpdateDimension = canUpdateDimension
             
@@ -1656,6 +1766,12 @@ public extension PlatformClient.ApplicationClient.Order {
             self.totalBags = totalBags
             
             self.shipmentCreatedAt = shipmentCreatedAt
+            
+            self.shipmentCreatedTs = shipmentCreatedTs
+            
+            self.currency = currency
+            
+            self.currencyInfo = currencyInfo
             
             self.previousShipmentId = previousShipmentId
             
@@ -1808,6 +1924,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    estimatedSlaTs = try container.decode(String.self, forKey: .estimatedSlaTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     canUpdateDimension = try container.decode(Bool.self, forKey: .canUpdateDimension)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -1880,7 +2008,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    shipmentDetails = try container.decode(ShipmentDetails.self, forKey: .shipmentDetails)
+                    shipmentDetails = try container.decode(ShipmentLockDetails.self, forKey: .shipmentDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -2269,6 +2397,42 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
+                    shipmentCreatedTs = try container.decode(String.self, forKey: .shipmentCreatedTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currency = try container.decode(Currency.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currencyInfo = try container.decode(CurrencyInfo.self, forKey: .currencyInfo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     previousShipmentId = try container.decode(String.self, forKey: .previousShipmentId)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -2397,6 +2561,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(estimatedSlaTime, forKey: .estimatedSlaTime)
+            
+            
+            
+            
+            try? container.encode(estimatedSlaTs, forKey: .estimatedSlaTs)
             
             
             
@@ -2592,6 +2761,21 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(shipmentCreatedAt, forKey: .shipmentCreatedAt)
+            
+            
+            
+            
+            try? container.encode(shipmentCreatedTs, forKey: .shipmentCreatedTs)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
             
             
             

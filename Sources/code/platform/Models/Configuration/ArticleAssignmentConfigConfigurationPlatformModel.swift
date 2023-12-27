@@ -16,6 +16,8 @@ public extension PlatformClient.Configuration {
         
         public var postOrderReassignment: Bool?
         
+        public var enforcedStores: [Int]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -23,13 +25,17 @@ public extension PlatformClient.Configuration {
             
             case postOrderReassignment = "post_order_reassignment"
             
+            case enforcedStores = "enforced_stores"
+            
         }
 
-        public init(postOrderReassignment: Bool? = nil, rules: ArticleAssignmentRules? = nil) {
+        public init(enforcedStores: [Int]? = nil, postOrderReassignment: Bool? = nil, rules: ArticleAssignmentRules? = nil) {
             
             self.rules = rules
             
             self.postOrderReassignment = postOrderReassignment
+            
+            self.enforcedStores = enforcedStores
             
         }
 
@@ -60,6 +66,18 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    enforcedStores = try container.decode([Int].self, forKey: .enforcedStores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -73,6 +91,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(postOrderReassignment, forKey: .postOrderReassignment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(enforcedStores, forKey: .enforcedStores)
             
             
         }
@@ -95,6 +118,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var postOrderReassignment: Bool?
         
+        public var enforcedStores: [Int]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -102,13 +127,17 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case postOrderReassignment = "post_order_reassignment"
             
+            case enforcedStores = "enforced_stores"
+            
         }
 
-        public init(postOrderReassignment: Bool? = nil, rules: ArticleAssignmentRules? = nil) {
+        public init(enforcedStores: [Int]? = nil, postOrderReassignment: Bool? = nil, rules: ArticleAssignmentRules? = nil) {
             
             self.rules = rules
             
             self.postOrderReassignment = postOrderReassignment
+            
+            self.enforcedStores = enforcedStores
             
         }
 
@@ -139,6 +168,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    enforcedStores = try container.decode([Int].self, forKey: .enforcedStores)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -152,6 +193,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(postOrderReassignment, forKey: .postOrderReassignment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(enforcedStores, forKey: .enforcedStores)
             
             
         }

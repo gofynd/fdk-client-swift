@@ -20,6 +20,8 @@ public extension PlatformClient.Webhook {
         
         public var subscriberIds: [Int]?
         
+        public var status: String?
+        
         public var event: [Event]?
         
 
@@ -33,11 +35,13 @@ public extension PlatformClient.Webhook {
             
             case subscriberIds = "subscriber_ids"
             
+            case status = "status"
+            
             case event = "event"
             
         }
 
-        public init(endDate: String? = nil, event: [Event]? = nil, searchText: String? = nil, startDate: String? = nil, subscriberIds: [Int]? = nil) {
+        public init(endDate: String? = nil, event: [Event]? = nil, searchText: String? = nil, startDate: String? = nil, status: String? = nil, subscriberIds: [Int]? = nil) {
             
             self.searchText = searchText
             
@@ -46,6 +50,8 @@ public extension PlatformClient.Webhook {
             self.startDate = startDate
             
             self.subscriberIds = subscriberIds
+            
+            self.status = status
             
             self.event = event
             
@@ -104,6 +110,18 @@ public extension PlatformClient.Webhook {
             
             
                 do {
+                    status = try container.decode(String.self, forKey: .status)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     event = try container.decode([Event].self, forKey: .event)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -137,6 +155,11 @@ public extension PlatformClient.Webhook {
             
             
             try? container.encodeIfPresent(subscriberIds, forKey: .subscriberIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
             
             
             

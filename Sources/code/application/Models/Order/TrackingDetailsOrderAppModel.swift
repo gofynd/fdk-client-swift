@@ -18,6 +18,8 @@ public extension ApplicationClient.Order {
         
         public var time: String?
         
+        public var createdTs: String?
+        
         public var trackingDetails: [NestedTrackingDetails]?
         
 
@@ -33,11 +35,13 @@ public extension ApplicationClient.Order {
             
             case time = "time"
             
+            case createdTs = "created_ts"
+            
             case trackingDetails = "tracking_details"
             
         }
 
-        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil, trackingDetails: [NestedTrackingDetails]? = nil, value: String? = nil) {
+        public init(createdTs: String? = nil, isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String? = nil, time: String? = nil, trackingDetails: [NestedTrackingDetails]? = nil, value: String? = nil) {
             
             self.value = value
             
@@ -48,6 +52,8 @@ public extension ApplicationClient.Order {
             self.status = status
             
             self.time = time
+            
+            self.createdTs = createdTs
             
             self.trackingDetails = trackingDetails
             
@@ -118,6 +124,18 @@ public extension ApplicationClient.Order {
             
             
             do {
+                createdTs = try container.decode(String.self, forKey: .createdTs)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 trackingDetails = try container.decode([NestedTrackingDetails].self, forKey: .trackingDetails)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -156,6 +174,11 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(time, forKey: .time)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
             
             
             

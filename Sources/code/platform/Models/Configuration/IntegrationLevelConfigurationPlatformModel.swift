@@ -26,17 +26,23 @@ public extension PlatformClient.Configuration {
         
         public var uid: Int?
         
+        public var companyId: Int?
+        
         public var meta: [IntegrationMeta]?
         
         public var token: String?
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var v: Int?
         
         public var data: [String: Any]?
+        
+        public var success: Bool?
+        
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -55,21 +61,27 @@ public extension PlatformClient.Configuration {
             
             case uid = "uid"
             
+            case companyId = "company_id"
+            
             case meta = "meta"
             
             case token = "token"
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case v = "__v"
             
             case data = "data"
             
+            case success = "success"
+            
+            case message = "message"
+            
         }
 
-        public init(createdAt: String? = nil, data: [String: Any]? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, meta: [IntegrationMeta]? = nil, opted: Bool? = nil, permissions: [[String: Any]]? = nil, token: String? = nil, uid: Int? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(companyId: Int? = nil, createdAt: String? = nil, data: [String: Any]? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, message: String? = nil, meta: [IntegrationMeta]? = nil, modifiedAt: String? = nil, opted: Bool? = nil, permissions: [[String: Any]]? = nil, success: Bool? = nil, token: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
             
             self.opted = opted
             
@@ -85,17 +97,23 @@ public extension PlatformClient.Configuration {
             
             self.uid = uid
             
+            self.companyId = companyId
+            
             self.meta = meta
             
             self.token = token
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.v = v
             
             self.data = data
+            
+            self.success = success
+            
+            self.message = message
             
         }
 
@@ -188,6 +206,18 @@ public extension PlatformClient.Configuration {
             
             
                 do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([IntegrationMeta].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -224,7 +254,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -249,6 +279,30 @@ public extension PlatformClient.Configuration {
             
                 do {
                     data = try container.decode([String: Any].self, forKey: .data)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -300,6 +354,11 @@ public extension PlatformClient.Configuration {
             
             
             
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
             
             
@@ -315,7 +374,7 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             
@@ -326,6 +385,16 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }
@@ -358,17 +427,23 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var uid: Int?
         
+        public var companyId: Int?
+        
         public var meta: [IntegrationMeta]?
         
         public var token: String?
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var v: Int?
         
         public var data: [String: Any]?
+        
+        public var success: Bool?
+        
+        public var message: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -387,21 +462,27 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case uid = "uid"
             
+            case companyId = "company_id"
+            
             case meta = "meta"
             
             case token = "token"
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case v = "__v"
             
             case data = "data"
             
+            case success = "success"
+            
+            case message = "message"
+            
         }
 
-        public init(createdAt: String? = nil, data: [String: Any]? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, meta: [IntegrationMeta]? = nil, opted: Bool? = nil, permissions: [[String: Any]]? = nil, token: String? = nil, uid: Int? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(companyId: Int? = nil, createdAt: String? = nil, data: [String: Any]? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, message: String? = nil, meta: [IntegrationMeta]? = nil, modifiedAt: String? = nil, opted: Bool? = nil, permissions: [[String: Any]]? = nil, success: Bool? = nil, token: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
             
             self.opted = opted
             
@@ -417,17 +498,23 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.uid = uid
             
+            self.companyId = companyId
+            
             self.meta = meta
             
             self.token = token
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.v = v
             
             self.data = data
+            
+            self.success = success
+            
+            self.message = message
             
         }
 
@@ -520,6 +607,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     meta = try container.decode([IntegrationMeta].self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -556,7 +655,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -581,6 +680,30 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
                 do {
                     data = try container.decode([String: Any].self, forKey: .data)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    success = try container.decode(Bool.self, forKey: .success)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    message = try container.decode(String.self, forKey: .message)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -632,6 +755,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
             try? container.encodeIfPresent(meta, forKey: .meta)
             
             
@@ -647,7 +775,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             
@@ -658,6 +786,16 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
+            
+            
+            
+            
+            try? container.encodeIfPresent(message, forKey: .message)
             
             
         }

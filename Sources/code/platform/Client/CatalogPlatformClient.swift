@@ -74,10 +74,11 @@ extension PlatformClient {
         **/
         public func listCategories(
             level: String?,
-            departments: String?,
+            department: Int?,
             q: String?,
             pageNo: Int?,
             pageSize: Int?,
+            uids: [Int]?,
             
             onResponse: @escaping (_ response: CategoryResponse?, _ error: FDKError?) -> Void
         ) {
@@ -91,9 +92,9 @@ if let value = level {
 }
 
 
-if let value = departments {
+if let value = department {
     
-    xQuery["departments"] = value
+    xQuery["department"] = value
     
 }
 
@@ -115,6 +116,13 @@ if let value = pageNo {
 if let value = pageSize {
     
     xQuery["page_size"] = value
+    
+}
+
+
+if let value = uids {
+    
+    xQuery["uids"] = value
     
 }
 
@@ -3343,6 +3351,7 @@ if let value = pageSize {
             tag: String?,
             pageNo: Int?,
             pageSize: Int?,
+            brandId: Int?,
             
             onResponse: @escaping (_ response: ListSizeGuide?, _ error: FDKError?) -> Void
         ) {
@@ -3380,6 +3389,13 @@ if let value = pageNo {
 if let value = pageSize {
     
     xQuery["page_size"] = value
+    
+}
+
+
+if let value = brandId {
+    
+    xQuery["brand_id"] = value
     
 }
 
@@ -4009,7 +4025,7 @@ if let value = pageSize {
         **/
         public func createProduct(
             body: ProductCreateUpdateSchemaV2,
-            onResponse: @escaping (_ response: SuccessResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SuccessResponse1?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -4034,7 +4050,7 @@ if let value = pageSize {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SuccessResponse.self, from: data)
+                        let response = Utility.decode(SuccessResponse1.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -4535,6 +4551,103 @@ if let value = itemCode {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(InventoryUpdateResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: List all marketplaces
+        * Description: This API allows to get marketplace information.
+        **/
+        public func getMarketplaces(
+            
+            onResponse: @escaping (_ response: GetAllMarketplaces?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/channel",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(GetAllMarketplaces.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Update marketplace optin
+        * Description: This API allows to update marketplace optin for a company.
+        **/
+        public func updateMarketplaceOptin(
+            marketplaceSlug: String,
+            body: UpdateMarketplaceOptinRequest,
+            onResponse: @escaping (_ response: UpdateMarketplaceOptinResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "PUT",
+                url: "/service/platform/catalog/v1.0/company/\(companyId)/channel/\(marketplaceSlug)/opt-in",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UpdateMarketplaceOptinResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

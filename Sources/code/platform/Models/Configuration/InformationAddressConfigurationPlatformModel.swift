@@ -12,7 +12,7 @@ public extension PlatformClient.Configuration {
     class InformationAddress: Codable {
         
         
-        public var loc: String?
+        public var loc: InformationLoc?
         
         public var addressLine: [String]?
         
@@ -41,7 +41,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(addressLine: [String]? = nil, city: String? = nil, country: String? = nil, loc: String? = nil, phone: [InformationPhone]? = nil, pincode: Int? = nil) {
+        public init(addressLine: [String]? = nil, city: String? = nil, country: String? = nil, loc: InformationLoc? = nil, phone: [InformationPhone]? = nil, pincode: Int? = nil) {
             
             self.loc = loc
             
@@ -62,7 +62,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    loc = try container.decode(String.self, forKey: .loc)
+                    loc = try container.decode(InformationLoc.self, forKey: .loc)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -183,7 +183,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
     class InformationAddress: Codable {
         
         
-        public var loc: String?
+        public var loc: InformationLoc?
         
         public var addressLine: [String]?
         
@@ -212,7 +212,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(addressLine: [String]? = nil, city: String? = nil, country: String? = nil, loc: String? = nil, phone: [InformationPhone]? = nil, pincode: Int? = nil) {
+        public init(addressLine: [String]? = nil, city: String? = nil, country: String? = nil, loc: InformationLoc? = nil, phone: [InformationPhone]? = nil, pincode: Int? = nil) {
             
             self.loc = loc
             
@@ -233,7 +233,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    loc = try container.decode(String.self, forKey: .loc)
+                    loc = try container.decode(InformationLoc.self, forKey: .loc)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

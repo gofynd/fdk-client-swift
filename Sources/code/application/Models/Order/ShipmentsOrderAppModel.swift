@@ -54,6 +54,8 @@ public extension ApplicationClient.Order {
         
         public var shipmentCreatedAt: String?
         
+        public var shipmentCreatedTs: String?
+        
         public var sizeInfo: [String: Any]?
         
         public var bags: [Bags]?
@@ -129,6 +131,8 @@ public extension ApplicationClient.Order {
             
             case shipmentCreatedAt = "shipment_created_at"
             
+            case shipmentCreatedTs = "shipment_created_ts"
+            
             case sizeInfo = "size_info"
             
             case bags = "bags"
@@ -157,7 +161,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: DeliveryAddress? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
+        public init(awbNo: String? = nil, bags: [Bags]? = nil, beneficiaryDetails: Bool? = nil, breakupValues: [BreakupValues]? = nil, canBreak: [String: Any]? = nil, canCancel: Bool? = nil, canReturn: Bool? = nil, comment: String? = nil, customMeta: [[String: Any]]? = nil, deliveryAddress: DeliveryAddress? = nil, deliveryDate: String? = nil, dpName: String? = nil, fulfillingCompany: FulfillingCompany? = nil, fulfillingStore: FulfillingStore? = nil, invoice: Invoice? = nil, needHelpUrl: String? = nil, orderId: String? = nil, orderType: String? = nil, payment: ShipmentPayment? = nil, prices: Prices? = nil, promise: Promise? = nil, refundDetails: [String: Any]? = nil, returnableDate: String? = nil, returnMeta: [String: Any]? = nil, shipmentCreatedAt: String? = nil, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, showDownloadInvoice: Bool? = nil, showTrackLink: Bool? = nil, sizeInfo: [String: Any]? = nil, totalBags: Int? = nil, totalDetails: ShipmentTotalDetails? = nil, trackingDetails: [TrackingDetails]? = nil, trackUrl: String? = nil, trakingNo: String? = nil, userInfo: ShipmentUserInfo? = nil) {
             
             self.payment = payment
             
@@ -204,6 +208,8 @@ public extension ApplicationClient.Order {
             self.returnableDate = returnableDate
             
             self.shipmentCreatedAt = shipmentCreatedAt
+            
+            self.shipmentCreatedTs = shipmentCreatedTs
             
             self.sizeInfo = sizeInfo
             
@@ -514,6 +520,18 @@ public extension ApplicationClient.Order {
             
             
             do {
+                shipmentCreatedTs = try container.decode(String.self, forKey: .shipmentCreatedTs)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 sizeInfo = try container.decode([String: Any].self, forKey: .sizeInfo)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -786,6 +804,11 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(shipmentCreatedAt, forKey: .shipmentCreatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipmentCreatedTs, forKey: .shipmentCreatedTs)
             
             
             

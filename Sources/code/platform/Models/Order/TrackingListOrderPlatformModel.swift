@@ -20,6 +20,8 @@ public extension PlatformClient.Order {
         
         public var time: String?
         
+        public var createdTs: String?
+        
         public var status: String
         
 
@@ -33,11 +35,13 @@ public extension PlatformClient.Order {
             
             case time = "time"
             
+            case createdTs = "created_ts"
+            
             case status = "status"
             
         }
 
-        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
+        public init(createdTs: String? = nil, isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
             
             self.isPassed = isPassed
             
@@ -46,6 +50,8 @@ public extension PlatformClient.Order {
             self.isCurrent = isCurrent
             
             self.time = time
+            
+            self.createdTs = createdTs
             
             self.status = status
             
@@ -96,6 +102,18 @@ public extension PlatformClient.Order {
                 
             
             
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 status = try container.decode(String.self, forKey: .status)
                 
             
@@ -123,6 +141,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(time, forKey: .time)
+            
+            
+            
+            
+            try? container.encode(createdTs, forKey: .createdTs)
             
             
             
@@ -154,6 +177,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var time: String?
         
+        public var createdTs: String?
+        
         public var status: String
         
 
@@ -167,11 +192,13 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case time = "time"
             
+            case createdTs = "created_ts"
+            
             case status = "status"
             
         }
 
-        public init(isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
+        public init(createdTs: String? = nil, isCurrent: Bool? = nil, isPassed: Bool? = nil, status: String, text: String, time: String? = nil) {
             
             self.isPassed = isPassed
             
@@ -180,6 +207,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.isCurrent = isCurrent
             
             self.time = time
+            
+            self.createdTs = createdTs
             
             self.status = status
             
@@ -230,6 +259,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
                 status = try container.decode(String.self, forKey: .status)
                 
             
@@ -257,6 +298,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(time, forKey: .time)
+            
+            
+            
+            
+            try? container.encode(createdTs, forKey: .createdTs)
             
             
             

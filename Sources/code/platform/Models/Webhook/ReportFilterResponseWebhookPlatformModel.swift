@@ -12,18 +12,24 @@ public extension PlatformClient.Webhook {
     class ReportFilterResponse: Codable {
         
         
-        public var items: [FilterResponseObject]?
+        public var filterName: String?
+        
+        public var values: [[String: Any]]?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case filterName = "filter_name"
+            
+            case values = "values"
             
         }
 
-        public init(items: [FilterResponseObject]? = nil) {
+        public init(filterName: String? = nil, values: [[String: Any]]? = nil) {
             
-            self.items = items
+            self.filterName = filterName
+            
+            self.values = values
             
         }
 
@@ -32,7 +38,19 @@ public extension PlatformClient.Webhook {
             
             
                 do {
-                    items = try container.decode([FilterResponseObject].self, forKey: .items)
+                    filterName = try container.decode(String.self, forKey: .filterName)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    values = try container.decode([[String: Any]].self, forKey: .values)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -49,7 +67,12 @@ public extension PlatformClient.Webhook {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(filterName, forKey: .filterName)
+            
+            
+            
+            
+            try? container.encodeIfPresent(values, forKey: .values)
             
             
         }

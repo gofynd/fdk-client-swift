@@ -14,6 +14,8 @@ public extension PlatformClient.Order {
         
         public var orderDate: String
         
+        public var createdTs: String?
+        
         public var taxDetails: TaxDetails?
         
         public var meta: [String: Any]?
@@ -29,6 +31,8 @@ public extension PlatformClient.Order {
             
             case orderDate = "order_date"
             
+            case createdTs = "created_ts"
+            
             case taxDetails = "tax_details"
             
             case meta = "meta"
@@ -41,9 +45,11 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
+        public init(createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderDate = orderDate
+            
+            self.createdTs = createdTs
             
             self.taxDetails = taxDetails
             
@@ -64,6 +70,18 @@ public extension PlatformClient.Order {
                 orderDate = try container.decode(String.self, forKey: .orderDate)
                 
             
+            
+            
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -126,6 +144,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
             
             
             
@@ -171,6 +194,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderDate: String
         
+        public var createdTs: String?
+        
         public var taxDetails: TaxDetails?
         
         public var meta: [String: Any]?
@@ -186,6 +211,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case orderDate = "order_date"
             
+            case createdTs = "created_ts"
+            
             case taxDetails = "tax_details"
             
             case meta = "meta"
@@ -198,9 +225,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
+        public init(createdTs: String? = nil, fyndOrderId: String, meta: [String: Any]? = nil, orderDate: String, paymentMethods: [String: Any]? = nil, prices: Prices? = nil, taxDetails: TaxDetails? = nil) {
             
             self.orderDate = orderDate
+            
+            self.createdTs = createdTs
             
             self.taxDetails = taxDetails
             
@@ -221,6 +250,18 @@ public extension PlatformClient.ApplicationClient.Order {
                 orderDate = try container.decode(String.self, forKey: .orderDate)
                 
             
+            
+            
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -283,6 +324,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderDate, forKey: .orderDate)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdTs, forKey: .createdTs)
             
             
             

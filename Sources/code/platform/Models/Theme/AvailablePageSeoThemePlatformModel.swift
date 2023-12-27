@@ -16,6 +16,14 @@ public extension PlatformClient.Theme {
         
         public var description: String?
         
+        public var canonicalUrl: String?
+        
+        public var metaTags: [SEOMetaItem]?
+        
+        public var sitemap: SEOSitemap?
+        
+        public var breadcrumb: [SEObreadcrumb]?
+        
         public var id: String?
         
 
@@ -25,15 +33,31 @@ public extension PlatformClient.Theme {
             
             case description = "description"
             
+            case canonicalUrl = "canonical_url"
+            
+            case metaTags = "meta_tags"
+            
+            case sitemap = "sitemap"
+            
+            case breadcrumb = "breadcrumb"
+            
             case id = "_id"
             
         }
 
-        public init(description: String? = nil, title: String? = nil, id: String? = nil) {
+        public init(breadcrumb: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil, id: String? = nil) {
             
             self.title = title
             
             self.description = description
+            
+            self.canonicalUrl = canonicalUrl
+            
+            self.metaTags = metaTags
+            
+            self.sitemap = sitemap
+            
+            self.breadcrumb = breadcrumb
             
             self.id = id
             
@@ -68,6 +92,54 @@ public extension PlatformClient.Theme {
             
             
                 do {
+                    canonicalUrl = try container.decode(String.self, forKey: .canonicalUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    metaTags = try container.decode([SEOMetaItem].self, forKey: .metaTags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sitemap = try container.decode(SEOSitemap.self, forKey: .sitemap)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    breadcrumb = try container.decode([SEObreadcrumb].self, forKey: .breadcrumb)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -91,6 +163,26 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(canonicalUrl, forKey: .canonicalUrl)
+            
+            
+            
+            
+            try? container.encodeIfPresent(metaTags, forKey: .metaTags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sitemap, forKey: .sitemap)
+            
+            
+            
+            
+            try? container.encodeIfPresent(breadcrumb, forKey: .breadcrumb)
             
             
             
@@ -118,6 +210,14 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var description: String?
         
+        public var canonicalUrl: String?
+        
+        public var metaTags: [SEOMetaItem]?
+        
+        public var sitemap: SEOSitemap?
+        
+        public var breadcrumb: [SEObreadcrumb]?
+        
         public var id: String?
         
 
@@ -127,15 +227,31 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case description = "description"
             
+            case canonicalUrl = "canonical_url"
+            
+            case metaTags = "meta_tags"
+            
+            case sitemap = "sitemap"
+            
+            case breadcrumb = "breadcrumb"
+            
             case id = "_id"
             
         }
 
-        public init(description: String? = nil, title: String? = nil, id: String? = nil) {
+        public init(breadcrumb: [SEObreadcrumb]? = nil, canonicalUrl: String? = nil, description: String? = nil, metaTags: [SEOMetaItem]? = nil, sitemap: SEOSitemap? = nil, title: String? = nil, id: String? = nil) {
             
             self.title = title
             
             self.description = description
+            
+            self.canonicalUrl = canonicalUrl
+            
+            self.metaTags = metaTags
+            
+            self.sitemap = sitemap
+            
+            self.breadcrumb = breadcrumb
             
             self.id = id
             
@@ -170,6 +286,54 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
+                    canonicalUrl = try container.decode(String.self, forKey: .canonicalUrl)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    metaTags = try container.decode([SEOMetaItem].self, forKey: .metaTags)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sitemap = try container.decode(SEOSitemap.self, forKey: .sitemap)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    breadcrumb = try container.decode([SEObreadcrumb].self, forKey: .breadcrumb)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     id = try container.decode(String.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -193,6 +357,26 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(description, forKey: .description)
+            
+            
+            
+            
+            try? container.encodeIfPresent(canonicalUrl, forKey: .canonicalUrl)
+            
+            
+            
+            
+            try? container.encodeIfPresent(metaTags, forKey: .metaTags)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sitemap, forKey: .sitemap)
+            
+            
+            
+            
+            try? container.encodeIfPresent(breadcrumb, forKey: .breadcrumb)
             
             
             

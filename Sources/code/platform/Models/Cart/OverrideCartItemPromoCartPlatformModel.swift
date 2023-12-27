@@ -24,6 +24,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var itemList: [[String: Any]]?
         
+        public var parentPromoId: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -37,9 +39,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case itemList = "item_list"
             
+            case parentPromoId = "parent_promo_id"
+            
         }
 
-        public init(itemList: [[String: Any]]? = nil, promoAmount: String, promoDesc: String? = nil, promoId: String, rwrdTndr: String? = nil) {
+        public init(itemList: [[String: Any]]? = nil, parentPromoId: String? = nil, promoAmount: String, promoDesc: String? = nil, promoId: String, rwrdTndr: String? = nil) {
             
             self.promoId = promoId
             
@@ -50,6 +54,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.rwrdTndr = rwrdTndr
             
             self.itemList = itemList
+            
+            self.parentPromoId = parentPromoId
             
         }
 
@@ -102,6 +108,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    parentPromoId = try container.decode(String.self, forKey: .parentPromoId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -130,6 +148,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(itemList, forKey: .itemList)
+            
+            
+            
+            
+            try? container.encodeIfPresent(parentPromoId, forKey: .parentPromoId)
             
             
         }

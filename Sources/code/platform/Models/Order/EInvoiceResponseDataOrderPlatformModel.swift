@@ -14,58 +14,40 @@ public extension PlatformClient.Order {
         
         public var shipmentId: String
         
+        public var einvoiceType: String
+        
+        public var status: Int
+        
         public var message: String
         
-        public var success: Bool
-        
-        public var ackNo: String?
-        
-        public var irn: String?
-        
-        public var ackDt: String?
-        
-        public var timeout: Int?
-        
-        public var timeoutUnit: String?
+        public var einvoiceInfo: EInvoiceDetails?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case shipmentId = "shipment_id"
             
+            case einvoiceType = "einvoice_type"
+            
+            case status = "status"
+            
             case message = "message"
             
-            case success = "success"
-            
-            case ackNo = "ack_no"
-            
-            case irn = "irn"
-            
-            case ackDt = "ack_dt"
-            
-            case timeout = "timeout"
-            
-            case timeoutUnit = "timeout_unit"
+            case einvoiceInfo = "einvoice_info"
             
         }
 
-        public init(ackDt: String? = nil, ackNo: String? = nil, irn: String? = nil, message: String, shipmentId: String, success: Bool, timeout: Int? = nil, timeoutUnit: String? = nil) {
+        public init(einvoiceInfo: EInvoiceDetails? = nil, einvoiceType: String, message: String, shipmentId: String, status: Int) {
             
             self.shipmentId = shipmentId
             
+            self.einvoiceType = einvoiceType
+            
+            self.status = status
+            
             self.message = message
             
-            self.success = success
-            
-            self.ackNo = ackNo
-            
-            self.irn = irn
-            
-            self.ackDt = ackDt
-            
-            self.timeout = timeout
-            
-            self.timeoutUnit = timeoutUnit
+            self.einvoiceInfo = einvoiceInfo
             
         }
 
@@ -78,66 +60,23 @@ public extension PlatformClient.Order {
             
             
             
+                einvoiceType = try container.decode(String.self, forKey: .einvoiceType)
+                
+            
+            
+            
+                status = try container.decode(Int.self, forKey: .status)
+                
+            
+            
+            
                 message = try container.decode(String.self, forKey: .message)
                 
             
             
             
-                success = try container.decode(Bool.self, forKey: .success)
-                
-            
-            
-            
                 do {
-                    ackNo = try container.decode(String.self, forKey: .ackNo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    irn = try container.decode(String.self, forKey: .irn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    ackDt = try container.decode(String.self, forKey: .ackDt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    timeout = try container.decode(Int.self, forKey: .timeout)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    timeoutUnit = try container.decode(String.self, forKey: .timeoutUnit)
+                    einvoiceInfo = try container.decode(EInvoiceDetails.self, forKey: .einvoiceInfo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -159,37 +98,22 @@ public extension PlatformClient.Order {
             
             
             
+            try? container.encodeIfPresent(einvoiceType, forKey: .einvoiceType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(ackNo, forKey: .ackNo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(irn, forKey: .irn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(ackDt, forKey: .ackDt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(timeout, forKey: .timeout)
-            
-            
-            
-            
-            try? container.encodeIfPresent(timeoutUnit, forKey: .timeoutUnit)
+            try? container.encodeIfPresent(einvoiceInfo, forKey: .einvoiceInfo)
             
             
         }
@@ -210,58 +134,40 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var shipmentId: String
         
+        public var einvoiceType: String
+        
+        public var status: Int
+        
         public var message: String
         
-        public var success: Bool
-        
-        public var ackNo: String?
-        
-        public var irn: String?
-        
-        public var ackDt: String?
-        
-        public var timeout: Int?
-        
-        public var timeoutUnit: String?
+        public var einvoiceInfo: EInvoiceDetails?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case shipmentId = "shipment_id"
             
+            case einvoiceType = "einvoice_type"
+            
+            case status = "status"
+            
             case message = "message"
             
-            case success = "success"
-            
-            case ackNo = "ack_no"
-            
-            case irn = "irn"
-            
-            case ackDt = "ack_dt"
-            
-            case timeout = "timeout"
-            
-            case timeoutUnit = "timeout_unit"
+            case einvoiceInfo = "einvoice_info"
             
         }
 
-        public init(ackDt: String? = nil, ackNo: String? = nil, irn: String? = nil, message: String, shipmentId: String, success: Bool, timeout: Int? = nil, timeoutUnit: String? = nil) {
+        public init(einvoiceInfo: EInvoiceDetails? = nil, einvoiceType: String, message: String, shipmentId: String, status: Int) {
             
             self.shipmentId = shipmentId
             
+            self.einvoiceType = einvoiceType
+            
+            self.status = status
+            
             self.message = message
             
-            self.success = success
-            
-            self.ackNo = ackNo
-            
-            self.irn = irn
-            
-            self.ackDt = ackDt
-            
-            self.timeout = timeout
-            
-            self.timeoutUnit = timeoutUnit
+            self.einvoiceInfo = einvoiceInfo
             
         }
 
@@ -274,66 +180,23 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+                einvoiceType = try container.decode(String.self, forKey: .einvoiceType)
+                
+            
+            
+            
+                status = try container.decode(Int.self, forKey: .status)
+                
+            
+            
+            
                 message = try container.decode(String.self, forKey: .message)
                 
             
             
             
-                success = try container.decode(Bool.self, forKey: .success)
-                
-            
-            
-            
                 do {
-                    ackNo = try container.decode(String.self, forKey: .ackNo)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    irn = try container.decode(String.self, forKey: .irn)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    ackDt = try container.decode(String.self, forKey: .ackDt)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    timeout = try container.decode(Int.self, forKey: .timeout)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    timeoutUnit = try container.decode(String.self, forKey: .timeoutUnit)
+                    einvoiceInfo = try container.decode(EInvoiceDetails.self, forKey: .einvoiceInfo)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -355,37 +218,22 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
+            try? container.encodeIfPresent(einvoiceType, forKey: .einvoiceType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
             try? container.encodeIfPresent(message, forKey: .message)
             
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
-            
-            
-            
-            
-            try? container.encodeIfPresent(ackNo, forKey: .ackNo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(irn, forKey: .irn)
-            
-            
-            
-            
-            try? container.encodeIfPresent(ackDt, forKey: .ackDt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(timeout, forKey: .timeout)
-            
-            
-            
-            
-            try? container.encodeIfPresent(timeoutUnit, forKey: .timeoutUnit)
+            try? container.encodeIfPresent(einvoiceInfo, forKey: .einvoiceInfo)
             
             
         }

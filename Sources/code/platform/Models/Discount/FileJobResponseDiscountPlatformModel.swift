@@ -20,15 +20,27 @@ public extension PlatformClient.Discount {
         
         public var companyId: Int
         
-        public var body: [String: Any]?
+        public var body: FileJobBody?
         
         public var type: String
         
-        public var fileType: String
+        public var fileType: String?
         
         public var id: String
         
-        public var filePath: String
+        public var filePath: String?
+        
+        public var progress: Int?
+        
+        public var extensionIds: [String]?
+        
+        public var zoneIds: [String]?
+        
+        public var createdOn: String?
+        
+        public var modifiedOn: String?
+        
+        public var createdBy: UserDetails?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -51,9 +63,21 @@ public extension PlatformClient.Discount {
             
             case filePath = "file_path"
             
+            case progress = "progress"
+            
+            case extensionIds = "extension_ids"
+            
+            case zoneIds = "zone_ids"
+            
+            case createdOn = "created_on"
+            
+            case modifiedOn = "modified_on"
+            
+            case createdBy = "created_by"
+            
         }
 
-        public init(body: [String: Any]? = nil, companyId: Int, failed: Int, filePath: String, fileType: String, stage: String, total: Int, type: String, id: String) {
+        public init(body: FileJobBody? = nil, companyId: Int, createdBy: UserDetails? = nil, createdOn: String? = nil, extensionIds: [String]? = nil, failed: Int, filePath: String? = nil, fileType: String? = nil, modifiedOn: String? = nil, progress: Int? = nil, stage: String, total: Int, type: String, zoneIds: [String]? = nil, id: String) {
             
             self.stage = stage
             
@@ -72,6 +96,18 @@ public extension PlatformClient.Discount {
             self.id = id
             
             self.filePath = filePath
+            
+            self.progress = progress
+            
+            self.extensionIds = extensionIds
+            
+            self.zoneIds = zoneIds
+            
+            self.createdOn = createdOn
+            
+            self.modifiedOn = modifiedOn
+            
+            self.createdBy = createdBy
             
         }
 
@@ -100,7 +136,7 @@ public extension PlatformClient.Discount {
             
             
                 do {
-                    body = try container.decode([String: Any].self, forKey: .body)
+                    body = try container.decode(FileJobBody.self, forKey: .body)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,9 +152,16 @@ public extension PlatformClient.Discount {
             
             
             
-                fileType = try container.decode(String.self, forKey: .fileType)
+                do {
+                    fileType = try container.decode(String.self, forKey: .fileType)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 id = try container.decode(String.self, forKey: .id)
@@ -126,9 +169,88 @@ public extension PlatformClient.Discount {
             
             
             
-                filePath = try container.decode(String.self, forKey: .filePath)
+                do {
+                    filePath = try container.decode(String.self, forKey: .filePath)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
+            
+                do {
+                    progress = try container.decode(Int.self, forKey: .progress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    extensionIds = try container.decode([String].self, forKey: .extensionIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    zoneIds = try container.decode([String].self, forKey: .zoneIds)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    modifiedOn = try container.decode(String.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdBy = try container.decode(UserDetails.self, forKey: .createdBy)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -178,6 +300,36 @@ public extension PlatformClient.Discount {
             
             
             try? container.encodeIfPresent(filePath, forKey: .filePath)
+            
+            
+            
+            
+            try? container.encodeIfPresent(progress, forKey: .progress)
+            
+            
+            
+            
+            try? container.encodeIfPresent(extensionIds, forKey: .extensionIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(zoneIds, forKey: .zoneIds)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdOn, forKey: .createdOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encodeIfPresent(createdBy, forKey: .createdBy)
             
             
         }

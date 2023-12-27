@@ -14,7 +14,7 @@ public extension PlatformClient.CompanyProfile {
         
         public var landmark: String?
         
-        public var countryCode: String?
+        public var countryCode: String
         
         public var pincode: Int?
         
@@ -27,6 +27,10 @@ public extension PlatformClient.CompanyProfile {
         public var address2: String?
         
         public var state: String?
+        
+        public var sector: String?
+        
+        public var stateCode: String?
         
         public var address1: String?
         
@@ -53,6 +57,10 @@ public extension PlatformClient.CompanyProfile {
             
             case state = "state"
             
+            case sector = "sector"
+            
+            case stateCode = "state_code"
+            
             case address1 = "address1"
             
             case city = "city"
@@ -61,7 +69,7 @@ public extension PlatformClient.CompanyProfile {
             
         }
 
-        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, landmark: String? = nil, latitude: Double, longitude: Double, pincode: Int? = nil, state: String? = nil) {
+        public init(address1: String? = nil, address2: String? = nil, addressType: String? = nil, city: String? = nil, country: String? = nil, countryCode: String, landmark: String? = nil, latitude: Double, longitude: Double, pincode: Int? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil) {
             
             self.landmark = landmark
             
@@ -78,6 +86,10 @@ public extension PlatformClient.CompanyProfile {
             self.address2 = address2
             
             self.state = state
+            
+            self.sector = sector
+            
+            self.stateCode = stateCode
             
             self.address1 = address1
             
@@ -103,16 +115,9 @@ public extension PlatformClient.CompanyProfile {
                 
             
             
-                do {
-                    countryCode = try container.decode(String.self, forKey: .countryCode)
+                countryCode = try container.decode(String.self, forKey: .countryCode)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -170,6 +175,30 @@ public extension PlatformClient.CompanyProfile {
             
                 do {
                     state = try container.decode(String.self, forKey: .state)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    sector = try container.decode(String.self, forKey: .sector)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    stateCode = try container.decode(String.self, forKey: .stateCode)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -251,6 +280,16 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(state, forKey: .state)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sector, forKey: .sector)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
             
             
             

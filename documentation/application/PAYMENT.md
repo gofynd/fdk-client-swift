@@ -5,7 +5,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Payment Methods
-Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
+The Payment module lists cards and payment modes, allows for the selection of payment modes during checkout, handles refunds, validates customers, and ensures the security of transactions.
 
 Default
 * [getAggregatorsConfig](#getaggregatorsconfig)
@@ -19,6 +19,9 @@ Default
 * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
 * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
+* [walletLinkInitate](#walletlinkinitate)
+* [linkWallet](#linkwallet)
+* [delinkWallet](#delinkwallet)
 * [getRupifiBannerDetails](#getrupifibannerdetails)
 * [getEpaylaterBannerDetails](#getepaylaterbannerdetails)
 * [resendOrCancelPayment](#resendorcancelpayment)
@@ -50,6 +53,7 @@ Default
 * [customerOnboard](#customeronboard)
 * [outstandingOrderDetails](#outstandingorderdetails)
 * [paidOrderDetails](#paidorderdetails)
+* [createPaymentOrder](#createpaymentorder)
 
 
 
@@ -722,7 +726,7 @@ Get applicable payment options
 
 
 ```swift
-applicationClient.payment.getPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, cardReference: cardReference, userDetails: userDetails) { (response, error) in
+applicationClient.payment.getPaymentModeRoutes(amount: amount, cartId: cartId, checkoutMode: checkoutMode, refresh: refresh, orderId: orderId, cardReference: cardReference, userDetails: userDetails, displaySplit: displaySplit, advancePayment: advancePayment, shipmentId: shipmentId) { (response, error) in
     // Use response
 }
 ```
@@ -734,12 +738,15 @@ applicationClient.payment.getPaymentModeRoutes(amount: amount, cartId: cartId, p
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | amount | Int | yes | Payable amount. |   
-| cartId | String | yes | Identifier of the cart. |   
-| pincode | String | yes | The PIN Code of the destination address, e.g. 400059 |   
-| checkoutMode | String | yes | Option to checkout for self or for others. |   
+| cartId | String? | no | Identifier of the cart. |   
+| checkoutMode | String? | no | Option to checkout for self or for others. |   
 | refresh | Bool? | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |   
+| orderId | String? | no |  |   
 | cardReference | String? | no | Card reference id of user's debit or credit card. |   
-| userDetails | String? | no | URIencoded JSON containing details of an anonymous user. |  
+| userDetails | String? | no | URIencoded JSON containing details of an anonymous user. |   
+| displaySplit | Bool? | no | Display Split Payment Option or not |   
+| advancePayment | Bool? | no | Display Advance Payment Options or Normal |   
+| shipmentId | String? | no |  |  
 
 
 
@@ -987,7 +994,14 @@ Success. Returns all available options for payment. Check the example shown belo
               "large": "https://hdn-1.fynd.com/payment/paytm_logo_large.png"
             },
             "aggregator_name": "Juspay",
-            "display_priority": 1
+            "display_priority": 1,
+            "meta": {
+              "balance": 10,
+              "token": "613b11af-dd32-4b59-8f18-70b2a93dc702",
+              "linked": true,
+              "mobile": 8999999999,
+              "wallet_code": "PAYTM"
+            }
           },
           {
             "wallet_name": "Amazon Pay",
@@ -1256,7 +1270,66 @@ Success. Returns all available options for payment. Check the example shown belo
         "payment_flow": "api"
       }
     }
-  }
+  },
+  "advance_payment": [
+    {
+      "name": "SPLIT",
+      "display_priority": 22,
+      "payment_mode_id": 34,
+      "display_name": "Split Payment",
+      "list": [
+        {
+          "aggregator_name": "Fynd",
+          "name": "Split Payment",
+          "display_name": "Split Payment",
+          "code": "SPLIT",
+          "logo_url": {
+            "small": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png",
+            "large": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png"
+          },
+          "merchant_code": "SPLIT"
+        }
+      ],
+      "split": {
+        "total_number_of_splits": 7,
+        "splits_remaining": 7
+      }
+    },
+    {
+      "name": "ADVANCE",
+      "display_priority": 22,
+      "payment_mode_id": 35,
+      "display_name": "Advance Payment",
+      "list": [
+        {
+          "aggregator_name": "Fynd",
+          "name": "Advance Payment",
+          "display_name": "Advance Payment",
+          "code": "ADVANCE",
+          "logo_url": {
+            "small": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png",
+            "large": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png"
+          },
+          "merchant_code": "ADVANCE"
+        }
+      ],
+      "advance": {
+        "is_active": true,
+        "time_unit": "DAYS",
+        "description": "Pay Rs 3000 or more of the total amount",
+        "display_name": "Pay using Advance Payment",
+        "prepayment_type": "PERCENTAGE",
+        "prepayment_value": 20,
+        "cancellation_type": "AUTO",
+        "refund_time_limit": 4,
+        "all_prepayment_type": [
+          "PERCENTAGE",
+          "FIXED"
+        ],
+        "allow_custom_advance_amount": true
+      }
+    }
+  ]
 }
 ```
 </details>
@@ -1291,9 +1364,9 @@ applicationClient.payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | amount | Int | yes | Payable amount. |   
-| cartId | String | yes | Identifier of the cart. |   
+| cartId | String? | no | Identifier of the cart. |   
 | pincode | String | yes | The PIN Code of the destination address, e.g. 400059 |   
-| checkoutMode | String | yes | Option to checkout for self or for others. |   
+| checkoutMode | String? | no | Option to checkout for self or for others. |   
 | refresh | Bool? | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |   
 | cardReference | String? | no | Card reference id of user's debit or credit card. |   
 | orderType | String | yes | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. |   
@@ -1501,6 +1574,213 @@ Success. Returns all available options for payment. Check the example shown belo
   }
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### walletLinkInitate
+Initiate linking of wallet
+
+
+
+
+```swift
+applicationClient.payment.walletLinkInitate(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | WalletLinkRequestSchema | yes | Request body |
+
+
+It will initiate linking of wallet for the aggregator.
+
+*Returned Response:*
+
+
+
+
+[WalletResponseSchema](#WalletResponseSchema)
+
+OTP for Wallet Linking sent
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; wallet_link_failed</i></summary>
+
+```json
+{
+  "summary": "OTP sent successfully",
+  "value": {
+    "success": true,
+    "data": {
+      "message": "OTP sent successfully",
+      "link_token": "31a2f5a7-ee30-4cbb-8669-53071878f6d7"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### linkWallet
+OTP verification for linking of wallet
+
+
+
+
+```swift
+applicationClient.payment.linkWallet(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | WalletVerifyRequestSchema | yes | Request body |
+
+
+It Verifies the linking of wallet using OTP
+
+*Returned Response:*
+
+
+
+
+[WalletResponseSchema](#WalletResponseSchema)
+
+OTP Verification
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; wallet_verify_success</i></summary>
+
+```json
+{
+  "summary": "OTP verification success",
+  "value": {
+    "success": true,
+    "data": {
+      "message": "OTP verified successfully",
+      "balance": 234,
+      "token": "100f8193-63b6-4f2b-a9bc-6830639583a6"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+#### delinkWallet
+Delink the wallet
+
+
+
+
+```swift
+applicationClient.payment.delinkWallet(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | WalletDelinkRequestSchema | yes | Request body |
+
+
+It Removes already linked wallet
+
+*Returned Response:*
+
+
+
+
+[WalletResponseSchema](#WalletResponseSchema)
+
+Wallet delinked successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; wallet_delete_success</i></summary>
+
+```json
+{
+  "summary": "Wallet delinked successfully",
+  "value": {
+    "success": true,
+    "data": {
+      "message": "Wallet delinked successfully"
+    }
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -3594,7 +3874,13 @@ Success. Returns the status of payment. Check the example shown below or refer `
       "currency": "INR"
     },
     "due_date": "Oct 22 2021",
-    "days_overdue": 123
+    "days_overdue": 123,
+    "total_due_amount": {
+      "value": 12576,
+      "formatted_value": "₹ 12,576.00",
+      "currency": "INR"
+    },
+    "repayment_url": "https://example_url.com/example/"
   }
 }
 ```
@@ -3782,7 +4068,11 @@ Success. Returns the status of payment. Check the example shown below or refer `
       "session_id": "109dae9a-9fe0-4277-979c-0bebb0136930"
     },
     "redirect_url": "https://retail-dev.epaylater.in?sessionId=109dae9a-9fe0-4277-979c-0bebb0136930",
-    "status": true
+    "status": true,
+    "merchant_customer_ref_id": "64217ecb42a43c10c5bde1b4",
+    "status_remark": "Your are one step away to avail credit of Amount(value=10000.0, formattedValue=₹ 10,000.00, currency=INR)",
+    "is_eligible_for_txn": false,
+    "activation_url": "https://urlshortener-sandbox.rupifi.com/BHs8Dsc"
   }
 }
 ```
@@ -3935,6 +4225,79 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 ---
 
 
+#### createPaymentOrder
+Create Order
+
+
+
+
+```swift
+applicationClient.payment.createPaymentOrder(body: body) { (response, error) in
+    // Use response
+}
+```
+
+
+
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| body | PaymentOrderRequest | yes | Request body |
+
+
+Use this API to create a order and payment on aggregator side
+
+*Returned Response:*
+
+
+
+
+[PaymentOrderResponse](#PaymentOrderResponse)
+
+Success. Check the example shown below
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "",
+  "success": true,
+  "status_code": 200,
+  "data": {
+    "amount": 2190000,
+    "order_id": "order_JeaZ5ryKO01rno",
+    "email": "abc@example.com",
+    "contact": "9999999999",
+    "currency": "INR",
+    "customer_id": "cust_CZgcLVGsGP8BUQ",
+    "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
+    "method": "upi",
+    "aggregator": "Razorpay",
+    "merchant_order_id": "FY629EDC0980B6A8C1EA"
+  },
+  "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
+  "payment_confirm_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
+  "order_id": "FY629EDC0980B6A8C1EA"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 
 ### Schemas
@@ -4049,7 +4412,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cards | [CardPaymentGateway](#CardPaymentGateway) |  no  | Card's payment gateway with customer id. |
+ | cards | [CardPaymentGateway](#CardPaymentGateway) |  no  |  |
  | success | Bool |  no  | Response is successful or not. |
  | message | String |  no  | Human readable message. |
 
@@ -4302,7 +4665,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | ---------- | ---- | -------- | ----------- |
  | code | String? |  yes  | code |
  | packageName | String? |  yes  | package_name |
- | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
+ | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  |  |
  | displayName | String? |  yes  | display_name |
 
 ---
@@ -4337,7 +4700,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | displayPriority | Int? |  yes  | Dispaly Priority |
  | cardBrand | String? |  yes  | card_brand |
  | codLimitPerOrder | Double? |  yes  | Cod limit per order |
- | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
+ | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  |  |
  | nickname | String? |  yes  | nickname |
  | cardName | String? |  yes  | card_name |
  | cardType | String? |  yes  | card_type |
@@ -4347,6 +4710,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | timeout | Int? |  yes  | timeout |
  | cardToken | String? |  yes  | card_token |
  | name | String? |  yes  | name |
+ | meta | [String: Any]? |  yes  | Payment methods meta |
 
 ---
 
@@ -4390,20 +4754,20 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bqrRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | BQR_Razorpay |
- | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  | Fynd |
- | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  | Epaylater |
- | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Razorpay |
- | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Juspay |
- | ajiodhan | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ajiodhan |
- | simpl | [AggregatorRoute](#AggregatorRoute)? |  yes  | simpl |
- | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  | Rupifi |
- | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  | mswipe |
- | stripe | [AggregatorRoute](#AggregatorRoute)? |  yes  | Stripe |
- | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ccavenue |
- | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  | Payubiz |
- | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Jiopay |
- | upiRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | UPI_Razorpay |
+ | bqrRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | ajiodhan | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | simpl | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | stripe | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | upiRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
 
 ---
 
@@ -4414,8 +4778,59 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentOption | [[RootPaymentMode](#RootPaymentMode)] |  no  | Payment options |
- | paymentFlows | [PaymentFlow](#PaymentFlow) |  no  | payment_flows |
+ | paymentOption | [RootPaymentMode](#RootPaymentMode) |  no  |  |
+ | paymentFlows | [PaymentFlow](#PaymentFlow) |  no  |  |
+
+---
+
+
+ 
+ 
+ #### [AdvanceObject](#AdvanceObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | isActive | Bool? |  yes  | Is Advance Payment active |
+ | amount | Double? |  yes  | Amount for Payment Breakdown |
+ | timeUnit | String? |  yes  | Time unit for refunds |
+ | description | String? |  yes  | The description for Advance Payment (user configured) |
+ | displayName | String? |  yes  | The display name for Advance payment |
+ | prepaymentType | String? |  yes  | Type of prepayment value |
+ | prepaymentValue | Double? |  yes  | Value for prepayment in advance payment |
+ | cancellationType | String? |  yes  | Type of cancellation |
+ | refundTimeLimit | Double? |  yes  | time limit for processing refund |
+ | allPrepaymentType | [String]? |  yes  | All available types of prepayment |
+ | allowCustomAdvanceAmount | Bool? |  yes  | Is custom advance amount allowed? |
+
+---
+
+
+ 
+ 
+ #### [SplitObject](#SplitObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | totalNumberOfSplits | Double? |  yes  | Maximum amount of splits allowed |
+ | splitsRemaining | Double? |  yes  | Number of splits remaining |
+ | amountRemaining | Double? |  yes  | Amount pending to be paid |
+
+---
+
+
+ 
+ 
+ #### [AdvancePaymentObject](#AdvancePaymentObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | String? |  yes  | Name of Advance Payment Mode |
+ | displayPriority | Double? |  yes  | Display Priority for Payment Option |
+ | paymentModeId | Double? |  yes  | Payment Mode ID for Advance Payment Option |
+ | displayName | String? |  yes  | Display name for Advance Payment Mode |
+ | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
+ | split | [SplitObject](#SplitObject)? |  yes  |  |
+ | advance | [AdvanceObject](#AdvanceObject)? |  yes  |  |
 
 ---
 
@@ -4426,8 +4841,60 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentOptions | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  | payment_options |
+ | paymentOptions | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  |  |
  | success | Bool |  no  | Response is successful or not |
+ | paymentBreakup | [String: Any]? |  yes  | Payment Breakup for advance payment |
+ | advancePayment | [[AdvancePaymentObject](#AdvancePaymentObject)]? |  yes  | Advance Payment Array |
+
+---
+
+
+ 
+ 
+ #### [WalletLinkRequestSchema](#WalletLinkRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | String |  no  | Aggregator Name |
+ | mobile | String |  no  | Mobile Number for Wallet |
+ | walletCode | String |  no  | Wallet Code |
+
+---
+
+
+ 
+ 
+ #### [WalletVerifyRequestSchema](#WalletVerifyRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | String |  no  | Aggregator Name |
+ | linkToken | String |  no  | Token for wallet linking |
+ | otp | Int |  no  | OTP received for wallet linking |
+
+---
+
+
+ 
+ 
+ #### [WalletDelinkRequestSchema](#WalletDelinkRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | String |  no  | Aggregator Name |
+ | walletCode | String |  no  | Wallet Code |
+
+---
+
+
+ 
+ 
+ #### [WalletResponseSchema](#WalletResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [String: Any] |  no  | Response received from aggregator |
+ | success | Bool |  no  | Success/Failure of the API call |
 
 ---
 
@@ -4450,7 +4917,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RupifiBannerData](#RupifiBannerData) |  no  | Rupifi KYC banner details. |
+ | data | [RupifiBannerData](#RupifiBannerData) |  no  |  |
  | success | Bool |  no  | Successful or not. |
 
 ---
@@ -4475,7 +4942,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EpaylaterBannerData](#EpaylaterBannerData) |  no  | Epaylater KYC banner details. |
+ | data | [EpaylaterBannerData](#EpaylaterBannerData) |  no  |  |
  | success | Bool |  no  | Successful or not. |
 
 ---
@@ -4512,7 +4979,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
+ | data | [LinkStatus](#LinkStatus) |  no  |  |
  | success | Bool |  no  | Response is successful or not. |
 
 ---
@@ -4572,7 +5039,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ValidateUPI](#ValidateUPI) |  no  | Data about UPI ID validate. |
+ | data | [ValidateUPI](#ValidateUPI) |  no  |  |
  | success | Bool |  no  | Response is successful or not. |
 
 ---
@@ -4610,7 +5077,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CardDetails](#CardDetails) |  no  | Saved Card Details |
+ | data | [CardDetails](#CardDetails) |  no  |  |
  | success | Bool |  no  | Response is successful or not. |
 
 ---
@@ -4824,7 +5291,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | ---------- | ---- | -------- | ----------- |
  | delights | Bool |  no  | True if  beneficiary to be added by delights or False if by User |
  | shipmentId | String |  no  | Shipment Id of the respective Merchant Order Id |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  |  |
  | otp | String? |  yes  |  |
  | orderId | String |  no  | Merchant Order Id |
  | transferMode | String |  no  | Transfer Mode of the Beneficiary to be added |
@@ -4982,7 +5449,6 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | ---------- | ---- | -------- | ----------- |
  | cartId | String |  no  |  |
  | checkoutMode | String |  no  |  |
- | pincode | String |  no  |  |
  | assignCardId | String? |  yes  |  |
  | amount | String |  no  |  |
 
@@ -4999,7 +5465,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | externalOrderId | String |  no  | Merchant order id |
  | mobileNumber | String |  no  | Mobile number to which the payment link is to be sent |
  | amount | Double |  no  | Total value of order |
- | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  | Meta |
+ | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  |  |
  | email | String |  no  | Email to which the payment link is to be sent |
 
 ---
@@ -5100,7 +5566,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | ---------- | ---- | -------- | ----------- |
  | name | String |  no  | Payment mode name |
  | mode | String |  no  | Payment mode |
- | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  no  | Meta |
+ | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  no  |  |
 
 ---
 
@@ -5114,7 +5580,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | failureCallbackUrl | String |  no  | Failure page url |
  | currency | String |  no  | Currency |
  | paymentLinkId | String |  no  | Unique id of payment link |
- | paymentMethods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  no  | Payment method details |
+ | paymentMethods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  no  |  |
  | successCallbackUrl | String |  no  | Success  page url |
  | meta | [String: Any]? |  yes  | Meta |
 
@@ -5177,13 +5643,21 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | totalDueAmount | [BalanceDetails](#BalanceDetails)? |  yes  |  |
  | status | String? |  yes  | Customer Credit status |
+ | limit | [BalanceDetails](#BalanceDetails)? |  yes  |  |
  | creditLineId | String? |  yes  | ID at Credit aggregator's end |
- | amountAvailable | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
- | balance | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
+ | amountAvailable | [BalanceDetails](#BalanceDetails)? |  yes  |  |
+ | dueAmount | [BalanceDetails](#BalanceDetails)? |  yes  |  |
+ | dueDate | String? |  yes  | Due date for repayment |
+ | balance | [BalanceDetails](#BalanceDetails)? |  yes  |  |
  | statusMessage | String? |  yes  | message to customer |
+ | repaymentUrl | String? |  yes  | Url for repayment |
+ | soaUrl | String? |  yes  | Statement of accounts. Show payment history. |
+ | isEligibleForTxn | Bool? |  yes  | Eligiblity flag to complete transaction |
  | merchantCustomerRefId | String? |  yes  | Unique aggregator customer id |
  | buyerStatus | String? |  yes  | Status from Credit aggregator's end |
+ | activationUrl | String? |  yes  | Url for activation |
 
 ---
 
@@ -5194,7 +5668,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreditSummary](#CreditSummary)? |  yes  | Credit summary of user. |
+ | data | [CreditSummary](#CreditSummary)? |  yes  |  |
  | success | Bool |  no  | Payment confirmation updated or not. |
 
 ---
@@ -5218,7 +5692,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RedirectURL](#RedirectURL) |  no  | Redirect URL. |
+ | data | [RedirectURL](#RedirectURL) |  no  |  |
  | success | Bool |  no  | Status updated or not. |
 
 ---
@@ -5243,7 +5717,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreditDetail](#CreditDetail) |  no  | Credit summary of user. |
+ | data | [CreditDetail](#CreditDetail) |  no  |  |
  | success | Bool |  no  | Operation is successful or not. |
 
 ---
@@ -5284,7 +5758,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | pan | String? |  yes  | Pan Number |
  | drivingLicense | String? |  yes  | Driver License |
  | emailVerified | Bool |  no  | Is Email Verified or not |
- | addressAsPerId | [KYCAddress](#KYCAddress) |  no  | Address details |
+ | addressAsPerId | [KYCAddress](#KYCAddress) |  no  |  |
  | mobileVerified | Bool |  no  | Is Mobile Verified or not |
  | phone | String |  no  | Email |
  | email | String? |  yes  | Email |
@@ -5321,7 +5795,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | fda | String? |  yes  | Driver License |
  | businessType | String? |  yes  | Business Type |
  | name | String? |  yes  | Business Name |
- | address | [KYCAddress](#KYCAddress)? |  yes  | Address details |
+ | address | [KYCAddress](#KYCAddress)? |  yes  |  |
 
 ---
 
@@ -5349,13 +5823,13 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | personalInfo | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  no  | Credit summary of user. |
+ | personalInfo | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)? |  yes  |  |
  | mcc | String? |  yes  | Mcc |
  | aggregator | String |  no  | Aggregator Name |
- | marketplaceInfo | [MarketplaceInfo](#MarketplaceInfo)? |  yes  | Market Place info. |
+ | marketplaceInfo | [MarketplaceInfo](#MarketplaceInfo)? |  yes  |  |
  | source | String |  no  | callbackURL |
- | businessInfo | [BusinessDetails](#BusinessDetails)? |  yes  | Business summary. |
- | device | [DeviceDetails](#DeviceDetails)? |  yes  | Device Details. |
+ | businessInfo | [BusinessDetails](#BusinessDetails)? |  yes  |  |
+ | device | [DeviceDetails](#DeviceDetails)? |  yes  |  |
 
 ---
 
@@ -5366,9 +5840,13 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | Bool |  no  | Operation Status |
- | redirectUrl | String |  no  | URL to which the user may redirect. |
- | session | [String: Any] |  no  | User Session |
+ | redirectUrl | String? |  yes  | URL to which the user may redirect. |
+ | session | [String: Any]? |  yes  | User Session |
+ | status | Bool |  no  | Transaction status |
+ | statusRemark | String? |  yes  | Decription of status |
+ | isEligibleForTxn | Bool? |  yes  | Whether is eligible for transaction |
+ | merchantCustomerRefId | String? |  yes  | Rupifi customer ID |
+ | activationUrl | String? |  yes  | Url for activation |
 
 ---
 
@@ -5379,7 +5857,7 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [OnboardSummary](#OnboardSummary) |  no  | Redirect URL. |
+ | data | [OnboardSummary](#OnboardSummary) |  no  |  |
  | success | Bool |  no  | Status updated or not. |
 
 ---
@@ -5409,6 +5887,84 @@ Success. Returns the status of API. Check the example shown below or refer `Paid
  | data | [[String: Any]]? |  yes  | Dict containing the paid order details |
  | success | Bool |  no  | Response is successful or not. |
  | message | String? |  yes  | Message |
+
+---
+
+
+ 
+ 
+ #### [PaymentMethodsMetaOrder](#PaymentMethodsMetaOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | merchantCode | String |  no  | Merchant code |
+ | paymentGateway | String |  no  | Payment gateway name |
+ | paymentIdentifier | String |  no  | Payment identifier |
+
+---
+
+
+ 
+ 
+ #### [PaymentOrderMethods](#PaymentOrderMethods)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | Double |  no  | Amount to be collected |
+ | payment | String? |  yes  | Payment type i.e. Required / Blocked |
+ | mode | String |  no  | Payment mode |
+ | meta | [PaymentMethodsMetaOrder](#PaymentMethodsMetaOrder) |  no  |  |
+ | name | String |  no  | Payment mode name |
+
+---
+
+
+ 
+ 
+ #### [PaymentOrderRequest](#PaymentOrderRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | paymentMethods | [[PaymentOrderMethods](#PaymentOrderMethods)]? |  yes  |  |
+ | orderId | String |  no  | Order id |
+ | shipmentId | String? |  yes  | shipment_id |
+
+---
+
+
+ 
+ 
+ #### [PaymentOrderData](#PaymentOrderData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | Double? |  yes  | Amount |
+ | aggregator | String? |  yes  | Aggregator name |
+ | callbackUrl | String? |  yes  | Callback url for aggregator |
+ | orderId | String? |  yes  | Aggregator order id |
+ | customerId | String? |  yes  | Aggregator customer id |
+ | merchantOrderId | String? |  yes  | Merchant order id |
+ | currency | String? |  yes  | Currency |
+ | email | String? |  yes  | Email |
+ | contact | String? |  yes  | Mobile number |
+ | method | String? |  yes  | Method |
+
+---
+
+
+ 
+ 
+ #### [PaymentOrderResponse](#PaymentOrderResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | paymentConfirmUrl | String? |  yes  | Payment confirm url for aggregator |
+ | callbackUrl | String? |  yes  | Callback url for aggregator |
+ | orderId | String? |  yes  | Merchant order id |
+ | success | Bool |  no  | Successful or failure |
+ | statusCode | Int |  no  | HTTP status code |
+ | data | [PaymentOrderData](#PaymentOrderData)? |  yes  |  |
+ | message | String |  no  | Message |
 
 ---
 

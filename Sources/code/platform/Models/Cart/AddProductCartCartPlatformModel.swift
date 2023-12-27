@@ -42,6 +42,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var pos: Bool?
         
+        public var sellerIdentifier: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -73,9 +75,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case pos = "pos"
             
+            case sellerIdentifier = "seller_identifier"
+            
         }
 
-        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
+        public init(articleAssignment: [String: Any]? = nil, articleId: String? = nil, display: String? = nil, extraMeta: [String: Any]? = nil, itemId: Int? = nil, itemSize: String? = nil, meta: [String: Any]? = nil, parentItemIdentifiers: [[String: String]]? = nil, pos: Bool? = nil, productGroupTags: [String]? = nil, quantity: Int? = nil, sellerId: Int? = nil, sellerIdentifier: String? = nil, storeId: Int? = nil, customJson: [String: Any]? = nil) {
             
             self.quantity = quantity
             
@@ -104,6 +108,8 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.meta = meta
             
             self.pos = pos
+            
+            self.sellerIdentifier = sellerIdentifier
             
         }
 
@@ -278,6 +284,18 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
+            
+                do {
+                    sellerIdentifier = try container.decode(String.self, forKey: .sellerIdentifier)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -351,6 +369,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(pos, forKey: .pos)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sellerIdentifier, forKey: .sellerIdentifier)
             
             
         }

@@ -10,8 +10,6 @@ public extension ApplicationClient.User {
         
         public var countryCode: String?
         
-        public var captchaCode: String?
-        
         public var mobile: String?
         
         public var androidHash: String?
@@ -21,19 +19,15 @@ public extension ApplicationClient.User {
             
             case countryCode = "country_code"
             
-            case captchaCode = "captcha_code"
-            
             case mobile = "mobile"
             
             case androidHash = "android_hash"
             
         }
 
-        public init(androidHash: String? = nil, captchaCode: String? = nil, countryCode: String? = nil, mobile: String? = nil) {
+        public init(androidHash: String? = nil, countryCode: String? = nil, mobile: String? = nil) {
             
             self.countryCode = countryCode
-            
-            self.captchaCode = captchaCode
             
             self.mobile = mobile
             
@@ -47,18 +41,6 @@ public extension ApplicationClient.User {
             
             do {
                 countryCode = try container.decode(String.self, forKey: .countryCode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                captchaCode = try container.decode(String.self, forKey: .captchaCode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -100,11 +82,6 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(countryCode, forKey: .countryCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
             
             
             
