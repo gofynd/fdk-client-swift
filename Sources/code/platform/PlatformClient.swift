@@ -17786,7 +17786,7 @@ if let value = pageSize {
             **/
             public func editSEOMarkupSchema(
                 id: String,
-                body: SEOSchemaMarkupTemplate,
+                body: SEOSchemaMarkupTemplateRequestBody,
                 onResponse: @escaping (_ response: SEOSchemaMarkupTemplate?, _ error: FDKError?) -> Void
             ) {
                 
@@ -19683,11 +19683,31 @@ if let value = search {
             * Description: Use this API to retrieve the custom objects.
             **/
             public func getAppCustomObjects(
+                definitionId: String?,
+                pageNo: String,
+                pageSize: String,
                 
                 onResponse: @escaping (_ response: CustomObjectsSchema?, _ error: FDKError?) -> Void
             ) {
                 
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = definitionId {
+    
+    xQuery["definition_id"] = value
+    
+}
+
+
+
+    xQuery["page_no"] = pageNo
+
+
+
+
+    xQuery["page_size"] = pageSize
+
+
 
  
 
@@ -19696,7 +19716,7 @@ if let value = search {
                     config: config,
                     method: "GET",
                     url: "/service/platform/content/v1.0/company/\(companyId)/application/\(applicationId)/metaobjects",
-                    query: nil,
+                    query: xQuery,
                     body: nil,
                     headers: [],
                     responseType: "application/json",

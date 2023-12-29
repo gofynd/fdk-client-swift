@@ -6248,7 +6248,7 @@ platformClient.application("<APPLICATION_ID>").content.editSEOMarkupSchema(id: i
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String | yes | Alphanumeric ID allotted to a SEO Markup Schema Template created within a business. |  
-| body | SEOSchemaMarkupTemplate | yes | Request body |
+| body | SEOSchemaMarkupTemplateRequestBody | yes | Request body |
 
 
 Use this API to edit an existing SEO Markup schema an application
@@ -9863,13 +9863,20 @@ Get list of custom objects
 
 
 ```swift
-platformClient.content.getCustomObjects() { (response, error) in
+platformClient.content.getCustomObjects(definitionId: definitionId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
 
 
 
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| definitionId | String? | no |  |   
+| pageNo | String | yes |  |   
+| pageSize | String | yes |  |  
 
 
 
@@ -12590,13 +12597,20 @@ Get list of custom objects
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").content.getAppCustomObjects() { (response, error) in
+platformClient.application("<APPLICATION_ID>").content.getAppCustomObjects(definitionId: definitionId, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
 
 
 
+
+
+| Argument | Type | Required | Description |
+| -------- | ---- | -------- | ----------- | 
+| definitionId | String? | no |  |   
+| pageNo | String | yes |  |   
+| pageSize | String | yes |  |  
 
 
 
@@ -13562,6 +13576,7 @@ Success. Get headers of custom object definition
  | createdAt | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
  | application | String? |  yes  |  |
+ | targetJson | [String: Any]? |  yes  |  |
 
 ---
 
@@ -13576,6 +13591,7 @@ Success. Get headers of custom object definition
  | pageType | String? |  yes  |  |
  | schema | String? |  yes  |  |
  | description | String? |  yes  |  |
+ | targetJson | [String: Any]? |  yes  |  |
  | active | Bool? |  yes  |  |
  | createdAt | String? |  yes  |  |
  | updatedAt | String? |  yes  |  |
@@ -13661,6 +13677,7 @@ Success. Get headers of custom object definition
  | ---------- | ---- | -------- | ----------- |
  | pageType | String? |  yes  |  |
  | schema | String? |  yes  |  |
+ | targetJson | [String: Any]? |  yes  |  |
 
 ---
 

@@ -1966,17 +1966,6 @@ Kafka response published to generate payment receipt
 
  
  
- #### [Params](#Params)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subpath | String? |  yes  | The subpath for the file. |
-
----
-
-
- 
- 
  #### [StartRequest](#StartRequest)
 
  | Properties | Type | Nullable | Description |
@@ -1985,7 +1974,7 @@ Kafka response published to generate payment receipt
  | contentType | String |  no  |  |
  | size | Int |  no  |  |
  | tags | [String]? |  yes  |  |
- | params | [Params](#Params)? |  yes  |  |
+ | params | [String: Any]? |  yes  |  |
 
 ---
 
