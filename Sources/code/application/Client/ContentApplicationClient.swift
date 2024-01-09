@@ -37,8 +37,6 @@ extension ApplicationClient {
             
             ulrs["getSEOConfiguration"] = config.domain.appendAsPath("/service/application/content/v1.0/seo") 
             
-            ulrs["getSEOMarkupSchemas"] = config.domain.appendAsPath("/service/application/content/v1.0/seo/schema") 
-            
             ulrs["getSlideshows"] = config.domain.appendAsPath("/service/application/content/v1.0/slideshow/") 
             
             ulrs["getSlideshow"] = config.domain.appendAsPath("/service/application/content/v1.0/slideshow/{slug}") 
@@ -50,10 +48,6 @@ extension ApplicationClient {
             ulrs["getPage"] = config.domain.appendAsPath("/service/application/content/v2.0/pages/{slug}") 
             
             ulrs["getPages"] = config.domain.appendAsPath("/service/application/content/v2.0/pages/") 
-            
-            ulrs["getCustomObject"] = config.domain.appendAsPath("/service/application/content/v1.0/metaobjects/{metaobject_id}") 
-            
-            ulrs["getCustomFields"] = config.domain.appendAsPath("/service/application/content/v1.0/metafields/{resource}/{resource_id}") 
             
             self.relativeUrls = ulrs
         }
@@ -855,72 +849,6 @@ if let value = pageSize {
         
         /**
         *
-        * Summary: Get SEO Markup schemas of an application
-        * Description: Use this API to get all SEO Markup schema Templates setup for an application
-        **/
-        public func getSEOMarkupSchemas(
-            pageType: String?,
-            active: Bool?,
-            
-            onResponse: @escaping (_ response: SeoSchemaComponent?, _ error: FDKError?) -> Void
-        ) {
-            
-var xQuery: [String: Any] = [:] 
-
-if let value = pageType {
-    
-    xQuery["page_type"] = value
-    
-}
-
-
-if let value = active {
-    
-    xQuery["active"] = value
-    
-}
-
-
- 
-
-
-            
-            let fullUrl = relativeUrls["getSEOMarkupSchemas"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: xQuery,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SeoSchemaComponent.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
         * Summary: Get the slideshows
         * Description: Use this API to get a list of slideshows along with their details.
         **/
@@ -1346,115 +1274,6 @@ if let value = pageSize {
                 }
             }
             return paginator
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get custom object details
-        * Description: Use this API to retrieve the custom object details, their fields details with definitions and references.
-        **/
-        public func getCustomObject(
-            metaobjectId: String,
-            
-            onResponse: @escaping (_ response: CustomObjectByIdSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getCustomObject"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "metaobject_id" + "}", with: "\(metaobjectId)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomObjectByIdSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get list of custom fields of given resource and resource_id.
-        * Description: Use this API to retrieve the custom fields for given resource and resource_id in param.
-        **/
-        public func getCustomFields(
-            resource: String,
-            resourceId: String,
-            
-            onResponse: @escaping (_ response: CustomFieldsResponseByResourceIdSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            var fullUrl = relativeUrls["getCustomFields"] ?? ""
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource" + "}", with: "\(resource)")
-            
-                fullUrl = fullUrl.replacingOccurrences(of: "{" + "resource_id" + "}", with: "\(resourceId)")
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: nil,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(CustomFieldsResponseByResourceIdSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
         }
         
         

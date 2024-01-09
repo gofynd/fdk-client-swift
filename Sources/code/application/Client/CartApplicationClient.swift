@@ -553,8 +553,6 @@ if let value = buyNow {
         public func getCoupons(
             id: String?,
             buyNow: Bool?,
-            slug: String?,
-            storeId: String?,
             
             onResponse: @escaping (_ response: GetCouponResponse?, _ error: FDKError?) -> Void
         ) {
@@ -571,20 +569,6 @@ if let value = id {
 if let value = buyNow {
     
     xQuery["buy_now"] = value
-    
-}
-
-
-if let value = slug {
-    
-    xQuery["slug"] = value
-    
-}
-
-
-if let value = storeId {
-    
-    xQuery["store_id"] = value
     
 }
 

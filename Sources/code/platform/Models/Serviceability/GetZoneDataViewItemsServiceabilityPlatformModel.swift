@@ -28,13 +28,15 @@ public extension PlatformClient.Serviceability {
         
         public var storeIds: [Int]
         
-        public var regionType: String?
+        public var regionType: String
         
         public var mapping: [ZoneMappingType]
         
         public var assignmentPreference: String?
         
         public var storesCount: Int
+        
+        public var pincodesCount: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -63,9 +65,11 @@ public extension PlatformClient.Serviceability {
             
             case storesCount = "stores_count"
             
+            case pincodesCount = "pincodes_count"
+            
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String? = nil, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, pincodesCount: Int, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -90,6 +94,8 @@ public extension PlatformClient.Serviceability {
             self.assignmentPreference = assignmentPreference
             
             self.storesCount = storesCount
+            
+            self.pincodesCount = pincodesCount
             
         }
 
@@ -144,16 +150,9 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    regionType = try container.decode(String.self, forKey: .regionType)
+                regionType = try container.decode(String.self, forKey: .regionType)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
@@ -174,6 +173,11 @@ public extension PlatformClient.Serviceability {
             
             
                 storesCount = try container.decode(Int.self, forKey: .storesCount)
+                
+            
+            
+            
+                pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
                 
             
             
@@ -240,6 +244,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(storesCount, forKey: .storesCount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
             
             
         }
@@ -274,13 +283,15 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var storeIds: [Int]
         
-        public var regionType: String?
+        public var regionType: String
         
         public var mapping: [ZoneMappingType]
         
         public var assignmentPreference: String?
         
         public var storesCount: Int
+        
+        public var pincodesCount: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -309,9 +320,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case storesCount = "stores_count"
             
+            case pincodesCount = "pincodes_count"
+            
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String? = nil, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int? = nil, isActive: Bool, mapping: [ZoneMappingType], name: String, pincodesCount: Int, product: ZoneProductTypes, regionType: String, slug: String, storesCount: Int, storeIds: [Int], zoneId: String) {
             
             self.zoneId = zoneId
             
@@ -336,6 +349,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.assignmentPreference = assignmentPreference
             
             self.storesCount = storesCount
+            
+            self.pincodesCount = pincodesCount
             
         }
 
@@ -390,16 +405,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    regionType = try container.decode(String.self, forKey: .regionType)
+                regionType = try container.decode(String.self, forKey: .regionType)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 mapping = try container.decode([ZoneMappingType].self, forKey: .mapping)
@@ -420,6 +428,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 storesCount = try container.decode(Int.self, forKey: .storesCount)
+                
+            
+            
+            
+                pincodesCount = try container.decode(Int.self, forKey: .pincodesCount)
                 
             
             
@@ -486,6 +499,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(storesCount, forKey: .storesCount)
+            
+            
+            
+            
+            try? container.encodeIfPresent(pincodesCount, forKey: .pincodesCount)
             
             
         }

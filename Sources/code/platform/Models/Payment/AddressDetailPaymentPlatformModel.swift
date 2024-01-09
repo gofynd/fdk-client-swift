@@ -40,7 +40,7 @@ public extension PlatformClient.Payment {
         
         public var name: String
         
-        public var addressType: String?
+        public var addressType: String
         
         public var address: String
         
@@ -93,7 +93,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(address: String, addressType: String? = nil, area: String, areaCode: String, areaCodeSlug: String, city: String, country: String, countryIsoCode: String, countryPhoneCode: String, email: String? = nil, expireAt: String? = nil, geoLocation: [String: Any]? = nil, googleMapPoint: [String: Any]? = nil, gAddressId: String, landmark: String? = nil, name: String, phone: String, state: String, tags: [[String: Any]]? = nil) {
+        public init(address: String, addressType: String, area: String, areaCode: String, areaCodeSlug: String, city: String, country: String, countryIsoCode: String, countryPhoneCode: String, email: String? = nil, expireAt: String? = nil, geoLocation: [String: Any]? = nil, googleMapPoint: [String: Any]? = nil, gAddressId: String, landmark: String? = nil, name: String, phone: String, state: String, tags: [[String: Any]]? = nil) {
             
             self.googleMapPoint = googleMapPoint
             
@@ -237,16 +237,9 @@ public extension PlatformClient.Payment {
             
             
             
-                do {
-                    addressType = try container.decode(String.self, forKey: .addressType)
+                addressType = try container.decode(String.self, forKey: .addressType)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 address = try container.decode(String.self, forKey: .address)
@@ -359,7 +352,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
             
             
             
@@ -426,7 +419,7 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var name: String
         
-        public var addressType: String?
+        public var addressType: String
         
         public var address: String
         
@@ -479,7 +472,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(address: String, addressType: String? = nil, area: String, areaCode: String, areaCodeSlug: String, city: String, country: String, countryIsoCode: String, countryPhoneCode: String, email: String? = nil, expireAt: String? = nil, geoLocation: [String: Any]? = nil, googleMapPoint: [String: Any]? = nil, gAddressId: String, landmark: String? = nil, name: String, phone: String, state: String, tags: [[String: Any]]? = nil) {
+        public init(address: String, addressType: String, area: String, areaCode: String, areaCodeSlug: String, city: String, country: String, countryIsoCode: String, countryPhoneCode: String, email: String? = nil, expireAt: String? = nil, geoLocation: [String: Any]? = nil, googleMapPoint: [String: Any]? = nil, gAddressId: String, landmark: String? = nil, name: String, phone: String, state: String, tags: [[String: Any]]? = nil) {
             
             self.googleMapPoint = googleMapPoint
             
@@ -623,16 +616,9 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                do {
-                    addressType = try container.decode(String.self, forKey: .addressType)
+                addressType = try container.decode(String.self, forKey: .addressType)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 address = try container.decode(String.self, forKey: .address)
@@ -745,7 +731,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(addressType, forKey: .addressType)
+            try? container.encodeIfPresent(addressType, forKey: .addressType)
             
             
             

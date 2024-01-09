@@ -12,7 +12,7 @@ public extension PlatformClient.FileStorage {
     class DummyTemplateDataPayload: Codable {
         
         
-        public var isExport: Bool?
+        public var isInternational: Bool?
         
         public var appDomainName: String?
         
@@ -85,7 +85,7 @@ public extension PlatformClient.FileStorage {
 
         public enum CodingKeys: String, CodingKey {
             
-            case isExport = "is_export"
+            case isInternational = "is_international"
             
             case appDomainName = "app_domain_name"
             
@@ -157,9 +157,9 @@ public extension PlatformClient.FileStorage {
             
         }
 
-        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, currencyCode: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isExport: Bool? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, uid: String? = nil, upiQrcode: String? = nil, waybills: [[String: Any]]? = nil) {
+        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, currencyCode: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isInternational: Bool? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, uid: String? = nil, upiQrcode: String? = nil, waybills: [[String: Any]]? = nil) {
             
-            self.isExport = isExport
+            self.isInternational = isInternational
             
             self.appDomainName = appDomainName
             
@@ -236,7 +236,7 @@ public extension PlatformClient.FileStorage {
             
             
                 do {
-                    isExport = try container.decode(Bool.self, forKey: .isExport)
+                    isInternational = try container.decode(Bool.self, forKey: .isInternational)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -661,7 +661,7 @@ public extension PlatformClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(isExport, forKey: .isExport)
+            try? container.encodeIfPresent(isInternational, forKey: .isInternational)
             
             
             
@@ -850,7 +850,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
     class DummyTemplateDataPayload: Codable {
         
         
-        public var isExport: Bool?
+        public var isInternational: Bool?
         
         public var appDomainName: String?
         
@@ -923,7 +923,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
 
         public enum CodingKeys: String, CodingKey {
             
-            case isExport = "is_export"
+            case isInternational = "is_international"
             
             case appDomainName = "app_domain_name"
             
@@ -995,9 +995,9 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
         }
 
-        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, currencyCode: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isExport: Bool? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, uid: String? = nil, upiQrcode: String? = nil, waybills: [[String: Any]]? = nil) {
+        public init(amountPaid: Double? = nil, amountToBeCollected: Double? = nil, appDomainName: String? = nil, awbNumberBarcode: String? = nil, brandLogo: String? = nil, companyDetail: CompanyDetail? = nil, conversionRate: ConversionRate? = nil, currencyCode: String? = nil, customerBillingDetail: CustomerBillingDetail? = nil, customerShippingDetail: CustomerShippingDetail? = nil, declarationTexts: [String]? = nil, deliveryPartnerDetail: DeliveryPartnerDetail? = nil, digitalsignature: String? = nil, disclaimer: String? = nil, image: Image? = nil, invoiceDetail: InvoiceDetail? = nil, isInternational: Bool? = nil, isSelfPickup: Bool? = nil, isSelfShip: Bool? = nil, meta: Meta? = nil, mode: String? = nil, payments: [PaymentData]? = nil, platformName: String? = nil, productTable: ProductTable? = nil, registeredCompanyDetail: RegisteredCompanyDetail? = nil, returnDetail: ReturnDetail? = nil, shipmentId: String? = nil, shipmentIdBarcode: String? = nil, signedQrcode: String? = nil, storeDetail: StoreDetail? = nil, taxTable: TaxTable? = nil, totalItems: Double? = nil, uid: String? = nil, upiQrcode: String? = nil, waybills: [[String: Any]]? = nil) {
             
-            self.isExport = isExport
+            self.isInternational = isInternational
             
             self.appDomainName = appDomainName
             
@@ -1074,7 +1074,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
                 do {
-                    isExport = try container.decode(Bool.self, forKey: .isExport)
+                    isInternational = try container.decode(Bool.self, forKey: .isInternational)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1499,7 +1499,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-            try? container.encodeIfPresent(isExport, forKey: .isExport)
+            try? container.encodeIfPresent(isInternational, forKey: .isInternational)
             
             
             

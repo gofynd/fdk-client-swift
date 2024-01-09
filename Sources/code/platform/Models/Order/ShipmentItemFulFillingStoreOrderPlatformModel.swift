@@ -14,7 +14,7 @@ public extension PlatformClient.Order {
         
         public var phone: String?
         
-        public var brandStoreTags: [String]?
+        public var brandStoreTags: String?
         
         public var pincode: String?
         
@@ -35,8 +35,6 @@ public extension PlatformClient.Order {
         public var state: String?
         
         public var city: String?
-        
-        public var tags: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -65,11 +63,9 @@ public extension PlatformClient.Order {
             
             case city = "city"
             
-            case tags = "tags"
-            
         }
 
-        public init(address: String? = nil, brandStoreTags: [String]? = nil, city: String? = nil, code: String, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil, tags: [String]? = nil) {
+        public init(address: String? = nil, brandStoreTags: String? = nil, city: String? = nil, code: String, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil) {
             
             self.phone = phone
             
@@ -95,8 +91,6 @@ public extension PlatformClient.Order {
             
             self.city = city
             
-            self.tags = tags
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -116,7 +110,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    brandStoreTags = try container.decode([String].self, forKey: .brandStoreTags)
+                    brandStoreTags = try container.decode(String.self, forKey: .brandStoreTags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -232,18 +226,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -307,11 +289,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(city, forKey: .city)
-            
-            
-            
-            
-            try? container.encode(tags, forKey: .tags)
             
             
         }
@@ -332,7 +309,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var phone: String?
         
-        public var brandStoreTags: [String]?
+        public var brandStoreTags: String?
         
         public var pincode: String?
         
@@ -353,8 +330,6 @@ public extension PlatformClient.ApplicationClient.Order {
         public var state: String?
         
         public var city: String?
-        
-        public var tags: [String]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -383,11 +358,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case city = "city"
             
-            case tags = "tags"
-            
         }
 
-        public init(address: String? = nil, brandStoreTags: [String]? = nil, city: String? = nil, code: String, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil, tags: [String]? = nil) {
+        public init(address: String? = nil, brandStoreTags: String? = nil, city: String? = nil, code: String, id: Int, locationType: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, storeEmail: String? = nil) {
             
             self.phone = phone
             
@@ -413,8 +386,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.city = city
             
-            self.tags = tags
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -434,7 +405,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    brandStoreTags = try container.decode([String].self, forKey: .brandStoreTags)
+                    brandStoreTags = try container.decode(String.self, forKey: .brandStoreTags)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -550,18 +521,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    tags = try container.decode([String].self, forKey: .tags)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -625,11 +584,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(city, forKey: .city)
-            
-            
-            
-            
-            try? container.encode(tags, forKey: .tags)
             
             
         }

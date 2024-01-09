@@ -24,8 +24,6 @@ public extension PlatformClient.Configuration {
         
         public var app: String?
         
-        public var v: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -41,11 +39,9 @@ public extension PlatformClient.Configuration {
             
             case app = "app"
             
-            case v = "__v"
-            
         }
 
-        public init(allStores: Bool? = nil, app: String? = nil, deployedStores: [Int]? = nil, enabled: Bool? = nil, type: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(allStores: Bool? = nil, app: String? = nil, deployedStores: [Int]? = nil, enabled: Bool? = nil, type: String? = nil, id: String? = nil) {
             
             self.deployedStores = deployedStores
             
@@ -58,8 +54,6 @@ public extension PlatformClient.Configuration {
             self.id = id
             
             self.app = app
-            
-            self.v = v
             
         }
 
@@ -138,18 +132,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    v = try container.decode(Int.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -183,11 +165,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(app, forKey: .app)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }
@@ -218,8 +195,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var app: String?
         
-        public var v: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -235,11 +210,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case app = "app"
             
-            case v = "__v"
-            
         }
 
-        public init(allStores: Bool? = nil, app: String? = nil, deployedStores: [Int]? = nil, enabled: Bool? = nil, type: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(allStores: Bool? = nil, app: String? = nil, deployedStores: [Int]? = nil, enabled: Bool? = nil, type: String? = nil, id: String? = nil) {
             
             self.deployedStores = deployedStores
             
@@ -252,8 +225,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.id = id
             
             self.app = app
-            
-            self.v = v
             
         }
 
@@ -332,18 +303,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    v = try container.decode(Int.self, forKey: .v)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -377,11 +336,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(app, forKey: .app)
-            
-            
-            
-            
-            try? container.encodeIfPresent(v, forKey: .v)
             
             
         }

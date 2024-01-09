@@ -26,10 +26,6 @@ public extension ApplicationClient.Configuration {
         
         public var id: String?
         
-        public var slug: String?
-        
-        public var companyId: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -51,13 +47,9 @@ public extension ApplicationClient.Configuration {
             
             case id = "_id"
             
-            case slug = "slug"
-            
-            case companyId = "company_id"
-            
         }
 
-        public init(banner: SecureUrl? = nil, companyId: Int? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, logo: SecureUrl? = nil, mobileLogo: SecureUrl? = nil, name: String, slug: String? = nil, id: String? = nil) {
+        public init(banner: SecureUrl? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, logo: SecureUrl? = nil, mobileLogo: SecureUrl? = nil, name: String, id: String? = nil) {
             
             self.name = name
             
@@ -76,10 +68,6 @@ public extension ApplicationClient.Configuration {
             self.domains = domains
             
             self.id = id
-            
-            self.slug = slug
-            
-            self.companyId = companyId
             
         }
 
@@ -187,30 +175,6 @@ public extension ApplicationClient.Configuration {
             }
             
             
-            
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                companyId = try container.decode(Int.self, forKey: .companyId)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -259,16 +223,6 @@ public extension ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(id, forKey: .id)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }

@@ -16,6 +16,8 @@ public extension ApplicationClient.User {
         
         public var registerToken: String?
         
+        public var captchaCode: String?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -27,9 +29,11 @@ public extension ApplicationClient.User {
             
             case registerToken = "register_token"
             
+            case captchaCode = "captcha_code"
+            
         }
 
-        public init(action: String? = nil, email: String? = nil, registerToken: String? = nil, token: String? = nil) {
+        public init(action: String? = nil, captchaCode: String? = nil, email: String? = nil, registerToken: String? = nil, token: String? = nil) {
             
             self.email = email
             
@@ -38,6 +42,8 @@ public extension ApplicationClient.User {
             self.token = token
             
             self.registerToken = registerToken
+            
+            self.captchaCode = captchaCode
             
         }
 
@@ -92,6 +98,18 @@ public extension ApplicationClient.User {
             }
             
             
+            
+            do {
+                captchaCode = try container.decode(String.self, forKey: .captchaCode)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -115,6 +133,11 @@ public extension ApplicationClient.User {
             
             
             try? container.encodeIfPresent(registerToken, forKey: .registerToken)
+            
+            
+            
+            
+            try? container.encodeIfPresent(captchaCode, forKey: .captchaCode)
             
             
         }

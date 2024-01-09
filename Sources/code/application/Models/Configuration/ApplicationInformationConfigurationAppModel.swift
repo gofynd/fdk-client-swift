@@ -14,19 +14,19 @@ public extension ApplicationClient.Configuration {
         
         public var socialLinks: SocialLinks?
         
-        public var links: [Links]?
+        public var links: Links?
         
         public var copyrightText: String?
         
         public var id: String?
         
-        public var businessHighlights: [BusinessHighlights]?
+        public var businessHighlights: BusinessHighlights?
         
         public var application: String?
         
         public var createdAt: String?
         
-        public var modifiedAt: String?
+        public var updatedAt: String?
         
         public var v: Int?
         
@@ -51,13 +51,13 @@ public extension ApplicationClient.Configuration {
             
             case createdAt = "created_at"
             
-            case modifiedAt = "modified_at"
+            case updatedAt = "updated_at"
             
             case v = "__v"
             
         }
 
-        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: [BusinessHighlights]? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: [Links]? = nil, modifiedAt: String? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, id: String? = nil, v: Int? = nil) {
+        public init(address: InformationAddress? = nil, application: String? = nil, businessHighlights: BusinessHighlights? = nil, copyrightText: String? = nil, createdAt: String? = nil, links: Links? = nil, socialLinks: SocialLinks? = nil, support: InformationSupport? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.address = address
             
@@ -77,7 +77,7 @@ public extension ApplicationClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.modifiedAt = modifiedAt
+            self.updatedAt = updatedAt
             
             self.v = v
             
@@ -124,7 +124,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                links = try container.decode([Links].self, forKey: .links)
+                links = try container.decode(Links.self, forKey: .links)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -160,7 +160,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                businessHighlights = try container.decode([BusinessHighlights].self, forKey: .businessHighlights)
+                businessHighlights = try container.decode(BusinessHighlights.self, forKey: .businessHighlights)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -196,7 +196,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
+                updatedAt = try container.decode(String.self, forKey: .updatedAt)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -270,7 +270,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             

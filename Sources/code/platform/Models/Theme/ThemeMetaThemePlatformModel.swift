@@ -14,52 +14,40 @@ public extension PlatformClient.Theme {
         
         public var payment: ThemePayment?
         
-        public var description: String?
-        
         public var industry: [String]?
         
-        public var release: Release?
+        public var description: String?
         
-        public var images: Images?
+        public var images: ThemeImages?
         
         public var slug: String?
-        
-        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case payment = "payment"
             
-            case description = "description"
-            
             case industry = "industry"
             
-            case release = "release"
+            case description = "description"
             
             case images = "images"
             
             case slug = "slug"
             
-            case name = "name"
-            
         }
 
-        public init(description: String? = nil, images: Images? = nil, industry: [String]? = nil, name: String? = nil, payment: ThemePayment? = nil, release: Release? = nil, slug: String? = nil) {
+        public init(description: String? = nil, images: ThemeImages? = nil, industry: [String]? = nil, payment: ThemePayment? = nil, slug: String? = nil) {
             
             self.payment = payment
             
-            self.description = description
-            
             self.industry = industry
             
-            self.release = release
+            self.description = description
             
             self.images = images
             
             self.slug = slug
-            
-            self.name = name
             
         }
 
@@ -69,18 +57,6 @@ public extension PlatformClient.Theme {
             
                 do {
                     payment = try container.decode(ThemePayment.self, forKey: .payment)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -104,7 +80,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    release = try container.decode(Release.self, forKey: .release)
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -116,7 +92,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    images = try container.decode(Images.self, forKey: .images)
+                    images = try container.decode(ThemeImages.self, forKey: .images)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -138,18 +114,6 @@ public extension PlatformClient.Theme {
                 }
                 
             
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -162,17 +126,12 @@ public extension PlatformClient.Theme {
             
             
             
-            try? container.encodeIfPresent(description, forKey: .description)
-            
-            
-            
-            
             try? container.encodeIfPresent(industry, forKey: .industry)
             
             
             
             
-            try? container.encodeIfPresent(release, forKey: .release)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
@@ -183,11 +142,6 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }
@@ -208,52 +162,40 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var payment: ThemePayment?
         
-        public var description: String?
-        
         public var industry: [String]?
         
-        public var release: Release?
+        public var description: String?
         
-        public var images: Images?
+        public var images: ThemeImages?
         
         public var slug: String?
-        
-        public var name: String?
         
 
         public enum CodingKeys: String, CodingKey {
             
             case payment = "payment"
             
-            case description = "description"
-            
             case industry = "industry"
             
-            case release = "release"
+            case description = "description"
             
             case images = "images"
             
             case slug = "slug"
             
-            case name = "name"
-            
         }
 
-        public init(description: String? = nil, images: Images? = nil, industry: [String]? = nil, name: String? = nil, payment: ThemePayment? = nil, release: Release? = nil, slug: String? = nil) {
+        public init(description: String? = nil, images: ThemeImages? = nil, industry: [String]? = nil, payment: ThemePayment? = nil, slug: String? = nil) {
             
             self.payment = payment
             
-            self.description = description
-            
             self.industry = industry
             
-            self.release = release
+            self.description = description
             
             self.images = images
             
             self.slug = slug
-            
-            self.name = name
             
         }
 
@@ -263,18 +205,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
                 do {
                     payment = try container.decode(ThemePayment.self, forKey: .payment)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -298,7 +228,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    release = try container.decode(Release.self, forKey: .release)
+                    description = try container.decode(String.self, forKey: .description)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -310,7 +240,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    images = try container.decode(Images.self, forKey: .images)
+                    images = try container.decode(ThemeImages.self, forKey: .images)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -332,18 +262,6 @@ public extension PlatformClient.ApplicationClient.Theme {
                 }
                 
             
-            
-                do {
-                    name = try container.decode(String.self, forKey: .name)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -356,17 +274,12 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             
-            try? container.encodeIfPresent(description, forKey: .description)
-            
-            
-            
-            
             try? container.encodeIfPresent(industry, forKey: .industry)
             
             
             
             
-            try? container.encodeIfPresent(release, forKey: .release)
+            try? container.encodeIfPresent(description, forKey: .description)
             
             
             
@@ -377,11 +290,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(slug, forKey: .slug)
-            
-            
-            
-            
-            try? container.encodeIfPresent(name, forKey: .name)
             
             
         }

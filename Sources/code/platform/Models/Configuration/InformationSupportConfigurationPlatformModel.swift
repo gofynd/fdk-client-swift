@@ -12,9 +12,9 @@ public extension PlatformClient.Configuration {
     class InformationSupport: Codable {
         
         
-        public var phone: [InformationSupportPhone]?
+        public var phone: [String]?
         
-        public var email: [InformationSupportEmail]?
+        public var email: [String]?
         
         public var timing: String?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(email: [InformationSupportEmail]? = nil, phone: [InformationSupportPhone]? = nil, timing: String? = nil) {
+        public init(email: [String]? = nil, phone: [String]? = nil, timing: String? = nil) {
             
             self.phone = phone
             
@@ -44,7 +44,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    phone = try container.decode([InformationSupportPhone].self, forKey: .phone)
+                    phone = try container.decode([String].self, forKey: .phone)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -56,7 +56,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    email = try container.decode([InformationSupportEmail].self, forKey: .email)
+                    email = try container.decode([String].self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -114,9 +114,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
     class InformationSupport: Codable {
         
         
-        public var phone: [InformationSupportPhone]?
+        public var phone: [String]?
         
-        public var email: [InformationSupportEmail]?
+        public var email: [String]?
         
         public var timing: String?
         
@@ -131,7 +131,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(email: [InformationSupportEmail]? = nil, phone: [InformationSupportPhone]? = nil, timing: String? = nil) {
+        public init(email: [String]? = nil, phone: [String]? = nil, timing: String? = nil) {
             
             self.phone = phone
             
@@ -146,7 +146,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    phone = try container.decode([InformationSupportPhone].self, forKey: .phone)
+                    phone = try container.decode([String].self, forKey: .phone)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    email = try container.decode([InformationSupportEmail].self, forKey: .email)
+                    email = try container.decode([String].self, forKey: .email)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

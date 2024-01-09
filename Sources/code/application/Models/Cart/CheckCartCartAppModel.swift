@@ -18,7 +18,7 @@ public extension ApplicationClient.Cart {
         
         public var isValid: Bool?
         
-        public var deliveryCharges: Double?
+        public var deliveryCharges: Int?
         
         public var id: String?
         
@@ -64,7 +64,7 @@ public extension ApplicationClient.Cart {
         
         public var buyNow: Bool?
         
-        public var codCharges: Double?
+        public var codCharges: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -129,7 +129,7 @@ public extension ApplicationClient.Cart {
             
         }
 
-        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codAvailable: Bool? = nil, codCharges: Double? = nil, codMessage: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryCharges: Double? = nil, deliveryChargeInfo: String? = nil, deliveryChargeOrderValue: Int? = nil, deliveryPromise: ShipmentPromise? = nil, errorMessage: String? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, orderId: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, storeCode: String? = nil, storeEmps: [[String: Any]]? = nil, success: Bool? = nil, uid: String? = nil, userType: String? = nil) {
+        public init(breakupValues: CartBreakup? = nil, buyNow: Bool? = nil, cartId: Int? = nil, checkoutMode: String? = nil, codAvailable: Bool? = nil, codCharges: Int? = nil, codMessage: String? = nil, comment: String? = nil, couponText: String? = nil, currency: CartCurrency? = nil, deliveryCharges: Int? = nil, deliveryChargeInfo: String? = nil, deliveryChargeOrderValue: Int? = nil, deliveryPromise: ShipmentPromise? = nil, errorMessage: String? = nil, gstin: String? = nil, id: String? = nil, isValid: Bool? = nil, items: [CartProductInfo]? = nil, lastModified: String? = nil, message: String? = nil, orderId: String? = nil, paymentSelectionLock: PaymentSelectionLock? = nil, restrictCheckout: Bool? = nil, storeCode: String? = nil, storeEmps: [[String: Any]]? = nil, success: Bool? = nil, uid: String? = nil, userType: String? = nil) {
             
             self.checkoutMode = checkoutMode
             
@@ -256,7 +256,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                deliveryCharges = try container.decode(Double.self, forKey: .deliveryCharges)
+                deliveryCharges = try container.decode(Int.self, forKey: .deliveryCharges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -532,7 +532,7 @@ public extension ApplicationClient.Cart {
             
             
             do {
-                codCharges = try container.decode(Double.self, forKey: .codCharges)
+                codCharges = try container.decode(Int.self, forKey: .codCharges)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)

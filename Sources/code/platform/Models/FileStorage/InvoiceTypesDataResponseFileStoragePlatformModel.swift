@@ -26,7 +26,7 @@ public extension PlatformClient.FileStorage {
         
         public var visibility: Bool
         
-        public var countryCode: String
+        public var countryCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -49,7 +49,7 @@ public extension PlatformClient.FileStorage {
             
         }
 
-        public init(countryCode: String, format: [String], name: String, pdfTypeId: Int, status: Bool? = nil, visibility: Bool, id: String, v: Int) {
+        public init(countryCode: String? = nil, format: [String], name: String, pdfTypeId: Int, status: Bool? = nil, visibility: Bool, id: String, v: Int) {
             
             self.status = status
             
@@ -115,9 +115,16 @@ public extension PlatformClient.FileStorage {
             
             
             
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                do {
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -194,7 +201,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
         
         public var visibility: Bool
         
-        public var countryCode: String
+        public var countryCode: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -217,7 +224,7 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
         }
 
-        public init(countryCode: String, format: [String], name: String, pdfTypeId: Int, status: Bool? = nil, visibility: Bool, id: String, v: Int) {
+        public init(countryCode: String? = nil, format: [String], name: String, pdfTypeId: Int, status: Bool? = nil, visibility: Bool, id: String, v: Int) {
             
             self.status = status
             
@@ -283,9 +290,16 @@ public extension PlatformClient.ApplicationClient.FileStorage {
             
             
             
-                countryCode = try container.decode(String.self, forKey: .countryCode)
+                do {
+                    countryCode = try container.decode(String.self, forKey: .countryCode)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         

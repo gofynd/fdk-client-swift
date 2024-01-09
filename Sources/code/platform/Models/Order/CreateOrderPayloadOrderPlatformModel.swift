@@ -12,40 +12,35 @@ public extension PlatformClient.Order {
     class CreateOrderPayload: Codable {
         
         
-        public var affiliateId: String
-        
         public var orderInfo: OrderInfo
         
         public var orderConfig: OrderConfig
         
+        public var affiliateId: String
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case affiliateId = "affiliate_id"
             
             case orderInfo = "order_info"
             
             case orderConfig = "order_config"
             
+            case affiliateId = "affiliate_id"
+            
         }
 
         public init(affiliateId: String, orderConfig: OrderConfig, orderInfo: OrderInfo) {
-            
-            self.affiliateId = affiliateId
             
             self.orderInfo = orderInfo
             
             self.orderConfig = orderConfig
             
+            self.affiliateId = affiliateId
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
-                
-            
             
             
                 orderInfo = try container.decode(OrderInfo.self, forKey: .orderInfo)
@@ -57,15 +52,15 @@ public extension PlatformClient.Order {
                 
             
             
+            
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-            
             
             
             
@@ -75,6 +70,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(orderConfig, forKey: .orderConfig)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
             
             
         }
@@ -93,40 +93,35 @@ public extension PlatformClient.ApplicationClient.Order {
     class CreateOrderPayload: Codable {
         
         
-        public var affiliateId: String
-        
         public var orderInfo: OrderInfo
         
         public var orderConfig: OrderConfig
         
+        public var affiliateId: String
+        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case affiliateId = "affiliate_id"
             
             case orderInfo = "order_info"
             
             case orderConfig = "order_config"
             
+            case affiliateId = "affiliate_id"
+            
         }
 
         public init(affiliateId: String, orderConfig: OrderConfig, orderInfo: OrderInfo) {
-            
-            self.affiliateId = affiliateId
             
             self.orderInfo = orderInfo
             
             self.orderConfig = orderConfig
             
+            self.affiliateId = affiliateId
+            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                affiliateId = try container.decode(String.self, forKey: .affiliateId)
-                
-            
             
             
                 orderInfo = try container.decode(OrderInfo.self, forKey: .orderInfo)
@@ -138,15 +133,15 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
+            
+                affiliateId = try container.decode(String.self, forKey: .affiliateId)
+                
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
-            
             
             
             
@@ -156,6 +151,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderConfig, forKey: .orderConfig)
+            
+            
+            
+            
+            try? container.encodeIfPresent(affiliateId, forKey: .affiliateId)
             
             
         }

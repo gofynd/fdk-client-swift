@@ -14,10 +14,6 @@ public extension PlatformClient.ApplicationClient.User {
     class UserGroupResponseSchema: Codable {
         
         
-        public var conditions: [Conditions]?
-        
-        public var error: UserResponseErrorSchema?
-        
         public var name: String?
         
         public var description: String?
@@ -27,10 +23,6 @@ public extension PlatformClient.ApplicationClient.User {
         public var id: String?
         
         public var status: String?
-        
-        public var isActive: Bool?
-        
-        public var type: String?
         
         public var uid: Int?
         
@@ -45,10 +37,6 @@ public extension PlatformClient.ApplicationClient.User {
 
         public enum CodingKeys: String, CodingKey {
             
-            case conditions = "conditions"
-            
-            case error = "error"
-            
             case name = "name"
             
             case description = "description"
@@ -58,10 +46,6 @@ public extension PlatformClient.ApplicationClient.User {
             case id = "_id"
             
             case status = "status"
-            
-            case isActive = "is_active"
-            
-            case type = "type"
             
             case uid = "uid"
             
@@ -75,11 +59,7 @@ public extension PlatformClient.ApplicationClient.User {
             
         }
 
-        public init(applicationId: String? = nil, conditions: [Conditions]? = nil, createdAt: String? = nil, description: String? = nil, error: UserResponseErrorSchema? = nil, fileUrl: String? = nil, isActive: Bool? = nil, modifiedAt: String? = nil, name: String? = nil, status: String? = nil, type: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
-            
-            self.conditions = conditions
-            
-            self.error = error
+        public init(applicationId: String? = nil, createdAt: String? = nil, description: String? = nil, fileUrl: String? = nil, modifiedAt: String? = nil, name: String? = nil, status: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
             
             self.name = name
             
@@ -90,10 +70,6 @@ public extension PlatformClient.ApplicationClient.User {
             self.id = id
             
             self.status = status
-            
-            self.isActive = isActive
-            
-            self.type = type
             
             self.uid = uid
             
@@ -109,30 +85,6 @@ public extension PlatformClient.ApplicationClient.User {
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-                do {
-                    conditions = try container.decode([Conditions].self, forKey: .conditions)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    error = try container.decode(UserResponseErrorSchema.self, forKey: .error)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
             
             
                 do {
@@ -185,30 +137,6 @@ public extension PlatformClient.ApplicationClient.User {
             
                 do {
                     status = try container.decode(String.self, forKey: .status)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    isActive = try container.decode(Bool.self, forKey: .isActive)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    type = try container.decode(String.self, forKey: .type)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -285,16 +213,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             
-            try? container.encodeIfPresent(conditions, forKey: .conditions)
-            
-            
-            
-            
-            try? container.encodeIfPresent(error, forKey: .error)
-            
-            
-            
-            
             try? container.encodeIfPresent(name, forKey: .name)
             
             
@@ -316,16 +234,6 @@ public extension PlatformClient.ApplicationClient.User {
             
             
             try? container.encodeIfPresent(status, forKey: .status)
-            
-            
-            
-            
-            try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(type, forKey: .type)
             
             
             

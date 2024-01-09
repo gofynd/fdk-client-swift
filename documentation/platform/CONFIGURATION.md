@@ -103,37 +103,29 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "is_active": true,
-    "_id": "5ea9b318bc23a343ab6d442f",
-    "app_name": "TestUniket",
-    "landing_image": {
-      "aspect_ratio": "57/51",
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
-    },
-    "splash_image": {
-      "aspect_ratio": "1/1",
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
-    },
-    "application": "000000000000000000000001",
-    "platform_type": "android",
-    "created_at": "2020-04-29T17:02:16.976Z",
-    "modified_at": "2021-02-23T17:10:26.872Z",
-    "__v": 0,
-    "package_name": "com.fynd.store.x000000000000000000000004"
-  }
+  "is_active": true,
+  "_id": "5ea9b318bc23a343ab6d442f",
+  "app_name": "TestUniket",
+  "landing_image": {
+    "aspect_ratio": "57/51",
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
+  },
+  "splash_image": {
+    "aspect_ratio": "1/1",
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
+  },
+  "application": "000000000000000000000004",
+  "platform_type": "android",
+  "created_at": "2020-04-29T17:02:16.976Z",
+  "modified_at": "2021-02-23T17:10:26.872Z",
+  "__v": 0,
+  "package_name": "com.fynd.store.x000000000000000000000004"
 }
 ```
-</details>
-
 </details>
 
 
@@ -184,37 +176,29 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "is_active": true,
-    "_id": "5ea9b318bc23a343ab6d442f",
-    "app_name": "TestUniket",
-    "landing_image": {
-      "aspect_ratio": "57/51",
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
-    },
-    "splash_image": {
-      "aspect_ratio": "1/1",
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
-    },
-    "application": "000000000000000000000001",
-    "platform_type": "android",
-    "created_at": "2020-04-29T17:02:16.976Z",
-    "modified_at": "2021-02-23T17:10:26.872Z",
-    "__v": 0,
-    "package_name": "com.fynd.store.x000000000000000000000001"
-  }
+  "is_active": true,
+  "_id": "5ea9b318bc23a343ab6d442f",
+  "app_name": "TestUniket",
+  "landing_image": {
+    "aspect_ratio": "57/51",
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-landing/original/yKnXY1ATx-store-landing-image.png"
+  },
+  "splash_image": {
+    "aspect_ratio": "1/1",
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/mobile-build/pictures/free-splash/original/s6d7oYfY6-store-splash-image.png"
+  },
+  "application": "000000000000000000000004",
+  "platform_type": "android",
+  "created_at": "2020-04-29T17:02:16.976Z",
+  "modified_at": "2021-02-23T17:10:26.872Z",
+  "__v": 0,
+  "package_name": "com.fynd.store.x000000000000000000000004"
 }
 ```
-</details>
-
 </details>
 
 
@@ -265,37 +249,24 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "versions": [
-      {
-        "_id": "6035376ab937c5f7c5462888",
-        "application": "000000000000000000000001",
-        "platform_type": "android",
-        "build_status": "pending",
-        "version_name": "0.5.6",
-        "download_url": {
-          "secure_url": "http://test-bucket.s3.amazonaws.com/test-bucket/release/app-uniket-release.apk"
-        },
-        "version_code": 1,
-        "created_at": "2021-02-23T17:12:10.977Z",
-        "modified_at": "2021-02-23T17:12:10.977Z",
-        "__v": 0
-      }
-    ],
-    "latest_available_version_name": "0.5.7"
-  }
+  "versions": {
+    "_id": "6035376ab937c5f7c5462888",
+    "application": "000000000000000000000004",
+    "platform_type": "android",
+    "build_status": "pending",
+    "version_name": "0.5.6",
+    "version_code": 1,
+    "created_at": "2021-02-23T17:12:10.977Z",
+    "modified_at": "2021-02-23T17:12:10.977Z",
+    "__v": 0
+  },
+  "latest_available_version_name": "0.5.7"
 }
 ```
-</details>
-
 </details>
 
 
@@ -341,121 +312,107 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "feature": {
-      "product_detail": {
-        "similar": [
-          "basic",
-          "visual",
-          "brand",
-          "category",
-          "seller",
-          "price",
-          "specs"
+  "feature": {
+    "product_detail": {
+      "similar": [
+        "basic",
+        "visual",
+        "brand",
+        "category",
+        "seller",
+        "price",
+        "specs"
+      ],
+      "seller_selection": true,
+      "update_product_meta": true,
+      "request_product": true
+    },
+    "landing_page": {
+      "launch_page": {
+        "page_type": "home",
+        "params": {},
+        "query": {}
+      },
+      "continue_as_guest": true,
+      "login_btn_text": "Click here to sign-in",
+      "show_domain_textbox": true,
+      "show_register_btn": true
+    },
+    "registration_page": {
+      "ask_store_address": false
+    },
+    "home_page": {
+      "order_processing": true
+    },
+    "common": {
+      "communication_optin_dialog": {
+        "visibility": true
+      },
+      "deployment_store_selection": {
+        "enabled": true,
+        "type": "hard"
+      },
+      "listing_price": {
+        "value": "min",
+        "sort": "min"
+      },
+      "currency": {
+        "value": [
+          "INR"
         ],
-        "seller_selection": true,
-        "update_product_meta": true,
-        "request_product": true
+        "type": "explicit",
+        "default_currency": "INR"
       },
-      "landing_page": {
-        "launch_page": {
-          "page_type": "home",
-          "params": {},
-          "query": {}
+      "revenue_engine": {
+        "enabled": false
+      },
+      "feedback": {
+        "enabled": true
+      },
+      "compare_products": {
+        "enabled": true
+      },
+      "reward_points": {
+        "credit": {
+          "enabled": true
         },
-        "continue_as_guest": true,
-        "login_btn_text": "Click here to sign-in",
-        "show_domain_textbox": true,
-        "show_register_btn": true
-      },
-      "registration_page": {
-        "ask_store_address": false
-      },
-      "home_page": {
-        "order_processing": true
-      },
-      "common": {
-        "communication_optin_dialog": {
-          "visibility": true
-        },
-        "deployment_store_selection": {
+        "debit": {
           "enabled": true,
-          "type": "hard"
-        },
-        "listing_price": {
-          "value": "min",
-          "sort": "min"
-        },
-        "listing_page": {
-          "sort_on": "popular"
-        },
-        "international_shipping": {
-          "enabled": false
-        },
-        "currency": {
-          "value": [
-            "INR"
-          ],
-          "type": "explicit",
-          "default_currency": "INR"
-        },
-        "revenue_engine": {
-          "enabled": false
-        },
-        "feedback": {
-          "enabled": true
-        },
-        "compare_products": {
-          "enabled": true
-        },
-        "reward_points": {
-          "credit": {
-            "enabled": true
-          },
-          "debit": {
-            "enabled": true,
-            "auto_apply": false,
-            "strategy_channel": "REWARDS"
-          }
+          "auto_apply": false,
+          "strategy_channel": "REWARDS"
         }
-      },
-      "cart": {
-        "gst_input": true,
-        "staff_selection": true,
-        "placing_for_customer": true,
-        "google_map": true,
-        "revenue_engine_coupon": false
-      },
-      "qr": {
-        "application": true,
-        "products": true,
-        "collections": true
-      },
-      "pcr": {
-        "staff_selection": true
-      },
-      "order": {
-        "buy_again": true
-      },
-      "_id": "5e57643c986e4119c973df7d",
-      "app": "000000000000000000000001",
-      "created_at": "2020-02-27T06:39:56.088Z",
-      "modified_at": "2021-02-02T11:04:14.289Z",
-      "__v": 1
-    }
+      }
+    },
+    "cart": {
+      "gst_input": true,
+      "staff_selection": true,
+      "placing_for_customer": true,
+      "google_map": true,
+      "revenue_engine_coupon": false
+    },
+    "qr": {
+      "application": true,
+      "products": true,
+      "collections": true
+    },
+    "pcr": {
+      "staff_selection": true
+    },
+    "order": {
+      "buy_again": true
+    },
+    "_id": "5e57643c986e4119c973df7d",
+    "app": "000000000000000000000004",
+    "created_at": "2020-02-27T06:39:56.088Z",
+    "modified_at": "2021-02-02T11:04:14.289Z",
+    "__v": 1
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -505,103 +462,95 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "product_detail": {
-      "similar": [
-        "basic",
-        "visual",
-        "brand",
-        "category",
-        "seller",
-        "price",
-        "specs"
+  "product_detail": {
+    "similar": [
+      "basic",
+      "visual",
+      "brand",
+      "category",
+      "seller",
+      "price",
+      "specs"
+    ],
+    "seller_selection": true,
+    "update_product_meta": true,
+    "request_product": true
+  },
+  "landing_page": {
+    "launch_page": {
+      "page_type": "home",
+      "params": {},
+      "query": {}
+    },
+    "continue_as_guest": true,
+    "login_btn_text": "Click here to sign-in",
+    "show_domain_textbox": true,
+    "show_register_btn": true
+  },
+  "registration_page": {
+    "ask_store_address": false
+  },
+  "home_page": {
+    "order_processing": true
+  },
+  "common": {
+    "communication_optin_dialog": {
+      "visibility": true
+    },
+    "deployment_store_selection": {
+      "enabled": true,
+      "type": "hard"
+    },
+    "listing_price": {
+      "value": "min",
+      "sort": "min"
+    },
+    "currency": {
+      "value": [
+        "INR"
       ],
-      "seller_selection": true,
-      "update_product_meta": true,
-      "request_product": true
+      "type": "explicit",
+      "default_currency": "INR"
     },
-    "landing_page": {
-      "launch_page": {
-        "page_type": "home",
-        "params": {},
-        "query": {}
-      },
-      "continue_as_guest": true,
-      "login_btn_text": "Click here to sign-in",
-      "show_domain_textbox": true,
-      "show_register_btn": true
+    "revenue_engine": {
+      "enabled": false
     },
-    "registration_page": {
-      "ask_store_address": false
+    "feedback": {
+      "enabled": true
     },
-    "home_page": {
-      "order_processing": true
-    },
-    "common": {
-      "communication_optin_dialog": {
-        "visibility": true
-      },
-      "deployment_store_selection": {
-        "enabled": true,
-        "type": "hard"
-      },
-      "listing_price": {
-        "value": "min",
-        "sort": "min"
-      },
-      "currency": {
-        "value": [
-          "INR"
-        ],
-        "type": "explicit",
-        "default_currency": "INR"
-      },
-      "revenue_engine": {
-        "enabled": false
-      },
-      "feedback": {
-        "enabled": true
-      },
-      "compare_products": {
-        "enabled": true
-      }
-    },
-    "cart": {
-      "gst_input": true,
-      "staff_selection": true,
-      "placing_for_customer": true,
-      "google_map": true,
-      "revenue_engine_coupon": false
-    },
-    "qr": {
-      "application": true,
-      "products": true,
-      "collections": true
-    },
-    "pcr": {
-      "staff_selection": true
-    },
-    "order": {
-      "buy_again": true
-    },
-    "_id": "5e57643c986e4119c973df7d",
-    "app": "000000000000000000000001",
-    "created_at": "2020-02-27T06:39:56.088Z",
-    "updated_at": "2021-03-09T15:40:29.188Z",
-    "__v": 1
-  }
+    "compare_products": {
+      "enabled": true
+    }
+  },
+  "cart": {
+    "gst_input": true,
+    "staff_selection": true,
+    "placing_for_customer": true,
+    "google_map": true,
+    "revenue_engine_coupon": false
+  },
+  "qr": {
+    "application": true,
+    "products": true,
+    "collections": true
+  },
+  "pcr": {
+    "staff_selection": true
+  },
+  "order": {
+    "buy_again": true
+  },
+  "_id": "5e57643c986e4119c973df7d",
+  "app": "000000000000000000000004",
+  "created_at": "2020-02-27T06:39:56.088Z",
+  "modified_at": "2021-03-09T15:40:29.188Z",
+  "__v": 1
 }
 ```
-</details>
-
 </details>
 
 
@@ -651,103 +600,98 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "product_detail": {
-      "similar": [
-        "basic",
-        "visual",
-        "brand",
-        "category",
-        "seller",
-        "price",
-        "specs"
+  "product_detail": {
+    "similar": [
+      "basic",
+      "visual",
+      "brand",
+      "category",
+      "seller",
+      "price",
+      "specs"
+    ],
+    "seller_selection": true,
+    "update_product_meta": true,
+    "request_product": true
+  },
+  "landing_page": {
+    "launch_page": {
+      "page_type": "home",
+      "params": {},
+      "query": {}
+    },
+    "continue_as_guest": true,
+    "login_btn_text": "Click here to sign-in",
+    "show_domain_textbox": true,
+    "show_register_btn": true
+  },
+  "registration_page": {
+    "ask_store_address": false
+  },
+  "home_page": {
+    "order_processing": true
+  },
+  "common": {
+    "international_shipping": {
+      "enabled": true
+    },
+    "communication_optin_dialog": {
+      "visibility": true
+    },
+    "deployment_store_selection": {
+      "enabled": true,
+      "type": "hard"
+    },
+    "listing_price": {
+      "value": "min",
+      "sort": "min"
+    },
+    "currency": {
+      "value": [
+        "INR"
       ],
-      "seller_selection": true,
-      "update_product_meta": true,
-      "request_product": true
+      "type": "explicit",
+      "default_currency": "INR"
     },
-    "landing_page": {
-      "launch_page": {
-        "page_type": "home",
-        "params": {},
-        "query": {}
-      },
-      "continue_as_guest": true,
-      "login_btn_text": "Click here to sign-in",
-      "show_domain_textbox": true,
-      "show_register_btn": true
+    "revenue_engine": {
+      "enabled": false
     },
-    "registration_page": {
-      "ask_store_address": false
+    "feedback": {
+      "enabled": true
     },
-    "home_page": {
-      "order_processing": true
-    },
-    "common": {
-      "communication_optin_dialog": {
-        "visibility": true
-      },
-      "deployment_store_selection": {
-        "enabled": true,
-        "type": "hard"
-      },
-      "listing_price": {
-        "value": "min",
-        "sort": "min"
-      },
-      "currency": {
-        "value": [
-          "INR"
-        ],
-        "type": "explicit",
-        "default_currency": "INR"
-      },
-      "revenue_engine": {
-        "enabled": false
-      },
-      "feedback": {
-        "enabled": true
-      },
-      "compare_products": {
-        "enabled": true
-      }
-    },
-    "cart": {
-      "gst_input": true,
-      "staff_selection": true,
-      "placing_for_customer": true,
-      "google_map": true,
-      "revenue_engine_coupon": false
-    },
-    "qr": {
-      "application": true,
-      "products": true,
-      "collections": true
-    },
-    "pcr": {
-      "staff_selection": true
-    },
-    "order": {
-      "buy_again": true
-    },
-    "_id": "5e57643c986e4119c973df7d",
-    "app": "000000000000000000000001",
-    "created_at": "2020-02-27T06:39:56.088Z",
-    "modified_at": "2021-03-09T15:40:29.188Z",
-    "__v": 1
-  }
+    "compare_products": {
+      "enabled": true
+    }
+  },
+  "cart": {
+    "gst_input": true,
+    "staff_selection": true,
+    "placing_for_customer": true,
+    "google_map": true,
+    "revenue_engine_coupon": false
+  },
+  "qr": {
+    "application": true,
+    "products": true,
+    "collections": true
+  },
+  "pcr": {
+    "staff_selection": true
+  },
+  "order": {
+    "buy_again": true
+  },
+  "_id": "5e57643c986e4119c973df7d",
+  "app": "000000000000000000000004",
+  "created_at": "2020-02-27T06:39:56.088Z",
+  "modified_at": "2021-03-09T15:40:29.188Z",
+  "__v": 1
 }
 ```
-</details>
-
 </details>
 
 
@@ -793,60 +737,51 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "name": "Uniket B2B",
-    "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
-    "logo": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "mobile_logo": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "favicon": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
-    },
-    "banner": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
-    },
-    "domain": {
+  "name": "Uniket B2B",
+  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "logo": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "mobile_logo": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "favicon": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+  },
+  "banner": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+  },
+  "domain": {
+    "verified": true,
+    "is_primary": true,
+    "is_shortlink": false,
+    "_id": "5eb1177748312a3bd55d0f1e",
+    "name": "uniket.hostx0.de"
+  },
+  "domains": [
+    {
       "verified": true,
       "is_primary": true,
       "is_shortlink": false,
       "_id": "5eb1177748312a3bd55d0f1e",
-      "name": "uniket.hostfynd.dev"
+      "name": "uniket.hostx0.de"
     },
-    "domains": [
-      {
-        "verified": true,
-        "is_primary": true,
-        "is_shortlink": false,
-        "_id": "5eb1177748312a3bd55d0f1e",
-        "name": "uniket.hostfynd.dev"
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": true,
-        "_id": "5f0858c5f86e00cd42dccc8d",
-        "name": "jd.hostfynd.dev"
-      }
-    ],
-    "company_id": 2,
-    "slug": "test-mg1-36,",
-    "_id": "000000000000000000000001"
-  }
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    }
+  ],
+  "company_id": 1,
+  "_id": "000000000000000000000004"
 }
 ```
-</details>
-
 </details>
 
 
@@ -896,57 +831,49 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "name": "Uniket B2B",
-    "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
-    "logo": {
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "mobile_logo": {
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "favicon": {
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
-    },
-    "banner": {
-      "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
-    },
-    "domain": {
+  "name": "Uniket B2B",
+  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "mobile_logo": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "favicon": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+  },
+  "banner": {
+    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+  },
+  "domain": {
+    "verified": true,
+    "is_primary": true,
+    "is_shortlink": false,
+    "_id": "5eb1177748312a3bd55d0f1e",
+    "name": "uniket.hostx0.de"
+  },
+  "domains": [
+    {
       "verified": true,
       "is_primary": true,
       "is_shortlink": false,
       "_id": "5eb1177748312a3bd55d0f1e",
-      "name": "uniket.hostfynd.dev"
+      "name": "uniket.hostx0.de"
     },
-    "domains": [
-      {
-        "verified": true,
-        "is_primary": true,
-        "is_shortlink": false,
-        "_id": "5eb1177748312a3bd55d0f1e",
-        "name": "uniket.hostfynd.dev"
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": true,
-        "_id": "5f0858c5f86e00cd42dccc8d",
-        "name": "jd.hostfynd.dev"
-      }
-    ]
-  }
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -992,17 +919,13 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
   "value": {
     "address": {
-      "loc": {},
+      "loc": null,
       "address_line": [
         "Warehouse 5, Near Industrial Complex",
         "2nd Lane, Andheri"
@@ -1092,7 +1015,7 @@ Success
     "business_highlights": [
       {
         "_id": "5fc901611dfba6c2e87d1ca9",
-        "title": "Most Genuine Products",
+        "title": "100% Genuine Products",
         "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
         "sub_title": "Directly from brands"
       },
@@ -1109,15 +1032,13 @@ Success
         "sub_title": "For all damaged/wrong items"
       }
     ],
-    "application": "000000000000000000000001",
+    "application": "000000000000000000000004",
     "created_at": "2020-03-09T11:25:49.921Z",
     "modified_at": "2020-12-03T15:16:49.087Z",
     "__v": 99
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -1167,126 +1088,118 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "_id": "5e6627bd0732616083e83750",
-    "address": {
-      "address_line": [
-        "Warehouse 5, Near Industrial Complex",
-        "2nd Lane, Andheri"
-      ],
-      "phone": [
-        {
-          "code": "+91",
-          "number": "9988998899"
-        }
-      ],
-      "city": "Mumbai , Maharashtra , India",
-      "country": "India",
-      "pincode": 400059
-    },
-    "social_links": {
-      "facebook": {
-        "title": "Facebook",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/hQAbAKdvHK-facebookfooteraopcjq.svg",
-        "link": ""
-      },
-      "instagram": {
-        "title": "Instagram",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/UZYsGWOqXp-instagramfooterl3utrr.svg",
-        "link": ""
-      },
-      "twitter": {
-        "title": "Twitter",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/oT2hW-BJjq-twitterfooternajsyr.svg",
-        "link": ""
-      },
-      "pinterest": {
-        "title": "Pinterest",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/v0erlcMk8p-pinterestfooternzmq4b.svg",
-        "link": ""
-      },
-      "google_plus": {
-        "title": "Google+",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/lw3Y5S58h4-googleplusysukr1.png",
-        "link": ""
-      },
-      "youtube": {
-        "title": "Youtube",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/EYV03PDST_-youtubefootermqhcr7.svg",
-        "link": ""
-      },
-      "linked_in": {
-        "title": "LinkedIn",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/qa7gx_bW9O-linkedinfooterrcr0yq.svg",
-        "link": ""
-      },
-      "blog_link": {
-        "title": "Blog",
-        "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/LKpxTk1I3s-mediumfooterdtvrva.svg",
-        "link": ""
-      }
-    },
-    "links": [
+  "_id": "5e6627bd0732616083e83750",
+  "address": {
+    "address_line": [
+      "Warehouse 5, Near Industrial Complex",
+      "2nd Lane, Andheri"
+    ],
+    "phone": [
       {
-        "title": "Shipping",
-        "link": "www.uniket.store/shipping-details"
-      },
-      {
-        "title": "Returns",
-        "link": "www.uniket.store/policy/return-policy"
-      },
-      {
-        "title": "Privacy",
-        "link": "www.uniket.store/policy/privacy-policy"
-      },
-      {
-        "title": "Terms",
-        "link": "www.uniket.store/policy/terms-conditions"
+        "code": "+91",
+        "number": "9988998899"
       }
     ],
-    "copyright_text": "#MadeInIndia © 2020 Shopsense Retail Technologies",
-    "support": {
-      "timing": "9 AM to 9 PM",
-      "phone": [],
-      "email": [],
-      "business_highlights": [
-        {
-          "_id": "60479413a32f774d754b00ef",
-          "title": "Most Genuine Products",
-          "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
-          "sub_title": "Directly from brands"
-        },
-        {
-          "_id": "60479413a32f7717df4b00f0",
-          "title": "Credit Facility Available",
-          "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
-          "sub_title": "Free 30 Days Credit"
-        },
-        {
-          "_id": "60479413a32f77e70b4b00f1",
-          "title": "Assured Returns",
-          "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
-          "sub_title": "For all damaged/wrong items"
-        }
-      ]
+    "city": "Mumbai , Maharashtra , India",
+    "country": "India",
+    "pincode": 400059
+  },
+  "social_links": {
+    "facebook": {
+      "title": "Facebook",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/hQAbAKdvHK-facebookfooteraopcjq.svg",
+      "link": ""
     },
-    "application": "000000000000000000000001",
-    "created_at": "2020-03-09T11:25:49.921Z",
-    "modified_at": "2021-03-09T15:28:19.598Z",
-    "__v": 101
-  }
+    "instagram": {
+      "title": "Instagram",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/UZYsGWOqXp-instagramfooterl3utrr.svg",
+      "link": ""
+    },
+    "twitter": {
+      "title": "Twitter",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/oT2hW-BJjq-twitterfooternajsyr.svg",
+      "link": ""
+    },
+    "pinterest": {
+      "title": "Pinterest",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/v0erlcMk8p-pinterestfooternzmq4b.svg",
+      "link": ""
+    },
+    "google_plus": {
+      "title": "Google+",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/lw3Y5S58h4-googleplusysukr1.png",
+      "link": ""
+    },
+    "youtube": {
+      "title": "Youtube",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/EYV03PDST_-youtubefootermqhcr7.svg",
+      "link": ""
+    },
+    "linked_in": {
+      "title": "LinkedIn",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/qa7gx_bW9O-linkedinfooterrcr0yq.svg",
+      "link": ""
+    },
+    "blog_link": {
+      "title": "Blog",
+      "icon": "https://hdn-1.fynd.com/system/svg/social-media/icon/original/LKpxTk1I3s-mediumfooterdtvrva.svg",
+      "link": ""
+    }
+  },
+  "links": [
+    {
+      "title": "Shipping",
+      "link": "www.uniket.store/shipping-details"
+    },
+    {
+      "title": "Returns",
+      "link": "www.uniket.store/policy/return-policy"
+    },
+    {
+      "title": "Privacy",
+      "link": "www.uniket.store/policy/privacy-policy"
+    },
+    {
+      "title": "Terms",
+      "link": "www.uniket.store/policy/terms-conditions"
+    }
+  ],
+  "copyright_text": "#MadeInIndia © 2020 Shopsense Retail Technologies",
+  "support": {
+    "timing": "9 AM to 9 PM",
+    "phone": [],
+    "email": [],
+    "business_highlights": [
+      {
+        "_id": "60479413a32f774d754b00ef",
+        "title": "100% Genuine Products",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
+        "sub_title": "Directly from brands"
+      },
+      {
+        "_id": "60479413a32f7717df4b00f0",
+        "title": "Credit Facility Available",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
+        "sub_title": "Free 30 Days Credit"
+      },
+      {
+        "_id": "60479413a32f77e70b4b00f1",
+        "title": "Assured Returns",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
+        "sub_title": "For all damaged/wrong items"
+      }
+    ]
+  },
+  "application": "000000000000000000000004",
+  "created_at": "2020-03-09T11:25:49.921Z",
+  "modified_at": "2021-03-09T15:28:19.598Z",
+  "__v": 101
 }
 ```
-</details>
-
 </details>
 
 
@@ -1332,86 +1245,89 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "tokens": {
-      "firebase": {
-        "credentials": {
-          "ios": {
-            "application_id": "test",
-            "api_key": "test"
-          },
-          "android": {
-            "application_id": "test",
-            "api_key": "test"
-          },
-          "project_id": "uniket-d8cdc",
-          "gcm_sender_id": "test",
+  "tokens": {
+    "firebase": {
+      "credentials": {
+        "ios": {
           "application_id": "test",
           "api_key": "test"
         },
-        "enabled": true
-      },
-      "moengage": {
-        "credentials": {
-          "app_id": "test"
-        },
-        "enabled": true
-      },
-      "segment": {
-        "credentials": {
-          "write_key": "test"
-        },
-        "enabled": true
-      },
-      "gtm": {
-        "credentials": {
+        "android": {
+          "application_id": "test",
           "api_key": "test"
         },
-        "enabled": false
+        "project_id": "uniket-d8cdc",
+        "gcm_sender_id": "test",
+        "application_id": "test",
+        "api_key": "test"
       },
-      "freshchat": {
-        "credentials": {
-          "app_id": "123456",
-          "app_key": "123456789",
-          "web_token": ""
-        },
-        "enabled": false
+      "enabled": true
+    },
+    "moengage": {
+      "credentials": {
+        "app_id": "test"
       },
-      "safetynet": {
-        "credentials": {
-          "api_key": "test"
-        },
-        "enabled": true
+      "enabled": true
+    },
+    "segment": {
+      "credentials": {
+        "write_key": "test"
       },
-      "fynd_rewards": {
-        "credentials": {
-          "public_key": "test"
-        }
+      "enabled": true
+    },
+    "gtm": {
+      "credentials": {
+        "api_key": "test"
       },
-      "google_map": {
-        "credentials": {
-          "api_key": "test"
-        }
+      "enabled": false
+    },
+    "freshchat": {
+      "credentials": {
+        "app_id": "123456",
+        "app_key": "123456789",
+        "web_token": ""
+      },
+      "enabled": false
+    },
+    "safetynet": {
+      "credentials": {
+        "api_key": "test"
+      },
+      "enabled": true
+    },
+    "fynd_rewards": {
+      "credentials": {
+        "public_key": "test"
       }
     },
-    "_id": "5e66282a073261060ee83751",
-    "application": "000000000000000000000001",
-    "created_at": "2020-03-09T11:27:38.894Z",
-    "modified_at": "2020-12-24T05:39:17.054Z",
-    "__v": 0
-  }
+    "auth": {
+      "google": {
+        "appId": "test"
+      },
+      "facebook": {
+        "appId": "test"
+      },
+      "accountkit": {
+        "appId": ""
+      }
+    },
+    "google_map": {
+      "credentials": {
+        "api_key": "test"
+      }
+    }
+  },
+  "_id": "5e66282a073261060ee83751",
+  "application": "000000000000000000000004",
+  "created_at": "2020-03-09T11:27:38.894Z",
+  "modified_at": "2020-12-24T05:39:17.054Z",
+  "__v": 0
 }
 ```
-</details>
-
 </details>
 
 
@@ -1461,97 +1377,89 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "tokens": {
-      "firebase": {
-        "credentials": {
-          "ios": {
-            "application_id": "test",
-            "api_key": "test"
-          },
-          "android": {
-            "application_id": "test",
-            "api_key": "test"
-          },
-          "project_id": "uniket-d8cdc",
-          "gcm_sender_id": "test",
+  "tokens": {
+    "firebase": {
+      "credentials": {
+        "ios": {
           "application_id": "test",
           "api_key": "test"
         },
-        "enabled": true
-      },
-      "moengage": {
-        "credentials": {
-          "app_id": "test"
-        },
-        "enabled": true
-      },
-      "segment": {
-        "credentials": {
-          "write_key": "test"
-        },
-        "enabled": true
-      },
-      "gtm": {
-        "credentials": {
-          "api_key": "1234567890"
-        },
-        "enabled": false
-      },
-      "freshchat": {
-        "credentials": {
-          "app_id": "123456",
-          "app_key": "123456789",
-          "web_token": ""
-        },
-        "enabled": false
-      },
-      "safetynet": {
-        "credentials": {
+        "android": {
+          "application_id": "test",
           "api_key": "test"
         },
-        "enabled": true
+        "project_id": "uniket-d8cdc",
+        "gcm_sender_id": "test",
+        "application_id": "test",
+        "api_key": "test"
       },
-      "fynd_rewards": {
-        "credentials": {
-          "public_key": "test"
-        }
+      "enabled": true
+    },
+    "moengage": {
+      "credentials": {
+        "app_id": "test"
       },
-      "auth": {
-        "google": {
-          "appId": "test"
-        },
-        "facebook": {
-          "appId": "test"
-        },
-        "accountkit": {
-          "appId": ""
-        }
+      "enabled": true
+    },
+    "segment": {
+      "credentials": {
+        "write_key": "test"
       },
-      "google_map": {
-        "credentials": {
-          "api_key": "test"
-        }
+      "enabled": true
+    },
+    "gtm": {
+      "credentials": {
+        "api_key": "1234567890"
+      },
+      "enabled": false
+    },
+    "freshchat": {
+      "credentials": {
+        "app_id": "123456",
+        "app_key": "123456789",
+        "web_token": ""
+      },
+      "enabled": false
+    },
+    "safetynet": {
+      "credentials": {
+        "api_key": "test"
+      },
+      "enabled": true
+    },
+    "fynd_rewards": {
+      "credentials": {
+        "public_key": "test"
       }
     },
-    "_id": "5e66282a073261060ee83751",
-    "application": "000000000000000000000001",
-    "created_at": "2020-03-09T11:27:38.894Z",
-    "updated_at": "2020-12-24T05:39:17.054Z",
-    "__v": 0
-  }
+    "auth": {
+      "google": {
+        "appId": "test"
+      },
+      "facebook": {
+        "appId": "test"
+      },
+      "accountkit": {
+        "appId": ""
+      }
+    },
+    "google_map": {
+      "credentials": {
+        "api_key": "test"
+      }
+    }
+  },
+  "_id": "5e66282a073261060ee83751",
+  "application": "000000000000000000000004",
+  "created_at": "2020-03-09T11:27:38.894Z",
+  "modified_at": "2020-12-24T05:39:17.054Z",
+  "__v": 0
 }
 ```
-</details>
-
 </details>
 
 
@@ -1604,34 +1512,24 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "uid": 2,
-        "name": "Sample2 Company",
-        "company_type": "mbo"
-      }
-    ],
-    "page": {
-      "type": "number",
-      "size": 200,
-      "current": 1,
-      "has_next": false,
-      "item_total": 3
-    }
+  "items": {
+    "uid": 108,
+    "name": "Sample2 Company",
+    "company_type": "mbo"
+  },
+  "page": {
+    "type": "number",
+    "size": 200,
+    "current": 1,
+    "has_next": false,
+    "item_total": 3
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -1683,52 +1581,28 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "id": "5ec2c0b168fc2800017112f5",
-        "uid": 1,
-        "name": "RRL01",
-        "display_name": "RRL01",
-        "store_type": "warehouse",
-        "store_code": "WH_8513",
-        "company_id": 2,
-        "address": {
-          "country": "INDIA",
-          "address1": "76, GROUND FLOOR, R CITY MALL, GHATKOPAR WEST",
-          "city": "Mumbai",
-          "pincode": 400086,
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.916756,
-              19.099478
-            ]
-          },
-          "state": "MAHARASHTRA"
-        }
-      }
-    ],
-    "page": {
-      "type": "number",
-      "size": 200,
-      "current": 1,
-      "has_next": true,
-      "item_total": 3
-    }
+  "items": {
+    "id": "5ec2c0b168fc2800017112f5",
+    "uid": 1,
+    "name": "RRL01",
+    "display_name": "RRL01",
+    "store_type": "warehouse",
+    "store_code": "WH_8513",
+    "company_id": 1
+  },
+  "page": {
+    "type": "number",
+    "size": 200,
+    "current": 1,
+    "has_next": true,
+    "item_total": 3
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -1774,83 +1648,77 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "inventory": {
-      "brand": {
-        "criteria": "all",
-        "brands": []
-      },
-      "store": {
-        "criteria": "filter",
-        "stores": [],
-        "rules": [
-          {
-            "companies": [
-              1,
-              2,
-              4
-            ],
-            "brands": []
-          }
-        ]
-      },
-      "category": {
-        "criteria": "all",
-        "categories": []
-      },
-      "price": {
-        "min": 1,
-        "max": 10000
-      },
-      "discount": {
-        "min": 0,
-        "max": 100
-      },
-      "out_of_stock": true,
-      "franchise_enabled": true,
-      "exclude_category": [],
-      "image": [
-        "standard",
-        "substandard",
-        "default"
-      ],
-      "company_store": []
+  "inventory": {
+    "brand": {
+      "criteria": "all",
+      "brands": []
     },
-    "authentication": {
-      "required": true,
-      "provider": "fynd"
-    },
-    "article_assignment": {
-      "rules": {
-        "store_priority": {
-          "enabled": false,
-          "storetype_order": []
+    "store": {
+      "criteria": "filter",
+      "stores": [],
+      "rules": [
+        {
+          "companies": [
+            1,
+            3,
+            4
+          ],
+          "brands": []
         }
-      },
-      "post_order_reassignment": true
+      ]
     },
-    "reward_points": {
-      "credit": {
-        "enabled": true
-      },
-      "debit": {
-        "enabled": true,
-        "auto_apply": false,
-        "strategy_channel": "rewards"
+    "category": {
+      "criteria": "all",
+      "categories": []
+    },
+    "price": {
+      "min": 1,
+      "max": 10000
+    },
+    "discount": {
+      "min": 0,
+      "max": 100
+    },
+    "out_of_stock": true,
+    "franchise_enabled": true,
+    "exclude_category": [],
+    "image": [
+      "standard",
+      "substandard",
+      "default"
+    ],
+    "company_store": []
+  },
+  "authentication": {
+    "required": true,
+    "provider": "fynd"
+  },
+  "article_assignment": {
+    "rules": {
+      "store_priority": {
+        "enabled": false,
+        "storetype_order": []
       }
     },
-    "cart": {
-      "delivery_charges": {
-        "enabled": true
-      },
+    "post_order_reassignment": true
+  },
+  "reward_points": {
+    "credit": {
+      "enabled": true
+    },
+    "debit": {
+      "enabled": true,
+      "auto_apply": false,
+      "strategy_channel": "rewards"
+    }
+  },
+  "cart": {
+    "delivery_charges": {
+      "enabled": true,
       "charges": [
         {
           "threshold": 1000,
@@ -1860,142 +1728,127 @@ Success
           "threshold": 200000,
           "charges": 79
         }
-      ],
-      "international_delivery_charges": {
-        "enabled": true,
-        "charges": [
-          {
-            "threshold": 1000,
-            "charges": 49
-          },
-          {
-            "threshold": 200000,
-            "charges": 79
-          }
-        ]
-      },
-      "enabled": true,
-      "max_cart_items": 0,
-      "min_cart_value": 120,
-      "bulk_coupons": true,
-      "revenue_engine_coupon": false
+      ]
     },
-    "payment": {
-      "callback_url": {
-        "app": "",
-        "web": ""
-      },
-      "methods": {
-        "pl": {
-          "enabled": true
-        },
-        "card": {
-          "enabled": true
-        },
-        "nb": {
-          "enabled": true
-        },
-        "wl": {
-          "enabled": true
-        },
-        "ps": {
-          "enabled": true
-        },
-        "upi": {
-          "enabled": true
-        },
-        "qr": {
-          "enabled": true
-        },
-        "cod": {
-          "enabled": true
-        },
-        "pp": {
-          "enabled": true
-        },
-        "jp": {
-          "enabled": false
-        },
-        "pac": {
-          "enabled": false
-        },
-        "fc": {
-          "enabled": false
-        },
-        "jiopp": {
-          "enabled": false
-        },
-        "stripepg": {
-          "enabled": true
-        },
-        "juspaypg": {
-          "enabled": false
-        },
-        "payubizpg": {
-          "enabled": true
-        },
-        "payumoneypg": {
-          "enabled": true
-        },
-        "rupifipg": {
-          "enabled": false
-        },
-        "simpl": {
-          "enabled": true
-        }
-      },
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "",
-        "payment_identifier": ""
-      },
-      "mode_of_payment": "uniket_b2b",
-      "source": "uniket",
-      "enabled": true,
-      "cod_amount_limit": 100000,
-      "cod_charges": 1500
+    "enabled": true,
+    "max_cart_items": 0,
+    "min_cart_value": 120,
+    "bulk_coupons": true,
+    "revenue_engine_coupon": false
+  },
+  "payment": {
+    "callback_url": {
+      "app": "",
+      "web": ""
     },
-    "order": {
-      "enabled": true,
-      "force_reassignment": false
-    },
-    "logistics": {
-      "logistics_by_seller": false,
-      "serviceability_check": true,
-      "same_day_delivery": true,
-      "dp_assignment": true
-    },
-    "business": "retail",
-    "comms_enabled": true,
-    "communication": {
-      "email": {
+    "methods": {
+      "pl": {
+        "enabled": true
+      },
+      "card": {
+        "enabled": true
+      },
+      "nb": {
+        "enabled": true
+      },
+      "wl": {
+        "enabled": true
+      },
+      "ps": {
+        "enabled": true
+      },
+      "upi": {
+        "enabled": true
+      },
+      "qr": {
+        "enabled": true
+      },
+      "cod": {
+        "enabled": true
+      },
+      "pp": {
+        "enabled": true
+      },
+      "jp": {
         "enabled": false
       },
-      "sms": {
+      "pac": {
         "enabled": false
       },
-      "voice": {
+      "fc": {
         "enabled": false
+      },
+      "jiopp": {
+        "enabled": false
+      },
+      "stripepg": {
+        "enabled": true
+      },
+      "juspaypg": {
+        "enabled": false
+      },
+      "payubizpg": {
+        "enabled": true
+      },
+      "payumoneypg": {
+        "enabled": true
+      },
+      "rupifipg": {
+        "enabled": false
+      },
+      "simpl": {
+        "enabled": true
       }
     },
-    "platforms": [
-      "uniket_wholesale"
-    ],
-    "_id": "5e04c76b8dd8c003577fdd0a",
-    "loyalty_points": {
-      "enabled": true,
-      "auto_apply": false
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "",
+      "payment_identifier": ""
     },
-    "app": "000000000000000000000001",
-    "created_at": "2019-12-26t14:44:59.835z",
-    "modified_at": "2021-03-09t15:40:29.208z",
-    "__v": 3,
-    "modified_by": "5e199eed98cfe16dc61385de"
-  }
+    "mode_of_payment": "uniket_b2b",
+    "source": "uniket",
+    "enabled": true,
+    "cod_amount_limit": 100000,
+    "cod_charges": 1500
+  },
+  "order": {
+    "enabled": true,
+    "force_reassignment": false
+  },
+  "logistics": {
+    "logistics_by_seller": false,
+    "serviceability_check": true,
+    "same_day_delivery": true,
+    "dp_assignment": true
+  },
+  "business": "retail",
+  "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
+  "platforms": [
+    "uniket_wholesale"
+  ],
+  "_id": "5e04c76b8dd8c003577fdd0a",
+  "loyalty_points": {
+    "enabled": true,
+    "auto_apply": false
+  },
+  "app": "000000000000000000000004",
+  "created_at": "2019-12-26t14:44:59.835z",
+  "modified_at": "2021-03-09t15:40:29.208z",
+  "__v": 3,
+  "modified_by": "5e199eed98cfe16dc61385de"
 }
 ```
-</details>
-
 </details>
 
 
@@ -2045,83 +1898,77 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "inventory": {
-      "brand": {
-        "criteria": "all",
-        "brands": []
-      },
-      "store": {
-        "criteria": "filter",
-        "stores": [],
-        "rules": [
-          {
-            "companies": [
-              1,
-              3,
-              4
-            ],
-            "brands": []
-          }
-        ]
-      },
-      "category": {
-        "criteria": "all",
-        "categories": []
-      },
-      "price": {
-        "min": 1,
-        "max": 10000
-      },
-      "discount": {
-        "min": 0,
-        "max": 100
-      },
-      "out_of_stock": true,
-      "franchise_enabled": true,
-      "exclude_category": [],
-      "image": [
-        "standard",
-        "substandard",
-        "default"
-      ],
-      "company_store": []
+  "inventory": {
+    "brand": {
+      "criteria": "all",
+      "brands": []
     },
-    "authentication": {
-      "required": true,
-      "provider": "fynd"
-    },
-    "article_assignment": {
-      "rules": {
-        "store_priority": {
-          "enabled": false,
-          "storetype_order": []
+    "store": {
+      "criteria": "filter",
+      "stores": [],
+      "rules": [
+        {
+          "companies": [
+            1,
+            3,
+            4
+          ],
+          "brands": []
         }
-      },
-      "post_order_reassignment": true
+      ]
     },
-    "reward_points": {
-      "credit": {
-        "enabled": true
-      },
-      "debit": {
-        "enabled": true,
-        "auto_apply": false,
-        "strategy_channel": "REWARDS"
+    "category": {
+      "criteria": "all",
+      "categories": []
+    },
+    "price": {
+      "min": 1,
+      "max": 10000
+    },
+    "discount": {
+      "min": 0,
+      "max": 100
+    },
+    "out_of_stock": true,
+    "franchise_enabled": true,
+    "exclude_category": [],
+    "image": [
+      "standard",
+      "substandard",
+      "default"
+    ],
+    "company_store": []
+  },
+  "authentication": {
+    "required": true,
+    "provider": "fynd"
+  },
+  "article_assignment": {
+    "rules": {
+      "store_priority": {
+        "enabled": false,
+        "storetype_order": []
       }
     },
-    "cart": {
-      "delivery_charges": {
-        "enabled": true
-      },
+    "post_order_reassignment": true
+  },
+  "reward_points": {
+    "credit": {
+      "enabled": true
+    },
+    "debit": {
+      "enabled": true,
+      "auto_apply": false,
+      "strategy_channel": "REWARDS"
+    }
+  },
+  "cart": {
+    "delivery_charges": {
+      "enabled": true,
       "charges": [
         {
           "threshold": 1000,
@@ -2131,142 +1978,127 @@ Success
           "threshold": 200000,
           "charges": 79
         }
-      ],
-      "international_delivery_charges": {
-        "enabled": true,
-        "charges": [
-          {
-            "threshold": 1000,
-            "charges": 49
-          },
-          {
-            "threshold": 200000,
-            "charges": 79
-          }
-        ]
-      },
-      "enabled": true,
-      "max_cart_items": 0,
-      "min_cart_value": 120,
-      "bulk_coupons": true,
-      "revenue_engine_coupon": false
+      ]
     },
-    "payment": {
-      "callback_url": {
-        "app": "",
-        "web": ""
-      },
-      "methods": {
-        "pl": {
-          "enabled": true
-        },
-        "card": {
-          "enabled": true
-        },
-        "nb": {
-          "enabled": true
-        },
-        "wl": {
-          "enabled": true
-        },
-        "ps": {
-          "enabled": true
-        },
-        "upi": {
-          "enabled": true
-        },
-        "qr": {
-          "enabled": true
-        },
-        "cod": {
-          "enabled": true
-        },
-        "pp": {
-          "enabled": true
-        },
-        "jp": {
-          "enabled": false
-        },
-        "pac": {
-          "enabled": false
-        },
-        "fc": {
-          "enabled": false
-        },
-        "jiopp": {
-          "enabled": false
-        },
-        "stripepg": {
-          "enabled": true
-        },
-        "juspaypg": {
-          "enabled": false
-        },
-        "payubizpg": {
-          "enabled": true
-        },
-        "payumoneypg": {
-          "enabled": true
-        },
-        "rupifipg": {
-          "enabled": false
-        },
-        "simpl": {
-          "enabled": true
-        }
-      },
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "",
-        "payment_identifier": ""
-      },
-      "mode_of_payment": "UNIKET_B2B",
-      "source": "UNIKET",
-      "enabled": true,
-      "cod_amount_limit": 100000,
-      "cod_charges": 1500
+    "enabled": true,
+    "max_cart_items": 0,
+    "min_cart_value": 120,
+    "bulk_coupons": true,
+    "revenue_engine_coupon": false
+  },
+  "payment": {
+    "callback_url": {
+      "app": "",
+      "web": ""
     },
-    "order": {
-      "enabled": true,
-      "force_reassignment": false
-    },
-    "logistics": {
-      "logistics_by_seller": false,
-      "serviceability_check": true,
-      "same_day_delivery": true,
-      "dp_assignment": true
-    },
-    "business": "retail",
-    "comms_enabled": true,
-    "communication": {
-      "email": {
+    "methods": {
+      "PL": {
+        "enabled": true
+      },
+      "CARD": {
+        "enabled": true
+      },
+      "NB": {
+        "enabled": true
+      },
+      "WL": {
+        "enabled": true
+      },
+      "PS": {
+        "enabled": true
+      },
+      "UPI": {
+        "enabled": true
+      },
+      "QR": {
+        "enabled": true
+      },
+      "COD": {
+        "enabled": true
+      },
+      "PP": {
+        "enabled": true
+      },
+      "JP": {
         "enabled": false
       },
-      "sms": {
+      "PAC": {
         "enabled": false
       },
-      "voice": {
+      "FC": {
         "enabled": false
+      },
+      "JIOPP": {
+        "enabled": false
+      },
+      "STRIPEPG": {
+        "enabled": true
+      },
+      "JUSPAYPG": {
+        "enabled": false
+      },
+      "PAYUBIZPG": {
+        "enabled": true
+      },
+      "PAYUMONEYPG": {
+        "enabled": true
+      },
+      "RUPIFIPG": {
+        "enabled": false
+      },
+      "SIMPL": {
+        "enabled": true
       }
     },
-    "platforms": [
-      "uniket_wholesale"
-    ],
-    "_id": "5e04c76b8dd8c003577fdd0a",
-    "loyalty_points": {
-      "enabled": true,
-      "auto_apply": false
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "",
+      "payment_identifier": ""
     },
-    "app": "000000000000000000000001",
-    "created_at": "2019-12-26T14:44:59.835Z",
-    "modified_at": "2021-03-09T15:40:29.208Z",
-    "__v": 3,
-    "modified_by": "5e199eed98cfe16dc61385de"
-  }
+    "mode_of_payment": "UNIKET_B2B",
+    "source": "UNIKET",
+    "enabled": true,
+    "cod_amount_limit": 100000,
+    "cod_charges": 1500
+  },
+  "order": {
+    "enabled": true,
+    "force_reassignment": false
+  },
+  "logistics": {
+    "logistics_by_seller": false,
+    "serviceability_check": true,
+    "same_day_delivery": true,
+    "dp_assignment": true
+  },
+  "business": "retail",
+  "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
+  "platforms": [
+    "uniket_wholesale"
+  ],
+  "_id": "5e04c76b8dd8c003577fdd0a",
+  "loyalty_points": {
+    "enabled": true,
+    "auto_apply": false
+  },
+  "app": "000000000000000000000004",
+  "created_at": "2019-12-26T14:44:59.835Z",
+  "modified_at": "2021-03-09T15:40:29.208Z",
+  "__v": 3,
+  "modified_by": "5e199eed98cfe16dc61385de"
 }
 ```
-</details>
-
 </details>
 
 
@@ -2316,83 +2148,77 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "inventory": {
-      "brand": {
-        "criteria": "all",
-        "brands": []
-      },
-      "store": {
-        "criteria": "filter",
-        "stores": [],
-        "rules": [
-          {
-            "companies": [
-              1,
-              3,
-              4
-            ],
-            "brands": []
-          }
-        ]
-      },
-      "category": {
-        "criteria": "all",
-        "categories": []
-      },
-      "price": {
-        "min": 1,
-        "max": 10000
-      },
-      "discount": {
-        "min": 0,
-        "max": 100
-      },
-      "out_of_stock": true,
-      "franchise_enabled": true,
-      "exclude_category": [],
-      "image": [
-        "standard",
-        "substandard",
-        "default"
-      ],
-      "company_store": []
+  "inventory": {
+    "brand": {
+      "criteria": "all",
+      "brands": []
     },
-    "authentication": {
-      "required": true,
-      "provider": "fynd"
-    },
-    "article_assignment": {
-      "rules": {
-        "store_priority": {
-          "enabled": false,
-          "storetype_order": []
+    "store": {
+      "criteria": "filter",
+      "stores": [],
+      "rules": [
+        {
+          "companies": [
+            1,
+            3,
+            4
+          ],
+          "brands": []
         }
-      },
-      "post_order_reassignment": true
+      ]
     },
-    "reward_points": {
-      "credit": {
-        "enabled": true
-      },
-      "debit": {
-        "enabled": true,
-        "auto_apply": false,
-        "strategy_channel": "REWARDS"
+    "category": {
+      "criteria": "all",
+      "categories": []
+    },
+    "price": {
+      "min": 1,
+      "max": 10000
+    },
+    "discount": {
+      "min": 0,
+      "max": 100
+    },
+    "out_of_stock": true,
+    "franchise_enabled": true,
+    "exclude_category": [],
+    "image": [
+      "standard",
+      "substandard",
+      "default"
+    ],
+    "company_store": []
+  },
+  "authentication": {
+    "required": true,
+    "provider": "fynd"
+  },
+  "article_assignment": {
+    "rules": {
+      "store_priority": {
+        "enabled": false,
+        "storetype_order": []
       }
     },
-    "cart": {
-      "delivery_charges": {
-        "enabled": true
-      },
+    "post_order_reassignment": true
+  },
+  "reward_points": {
+    "credit": {
+      "enabled": true
+    },
+    "debit": {
+      "enabled": true,
+      "auto_apply": false,
+      "strategy_channel": "REWARDS"
+    }
+  },
+  "cart": {
+    "delivery_charges": {
+      "enabled": true,
       "charges": [
         {
           "threshold": 1000,
@@ -2402,142 +2228,127 @@ Success
           "threshold": 200000,
           "charges": 79
         }
-      ],
-      "international_delivery_charges": {
-        "enabled": true,
-        "charges": [
-          {
-            "threshold": 1000,
-            "charges": 49
-          },
-          {
-            "threshold": 200000,
-            "charges": 79
-          }
-        ]
-      },
-      "enabled": true,
-      "max_cart_items": 0,
-      "min_cart_value": 120,
-      "bulk_coupons": true,
-      "revenue_engine_coupon": false
+      ]
     },
-    "payment": {
-      "callback_url": {
-        "app": "",
-        "web": ""
-      },
-      "methods": {
-        "pl": {
-          "enabled": true
-        },
-        "card": {
-          "enabled": true
-        },
-        "nb": {
-          "enabled": true
-        },
-        "wl": {
-          "enabled": true
-        },
-        "ps": {
-          "enabled": true
-        },
-        "upi": {
-          "enabled": true
-        },
-        "qr": {
-          "enabled": true
-        },
-        "cod": {
-          "enabled": true
-        },
-        "pp": {
-          "enabled": true
-        },
-        "jp": {
-          "enabled": false
-        },
-        "pac": {
-          "enabled": false
-        },
-        "fc": {
-          "enabled": false
-        },
-        "jiopp": {
-          "enabled": false
-        },
-        "stripepg": {
-          "enabled": true
-        },
-        "juspaypg": {
-          "enabled": false
-        },
-        "payubizpg": {
-          "enabled": true
-        },
-        "payumoneypg": {
-          "enabled": true
-        },
-        "rupifipg": {
-          "enabled": false
-        },
-        "simpl": {
-          "enabled": true
-        }
-      },
-      "payment_selection_lock": {
-        "enabled": false,
-        "default_options": "",
-        "payment_identifier": ""
-      },
-      "mode_of_payment": "UNIKET_B2B",
-      "source": "UNIKET",
-      "enabled": true,
-      "cod_amount_limit": 100000,
-      "cod_charges": 1500
+    "enabled": true,
+    "max_cart_items": 0,
+    "min_cart_value": 120,
+    "bulk_coupons": true,
+    "revenue_engine_coupon": false
+  },
+  "payment": {
+    "callback_url": {
+      "app": "",
+      "web": ""
     },
-    "order": {
-      "enabled": true,
-      "force_reassignment": false
-    },
-    "logistics": {
-      "logistics_by_seller": false,
-      "serviceability_check": true,
-      "same_day_delivery": true,
-      "dp_assignment": true
-    },
-    "business": "retail",
-    "comms_enabled": true,
-    "communication": {
-      "email": {
+    "methods": {
+      "PL": {
+        "enabled": true
+      },
+      "CARD": {
+        "enabled": true
+      },
+      "NB": {
+        "enabled": true
+      },
+      "WL": {
+        "enabled": true
+      },
+      "PS": {
+        "enabled": true
+      },
+      "UPI": {
+        "enabled": true
+      },
+      "QR": {
+        "enabled": true
+      },
+      "COD": {
+        "enabled": true
+      },
+      "PP": {
+        "enabled": true
+      },
+      "JP": {
         "enabled": false
       },
-      "sms": {
+      "PAC": {
         "enabled": false
       },
-      "voice": {
+      "FC": {
         "enabled": false
+      },
+      "JIOPP": {
+        "enabled": false
+      },
+      "STRIPEPG": {
+        "enabled": true
+      },
+      "JUSPAYPG": {
+        "enabled": false
+      },
+      "PAYUBIZPG": {
+        "enabled": true
+      },
+      "PAYUMONEYPG": {
+        "enabled": true
+      },
+      "RUPIFIPG": {
+        "enabled": false
+      },
+      "SIMPL": {
+        "enabled": true
       }
     },
-    "platforms": [
-      "uniket_wholesale"
-    ],
-    "_id": "5e04c76b8dd8c003577fdd0a",
-    "loyalty_points": {
-      "enabled": true,
-      "auto_apply": false
+    "payment_selection_lock": {
+      "enabled": false,
+      "default_options": "",
+      "payment_identifier": ""
     },
-    "app": "000000000000000000000001",
-    "created_at": "2019-12-26T14:44:59.835Z",
-    "modified_at": "2021-03-09T15:40:29.208Z",
-    "__v": 3,
-    "modified_by": "5e199eed98cfe16dc61385de"
-  }
+    "mode_of_payment": "UNIKET_B2B",
+    "source": "UNIKET",
+    "enabled": true,
+    "cod_amount_limit": 100000,
+    "cod_charges": 1500
+  },
+  "order": {
+    "enabled": true,
+    "force_reassignment": false
+  },
+  "logistics": {
+    "logistics_by_seller": false,
+    "serviceability_check": true,
+    "same_day_delivery": true,
+    "dp_assignment": true
+  },
+  "business": "retail",
+  "comms_enabled": true,
+  "communication": {
+    "email": {
+      "enabled": false
+    },
+    "sms": {
+      "enabled": false
+    },
+    "voice": {
+      "enabled": false
+    }
+  },
+  "platforms": [
+    "uniket_wholesale"
+  ],
+  "_id": "5e04c76b8dd8c003577fdd0a",
+  "loyalty_points": {
+    "enabled": true,
+    "auto_apply": false
+  },
+  "app": "000000000000000000000004",
+  "created_at": "2019-12-26T14:44:59.835Z",
+  "modified_at": "2021-03-09T15:40:29.208Z",
+  "__v": 3,
+  "modified_by": "5e199eed98cfe16dc61385de"
 }
 ```
-</details>
-
 </details>
 
 
@@ -2583,35 +2394,27 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "_id": "5ec7a85965c3893857538d93",
-    "supported_currency": [
-      "5ec75d11f7bfb5a7d38f3524",
-      "5ec75d11f7bfb54d798f3516",
-      "5ec75d11f7bfb553b88f355f",
-      "5ec75d11f7bfb559d08f34d5",
-      "5ec75d11f7bfb5d1e98f34da"
-    ],
-    "application": "000000000000000000000001",
-    "default_currency": {
-      "ref": "5ec75d11f7bfb54d798f3516",
-      "code": "USD"
-    },
-    "created_at": "2020-05-22T10:24:25.984Z",
-    "modified_at": "2021-03-09T10:47:32.664Z"
-  }
+  "_id": "5ec7a85965c3893857538d93",
+  "supported_currency": [
+    "5ec75d11f7bfb5a7d38f3524",
+    "5ec75d11f7bfb54d798f3516",
+    "5ec75d11f7bfb553b88f355f",
+    "5ec75d11f7bfb559d08f34d5",
+    "5ec75d11f7bfb5d1e98f34da"
+  ],
+  "application": "000000000000000000000004",
+  "default_currency": {
+    "ref": "5ec75d11f7bfb54d798f3516",
+    "code": "USD"
+  },
+  "created_at": "2020-05-22T10:24:25.984Z",
+  "modified_at": "2021-03-09T10:47:32.664Z"
 }
 ```
-</details>
-
 </details>
 
 
@@ -2661,35 +2464,27 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "_id": "5ec7a85965c3893857538d93",
-    "supported_currency": [
-      "5ec75d11f7bfb5a7d38f3524",
-      "5ec75d11f7bfb54d798f3516",
-      "5ec75d11f7bfb553b88f355f",
-      "5ec75d11f7bfb559d08f34d5",
-      "5ec75d11f7bfb5d1e98f34da"
-    ],
-    "application": "000000000000000000000001",
-    "default_currency": {
-      "ref": "5ec75d11f7bfb54d798f3516",
-      "code": "USD"
-    },
-    "created_at": "2020-05-22T10:24:25.984Z",
-    "modified_at": "2021-03-09T10:47:32.664Z"
-  }
+  "_id": "5ec7a85965c3893857538d93",
+  "supported_currency": [
+    "5ec75d11f7bfb5a7d38f3524",
+    "5ec75d11f7bfb54d798f3516",
+    "5ec75d11f7bfb553b88f355f",
+    "5ec75d11f7bfb559d08f34d5",
+    "5ec75d11f7bfb5d1e98f34da"
+  ],
+  "application": "000000000000000000000004",
+  "default_currency": {
+    "ref": "5ec75d11f7bfb54d798f3516",
+    "code": "USD"
+  },
+  "created_at": "2020-05-22T10:24:25.984Z",
+  "modified_at": "2021-03-09T10:47:32.664Z"
 }
 ```
-</details>
-
 </details>
 
 
@@ -2735,37 +2530,29 @@ Success. Check the example shown below or refer `AppCurrencyResponse` for more d
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "application": "000000000000000000000001",
-    "default_currency": {
-      "ref": "5ecf6122d953d4242c044907",
-      "code": "INR"
-    },
-    "supported_currency": [
-      {
-        "_id": "5ecf6122d953d4242c044907",
-        "is_active": true,
-        "name": "Indian Rupee",
-        "code": "INR",
-        "decimal_digits": 2,
-        "symbol": "₹",
-        "created_at": "2020-05-28T06:58:42.532Z",
-        "modified_at": "2021-04-05T16:44:14.358Z"
-      }
-    ]
-  }
+  "application": "000000000000000000000001",
+  "default_currency": {
+    "ref": "5ecf6122d953d4242c044907",
+    "code": "INR"
+  },
+  "supported_currency": [
+    {
+      "_id": "5ecf6122d953d4242c044907",
+      "is_active": true,
+      "name": "Indian Rupee",
+      "code": "INR",
+      "decimal_digits": 2,
+      "symbol": "₹",
+      "created_at": "2020-05-28T06:58:42.532Z",
+      "modified_at": "2021-04-05T16:44:14.358Z"
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -2817,103 +2604,95 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "page": {
-      "type": "number",
-      "size": 10,
-      "current": 1,
-      "has_next": true,
-      "item_total": 583
-    },
-    "items": [
-      {
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SAGAR TECH PLAZA, SAKINAKA",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              1,
-              1
-            ]
-          },
-          "pincode": 400070,
-          "country": "INDIA",
-          "city": "MUMBAI"
+  "page": {
+    "type": "number",
+    "size": 10,
+    "current": 1,
+    "has_next": true,
+    "item_total": 583
+  },
+  "items": [
+    {
+      "address": {
+        "state": "MAHARASHTRA",
+        "address1": "SAGAR TECH PLAZA, SAKINAKA",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            1,
+            1
+          ]
         },
-        "_id": "5f586563f509dd000145c02d",
-        "store_type": "high_street",
-        "uid": 11016,
-        "store_code": "HS-0c532",
-        "display_name": " Brand Company Store 11",
-        "name": " Brand Company Store 11",
         "pincode": 400070,
-        "code": "HS-0c532"
+        "country": "INDIA",
+        "city": "MUMBAI"
       },
-      {
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "UNNAMED ROAD, VASAI EAST SALT PLANT",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.84293219999999,
-              19.3805675
-            ]
-          },
-          "address2": "VASAI EAST SALT PLANT, VASAI EAST, ",
-          "pincode": 401208,
-          "country": "INDIA",
-          "city": "VIRAR",
-          "landmark": ""
+      "_id": "5f586563f509dd000145c02d",
+      "store_type": "high_street",
+      "uid": 11016,
+      "store_code": "HS-0c532",
+      "display_name": " Brand Company Store 11",
+      "name": " Brand Company Store 11",
+      "pincode": 400070,
+      "code": "HS-0c532"
+    },
+    {
+      "address": {
+        "state": "MAHARASHTRA",
+        "address1": "UNNAMED ROAD, VASAI EAST SALT PLANT",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            72.84293219999999,
+            19.3805675
+          ]
         },
-        "_id": "5f585934f509dd000145c025",
-        "store_type": "high_street",
-        "uid": 11567,
-        "store_code": "123456",
-        "display_name": "2nd Store",
-        "name": "2nd Store",
+        "address2": "VASAI EAST SALT PLANT, VASAI EAST, ",
         "pincode": 401208,
-        "code": "123456"
+        "country": "INDIA",
+        "city": "VIRAR",
+        "landmark": ""
       },
-      {
-        "address": {
-          "state": "GUJARAT",
-          "address1": "32, AANAND SHOPPING CENTRE ",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              1,
-              1
-            ]
-          },
-          "pincode": 380001,
-          "country": "INDIA",
-          "city": "AHMEDABAD"
+      "_id": "5f585934f509dd000145c025",
+      "store_type": "high_street",
+      "uid": 11567,
+      "store_code": "123456",
+      "display_name": "2nd Store",
+      "name": "2nd Store",
+      "pincode": 401208,
+      "code": "123456"
+    },
+    {
+      "address": {
+        "state": "GUJARAT",
+        "address1": "32, AANAND SHOPPING CENTRE ",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            1,
+            1
+          ]
         },
-        "_id": "5f587b5ef509dd000145c02f",
-        "store_type": "high_street",
-        "uid": 11568,
-        "store_code": "12345",
-        "display_name": "3rd ",
-        "name": "3rd ",
         "pincode": 380001,
-        "code": "12345"
-      }
-    ]
-  }
+        "country": "INDIA",
+        "city": "AHMEDABAD"
+      },
+      "_id": "5f587b5ef509dd000145c02f",
+      "store_type": "high_street",
+      "uid": 11568,
+      "store_code": "12345",
+      "display_name": "3rd ",
+      "name": "3rd ",
+      "pincode": 380001,
+      "code": "12345"
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -2963,15 +2742,11 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
+  "deployment_meta": {
     "deployed_stores": [
       1,
       10
@@ -2980,12 +2755,21 @@ Success
     "enabled": true,
     "type": "hard",
     "_id": "5e7e5e4d6b5f3b4b54c95f9c",
-    "app": "000000000000000000000001"
-  }
+    "app": "000000000000000000000004",
+    "__v": 6
+  },
+  "deployed_stores": [
+    1,
+    10
+  ],
+  "all_stores": false,
+  "enabled": true,
+  "type": "hard",
+  "_id": "5e7e5e4d6b5f3b4b54c95f9c",
+  "app": "000000000000000000000004",
+  "__v": 6
 }
 ```
-</details>
-
 </details>
 
 
@@ -3031,31 +2815,24 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "deployment_meta": {
-      "deployed_stores": [
-        1,
-        10
-      ],
-      "all_stores": false,
-      "enabled": true,
-      "type": "hard",
-      "_id": "5e7e5e4d6b5f3b4b54c95f9c",
-      "app": "000000000000000000000001"
-    }
+  "deployment_meta": {
+    "deployed_stores": [
+      1,
+      10
+    ],
+    "all_stores": false,
+    "enabled": true,
+    "type": "hard",
+    "_id": "5e7e5e4d6b5f3b4b54c95f9c",
+    "app": "000000000000000000000004",
+    "__v": 6
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -3108,21 +2885,11 @@ Success. Check the example shown below or refer `OrderingStoresResponse` for mor
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "uid": 10
-  }
-}
-```
-</details>
 
+```
 </details>
 
 
@@ -3172,21 +2939,13 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "message": "success"
-  }
+  "message": "success"
 }
 ```
-</details>
-
 </details>
 
 
@@ -3232,21 +2991,13 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "message": "success"
-  }
+  "message": "success"
 }
 ```
-</details>
-
 </details>
 
 
@@ -3292,46 +3043,38 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "domains": [
-      {
-        "_id": "5eb1177748312a3bd55d0f1e",
-        "verified": true,
-        "name": "uniket.hostfynd.dev",
-        "is_primary": true,
-        "is_shortlink": false,
-        "is_predefined": true
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": true,
-        "_id": "5f0858c5f86e00cd42dccc8d",
-        "name": "jd.hostfynd.dev",
-        "is_predefined": true
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": false,
-        "_id": "6048497e87f5730423149190",
-        "name": "testdm.hostfynd.dev",
-        "is_predefined": true
-      }
-    ]
-  }
+  "domains": [
+    {
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "verified": true,
+      "name": "uniket.hostx0.de",
+      "is_primary": true,
+      "is_shortlink": false,
+      "is_predefined": true
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de",
+      "is_predefined": true
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_shortlink": false,
+      "_id": "6048497e87f5730423149190",
+      "name": "testdm.hostx0.de",
+      "is_predefined": true
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -3381,26 +3124,19 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "name": "testdm.hostfynd.dev",
-    "verified": true,
-    "message": "New domain added successfully",
-    "is_primary": false,
-    "is_shortlink": false,
-    "_id": "6048497e87f5730423149190"
-  }
+  "name": "testdm.hostx0.de",
+  "verified": true,
+  "txtRecords": [],
+  "message": "New domain added successfully",
+  "is_primary": false,
+  "is_shortlink": false,
+  "_id": "6048497e87f5730423149190"
 }
 ```
-</details>
-
 </details>
 
 
@@ -3451,21 +3187,13 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "message": "Domain removed successfully"
-  }
+  "message": "Domain removed successfully"
 }
 ```
-</details>
-
 </details>
 
 
@@ -3515,43 +3243,35 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "domains": [
-      {
-        "_id": "5eb1177748312a3bd55d0f1e",
-        "verified": true,
-        "name": "uniket.hostx0.de",
-        "is_primary": true,
-        "is_shortlink": false
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": true,
-        "_id": "5f0858c5f86e00cd42dccc8d",
-        "name": "jd.hostx0.de"
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": false,
-        "_id": "6048497e87f5730423149190",
-        "name": "testdm.hostx0.de"
-      }
-    ]
-  }
+  "domains": [
+    {
+      "_id": "5eb1177748312a3bd55d0f1e",
+      "verified": true,
+      "name": "uniket.hostx0.de",
+      "is_primary": true,
+      "is_shortlink": false
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_shortlink": false,
+      "_id": "6048497e87f5730423149190",
+      "name": "testdm.hostx0.de"
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -3601,35 +3321,27 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "connected": true,
-    "status": [
-      {
-        "display": "Domain TXT record entry 5d65089e031f9029f8e8dc2f",
-        "status": true
-      },
-      {
-        "display": "Domain pointing to 18.217.232.69 A record",
-        "status": true
-      },
-      {
-        "display": "Domain pointing to 18.188.115.251 A record",
-        "status": true
-      }
-    ]
-  }
+  "connected": true,
+  "status": [
+    {
+      "display": "Domain TXT record entry 5d65089e031f9029f8e8dc2f",
+      "status": true
+    },
+    {
+      "display": "Domain pointing to 18.217.232.69 A record",
+      "status": true
+    },
+    {
+      "display": "Domain pointing to 18.188.115.251 A record",
+      "status": true
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -3679,23 +3391,11 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "app": {
-      "name": "testing"
-    }
-  }
-}
-```
-</details>
 
+```
 </details>
 
 
@@ -3748,24 +3448,11 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "app": {
-      "name": "testing",
-      "company_id": 2
-    }
-  }
-}
-```
-</details>
 
+```
 </details>
 
 
@@ -3811,22 +3498,11 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "company_id": 2,
-    "name": "test"
-  }
-}
-```
-</details>
 
+```
 </details>
 
 
@@ -3872,32 +3548,24 @@ Currencies Success response
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "_id": "5ec75d11f7bfb54d798f3516",
-        "is_active": true,
-        "name": "United States Dollar",
-        "code": "USD",
-        "created_at": "2020-05-22T05:03:13.354Z",
-        "updated_at": "2020-06-05T09:12:04.248Z",
-        "decimal_digits": 2,
-        "symbol": "$"
-      }
-    ]
-  }
+  "items": [
+    {
+      "_id": "5ec75d11f7bfb54d798f3516",
+      "is_active": true,
+      "name": "United States Dollar",
+      "code": "USD",
+      "created_at": "2020-05-22T05:03:13.354Z",
+      "modified_at": "2020-06-05T09:12:04.248Z",
+      "decimal_digits": 2,
+      "symbol": "$"
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -3951,43 +3619,46 @@ Success
 
 
 <details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Suggestions for fynd domains</i></summary>
 
 ```json
 {
   "value": {
-    "Suggestions for fynd domains": {
-      "value": {
-        "domains": [
-          {
-            "name": "test.hostx1.de",
-            "is_available": false
-          },
-          {
-            "name": "testhive.hostx1.de",
-            "is_available": true
-          }
-        ]
+    "domains": [
+      {
+        "name": "test.hostx1.de",
+        "is_available": false
+      },
+      {
+        "name": "testhive.hostx1.de",
+        "is_available": true
       }
-    },
-    "Suggestions for custom domains": {
-      "value": {
-        "domains": [
-          {
-            "name": "test25.in",
-            "unsupported": false,
-            "is_available": false
-          },
-          {
-            "name": "try25.in",
-            "unsupported": false,
-            "is_available": true,
-            "price": 14.99,
-            "currency": "USD"
-          }
-        ]
+    ]
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; Suggestions for custom domains</i></summary>
+
+```json
+{
+  "value": {
+    "domains": [
+      {
+        "name": "test25.in",
+        "unsupported": false,
+        "is_available": false
+      },
+      {
+        "name": "try25.in",
+        "unsupported": false,
+        "is_available": true,
+        "price": 14.99,
+        "currency": "USD"
       }
-    }
+    ]
   }
 }
 ```
@@ -4024,7 +3695,7 @@ platformClient.configuration.getIntegrationById(id: id) { (response, error) in
 
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
-| id | String | yes | Integration id |  
+| id | Int | yes | Integration id |  
 
 
 
@@ -4043,114 +3714,106 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "_id": "5ec376ce848a005189acb312",
-    "validators": {
-      "company": {
-        "browser_script": "",
-        "json_schema": [
-          {
-            "type": "object"
+  "_id": "5ec376ce848a005189acb312",
+  "validators": {
+    "company": {
+      "browser_script": "",
+      "json_schema": [
+        {
+          "type": "object"
+        },
+        {
+          "required": [
+            "ip_address",
+            "icode",
+            "gds_entity_id",
+            "auth_key"
+          ]
+        },
+        {
+          "properties": null,
+          "gds_entity_id": {
+            "type": "string",
+            "title": "GDS Entity ID",
+            "minLength": 3,
+            "maxLength": 10,
+            "pattern": "^[a-zA-Z0-9]+$",
+            "description": "GDS Entity ID is a unique identifier provided by Ginesys to you."
           },
-          {
-            "required": [
-              "ip_address",
-              "icode",
-              "gds_entity_id",
-              "auth_key"
-            ]
+          "ip_address": {
+            "type": "string",
+            "title": "IP Address",
+            "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
+            "description": "Enter IP address provided by Ginesys for your POS server"
           },
-          {
-            "properties": null,
-            "gds_entity_id": {
-              "type": "string",
-              "title": "GDS Entity ID",
-              "minLength": 3,
-              "maxLength": 10,
-              "pattern": "^[a-zA-Z0-9]+$",
-              "description": "GDS Entity ID is a unique identifier provided by Ginesys to you."
-            },
-            "ip_address": {
-              "type": "string",
-              "title": "IP Address",
-              "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
-              "description": "Enter IP address provided by Ginesys for your POS server"
-            },
-            "auth_key": {
-              "title": "Auth Key",
-              "type": "string",
-              "maxLength": 500,
-              "description": "Provide authentication token provided by Ginesys to you."
-            },
-            "icode": {
-              "title": "ICODE",
-              "type": "string",
-              "enum": [
-                "ean",
-                "upc",
-                "alu",
-                "sku_code"
-              ],
-              "description": "Please select the correct SKU identifier that you use to provide inventory to Fynd."
-            }
+          "auth_key": {
+            "title": "Auth Key",
+            "type": "string",
+            "maxLength": 500,
+            "description": "Provide authentication token provided by Ginesys to you."
+          },
+          "icode": {
+            "title": "ICODE",
+            "type": "string",
+            "enum": [
+              "ean",
+              "upc",
+              "alu",
+              "sku_code"
+            ],
+            "description": "Please select the correct SKU identifier that you use to provide inventory to Fynd."
           }
-        ]
-      },
-      "store": {
-        "browser_script": "",
-        "json_schema": [
-          {
-            "type": "object"
-          },
-          {
-            "properties": null,
-            "location_id": {
-              "type": "string",
-              "title": "Location ID",
-              "description": "Provide site code as per POS/SAP."
-            },
-            "ip_address": {
-              "type": "string",
-              "title": "IP Address",
-              "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
-              "description": "Enter IP address provided by Ginesys for your POS server"
-            }
-          }
-        ]
-      }
+        }
+      ]
     },
-    "description": "Sap Integration west ELM brands",
-    "constants": {},
-    "name": "SAP RBL Integration",
-    "meta": [
-      {
-        "public": true,
-        "_id": "5ee3e246129be17ce0b59ef4",
-        "name": "price_level",
-        "value": "store"
-      }
-    ],
-    "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1589868232/addsale/platform/integrations/icon/z3kj9p8nidx4zzmdutdu.svg",
-    "owner": "5e60e43dcd08cf01069eb23e",
-    "created_at": "2020-05-19T06:03:58.757Z",
-    "updated_at": "2020-06-15T12:00:42.598Z",
-    "token": "qk60vXqk-",
-    "secret": "Gp0dYInpUV",
-    "__v": 13,
-    "description_html": ""
-  }
+    "store": {
+      "browser_script": "",
+      "json_schema": [
+        {
+          "type": "object"
+        },
+        {
+          "properties": null,
+          "location_id": {
+            "type": "string",
+            "title": "Location ID",
+            "description": "Provide site code as per POS/SAP."
+          },
+          "ip_address": {
+            "type": "string",
+            "title": "IP Address",
+            "pattern": "(\\d{1,3}\\.){3}\\d{1,3}",
+            "description": "Enter IP address provided by Ginesys for your POS server"
+          }
+        }
+      ]
+    }
+  },
+  "description": "Sap Integration west ELM brands",
+  "constants": {},
+  "name": "SAP RBL Integration",
+  "meta": [
+    {
+      "public": true,
+      "_id": "5ee3e246129be17ce0b59ef4",
+      "name": "price_level",
+      "value": "store"
+    }
+  ],
+  "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1589868232/addsale/platform/integrations/icon/z3kj9p8nidx4zzmdutdu.svg",
+  "owner": "5e60e43dcd08cf01069eb23e",
+  "created_at": "2020-05-19T06:03:58.757Z",
+  "modified_at": "2020-06-15T12:00:42.598Z",
+  "token": "qk60vXqk-",
+  "secret": "Gp0dYInpUV",
+  "__v": 13,
+  "description_html": ""
 }
 ```
-</details>
-
 </details>
 
 
@@ -4202,126 +3865,118 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "validators": {
-          "company": {
-            "json_schema": [
-              {
-                "display": "Host",
-                "key": "host",
-                "type": "text",
-                "tooltip": "Enter host address"
-              }
-            ],
-            "browser_script": ""
-          },
-          "store": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "inventory": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "order": {
-            "json_schema": [],
-            "browser_script": ""
-          }
+  "items": [
+    {
+      "validators": {
+        "company": {
+          "json_schema": [
+            {
+              "display": "Host",
+              "key": "host",
+              "type": "text",
+              "tooltip": "Enter host address"
+            }
+          ],
+          "browser_script": ""
         },
-        "description": "awesome integration",
-        "description_html": "",
-        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
-        "companies": [],
-        "support": [
-          "inventory",
-          "order"
-        ],
-        "_id": "5e56089f4265cf2846d1e58c",
-        "name": "x0-1",
-        "meta": [
-          {
-            "public": true,
-            "_id": "5e56089f4265cf81e1d1e58e",
-            "name": "wow",
-            "value": "1"
-          }
-        ],
-        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
-        "owner": "5e55fe074bda3c392ed9eab2",
-        "created_at": "2020-02-26T05:56:47.214Z",
-        "updated_at": "2021-03-02T12:29:03.554Z",
-        "token": "fKoHRW5H",
-        "secret": "d1E85CTmf",
-        "__v": 12
+        "store": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "inventory": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "order": {
+          "json_schema": [],
+          "browser_script": ""
+        }
       },
-      {
-        "validators": {
-          "company": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "store": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "inventory": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "order": {
-            "json_schema": [],
-            "browser_script": ""
-          }
+      "description": "awesome integration",
+      "description_html": "",
+      "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+      "companies": [],
+      "support": [
+        "inventory",
+        "order"
+      ],
+      "_id": "5e56089f4265cf2846d1e58c",
+      "name": "x0-1",
+      "meta": [
+        {
+          "public": true,
+          "_id": "5e56089f4265cf81e1d1e58e",
+          "name": "wow",
+          "value": "1"
+        }
+      ],
+      "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
+      "owner": "5e55fe074bda3c392ed9eab2",
+      "created_at": "2020-02-26T05:56:47.214Z",
+      "modified_at": "2021-03-02T12:29:03.554Z",
+      "token": "fKoHRW5H",
+      "secret": "d1E85CTmf",
+      "__v": 12
+    },
+    {
+      "validators": {
+        "company": {
+          "json_schema": [],
+          "browser_script": ""
         },
-        "description": "jabardast",
-        "description_html": "",
-        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
-        "companies": [],
-        "support": [
-          "inventory",
-          "order"
-        ],
-        "_id": "5e5608bf4265cf7198d1e58f",
-        "name": "x0-2",
-        "meta": [
-          {
-            "public": false,
-            "_id": "5e5608bf4265cf813fd1e590",
-            "name": "wow",
-            "value": "1"
-          }
-        ],
-        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
-        "owner": "5e55fe074bda3c392ed9eab2",
-        "created_at": "2020-02-26T05:57:19.875Z",
-        "updated_at": "2021-02-15T05:23:55.962Z",
-        "token": "3h3_mnzp",
-        "secret": "dgGHrIlFG",
-        "__v": 7
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 50,
-      "item_total": 24,
-      "has_next": false
+        "store": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "inventory": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "order": {
+          "json_schema": [],
+          "browser_script": ""
+        }
+      },
+      "description": "jabardast",
+      "description_html": "",
+      "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+      "companies": [],
+      "support": [
+        "inventory",
+        "order"
+      ],
+      "_id": "5e5608bf4265cf7198d1e58f",
+      "name": "x0-2",
+      "meta": [
+        {
+          "public": false,
+          "_id": "5e5608bf4265cf813fd1e590",
+          "name": "wow",
+          "value": "1"
+        }
+      ],
+      "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
+      "owner": "5e55fe074bda3c392ed9eab2",
+      "created_at": "2020-02-26T05:57:19.875Z",
+      "modified_at": "2021-02-15T05:23:55.962Z",
+      "token": "3h3_mnzp",
+      "secret": "dgGHrIlFG",
+      "__v": 7
     }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 50,
+    "item_total": 24,
+    "has_next": false
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -4375,126 +4030,118 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "validators": {
-          "company": {
-            "json_schema": [
-              {
-                "display": "Host",
-                "key": "host",
-                "type": "text",
-                "tooltip": "Enter host address"
-              }
-            ],
-            "browser_script": ""
-          },
-          "store": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "inventory": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "order": {
-            "json_schema": [],
-            "browser_script": ""
-          }
+  "items": [
+    {
+      "validators": {
+        "company": {
+          "json_schema": [
+            {
+              "display": "Host",
+              "key": "host",
+              "type": "text",
+              "tooltip": "Enter host address"
+            }
+          ],
+          "browser_script": ""
         },
-        "description": "awesome integration",
-        "description_html": "",
-        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
-        "companies": [],
-        "support": [
-          "inventory",
-          "order"
-        ],
-        "_id": "5e56089f4265cf2846d1e58c",
-        "name": "x0-1",
-        "meta": [
-          {
-            "public": true,
-            "_id": "5e56089f4265cf81e1d1e58e",
-            "name": "wow",
-            "value": "1"
-          }
-        ],
-        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
-        "owner": "5e55fe074bda3c392ed9eab2",
-        "created_at": "2020-02-26T05:56:47.214Z",
-        "updated_at": "2021-03-02T12:29:03.554Z",
-        "token": "fKoHRW5H",
-        "secret": "d1E85CTmf",
-        "__v": 12
+        "store": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "inventory": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "order": {
+          "json_schema": [],
+          "browser_script": ""
+        }
       },
-      {
-        "validators": {
-          "company": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "store": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "inventory": {
-            "json_schema": [],
-            "browser_script": ""
-          },
-          "order": {
-            "json_schema": [],
-            "browser_script": ""
-          }
+      "description": "awesome integration",
+      "description_html": "",
+      "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+      "companies": [],
+      "support": [
+        "inventory",
+        "order"
+      ],
+      "_id": "5e56089f4265cf2846d1e58c",
+      "name": "x0-1",
+      "meta": [
+        {
+          "public": true,
+          "_id": "5e56089f4265cf81e1d1e58e",
+          "name": "wow",
+          "value": "1"
+        }
+      ],
+      "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696589/addsale/platform/integrations/icon/jihgcoibfmdttgiukwg0.png",
+      "owner": "5e55fe074bda3c392ed9eab2",
+      "created_at": "2020-02-26T05:56:47.214Z",
+      "modified_at": "2021-03-02T12:29:03.554Z",
+      "token": "fKoHRW5H",
+      "secret": "d1E85CTmf",
+      "__v": 12
+    },
+    {
+      "validators": {
+        "company": {
+          "json_schema": [],
+          "browser_script": ""
         },
-        "description": "jabardast",
-        "description_html": "",
-        "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
-        "companies": [],
-        "support": [
-          "inventory",
-          "order"
-        ],
-        "_id": "5e5608bf4265cf7198d1e58f",
-        "name": "x0-2",
-        "meta": [
-          {
-            "public": false,
-            "_id": "5e5608bf4265cf813fd1e590",
-            "name": "wow",
-            "value": "1"
-          }
-        ],
-        "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
-        "owner": "5e55fe074bda3c392ed9eab2",
-        "created_at": "2020-02-26T05:57:19.875Z",
-        "updated_at": "2021-02-15T05:23:55.962Z",
-        "token": "3h3_mnzp",
-        "secret": "dgGHrIlFG",
-        "__v": 7
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 50,
-      "item_total": 24,
-      "has_next": false
+        "store": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "inventory": {
+          "json_schema": [],
+          "browser_script": ""
+        },
+        "order": {
+          "json_schema": [],
+          "browser_script": ""
+        }
+      },
+      "description": "jabardast",
+      "description_html": "",
+      "constants": "{\"mop_mapping\":{\"FYND\":\"FYND\"}}",
+      "companies": [],
+      "support": [
+        "inventory",
+        "order"
+      ],
+      "_id": "5e5608bf4265cf7198d1e58f",
+      "name": "x0-2",
+      "meta": [
+        {
+          "public": false,
+          "_id": "5e5608bf4265cf813fd1e590",
+          "name": "wow",
+          "value": "1"
+        }
+      ],
+      "icon": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1582696633/addsale/platform/integrations/icon/cstvvkgjgip1ja56gq4x.png",
+      "owner": "5e55fe074bda3c392ed9eab2",
+      "created_at": "2020-02-26T05:57:19.875Z",
+      "modified_at": "2021-02-15T05:23:55.962Z",
+      "token": "3h3_mnzp",
+      "secret": "dgGHrIlFG",
+      "__v": 7
     }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 50,
+    "item_total": 24,
+    "has_next": false
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -4548,36 +4195,32 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "opted": false,
-        "permissions": [],
-        "last_patch": [],
-        "_id": "5ec377f2848a0073feacb31b",
-        "integration": "5ec376ce848a005189acb312",
-        "level": "store",
-        "uid": 1,
-        "meta": [],
-        "token": "1RuGX0Fyp",
-        "created_at": "2020-05-19T06:08:50.199Z",
-        "modified_at": "2020-08-17T07:54:01.809Z",
-        "__v": 14
+  "items": [
+    {
+      "opted": false,
+      "permissions": [],
+      "last_patch": [],
+      "_id": "5ec377f2848a0073feacb31b",
+      "integration": "5ec376ce848a005189acb312",
+      "level": "store",
+      "uid": 1,
+      "meta": [],
+      "token": "1RuGX0Fyp",
+      "created_at": "2020-05-19T06:08:50.199Z",
+      "modified_at": "2020-08-17T07:54:01.809Z",
+      "__v": 14,
+      "data": {
+        "location_id": "09876",
+        "ip_address": "1.2.3.4"
       }
-    ]
-  }
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -4629,32 +4272,28 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "opted": false,
-    "permissions": [],
-    "last_patch": [],
-    "_id": "5ec377f2848a0073feacb31b",
-    "integration": "5ec376ce848a005189acb312",
-    "level": "store",
-    "uid": 1,
-    "meta": [],
-    "token": "1RuGX0Fyp",
-    "created_at": "2020-05-19T06:08:50.199Z",
-    "modified_at": "2020-08-17T07:54:01.809Z",
-    "__v": 14
+  "opted": false,
+  "permissions": [],
+  "last_patch": [],
+  "_id": "5ec377f2848a0073feacb31b",
+  "integration": "5ec376ce848a005189acb312",
+  "level": "store",
+  "uid": 1,
+  "meta": [],
+  "token": "1RuGX0Fyp",
+  "created_at": "2020-05-19T06:08:50.199Z",
+  "modified_at": "2020-08-17T07:54:01.809Z",
+  "__v": 14,
+  "data": {
+    "location_id": "09876",
+    "ip_address": "1.2.3.4"
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -4707,32 +4346,28 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "opted": false,
-    "permissions": [],
-    "last_patch": [],
-    "_id": "5ec377f2848a0073feacb31b",
-    "integration": "5ec376ce848a005189acb312",
-    "level": "store",
-    "uid": 1,
-    "meta": [],
-    "token": "1RuGX0Fyp",
-    "created_at": "2020-05-19T06:08:50.199Z",
-    "modified_at": "2020-08-17T07:54:01.809Z",
-    "__v": 14
+  "opted": false,
+  "permissions": [],
+  "last_patch": [],
+  "_id": "5ec377f2848a0073feacb31b",
+  "integration": "5ec376ce848a005189acb312",
+  "level": "store",
+  "uid": 1,
+  "meta": [],
+  "token": "1RuGX0Fyp",
+  "created_at": "2020-05-19T06:08:50.199Z",
+  "modified_at": "2020-08-17T07:54:01.809Z",
+  "__v": 14,
+  "data": {
+    "location_id": "09876",
+    "ip_address": "1.2.3.4"
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -4785,33 +4420,28 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "opted": false,
-    "permissions": [],
-    "last_patch": [],
-    "_id": "5ec377f2848a0073feacb31b",
-    "integration": "5ec376ce848a005189acb312",
-    "level": "store",
-    "uid": 2,
-    "meta": [],
-    "token": "1RuGX0Fyp",
-    "company_id": 2,
-    "created_at": "2020-05-19T06:08:50.199Z",
-    "modified_at": "2020-08-17T07:54:01.809Z",
-    "__v": 14
+  "opted": false,
+  "permissions": [],
+  "last_patch": [],
+  "_id": "5ec377f2848a0073feacb31b",
+  "integration": "5ec376ce848a005189acb312",
+  "level": "store",
+  "uid": 1,
+  "meta": [],
+  "token": "1RuGX0Fyp",
+  "created_at": "2020-05-19T06:08:50.199Z",
+  "modified_at": "2020-08-17T07:54:01.809Z",
+  "__v": 14,
+  "data": {
+    "location_id": "09876",
+    "ip_address": "1.2.3.4"
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -4864,34 +4494,28 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "other_entity": {
-      "opted": false,
-      "permissions": [],
-      "last_patch": [],
-      "_id": "5ec377f2848a0073feacb31b",
-      "integration": "5ec376ce848a005189acb312",
-      "level": "company",
-      "uid": 2,
-      "meta": [],
-      "token": "1RuGX0Fyp",
-      "created_at": "2020-05-19T06:08:50.199Z",
-      "modified_at": "2020-08-17T07:54:01.809Z",
-      "__v": 14
-    }
+  "opted": false,
+  "permissions": [],
+  "last_patch": [],
+  "_id": "5ec377f2848a0073feacb31b",
+  "integration": "5ec376ce848a005189acb312",
+  "level": "store",
+  "uid": 1,
+  "meta": [],
+  "token": "1RuGX0Fyp",
+  "created_at": "2020-05-19T06:08:50.199Z",
+  "modified_at": "2020-08-17T07:54:01.809Z",
+  "__v": 14,
+  "data": {
+    "location_id": "09876",
+    "ip_address": "1.2.3.4"
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -4942,29 +4566,19 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "brands": [
-      {
-        "name": "5th Avenue",
-        "value": 476,
-        "brand_logo_url": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/--unnamed--/1595615012186.jpeg",
-        "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/--unnamed--/1595615012724.jpeg",
-        "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/--unnamed--/1595615013203.jpeg"
-      }
-    ]
+  "brands": {
+    "name": "5th Avenue",
+    "value": 476,
+    "brand_logo_url": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/--unnamed--/1595615012186.jpeg",
+    "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/--unnamed--/1595615012724.jpeg",
+    "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/--unnamed--/1595615013203.jpeg"
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -5016,41 +4630,33 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "company_name": "RELIANCE RETAIL LTD",
-        "company_id": 1
-      },
-      {
-        "company_name": "SARASUOLE PRIVATE LIMITED",
-        "company_id": 2
-      },
-      {
-        "company_name": "Lloyd Palek",
-        "company_id": 4
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 200,
-      "item_total": 171,
-      "has_next": false
+  "items": [
+    {
+      "company_name": "RELIANCE RETAIL LTD",
+      "company_id": 1
+    },
+    {
+      "company_name": "SARASUOLE PRIVATE LIMITED",
+      "company_id": 3
+    },
+    {
+      "company_name": "Lloyd Palek",
+      "company_id": 4
     }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 200,
+    "item_total": 171,
+    "has_next": false
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -5102,80 +4708,72 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "store_name": "RRL01",
-        "store_id": 1,
-        "store_type": "warehouse",
-        "store_code": "WH_8513",
-        "store_address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
+  "items": [
+    {
+      "store_name": "RRL01",
+      "store_id": 1,
+      "store_type": "warehouse",
+      "store_code": "WH_8513",
+      "store_address": {
+        "state": "MAHARASHTRA",
+        "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            72.8691788,
+            19.1174114
+          ]
         },
-        "company": {
-          "uid": 2,
-          "name": "RELIANCE RETAIL LTD"
-        }
+        "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+        "pincode": 400059,
+        "country": "INDIA",
+        "city": "MUMBAI"
       },
-      {
-        "store_name": "RUOSH WAREHOUSE",
-        "store_id": 2,
-        "store_type": "warehouse",
-        "store_code": "RUOSH43",
-        "store_address": {
-          "state": "MAHARASHTRA",
-          "address1": "RAUNAK CITY SECTOR 4 D10, SAPAD GAON",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              73.121952,
-              19.2645048
-            ]
-          },
-          "address2": "SAPAD GAON, KHADAKPADA, ",
-          "pincode": 421301,
-          "country": "INDIA",
-          "city": "THANE",
-          "landmark": "near taj"
-        },
-        "company": {
-          "uid": 2,
-          "name": "SARASUOLE PRIVATE LIMITED"
-        }
+      "company": {
+        "uid": 1,
+        "name": "RELIANCE RETAIL LTD"
       }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 200,
-      "item_total": 762,
-      "has_next": true
+    },
+    {
+      "store_name": "RUOSH WAREHOUSE",
+      "store_id": 2,
+      "store_type": "warehouse",
+      "store_code": "RUOSH43",
+      "store_address": {
+        "state": "MAHARASHTRA",
+        "address1": "RAUNAK CITY SECTOR 4 D10, SAPAD GAON",
+        "lat_long": {
+          "type": "Point",
+          "coordinates": [
+            73.121952,
+            19.2645048
+          ]
+        },
+        "address2": "SAPAD GAON, KHADAKPADA, ",
+        "pincode": 421301,
+        "country": "INDIA",
+        "city": "THANE",
+        "landmark": "near taj"
+      },
+      "company": {
+        "uid": 3,
+        "name": "SARASUOLE PRIVATE LIMITED"
+      }
     }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 200,
+    "item_total": 762,
+    "has_next": true
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -5227,62 +4825,54 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "name": "intent 2",
-        "description": "",
-        "_id": "5f030880f019afd636889afc",
-        "domain": "intent.hostfynd.dev",
-        "company": {
-          "uid": 2,
-          "name": "DummyImran"
-        },
-        "opt_type": "store"
+  "items": [
+    {
+      "name": "intent 2",
+      "description": "",
+      "_id": "5f030880f019afd636889afc",
+      "domain": "intent.hostx0.de",
+      "company": {
+        "uid": 94,
+        "name": "DummyImran"
       },
-      {
-        "name": "new application imran",
-        "description": "",
-        "_id": "5f03f5d17692029e2d1a50a5",
-        "domain": "imranstore.hostfynd.dev",
-        "company": {
-          "uid": 2,
-          "name": "DummyImran"
-        },
-        "opt_type": "store"
+      "opt_type": "store"
+    },
+    {
+      "name": "new application imran",
+      "description": "",
+      "_id": "5f03f5d17692029e2d1a50a5",
+      "domain": "imranstore.hostx0.de",
+      "company": {
+        "uid": 94,
+        "name": "DummyImran"
       },
-      {
-        "name": "helo",
-        "description": "",
-        "_id": "5f03f63b769202170c1a50a9",
-        "domain": "helo.hostfynd.dev",
-        "company": {
-          "uid": 7,
-          "name": "Zack Burgdorf"
-        },
-        "opt_type": "store"
-      }
-    ],
-    "page": {
-      "type": "number",
-      "current": 1,
-      "size": 10,
-      "item_total": 20,
-      "has_next": true
+      "opt_type": "store"
+    },
+    {
+      "name": "helo",
+      "description": "",
+      "_id": "5f03f63b769202170c1a50a9",
+      "domain": "helo.hostx0.de",
+      "company": {
+        "uid": 7,
+        "name": "Zack Burgdorf"
+      },
+      "opt_type": "store"
     }
+  ],
+  "page": {
+    "type": "number",
+    "current": 1,
+    "size": 10,
+    "item_total": 20,
+    "has_next": true
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -5333,66 +4923,56 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "name": "intent 2",
-    "description": "",
-    "_id": "5f030880f019afd636889afc",
-    "domain": "intent.hostfynd.dev",
-    "company": {
-      "uid": 94,
-      "name": "DummyImran"
-    },
-    "opted_inventory": {
-      "opt_type": {
-        "key": "store",
-        "display": "Store"
-      },
-      "items": [
-        {
-          "name": "RRL01",
-          "id": 1,
-          "store_code": "WH_8513",
-          "_id": "5ec2c0b168fc2800017112f5",
-          "modified_on": "2020-09-09T04:25:55.843Z",
-          "uid": 1
-        }
+  "name": "intent 2",
+  "description": "",
+  "_id": "5f030880f019afd636889afc",
+  "domain": "intent.hostx0.de",
+  "company": {
+    "uid": 94,
+    "name": "DummyImran"
+  },
+  "opted_inventory": {
+    "opt_type": {
+      "key": "store",
+      "display": "Store"
+    }
+  },
+  "items": {
+    "name": "RRL01",
+    "id": 1,
+    "store_code": "WH_8513",
+    "_id": "5ec2c0b168fc2800017112f5",
+    "modified_on": "2020-09-09T04:25:55.843Z",
+    "uid": 1
+  },
+  "address": {
+    "state": "MAHARASHTRA",
+    "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+    "lat_long": {
+      "type": "Point",
+      "coordinates": [
+        72.8691788,
+        19.1174114
       ]
     },
-    "address": {
-      "state": "MAHARASHTRA",
-      "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-      "lat_long": {
-        "type": "Point",
-        "coordinates": [
-          72.8691788,
-          19.1174114
-        ]
-      },
-      "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-      "pincode": 400059,
-      "country": "INDIA",
-      "city": "MUMBAI"
-    },
-    "display_name": "RRL01",
-    "store_type": "warehouse",
-    "company_id": 2,
-    "opt_out_inventory": {
-      "store": [],
-      "company": []
-    }
+    "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+    "pincode": 400059,
+    "country": "INDIA",
+    "city": "MUMBAI"
+  },
+  "display_name": "RRL01",
+  "store_type": "warehouse",
+  "company_id": 1,
+  "opt_out_inventory": {
+    "store": [],
+    "company": []
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -5443,21 +5023,13 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "message": "Updated opt out data"
-  }
+  "message": "Updated opt out data"
 }
 ```
-</details>
-
 </details>
 
 
@@ -5489,9 +5061,6 @@ Success
  | payment | [AppPaymentConfig](#AppPaymentConfig)? |  yes  |  |
  | order | [AppOrderConfig](#AppOrderConfig)? |  yes  |  |
  | logistics | [AppLogisticsConfig](#AppLogisticsConfig)? |  yes  |  |
- | piiMasking | [PiiMasking](#PiiMasking)? |  yes  |  |
- | tags | [String]? |  yes  |  |
- | v | Int? |  yes  |  |
  | business | String? |  yes  | Indicates the business type for sales channel e.g. retail or wholesale |
  | commsEnabled | Bool? |  yes  | Shows communication(comms) is enabled or not for sales channel inventory |
  | communication | [CommunicationConfig](#CommunicationConfig)? |  yes  |  |
@@ -5500,19 +5069,8 @@ Success
  | loyaltyPoints | [LoyaltyPointsConfig](#LoyaltyPointsConfig)? |  yes  |  |
  | app | String? |  yes  | Current sales channel ID |
  | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel inventory creation |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of sales channel inventory updation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel inventory updation |
  | modifiedBy | String? |  yes  | User ID of the person who made the latest changes in the sales channel inventory |
-
----
-
-
- 
- 
- #### [PiiMasking](#PiiMasking)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  |  |
 
 ---
 
@@ -5534,7 +5092,6 @@ Success
  | excludeCategory | [[String: Any]]? |  yes  | List of excluded brands category |
  | image | [String]? |  yes  |  |
  | companyStore | [[String: Any]]? |  yes  | List of selling locations whose inventory is available to the sales channel for displaying on the website |
- | companyId | Int? |  yes  |  |
 
 ---
 
@@ -5546,7 +5103,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | criteria | String? |  yes  | All brands or specific (explicit) brands to be shown on the website |
- | brands | [Int]? |  yes  | List of brands |
+ | brands | [[String: Any]]? |  yes  | List of brands |
 
 ---
 
@@ -5571,7 +5128,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | companies | [Int]? |  yes  | List of companies whose inventory is available to the sales channel for displaying on the website |
- | brands | [Int]? |  yes  | List of brands whose products will be shown on the website |
+ | brands | [[String: Any]]? |  yes  | List of brands whose products will be shown on the website |
 
 ---
 
@@ -5632,7 +5189,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | rules | [ArticleAssignmentRules](#ArticleAssignmentRules)? |  yes  |  |
  | postOrderReassignment | Bool? |  yes  | Allow post order reassigment of article |
- | enforcedStores | [Int]? |  yes  |  |
 
 ---
 
@@ -5667,25 +5223,12 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | deliveryCharges | [DeliveryCharges](#DeliveryCharges)? |  yes  |  |
- | internationalDeliveryCharges | [InternationalDeliveryCharges](#InternationalDeliveryCharges)? |  yes  |  |
  | enabled | Bool? |  yes  | Shows whether cart configuration is enabled or not |
  | maxCartItems | Int? |  yes  | Maximum number of items that can be added to cart by the customer |
  | minCartValue | Double? |  yes  | Minimum cart value below which customer cannot place an order |
  | bulkCoupons | Bool? |  yes  | Allow creation of bulk coupons |
  | revenueEngineCoupon | Bool? |  yes  | Allow coupon apply and credits together. Default value is false. |
  | panCard | [PanCardConfig](#PanCardConfig)? |  yes  |  |
-
----
-
-
- 
- 
- #### [InternationalDeliveryCharges](#InternationalDeliveryCharges)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  | Allow international delivery charges |
- | charges | [[Charges](#Charges)]? |  yes  |  |
 
 ---
 
@@ -5729,7 +5272,6 @@ Success
  | codAmountLimit | Double? |  yes  | Maximum amount allowed for COD order. Beyond this, customer cannot opt for COD. |
  | codCharges | Double? |  yes  | Extra charge applicable for COD orders |
  | anonymousCod | Bool? |  yes  | Allow cash on delivery for anonymous user |
- | userCodLimit | Double? |  yes  |  |
 
 ---
 
@@ -5952,7 +5494,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brands | [[CompanyBrandInfo](#CompanyBrandInfo)]? |  yes  |  |
+ | brands | [CompanyBrandInfo](#CompanyBrandInfo)? |  yes  |  |
 
 ---
 
@@ -5975,7 +5517,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String? |  yes  | Response message for not found |
- | success | Bool? |  yes  | Flag for required not successfull. |
 
 ---
 
@@ -6024,7 +5565,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app | [App](#App)? |  yes  |  |
- | configuration | [ApplicationInventory](#ApplicationInventory)? |  yes  |  |
+ | configuration | [AppInventory](#AppInventory)? |  yes  |  |
  | domain | [AppDomain](#AppDomain)? |  yes  |  |
 
 ---
@@ -6068,7 +5609,7 @@ Success
  | application | String? |  yes  | Application ID of the current sales channel |
  | platformType | String? |  yes  | Device platform for which the mobile app was built, e.g. android, ios. |
  | createdAt | String? |  yes  | ISO 8601 timestamp of application configuration creation |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the app build |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the app build |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
  | packageName | String? |  yes  | Shows bundle identifier if device platform is iOS, and directory of the app if device platform is Android |
 
@@ -6119,7 +5660,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | versions | [[BuildVersion](#BuildVersion)]? |  yes  |  |
+ | versions | [BuildVersion](#BuildVersion)? |  yes  |  |
  | latestAvailableVersionName | String? |  yes  | Latest version number of the mobile build, in dot-decimal notation |
 
 ---
@@ -6137,9 +5678,8 @@ Success
  | buildStatus | String? |  yes  | Current progress of the mobile build, e.g. pending, cancelled, failed, success |
  | versionName | String? |  yes  | Version number of the mobile build, in dot-decimal notation |
  | versionCode | Int? |  yes  | A positive integer used as an internal version number |
- | downloadUrl | [LandingImage](#LandingImage)? |  yes  |  |
  | createdAt | String? |  yes  | ISO 8601 timestamp of app creation |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the app build |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the app build |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
@@ -6156,7 +5696,7 @@ Success
  | application | String? |  yes  | Alphanumeric ID allotted to an application (sales channel website) created within a business account. |
  | defaultCurrency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
  | createdAt | String? |  yes  | ISO 8601 timestamp when currency was added in the list of currencies supported by the sales channel |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp when currency was updated in the list of currencies supported by the sales channel |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp when currency was updated in the list of currencies supported by the sales channel |
 
 ---
 
@@ -6213,7 +5753,6 @@ Success
  | isPrimary | Bool? |  yes  | Domain is primary or not. Primary domain is the default/main domain. |
  | isShortlink | Bool? |  yes  | Shortlink is present or not for the domain |
  | isPredefined | Bool? |  yes  | Domain is hosting domain or not. |
- | message | String? |  yes  |  |
 
 ---
 
@@ -6363,17 +5902,15 @@ Success
  | description | String? |  yes  | Basic description about the opted integration |
  | descriptionHtml | String? |  yes  | Basic HTML description about the opted integration |
  | constants | String? |  yes  |  |
- | companies | [String]? |  yes  |  |
+ | companies | [[String: Any]]? |  yes  |  |
  | support | [String]? |  yes  |  |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the opted integration |
  | name | String? |  yes  | Nmae of the opted integration, e.g. SAP RBL Integration |
- | slug | String? |  yes  | Slug of the opted integration, e.g. ginesys |
- | hidden | Bool? |  yes  |  |
  | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
  | icon | String? |  yes  | Hosted URL of the icon image |
  | owner | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the user who created the integration |
  | createdAt | String? |  yes  | ISO 8601 timestamp of integration creation |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of integration updation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of integration updation |
  | token | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
  | secret | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
@@ -6481,17 +6018,15 @@ Success
  | description | String? |  yes  | Basic description about the integration |
  | descriptionHtml | String? |  yes  | Basic HTML description about the integration |
  | constants | [String: Any]? |  yes  |  |
- | companies | [String]? |  yes  |  |
+ | companies | [[String: Any]]? |  yes  |  |
  | support | [String]? |  yes  |  |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the integration |
  | name | String? |  yes  | Name of the integration, e.g. SAP RBL Integration |
- | slug | String? |  yes  | Name of the integration, e.g. SAP RBL Integration |
  | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
  | icon | String? |  yes  | Hosted URL of the icon image |
- | hidden | Bool? |  yes  |  |
  | owner | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the user who created the integration |
  | createdAt | String? |  yes  | ISO 8601 timestamp of integration creation |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of integration updation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of integration updation |
  | token | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
  | secret | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
@@ -6523,15 +6058,12 @@ Success
  | integration | String? |  yes  | Integration id. Shows which integration you are enabling. |
  | level | String? |  yes  | Shows for what level the integration is set up. It can be company level or store level. |
  | uid | Int? |  yes  | It can be store uid or company uid. Depends on the level of integration. |
- | companyId | Int? |  yes  | Unique id of company. |
  | meta | [[IntegrationMeta](#IntegrationMeta)]? |  yes  |  |
  | token | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
  | createdAt | String? |  yes  | ISO 8601 timestamp of integration config creation |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of integration config updation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of integration config updation |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
  | data | [String: Any]? |  yes  | Schema data of the integration stored in key-value pairs |
- | success | Bool? |  yes  |  |
- | message | String? |  yes  |  |
 
 ---
 
@@ -6577,7 +6109,7 @@ Success
  | meta | [[String: Any]]? |  yes  |  |
  | token | String? |  yes  | Randomly generated fixed-length string for opted integration. It is auto-generated. It would never change once it is generated. |
  | createdAt | String? |  yes  | ISO 8601 timestamp of other entity creation for opted store integration |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of other entity updation for opted store integration |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of other entity updation for opted store integration |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
@@ -6624,7 +6156,7 @@ Success
 
  
  
- #### [InventoryConfig](#InventoryConfig)
+ #### [AppInventory](#AppInventory)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -6634,17 +6166,6 @@ Success
  | franchiseEnabled | Bool? |  yes  | Allow other businesses (companies) to consume the current sales channel's inventory and sell products |
  | outOfStock | Bool? |  yes  | Indicates whether out of stock products are allowed to show up on the website. |
  | onlyVerifiedProducts | Bool? |  yes  | Show only verified products (the ones whose data have been verified by the admin) |
-
----
-
-
- 
- 
- #### [AppInventory](#AppInventory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | inventory | [InventoryConfig](#InventoryConfig)? |  yes  |  |
  | payment | [InventoryPaymentConfig](#InventoryPaymentConfig)? |  yes  |  |
  | articleAssignment | [InventoryArticleAssignment](#InventoryArticleAssignment)? |  yes  |  |
 
@@ -6668,7 +6189,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AppInventoryCompanies](#AppInventoryCompanies)]? |  yes  |  |
+ | items | [AppInventoryCompanies](#AppInventoryCompanies)? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
 
 ---
@@ -6693,7 +6214,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[AppInventoryStores](#AppInventoryStores)]? |  yes  |  |
+ | items | [AppInventoryStores](#AppInventoryStores)? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
 
 ---
@@ -6713,8 +6234,6 @@ Success
  | storeType | String? |  yes  | Store type of the sales channel inventory store, such as mall, warehouse, high_street |
  | storeCode | String? |  yes  | Store code of the enabled inventory store, e.g. HS-c9bac. It is unique for every store. |
  | companyId | Int? |  yes  | Company ID of the selling location (store) added to the sales channel's inventory |
- | address | [String: Any]? |  yes  |  |
- | integrationType | [String: Any]? |  yes  |  |
 
 ---
 
@@ -6744,7 +6263,6 @@ Success
  | type | String? |  yes  | Permitted values are 'hard' and 'soft'. For hard type delivery, store selection is compulsory. For soft type, delivery store selection is optional. |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the ordering stores |
  | app | String? |  yes  | Alphanumeric ID allotted to an application (sales channel website) created within a business account |
- | v | Int? |  yes  |  |
 
 ---
 
@@ -6847,7 +6365,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | uid | Int? |  yes  | Company UID opted by the other seller's sales channel in its inventory. It has unique value for the company. |
  | name | String? |  yes  | Name of the company opted by the other seller's sales channel in its inventory |
- | id | Int? |  yes  | The unique identifier of the opted inventory company |
 
 ---
 
@@ -6859,7 +6376,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | optType | [OptType](#OptType)? |  yes  |  |
- | items | [[String: Any]]? |  yes  |  |
+ | items | [String: Any]? |  yes  |  |
 
 ---
 
@@ -6917,7 +6434,7 @@ Success
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the token |
  | application | String? |  yes  | Alphanumeric ID allotted to the current application created within the current business account |
  | createdAt | String? |  yes  | ISO 8601 timestamp of token creation |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of token updation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of token updation |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
@@ -7128,7 +6645,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | publicKey | String? |  yes  | Public key for integrating with Fynd rewards. |
- | privateKey | String? |  yes  | Public key for integrating with Fynd rewards. |
 
 ---
 
@@ -7235,17 +6751,6 @@ Success
 
  
  
- #### [ListingPageFeature](#ListingPageFeature)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sortOn | String? |  yes  |  |
-
----
-
-
- 
- 
  #### [RegistrationPageFeature](#RegistrationPageFeature)
 
  | Properties | Type | Nullable | Description |
@@ -7273,7 +6778,7 @@ Success
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel features |
  | app | String? |  yes  | Application ID of the sales channel |
  | createdAt | String? |  yes  | ISO 8601 timestamp showing the date when the features were configured |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the sales channel feature configuration |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the sales channel feature configuration |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero |
 
 ---
@@ -7299,24 +6804,11 @@ Success
  | communicationOptinDialog | [CommunicationOptinDialogFeature](#CommunicationOptinDialogFeature)? |  yes  |  |
  | deploymentStoreSelection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature)? |  yes  |  |
  | listingPrice | [ListingPriceFeature](#ListingPriceFeature)? |  yes  |  |
- | listingPage | [ListingPageFeature](#ListingPageFeature)? |  yes  |  |
  | currency | [CurrencyFeature](#CurrencyFeature)? |  yes  |  |
  | revenueEngine | [RevenueEngineFeature](#RevenueEngineFeature)? |  yes  |  |
  | feedback | [FeedbackFeature](#FeedbackFeature)? |  yes  |  |
  | compareProducts | [CompareProductsFeature](#CompareProductsFeature)? |  yes  |  |
  | rewardPoints | [RewardPointsConfig](#RewardPointsConfig)? |  yes  |  |
- | internationalShipping | [InternationalShipping](#InternationalShipping)? |  yes  |  |
-
----
-
-
- 
- 
- #### [InternationalShipping](#InternationalShipping)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | Bool? |  yes  | International shipping is enabled or not. |
 
 ---
 
@@ -7485,11 +6977,9 @@ Success
  | name | String? |  yes  | Name of the currency, e.g Indian Rupee |
  | code | String? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
  | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency creation |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
  | decimalDigits | Int? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
  | symbol | String? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
- | countryName | String? |  yes  |  |
- | countryCode | String? |  yes  |  |
 
 ---
 
@@ -7582,11 +7072,11 @@ Success
  | name | String? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
  | owner | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
  | companyId | Int? |  yes  | Numeric ID allotted to a business account where the sales channel exists |
- | token | String? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated.           |
+ | token | String? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
  | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
  | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel creation |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of sales channel updation |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel updation |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
@@ -7596,23 +7086,6 @@ Success
  | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
  | slug | String? |  yes  |  |
- | mode | String? |  yes  |  |
- | status | String? |  yes  |  |
- | tokens | [[TokenSchema](#TokenSchema)]? |  yes  |  |
- | secret | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [TokenSchema](#TokenSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | token | String? |  yes  |  |
- | createdBy | [String: Any]? |  yes  |  |
- | createdAt | String? |  yes  | ISO 8601 timestamp of when token created |
 
 ---
 
@@ -7624,7 +7097,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String? |  yes  | Error message when request body payload is improper |
- | success | Bool? |  yes  | Flag for required not successfull. |
 
 ---
 
@@ -7742,10 +7214,10 @@ Success
  | links | [[Links](#Links)]? |  yes  |  |
  | copyrightText | String? |  yes  | Copyright statement usually seen at the site's footer |
  | id | String? |  yes  | Unique identifier (24-digit Mongo Object ID) of the application information |
- | businessHighlights | [[BusinessHighlights](#BusinessHighlights)]? |  yes  |  |
+ | businessHighlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
  | application | String? |  yes  | Alphanumeric ID allotted to a sales channel application created within a business account |
  | createdAt | String? |  yes  | ISO 8601 timestamp of creation of the application information |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp of updation of the application information |
+ | updatedAt | String? |  yes  | ISO 8601 timestamp of updation of the application information |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
@@ -7757,7 +7229,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | loc | [InformationLoc](#InformationLoc)? |  yes  |  |
+ | loc | String? |  yes  | Co-ordinates of the location |
  | addressLine | [String]? |  yes  | Contact address of the sales channel |
  | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
  | city | String? |  yes  | Name of the city, e.g. Mumbai |
@@ -7781,50 +7253,13 @@ Success
 
  
  
- #### [InformationLoc](#InformationLoc)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | String? |  yes  | Country code for contact number, e.g. +91 (for India) |
- | coordinates | [Int]? |  yes  | 10-digit mobile number |
-
----
-
-
- 
- 
  #### [InformationSupport](#InformationSupport)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone | [[InformationSupportPhone](#InformationSupportPhone)]? |  yes  |  |
- | email | [[InformationSupportEmail](#InformationSupportEmail)]? |  yes  |  |
+ | phone | [String]? |  yes  |  |
+ | email | [String]? |  yes  |  |
  | timing | String? |  yes  | Working hours of support team, e.g. 9 AM to 9 PM |
-
----
-
-
- 
- 
- #### [InformationSupportPhone](#InformationSupportPhone)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | String? |  yes  | Country code for contact number, e.g. +91 (for India) |
- | number | String? |  yes  | 10-digit mobile number |
- | key | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [InformationSupportEmail](#InformationSupportEmail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | String? |  yes  | Value of email. |
- | key | String? |  yes  |  |
 
 ---
 
@@ -8006,8 +7441,6 @@ Success
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |
- | slug | String? |  yes  |  |
- | companyId | Int? |  yes  |  |
 
 ---
 
@@ -8029,12 +7462,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the currency configuration supported by the application |
  | application | String? |  yes  | Alphanumeric ID allotted to an application (sales channel website) created within a business account |
  | defaultCurrency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
  | supportedCurrency | [[Currency](#Currency)]? |  yes  |  |
- | createdAt | String? |  yes  | ISO 8601 timestamp when currency was added in the list of currencies supported by the sales channel |
- | modifiedAt | String? |  yes  | ISO 8601 timestamp when currency was updated in the list of currencies supported by the sales channel |
 
 ---
 
@@ -8064,9 +7494,6 @@ Success
  | pincode | Int? |  yes  | 6-digit PIN code of the opted store location |
  | country | String? |  yes  | Country of the opted store, e.g. India |
  | city | String? |  yes  | City of the opted store, e.g. Mumbai |
- | sector | String? |  yes  | Sector for the opted store. |
- | countryCode | String? |  yes  | Country code of the selected country |
- | stateCode | String? |  yes  | Selected state code |
 
 ---
 

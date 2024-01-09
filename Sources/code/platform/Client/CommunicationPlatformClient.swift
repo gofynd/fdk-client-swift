@@ -71,12 +71,6 @@ extension PlatformClient {
         
         
         
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: Get system notifications
@@ -188,8 +182,6 @@ if let value = pageSize {
             }
             return paginator
         }
-        
-        
         
         
         

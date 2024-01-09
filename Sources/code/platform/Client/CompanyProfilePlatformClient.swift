@@ -495,8 +495,6 @@ if let value = q {
             pageNo: Int?,
             pageSize: Int?,
             locationIds: [Int]?,
-            types: [String]?,
-            tags: [String]?,
             
             onResponse: @escaping (_ response: LocationListSerializer?, _ error: FDKError?) -> Void
         ) {
@@ -541,20 +539,6 @@ if let value = pageSize {
 if let value = locationIds {
     
     xQuery["location_ids"] = value
-    
-}
-
-
-if let value = types {
-    
-    xQuery["types"] = value
-    
-}
-
-
-if let value = tags {
-    
-    xQuery["tags"] = value
     
 }
 
@@ -638,18 +622,6 @@ if let value = tags {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         /**
         *
         * Summary: get paginator for getLocations
@@ -660,9 +632,7 @@ if let value = tags {
             q: String?,
             stage: String?,
             pageSize: Int?,
-            locationIds: [Int]?,
-            types: [String]?,
-            tags: [String]?
+            locationIds: [Int]?
             
             ) -> Paginator<LocationListSerializer> {
             let pageSize = pageSize ?? 20
@@ -677,9 +647,7 @@ if let value = tags {
                         ,
                         pageSize: paginator.pageSize
                         ,
-                        locationIds: locationIds,
-                        types: types,
-                        tags: tags
+                        locationIds: locationIds
                     ) { response, error in                    
                     if let response = response {
                         paginator.hasNext = response.page?.hasNext ?? false

@@ -90,27 +90,11 @@ extension ApplicationClient {
         public func getPage(
             themeId: String,
             pageValue: String,
-            filters: String?,
-            company: Int?,
             
             onResponse: @escaping (_ response: AvailablePageSchema?, _ error: FDKError?) -> Void
         ) {
             
-var xQuery: [String: Any] = [:] 
-
-if let value = filters {
-    
-    xQuery["filters"] = value
-    
-}
-
-
-if let value = company {
-    
-    xQuery["company"] = value
-    
-}
-
+ 
 
  
 
@@ -126,7 +110,7 @@ if let value = company {
                 config: config,
                 method: "GET",
                 url: fullUrl,
-                query: xQuery,
+                query: nil,
                 extraHeaders:  [],
                 body: nil,
                 responseType: "application/json",

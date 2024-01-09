@@ -576,7 +576,6 @@ if let value = pageSize {
         
         
         
-        
         /**
         *
         * Summary: Get Token to join a specific Video Room using it's unqiue name

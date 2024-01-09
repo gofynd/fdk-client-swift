@@ -12,7 +12,7 @@ public extension PlatformClient.Payment {
     class LinkStatus: Codable {
         
         
-        public var status: String
+        public var status: Bool
         
         public var message: String
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Payment {
             
         }
 
-        public init(message: String, status: String) {
+        public init(message: String, status: Bool) {
             
             self.status = status
             
@@ -37,7 +37,7 @@ public extension PlatformClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                status = try container.decode(String.self, forKey: .status)
+                status = try container.decode(Bool.self, forKey: .status)
                 
             
             
@@ -77,7 +77,7 @@ public extension PlatformClient.ApplicationClient.Payment {
     class LinkStatus: Codable {
         
         
-        public var status: String
+        public var status: Bool
         
         public var message: String
         
@@ -90,7 +90,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
         }
 
-        public init(message: String, status: String) {
+        public init(message: String, status: Bool) {
             
             self.status = status
             
@@ -102,7 +102,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                status = try container.decode(String.self, forKey: .status)
+                status = try container.decode(Bool.self, forKey: .status)
                 
             
             

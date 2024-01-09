@@ -22,6 +22,8 @@ public extension PlatformClient.Serviceability {
         
         public var channels: [GetZoneDataViewChannels]
         
+        public var product: ZoneProductTypes
+        
         public var storeIds: [Int]
         
         public var regionType: String
@@ -43,6 +45,8 @@ public extension PlatformClient.Serviceability {
             
             case channels = "channels"
             
+            case product = "product"
+            
             case storeIds = "store_ids"
             
             case regionType = "region_type"
@@ -53,7 +57,7 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, regionType: String, slug: String, storeIds: [Int]) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int]) {
             
             self.name = name
             
@@ -64,6 +68,8 @@ public extension PlatformClient.Serviceability {
             self.isActive = isActive
             
             self.channels = channels
+            
+            self.product = product
             
             self.storeIds = storeIds
             
@@ -100,6 +106,11 @@ public extension PlatformClient.Serviceability {
             
             
                 channels = try container.decode([GetZoneDataViewChannels].self, forKey: .channels)
+                
+            
+            
+            
+                product = try container.decode(ZoneProductTypes.self, forKey: .product)
                 
             
             
@@ -158,6 +169,11 @@ public extension PlatformClient.Serviceability {
             
             
             try? container.encodeIfPresent(channels, forKey: .channels)
+            
+            
+            
+            
+            try? container.encodeIfPresent(product, forKey: .product)
             
             
             
@@ -206,6 +222,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var channels: [GetZoneDataViewChannels]
         
+        public var product: ZoneProductTypes
+        
         public var storeIds: [Int]
         
         public var regionType: String
@@ -227,6 +245,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case channels = "channels"
             
+            case product = "product"
+            
             case storeIds = "store_ids"
             
             case regionType = "region_type"
@@ -237,7 +257,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, regionType: String, slug: String, storeIds: [Int]) {
+        public init(assignmentPreference: String? = nil, channels: [GetZoneDataViewChannels], companyId: Int, isActive: Bool, mapping: [ZoneMappingType], name: String, product: ZoneProductTypes, regionType: String, slug: String, storeIds: [Int]) {
             
             self.name = name
             
@@ -248,6 +268,8 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             self.isActive = isActive
             
             self.channels = channels
+            
+            self.product = product
             
             self.storeIds = storeIds
             
@@ -284,6 +306,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
                 channels = try container.decode([GetZoneDataViewChannels].self, forKey: .channels)
+                
+            
+            
+            
+                product = try container.decode(ZoneProductTypes.self, forKey: .product)
                 
             
             
@@ -342,6 +369,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             try? container.encodeIfPresent(channels, forKey: .channels)
+            
+            
+            
+            
+            try? container.encodeIfPresent(product, forKey: .product)
             
             
             

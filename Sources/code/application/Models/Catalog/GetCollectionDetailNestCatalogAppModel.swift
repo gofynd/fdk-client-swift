@@ -48,7 +48,7 @@ public extension ApplicationClient.Catalog {
         
         public var priority: Int?
         
-        public var tags: [String]?
+        public var tag: [String]?
         
         public var appId: String?
         
@@ -95,13 +95,13 @@ public extension ApplicationClient.Catalog {
             
             case priority = "priority"
             
-            case tags = "tags"
+            case tag = "tag"
             
             case appId = "app_id"
             
         }
 
-        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, query: [CollectionQuery]? = nil, slug: String? = nil, sortOn: String? = nil, tags: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, schedule: [String: Any]? = nil) {
+        public init(action: ProductListingAction? = nil, allowFacets: Bool? = nil, allowSort: Bool? = nil, appId: String? = nil, badge: [String: Any]? = nil, banners: ImageUrls? = nil, cron: [String: Any]? = nil, description: String? = nil, isActive: Bool? = nil, logo: Media? = nil, meta: [String: Any]? = nil, name: String? = nil, priority: Int? = nil, query: [CollectionQuery]? = nil, slug: String? = nil, sortOn: String? = nil, tag: [String]? = nil, type: String? = nil, uid: String? = nil, visibleFacetsKeys: [String]? = nil, customJson: [String: Any]? = nil, schedule: [String: Any]? = nil) {
             
             self.isActive = isActive
             
@@ -143,7 +143,7 @@ public extension ApplicationClient.Catalog {
             
             self.priority = priority
             
-            self.tags = tags
+            self.tag = tag
             
             self.appId = appId
             
@@ -394,7 +394,7 @@ public extension ApplicationClient.Catalog {
             
             
             do {
-                tags = try container.decode([String].self, forKey: .tags)
+                tag = try container.decode([String].self, forKey: .tag)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -523,7 +523,7 @@ public extension ApplicationClient.Catalog {
             
             
             
-            try? container.encodeIfPresent(tags, forKey: .tags)
+            try? container.encodeIfPresent(tag, forKey: .tag)
             
             
             

@@ -5,7 +5,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Content Methods
-The Content module manages content in the application. Use it to help users stay updated with announcements, read blog posts, manage data loaders, consult FAQs, and access legal and support information. It also enhances navigation modules and SEO capabilities for better online visibility, as well as supports slideshow interactions.
+Content System
 
 Default
 * [getAnnouncements](#getannouncements)
@@ -21,15 +21,12 @@ Default
 * [getLegalInformation](#getlegalinformation)
 * [getNavigations](#getnavigations)
 * [getSEOConfiguration](#getseoconfiguration)
-* [getSEOMarkupSchemas](#getseomarkupschemas)
 * [getSlideshows](#getslideshows)
 * [getSlideshow](#getslideshow)
 * [getSupportInformation](#getsupportinformation)
 * [getTags](#gettags)
 * [getPage](#getpage)
 * [getPages](#getpages)
-* [getCustomObject](#getcustomobject)
-* [getCustomFields](#getcustomfields)
 
 
 
@@ -1237,62 +1234,6 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
 ---
 
 
-#### getSEOMarkupSchemas
-Get SEO Markup schemas of an application
-
-
-
-
-```swift
-applicationClient.content.getSEOMarkupSchemas(pageType: pageType, active: active) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| pageType | String? | no | The type of page against which schema template was created |   
-| active | Bool? | no | Boolean value for fetching seo schema. |  
-
-
-
-Use this API to get all SEO Markup schema Templates setup for an application
-
-*Returned Response:*
-
-
-
-
-[SeoSchemaComponent](#SeoSchemaComponent)
-
-Success. Refer `SeoSchemaComponent` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getSlideshows
 Get the slideshows
 
@@ -1870,189 +1811,6 @@ Success. Returns a list of pages along with their details. Check the example sho
 ---
 
 
-#### getCustomObject
-Get custom object details
-
-
-
-
-```swift
-applicationClient.content.getCustomObject(metaobjectId: metaobjectId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| metaobjectId | String | yes |  |  
-
-
-
-Use this API to retrieve the custom object details, their fields details with definitions and references.
-
-*Returned Response:*
-
-
-
-
-[CustomObjectByIdSchema](#CustomObjectByIdSchema)
-
-Success. Returns a custom object. Refer `CustomObjectByIdSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "653929f012376081aafa90f1",
-    "status": "active",
-    "display_name": "painter #653929f012376081aafa90f1",
-    "definition": {
-      "_id": "653907ced878d53c1a502d92",
-      "name": "painter",
-      "type": "painter"
-    },
-    "references": [],
-    "fields": [
-      {
-        "_id": "653929f012376081aafa90f5",
-        "key": "name",
-        "value": [
-          "Bruce Wayne"
-        ],
-        "type": "string_single_line",
-        "definition_id": "653907ced878d53c1a502d95"
-      },
-      {
-        "_id": "653929f012376081aafa90f6",
-        "key": "age",
-        "value": [
-          5
-        ],
-        "type": "integer",
-        "definition_id": "653907ced878d53c1a502d96"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getCustomFields
-Get list of custom fields of given resource and resource_id.
-
-
-
-
-```swift
-applicationClient.content.getCustomFields(resource: resource, resourceId: resourceId) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| resource | String | yes |  |   
-| resourceId | String | yes |  |  
-
-
-
-Use this API to retrieve the custom fields for given resource and resource_id in param.
-
-*Returned Response:*
-
-
-
-
-[CustomFieldsResponseByResourceIdSchema](#CustomFieldsResponseByResourceIdSchema)
-
-Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceIdSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "653929f012376081aafa90f6",
-        "namespace": "painter",
-        "key": "age",
-        "resource": "metaobject",
-        "creator": "application",
-        "value": [
-          5
-        ],
-        "resource_id": "653929f012376081aafa90f1",
-        "type": "integer",
-        "multi_value": false,
-        "company_id": "1",
-        "application_id": "000000000000000000000001",
-        "definition_id": "653907ced878d53c1a502d96",
-        "metaobject_definition_id": "653907ced878d53c1a502d92",
-        "has_invalid_values": false,
-        "invalid_value_errors": [],
-        "created_by": "000000000000000000000001",
-        "is_deleted": false,
-        "created_at": "2023-10-25T14:45:04.441Z",
-        "updated_at": "2023-10-25T14:45:04.441Z"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 
 ### Schemas
@@ -2109,7 +1867,6 @@ Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceI
  | id | String? |  yes  |  |
  | robotsTxt | String? |  yes  |  |
  | sitemapEnabled | Bool? |  yes  |  |
- | additonalSitemap | String? |  yes  |  |
  | cannonicalEnabled | Bool? |  yes  |  |
  | customMetaTags | [[CustomMetaTag](#CustomMetaTag)]? |  yes  |  |
  | details | [Detail](#Detail)? |  yes  |  |
@@ -2141,36 +1898,6 @@ Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceI
  | title | String? |  yes  |  |
  | description | String? |  yes  |  |
  | imageUrl | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [SeoSchemaComponent](#SeoSchemaComponent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | title | String? |  yes  |  |
- | pageType | String? |  yes  |  |
- | description | String? |  yes  |  |
- | schema | String? |  yes  |  |
- | active | Bool? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
- | application | String? |  yes  |  |
 
 ---
 
@@ -2310,10 +2037,6 @@ Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceI
  | description | String? |  yes  |  |
  | image | [SEOImage](#SEOImage)? |  yes  |  |
  | title | String? |  yes  |  |
- | metaTags | [[SEOMetaItem](#SEOMetaItem)]? |  yes  |  |
- | sitemap | [SEOSitemap](#SEOSitemap)? |  yes  |  |
- | breadcrumb | [[SEObreadcrumb](#SEObreadcrumb)]? |  yes  |  |
- | canonicalUrl | String? |  yes  |  |
 
 ---
 
@@ -2325,54 +2048,6 @@ Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceI
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | url | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [SEOMetaItem](#SEOMetaItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | title | String? |  yes  |  |
- | items | [[SEOMetaItems](#SEOMetaItems)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [SEOMetaItems](#SEOMetaItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | String? |  yes  |  |
- | value | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [SEOSitemap](#SEOSitemap)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | Double? |  yes  |  |
- | frequency | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [SEObreadcrumb](#SEObreadcrumb)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | String? |  yes  |  |
- | action | [Action](#Action)? |  yes  |  |
 
 ---
 
@@ -2987,111 +2662,6 @@ Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceI
  | ---------- | ---- | -------- | ----------- |
  | type | String? |  yes  |  |
  | id | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomObjectFieldValue](#CustomObjectFieldValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomObjectListItemDefinationSchema](#CustomObjectListItemDefinationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | name | String? |  yes  |  |
- | type | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomObjectFieldSchema](#CustomObjectFieldSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | key | String? |  yes  |  |
- | value | [[CustomObjectFieldValue](#CustomObjectFieldValue)]? |  yes  |  |
- | type | String? |  yes  |  |
- | definitionId | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomObjectByIdSchema](#CustomObjectByIdSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | status | String? |  yes  |  |
- | displayName | String? |  yes  |  |
- | definition | [CustomObjectListItemDefinationSchema](#CustomObjectListItemDefinationSchema)? |  yes  |  |
- | references | [[String: Any]]? |  yes  |  |
- | fields | [[CustomObjectFieldSchema](#CustomObjectFieldSchema)]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomFieldValue](#CustomFieldValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | [String: Any]? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomFieldSchema](#CustomFieldSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | String? |  yes  |  |
- | namespace | String? |  yes  |  |
- | key | String? |  yes  |  |
- | resource | String? |  yes  |  |
- | creator | String? |  yes  |  |
- | value | [[CustomFieldValue](#CustomFieldValue)]? |  yes  |  |
- | resourceId | String? |  yes  |  |
- | type | String? |  yes  |  |
- | multiValue | Bool? |  yes  |  |
- | companyId | String? |  yes  |  |
- | applicationId | String? |  yes  |  |
- | definitionId | String? |  yes  |  |
- | hasInvalidValues | Bool? |  yes  |  |
- | invalidValueErrors | [[String: Any]]? |  yes  |  |
- | createdBy | String? |  yes  |  |
- | isDeleted | Bool? |  yes  |  |
- | createdAt | String? |  yes  |  |
- | updatedAt | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [CustomFieldsResponseByResourceIdSchema](#CustomFieldsResponseByResourceIdSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[CustomFieldSchema](#CustomFieldSchema)]? |  yes  |  |
 
 ---
 

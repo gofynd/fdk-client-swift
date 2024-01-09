@@ -12,8 +12,6 @@ public extension ApplicationClient.PosCart {
         
         public var formatted: PromiseFormatted?
         
-        public var iso: PromiseISOFormat?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -21,17 +19,13 @@ public extension ApplicationClient.PosCart {
             
             case formatted = "formatted"
             
-            case iso = "iso"
-            
         }
 
-        public init(formatted: PromiseFormatted? = nil, iso: PromiseISOFormat? = nil, timestamp: PromiseTimestamp? = nil) {
+        public init(formatted: PromiseFormatted? = nil, timestamp: PromiseTimestamp? = nil) {
             
             self.timestamp = timestamp
             
             self.formatted = formatted
-            
-            self.iso = iso
             
         }
 
@@ -62,18 +56,6 @@ public extension ApplicationClient.PosCart {
             }
             
             
-            
-            do {
-                iso = try container.decode(PromiseISOFormat.self, forKey: .iso)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -87,11 +69,6 @@ public extension ApplicationClient.PosCart {
             
             
             try? container.encodeIfPresent(formatted, forKey: .formatted)
-            
-            
-            
-            
-            try? container.encodeIfPresent(iso, forKey: .iso)
             
             
         }

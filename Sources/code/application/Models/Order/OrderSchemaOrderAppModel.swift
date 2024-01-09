@@ -16,8 +16,6 @@ public extension ApplicationClient.Order {
         
         public var orderCreatedTime: String?
         
-        public var orderCreatedTs: String?
-        
         public var orderId: String?
         
         public var shipments: [Shipments]?
@@ -35,8 +33,6 @@ public extension ApplicationClient.Order {
             
             case orderCreatedTime = "order_created_time"
             
-            case orderCreatedTs = "order_created_ts"
-            
             case orderId = "order_id"
             
             case shipments = "shipments"
@@ -45,7 +41,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, orderCreatedTime: String? = nil, orderCreatedTs: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
+        public init(bagsForReorder: [BagsForReorder]? = nil, breakupValues: [BreakupValues]? = nil, orderCreatedTime: String? = nil, orderId: String? = nil, shipments: [Shipments]? = nil, totalShipmentsInOrder: Int? = nil, userInfo: UserInfo? = nil) {
             
             self.totalShipmentsInOrder = totalShipmentsInOrder
             
@@ -54,8 +50,6 @@ public extension ApplicationClient.Order {
             self.breakupValues = breakupValues
             
             self.orderCreatedTime = orderCreatedTime
-            
-            self.orderCreatedTs = orderCreatedTs
             
             self.orderId = orderId
             
@@ -107,18 +101,6 @@ public extension ApplicationClient.Order {
             
             do {
                 orderCreatedTime = try container.decode(String.self, forKey: .orderCreatedTime)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                orderCreatedTs = try container.decode(String.self, forKey: .orderCreatedTs)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -187,11 +169,6 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(orderCreatedTime, forKey: .orderCreatedTime)
-            
-            
-            
-            
-            try? container.encodeIfPresent(orderCreatedTs, forKey: .orderCreatedTs)
             
             
             

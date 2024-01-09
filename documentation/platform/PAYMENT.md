@@ -49,12 +49,7 @@ Default
 * [pollingPaymentLink](#pollingpaymentlink)
 * [resendPaymentLink](#resendpaymentlink)
 * [cancelPaymentLink](#cancelpaymentlink)
-* [getPaymentModeControlRoutes](#getpaymentmodecontrolroutes)
-* [setMerchantModeControlRoutes](#setmerchantmodecontrolroutes)
-* [getPaymentModeCustomConfig](#getpaymentmodecustomconfig)
-* [setPaymentModeCustomConfig](#setpaymentmodecustomconfig)
 * [getPaymentCodeOption](#getpaymentcodeoption)
-* [getPaymentSession](#getpaymentsession)
 * [updatePaymentSession](#updatepaymentsession)
 * [updateRefundSession](#updaterefundsession)
 * [getMerchantPaymentOption](#getmerchantpaymentoption)
@@ -65,9 +60,6 @@ Default
 * [getMerchantRefundPriority](#getmerchantrefundpriority)
 * [createMerchantRefundPriority](#createmerchantrefundpriority)
 * [updateMerchantRefundPriority](#updatemerchantrefundpriority)
-* [createPaymentOrder](#createpaymentorder)
-* [getMerchantAggregatorAppVersion](#getmerchantaggregatorappversion)
-* [patchMerchantPaymentOptionVersion](#patchmerchantpaymentoptionversion)
 
 
 
@@ -315,7 +307,7 @@ Get All Valid Payment Options
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").payment.getPaymentModeRoutes(refresh: refresh, requestType: requestType, orderId: orderId, shipmentId: shipmentId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").payment.getPaymentModeRoutes(refresh: refresh, requestType: requestType) { (response, error) in
     // Use response
 }
 ```
@@ -327,9 +319,7 @@ platformClient.application("<APPLICATION_ID>").payment.getPaymentModeRoutes(refr
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | refresh | Bool | yes |  |   
-| requestType | String | yes |  |   
-| orderId | String? | no |  |   
-| shipmentId | String? | no |  |  
+| requestType | String | yes |  |  
 
 
 
@@ -2408,7 +2398,7 @@ platformClient.payment.verifyIfscCode(ifscCode: ifscCode) { (response, error) in
 
 
 
-Get True or False for correct IFSC Code for adding bank details for refund
+Get True/False for correct IFSC Code for adding bank details for refund
 
 *Returned Response:*
 
@@ -2774,7 +2764,7 @@ Use this API to set cod option as true or false for the payment
 
 [SetCODOptionResponse](#SetCODOptionResponse)
 
-Success. Returns true or false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
+Success. Returns true/false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
 
 
 
@@ -3204,7 +3194,7 @@ Get All Valid Payment Options
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, orderId: orderId, cardReference: cardReference, orderType: orderType, userDetails: userDetails, displaySplit: displaySplit, advancePayment: advancePayment, shipmentId: shipmentId) { (response, error) in
+platformClient.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes(amount: amount, cartId: cartId, pincode: pincode, checkoutMode: checkoutMode, refresh: refresh, cardReference: cardReference, orderType: orderType, userDetails: userDetails) { (response, error) in
     // Use response
 }
 ```
@@ -3216,17 +3206,13 @@ platformClient.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes(a
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | amount | Int | yes | Payable amount. |   
-| cartId | String? | no | Identifier of the cart. |   
+| cartId | String | yes | Identifier of the cart. |   
 | pincode | String | yes | The PIN Code of the destination address, e.g. 400059 |   
-| checkoutMode | String? | no | Option to checkout for self or for others. |   
+| checkoutMode | String | yes | Option to checkout for self or for others. |   
 | refresh | Bool? | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |   
-| orderId | String? | no |  |   
 | cardReference | String? | no | Card reference id of user's debit or credit card. |   
 | orderType | String | yes | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. |   
-| userDetails | String? | no | URIencoded JSON containing details of an anonymous user. |   
-| displaySplit | Bool? | no | Display Split Payment Option or not |   
-| advancePayment | Bool? | no | Display Advance Payment Options or Normal |   
-| shipmentId | String? | no |  |  
+| userDetails | String? | no | URIencoded JSON containing details of an anonymous user. |  
 
 
 
@@ -3237,7 +3223,7 @@ Use this API to get Get All Valid Payment Options for making payment
 
 
 
-[PaymentModeRouteResponse](#PaymentModeRouteResponse)
+[PaymentOptionsResponse](#PaymentOptionsResponse)
 
 Success
 
@@ -4400,66 +4386,7 @@ Success
         ]
       }
     ]
-  },
-  "advance_payment": [
-    {
-      "name": "SPLIT",
-      "display_priority": 22,
-      "payment_mode_id": 34,
-      "display_name": "Split Payment",
-      "list": [
-        {
-          "aggregator_name": "Fynd",
-          "name": "Split Payment",
-          "display_name": "Split Payment",
-          "code": "SPLIT",
-          "logo_url": {
-            "small": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png",
-            "large": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png"
-          },
-          "merchant_code": "SPLIT"
-        }
-      ],
-      "split": {
-        "total_number_of_splits": 7,
-        "splits_remaining": 7
-      }
-    },
-    {
-      "name": "ADVANCE",
-      "display_priority": 22,
-      "payment_mode_id": 35,
-      "display_name": "Advance Payment",
-      "list": [
-        {
-          "aggregator_name": "Fynd",
-          "name": "Advance Payment",
-          "display_name": "Advance Payment",
-          "code": "ADVANCE",
-          "logo_url": {
-            "small": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png",
-            "large": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png"
-          },
-          "merchant_code": "ADVANCE"
-        }
-      ],
-      "advance": {
-        "is_active": true,
-        "time_unit": "DAYS",
-        "description": "Pay Rs 3000 or more of the total amount",
-        "display_name": "Pay using Advance Payment",
-        "prepayment_type": "PERCENTAGE",
-        "prepayment_value": 20,
-        "cancellation_type": "AUTO",
-        "refund_time_limit": 4,
-        "all_prepayment_type": [
-          "PERCENTAGE",
-          "FIXED"
-        ],
-        "allow_custom_advance_amount": true
-      }
-    }
-  ]
+  }
 }
 ```
 </details>
@@ -5452,400 +5379,6 @@ Success. Check the example shown below
 ---
 
 
-#### getPaymentModeControlRoutes
-Get details for the given offline / advance payment mode for merchant
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.getPaymentModeControlRoutes(mode: mode) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| mode | String | yes | offline / advance  modes to get the payment modes |  
-
-
-
-Use this API to get details for the given offline / advance payment mode for merchant
-
-*Returned Response:*
-
-
-
-
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
-Success. Returns user cod limit , remaining limit and usage of user for COD. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "get offline / advance payment mode details",
-  "items": [
-    {
-      "display_name": "Store OS",
-      "business_unit": "pos",
-      "config": [
-        {
-          "anonymous": false,
-          "charges": 100,
-          "charges_max_value": 1000,
-          "charges_min_value": 0,
-          "max_order_value": 30000,
-          "min_order_value": 0,
-          "is_active": true,
-          "name": "Cash on Delivery (COD)",
-          "slug": "cod",
-          "user_limit": 10000
-        }
-      ]
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### setMerchantModeControlRoutes
-Update offline payment mode details for the merchant
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.setMerchantModeControlRoutes(mode: mode, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| mode | String | yes | offline / advance payment mode |  
-| body | MerchantPaymentModeRequest | yes | Request body |
-
-
-Use this API to update given offline / advance payment mode details for the merchant
-
-*Returned Response:*
-
-
-
-
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
-Success. Returns true or false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "",
-  "items": [
-    {
-      "anonymous": false,
-      "charges": 100,
-      "charges_max_value": 1000,
-      "charges_min_value": 0,
-      "max_order_value": 30000,
-      "min_order_value": 0,
-      "is_active": true,
-      "name": "Cash on Delivery (COD)",
-      "slug": "cod",
-      "user_limit": 10000
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPaymentModeCustomConfig
-Get details of advance payment custom configurations of merchant
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.getPaymentModeCustomConfig(mode: mode) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| mode | String | yes | offline / advance  mode |  
-
-
-
-Use this API to Get details of advance payment custom configurations of merchant
-
-*Returned Response:*
-
-
-
-
-[PaymentCustomConfigResponseSchema](#PaymentCustomConfigResponseSchema)
-
-Success. Get Advance Payment Custom Configurations.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "",
-  "items": [
-    {
-      "display_name": "Store OS",
-      "business_unit": "pos",
-      "custom_config": {
-        "customer": {
-          "restriction": "ALL_CUSTOMER",
-          "groups": [
-            1,
-            2,
-            3
-          ],
-          "types": [
-            "ALL_CUSTOMER",
-            "CUSTOMER_GROUP",
-            "REGISTERED_CUSTOMER"
-          ]
-        },
-        "payment_mode": {
-          "available": true,
-          "pre_order": [
-            "NB",
-            "UPI"
-          ],
-          "post_order": [
-            "NB",
-            "UPI"
-          ]
-        },
-        "min_order_value": 50
-      }
-    },
-    {
-      "display_name": "StoreFront",
-      "business_unit": "storefront",
-      "custom_config": {
-        "customer": {
-          "restriction": "ALL_CUSTOMER",
-          "groups": [
-            1,
-            2,
-            3
-          ],
-          "types": [
-            "ALL_CUSTOMER",
-            "CUSTOMER_GROUP",
-            "REGISTERED_CUSTOMER"
-          ]
-        },
-        "payment_mode": {
-          "available": true,
-          "pre_order": [
-            "NB",
-            "UPI"
-          ],
-          "post_order": [
-            "NB",
-            "UPI"
-          ]
-        },
-        "min_order_value": 50
-      }
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### setPaymentModeCustomConfig
-Update details of advance payment custom configurations of merchant
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.setPaymentModeCustomConfig(mode: mode, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| mode | String | yes | offline / advance payment mode |  
-| body | PaymentCustomConfigRequestSchema | yes | Request body |
-
-
-Use this API to update given details of advance payment custom configurations of merchant
-
-*Returned Response:*
-
-
-
-
-[PaymentCustomConfigResponseSchema](#PaymentCustomConfigResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "",
-  "items": [
-    {
-      "display_name": "Store OS",
-      "business_unit": "pos",
-      "custom_config": {
-        "customer": {
-          "restriction": "ALL_CUSTOMER",
-          "groups": [
-            1,
-            2,
-            3
-          ],
-          "types": [
-            "ALL_CUSTOMER",
-            "CUSTOMER_GROUP",
-            "REGISTERED_CUSTOMER"
-          ]
-        },
-        "payment_mode": {
-          "available": true,
-          "pre_order": [
-            "NB",
-            "UPI"
-          ],
-          "post_order": [
-            "NB",
-            "UPI"
-          ]
-        },
-        "min_order_value": 50
-      }
-    },
-    {
-      "display_name": "StoreFront",
-      "business_unit": "storefront",
-      "custom_config": {
-        "customer": {
-          "restriction": "ALL_CUSTOMER",
-          "groups": [
-            1,
-            2,
-            3
-          ],
-          "types": [
-            "ALL_CUSTOMER",
-            "CUSTOMER_GROUP",
-            "REGISTERED_CUSTOMER"
-          ]
-        },
-        "payment_mode": {
-          "available": true,
-          "pre_order": [
-            "NB",
-            "UPI"
-          ],
-          "post_order": [
-            "NB",
-            "UPI"
-          ]
-        },
-        "min_order_value": 50
-      }
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 #### getPaymentCodeOption
 List Payment Options Method Codes
 
@@ -5934,104 +5467,6 @@ List Order Beneficiary
       ],
       "name": "CARD"
     }
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getPaymentSession
-API to get payment session details
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.getPaymentSession(gid: gid, lineItem: lineItem) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| gid | String | yes | global identifier of the entity (e.g. order, cart etc.) against which payment session was initiated. This is generated by Fynd payments platform and is unique. |   
-| lineItem | Bool? | no | line-item to add extra data into response (e.g. cart details) |  
-
-
-
-Use this API to fetch the payment session details for given order ID or Transaction ID.
-
-*Returned Response:*
-
-
-
-
-[PaymentSessionSerializer](#PaymentSessionSerializer)
-
-Success. Returns the details of payment session. Check the example shown below or refer `PaymentSessionSerializer` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "gid": "TR9C4AF3A615DE251A23",
-  "status": "complete",
-  "total_amount": 10000,
-  "currency": "INR",
-  "payment_details": {
-    "gid": "TR9C4AF3A615DE251A23",
-    "payment_mode": "JIOPAY",
-    "aggregator_order_id": "10772307355840195000",
-    "aggregator_customer_id": "63073b48e8d90abe20c42eb8",
-    "payment_mode_identifier": "JIOPAY",
-    "g_user_id": "63073b48e8d90abe20c42eb8",
-    "payment_id": "10772307355847914000",
-    "mode": "live",
-    "amount": 56700,
-    "currency": "INR",
-    "cancel_url": "",
-    "success_url": "",
-    "amount_captured": 56700,
-    "status": "refund_done",
-    "payment_methods": [],
-    "meta": {
-      "cod_eligibile": true
-    }
-  },
-  "refund_details": [
-    {
-      "currency": "INR",
-      "request_id": "16787880654271907518",
-      "status": "refund_done",
-      "created": "2023-03-14 10:54:24",
-      "payment_id": "10772307355847914000",
-      "refund_utr": "10772307355847914000",
-      "amount": 56700
-    }
-  ],
-  "cart_details": {
-    "cart_value": 56700,
-    "total_quantity": 10,
-    "articles": [],
-    "items": {}
   }
 }
 ```
@@ -6224,7 +5659,7 @@ This api fetches all the available PGs for merchant and its offline payment mode
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -6261,28 +5696,21 @@ Success.
           "payment_modes": {
             "cod": [
               {
-                "name": "Cash on Delivery",
-                "slug": "cod",
-                "is_active": true,
-                "logos": {
-                  "small": "https://hdn-1.fynd.com/payment/cod.png",
-                  "large": "https://hdn-1.fynd.com/payment/cod.png"
-                }
+                "user_cod_limit": 0,
+                "cod_charges": 0,
+                "anonymous_cod": false,
+                "cod_max_order_value": 0,
+                "cod_min_order_value": 0,
+                "cod_charges_max_value": 0,
+                "cod_charges_min_value": 0
               }
             ]
           }
         },
-        "advance": {
+        "split": {
           "is_active": true,
           "payment_modes": {
-            "split": [
-              {
-                "name": "Split Payment",
-                "slug": "split",
-                "id": 48,
-                "is_active": true
-              }
-            ]
+            "split_payment": {}
           }
         }
       }
@@ -6333,7 +5761,7 @@ To updated online payment as active/inactive or offline payment configuration li
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -6367,9 +5795,16 @@ Success.
       "is_active": true,
       "payment_modes": {
         "cod": {
-          "name": "Cash on Delivery (COD)",
-          "slug": "cod",
-          "is_active": true
+          "cod_charges": 0,
+          "user_cod_limit": 0,
+          "cod_min_order_value": 0,
+          "cod_max_order_value": 10000,
+          "cod_charges_min_value": 100,
+          "cod_charges_max_value": 49000,
+          "anonymous_cod": false
+        },
+        "split": {
+          "is_active": false
         }
       }
     }
@@ -6422,7 +5857,7 @@ Get Aggregator, payment mode and sub payment mode details.
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -6478,7 +5913,7 @@ platformClient.application("<APPLICATION_ID>").payment.patchMerchantAggregatorPa
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | aggregatorId | Int | yes | Aggregators Id |  
-| body | PlatformPaymentModeResponse | yes | Request body |
+| body | MerchnatPaymentModeResponse | yes | Request body |
 
 
 Update Aggregator, payment mode and sub payment mode details.
@@ -6488,7 +5923,7 @@ Update Aggregator, payment mode and sub payment mode details.
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -6549,7 +5984,7 @@ Get Aggregators available to be added as PG.
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -6868,223 +6303,6 @@ Success. Returns the status of Update or not. Check the example shown below or r
 ---
 
 
-#### createPaymentOrder
-Create Order
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.createPaymentOrder(body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| body | PaymentOrderRequest | yes | Request body |
-
-
-Use this API to create a order and payment on aggregator side
-
-*Returned Response:*
-
-
-
-
-[PaymentOrderResponse](#PaymentOrderResponse)
-
-Success. Check the example shown below
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "",
-  "success": true,
-  "status_code": 200,
-  "data": {
-    "amount": 2190000,
-    "order_id": "order_JeaZ5ryKO01rno",
-    "email": "abc@example.com",
-    "contact": "9999999999",
-    "currency": "INR",
-    "customer_id": "cust_CZgcLVGsGP8BUQ",
-    "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-    "method": "upi",
-    "aggregator": "Razorpay",
-    "merchant_order_id": "FY629EDC0980B6A8C1EA"
-  },
-  "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-  "payment_confirm_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-  "order_id": "FY629EDC0980B6A8C1EA"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### getMerchantAggregatorAppVersion
-Get app version required for Payment Mode.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.getMerchantAggregatorAppVersion(aggregatorId: aggregatorId, businessUnit: businessUnit, device: device, paymentModeId: paymentModeId, subPaymentMode: subPaymentMode) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| aggregatorId | Int | yes | Aggregators Id |   
-| businessUnit | String | yes |  |   
-| device | String | yes |  |   
-| paymentModeId | Int? | no |  |   
-| subPaymentMode | String? | no |  |  
-
-
-
-This api provide read operations on the app version required for Payment Mode or sub payment mode for an Aggregator.
-
-*Returned Response:*
-
-
-
-
-[AggregatorVersionResponse](#AggregatorVersionResponse)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; merchant_payment_response_success</i></summary>
-
-```json
-{
-  "summary": "List of active PGs for merchant and its offline payment configurations",
-  "value": {
-    "success": true,
-    "message": "",
-    "items": {
-      "is_equal_to": 13,
-      "is_less_than": 12,
-      "is_greater_than\"": 10
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-#### patchMerchantPaymentOptionVersion
-Update app version required for Payment Mode.
-
-
-
-
-```swift
-platformClient.application("<APPLICATION_ID>").payment.patchMerchantPaymentOptionVersion(aggregatorId: aggregatorId, body: body) { (response, error) in
-    // Use response
-}
-```
-
-
-
-
-
-| Argument | Type | Required | Description |
-| -------- | ---- | -------- | ----------- | 
-| aggregatorId | Int | yes | Aggregators Id |  
-| body | AggregatorControlRequest | yes | Request body |
-
-
-This api provide wrote operations on the app version required for Payment Mode or sub payment mode for an Aggregator.
-
-*Returned Response:*
-
-
-
-
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; merchant_payment_response_success</i></summary>
-
-```json
-{
-  "summary": "updated payment mode configurations.",
-  "value": {
-    "success": true,
-    "message": "request is being performed",
-    "items": null
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 
 ### Schemas
@@ -7126,7 +6344,7 @@ Success.
  | ---------- | ---- | -------- | ----------- |
  | secret | String |  no  | Secret Key of the payment aggregator |
  | configType | String |  no  | Config Type of the aggregator |
- | isActive | Bool? |  yes  | Enable or Disable Flag |
+ | isActive | Bool? |  yes  | Enable/ Disable Flag |
  | key | String |  no  | Api key of the payment aggregator |
  | merchantSalt | String |  no  | Merchant key of the payment aggregator |
 
@@ -7140,7 +6358,7 @@ Success.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | appId | String |  no  | Application Id to which Payment config Mapped |
- | isActive | Bool? |  yes  | Enable or Disable Flag |
+ | isActive | Bool? |  yes  | Enable/ Disable Flag |
  | aggregatorName | [PaymentGatewayConfig](#PaymentGatewayConfig)? |  yes  |  |
 
 ---
@@ -7201,7 +6419,7 @@ Success.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [String: Any]? |  yes  | item id with its cod availability. |
- | codCharges | [CODChargesLimitsResponse](#CODChargesLimitsResponse)? |  yes  |  |
+ | codCharges | [CODChargesLimitsResponse](#CODChargesLimitsResponse)? |  yes  | cod charges and its allowed limits. |
 
 ---
 
@@ -7240,7 +6458,7 @@ Success.
  | packageName | String? |  yes  | package_name |
  | displayName | String? |  yes  | display_name |
  | code | String? |  yes  | code |
- | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  |  |
+ | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
 
 ---
 
@@ -7274,11 +6492,11 @@ Success.
  | intentAppErrorDictList | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
  | cardBrandImage | String? |  yes  | card_brand_image |
  | expired | Bool? |  yes  | expired |
- | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  |  |
+ | logoUrl | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
  | cardToken | String? |  yes  | card_token |
  | aggregatorName | String |  no  | aggregator_name |
  | codCharges | Double? |  yes  | cod charges to be applied on order. |
- | productCodData | [ProductCODData](#ProductCODData)? |  yes  |  |
+ | productCodData | [ProductCODData](#ProductCODData)? |  yes  | product cod configurations. |
  | codLimit | Double? |  yes  | cod limit |
  | intentApp | [[IntentApp](#IntentApp)]? |  yes  | intent_app |
  | nickname | String? |  yes  | nickname |
@@ -7322,127 +6540,12 @@ Success.
 
  
  
- #### [AggregatorRoute](#AggregatorRoute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [String: Any]? |  yes  | Data |
- | paymentFlowData | String? |  yes  | payment_flow_data |
- | paymentFlow | String? |  yes  | payment_flow |
- | apiLink | String? |  yes  | api_link |
-
----
-
-
- 
- 
- #### [PaymentFlow](#PaymentFlow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bqrRazorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | ajiodhan | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | simpl | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | stripe | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
-
----
-
-
- 
- 
- #### [PaymentOptionAndFlow](#PaymentOptionAndFlow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | paymentOption | [[RootPaymentMode](#RootPaymentMode)] |  no  | Payment options |
- | paymentFlows | [PaymentFlow](#PaymentFlow) |  no  |  |
-
----
-
-
- 
- 
- #### [AdvanceObject](#AdvanceObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isActive | Bool? |  yes  | Is Advance Payment active |
- | amount | Double? |  yes  | Amount for Payment Breakdown |
- | timeUnit | String? |  yes  | Time unit for refunds |
- | description | String? |  yes  | The description for Advance Payment (user configured) |
- | displayName | String? |  yes  | The display name for Advance payment |
- | prepaymentType | String? |  yes  | Type of prepayment value |
- | prepaymentValue | Double? |  yes  | Value for prepayment in advance payment |
- | cancellationType | String? |  yes  | Type of cancellation |
- | refundTimeLimit | Double? |  yes  | time limit for processing refund |
- | allPrepaymentType | [String]? |  yes  | All available types of prepayment |
- | allowCustomAdvanceAmount | Bool? |  yes  | Is custom advance amount allowed? |
-
----
-
-
- 
- 
- #### [SplitObject](#SplitObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | totalNumberOfSplits | Double? |  yes  | Maximum amount of splits allowed |
- | splitsRemaining | Double? |  yes  | Number of splits remaining |
- | amountRemaining | Double? |  yes  | Amount pending to be paid |
-
----
-
-
- 
- 
- #### [AdvancePaymentObject](#AdvancePaymentObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | String? |  yes  | Name of Advance Payment Mode |
- | displayPriority | Double? |  yes  | Display Priority for Payment Option |
- | paymentModeId | Double? |  yes  | Payment Mode ID for Advance Payment Option |
- | displayName | String? |  yes  | Display name for Advance Payment Mode |
- | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
- | split | [SplitObject](#SplitObject)? |  yes  |  |
- | advance | [AdvanceObject](#AdvanceObject)? |  yes  |  |
-
----
-
-
- 
- 
- #### [PaymentModeRouteResponse](#PaymentModeRouteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | paymentOptions | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  |  |
- | success | Bool |  no  | Response is successful or not |
- | paymentBreakup | [String: Any]? |  yes  | Payment Breakup for advance payment |
- | advancePayment | [[AdvancePaymentObject](#AdvancePaymentObject)]? |  yes  | Advance Payment Array |
-
----
-
-
- 
- 
  #### [PaymentOptionsResponse](#PaymentOptionsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | paymentOptions | [PaymentOptions](#PaymentOptions) |  no  |  |
+ | paymentOptions | [PaymentOptions](#PaymentOptions) |  no  | Payment options |
  | success | Bool |  no  | Response is successful or not |
- | paymentBreakup | [String: Any]? |  yes  | Payment Breakup for advance payment |
 
 ---
 
@@ -7475,7 +6578,7 @@ Success.
  | state | String? |  yes  | State |
  | accountHolder | String? |  yes  | Account Holder Name |
  | ifscCode | String? |  yes  | IFSC Code |
- | accountType | String? |  yes  | Account Type Saving or Current |
+ | accountType | String? |  yes  | Account Type Saving/Current |
  | bankName | String? |  yes  | Name of Bank |
 
 ---
@@ -7500,8 +6603,8 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customers | [PayoutCustomer](#PayoutCustomer) |  no  |  |
- | moreAttributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  no  |  |
+ | customers | [PayoutCustomer](#PayoutCustomer) |  no  | customers details object |
+ | moreAttributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  no  | bank details object |
  | isDefault | Bool |  no  | default or not  |
  | payoutsAggregators | [[PayoutAggregator](#PayoutAggregator)]? |  yes  |  |
  | uniqueTransferNo | String |  no  | display priority of the payment mode |
@@ -7552,8 +6655,8 @@ Success.
  | aggregator | String |  no  | Aggregator Name |
  | users | [String: Any] |  no  | payout users object |
  | uniqueExternalId | String |  no  | Unique Id of Payout |
- | isActive | Bool |  no  | Enable or Disable Flag Payout |
- | bankDetails | [PayoutBankDetails](#PayoutBankDetails) |  no  |  |
+ | isActive | Bool |  no  | Enable/Disable Flag Payout |
+ | bankDetails | [PayoutBankDetails](#PayoutBankDetails) |  no  | payout bank details object |
  | transferType | String |  no  | transafer type |
 
 ---
@@ -7569,7 +6672,7 @@ Success.
  | users | [String: Any] |  no  | users details object |
  | aggregator | String |  no  | Aggregator Name |
  | uniqueTransferNo | String |  no  | unique transfer no |
- | isActive | Bool |  no  | Enable or DIsable Flag Payout |
+ | isActive | Bool |  no  | Enable/DIsable Flag Payout |
  | bankDetails | [String: Any] |  no  | payout bank_details object |
  | success | Bool |  no  | Response is successful or not |
  | transferType | String |  no  | transfer type |
@@ -7585,8 +6688,8 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isDefault | Bool |  no  | Enable or Disable Default Payout |
- | isActive | Bool |  no  | Enable or DIsable Flag Payout |
+ | isDefault | Bool |  no  | Enable/Disable Default Payout |
+ | isActive | Bool |  no  | Enable/DIsable Flag Payout |
  | success | Bool |  no  | Response is successful or not |
 
 ---
@@ -7598,8 +6701,8 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | isDefault | Bool |  no  | Enable or Disable Default Payout |
- | isActive | Bool |  no  | Enable or Disable Flag Payout |
+ | isDefault | Bool |  no  | Enable/Disable Default Payout |
+ | isActive | Bool |  no  | Enable/Disable Flag Payout |
  | uniqueExternalId | String |  no  | Unique Id of Payout |
 
 ---
@@ -7858,7 +6961,7 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | userCodData | [CODdata](#CODdata) |  no  |  |
+ | userCodData | [CODdata](#CODdata) |  no  | User COD Data |
  | success | Bool |  no  | Response is successful or not |
 
 ---
@@ -7932,7 +7035,7 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statistics | [StatisticsData](#StatisticsData) |  no  |  |
+ | statistics | [StatisticsData](#StatisticsData) |  no  | Message |
  | success | Bool |  no  | Response is successful or not |
 
 ---
@@ -7981,7 +7084,7 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EdcDevice](#EdcDevice) |  no  |  |
+ | data | [EdcDevice](#EdcDevice) |  no  | Details of the EDC Device that is added |
  | success | Bool |  no  | Response is successful or not |
 
 ---
@@ -7993,7 +7096,7 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EdcDevice](#EdcDevice) |  no  |  |
+ | data | [EdcDevice](#EdcDevice) |  no  | Details of one EDC Device |
  | success | Bool |  no  | Response is successful or not |
 
 ---
@@ -8049,7 +7152,7 @@ Success.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[EdcDevice](#EdcDevice)] |  no  | List of all edc mapped to the application options with their Details. |
- | page | [Page](#Page) |  no  |  |
+ | page | [Page](#Page) |  no  | Pagination Response |
  | success | Bool |  no  | Response is successful or not |
 
 ---
@@ -8162,7 +7265,7 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | status | String |  no  | Link action status |
+ | status | Bool |  no  | Link action status |
  | message | String |  no  | Message |
 
 ---
@@ -8174,7 +7277,7 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [LinkStatus](#LinkStatus) |  no  |  |
+ | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
  | success | Bool |  no  | Response is successful or not. |
 
 ---
@@ -8326,7 +7429,7 @@ Success.
  | creditLineId | String |  no  | Merchant ID at Ajiodhan's end |
  | aggregator | String |  no  | Payment aggregator name |
  | appId | String |  no  | Application id |
- | userId | String |  no  | Deadlock or Grimlock user id |
+ | userId | String |  no  | Deadlock/Grimlock user id |
  | status | String |  no  | Status |
 
 ---
@@ -8436,6 +7539,7 @@ Success.
  | checkoutMode | String |  no  |  |
  | amount | String |  no  |  |
  | assignCardId | String? |  yes  |  |
+ | pincode | String |  no  |  |
 
 ---
 
@@ -8449,9 +7553,8 @@ Success.
  | email | String |  no  | Email to which the payment link is to be sent |
  | amount | Double |  no  | Total value of order |
  | mobileNumber | String |  no  | Mobile number to which the payment link is to be sent |
- | countryPhoneCode | String? |  yes  | Phone country code for complete mobile number |
  | description | String? |  yes  | Merchant order id |
- | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  |  |
+ | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  | Meta |
  | externalOrderId | String |  no  | Merchant order id |
 
 ---
@@ -8551,7 +7654,7 @@ Success.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | networks | String |  no  | payment networks |
- | codes | [Code](#Code) |  no  |  |
+ | codes | [Code](#Code) |  no  | List of dict that contains payment method data |
  | name | String |  no  | name of payment name |
  | types | String |  no  | Type of payment mode |
 
@@ -8564,7 +7667,7 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | methodCode | [PaymentCode](#PaymentCode) |  no  |  |
+ | methodCode | [PaymentCode](#PaymentCode) |  no  | Payment method code |
 
 ---
 
@@ -8575,7 +7678,7 @@ Success.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [GetPaymentCode](#GetPaymentCode) |  no  |  |
+ | data | [GetPaymentCode](#GetPaymentCode) |  no  | Data about Payment Code. |
  | success | Bool |  no  | Response is successful or not. |
 
 ---
@@ -8583,7 +7686,7 @@ Success.
 
  
  
- #### [PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+ #### [MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -8639,10 +7742,10 @@ Success.
  | state | String |  no  | state of the customer |
  | area | String |  no  | area details |
  | gAddressId | String |  no  | unique address id generated by Fynd platform |
- | areaCodeSlug | String |  no  | area slug code, use pin or zip code if not available |
+ | areaCodeSlug | String |  no  | area slug code, use pin/zip code if not available |
  | countryPhoneCode | String |  no  | country's phone code |
  | name | String |  no  | customer name |
- | addressType | String? |  yes  | address type e.g. home, office |
+ | addressType | String |  no  | address type e.g. home, office |
  | address | String |  no  | address details |
  | email | String? |  yes  | customer email |
  | city | String |  no  | city name |
@@ -8662,23 +7765,22 @@ Success.
  | amount | Int |  no  | amount paid. |
  | successUrl | String |  no  | success url sent by Fynd platform at the time of payment creation |
  | shippingAddress | [AddressDetail](#AddressDetail)? |  yes  | shipping address |
- | amountCaptured | Int |  no  | amount which is captured or credited to merchant account |
- | amountRefunded | Int? |  yes  |  |
- | aggregatorCustomerId | String? |  yes  | unique customer id generated by payment gateway, not required for standard checkout. |
- | cancelUrl | String |  no  | cancel url sent by Fynd platform at the time of payment creation |
- | paymentMethods | [[String: Any]] |  no  | method of payment |
- | created | String? |  yes  | timestamp in epoch |
  | gUserId | String |  no  | global user identifier - unique user id generated by Fynd platform |
  | currency | String |  no  | currency of the payment. |
  | merchantLocale | String? |  yes  | merchant's locale |
  | locale | String? |  yes  | user's locale |
  | aggregatorOrderId | String |  no  | unique order id or payment request id generated by payment gateway |
  | gid | String |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
- | kind | String? |  yes  | optional kind of purchase or payment - one time payment (sale) or subcription. defaults to sale. |
- | billingAddress | [AddressDetail](#AddressDetail)? |  yes  | billing address |
+ | cancelUrl | String |  no  | cancel url sent by Fynd platform at the time of payment creation |
+ | amountRefunded | Int? |  yes  |  |
  | captured | Bool? |  yes  | whether the payment is captured (credited to merchant account) by payment gateway. |
- | meta | [String: Any]? |  yes  | Metadata |
+ | created | String? |  yes  | timestamp in epoch |
  | status | String |  no  | stautus of the payment |
+ | kind | String? |  yes  | optional kind of purchase/payment - one time payment (sale) or subcription. defaults to sale. |
+ | aggregatorCustomerId | String? |  yes  | unique customer id generated by payment gateway, not required for standard checkout. |
+ | paymentMethods | [[String: Any]] |  no  | method of payment |
+ | billingAddress | [AddressDetail](#AddressDetail)? |  yes  | billing address |
+ | amountCaptured | Int |  no  | amount which is captured or credited to merchant account |
 
 ---
 
@@ -8748,10 +7850,8 @@ Success.
  | status | String |  no  | The status of the refund. |
  | currency | String |  no  | The currency of the payment. |
  | paymentDetails | [PaymentSessionDetail](#PaymentSessionDetail) |  no  | details of the payment |
- | totalAmount | Int |  no  | The total amount refunded. |
  | refundDetails | [[RefundSessionDetail](#RefundSessionDetail)]? |  yes  | details of the refund |
- | error | [ErrorDescription](#ErrorDescription)? |  yes  |  |
- | message | String? |  yes  | The status of the refund. |
+ | totalAmount | Int |  no  | The total amount refunded. |
 
 ---
 
@@ -8767,83 +7867,6 @@ Success.
  | currency | String |  no  | The currency of the payment. |
  | platformRefundDetails | [[String: Any]] |  no  | details of the refund |
  | totalRefundAmount | Int |  no  | The total amount refunded. |
-
----
-
-
- 
- 
- #### [PaymentDetailsSerializer](#PaymentDetailsSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | paymentMethods | [[String: Any]] |  no  | method of payment |
- | gid | String |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
- | amountRefunded | Int? |  yes  |  |
- | currency | String |  no  | currency of the payment. |
- | mode | String |  no  | test or live, test mode uses test credentials so that actual payment is not created. |
- | merchantLocale | String? |  yes  | merchant's locale |
- | meta | [String: Any]? |  yes  | metadata |
- | kind | String? |  yes  | optional kind of purchase/payment - one time payment (sale) or subcription. defaults to sale. |
- | successUrl | String? |  yes  | success url sent by Fynd platform at the time of payment creation |
- | status | String |  no  | stautus of the payment |
- | captured | Bool? |  yes  | whether the payment is captured (credited to merchant account) by payment gateway. |
- | paymentId | String? |  yes  | unique transaction id generated by payment gateway |
- | gUserId | String |  no  | global user identifier - unique user id generated by Fynd platform |
- | locale | String? |  yes  | user's locale |
- | cancelUrl | String? |  yes  | cancel url sent by Fynd platform at the time of payment creation |
- | created | String? |  yes  | timestamp in epoch |
- | amountCaptured | Int |  no  | amount which is captured or credited to merchant account |
- | amount | Int |  no  | amount paid. |
- | aggregatorCustomerId | String? |  yes  | unique customer id generated by payment gateway, not required for standard checkout. |
- | aggregatorOrderId | String? |  yes  | unique order id or payment request id generated by payment gateway |
-
----
-
-
- 
- 
- #### [CartDetailsSerializer](#CartDetailsSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [String: Any] |  no  | Items that are added in cart |
- | articles | [[String: Any]] |  no  | list of articles that are added in cart |
- | cartValue | Double |  no  | total cart value i.e. amount to be paid |
- | totalQuantity | Int? |  yes  | total number of items in cart |
-
----
-
-
- 
- 
- #### [RefundDetailsSerializer](#RefundDetailsSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | Int |  no  | refunded amount |
- | currency | String |  no  | The currency of the payment. |
- | requestId | String |  no  | refund request id, unique id generated by Fynd platform |
- | status | String |  no  | The status of the refund. |
- | created | String |  no  | timestamp in epoch. |
- | refundUtr | String |  no  | Unique refund utr generated by payment gateway. |
-
----
-
-
- 
- 
- #### [PaymentSessionSerializer](#PaymentSessionSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | paymentDetails | [String: Any] |  no  | object of payment details |
- | currency | String? |  yes  | The currency of the payment. |
- | status | String |  no  | The status of the payment session. |
- | totalAmount | Int |  no  | total amount to be paid |
- | gid | String |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
- | cartDetails | [CartDetailsSerializer](#CartDetailsSerializer)? |  yes  |  |
- | refundDetails | [[RefundDetailsSerializer](#RefundDetailsSerializer)] |  no  | object of refund details |
 
 ---
 
@@ -8884,288 +7907,6 @@ Success.
  | ---------- | ---- | -------- | ----------- |
  | apportion | Bool |  no  | apportion refund to multiple sources |
  | refundSourcesPriority | [[RefundSourcesPriority](#RefundSourcesPriority)] |  no  | refund sources priority |
-
----
-
-
- 
- 
- #### [MerchantPaymentModeRequest](#MerchantPaymentModeRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | businessUnit | String |  no  | Business unit |
- | items | [[String: Any]] |  no  | List of item details with respect to payment_mode |
- | device | [String: Any] |  no  | List of devices and its activation status |
-
----
-
-
- 
- 
- #### [FromConfig](#FromConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | device | String |  no  | Device name |
- | businessUnit | String |  no  | Business unit name |
-
----
-
-
- 
- 
- #### [ToConfig](#ToConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | device | [[String: Any]] |  no  | Device name to copy the config to |
- | businessUnit | String |  no  | Business unit name |
-
----
-
-
- 
- 
- #### [PlatformPaymentModeCopyConfigRequest](#PlatformPaymentModeCopyConfigRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | fromConfig | [FromConfig](#FromConfig) |  no  |  |
- | toConfig | [ToConfig](#ToConfig) |  no  |  |
-
----
-
-
- 
- 
- #### [PaymentMethodsMetaOrder](#PaymentMethodsMetaOrder)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | paymentIdentifier | String |  no  | Payment identifier |
- | merchantCode | String |  no  | Merchant code |
- | paymentGateway | String |  no  | Payment gateway name |
-
----
-
-
- 
- 
- #### [PaymentOrderMethods](#PaymentOrderMethods)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | Double |  no  | Amount to be collected |
- | payment | String? |  yes  | Payment type i.e. Required / Blocked |
- | mode | String |  no  | Payment mode |
- | meta | [PaymentMethodsMetaOrder](#PaymentMethodsMetaOrder) |  no  |  |
- | name | String |  no  | Payment mode name |
-
----
-
-
- 
- 
- #### [PaymentOrderRequest](#PaymentOrderRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | orderId | String |  no  | Order id |
- | paymentMethods | [[PaymentOrderMethods](#PaymentOrderMethods)]? |  yes  |  |
- | shipmentId | String? |  yes  | shipment_id |
-
----
-
-
- 
- 
- #### [PaymentOrderData](#PaymentOrderData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | contact | String? |  yes  | Mobile number |
- | aggregator | String? |  yes  | Aggregator name |
- | amount | Double? |  yes  | Amount |
- | customerId | String? |  yes  | Aggregator customer id |
- | currency | String? |  yes  | Currency |
- | email | String? |  yes  | Email |
- | callbackUrl | String? |  yes  | Callback url for aggregator |
- | orderId | String? |  yes  | Aggregator order id |
- | method | String? |  yes  | Method |
- | merchantOrderId | String? |  yes  | Merchant order id |
-
----
-
-
- 
- 
- #### [PaymentOrderResponse](#PaymentOrderResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String |  no  | Message |
- | success | Bool |  no  | Successful or failure |
- | paymentConfirmUrl | String? |  yes  | Payment confirm url for aggregator |
- | callbackUrl | String? |  yes  | Callback url for aggregator |
- | statusCode | Int |  no  | HTTP status code |
- | orderId | String? |  yes  | Merchant order id |
- | data | [PaymentOrderData](#PaymentOrderData)? |  yes  |  |
-
----
-
-
- 
- 
- #### [AggregatorVersionItemSchema](#AggregatorVersionItemSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isEqualTo | String? |  yes  |  |
- | isLessThan | String? |  yes  |  |
- | isGreaterThan | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AggregatorVersionResponse](#AggregatorVersionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | String |  no  | Message |
- | success | Bool |  no  | Successful or failure |
- | items | [AggregatorVersionItemSchema](#AggregatorVersionItemSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [AggregatorVersionRequestSchema](#AggregatorVersionRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | isEqualTo | String? |  yes  |  |
- | isLessThan | String? |  yes  |  |
- | isGreaterThan | String? |  yes  |  |
-
----
-
-
- 
- 
- #### [AggregatorControlRequest](#AggregatorControlRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | businessUnit | String? |  yes  | Business unit |
- | items | [[String: Any]]? |  yes  | List of item details with respect to payment_mode |
- | device | String? |  yes  | Device name |
- | version | [AggregatorVersionRequestSchema](#AggregatorVersionRequestSchema)? |  yes  |  |
-
----
-
-
- 
- 
- #### [PaymentModeCustomConfigSchema](#PaymentModeCustomConfigSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | displayName | String |  no  | The display name of the store. |
- | businessUnit | String |  no  | The business unit to which the store belongs. |
- | customConfig | [PaymentCustomConfigDetailsSchema](#PaymentCustomConfigDetailsSchema) |  no  |  |
-
----
-
-
- 
- 
- #### [PaymentCustomConfigDetailsSchema](#PaymentCustomConfigDetailsSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | customer | [PaymentCustomConfigCustomerSchema](#PaymentCustomConfigCustomerSchema) |  no  |  |
- | paymentMode | [PaymentCustomConfigModeSchema](#PaymentCustomConfigModeSchema) |  no  |  |
- | minOrderValue | Double |  no  | The minimum order value for the store |
-
----
-
-
- 
- 
- #### [PaymentCustomConfigCustomerSchema](#PaymentCustomConfigCustomerSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | restriction | String |  no  | Customer restriction type. |
- | groups | [Int]? |  yes  | Customer groups. |
- | types | [String]? |  yes  | Customer types. |
-
----
-
-
- 
- 
- #### [PaymentCustomConfigModeSchema](#PaymentCustomConfigModeSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | available | Bool |  no  | Indicates whether the payment mode is available. |
- | preOrder | [String]? |  yes  | Payment modes available for pre-order. |
- | postOrder | [String]? |  yes  | Payment modes available for post-order. |
-
----
-
-
- 
- 
- #### [PaymentCustomConfigDetailsRequestSchema](#PaymentCustomConfigDetailsRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | customer | [PaymentCustomConfigCustomerRequestSchema](#PaymentCustomConfigCustomerRequestSchema) |  no  |  |
- | paymentMode | [PaymentCustomConfigModeSchema](#PaymentCustomConfigModeSchema) |  no  |  |
- | minOrderValue | Double |  no  | The minimum order value for the store |
-
----
-
-
- 
- 
- #### [PaymentCustomConfigCustomerRequestSchema](#PaymentCustomConfigCustomerRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | restriction | String |  no  | Customer restriction type. |
- | groups | [Int]? |  yes  | Customer groups. |
-
----
-
-
- 
- 
- #### [PaymentCustomConfigRequestSchema](#PaymentCustomConfigRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | businessUnit | String |  no  | The business unit to which the store belongs. |
- | items | [[PaymentCustomConfigDetailsRequestSchema](#PaymentCustomConfigDetailsRequestSchema)] |  no  |  |
-
----
-
-
- 
- 
- #### [PaymentCustomConfigResponseSchema](#PaymentCustomConfigResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | Bool |  no  |  |
- | message | String |  no  |  |
- | items | [[PaymentModeCustomConfigSchema](#PaymentModeCustomConfigSchema)] |  no  |  |
 
 ---
 

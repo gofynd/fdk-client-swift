@@ -28,7 +28,7 @@ public extension PlatformClient.Configuration {
         
         public var createdAt: String?
         
-        public var modifiedAt: String?
+        public var updatedAt: String?
         
         public var v: Int?
         
@@ -53,7 +53,7 @@ public extension PlatformClient.Configuration {
             
             case createdAt = "created_at"
             
-            case modifiedAt = "modified_at"
+            case updatedAt = "updated_at"
             
             case v = "__v"
             
@@ -61,7 +61,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(application: String? = nil, appName: String? = nil, createdAt: String? = nil, isActive: Bool? = nil, landingImage: LandingImage? = nil, modifiedAt: String? = nil, packageName: String? = nil, platformType: String? = nil, splashImage: SplashImage? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, appName: String? = nil, createdAt: String? = nil, isActive: Bool? = nil, landingImage: LandingImage? = nil, packageName: String? = nil, platformType: String? = nil, splashImage: SplashImage? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.isActive = isActive
             
@@ -79,7 +79,7 @@ public extension PlatformClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.modifiedAt = modifiedAt
+            self.updatedAt = updatedAt
             
             self.v = v
             
@@ -188,7 +188,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -269,7 +269,7 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
@@ -314,7 +314,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var createdAt: String?
         
-        public var modifiedAt: String?
+        public var updatedAt: String?
         
         public var v: Int?
         
@@ -339,7 +339,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case createdAt = "created_at"
             
-            case modifiedAt = "modified_at"
+            case updatedAt = "updated_at"
             
             case v = "__v"
             
@@ -347,7 +347,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(application: String? = nil, appName: String? = nil, createdAt: String? = nil, isActive: Bool? = nil, landingImage: LandingImage? = nil, modifiedAt: String? = nil, packageName: String? = nil, platformType: String? = nil, splashImage: SplashImage? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, appName: String? = nil, createdAt: String? = nil, isActive: Bool? = nil, landingImage: LandingImage? = nil, packageName: String? = nil, platformType: String? = nil, splashImage: SplashImage? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.isActive = isActive
             
@@ -365,7 +365,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.modifiedAt = modifiedAt
+            self.updatedAt = updatedAt
             
             self.v = v
             
@@ -474,7 +474,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -555,7 +555,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             

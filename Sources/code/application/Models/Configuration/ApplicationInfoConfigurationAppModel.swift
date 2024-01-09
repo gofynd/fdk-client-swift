@@ -8,10 +8,6 @@ public extension ApplicationClient.Configuration {
     */
     class ApplicationInfo: Codable {
         
-        public var companyInfo: CompanyInfo?
-        
-        public var ownerInfo: OwnerInfo?
-        
         public var id: String?
         
         public var domain: Domain?
@@ -24,7 +20,7 @@ public extension ApplicationClient.Configuration {
         
         public var name: String?
         
-        public var meta: [ApplicationMeta]?
+        public var meta: ApplicationMeta?
         
         public var token: String?
         
@@ -38,24 +34,8 @@ public extension ApplicationClient.Configuration {
         
         public var isActive: Bool?
         
-        public var mode: String?
-        
-        public var tokens: [TokenSchema]?
-        
-        public var domains: [Domain]?
-        
-        public var favicon: SecureUrl?
-        
-        public var mobileLogo: SecureUrl?
-        
-        public var slug: String?
-        
 
         public enum CodingKeys: String, CodingKey {
-            
-            case companyInfo = "company_info"
-            
-            case ownerInfo = "owner_info"
             
             case id = "_id"
             
@@ -83,25 +63,9 @@ public extension ApplicationClient.Configuration {
             
             case isActive = "is_active"
             
-            case mode = "mode"
-            
-            case tokens = "tokens"
-            
-            case domains = "domains"
-            
-            case favicon = "favicon"
-            
-            case mobileLogo = "mobile_logo"
-            
-            case slug = "slug"
-            
         }
 
-        public init(banner: SecureUrl? = nil, companyInfo: CompanyInfo? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, domains: [Domain]? = nil, favicon: SecureUrl? = nil, isActive: Bool? = nil, logo: SecureUrl? = nil, meta: [ApplicationMeta]? = nil, mobileLogo: SecureUrl? = nil, mode: String? = nil, name: String? = nil, ownerInfo: OwnerInfo? = nil, secret: String? = nil, slug: String? = nil, token: String? = nil, tokens: [TokenSchema]? = nil, website: ApplicationWebsite? = nil, id: String? = nil) {
-            
-            self.companyInfo = companyInfo
-            
-            self.ownerInfo = ownerInfo
+        public init(banner: SecureUrl? = nil, cors: ApplicationCors? = nil, createdAt: String? = nil, description: String? = nil, domain: Domain? = nil, isActive: Bool? = nil, logo: SecureUrl? = nil, meta: ApplicationMeta? = nil, name: String? = nil, secret: String? = nil, token: String? = nil, website: ApplicationWebsite? = nil, id: String? = nil) {
             
             self.id = id
             
@@ -129,46 +93,10 @@ public extension ApplicationClient.Configuration {
             
             self.isActive = isActive
             
-            self.mode = mode
-            
-            self.tokens = tokens
-            
-            self.domains = domains
-            
-            self.favicon = favicon
-            
-            self.mobileLogo = mobileLogo
-            
-            self.slug = slug
-            
         }
 
         required public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            
-            do {
-                companyInfo = try container.decode(CompanyInfo.self, forKey: .companyInfo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                ownerInfo = try container.decode(OwnerInfo.self, forKey: .ownerInfo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
             
             
             do {
@@ -244,7 +172,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                meta = try container.decode([ApplicationMeta].self, forKey: .meta)
+                meta = try container.decode(ApplicationMeta.self, forKey: .meta)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -326,92 +254,10 @@ public extension ApplicationClient.Configuration {
             }
             
             
-            
-            do {
-                mode = try container.decode(String.self, forKey: .mode)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                tokens = try container.decode([TokenSchema].self, forKey: .tokens)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                domains = try container.decode([Domain].self, forKey: .domains)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                favicon = try container.decode(SecureUrl.self, forKey: .favicon)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                mobileLogo = try container.decode(SecureUrl.self, forKey: .mobileLogo)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
-            
-            do {
-                slug = try container.decode(String.self, forKey: .slug)
-            
-            } catch DecodingError.typeMismatch(let type, let context) {
-                print("Type '\(type)' mismatch:", context.debugDescription)
-                print("codingPath:", context.codingPath)
-            } catch {
-                
-            }
-            
-            
         }
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            
-            
-            try? container.encodeIfPresent(companyInfo, forKey: .companyInfo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(ownerInfo, forKey: .ownerInfo)
-            
             
             
             
@@ -476,36 +322,6 @@ public extension ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
-            
-            
-            
-            
-            try? container.encodeIfPresent(mode, forKey: .mode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(tokens, forKey: .tokens)
-            
-            
-            
-            
-            try? container.encodeIfPresent(domains, forKey: .domains)
-            
-            
-            
-            
-            try? container.encodeIfPresent(favicon, forKey: .favicon)
-            
-            
-            
-            
-            try? container.encodeIfPresent(mobileLogo, forKey: .mobileLogo)
-            
-            
-            
-            
-            try? container.encodeIfPresent(slug, forKey: .slug)
             
             
         }

@@ -12,24 +12,30 @@ public extension PlatformClient.Serviceability {
     class FailureResponse: Codable {
         
         
-        public var success: Bool
+        public var statusCode: Int
         
         public var error: [ErrorResponse]
+        
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case statusCode = "status_code"
             
             case error = "error"
             
+            case success = "success"
+            
         }
 
-        public init(error: [ErrorResponse], success: Bool) {
+        public init(error: [ErrorResponse], statusCode: Int, success: Bool) {
             
-            self.success = success
+            self.statusCode = statusCode
             
             self.error = error
+            
+            self.success = success
             
         }
 
@@ -37,12 +43,17 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                success = try container.decode(Bool.self, forKey: .success)
+                statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
             
             
             
                 error = try container.decode([ErrorResponse].self, forKey: .error)
+                
+            
+            
+            
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             
@@ -53,12 +64,17 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             
             
             try? container.encodeIfPresent(error, forKey: .error)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }
@@ -77,24 +93,30 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class FailureResponse: Codable {
         
         
-        public var success: Bool
+        public var statusCode: Int
         
         public var error: [ErrorResponse]
+        
+        public var success: Bool
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case success = "success"
+            case statusCode = "status_code"
             
             case error = "error"
             
+            case success = "success"
+            
         }
 
-        public init(error: [ErrorResponse], success: Bool) {
+        public init(error: [ErrorResponse], statusCode: Int, success: Bool) {
             
-            self.success = success
+            self.statusCode = statusCode
             
             self.error = error
+            
+            self.success = success
             
         }
 
@@ -102,12 +124,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                success = try container.decode(Bool.self, forKey: .success)
+                statusCode = try container.decode(Int.self, forKey: .statusCode)
                 
             
             
             
                 error = try container.decode([ErrorResponse].self, forKey: .error)
+                
+            
+            
+            
+                success = try container.decode(Bool.self, forKey: .success)
                 
             
             
@@ -118,12 +145,17 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(success, forKey: .success)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             
             
             try? container.encodeIfPresent(error, forKey: .error)
+            
+            
+            
+            
+            try? container.encodeIfPresent(success, forKey: .success)
             
             
         }

@@ -16,8 +16,6 @@ public extension PlatformClient.Configuration {
         
         public var name: String?
         
-        public var id: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -25,17 +23,13 @@ public extension PlatformClient.Configuration {
             
             case name = "name"
             
-            case id = "id"
-            
         }
 
-        public init(id: Int? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(name: String? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
             self.name = name
-            
-            self.id = id
             
         }
 
@@ -66,18 +60,6 @@ public extension PlatformClient.Configuration {
                 }
                 
             
-            
-                do {
-                    id = try container.decode(Int.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -91,11 +73,6 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }
@@ -118,8 +95,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var name: String?
         
-        public var id: Int?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -127,17 +102,13 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case name = "name"
             
-            case id = "id"
-            
         }
 
-        public init(id: Int? = nil, name: String? = nil, uid: Int? = nil) {
+        public init(name: String? = nil, uid: Int? = nil) {
             
             self.uid = uid
             
             self.name = name
-            
-            self.id = id
             
         }
 
@@ -168,18 +139,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
-            
-                do {
-                    id = try container.decode(Int.self, forKey: .id)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -193,11 +152,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(name, forKey: .name)
-            
-            
-            
-            
-            try? container.encodeIfPresent(id, forKey: .id)
             
             
         }

@@ -20,8 +20,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var applyExpiry: String?
         
-        public var restrictions: PriceAdjustmentRestrictions?
-        
         public var articleLevelDistribution: Bool
         
         public var id: String?
@@ -49,8 +47,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case applyExpiry = "apply_expiry"
             
-            case restrictions = "restrictions"
-            
             case articleLevelDistribution = "article_level_distribution"
             
             case id = "id"
@@ -71,15 +67,13 @@ public extension PlatformClient.ApplicationClient.Cart {
             
         }
 
-        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collection, id: String? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, restrictions: PriceAdjustmentRestrictions? = nil, type: String, value: Double) {
+        public init(allowedRefund: Bool? = nil, applyExpiry: String? = nil, articleIds: [Article], articleLevelDistribution: Bool, cartId: String, collection: Collection, id: String? = nil, isAuthenticated: Bool, message: String, meta: [String: Any]? = nil, type: String, value: Double) {
             
             self.value = value
             
             self.message = message
             
             self.applyExpiry = applyExpiry
-            
-            self.restrictions = restrictions
             
             self.articleLevelDistribution = articleLevelDistribution
             
@@ -117,18 +111,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     applyExpiry = try container.decode(String.self, forKey: .applyExpiry)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    restrictions = try container.decode(PriceAdjustmentRestrictions.self, forKey: .restrictions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -222,11 +204,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(applyExpiry, forKey: .applyExpiry)
-            
-            
-            
-            
-            try? container.encodeIfPresent(restrictions, forKey: .restrictions)
             
             
             

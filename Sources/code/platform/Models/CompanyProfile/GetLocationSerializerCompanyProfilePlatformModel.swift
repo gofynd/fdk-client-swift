@@ -76,8 +76,6 @@ public extension PlatformClient.CompanyProfile {
         
         public var bulkShipment: Bool?
         
-        public var autoAssignCourierPartner: Bool?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -145,11 +143,9 @@ public extension PlatformClient.CompanyProfile {
             
             case bulkShipment = "bulk_shipment"
             
-            case autoAssignCourierPartner = "auto_assign_courier_partner"
-            
         }
 
-        public init(address: GetAddressSerializer, autoAssignCourierPartner: Bool? = nil, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, holiday: [HolidaySchemaSerializer]? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSerializer]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: GetAddressSerializer, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: GetCompanySerializer? = nil, contactNumbers: [SellerPhoneNumber]? = nil, createdBy: UserSerializer? = nil, createdOn: String? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, holiday: [HolidaySchemaSerializer]? = nil, manager: LocationManagerSerializer? = nil, modifiedBy: UserSerializer? = nil, modifiedOn: String? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSerializer]? = nil, phoneNumber: String? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, verifiedBy: UserSerializer? = nil, verifiedOn: String? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.code = code
             
@@ -214,8 +210,6 @@ public extension PlatformClient.CompanyProfile {
             self.avgOrderProcessingTime = avgOrderProcessingTime
             
             self.bulkShipment = bulkShipment
-            
-            self.autoAssignCourierPartner = autoAssignCourierPartner
             
         }
 
@@ -578,18 +572,6 @@ public extension PlatformClient.CompanyProfile {
                 }
                 
             
-            
-                do {
-                    autoAssignCourierPartner = try container.decode(Bool.self, forKey: .autoAssignCourierPartner)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -753,11 +735,6 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(bulkShipment, forKey: .bulkShipment)
-            
-            
-            
-            
-            try? container.encodeIfPresent(autoAssignCourierPartner, forKey: .autoAssignCourierPartner)
             
             
         }

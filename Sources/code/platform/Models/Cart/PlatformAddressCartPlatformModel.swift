@@ -54,10 +54,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var city: String?
         
-        public var sector: String?
-        
-        public var stateCode: String?
-        
         public var area: String?
         
         public var userId: String?
@@ -65,12 +61,6 @@ public extension PlatformClient.ApplicationClient.Cart {
         public var addressType: String?
         
         public var address: String?
-        
-        public var countryPhoneCode: String?
-        
-        public var countryIsoCode: String?
-        
-        public var customJson: [String: Any]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -115,10 +105,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case city = "city"
             
-            case sector = "sector"
-            
-            case stateCode = "state_code"
-            
             case area = "area"
             
             case userId = "user_id"
@@ -127,15 +113,9 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case address = "address"
             
-            case countryPhoneCode = "country_phone_code"
-            
-            case countryIsoCode = "country_iso_code"
-            
-            case customJson = "_custom_json"
-            
         }
 
-        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, cartId: String? = nil, checkoutMode: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdByUserId: String? = nil, email: String? = nil, geoLocation: GeoLocation? = nil, googleMapPoint: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, isDefaultAddress: Bool? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, tags: [String]? = nil, userId: String? = nil, customJson: [String: Any]? = nil) {
+        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, cartId: String? = nil, checkoutMode: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, createdByUserId: String? = nil, email: String? = nil, geoLocation: GeoLocation? = nil, googleMapPoint: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, isDefaultAddress: Bool? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, state: String? = nil, tags: [String]? = nil, userId: String? = nil) {
             
             self.phone = phone
             
@@ -177,10 +157,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.city = city
             
-            self.sector = sector
-            
-            self.stateCode = stateCode
-            
             self.area = area
             
             self.userId = userId
@@ -188,12 +164,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             self.addressType = addressType
             
             self.address = address
-            
-            self.countryPhoneCode = countryPhoneCode
-            
-            self.countryIsoCode = countryIsoCode
-            
-            self.customJson = customJson
             
         }
 
@@ -442,30 +412,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
                 do {
-                    sector = try container.decode(String.self, forKey: .sector)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    stateCode = try container.decode(String.self, forKey: .stateCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     area = try container.decode(String.self, forKey: .area)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -503,42 +449,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     address = try container.decode(String.self, forKey: .address)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    countryPhoneCode = try container.decode(String.self, forKey: .countryPhoneCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    countryIsoCode = try container.decode(String.self, forKey: .countryIsoCode)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    customJson = try container.decode([String: Any].self, forKey: .customJson)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -655,16 +565,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             
-            try? container.encodeIfPresent(sector, forKey: .sector)
-            
-            
-            
-            
-            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
-            
-            
-            
-            
             try? container.encodeIfPresent(area, forKey: .area)
             
             
@@ -681,21 +581,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(address, forKey: .address)
-            
-            
-            
-            
-            try? container.encodeIfPresent(countryPhoneCode, forKey: .countryPhoneCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(countryIsoCode, forKey: .countryIsoCode)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customJson, forKey: .customJson)
             
             
         }

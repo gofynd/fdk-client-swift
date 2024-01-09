@@ -485,7 +485,7 @@ var xQuery: [String: Any] = [:]
         /**
         *
         * Summary: Ifsc Code Verification
-        * Description: Get True or False for correct IFSC Code for adding bank details for refund
+        * Description: Get True/False for correct IFSC Code for adding bank details for refund
         **/
         public func verifyIfscCode(
             ifscCode: String?,
@@ -533,14 +533,6 @@ if let value = ifscCode {
                     }
             });
         }
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         

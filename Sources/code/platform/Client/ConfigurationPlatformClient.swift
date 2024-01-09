@@ -327,7 +327,7 @@ if let value = q {
         * Description: Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID
         **/
         public func getIntegrationById(
-            id: String,
+            id: Int,
             
             onResponse: @escaping (_ response: Integration?, _ error: FDKError?) -> Void
         ) {

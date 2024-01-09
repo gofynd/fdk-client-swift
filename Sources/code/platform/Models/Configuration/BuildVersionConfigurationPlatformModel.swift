@@ -24,11 +24,9 @@ public extension PlatformClient.Configuration {
         
         public var versionCode: Int?
         
-        public var downloadUrl: LandingImage?
-        
         public var createdAt: String?
         
-        public var modifiedAt: String?
+        public var updatedAt: String?
         
         public var v: Int?
         
@@ -47,17 +45,15 @@ public extension PlatformClient.Configuration {
             
             case versionCode = "version_code"
             
-            case downloadUrl = "download_url"
-            
             case createdAt = "created_at"
             
-            case modifiedAt = "modified_at"
+            case updatedAt = "updated_at"
             
             case v = "__v"
             
         }
 
-        public init(application: String? = nil, buildStatus: String? = nil, createdAt: String? = nil, downloadUrl: LandingImage? = nil, modifiedAt: String? = nil, platformType: String? = nil, versionCode: Int? = nil, versionName: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, buildStatus: String? = nil, createdAt: String? = nil, platformType: String? = nil, updatedAt: String? = nil, versionCode: Int? = nil, versionName: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
@@ -71,11 +67,9 @@ public extension PlatformClient.Configuration {
             
             self.versionCode = versionCode
             
-            self.downloadUrl = downloadUrl
-            
             self.createdAt = createdAt
             
-            self.modifiedAt = modifiedAt
+            self.updatedAt = updatedAt
             
             self.v = v
             
@@ -158,18 +152,6 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    downloadUrl = try container.decode(LandingImage.self, forKey: .downloadUrl)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     createdAt = try container.decode(String.self, forKey: .createdAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -182,7 +164,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -241,17 +223,12 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(downloadUrl, forKey: .downloadUrl)
-            
-            
-            
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
             
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             
@@ -287,11 +264,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var versionCode: Int?
         
-        public var downloadUrl: LandingImage?
-        
         public var createdAt: String?
         
-        public var modifiedAt: String?
+        public var updatedAt: String?
         
         public var v: Int?
         
@@ -310,17 +285,15 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case versionCode = "version_code"
             
-            case downloadUrl = "download_url"
-            
             case createdAt = "created_at"
             
-            case modifiedAt = "modified_at"
+            case updatedAt = "updated_at"
             
             case v = "__v"
             
         }
 
-        public init(application: String? = nil, buildStatus: String? = nil, createdAt: String? = nil, downloadUrl: LandingImage? = nil, modifiedAt: String? = nil, platformType: String? = nil, versionCode: Int? = nil, versionName: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(application: String? = nil, buildStatus: String? = nil, createdAt: String? = nil, platformType: String? = nil, updatedAt: String? = nil, versionCode: Int? = nil, versionName: String? = nil, id: String? = nil, v: Int? = nil) {
             
             self.id = id
             
@@ -334,11 +307,9 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.versionCode = versionCode
             
-            self.downloadUrl = downloadUrl
-            
             self.createdAt = createdAt
             
-            self.modifiedAt = modifiedAt
+            self.updatedAt = updatedAt
             
             self.v = v
             
@@ -421,18 +392,6 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    downloadUrl = try container.decode(LandingImage.self, forKey: .downloadUrl)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
                     createdAt = try container.decode(String.self, forKey: .createdAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -445,7 +404,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
+                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -504,17 +463,12 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(downloadUrl, forKey: .downloadUrl)
-            
-            
-            
-            
             try? container.encodeIfPresent(createdAt, forKey: .createdAt)
             
             
             
             
-            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
+            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
             
             
             

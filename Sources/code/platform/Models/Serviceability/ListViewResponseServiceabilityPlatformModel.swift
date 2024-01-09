@@ -12,12 +12,16 @@ public extension PlatformClient.Serviceability {
     class ListViewResponse: Codable {
         
         
-        public var page: [ZoneDataItem]
+        public var summary: ListViewSummary
+        
+        public var page: ZoneDataItem
         
         public var items: [ListViewItems]
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case summary = "summary"
             
             case page = "page"
             
@@ -25,7 +29,9 @@ public extension PlatformClient.Serviceability {
             
         }
 
-        public init(items: [ListViewItems], page: [ZoneDataItem]) {
+        public init(items: [ListViewItems], page: ZoneDataItem, summary: ListViewSummary) {
+            
+            self.summary = summary
             
             self.page = page
             
@@ -37,7 +43,12 @@ public extension PlatformClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                page = try container.decode([ZoneDataItem].self, forKey: .page)
+                summary = try container.decode(ListViewSummary.self, forKey: .summary)
+                
+            
+            
+            
+                page = try container.decode(ZoneDataItem.self, forKey: .page)
                 
             
             
@@ -50,6 +61,11 @@ public extension PlatformClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(summary, forKey: .summary)
+            
             
             
             
@@ -77,12 +93,16 @@ public extension PlatformClient.ApplicationClient.Serviceability {
     class ListViewResponse: Codable {
         
         
-        public var page: [ZoneDataItem]
+        public var summary: ListViewSummary
+        
+        public var page: ZoneDataItem
         
         public var items: [ListViewItems]
         
 
         public enum CodingKeys: String, CodingKey {
+            
+            case summary = "summary"
             
             case page = "page"
             
@@ -90,7 +110,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
         }
 
-        public init(items: [ListViewItems], page: [ZoneDataItem]) {
+        public init(items: [ListViewItems], page: ZoneDataItem, summary: ListViewSummary) {
+            
+            self.summary = summary
             
             self.page = page
             
@@ -102,7 +124,12 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                page = try container.decode([ZoneDataItem].self, forKey: .page)
+                summary = try container.decode(ListViewSummary.self, forKey: .summary)
+                
+            
+            
+            
+                page = try container.decode(ZoneDataItem.self, forKey: .page)
                 
             
             
@@ -115,6 +142,11 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            
+            
+            try? container.encodeIfPresent(summary, forKey: .summary)
+            
             
             
             

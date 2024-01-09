@@ -24,12 +24,6 @@ public extension PlatformClient.Order {
         
         public var merchantCnReceipt: String?
         
-        public var paymentReceiptTemplate: String?
-        
-        public var customerCnReceiptTemplate: String?
-        
-        public var invoiceReceiptTemplate: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -45,15 +39,9 @@ public extension PlatformClient.Order {
             
             case merchantCnReceipt = "merchant_cn_receipt"
             
-            case paymentReceiptTemplate = "payment_receipt_template"
-            
-            case customerCnReceiptTemplate = "customer_cn_receipt_template"
-            
-            case invoiceReceiptTemplate = "invoice_receipt_template"
-            
         }
 
-        public init(customerCnReceipt: String? = nil, customerCnReceiptTemplate: String? = nil, invoiceReceipt: String? = nil, invoiceReceiptTemplate: String? = nil, merchantCnReceipt: String? = nil, orderId: String? = nil, paymentReceipt: String? = nil, paymentReceiptTemplate: String? = nil, success: Bool? = nil) {
+        public init(customerCnReceipt: String? = nil, invoiceReceipt: String? = nil, merchantCnReceipt: String? = nil, orderId: String? = nil, paymentReceipt: String? = nil, success: Bool? = nil) {
             
             self.customerCnReceipt = customerCnReceipt
             
@@ -66,12 +54,6 @@ public extension PlatformClient.Order {
             self.paymentReceipt = paymentReceipt
             
             self.merchantCnReceipt = merchantCnReceipt
-            
-            self.paymentReceiptTemplate = paymentReceiptTemplate
-            
-            self.customerCnReceiptTemplate = customerCnReceiptTemplate
-            
-            self.invoiceReceiptTemplate = invoiceReceiptTemplate
             
         }
 
@@ -150,42 +132,6 @@ public extension PlatformClient.Order {
                 }
                 
             
-            
-                do {
-                    paymentReceiptTemplate = try container.decode(String.self, forKey: .paymentReceiptTemplate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    customerCnReceiptTemplate = try container.decode(String.self, forKey: .customerCnReceiptTemplate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    invoiceReceiptTemplate = try container.decode(String.self, forKey: .invoiceReceiptTemplate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -219,21 +165,6 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(merchantCnReceipt, forKey: .merchantCnReceipt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentReceiptTemplate, forKey: .paymentReceiptTemplate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customerCnReceiptTemplate, forKey: .customerCnReceiptTemplate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(invoiceReceiptTemplate, forKey: .invoiceReceiptTemplate)
             
             
         }
@@ -264,12 +195,6 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var merchantCnReceipt: String?
         
-        public var paymentReceiptTemplate: String?
-        
-        public var customerCnReceiptTemplate: String?
-        
-        public var invoiceReceiptTemplate: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -285,15 +210,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case merchantCnReceipt = "merchant_cn_receipt"
             
-            case paymentReceiptTemplate = "payment_receipt_template"
-            
-            case customerCnReceiptTemplate = "customer_cn_receipt_template"
-            
-            case invoiceReceiptTemplate = "invoice_receipt_template"
-            
         }
 
-        public init(customerCnReceipt: String? = nil, customerCnReceiptTemplate: String? = nil, invoiceReceipt: String? = nil, invoiceReceiptTemplate: String? = nil, merchantCnReceipt: String? = nil, orderId: String? = nil, paymentReceipt: String? = nil, paymentReceiptTemplate: String? = nil, success: Bool? = nil) {
+        public init(customerCnReceipt: String? = nil, invoiceReceipt: String? = nil, merchantCnReceipt: String? = nil, orderId: String? = nil, paymentReceipt: String? = nil, success: Bool? = nil) {
             
             self.customerCnReceipt = customerCnReceipt
             
@@ -306,12 +225,6 @@ public extension PlatformClient.ApplicationClient.Order {
             self.paymentReceipt = paymentReceipt
             
             self.merchantCnReceipt = merchantCnReceipt
-            
-            self.paymentReceiptTemplate = paymentReceiptTemplate
-            
-            self.customerCnReceiptTemplate = customerCnReceiptTemplate
-            
-            self.invoiceReceiptTemplate = invoiceReceiptTemplate
             
         }
 
@@ -390,42 +303,6 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
-            
-                do {
-                    paymentReceiptTemplate = try container.decode(String.self, forKey: .paymentReceiptTemplate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    customerCnReceiptTemplate = try container.decode(String.self, forKey: .customerCnReceiptTemplate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    invoiceReceiptTemplate = try container.decode(String.self, forKey: .invoiceReceiptTemplate)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -459,21 +336,6 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(merchantCnReceipt, forKey: .merchantCnReceipt)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentReceiptTemplate, forKey: .paymentReceiptTemplate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(customerCnReceiptTemplate, forKey: .customerCnReceiptTemplate)
-            
-            
-            
-            
-            try? container.encodeIfPresent(invoiceReceiptTemplate, forKey: .invoiceReceiptTemplate)
             
             
         }

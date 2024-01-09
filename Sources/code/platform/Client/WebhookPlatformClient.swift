@@ -21,8 +21,8 @@ extension PlatformClient {
 
         **/
         public func manualRetryOfFailedEvent(
-            body: RetryEventRequest,
-            onResponse: @escaping (_ response: RetrySuccessResponse?, _ error: FDKError?) -> Void
+            body: EventProcessRequest,
+            onResponse: @escaping (_ response: EventProcessedSuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -47,7 +47,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RetrySuccessResponse.self, from: data)
+                        let response = Utility.decode(EventProcessedSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -70,8 +70,8 @@ extension PlatformClient {
 
         **/
         public func getEventCounts(
-            body: RetryEventRequest,
-            onResponse: @escaping (_ response: RetryCountResponse?, _ error: FDKError?) -> Void
+            body: EventProcessRequest,
+            onResponse: @escaping (_ response: FailedEventsCountSuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -96,7 +96,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(RetryCountResponse.self, from: data)
+                        let response = Utility.decode(FailedEventsCountSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -169,7 +169,7 @@ extension PlatformClient {
         **/
         public func manualRetryCancel(
             
-            onResponse: @escaping (_ response: String?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: EventSuccessResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -194,7 +194,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = String(decoding: data, as: UTF8.self)
+                        let response = Utility.decode(EventSuccessResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -212,13 +212,60 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Download processed events report for a company.
-        * Description: Download reports for a specific company based on the provided filters.
+        * Summary: Get processed events report for a company
+        * Description: Retrieve a list of processed events for a specific company based on the provided filters.
+        **/
+        public func getDeliveryReports(
+            body: EventProcessRequest,
+            onResponse: @escaping (_ response: EventProcessReports?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
 
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/event_processed",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(EventProcessReports.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Download processed events report for a company
+        * Description: Download reports for a specific company based on the provided filters.
         **/
         public func downloadDeliveryReport(
             body: EventProcessRequest,
-            onResponse: @escaping (_ response: DownloadReportResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -243,7 +290,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(DownloadReportResponse.self, from: data)
+                        let response = data.dictionary
                         
                         onResponse(response, nil)
                     } else {
@@ -261,9 +308,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Ping and validate webhook url.
-        * Description: Ping and validate webhook url.
-
+        * Summary: Ping and validate webhook url
+        * Description: Ping and validate webhook url
         **/
         public func pingWebhook(
             body: PingWebhook,
@@ -310,13 +356,60 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get filters for a company.
-        * Description: Retrieve filters for a specific company based on the provided subscriber IDs.
+        * Summary: 
+        * Description: Get All Webhook Events
+        **/
+        public func fetchAllEventConfigurations(
+            
+            onResponse: @escaping (_ response: EventConfigResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
 
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/webhook/v1.0/company/\(companyId)/events",
+                query: nil,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(EventConfigResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get filters for a company
+        * Description: Retrieve filters for a specific company based on the provided subscriber IDs.
         **/
         public func getReportFilters(
             body: ReportFiltersPayload,
-            onResponse: @escaping (_ response: [ReportFilterResponse]?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: ReportFilterResponse?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -341,7 +434,7 @@ extension PlatformClient {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode([ReportFilterResponse].self, from: data)
+                        let response = Utility.decode(ReportFilterResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -359,9 +452,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get report download history.
+        * Summary: Get report download history
         * Description: Retrieve history reports for a specific company based on the provided filters.
-
         **/
         public func getHistoricalReports(
             body: HistoryPayload,
@@ -408,9 +500,8 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Cancel a report export.
+        * Summary: Cancel a report export
         * Description: Cancel the export of a specific report for a company.
-
         **/
         public func cancelJobByName(
             filename: String,
@@ -458,163 +549,15 @@ extension PlatformClient {
         
         /**
         *
-        * Summary: Get processed events report for a company.
-        * Description: Retrieve a list of processed events for a specific company based on the provided filters.
-
-        **/
-        public func getDeliveryReports(
-            body: EventProcessRequest,
-            onResponse: @escaping (_ response: EventProcessReports?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/webhook/v1.0/company/\(companyId)/reports/event_processed",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(EventProcessReports.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get All Webhook Events.
-        * Description: To fetch all webhook events.
-
-        **/
-        public func fetchAllEventConfigurations(
-            
-            onResponse: @escaping (_ response: [String: Any]?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "GET",
-                url: "/service/platform/webhook/v1.0/company/\(companyId)/events",
-                query: nil,
-                body: nil,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = data.dictionary
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Register Subscriber.
-        * Description: Register Subscriber.
-
-        **/
-        public func registerSubscriberToEvent(
-            body: SubscriberConfig,
-            onResponse: @escaping (_ response: SubscriberConfigResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            PlatformAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/",
-                query: nil,
-                body: body.dictionary,
-                headers: [],
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(SubscriberConfigResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Get Subscribers By CompanyId.
-        * Description: Get Subscribers By Company ID.
-
+        * Summary: Get Subscribers By Company ID
+        * Description: Get Subscribers By CompanyId
         **/
         public func getSubscribersByCompany(
             pageNo: Int?,
             pageSize: Int?,
             extensionId: String?,
             
-            onResponse: @escaping (_ response: SubscriberConfigList?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SubscriberResponse?, _ error: FDKError?) -> Void
         ) {
             
 var xQuery: [String: Any] = [:] 
@@ -646,7 +589,7 @@ if let value = extensionId {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/",
+                url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber",
                 query: xQuery,
                 body: nil,
                 headers: [],
@@ -660,7 +603,55 @@ if let value = extensionId {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SubscriberConfigList.self, from: data)
+                        let response = Utility.decode(SubscriberResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Register Subscriber
+        * Description: Register Subscriber
+        **/
+        public func registerSubscriberToEvent(
+            body: SubscriberConfig,
+            onResponse: @escaping (_ response: SubscriberConfig?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "POST",
+                url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber",
+                query: nil,
+                body: body.dictionary,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(SubscriberConfig.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -683,7 +674,7 @@ if let value = extensionId {
         **/
         public func updateSubscriberConfig(
             body: SubscriberConfig,
-            onResponse: @escaping (_ response: SubscriberConfigResponse?, _ error: FDKError?) -> Void
+            onResponse: @escaping (_ response: SubscriberConfig?, _ error: FDKError?) -> Void
         ) {
             
  
@@ -694,7 +685,7 @@ if let value = extensionId {
             PlatformAPIClient.execute(
                 config: config,
                 method: "PUT",
-                url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber/",
+                url: "/service/platform/webhook/v1.0/company/\(companyId)/subscriber",
                 query: nil,
                 body: body.dictionary,
                 headers: [],
@@ -708,7 +699,7 @@ if let value = extensionId {
                         onResponse(nil, err)
                     } else if let data = responseData {
                         
-                        let response = Utility.decode(SubscriberConfigResponse.self, from: data)
+                        let response = Utility.decode(SubscriberConfig.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -808,7 +799,7 @@ if let value = pageSize {
             PlatformAPIClient.execute(
                 config: config,
                 method: "GET",
-                url: "/service/platform/webhook/v1.0/company/\(companyId)/extension/\(extensionId)/subscriber/",
+                url: "/service/platform/webhook/v1.0/company/\(companyId)/extension/\(extensionId)/subscriber",
                 query: xQuery,
                 body: nil,
                 headers: [],

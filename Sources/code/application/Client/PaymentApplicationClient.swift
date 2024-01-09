@@ -33,12 +33,6 @@ extension ApplicationClient {
             
             ulrs["getPosPaymentModeRoutes"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/pos") 
             
-            ulrs["walletLinkInitate"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/wallet/link") 
-            
-            ulrs["linkWallet"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/wallet/verify") 
-            
-            ulrs["delinkWallet"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/options/wallet/delink") 
-            
             ulrs["getRupifiBannerDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/rupifi/banner") 
             
             ulrs["getEpaylaterBannerDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/epaylater/banner") 
@@ -100,8 +94,6 @@ extension ApplicationClient {
             ulrs["outstandingOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/outstanding-orders/") 
             
             ulrs["paidOrderDetails"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment/paid-orders/") 
-            
-            ulrs["createPaymentOrder"] = config.domain.appendAsPath("/service/application/payment/v1.0/payment-orders/") 
             
             self.relativeUrls = ulrs
         }
@@ -601,15 +593,12 @@ if let value = forceRefresh {
         **/
         public func getPaymentModeRoutes(
             amount: Int,
-            cartId: String?,
-            checkoutMode: String?,
+            cartId: String,
+            pincode: String,
+            checkoutMode: String,
             refresh: Bool?,
-            orderId: String?,
             cardReference: String?,
             userDetails: String?,
-            displaySplit: Bool?,
-            advancePayment: Bool?,
-            shipmentId: String?,
             
             onResponse: @escaping (_ response: PaymentModeRouteResponse?, _ error: FDKError?) -> Void
         ) {
@@ -621,30 +610,24 @@ var xQuery: [String: Any] = [:]
 
 
 
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
+
+    xQuery["cart_id"] = cartId
 
 
-if let value = checkoutMode {
-    
-    xQuery["checkout_mode"] = value
-    
-}
+
+
+    xQuery["pincode"] = pincode
+
+
+
+
+    xQuery["checkout_mode"] = checkoutMode
+
 
 
 if let value = refresh {
     
     xQuery["refresh"] = value
-    
-}
-
-
-if let value = orderId {
-    
-    xQuery["order_id"] = value
     
 }
 
@@ -659,27 +642,6 @@ if let value = cardReference {
 if let value = userDetails {
     
     xQuery["user_details"] = value
-    
-}
-
-
-if let value = displaySplit {
-    
-    xQuery["display_split"] = value
-    
-}
-
-
-if let value = advancePayment {
-    
-    xQuery["advance_payment"] = value
-    
-}
-
-
-if let value = shipmentId {
-    
-    xQuery["shipment_id"] = value
     
 }
 
@@ -729,9 +691,9 @@ if let value = shipmentId {
         **/
         public func getPosPaymentModeRoutes(
             amount: Int,
-            cartId: String?,
+            cartId: String,
             pincode: String,
-            checkoutMode: String?,
+            checkoutMode: String,
             refresh: Bool?,
             cardReference: String?,
             orderType: String,
@@ -747,11 +709,9 @@ var xQuery: [String: Any] = [:]
 
 
 
-if let value = cartId {
-    
-    xQuery["cart_id"] = value
-    
-}
+
+    xQuery["cart_id"] = cartId
+
 
 
 
@@ -759,11 +719,9 @@ if let value = cartId {
 
 
 
-if let value = checkoutMode {
-    
-    xQuery["checkout_mode"] = value
-    
-}
+
+    xQuery["checkout_mode"] = checkoutMode
+
 
 
 if let value = refresh {
@@ -816,156 +774,6 @@ if let value = userDetails {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PaymentModeRouteResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Initiate linking of wallet
-        * Description: It will initiate linking of wallet for the aggregator.
-        **/
-        public func walletLinkInitate(
-            body: WalletLinkRequestSchema,
-            onResponse: @escaping (_ response: WalletResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["walletLinkInitate"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(WalletResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: OTP verification for linking of wallet
-        * Description: It Verifies the linking of wallet using OTP
-        **/
-        public func linkWallet(
-            body: WalletVerifyRequestSchema,
-            onResponse: @escaping (_ response: WalletResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["linkWallet"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(WalletResponseSchema.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Delink the wallet
-        * Description: It Removes already linked wallet
-        **/
-        public func delinkWallet(
-            body: WalletDelinkRequestSchema,
-            onResponse: @escaping (_ response: WalletResponseSchema?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["delinkWallet"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(WalletResponseSchema.self, from: data)
                         
                         onResponse(response, nil)
                     } else {
@@ -2617,56 +2425,6 @@ if let value = aggregator {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(PaidOrderDetailsResponse.self, from: data)
-                        
-                        onResponse(response, nil)
-                    } else {
-                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
-                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
-                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
-                        onResponse(nil, err)
-                    }
-            });
-        }
-        
-        
-        
-        
-        /**
-        *
-        * Summary: Create Order
-        * Description: Use this API to create a order and payment on aggregator side
-        **/
-        public func createPaymentOrder(
-            body: PaymentOrderRequest,
-            onResponse: @escaping (_ response: PaymentOrderResponse?, _ error: FDKError?) -> Void
-        ) {
-            
- 
-
- 
-
-
-            
-            let fullUrl = relativeUrls["createPaymentOrder"] ?? ""
-            
-            ApplicationAPIClient.execute(
-                config: config,
-                method: "POST",
-                url: fullUrl,
-                query: nil,
-                extraHeaders:  [],
-                body: body.dictionary,
-                responseType: "application/json",
-                onResponse: { (responseData, error, responseCode) in
-                    if let _ = error, let data = responseData {
-                        var err = Utility.decode(FDKError.self, from: data)
-                        if err?.status == nil {
-                            err?.status = responseCode
-                        }
-                        onResponse(nil, err)
-                    } else if let data = responseData {
-                        
-                        let response = Utility.decode(PaymentOrderResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

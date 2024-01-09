@@ -83,7 +83,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(error, forKey: .error)
+            try? container.encode(error, forKey: .error)
             
             
             

@@ -2571,6 +2571,7 @@ if let value = id {
             slug: String,
             size: String,
             storeId: Int?,
+            pincode: String?,
             moq: Int?,
             
             onResponse: @escaping (_ response: ProductSizePriceResponseV3?, _ error: FDKError?) -> Void
@@ -2581,6 +2582,13 @@ var xQuery: [String: Any] = [:]
 if let value = storeId {
     
     xQuery["store_id"] = value
+    
+}
+
+
+if let value = pincode {
+    
+    xQuery["pincode"] = value
     
 }
 
@@ -2642,6 +2650,7 @@ if let value = moq {
         public func getProductSellersBySlug(
             slug: String,
             size: String,
+            pincode: String?,
             strategy: String?,
             pageNo: Int?,
             pageSize: Int?,
@@ -2650,6 +2659,13 @@ if let value = moq {
         ) {
             
 var xQuery: [String: Any] = [:] 
+
+if let value = pincode {
+    
+    xQuery["pincode"] = value
+    
+}
+
 
 if let value = strategy {
     
@@ -2737,6 +2753,10 @@ if let value = pageSize {
         
         
         
+        
+        
+        
+        
         /**
         *
         * Summary: get paginator for getProductSellersBySlug
@@ -2745,6 +2765,7 @@ if let value = pageSize {
         public func getProductSellersBySlugPaginator(
             slug: String,
             size: String,
+            pincode: String?,
             strategy: String?,
             pageSize: Int?
             
@@ -2756,6 +2777,7 @@ if let value = pageSize {
                         
                         slug: slug,
                         size: size,
+                        pincode: pincode,
                         strategy: strategy,
                         pageNo: paginator.pageNo
                         ,

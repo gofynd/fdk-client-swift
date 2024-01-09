@@ -22,18 +22,6 @@ public extension PlatformClient.Payment {
         
         public var shippingAddress: AddressDetail?
         
-        public var amountCaptured: Int
-        
-        public var amountRefunded: Int?
-        
-        public var aggregatorCustomerId: String?
-        
-        public var cancelUrl: String
-        
-        public var paymentMethods: [[String: Any]]
-        
-        public var created: String?
-        
         public var gUserId: String
         
         public var currency: String
@@ -46,15 +34,25 @@ public extension PlatformClient.Payment {
         
         public var gid: String
         
-        public var kind: String?
+        public var cancelUrl: String
         
-        public var billingAddress: AddressDetail?
+        public var amountRefunded: Int?
         
         public var captured: Bool?
         
-        public var meta: [String: Any]?
+        public var created: String?
         
         public var status: String
+        
+        public var kind: String?
+        
+        public var aggregatorCustomerId: String?
+        
+        public var paymentMethods: [[String: Any]]
+        
+        public var billingAddress: AddressDetail?
+        
+        public var amountCaptured: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -69,18 +67,6 @@ public extension PlatformClient.Payment {
             
             case shippingAddress = "shipping_address"
             
-            case amountCaptured = "amount_captured"
-            
-            case amountRefunded = "amount_refunded"
-            
-            case aggregatorCustomerId = "aggregator_customer_id"
-            
-            case cancelUrl = "cancel_url"
-            
-            case paymentMethods = "payment_methods"
-            
-            case created = "created"
-            
             case gUserId = "g_user_id"
             
             case currency = "currency"
@@ -93,19 +79,29 @@ public extension PlatformClient.Payment {
             
             case gid = "gid"
             
-            case kind = "kind"
+            case cancelUrl = "cancel_url"
             
-            case billingAddress = "billing_address"
+            case amountRefunded = "amount_refunded"
             
             case captured = "captured"
             
-            case meta = "meta"
+            case created = "created"
             
             case status = "status"
             
+            case kind = "kind"
+            
+            case aggregatorCustomerId = "aggregator_customer_id"
+            
+            case paymentMethods = "payment_methods"
+            
+            case billingAddress = "billing_address"
+            
+            case amountCaptured = "amount_captured"
+            
         }
 
-        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
+        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
             
             self.paymentId = paymentId
             
@@ -116,18 +112,6 @@ public extension PlatformClient.Payment {
             self.successUrl = successUrl
             
             self.shippingAddress = shippingAddress
-            
-            self.amountCaptured = amountCaptured
-            
-            self.amountRefunded = amountRefunded
-            
-            self.aggregatorCustomerId = aggregatorCustomerId
-            
-            self.cancelUrl = cancelUrl
-            
-            self.paymentMethods = paymentMethods
-            
-            self.created = created
             
             self.gUserId = gUserId
             
@@ -141,15 +125,25 @@ public extension PlatformClient.Payment {
             
             self.gid = gid
             
-            self.kind = kind
+            self.cancelUrl = cancelUrl
             
-            self.billingAddress = billingAddress
+            self.amountRefunded = amountRefunded
             
             self.captured = captured
             
-            self.meta = meta
+            self.created = created
             
             self.status = status
+            
+            self.kind = kind
+            
+            self.aggregatorCustomerId = aggregatorCustomerId
+            
+            self.paymentMethods = paymentMethods
+            
+            self.billingAddress = billingAddress
+            
+            self.amountCaptured = amountCaptured
             
         }
 
@@ -179,57 +173,6 @@ public extension PlatformClient.Payment {
             
                 do {
                     shippingAddress = try container.decode(AddressDetail.self, forKey: .shippingAddress)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                amountCaptured = try container.decode(Int.self, forKey: .amountCaptured)
-                
-            
-            
-            
-                do {
-                    amountRefunded = try container.decode(Int.self, forKey: .amountRefunded)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    aggregatorCustomerId = try container.decode(String.self, forKey: .aggregatorCustomerId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                cancelUrl = try container.decode(String.self, forKey: .cancelUrl)
-                
-            
-            
-            
-                paymentMethods = try container.decode([[String: Any]].self, forKey: .paymentMethods)
-                
-            
-            
-            
-                do {
-                    created = try container.decode(String.self, forKey: .created)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -284,20 +227,13 @@ public extension PlatformClient.Payment {
             
             
             
-                do {
-                    kind = try container.decode(String.self, forKey: .kind)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                cancelUrl = try container.decode(String.self, forKey: .cancelUrl)
                 
             
             
+            
                 do {
-                    billingAddress = try container.decode(AddressDetail.self, forKey: .billingAddress)
+                    amountRefunded = try container.decode(Int.self, forKey: .amountRefunded)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -321,7 +257,7 @@ public extension PlatformClient.Payment {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    created = try container.decode(String.self, forKey: .created)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -333,6 +269,52 @@ public extension PlatformClient.Payment {
             
             
                 status = try container.decode(String.self, forKey: .status)
+                
+            
+            
+            
+                do {
+                    kind = try container.decode(String.self, forKey: .kind)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    aggregatorCustomerId = try container.decode(String.self, forKey: .aggregatorCustomerId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                paymentMethods = try container.decode([[String: Any]].self, forKey: .paymentMethods)
+                
+            
+            
+            
+                do {
+                    billingAddress = try container.decode(AddressDetail.self, forKey: .billingAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                amountCaptured = try container.decode(Int.self, forKey: .amountCaptured)
                 
             
             
@@ -368,36 +350,6 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(amountCaptured, forKey: .amountCaptured)
-            
-            
-            
-            
-            try? container.encodeIfPresent(amountRefunded, forKey: .amountRefunded)
-            
-            
-            
-            
-            try? container.encodeIfPresent(aggregatorCustomerId, forKey: .aggregatorCustomerId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cancelUrl, forKey: .cancelUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
-            
-            
-            
-            
-            try? container.encodeIfPresent(created, forKey: .created)
-            
-            
-            
-            
             try? container.encodeIfPresent(gUserId, forKey: .gUserId)
             
             
@@ -428,12 +380,12 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(kind, forKey: .kind)
+            try? container.encodeIfPresent(cancelUrl, forKey: .cancelUrl)
             
             
             
             
-            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+            try? container.encodeIfPresent(amountRefunded, forKey: .amountRefunded)
             
             
             
@@ -443,12 +395,37 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(created, forKey: .created)
             
             
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(kind, forKey: .kind)
+            
+            
+            
+            
+            try? container.encodeIfPresent(aggregatorCustomerId, forKey: .aggregatorCustomerId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            
+            
+            
+            
+            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+            
+            
+            
+            
+            try? container.encodeIfPresent(amountCaptured, forKey: .amountCaptured)
             
             
         }
@@ -477,18 +454,6 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var shippingAddress: AddressDetail?
         
-        public var amountCaptured: Int
-        
-        public var amountRefunded: Int?
-        
-        public var aggregatorCustomerId: String?
-        
-        public var cancelUrl: String
-        
-        public var paymentMethods: [[String: Any]]
-        
-        public var created: String?
-        
         public var gUserId: String
         
         public var currency: String
@@ -501,15 +466,25 @@ public extension PlatformClient.ApplicationClient.Payment {
         
         public var gid: String
         
-        public var kind: String?
+        public var cancelUrl: String
         
-        public var billingAddress: AddressDetail?
+        public var amountRefunded: Int?
         
         public var captured: Bool?
         
-        public var meta: [String: Any]?
+        public var created: String?
         
         public var status: String
+        
+        public var kind: String?
+        
+        public var aggregatorCustomerId: String?
+        
+        public var paymentMethods: [[String: Any]]
+        
+        public var billingAddress: AddressDetail?
+        
+        public var amountCaptured: Int
         
 
         public enum CodingKeys: String, CodingKey {
@@ -524,18 +499,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case shippingAddress = "shipping_address"
             
-            case amountCaptured = "amount_captured"
-            
-            case amountRefunded = "amount_refunded"
-            
-            case aggregatorCustomerId = "aggregator_customer_id"
-            
-            case cancelUrl = "cancel_url"
-            
-            case paymentMethods = "payment_methods"
-            
-            case created = "created"
-            
             case gUserId = "g_user_id"
             
             case currency = "currency"
@@ -548,19 +511,29 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             case gid = "gid"
             
-            case kind = "kind"
+            case cancelUrl = "cancel_url"
             
-            case billingAddress = "billing_address"
+            case amountRefunded = "amount_refunded"
             
             case captured = "captured"
             
-            case meta = "meta"
+            case created = "created"
             
             case status = "status"
             
+            case kind = "kind"
+            
+            case aggregatorCustomerId = "aggregator_customer_id"
+            
+            case paymentMethods = "payment_methods"
+            
+            case billingAddress = "billing_address"
+            
+            case amountCaptured = "amount_captured"
+            
         }
 
-        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, meta: [String: Any]? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
+        public init(aggregatorCustomerId: String? = nil, aggregatorOrderId: String, amount: Int, amountCaptured: Int, amountRefunded: Int? = nil, billingAddress: AddressDetail? = nil, cancelUrl: String, captured: Bool? = nil, created: String? = nil, currency: String, gid: String, gUserId: String, kind: String? = nil, locale: String? = nil, merchantLocale: String? = nil, mode: String, paymentId: String, paymentMethods: [[String: Any]], shippingAddress: AddressDetail? = nil, status: String, successUrl: String) {
             
             self.paymentId = paymentId
             
@@ -571,18 +544,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             self.successUrl = successUrl
             
             self.shippingAddress = shippingAddress
-            
-            self.amountCaptured = amountCaptured
-            
-            self.amountRefunded = amountRefunded
-            
-            self.aggregatorCustomerId = aggregatorCustomerId
-            
-            self.cancelUrl = cancelUrl
-            
-            self.paymentMethods = paymentMethods
-            
-            self.created = created
             
             self.gUserId = gUserId
             
@@ -596,15 +557,25 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             self.gid = gid
             
-            self.kind = kind
+            self.cancelUrl = cancelUrl
             
-            self.billingAddress = billingAddress
+            self.amountRefunded = amountRefunded
             
             self.captured = captured
             
-            self.meta = meta
+            self.created = created
             
             self.status = status
+            
+            self.kind = kind
+            
+            self.aggregatorCustomerId = aggregatorCustomerId
+            
+            self.paymentMethods = paymentMethods
+            
+            self.billingAddress = billingAddress
+            
+            self.amountCaptured = amountCaptured
             
         }
 
@@ -634,57 +605,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
                 do {
                     shippingAddress = try container.decode(AddressDetail.self, forKey: .shippingAddress)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                amountCaptured = try container.decode(Int.self, forKey: .amountCaptured)
-                
-            
-            
-            
-                do {
-                    amountRefunded = try container.decode(Int.self, forKey: .amountRefunded)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    aggregatorCustomerId = try container.decode(String.self, forKey: .aggregatorCustomerId)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                cancelUrl = try container.decode(String.self, forKey: .cancelUrl)
-                
-            
-            
-            
-                paymentMethods = try container.decode([[String: Any]].self, forKey: .paymentMethods)
-                
-            
-            
-            
-                do {
-                    created = try container.decode(String.self, forKey: .created)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -739,20 +659,13 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-                do {
-                    kind = try container.decode(String.self, forKey: .kind)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
+                cancelUrl = try container.decode(String.self, forKey: .cancelUrl)
                 
             
             
+            
                 do {
-                    billingAddress = try container.decode(AddressDetail.self, forKey: .billingAddress)
+                    amountRefunded = try container.decode(Int.self, forKey: .amountRefunded)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -776,7 +689,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
+                    created = try container.decode(String.self, forKey: .created)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -788,6 +701,52 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
                 status = try container.decode(String.self, forKey: .status)
+                
+            
+            
+            
+                do {
+                    kind = try container.decode(String.self, forKey: .kind)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    aggregatorCustomerId = try container.decode(String.self, forKey: .aggregatorCustomerId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                paymentMethods = try container.decode([[String: Any]].self, forKey: .paymentMethods)
+                
+            
+            
+            
+                do {
+                    billingAddress = try container.decode(AddressDetail.self, forKey: .billingAddress)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                amountCaptured = try container.decode(Int.self, forKey: .amountCaptured)
                 
             
             
@@ -823,36 +782,6 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(amountCaptured, forKey: .amountCaptured)
-            
-            
-            
-            
-            try? container.encodeIfPresent(amountRefunded, forKey: .amountRefunded)
-            
-            
-            
-            
-            try? container.encodeIfPresent(aggregatorCustomerId, forKey: .aggregatorCustomerId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(cancelUrl, forKey: .cancelUrl)
-            
-            
-            
-            
-            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
-            
-            
-            
-            
-            try? container.encodeIfPresent(created, forKey: .created)
-            
-            
-            
-            
             try? container.encodeIfPresent(gUserId, forKey: .gUserId)
             
             
@@ -883,12 +812,12 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(kind, forKey: .kind)
+            try? container.encodeIfPresent(cancelUrl, forKey: .cancelUrl)
             
             
             
             
-            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+            try? container.encodeIfPresent(amountRefunded, forKey: .amountRefunded)
             
             
             
@@ -898,12 +827,37 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encodeIfPresent(meta, forKey: .meta)
+            try? container.encodeIfPresent(created, forKey: .created)
             
             
             
             
             try? container.encodeIfPresent(status, forKey: .status)
+            
+            
+            
+            
+            try? container.encodeIfPresent(kind, forKey: .kind)
+            
+            
+            
+            
+            try? container.encodeIfPresent(aggregatorCustomerId, forKey: .aggregatorCustomerId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(paymentMethods, forKey: .paymentMethods)
+            
+            
+            
+            
+            try? container.encodeIfPresent(billingAddress, forKey: .billingAddress)
+            
+            
+            
+            
+            try? container.encodeIfPresent(amountCaptured, forKey: .amountCaptured)
             
             
         }
