@@ -340,8 +340,8 @@ if let value = appIds {
         
         /**
         *
-        * Summary: Create Discount.
-        * Description: Create Discount.
+        * Summary: Update Discount.
+        * Description: Update Discount.
         **/
         public func updateDiscount(
             id: String,

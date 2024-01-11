@@ -34,11 +34,19 @@ extension PlatformClient {
         * Description: Retrieve a list of themes available for a specific company.
         **/
         public func getCompanyLevelThemes(
+            searchText: String?,
             
             onResponse: @escaping (_ response: [CompanyThemeSchema]?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = searchText {
+    
+    xQuery["search_text"] = value
+    
+}
+
 
  
 
@@ -47,7 +55,7 @@ extension PlatformClient {
                 config: config,
                 method: "GET",
                 url: "/service/platform/theme/v2.0/company/\(companyId)/themes",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -61,6 +69,62 @@ extension PlatformClient {
                     } else if let data = responseData {
                         
                         let response = Utility.decode([CompanyThemeSchema].self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get private themes for a company
+        * Description: Retrieve a list of private themes available for a specific company.
+        **/
+        public func getCompanyLevelPrivateThemes(
+            searchText: String?,
+            
+            onResponse: @escaping (_ response: [CompanyPrivateTheme]?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = searchText {
+    
+    xQuery["search_text"] = value
+    
+}
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/theme/v2.0/company/\(companyId)/private_themes",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode([CompanyPrivateTheme].self, from: data)
                         
                         onResponse(response, nil)
                     } else {

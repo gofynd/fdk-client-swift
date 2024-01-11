@@ -8,7 +8,7 @@ public extension ApplicationClient.Payment {
     */
     class CustomerOnboardingRequest: Codable {
         
-        public var personalInfo: UserPersonalInfoInDetails
+        public var personalInfo: UserPersonalInfoInDetails?
         
         public var mcc: String?
         
@@ -41,7 +41,7 @@ public extension ApplicationClient.Payment {
             
         }
 
-        public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, mcc: String? = nil, personalInfo: UserPersonalInfoInDetails, source: String) {
+        public init(aggregator: String, businessInfo: BusinessDetails? = nil, device: DeviceDetails? = nil, marketplaceInfo: MarketplaceInfo? = nil, mcc: String? = nil, personalInfo: UserPersonalInfoInDetails? = nil, source: String) {
             
             self.personalInfo = personalInfo
             
@@ -63,8 +63,15 @@ public extension ApplicationClient.Payment {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-            personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
+            do {
+                personalInfo = try container.decode(UserPersonalInfoInDetails.self, forKey: .personalInfo)
             
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
             
             
             

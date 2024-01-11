@@ -12,7 +12,7 @@ public extension PlatformClient.Configuration {
     class BuildVersionHistory: Codable {
         
         
-        public var versions: BuildVersion?
+        public var versions: [BuildVersion]?
         
         public var latestAvailableVersionName: String?
         
@@ -25,7 +25,7 @@ public extension PlatformClient.Configuration {
             
         }
 
-        public init(latestAvailableVersionName: String? = nil, versions: BuildVersion? = nil) {
+        public init(latestAvailableVersionName: String? = nil, versions: [BuildVersion]? = nil) {
             
             self.versions = versions
             
@@ -38,7 +38,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    versions = try container.decode(BuildVersion.self, forKey: .versions)
+                    versions = try container.decode([BuildVersion].self, forKey: .versions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -91,7 +91,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
     class BuildVersionHistory: Codable {
         
         
-        public var versions: BuildVersion?
+        public var versions: [BuildVersion]?
         
         public var latestAvailableVersionName: String?
         
@@ -104,7 +104,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
         }
 
-        public init(latestAvailableVersionName: String? = nil, versions: BuildVersion? = nil) {
+        public init(latestAvailableVersionName: String? = nil, versions: [BuildVersion]? = nil) {
             
             self.versions = versions
             
@@ -117,7 +117,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    versions = try container.decode(BuildVersion.self, forKey: .versions)
+                    versions = try container.decode([BuildVersion].self, forKey: .versions)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

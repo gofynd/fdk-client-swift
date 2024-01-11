@@ -16,7 +16,7 @@ public extension PlatformClient.Serviceability {
         
         public var page: EntityRegionView_page
         
-        public var items: [EntityRegionView_Items]?
+        public var data: [EntityRegionView_Items]
         
         public var success: Bool
         
@@ -27,19 +27,19 @@ public extension PlatformClient.Serviceability {
             
             case page = "page"
             
-            case items = "items"
+            case data = "data"
             
             case success = "success"
             
         }
 
-        public init(error: EntityRegionView_Error, items: [EntityRegionView_Items]? = nil, page: EntityRegionView_page, success: Bool) {
+        public init(data: [EntityRegionView_Items], error: EntityRegionView_Error, page: EntityRegionView_page, success: Bool) {
             
             self.error = error
             
             self.page = page
             
-            self.items = items
+            self.data = data
             
             self.success = success
             
@@ -59,16 +59,9 @@ public extension PlatformClient.Serviceability {
             
             
             
-                do {
-                    items = try container.decode([EntityRegionView_Items].self, forKey: .items)
+                data = try container.decode([EntityRegionView_Items].self, forKey: .data)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 success = try container.decode(Bool.self, forKey: .success)
@@ -92,7 +85,7 @@ public extension PlatformClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
             
@@ -120,7 +113,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
         
         public var page: EntityRegionView_page
         
-        public var items: [EntityRegionView_Items]?
+        public var data: [EntityRegionView_Items]
         
         public var success: Bool
         
@@ -131,19 +124,19 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             case page = "page"
             
-            case items = "items"
+            case data = "data"
             
             case success = "success"
             
         }
 
-        public init(error: EntityRegionView_Error, items: [EntityRegionView_Items]? = nil, page: EntityRegionView_page, success: Bool) {
+        public init(data: [EntityRegionView_Items], error: EntityRegionView_Error, page: EntityRegionView_page, success: Bool) {
             
             self.error = error
             
             self.page = page
             
-            self.items = items
+            self.data = data
             
             self.success = success
             
@@ -163,16 +156,9 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-                do {
-                    items = try container.decode([EntityRegionView_Items].self, forKey: .items)
+                data = try container.decode([EntityRegionView_Items].self, forKey: .data)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 success = try container.decode(Bool.self, forKey: .success)
@@ -196,7 +182,7 @@ public extension PlatformClient.ApplicationClient.Serviceability {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
             

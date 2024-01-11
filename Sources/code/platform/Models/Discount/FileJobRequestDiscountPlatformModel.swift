@@ -16,6 +16,8 @@ public extension PlatformClient.Discount {
         
         public var isActive: Bool
         
+        public var companyId: Int
+        
         public var appIds: [String]?
         
         public var jobType: String?
@@ -41,6 +43,8 @@ public extension PlatformClient.Discount {
             
             case isActive = "is_active"
             
+            case companyId = "company_id"
+            
             case appIds = "app_ids"
             
             case jobType = "job_type"
@@ -61,11 +65,13 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(appIds: [String]? = nil, brandIds: [Int]? = nil, discountLevel: String? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String? = nil, meta: [String: Any]? = nil, name: String, storeIds: [Int]? = nil, validity: ValidityObject) {
+        public init(appIds: [String]? = nil, brandIds: [Int]? = nil, companyId: Int, discountLevel: String? = nil, discountType: String? = nil, filePath: String? = nil, isActive: Bool, jobType: String? = nil, meta: [String: Any]? = nil, name: String, storeIds: [Int]? = nil, validity: ValidityObject) {
             
             self.name = name
             
             self.isActive = isActive
+            
+            self.companyId = companyId
             
             self.appIds = appIds
             
@@ -97,6 +103,11 @@ public extension PlatformClient.Discount {
             
             
                 isActive = try container.decode(Bool.self, forKey: .isActive)
+                
+            
+            
+            
+                companyId = try container.decode(Int.self, forKey: .companyId)
                 
             
             
@@ -214,6 +225,11 @@ public extension PlatformClient.Discount {
             
             
             try? container.encodeIfPresent(isActive, forKey: .isActive)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
             

@@ -16,6 +16,8 @@ public extension PlatformClient.Catalog {
         
         public var data: [[String: Any]]
         
+        public var page: Page?
+        
         public var values: [[String: Any]]?
         
 
@@ -25,15 +27,19 @@ public extension PlatformClient.Catalog {
             
             case data = "data"
             
+            case page = "page"
+            
             case values = "values"
             
         }
 
-        public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
+        public init(condition: [[String: Any]]? = nil, data: [[String: Any]], page: Page? = nil, values: [[String: Any]]? = nil) {
             
             self.condition = condition
             
             self.data = data
+            
+            self.page = page
             
             self.values = values
             
@@ -61,6 +67,18 @@ public extension PlatformClient.Catalog {
             
             
                 do {
+                    page = try container.decode(Page.self, forKey: .page)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     values = try container.decode([[String: Any]].self, forKey: .values)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -84,6 +102,11 @@ public extension PlatformClient.Catalog {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
             
@@ -111,6 +134,8 @@ public extension PlatformClient.ApplicationClient.Catalog {
         
         public var data: [[String: Any]]
         
+        public var page: Page?
+        
         public var values: [[String: Any]]?
         
 
@@ -120,15 +145,19 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             case data = "data"
             
+            case page = "page"
+            
             case values = "values"
             
         }
 
-        public init(condition: [[String: Any]]? = nil, data: [[String: Any]], values: [[String: Any]]? = nil) {
+        public init(condition: [[String: Any]]? = nil, data: [[String: Any]], page: Page? = nil, values: [[String: Any]]? = nil) {
             
             self.condition = condition
             
             self.data = data
+            
+            self.page = page
             
             self.values = values
             
@@ -156,6 +185,18 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
                 do {
+                    page = try container.decode(Page.self, forKey: .page)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
                     values = try container.decode([[String: Any]].self, forKey: .values)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
@@ -179,6 +220,11 @@ public extension PlatformClient.ApplicationClient.Catalog {
             
             
             try? container.encodeIfPresent(data, forKey: .data)
+            
+            
+            
+            
+            try? container.encodeIfPresent(page, forKey: .page)
             
             
             

@@ -769,7 +769,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(logoUrl, forKey: .logoUrl)
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
             
             
             
@@ -789,7 +789,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(productCodData, forKey: .productCodData)
+            try? container.encodeIfPresent(productCodData, forKey: .productCodData)
             
             
             
@@ -1600,7 +1600,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(logoUrl, forKey: .logoUrl)
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
             
             
             
@@ -1620,7 +1620,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(productCodData, forKey: .productCodData)
+            try? container.encodeIfPresent(productCodData, forKey: .productCodData)
             
             
             

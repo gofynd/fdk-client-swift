@@ -16,9 +16,7 @@ public extension PlatformClient.Theme {
         
         public var globalConfig: [String: Any]?
         
-        public var custom: CustomConfig?
-        
-        public var page: [String]?
+        public var page: [ThemeConfigListPage]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -27,19 +25,15 @@ public extension PlatformClient.Theme {
             
             case globalConfig = "global_config"
             
-            case custom = "custom"
-            
             case page = "page"
             
         }
 
-        public init(custom: CustomConfig? = nil, globalConfig: [String: Any]? = nil, name: String? = nil, page: [String]? = nil) {
+        public init(globalConfig: [String: Any]? = nil, name: String? = nil, page: [ThemeConfigListPage]? = nil) {
             
             self.name = name
             
             self.globalConfig = globalConfig
-            
-            self.custom = custom
             
             self.page = page
             
@@ -74,19 +68,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    custom = try container.decode(CustomConfig.self, forKey: .custom)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    page = try container.decode([String].self, forKey: .page)
+                    page = try container.decode([ThemeConfigListPage].self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -109,11 +91,6 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(globalConfig, forKey: .globalConfig)
-            
-            
-            
-            
-            try? container.encodeIfPresent(custom, forKey: .custom)
             
             
             
@@ -141,9 +118,7 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var globalConfig: [String: Any]?
         
-        public var custom: CustomConfig?
-        
-        public var page: [String]?
+        public var page: [ThemeConfigListPage]?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -152,19 +127,15 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case globalConfig = "global_config"
             
-            case custom = "custom"
-            
             case page = "page"
             
         }
 
-        public init(custom: CustomConfig? = nil, globalConfig: [String: Any]? = nil, name: String? = nil, page: [String]? = nil) {
+        public init(globalConfig: [String: Any]? = nil, name: String? = nil, page: [ThemeConfigListPage]? = nil) {
             
             self.name = name
             
             self.globalConfig = globalConfig
-            
-            self.custom = custom
             
             self.page = page
             
@@ -199,19 +170,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    custom = try container.decode(CustomConfig.self, forKey: .custom)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    page = try container.decode([String].self, forKey: .page)
+                    page = try container.decode([ThemeConfigListPage].self, forKey: .page)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -234,11 +193,6 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(globalConfig, forKey: .globalConfig)
-            
-            
-            
-            
-            try? container.encodeIfPresent(custom, forKey: .custom)
             
             
             

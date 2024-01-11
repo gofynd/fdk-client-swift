@@ -34,7 +34,7 @@ public extension PlatformClient.Configuration {
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var v: Int?
         
@@ -63,13 +63,13 @@ public extension PlatformClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case v = "__v"
             
         }
 
-        public init(createdAt: String? = nil, data: OtherEntityData? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, meta: [[String: Any]]? = nil, opted: Bool? = nil, permissions: [String]? = nil, token: String? = nil, uid: Int? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(createdAt: String? = nil, data: OtherEntityData? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, meta: [[String: Any]]? = nil, modifiedAt: String? = nil, opted: Bool? = nil, permissions: [String]? = nil, token: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
             
             self.opted = opted
             
@@ -93,7 +93,7 @@ public extension PlatformClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.v = v
             
@@ -236,7 +236,7 @@ public extension PlatformClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -320,7 +320,7 @@ public extension PlatformClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             
@@ -366,7 +366,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var v: Int?
         
@@ -395,13 +395,13 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case v = "__v"
             
         }
 
-        public init(createdAt: String? = nil, data: OtherEntityData? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, meta: [[String: Any]]? = nil, opted: Bool? = nil, permissions: [String]? = nil, token: String? = nil, uid: Int? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(createdAt: String? = nil, data: OtherEntityData? = nil, integration: String? = nil, lastPatch: [LastPatch]? = nil, level: String? = nil, meta: [[String: Any]]? = nil, modifiedAt: String? = nil, opted: Bool? = nil, permissions: [String]? = nil, token: String? = nil, uid: Int? = nil, id: String? = nil, v: Int? = nil) {
             
             self.opted = opted
             
@@ -425,7 +425,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.v = v
             
@@ -568,7 +568,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
                 do {
-                    updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                    modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -652,7 +652,7 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             

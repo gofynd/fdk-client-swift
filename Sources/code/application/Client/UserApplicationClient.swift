@@ -91,6 +91,12 @@ extension ApplicationClient {
             
             ulrs["sendVerificationLinkToEmail"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/email/link/send") 
             
+            ulrs["userExists"] = config.domain.appendAsPath("/service/application/user/authentication/v1.0/user-exists") 
+            
+            ulrs["getUserAttributes"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/user-attributes") 
+            
+            ulrs["updateUserAttributes"] = config.domain.appendAsPath("/service/application/user/profile/v1.0/user-attributes") 
+            
             self.relativeUrls = ulrs
         }
         public func update(updatedUrl : [String: String]){
@@ -2341,6 +2347,170 @@ if let value = platform {
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SendEmailVerifyLinkSuccess.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Check user is already registered or not
+        * Description: Use this API to check whether user is already registered or not to the sales channel.
+        **/
+        public func userExists(
+            q: String,
+            
+            onResponse: @escaping (_ response: UserExistsResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["q"] = q
+
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["userExists"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UserExistsResponse.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Get user attributes
+        * Description: Use this API to get the list of user attributes
+        **/
+        public func getUserAttributes(
+            slug: String?,
+            
+            onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+if let value = slug {
+    
+    xQuery["slug"] = value
+    
+}
+
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["getUserAttributes"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: fullUrl,
+                query: xQuery,
+                extraHeaders:  [],
+                body: nil,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UserAttributes.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Update user attributes
+        * Description: Use this API to update user attributes
+        **/
+        public func updateUserAttributes(
+            body: UpdateUserAttributesRequest,
+            onResponse: @escaping (_ response: UserAttributes?, _ error: FDKError?) -> Void
+        ) {
+            
+ 
+
+ 
+
+
+            
+            let fullUrl = relativeUrls["updateUserAttributes"] ?? ""
+            
+            ApplicationAPIClient.execute(
+                config: config,
+                method: "PATCH",
+                url: fullUrl,
+                query: nil,
+                extraHeaders:  [],
+                body: body.dictionary,
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(UserAttributes.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

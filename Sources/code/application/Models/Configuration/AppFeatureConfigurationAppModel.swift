@@ -32,7 +32,7 @@ public extension ApplicationClient.Configuration {
         
         public var createdAt: String?
         
-        public var updatedAt: String?
+        public var modifiedAt: String?
         
         public var v: Int?
         
@@ -63,13 +63,13 @@ public extension ApplicationClient.Configuration {
             
             case createdAt = "created_at"
             
-            case updatedAt = "updated_at"
+            case modifiedAt = "modified_at"
             
             case v = "__v"
             
         }
 
-        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, updatedAt: String? = nil, id: String? = nil, v: Int? = nil) {
+        public init(app: String? = nil, cart: CartFeature? = nil, common: CommonFeature? = nil, createdAt: String? = nil, homePage: HomePageFeature? = nil, landingPage: LandingPageFeature? = nil, modifiedAt: String? = nil, order: OrderFeature? = nil, pcr: PcrFeature? = nil, productDetail: ProductDetailFeature? = nil, qr: QrFeature? = nil, registrationPage: RegistrationPageFeature? = nil, id: String? = nil, v: Int? = nil) {
             
             self.productDetail = productDetail
             
@@ -95,7 +95,7 @@ public extension ApplicationClient.Configuration {
             
             self.createdAt = createdAt
             
-            self.updatedAt = updatedAt
+            self.modifiedAt = modifiedAt
             
             self.v = v
             
@@ -250,7 +250,7 @@ public extension ApplicationClient.Configuration {
             
             
             do {
-                updatedAt = try container.decode(String.self, forKey: .updatedAt)
+                modifiedAt = try container.decode(String.self, forKey: .modifiedAt)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -339,7 +339,7 @@ public extension ApplicationClient.Configuration {
             
             
             
-            try? container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+            try? container.encodeIfPresent(modifiedAt, forKey: .modifiedAt)
             
             
             

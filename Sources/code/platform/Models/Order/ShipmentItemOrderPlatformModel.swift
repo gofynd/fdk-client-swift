@@ -14,11 +14,15 @@ public extension PlatformClient.Order {
         
         public var orderDate: String?
         
+        public var orderCreatedTs: String?
+        
         public var shipmentStatus: ShipmentStatus?
         
         public var user: UserDataInfo?
         
         public var estimatedSlaTime: String?
+        
+        public var estimatedSlaTs: String?
         
         public var deliveryAddress: PlatformDeliveryAddress?
         
@@ -33,6 +37,8 @@ public extension PlatformClient.Order {
         public var paymentMethods: [String: Any]?
         
         public var statusCreatedAt: String?
+        
+        public var statusCreatedTs: String?
         
         public var displayName: String?
         
@@ -62,16 +68,26 @@ public extension PlatformClient.Order {
         
         public var modeOfPayment: String?
         
+        public var shipmentCreatedTs: String?
+        
+        public var currency: Currency?
+        
+        public var currencyInfo: CurrencyInfo?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case orderDate = "order_date"
+            
+            case orderCreatedTs = "order_created_ts"
             
             case shipmentStatus = "shipment_status"
             
             case user = "user"
             
             case estimatedSlaTime = "estimated_sla_time"
+            
+            case estimatedSlaTs = "estimated_sla_ts"
             
             case deliveryAddress = "delivery_address"
             
@@ -86,6 +102,8 @@ public extension PlatformClient.Order {
             case paymentMethods = "payment_methods"
             
             case statusCreatedAt = "status_created_at"
+            
+            case statusCreatedTs = "status_created_ts"
             
             case displayName = "display_name"
             
@@ -115,17 +133,27 @@ public extension PlatformClient.Order {
             
             case modeOfPayment = "mode_of_payment"
             
+            case shipmentCreatedTs = "shipment_created_ts"
+            
+            case currency = "currency"
+            
+            case currencyInfo = "currency_info"
+            
         }
 
-        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
+            
+            self.orderCreatedTs = orderCreatedTs
             
             self.shipmentStatus = shipmentStatus
             
             self.user = user
             
             self.estimatedSlaTime = estimatedSlaTime
+            
+            self.estimatedSlaTs = estimatedSlaTs
             
             self.deliveryAddress = deliveryAddress
             
@@ -140,6 +168,8 @@ public extension PlatformClient.Order {
             self.paymentMethods = paymentMethods
             
             self.statusCreatedAt = statusCreatedAt
+            
+            self.statusCreatedTs = statusCreatedTs
             
             self.displayName = displayName
             
@@ -169,6 +199,12 @@ public extension PlatformClient.Order {
             
             self.modeOfPayment = modeOfPayment
             
+            self.shipmentCreatedTs = shipmentCreatedTs
+            
+            self.currency = currency
+            
+            self.currencyInfo = currencyInfo
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -177,6 +213,18 @@ public extension PlatformClient.Order {
             
                 do {
                     orderDate = try container.decode(String.self, forKey: .orderDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderCreatedTs = try container.decode(String.self, forKey: .orderCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -213,6 +261,18 @@ public extension PlatformClient.Order {
             
                 do {
                     estimatedSlaTime = try container.decode(String.self, forKey: .estimatedSlaTime)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    estimatedSlaTs = try container.decode(String.self, forKey: .estimatedSlaTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -297,6 +357,18 @@ public extension PlatformClient.Order {
             
                 do {
                     statusCreatedAt = try container.decode(String.self, forKey: .statusCreatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    statusCreatedTs = try container.decode(String.self, forKey: .statusCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -453,6 +525,42 @@ public extension PlatformClient.Order {
                 }
                 
             
+            
+                do {
+                    shipmentCreatedTs = try container.decode(String.self, forKey: .shipmentCreatedTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currency = try container.decode(Currency.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currencyInfo = try container.decode(CurrencyInfo.self, forKey: .currencyInfo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -461,6 +569,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(orderDate, forKey: .orderDate)
+            
+            
+            
+            
+            try? container.encode(orderCreatedTs, forKey: .orderCreatedTs)
             
             
             
@@ -476,6 +589,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(estimatedSlaTime, forKey: .estimatedSlaTime)
+            
+            
+            
+            
+            try? container.encode(estimatedSlaTs, forKey: .estimatedSlaTs)
             
             
             
@@ -511,6 +629,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(statusCreatedTs, forKey: .statusCreatedTs)
             
             
             
@@ -581,6 +704,21 @@ public extension PlatformClient.Order {
             
             
             try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipmentCreatedTs, forKey: .shipmentCreatedTs)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
             
             
         }
@@ -601,11 +739,15 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var orderDate: String?
         
+        public var orderCreatedTs: String?
+        
         public var shipmentStatus: ShipmentStatus?
         
         public var user: UserDataInfo?
         
         public var estimatedSlaTime: String?
+        
+        public var estimatedSlaTs: String?
         
         public var deliveryAddress: PlatformDeliveryAddress?
         
@@ -620,6 +762,8 @@ public extension PlatformClient.ApplicationClient.Order {
         public var paymentMethods: [String: Any]?
         
         public var statusCreatedAt: String?
+        
+        public var statusCreatedTs: String?
         
         public var displayName: String?
         
@@ -649,16 +793,26 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var modeOfPayment: String?
         
+        public var shipmentCreatedTs: String?
+        
+        public var currency: Currency?
+        
+        public var currencyInfo: CurrencyInfo?
+        
 
         public enum CodingKeys: String, CodingKey {
             
             case orderDate = "order_date"
+            
+            case orderCreatedTs = "order_created_ts"
             
             case shipmentStatus = "shipment_status"
             
             case user = "user"
             
             case estimatedSlaTime = "estimated_sla_time"
+            
+            case estimatedSlaTs = "estimated_sla_ts"
             
             case deliveryAddress = "delivery_address"
             
@@ -673,6 +827,8 @@ public extension PlatformClient.ApplicationClient.Order {
             case paymentMethods = "payment_methods"
             
             case statusCreatedAt = "status_created_at"
+            
+            case statusCreatedTs = "status_created_ts"
             
             case displayName = "display_name"
             
@@ -702,17 +858,27 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case modeOfPayment = "mode_of_payment"
             
+            case shipmentCreatedTs = "shipment_created_ts"
+            
+            case currency = "currency"
+            
+            case currencyInfo = "currency_info"
+            
         }
 
-        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
+        public init(bags: [BagUnit]? = nil, canProcess: Bool? = nil, channel: ShipmentListingChannel? = nil, currency: Currency? = nil, currencyInfo: CurrencyInfo? = nil, customerNote: String? = nil, deliveryAddress: PlatformDeliveryAddress? = nil, displayName: String? = nil, estimatedSlaTime: String? = nil, estimatedSlaTs: String? = nil, fulfillingStore: ShipmentItemFulFillingStore? = nil, invoiceId: String? = nil, lockStatus: Bool? = nil, meta: [String: Any]? = nil, modeOfPayment: String? = nil, orderingChannnel: String? = nil, orderCreatedTs: String? = nil, orderDate: String? = nil, orderId: String, paymentMethods: [String: Any]? = nil, paymentMode: String? = nil, previousShipmentId: String? = nil, prices: Prices? = nil, shipmentCreatedAt: String, shipmentCreatedTs: String? = nil, shipmentId: String? = nil, shipmentStatus: ShipmentStatus? = nil, statusCreatedAt: String? = nil, statusCreatedTs: String? = nil, totalBags: Int, user: UserDataInfo? = nil) {
             
             self.orderDate = orderDate
+            
+            self.orderCreatedTs = orderCreatedTs
             
             self.shipmentStatus = shipmentStatus
             
             self.user = user
             
             self.estimatedSlaTime = estimatedSlaTime
+            
+            self.estimatedSlaTs = estimatedSlaTs
             
             self.deliveryAddress = deliveryAddress
             
@@ -727,6 +893,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.paymentMethods = paymentMethods
             
             self.statusCreatedAt = statusCreatedAt
+            
+            self.statusCreatedTs = statusCreatedTs
             
             self.displayName = displayName
             
@@ -756,6 +924,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.modeOfPayment = modeOfPayment
             
+            self.shipmentCreatedTs = shipmentCreatedTs
+            
+            self.currency = currency
+            
+            self.currencyInfo = currencyInfo
+            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -764,6 +938,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     orderDate = try container.decode(String.self, forKey: .orderDate)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    orderCreatedTs = try container.decode(String.self, forKey: .orderCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -800,6 +986,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     estimatedSlaTime = try container.decode(String.self, forKey: .estimatedSlaTime)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    estimatedSlaTs = try container.decode(String.self, forKey: .estimatedSlaTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -884,6 +1082,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     statusCreatedAt = try container.decode(String.self, forKey: .statusCreatedAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    statusCreatedTs = try container.decode(String.self, forKey: .statusCreatedTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -1040,6 +1250,42 @@ public extension PlatformClient.ApplicationClient.Order {
                 }
                 
             
+            
+                do {
+                    shipmentCreatedTs = try container.decode(String.self, forKey: .shipmentCreatedTs)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currency = try container.decode(Currency.self, forKey: .currency)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currencyInfo = try container.decode(CurrencyInfo.self, forKey: .currencyInfo)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -1048,6 +1294,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(orderDate, forKey: .orderDate)
+            
+            
+            
+            
+            try? container.encode(orderCreatedTs, forKey: .orderCreatedTs)
             
             
             
@@ -1063,6 +1314,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(estimatedSlaTime, forKey: .estimatedSlaTime)
+            
+            
+            
+            
+            try? container.encode(estimatedSlaTs, forKey: .estimatedSlaTs)
             
             
             
@@ -1098,6 +1354,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(statusCreatedAt, forKey: .statusCreatedAt)
+            
+            
+            
+            
+            try? container.encodeIfPresent(statusCreatedTs, forKey: .statusCreatedTs)
             
             
             
@@ -1168,6 +1429,21 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(modeOfPayment, forKey: .modeOfPayment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(shipmentCreatedTs, forKey: .shipmentCreatedTs)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currencyInfo, forKey: .currencyInfo)
             
             
         }

@@ -74,6 +74,8 @@ public extension ApplicationClient.Payment {
         
         public var name: String?
         
+        public var meta: [String: Any]?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -143,9 +145,11 @@ public extension ApplicationClient.Payment {
             
             case name = "name"
             
+            case meta = "meta"
+            
         }
 
-        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, name: String? = nil, nickname: String? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
+        public init(aggregatorName: String, cardBrand: String? = nil, cardBrandImage: String? = nil, cardFingerprint: String? = nil, cardId: String? = nil, cardIsin: String? = nil, cardIssuer: String? = nil, cardName: String? = nil, cardNumber: String? = nil, cardReference: String? = nil, cardToken: String? = nil, cardType: String? = nil, code: String? = nil, codLimit: Double? = nil, codLimitPerOrder: Double? = nil, compliantWithTokenisationGuidelines: Bool? = nil, displayName: String? = nil, displayPriority: Int? = nil, expired: Bool? = nil, expMonth: Int? = nil, expYear: Int? = nil, fyndVpa: String? = nil, intentApp: [IntentApp]? = nil, intentAppErrorDictList: [IntentAppErrorList]? = nil, intentAppErrorList: [String]? = nil, intentFlow: Bool? = nil, logoUrl: PaymentModeLogo? = nil, merchantCode: String? = nil, meta: [String: Any]? = nil, name: String? = nil, nickname: String? = nil, remainingLimit: Double? = nil, retryCount: Int? = nil, timeout: Int? = nil) {
             
             self.cardNumber = cardNumber
             
@@ -212,6 +216,8 @@ public extension ApplicationClient.Payment {
             self.cardToken = cardToken
             
             self.name = name
+            
+            self.meta = meta
             
         }
 
@@ -607,6 +613,18 @@ public extension ApplicationClient.Payment {
             }
             
             
+            
+            do {
+                meta = try container.decode([String: Any].self, forKey: .meta)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -729,7 +747,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encode(logoUrl, forKey: .logoUrl)
+            try? container.encodeIfPresent(logoUrl, forKey: .logoUrl)
             
             
             
@@ -775,6 +793,11 @@ public extension ApplicationClient.Payment {
             
             
             try? container.encode(name, forKey: .name)
+            
+            
+            
+            
+            try? container.encode(meta, forKey: .meta)
             
             
         }

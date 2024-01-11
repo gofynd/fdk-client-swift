@@ -6,6 +6,8 @@
 
 ## Cart Methods
 Cart APIs
+
+Default
 * [getCoupons](#getcoupons)
 * [createCoupon](#createcoupon)
 * [getCouponById](#getcouponbyid)
@@ -66,7 +68,9 @@ Cart APIs
 
 
 
+
 ## Methods with example and description
+
 
 
 #### getCoupons
@@ -1658,6 +1662,12 @@ Price Adjustment Updated successfully
     "collection": {
       "collected_by": "FYND",
       "refund_by": "FYND"
+    },
+    "restrictions": {
+      "post_order": {
+        "cancellation_allowed": false,
+        "return_allowed": false
+      }
     }
   }
 }
@@ -1796,6 +1806,12 @@ Price Adjustment Created successfully
     "collection": {
       "collected_by": "FYND",
       "refund_by": "FYND"
+    },
+    "restrictions": {
+      "post_order": {
+        "cancellation_allowed": false,
+        "return_allowed": false
+      }
     }
   }
 }
@@ -6433,6 +6449,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
       "discount": "67% OFF",
       "article": {
         "type": "article",
+        "tags": [],
         "uid": "604_902_SSTC60401_636BLUE_1",
         "size": "1",
         "seller": {
@@ -7887,7 +7904,7 @@ Fetch Coupon
 
 
 ```swift
-platformClient.application("<APPLICATION_ID>").cart.getAppCoupons(id: id, buyNow: buyNow) { (response, error) in
+platformClient.application("<APPLICATION_ID>").cart.getAppCoupons(id: id, buyNow: buyNow, slug: slug, storeId: storeId) { (response, error) in
     // Use response
 }
 ```
@@ -7899,7 +7916,9 @@ platformClient.application("<APPLICATION_ID>").cart.getAppCoupons(id: id, buyNow
 | Argument | Type | Required | Description |
 | -------- | ---- | -------- | ----------- | 
 | id | String? | no |  |   
-| buyNow | Bool? | no |  |  
+| buyNow | Bool? | no |  |   
+| slug | String? | no |  |   
+| storeId | String? | no |  |  
 
 
 
@@ -8836,39 +8855,92 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; example1</i></summary>
 
 ```json
 {
-  "address": [
-    {
-      "landmark": "",
-      "area_code": "410218",
-      "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-      "state": "Maharashtra",
-      "meta": {},
-      "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-      "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-      "country_code": "IND",
-      "phone": "99999999",
-      "geo_location": {},
-      "country": "India",
-      "is_default_address": true,
-      "is_active": true,
-      "city": "Mumbai",
-      "pincode": 400093,
-      "checkout_mode": "self",
-      "address_type": "home",
-      "tags": [],
-      "area": "Sector 127",
-      "name": "abc",
-      "email": "ankur@gofynd1.com",
-      "address": "Megatron2",
-      "store_name": "store123"
-    }
-  ]
+  "summary": "Address for India",
+  "value": {
+    "address": [
+      {
+        "landmark": "",
+        "area_code": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "state": "Maharashtra",
+        "meta": {},
+        "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "country_code": "+91",
+        "state_code": "MH",
+        "country_phone_code": "91",
+        "country_iso_code": "IN",
+        "phone": "9915347757",
+        "geo_location": {},
+        "country": "India",
+        "is_default_address": true,
+        "is_active": true,
+        "city": "Mumbai",
+        "pincode": 400093,
+        "checkout_mode": "self",
+        "address_type": "home",
+        "tags": [],
+        "area": "Sector 127",
+        "name": "abc",
+        "email": "ankur@gofynd1.com",
+        "address": "Megatron2",
+        "_custom_json": {}
+      }
+    ]
+  }
 }
 ```
+</details>
+
+<details>
+<summary><i>&nbsp; example2</i></summary>
+
+```json
+{
+  "summary": "Address for Dubai",
+  "value": {
+    "address": [
+      {
+        "landmark": "",
+        "area_code": "",
+        "id": "651c0b882dbd5f702f711677",
+        "state": "",
+        "meta": {},
+        "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "country_code": "+971",
+        "country_phone_code": "+971",
+        "country_iso_code": "AE",
+        "phone": "551234567",
+        "geo_location": {},
+        "country": "United Arab Emirates",
+        "is_default_address": true,
+        "is_active": true,
+        "city": "Sharjah",
+        "sector": "Al Fisht",
+        "checkout_mode": "self",
+        "address_type": "home",
+        "tags": [],
+        "area": "Dubai Park",
+        "name": "Shaikh Ahmed",
+        "email": "example@gmail.com",
+        "address": "B-62",
+        "_custom_json": {}
+      }
+    ]
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -8995,6 +9067,7 @@ Success. Returns an PlatformAddress object containing a list of address saved in
   "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "country_code": "IND",
+  "state_code": "MH",
   "phone": "9915347757",
   "geo_location": {},
   "country": "India",
@@ -9789,6 +9862,10 @@ Success. Returns delivery promise along with shipment details and price breakup.
           "formatted": {
             "min": "Aug 24",
             "max": "Aug 28"
+          },
+          "iso": {
+            "min": "2019-08-25T00:35:08.000Z",
+            "max": "2019-08-29T07:55:08.000Z"
           }
         },
         "box_type": "Small Courier bag",
@@ -9852,6 +9929,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
             },
             "article": {
               "type": "article",
+              "tags": [],
               "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
               "size": "L",
               "seller": {
@@ -10493,6 +10571,10 @@ Success. Returns delivery promise along with shipment details and price breakup.
           "formatted": {
             "min": "Aug 24",
             "max": "Aug 28"
+          },
+          "iso": {
+            "min": "2019-08-25T00:35:08.000Z",
+            "max": "2019-08-29T07:55:08.000Z"
           }
         },
         "box_type": "Small Courier bag",
@@ -12687,6 +12769,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
 
 
+
 ### Schemas
 
  
@@ -13286,7 +13369,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payments | [[PromotionPaymentModes](#PromotionPaymentModes)]? |  yes  |  |
+ | payments | [String: Any]? |  yes  |  |
  | userRegistered | [UserRegistered](#UserRegistered)? |  yes  |  |
  | platforms | [String]? |  yes  |  |
  | postOrder | [PostOrder1](#PostOrder1)? |  yes  |  |
@@ -13583,6 +13666,17 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  
  
+ #### [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | postOrder | [String: Any]? |  yes  | This field holds the post-order restrictions, indicated by nested fields ['cancellation_allowed','return_allowed'] |
+
+---
+
+
+ 
+ 
  #### [Collection](#Collection)
 
  | Properties | Type | Nullable | Description |
@@ -13603,6 +13697,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | value | Double |  no  |  |
  | message | String |  no  | The message associated with the price adjustment |
  | applyExpiry | String? |  yes  | The date and time when the expiry should be applied |
+ | restrictions | [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)? |  yes  | restrictions applied to this particular item or product, including whether or not cancellation and return are allowed. |
  | articleLevelDistribution | Bool |  no  | Flag indicating whether the distribution should is done at the article level |
  | collection | [Collection](#Collection) |  no  |  |
  | type | String |  no  | type of price adjusment |
@@ -13624,6 +13719,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | value | Double |  no  |  |
  | message | String |  no  | The message associated with the price adjustment |
  | applyExpiry | String? |  yes  | The date and time when the expiry should be applied |
+ | restrictions | [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)? |  yes  | This field accepts the restrictions applied to this particular item or service, including whether or not cancellation and return are allowed, etc |
  | articleLevelDistribution | Bool |  no  | Flag indicating whether the distribution should is done at the article level |
  | id | String? |  yes  |  |
  | collection | [Collection](#Collection) |  no  |  |
@@ -13657,6 +13753,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | value | Double |  no  |  |
  | message | String |  no  | The message associated with the price adjustment |
  | applyExpiry | String? |  yes  | The date and time when the expiry should be applied |
+ | restrictions | [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)? |  yes  | This field accepts the restrictions applied to this particular item or service, including whether or not cancellation and return are allowed, etc |
  | createdBy | String? |  yes  | The entity that created the field |
  | articleLevelDistribution | Bool |  no  | Flag indicating whether the distribution should is done at the article level |
  | collection | [Collection](#Collection) |  no  |  |
@@ -13874,6 +13971,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | name | String? |  yes  |  |
  | itemCode | String? |  yes  |  |
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
+ | attributes | [String: Any]? |  yes  |  |
 
 ---
 
@@ -13941,6 +14039,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | meta | [String: Any]? |  yes  |  |
  | size | String? |  yes  |  |
  | store | [StoreInfo](#StoreInfo)? |  yes  |  |
+ | tags | [String]? |  yes  | a list of article tags |
 
 ---
 
@@ -14021,6 +14120,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | ---------- | ---- | -------- | ----------- |
  | articleQuantity | Int? |  yes  | Quantity of article on which promotion is applicable |
  | ownership | [Ownership2](#Ownership2)? |  yes  | Ownership of promotion |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | discountRules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | appliedFreeArticles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | promotionName | String? |  yes  | Promotion name of current promotion |
@@ -14049,6 +14149,18 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  
  
+ #### [PromiseISOFormat](#PromiseISOFormat)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | String? |  yes  | Max promise in ISO format. |
+ | min | String? |  yes  | Min Promise in ISO format. |
+
+---
+
+
+ 
+ 
  #### [PromiseTimestamp](#PromiseTimestamp)
 
  | Properties | Type | Nullable | Description |
@@ -14067,6 +14179,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | ---------- | ---- | -------- | ----------- |
  | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
  | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
+ | iso | [PromiseISOFormat](#PromiseISOFormat)? |  yes  |  |
 
 ---
 
@@ -14171,6 +14284,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | ---------- | ---- | -------- | ----------- |
  | quantity | Int? |  yes  |  |
  | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | productEanId | String? |  yes  |  |
  | parentItemIdentifiers | [String: Any]? |  yes  |  |
  | isSet | Bool? |  yes  |  |
  | article | [ProductArticle](#ProductArticle)? |  yes  |  |
@@ -14483,10 +14597,73 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
 
  
  
+ #### [CartDetailCoupon](#CartDetailCoupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cashbackAmount | Double? |  yes  |  |
+ | cashbackMessagePrimary | String? |  yes  |  |
+ | cashbackMessageSecondary | String? |  yes  |  |
+ | couponCode | String? |  yes  |  |
+ | couponDescription | String? |  yes  |  |
+ | couponId | String? |  yes  |  |
+ | couponSubtitle | String? |  yes  |  |
+ | couponTitle | String? |  yes  |  |
+ | couponType | String? |  yes  |  |
+ | couponValue | Double? |  yes  |  |
+ | discount | Double? |  yes  |  |
+ | isApplied | Bool? |  yes  |  |
+ | isValid | Bool? |  yes  |  |
+ | maximumDiscountValue | Double? |  yes  |  |
+ | message | String? |  yes  |  |
+ | minimumCartValue | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [ChargesThreshold](#ChargesThreshold)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charges | Double? |  yes  |  |
+ | threshold | Double? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [DeliveryChargesConfig](#DeliveryChargesConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  |  |
+ | charges | [[ChargesThreshold](#ChargesThreshold)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [CartCommonConfig](#CartCommonConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | deliveryChargesConfig | [DeliveryChargesConfig](#DeliveryChargesConfig)? |  yes  |  |
+
+---
+
+
+ 
+ 
  #### [CartDetailResponse](#CartDetailResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | cartId | Int? |  yes  |  |
+ | uid | String? |  yes  |  |
  | couponText | String? |  yes  |  |
  | id | String? |  yes  |  |
  | panConfig | [String: Any]? |  yes  |  |
@@ -14495,8 +14672,13 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | paymentSelectionLock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | deliveryChargeInfo | String? |  yes  |  |
+ | commonConfig | [CartCommonConfig](#CartCommonConfig)? |  yes  |  |
+ | coupon | [CartDetailCoupon](#CartDetailCoupon)? |  yes  |  |
  | restrictCheckout | Bool? |  yes  |  |
  | message | String? |  yes  |  |
+ | notification | [String: Any]? |  yes  |  |
+ | staffUserId | String? |  yes  |  |
+ | success | Bool? |  yes  |  |
  | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
  | isValid | Bool? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
@@ -14530,6 +14712,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | customJson | [String: Any]? |  yes  |  |
  | meta | [String: Any]? |  yes  |  |
  | pos | Bool? |  yes  |  |
+ | sellerIdentifier | String? |  yes  | Add items using seller identifier for store os |
 
 ---
 
@@ -14616,6 +14799,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | promoDesc | String? |  yes  |  |
  | rwrdTndr | String? |  yes  |  |
  | itemList | [[String: Any]]? |  yes  |  |
+ | parentPromoId | String? |  yes  |  |
 
 ---
 
@@ -14767,6 +14951,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | cartValue | Double? |  yes  |  |
  | createdOn | String? |  yes  |  |
  | userId | String? |  yes  |  |
+ | currencyCode | String? |  yes  |  |
  | itemCounts | Int? |  yes  |  |
 
 ---
@@ -14922,6 +15107,9 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | isApplicable | Bool? |  yes  |  |
  | message | String? |  yes  |  |
  | description | String? |  yes  |  |
+ | startDate | String? |  yes  |  |
+ | endDate | String? |  yes  |  |
+ | couponApplicableMessage | String? |  yes  |  |
 
 ---
 
@@ -15002,10 +15190,15 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | googleMapPoint | [String: Any]? |  yes  |  |
  | cartId | String? |  yes  |  |
  | city | String? |  yes  |  |
+ | sector | String? |  yes  |  |
+ | stateCode | String? |  yes  | State code for international address |
  | area | String? |  yes  |  |
  | userId | String? |  yes  |  |
  | addressType | String? |  yes  |  |
  | address | String? |  yes  |  |
+ | countryPhoneCode | String? |  yes  |  |
+ | countryIsoCode | String? |  yes  |  |
+ | customJson | [String: Any]? |  yes  |  |
 
 ---
 
@@ -15316,7 +15509,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | orderId | String? |  yes  |  |
  | message | String? |  yes  |  |
  | breakupValues | [CartBreakup](#CartBreakup)? |  yes  |  |
- | codCharges | Int? |  yes  |  |
+ | codCharges | Double? |  yes  |  |
  | isValid | Bool? |  yes  |  |
  | uid | String? |  yes  |  |
  | checkoutMode | String? |  yes  |  |
@@ -15328,7 +15521,7 @@ Success. Returns a Cart object as shown below. Refer `CartDetailResponse` for mo
  | storeEmps | [[String: Any]]? |  yes  |  |
  | gstin | String? |  yes  |  |
  | codAvailable | Bool? |  yes  |  |
- | deliveryCharges | Int? |  yes  |  |
+ | deliveryCharges | Double? |  yes  |  |
 
 ---
 

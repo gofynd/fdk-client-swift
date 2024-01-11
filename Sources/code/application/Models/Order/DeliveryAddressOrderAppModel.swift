@@ -36,6 +36,8 @@ public extension ApplicationClient.Order {
         
         public var address1: String?
         
+        public var displayAddress: String?
+        
         public var name: String?
         
         public var contactPerson: String?
@@ -83,6 +85,8 @@ public extension ApplicationClient.Order {
             
             case address1 = "address1"
             
+            case displayAddress = "display_address"
+            
             case name = "name"
             
             case contactPerson = "contact_person"
@@ -101,7 +105,7 @@ public extension ApplicationClient.Order {
             
         }
 
-        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, contactPerson: String? = nil, country: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdAt: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, updatedAt: String? = nil, version: String? = nil) {
+        public init(address: String? = nil, address1: String? = nil, address2: String? = nil, addressCategory: String? = nil, addressType: String? = nil, area: String? = nil, city: String? = nil, contactPerson: String? = nil, country: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdAt: String? = nil, displayAddress: String? = nil, email: String? = nil, landmark: String? = nil, latitude: Double? = nil, longitude: Double? = nil, name: String? = nil, phone: String? = nil, pincode: String? = nil, state: String? = nil, updatedAt: String? = nil, version: String? = nil) {
             
             self.pincode = pincode
             
@@ -130,6 +134,8 @@ public extension ApplicationClient.Order {
             self.createdAt = createdAt
             
             self.address1 = address1
+            
+            self.displayAddress = displayAddress
             
             self.name = name
             
@@ -322,6 +328,18 @@ public extension ApplicationClient.Order {
             
             
             do {
+                displayAddress = try container.decode(String.self, forKey: .displayAddress)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
                 name = try container.decode(String.self, forKey: .name)
             
             } catch DecodingError.typeMismatch(let type, let context) {
@@ -489,6 +507,11 @@ public extension ApplicationClient.Order {
             
             
             try? container.encodeIfPresent(address1, forKey: .address1)
+            
+            
+            
+            
+            try? container.encodeIfPresent(displayAddress, forKey: .displayAddress)
             
             
             
