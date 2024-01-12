@@ -118,7 +118,7 @@ public extension PlatformClient.Payment {
             
             
             
-            try? container.encode(logos, forKey: .logos)
+            try? container.encodeIfPresent(logos, forKey: .logos)
             
             
         }
@@ -243,7 +243,7 @@ public extension PlatformClient.ApplicationClient.Payment {
             
             
             
-            try? container.encode(logos, forKey: .logos)
+            try? container.encodeIfPresent(logos, forKey: .logos)
             
             
         }

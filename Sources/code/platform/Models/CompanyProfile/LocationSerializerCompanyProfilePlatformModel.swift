@@ -40,7 +40,7 @@ public extension PlatformClient.CompanyProfile {
         
         public var stage: String?
         
-        public var documents: [Document]?
+        public var documents: [Document]
         
         public var creditNote: Bool?
         
@@ -61,6 +61,8 @@ public extension PlatformClient.CompanyProfile {
         public var avgOrderProcessingTime: AverageOrderProcessingTime?
         
         public var bulkShipment: Bool?
+        
+        public var autoAssignCourierPartner: Bool?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -115,9 +117,11 @@ public extension PlatformClient.CompanyProfile {
             
             case bulkShipment = "bulk_shipment"
             
+            case autoAssignCourierPartner = "auto_assign_courier_partner"
+            
         }
 
-        public init(address: AddressSerializer, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: Int, contactNumbers: [SellerPhoneNumber]? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document]? = nil, gstCredentials: InvoiceDetailsSerializer? = nil, holiday: [HolidaySchemaSerializer]? = nil, manager: LocationManagerSerializer? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSerializer]? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
+        public init(address: AddressSerializer, autoAssignCourierPartner: Bool? = nil, autoInvoice: Bool? = nil, avgOrderProcessingTime: AverageOrderProcessingTime? = nil, bulkShipment: Bool? = nil, code: String, company: Int, contactNumbers: [SellerPhoneNumber]? = nil, creditNote: Bool? = nil, defaultOrderAcceptanceTiming: Bool? = nil, displayName: String, documents: [Document], gstCredentials: InvoiceDetailsSerializer? = nil, holiday: [HolidaySchemaSerializer]? = nil, manager: LocationManagerSerializer? = nil, name: String, notificationEmails: [String]? = nil, orderAcceptanceTiming: [LocationDayWiseSerializer]? = nil, productReturnConfig: ProductReturnConfigSerializer? = nil, stage: String? = nil, storeType: String? = nil, tags: [String]? = nil, timing: [LocationDayWiseSerializer]? = nil, uid: Int? = nil, warnings: [String: Any]? = nil, customJson: [String: Any]? = nil) {
             
             self.code = code
             
@@ -168,6 +172,8 @@ public extension PlatformClient.CompanyProfile {
             self.avgOrderProcessingTime = avgOrderProcessingTime
             
             self.bulkShipment = bulkShipment
+            
+            self.autoAssignCourierPartner = autoAssignCourierPartner
             
         }
 
@@ -315,16 +321,9 @@ public extension PlatformClient.CompanyProfile {
                 
             
             
-                do {
-                    documents = try container.decode([Document].self, forKey: .documents)
+                documents = try container.decode([Document].self, forKey: .documents)
                 
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
+            
             
             
                 do {
@@ -430,6 +429,18 @@ public extension PlatformClient.CompanyProfile {
             
                 do {
                     bulkShipment = try container.decode(Bool.self, forKey: .bulkShipment)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    autoAssignCourierPartner = try container.decode(Bool.self, forKey: .autoAssignCourierPartner)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -567,6 +578,11 @@ public extension PlatformClient.CompanyProfile {
             
             
             try? container.encodeIfPresent(bulkShipment, forKey: .bulkShipment)
+            
+            
+            
+            
+            try? container.encodeIfPresent(autoAssignCourierPartner, forKey: .autoAssignCourierPartner)
             
             
         }

@@ -28,6 +28,8 @@ public extension PlatformClient.Order {
         
         public var createdAt: String?
         
+        public var createdTs: String?
+        
         public var shipmentId: String?
         
         public var updatedAt: String?
@@ -57,6 +59,8 @@ public extension PlatformClient.Order {
             
             case createdAt = "created_at"
             
+            case createdTs = "created_ts"
+            
             case shipmentId = "shipment_id"
             
             case updatedAt = "updated_at"
@@ -69,7 +73,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, id: Int, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: String? = nil) {
+        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, createdTs: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, id: Int, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: String? = nil) {
             
             self.storeId = storeId
             
@@ -86,6 +90,8 @@ public extension PlatformClient.Order {
             self.id = id
             
             self.createdAt = createdAt
+            
+            self.createdTs = createdTs
             
             self.shipmentId = shipmentId
             
@@ -182,6 +188,18 @@ public extension PlatformClient.Order {
             
                 do {
                     createdAt = try container.decode(String.self, forKey: .createdAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -294,6 +312,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(createdAt, forKey: .createdAt)
+            
+            
+            
+            
+            try? container.encode(createdTs, forKey: .createdTs)
             
             
             
@@ -353,6 +376,8 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var createdAt: String?
         
+        public var createdTs: String?
+        
         public var shipmentId: String?
         
         public var updatedAt: String?
@@ -382,6 +407,8 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case createdAt = "created_at"
             
+            case createdTs = "created_ts"
+            
             case shipmentId = "shipment_id"
             
             case updatedAt = "updated_at"
@@ -394,7 +421,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, id: Int, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: String? = nil) {
+        public init(bagId: Int? = nil, bagStateMapper: BagStateMapper? = nil, createdAt: String? = nil, createdTs: String? = nil, deliveryAwbNumber: String? = nil, deliveryPartnerId: Int? = nil, id: Int, kafkaSync: Bool? = nil, shipmentId: String? = nil, stateId: Int? = nil, stateType: String? = nil, status: String? = nil, storeId: Int? = nil, updatedAt: String? = nil) {
             
             self.storeId = storeId
             
@@ -411,6 +438,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.id = id
             
             self.createdAt = createdAt
+            
+            self.createdTs = createdTs
             
             self.shipmentId = shipmentId
             
@@ -507,6 +536,18 @@ public extension PlatformClient.ApplicationClient.Order {
             
                 do {
                     createdAt = try container.decode(String.self, forKey: .createdAt)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    createdTs = try container.decode(String.self, forKey: .createdTs)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -619,6 +660,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(createdAt, forKey: .createdAt)
+            
+            
+            
+            
+            try? container.encode(createdTs, forKey: .createdTs)
             
             
             

@@ -5,7 +5,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Catalog Methods
-Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features. 
+The Catalog module manages product details and size availability, and enables easy comparisons. Use it to explore product options, check stock status, and retrieve brand and category information. The module also supports personalization by allowing tracking of preferred items and brands. It highlights popular products based on user engagement and provides store details. Additionally, this module covers bundled items, size-specific pricing, and seller information.
 
 Default
 * [getProductDetailBySlug](#getproductdetailbyslug)
@@ -7511,7 +7511,7 @@ Get the price of a product size at a PIN Code
 
 
 ```swift
-applicationClient.catalog.getProductPriceBySlug(slug: slug, size: size, storeId: storeId, pincode: pincode, moq: moq) { (response, error) in
+applicationClient.catalog.getProductPriceBySlug(slug: slug, size: size, storeId: storeId, moq: moq) { (response, error) in
     // Use response
 }
 ```
@@ -7525,7 +7525,6 @@ applicationClient.catalog.getProductPriceBySlug(slug: slug, size: size, storeId:
 | slug | String | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
 | size | String | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |   
 | storeId | Int? | no | The ID of the store that is selling the product, e.g. 1,2,3. |   
-| pincode | String? | no | The PIN Code of the area near which the selling locations should be searched, e.g. 400059. |   
 | moq | Int? | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |  
 
 
@@ -7652,7 +7651,7 @@ Get the sellers of a product size at a PIN Code
 
 
 ```swift
-applicationClient.catalog.getProductSellersBySlug(slug: slug, size: size, pincode: pincode, strategy: strategy, pageNo: pageNo, pageSize: pageSize) { (response, error) in
+applicationClient.catalog.getProductSellersBySlug(slug: slug, size: size, strategy: strategy, pageNo: pageNo, pageSize: pageSize) { (response, error) in
     // Use response
 }
 ```
@@ -7665,7 +7664,6 @@ applicationClient.catalog.getProductSellersBySlug(slug: slug, size: size, pincod
 | -------- | ---- | -------- | ----------- | 
 | slug | String | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
 | size | String | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |   
-| pincode | String? | no | The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059 |   
 | strategy | String? | no | Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal. |   
 | pageNo | Int? | no | The page number to navigate through the given set of results. |   
 | pageSize | Int? | no | The number of items to retrieve in each page. |  
@@ -8883,7 +8881,7 @@ Success. Returns a ProductSizeSellerV3 object. Check the example shown below or 
  | allowFacets | Bool? |  yes  |  |
  | logo | [Media](#Media)? |  yes  |  |
  | priority | Int? |  yes  |  |
- | tag | [String]? |  yes  |  |
+ | tags | [String]? |  yes  |  |
  | appId | String? |  yes  |  |
 
 ---

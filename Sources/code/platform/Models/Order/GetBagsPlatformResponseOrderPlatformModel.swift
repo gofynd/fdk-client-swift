@@ -12,24 +12,24 @@ public extension PlatformClient.Order {
     class GetBagsPlatformResponse: Codable {
         
         
-        public var items: [BagDetailsPlatformResponse]
+        public var statusCode: Int?
         
-        public var page: BagsPage
+        public var data: BagData?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case statusCode = "status_code"
             
-            case page = "page"
+            case data = "data"
             
         }
 
-        public init(items: [BagDetailsPlatformResponse], page: BagsPage) {
+        public init(data: BagData? = nil, statusCode: Int? = nil) {
             
-            self.items = items
+            self.statusCode = statusCode
             
-            self.page = page
+            self.data = data
             
         }
 
@@ -37,14 +37,28 @@ public extension PlatformClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                items = try container.decode([BagDetailsPlatformResponse].self, forKey: .items)
+                do {
+                    statusCode = try container.decode(Int.self, forKey: .statusCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                page = try container.decode(BagsPage.self, forKey: .page)
+                do {
+                    data = try container.decode(BagData.self, forKey: .data)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -53,12 +67,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }
@@ -77,24 +91,24 @@ public extension PlatformClient.ApplicationClient.Order {
     class GetBagsPlatformResponse: Codable {
         
         
-        public var items: [BagDetailsPlatformResponse]
+        public var statusCode: Int?
         
-        public var page: BagsPage
+        public var data: BagData?
         
 
         public enum CodingKeys: String, CodingKey {
             
-            case items = "items"
+            case statusCode = "status_code"
             
-            case page = "page"
+            case data = "data"
             
         }
 
-        public init(items: [BagDetailsPlatformResponse], page: BagsPage) {
+        public init(data: BagData? = nil, statusCode: Int? = nil) {
             
-            self.items = items
+            self.statusCode = statusCode
             
-            self.page = page
+            self.data = data
             
         }
 
@@ -102,14 +116,28 @@ public extension PlatformClient.ApplicationClient.Order {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             
             
-                items = try container.decode([BagDetailsPlatformResponse].self, forKey: .items)
+                do {
+                    statusCode = try container.decode(Int.self, forKey: .statusCode)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
                 
             
             
-            
-                page = try container.decode(BagsPage.self, forKey: .page)
+                do {
+                    data = try container.decode(BagData.self, forKey: .data)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
         }
         
@@ -118,12 +146,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(items, forKey: .items)
+            try? container.encodeIfPresent(statusCode, forKey: .statusCode)
             
             
             
             
-            try? container.encodeIfPresent(page, forKey: .page)
+            try? container.encodeIfPresent(data, forKey: .data)
             
             
         }

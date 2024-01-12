@@ -14,7 +14,7 @@ public extension PlatformClient.Discount {
         
         public var itemCode: String?
         
-        public var brandUid: Int?
+        public var brandName: String?
         
         public var sellerIdentifier: String?
         
@@ -29,7 +29,7 @@ public extension PlatformClient.Discount {
             
             case itemCode = "item_code"
             
-            case brandUid = "brand_uid"
+            case brandName = "brand_name"
             
             case sellerIdentifier = "seller_identifier"
             
@@ -41,11 +41,11 @@ public extension PlatformClient.Discount {
             
         }
 
-        public init(brandUid: Int? = nil, discountMeta: DiscountMeta? = nil, discountType: String, itemCode: String? = nil, sellerIdentifier: String? = nil, value: Double) {
+        public init(brandName: String? = nil, discountMeta: DiscountMeta? = nil, discountType: String, itemCode: String? = nil, sellerIdentifier: String? = nil, value: Double) {
             
             self.itemCode = itemCode
             
-            self.brandUid = brandUid
+            self.brandName = brandName
             
             self.sellerIdentifier = sellerIdentifier
             
@@ -74,7 +74,7 @@ public extension PlatformClient.Discount {
             
             
                 do {
-                    brandUid = try container.decode(Int.self, forKey: .brandUid)
+                    brandName = try container.decode(String.self, forKey: .brandName)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -130,7 +130,7 @@ public extension PlatformClient.Discount {
             
             
             
-            try? container.encodeIfPresent(brandUid, forKey: .brandUid)
+            try? container.encodeIfPresent(brandName, forKey: .brandName)
             
             
             

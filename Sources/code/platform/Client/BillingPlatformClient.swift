@@ -570,11 +570,27 @@ var xQuery: [String: Any] = [:]
         * Description: Get subscription subscription limits.
         **/
         public func getFeatureLimitConfig(
+            productSuite: String?,
+            type: String?,
             
             onResponse: @escaping (_ response: SubscriptionLimit?, _ error: FDKError?) -> Void
         ) {
             
- 
+var xQuery: [String: Any] = [:] 
+
+if let value = productSuite {
+    
+    xQuery["product_suite"] = value
+    
+}
+
+
+if let value = type {
+    
+    xQuery["type"] = value
+    
+}
+
 
  
 
@@ -583,7 +599,7 @@ var xQuery: [String: Any] = [:]
                 config: config,
                 method: "GET",
                 url: "/service/platform/billing/v1.0/company/\(companyId)/subscription/current-limit",
-                query: nil,
+                query: xQuery,
                 body: nil,
                 headers: [],
                 responseType: "application/json",
@@ -838,6 +854,90 @@ var xQuery: [String: Any] = [:]
                     } else if let data = responseData {
                         
                         let response = Utility.decode(SubscribePlanRes.self, from: data)
+                        
+                        onResponse(response, nil)
+                    } else {
+                        let userInfo: [String: Any] =  [ NSLocalizedDescriptionKey :  NSLocalizedString("Unidentified", value: "Please try after sometime", comment: "") ,
+                                                 NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unidentified", value: "Something went wrong", comment: "")]
+                        let err = FDKError(message: "Something went wrong", status: 502, code: "Unidentified", exception: nil, info: "Please try after sometime", requestID: nil, stackTrace: nil, meta: userInfo)
+                        onResponse(nil, err)
+                    }
+            });
+        }
+        
+        
+        
+        
+        
+        /**
+        *
+        * Summary: Generic api to get the entity detail
+        * Description: Generic api to get the entity detail
+        **/
+        public func getentityDetail(
+            entityName: String,
+            entityId: String?,
+            channel: String,
+            component: String?,
+            componentName: String?,
+            
+            onResponse: @escaping (_ response: EntityResponse?, _ error: FDKError?) -> Void
+        ) {
+            
+var xQuery: [String: Any] = [:] 
+
+
+    xQuery["entity_name"] = entityName
+
+
+
+if let value = entityId {
+    
+    xQuery["entity_id"] = value
+    
+}
+
+
+
+    xQuery["channel"] = channel
+
+
+
+if let value = component {
+    
+    xQuery["component"] = value
+    
+}
+
+
+if let value = componentName {
+    
+    xQuery["component_name"] = value
+    
+}
+
+
+ 
+
+
+            PlatformAPIClient.execute(
+                config: config,
+                method: "GET",
+                url: "/service/platform/billing/v1.0/company/\(companyId)/entity/detail",
+                query: xQuery,
+                body: nil,
+                headers: [],
+                responseType: "application/json",
+                onResponse: { (responseData, error, responseCode) in
+                    if let _ = error, let data = responseData {
+                        var err = Utility.decode(FDKError.self, from: data)
+                        if err?.status == nil {
+                            err?.status = responseCode
+                        }
+                        onResponse(nil, err)
+                    } else if let data = responseData {
+                        
+                        let response = Utility.decode(EntityResponse.self, from: data)
                         
                         onResponse(response, nil)
                     } else {

@@ -28,6 +28,10 @@ public extension ApplicationClient.PosCart {
         
         public var city: String?
         
+        public var sector: String?
+        
+        public var stateCode: String?
+        
         public var addressType: String?
         
         public var state: String?
@@ -83,6 +87,10 @@ public extension ApplicationClient.PosCart {
             
             case city = "city"
             
+            case sector = "sector"
+            
+            case stateCode = "state_code"
+            
             case addressType = "address_type"
             
             case state = "state"
@@ -117,7 +125,7 @@ public extension ApplicationClient.PosCart {
             
         }
 
-        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, checkoutMode: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdByUserId: String? = nil, email: String? = nil, geoLocation: GeoLocation? = nil, googleMapPoint: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, isDefaultAddress: Bool? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, state: String? = nil, tags: [String]? = nil, userId: String? = nil, customJson: [String: Any]? = nil) {
+        public init(address: String? = nil, addressType: String? = nil, area: String? = nil, areaCode: String? = nil, areaCodeSlug: String? = nil, checkoutMode: String? = nil, city: String? = nil, country: String? = nil, countryCode: String? = nil, countryIsoCode: String? = nil, countryPhoneCode: String? = nil, createdByUserId: String? = nil, email: String? = nil, geoLocation: GeoLocation? = nil, googleMapPoint: [String: Any]? = nil, id: String? = nil, isActive: Bool? = nil, isDefaultAddress: Bool? = nil, landmark: String? = nil, meta: [String: Any]? = nil, name: String? = nil, phone: String? = nil, sector: String? = nil, state: String? = nil, stateCode: String? = nil, tags: [String]? = nil, userId: String? = nil, customJson: [String: Any]? = nil) {
             
             self.meta = meta
             
@@ -138,6 +146,10 @@ public extension ApplicationClient.PosCart {
             self.isActive = isActive
             
             self.city = city
+            
+            self.sector = sector
+            
+            self.stateCode = stateCode
             
             self.addressType = addressType
             
@@ -287,6 +299,30 @@ public extension ApplicationClient.PosCart {
             
             do {
                 city = try container.decode(String.self, forKey: .city)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                sector = try container.decode(String.self, forKey: .sector)
+            
+            } catch DecodingError.typeMismatch(let type, let context) {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                
+            }
+            
+            
+            
+            do {
+                stateCode = try container.decode(String.self, forKey: .stateCode)
             
             } catch DecodingError.typeMismatch(let type, let context) {
                 print("Type '\(type)' mismatch:", context.debugDescription)
@@ -541,6 +577,16 @@ public extension ApplicationClient.PosCart {
             
             
             try? container.encodeIfPresent(city, forKey: .city)
+            
+            
+            
+            
+            try? container.encodeIfPresent(sector, forKey: .sector)
+            
+            
+            
+            
+            try? container.encodeIfPresent(stateCode, forKey: .stateCode)
             
             
             

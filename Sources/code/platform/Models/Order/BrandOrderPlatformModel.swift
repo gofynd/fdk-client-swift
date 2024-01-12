@@ -22,7 +22,7 @@ public extension PlatformClient.Order {
         
         public var startDate: String?
         
-        public var company: String
+        public var company: String?
         
         public var isVirtualInvoice: Bool?
         
@@ -30,13 +30,15 @@ public extension PlatformClient.Order {
         
         public var pickupLocation: String?
         
-        public var createdOn: Int?
+        public var createdOn: String?
         
         public var brandName: String
         
-        public var brandId: Int
+        public var brandId: Int?
         
         public var modifiedOn: Int?
+        
+        public var id: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -67,9 +69,11 @@ public extension PlatformClient.Order {
             
             case modifiedOn = "modified_on"
             
+            case id = "id"
+            
         }
 
-        public init(brandId: Int, brandName: String, company: String, createdOn: Int? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: Int? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
+        public init(brandId: Int? = nil, brandName: String, company: String? = nil, createdOn: String? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, id: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: Int? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
             
             self.creditNoteExpiryDays = creditNoteExpiryDays
             
@@ -96,6 +100,8 @@ public extension PlatformClient.Order {
             self.brandId = brandId
             
             self.modifiedOn = modifiedOn
+            
+            self.id = id
             
         }
 
@@ -163,9 +169,16 @@ public extension PlatformClient.Order {
                 
             
             
-                company = try container.decode(String.self, forKey: .company)
+                do {
+                    company = try container.decode(String.self, forKey: .company)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -205,7 +218,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    createdOn = try container.decode(Int.self, forKey: .createdOn)
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -221,13 +234,32 @@ public extension PlatformClient.Order {
             
             
             
-                brandId = try container.decode(Int.self, forKey: .brandId)
+                do {
+                    brandId = try container.decode(Int.self, forKey: .brandId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
                     modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(Int.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -269,7 +301,7 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encode(company, forKey: .company)
             
             
             
@@ -305,6 +337,11 @@ public extension PlatformClient.Order {
             
             
             try? container.encode(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encode(id, forKey: .id)
             
             
         }
@@ -333,7 +370,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var startDate: String?
         
-        public var company: String
+        public var company: String?
         
         public var isVirtualInvoice: Bool?
         
@@ -341,13 +378,15 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var pickupLocation: String?
         
-        public var createdOn: Int?
+        public var createdOn: String?
         
         public var brandName: String
         
-        public var brandId: Int
+        public var brandId: Int?
         
         public var modifiedOn: Int?
+        
+        public var id: Int?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -378,9 +417,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case modifiedOn = "modified_on"
             
+            case id = "id"
+            
         }
 
-        public init(brandId: Int, brandName: String, company: String, createdOn: Int? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: Int? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
+        public init(brandId: Int? = nil, brandName: String, company: String? = nil, createdOn: String? = nil, creditNoteAllowed: Bool? = nil, creditNoteExpiryDays: Int? = nil, id: Int? = nil, invoicePrefix: String? = nil, isVirtualInvoice: Bool? = nil, logo: String? = nil, modifiedOn: Int? = nil, pickupLocation: String? = nil, scriptLastRan: String? = nil, startDate: String? = nil) {
             
             self.creditNoteExpiryDays = creditNoteExpiryDays
             
@@ -407,6 +448,8 @@ public extension PlatformClient.ApplicationClient.Order {
             self.brandId = brandId
             
             self.modifiedOn = modifiedOn
+            
+            self.id = id
             
         }
 
@@ -474,9 +517,16 @@ public extension PlatformClient.ApplicationClient.Order {
                 
             
             
-                company = try container.decode(String.self, forKey: .company)
+                do {
+                    company = try container.decode(String.self, forKey: .company)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
@@ -516,7 +566,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    createdOn = try container.decode(Int.self, forKey: .createdOn)
+                    createdOn = try container.decode(String.self, forKey: .createdOn)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -532,13 +582,32 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-                brandId = try container.decode(Int.self, forKey: .brandId)
+                do {
+                    brandId = try container.decode(Int.self, forKey: .brandId)
                 
-            
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
             
             
                 do {
                     modifiedOn = try container.decode(Int.self, forKey: .modifiedOn)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    id = try container.decode(Int.self, forKey: .id)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -580,7 +649,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(company, forKey: .company)
+            try? container.encode(company, forKey: .company)
             
             
             
@@ -616,6 +685,11 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             try? container.encode(modifiedOn, forKey: .modifiedOn)
+            
+            
+            
+            
+            try? container.encode(id, forKey: .id)
             
             
         }

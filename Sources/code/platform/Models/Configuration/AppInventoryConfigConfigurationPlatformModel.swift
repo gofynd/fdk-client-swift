@@ -34,6 +34,8 @@ public extension PlatformClient.Configuration {
         
         public var companyStore: [[String: Any]]?
         
+        public var companyId: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -59,9 +61,11 @@ public extension PlatformClient.Configuration {
             
             case companyStore = "company_store"
             
+            case companyId = "company_id"
+            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -84,6 +88,8 @@ public extension PlatformClient.Configuration {
             self.image = image
             
             self.companyStore = companyStore
+            
+            self.companyId = companyId
             
         }
 
@@ -222,6 +228,18 @@ public extension PlatformClient.Configuration {
                 }
                 
             
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -280,6 +298,11 @@ public extension PlatformClient.Configuration {
             
             
             try? container.encodeIfPresent(companyStore, forKey: .companyStore)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }
@@ -320,6 +343,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
         
         public var companyStore: [[String: Any]]?
         
+        public var companyId: Int?
+        
 
         public enum CodingKeys: String, CodingKey {
             
@@ -345,9 +370,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             case companyStore = "company_store"
             
+            case companyId = "company_id"
+            
         }
 
-        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
+        public init(brand: InventoryBrand? = nil, category: InventoryCategory? = nil, companyId: Int? = nil, companyStore: [[String: Any]]? = nil, discount: InventoryDiscount? = nil, excludeCategory: [[String: Any]]? = nil, franchiseEnabled: Bool? = nil, image: [String]? = nil, onlyVerifiedProducts: Bool? = nil, outOfStock: Bool? = nil, price: InventoryPrice? = nil, store: InventoryStore? = nil) {
             
             self.brand = brand
             
@@ -370,6 +397,8 @@ public extension PlatformClient.ApplicationClient.Configuration {
             self.image = image
             
             self.companyStore = companyStore
+            
+            self.companyId = companyId
             
         }
 
@@ -508,6 +537,18 @@ public extension PlatformClient.ApplicationClient.Configuration {
                 }
                 
             
+            
+                do {
+                    companyId = try container.decode(Int.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -566,6 +607,11 @@ public extension PlatformClient.ApplicationClient.Configuration {
             
             
             try? container.encodeIfPresent(companyStore, forKey: .companyStore)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
             
             
         }

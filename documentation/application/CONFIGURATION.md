@@ -5,7 +5,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Configuration Methods
-Application configuration apis
+The Application Configuration module simplifies tasks related to configuring the app. You can use it to retrieve information about sales channels, ownership details, app-specific settings, and integration tokens. This module also offers insights into store performance, ordering options, and available modules. It allows you to access currency information, support multiple languages, and customize store cookies for a personalized user experience. Additionally, the module can retrieve the staff list.
 
 Default
 * [getApplication](#getapplication)
@@ -64,74 +64,81 @@ Success. Check the example shown below or refer `Application` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "website": {
-    "enabled": true,
-    "basepath": "/"
-  },
-  "cors": {
-    "domains": []
-  },
-  "auth": {
-    "enabled": false
-  },
-  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
-  "channel_type": "uniket",
-  "cache_ttl": -1,
-  "internal": false,
-  "is_active": true,
-  "_id": "000000000000000000000004",
-  "name": "Uniket B2B",
-  "owner": "5e71a60dc671daffd81992ea",
-  "company_id": 1,
-  "token": "iTNjY_yAI",
-  "redirections": [],
-  "meta": [],
-  "created_at": "2019-12-26T13:22:23.619Z",
-  "modified_at": "2020-12-02T05:49:41.610Z",
-  "__v": 29,
-  "banner": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
-  },
-  "logo": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-  },
-  "favicon": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
-  },
-  "domains": [
-    {
+  "value": {
+    "website": {
+      "enabled": true,
+      "basepath": "/"
+    },
+    "cors": {
+      "domains": []
+    },
+    "auth": {
+      "enabled": false
+    },
+    "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+    "channel_type": "uniket",
+    "cache_ttl": -1,
+    "internal": false,
+    "is_active": true,
+    "_id": "000000000000000000000004",
+    "name": "Uniket B2B",
+    "owner": "5e71a60dc671daffd81992ea",
+    "company_id": 1,
+    "token": "iTNjY_yAI",
+    "redirections": [],
+    "meta": [],
+    "created_at": "2019-12-26T13:22:23.619Z",
+    "modified_at": "2020-12-02T05:49:41.610Z",
+    "__v": 29,
+    "banner": {
+      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+    },
+    "logo": {
+      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    },
+    "favicon": {
+      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+    },
+    "domains": [
+      {
+        "verified": true,
+        "is_primary": true,
+        "is_shortlink": true,
+        "_id": "5eb1177748312a3bd55d0f1e",
+        "name": "uniket.hostx0.de"
+      },
+      {
+        "verified": true,
+        "is_primary": false,
+        "is_shortlink": false,
+        "_id": "5f0858c5f86e00cd42dccc8d",
+        "name": "jd.hostx0.de"
+      }
+    ],
+    "app_type": "live",
+    "mobile_logo": {
+      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    },
+    "domain": {
       "verified": true,
       "is_primary": true,
       "is_shortlink": true,
       "_id": "5eb1177748312a3bd55d0f1e",
       "name": "uniket.hostx0.de"
-    },
-    {
-      "verified": true,
-      "is_primary": false,
-      "is_shortlink": false,
-      "_id": "5f0858c5f86e00cd42dccc8d",
-      "name": "jd.hostx0.de"
     }
-  ],
-  "app_type": "live",
-  "mobile_logo": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-  },
-  "domain": {
-    "verified": true,
-    "is_primary": true,
-    "is_shortlink": true,
-    "_id": "5eb1177748312a3bd55d0f1e",
-    "name": "uniket.hostx0.de"
-  },
-  "id": "000000000000000000000004"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -177,110 +184,119 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "application_info": {
-    "domains": [
-      {
-        "verified": true,
-        "name": "uniket-testing.addsale.link",
-        "custom": false,
-        "is_primary": true
-      }
-    ],
-    "website": {
-      "enabled": true,
-      "basepath": "/"
-    },
-    "cors": {
-      "domains": []
-    },
-    "description": "R-City Mall,Ghatkoper East,Mumbai",
-    "is_active": true,
-    "_id": "5cd3db5e9d692cfe5302a7ba",
-    "name": "Shivam Clothing Store",
-    "meta": {
-      "name": "tes",
-      "value": "test"
-    },
-    "token": "xOfcP-aYE",
-    "secret": "",
-    "created_at": "2019-05-09T07:48:46.218Z",
-    "banner": {
-      "secure_url": "https://res.cloudinary.com/jkvora/image/upload/v1561551809/fqt2djkddoe2yjjlln2h.png"
-    },
-    "logo": {
-      "secure_url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1577513094/addsale/applications/app_5cd3db5e9d692cfe5302a7ba/media/store/logo/ayrkk2uzfknst2ohluzc.png"
-    },
-    "id": "5cd3db5e9d692cfe5302a7ba",
-    "company_info": {
-      "_id": "5da4274a723af4000188a66c",
-      "uid": 873,
-      "created_on": "2019-10-14T07:44:10.391Z",
+  "value": {
+    "application_info": {
+      "domains": [
+        {
+          "verified": true,
+          "name": "uniket-testing.addsale.link",
+          "custom": false,
+          "is_primary": true
+        }
+      ],
+      "website": {
+        "enabled": true,
+        "basepath": "/"
+      },
+      "cors": {
+        "domains": []
+      },
+      "description": "R-City Mall,Ghatkoper East,Mumbai",
       "is_active": true,
-      "name": "SAPPER LIFESTYLE PRIVATE LIMITED",
-      "addresses": [
+      "_id": "5cd3db5e9d692cfe5302a7ba",
+      "name": "Shivam Clothing Store",
+      "meta": [
         {
-          "pincode": 110042,
-          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
-          "city": "NEW DELHI",
-          "state": "DELHI",
-          "country": "INDIA",
-          "address_type": "registered"
-        },
-        {
-          "pincode": 110042,
-          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
-          "city": "NEW DELHI",
-          "state": "DELHI",
-          "country": "INDIA",
-          "address_type": "office"
+          "name": "tes",
+          "value": "test"
         }
       ],
-      "notification_emails": [
-        "ecom.sapperlifestyle@f2fretail.com"
-      ]
-    },
-    "owner_info": {
-      "_id": "5c77921fa1bf7d8695ed57fd",
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "abc@test.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "abc@test.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "abc@test.com"
-        }
-      ],
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "country_code": 91,
-          "phone": "9408282323"
-        }
-      ],
-      "first_name": "Jalak",
-      "last_name": "Vora",
-      "profile_pic": ""
+      "token": "xOfcP-aYE",
+      "secret": "",
+      "created_at": "2019-05-09T07:48:46.218Z",
+      "banner": {
+        "secure_url": "https://res.cloudinary.com/jkvora/image/upload/v1561551809/fqt2djkddoe2yjjlln2h.png"
+      },
+      "logo": {
+        "secure_url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1577513094/addsale/applications/app_5cd3db5e9d692cfe5302a7ba/media/store/logo/ayrkk2uzfknst2ohluzc.png"
+      },
+      "company_info": {
+        "_id": "5da4274a723af4000188a66c",
+        "uid": 873,
+        "created_on": "2019-10-14T07:44:10.391Z",
+        "is_active": true,
+        "name": "SAPPER LIFESTYLE PRIVATE LIMITED",
+        "addresses": [
+          {
+            "pincode": 110042,
+            "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
+            "city": "NEW DELHI",
+            "state": "DELHI",
+            "country": "INDIA",
+            "address_type": "registered"
+          },
+          {
+            "pincode": 110042,
+            "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
+            "city": "NEW DELHI",
+            "state": "DELHI",
+            "country": "INDIA",
+            "address_type": "office"
+          }
+        ],
+        "notification_emails": [
+          "ecom.sapperlifestyle@f2fretail.com"
+        ]
+      },
+      "owner_info": {
+        "_id": "5c77921fa1bf7d8695ed57fd",
+        "emails": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "email": "abc@test.com"
+          },
+          {
+            "active": true,
+            "primary": false,
+            "verified": true,
+            "email": "abc@test.com"
+          },
+          {
+            "active": true,
+            "primary": false,
+            "verified": true,
+            "email": "abc@test.com"
+          }
+        ],
+        "phone_numbers": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "country_code": 91,
+            "phone": "9408282323"
+          }
+        ],
+        "first_name": "Jalak",
+        "last_name": "Vora",
+        "profile_pic": ""
+      }
     }
   }
 }
 ```
+</details>
+
 </details>
 
 
@@ -326,51 +342,59 @@ Success. Check the example shown below or refer `ApplicationDetail` for more det
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "name": "Uniket B2B",
-  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
-  "logo": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-  },
-  "mobile_logo": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-  },
-  "favicon": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
-  },
-  "banner": {
-    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
-  },
-  "domain": {
-    "verified": true,
-    "is_primary": true,
-    "is_shortlink": false,
-    "_id": "5eb1177748312a3bd55d0f1e",
-    "name": "uniket.hostx0.de"
-  },
-  "domains": [
-    {
+  "value": {
+    "name": "Uniket B2B",
+    "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+    "logo": {
+      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    },
+    "mobile_logo": {
+      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    },
+    "favicon": {
+      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+    },
+    "banner": {
+      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+    },
+    "domain": {
       "verified": true,
       "is_primary": true,
       "is_shortlink": false,
       "_id": "5eb1177748312a3bd55d0f1e",
       "name": "uniket.hostx0.de"
     },
-    {
-      "verified": true,
-      "is_primary": false,
-      "is_shortlink": true,
-      "_id": "5f0858c5f86e00cd42dccc8d",
-      "name": "jd.hostx0.de"
-    }
-  ],
-  "company_id": 1,
-  "_id": "000000000000000000000004"
+    "domains": [
+      {
+        "verified": true,
+        "is_primary": true,
+        "is_shortlink": false,
+        "_id": "5eb1177748312a3bd55d0f1e",
+        "name": "uniket.hostx0.de"
+      },
+      {
+        "verified": true,
+        "is_primary": false,
+        "is_shortlink": true,
+        "_id": "5f0858c5f86e00cd42dccc8d",
+        "name": "jd.hostx0.de"
+      }
+    ],
+    "company_id": 1,
+    "_id": "000000000000000000000004"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -416,80 +440,88 @@ Success. Check the example shown below or refer `AppTokenResponse` for more deta
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "tokens": {
-    "firebase": {
-      "credentials": {
-        "project_id": "",
-        "gcm_sender_id": "",
-        "application_id": "",
-        "api_key": ""
+  "value": {
+    "tokens": {
+      "firebase": {
+        "credentials": {
+          "project_id": "",
+          "gcm_sender_id": "",
+          "application_id": "",
+          "api_key": ""
+        },
+        "enabled": false
       },
-      "enabled": false
-    },
-    "moengage": {
-      "credentials": {
-        "app_id": ""
+      "moengage": {
+        "credentials": {
+          "app_id": ""
+        },
+        "enabled": false
       },
-      "enabled": false
-    },
-    "segment": {
-      "credentials": {
-        "write_key": "U2FsdGVkX18E920z+xtaD+GnGWoK/5SNxu61phXf6/o="
+      "segment": {
+        "credentials": {
+          "write_key": "U2FsdGVkX18E920z+xtaD+GnGWoK/5SNxu61phXf6/o="
+        },
+        "enabled": false
       },
-      "enabled": false
-    },
-    "gtm": {
-      "credentials": {
-        "api_key": ""
+      "gtm": {
+        "credentials": {
+          "api_key": ""
+        },
+        "enabled": false
       },
-      "enabled": false
-    },
-    "freshchat": {
-      "credentials": {
-        "app_id": "U2FsdGVkX19+Egjfy8alIB4S+n2IQEXz2X4yxzimxbGzq9M5+iFsvGjrBAyQrDZ/iIXgWQyWOFRHmf9xhFGajQ==",
-        "app_key": "U2FsdGVkX18OydYSvUBRKJDsLD1KCcwK6+jJVGma4Ck2PVwOv6BW5vyiM2sZ4kEpHbRV38KBPZPqlx3EfZd6mw=="
+      "freshchat": {
+        "credentials": {
+          "app_id": "U2FsdGVkX19+Egjfy8alIB4S+n2IQEXz2X4yxzimxbGzq9M5+iFsvGjrBAyQrDZ/iIXgWQyWOFRHmf9xhFGajQ==",
+          "app_key": "U2FsdGVkX18OydYSvUBRKJDsLD1KCcwK6+jJVGma4Ck2PVwOv6BW5vyiM2sZ4kEpHbRV38KBPZPqlx3EfZd6mw=="
+        },
+        "enabled": true
       },
-      "enabled": true
-    },
-    "safetynet": {
-      "credentials": {
-        "api_key": "U2FsdGVkX1/Ex0BXvB16B81dwWIfVK8LPwexMMbVC3/nB9Y5n4stcnOMUCDalDs8Z92MecOQKydWg+E17QfZ4Q=="
+      "safetynet": {
+        "credentials": {
+          "api_key": "U2FsdGVkX1/Ex0BXvB16B81dwWIfVK8LPwexMMbVC3/nB9Y5n4stcnOMUCDalDs8Z92MecOQKydWg+E17QfZ4Q=="
+        },
+        "enabled": true
       },
-      "enabled": true
-    },
-    "fynd_rewards": {
-      "credentials": {
-        "public_key": "U2FsdGVkX1/C7x0hybxKPpWSMYBEKukQCVjnm7wfW3lrTJPmcr06xvLzVatPQJTKXeXvay0rdvcXuHlp8n/VAX7v9Usobmp1znadnPWt07GOvq5aPK9zDlg05tb+TX8Wx0q2rVonRK0Q6ZyMcn6Oy+Z812TpRAlcU1AmSrDtl/PMjuH1rSRTxKJLD0HzXk9zPl2M6GOKmgzjpHD4ZmtRSfJmm/h+qbZZ4AuD9upTbJzDm/pcp4S4cYu9rSV31JpOtAkrCxZFzCT8seWKa2eU8VdleRltwF5DO1x8Pny/hKNmhrUqxdkevY6lm4aEQjThA/EeBv1UPq52EFDteXLsZ6yBXyNAxcFNuPupour+K8hi0nfgbd/fsFqu5NUBOwz0hsqQh9OsTGt7SdiIyMSQgCttphaqhBbJ926UlG9d/O1W1u+i9rn7pECcH1eyUYlsNbYqghciz9pTrfRdqA8AIa2j7H/3Lxq37arxZCIDlTgl+Kk/8QUTsTefk+seGZsyiDyIkxW+FcmHBZLr3y85ST23szWSnyweV2hQHtPWnCE="
+      "fynd_rewards": {
+        "credentials": {
+          "public_key": "U2FsdGVkX1/C7x0hybxKPpWSMYBEKukQCVjnm7wfW3lrTJPmcr06xvLzVatPQJTKXeXvay0rdvcXuHlp8n/VAX7v9Usobmp1znadnPWt07GOvq5aPK9zDlg05tb+TX8Wx0q2rVonRK0Q6ZyMcn6Oy+Z812TpRAlcU1AmSrDtl/PMjuH1rSRTxKJLD0HzXk9zPl2M6GOKmgzjpHD4ZmtRSfJmm/h+qbZZ4AuD9upTbJzDm/pcp4S4cYu9rSV31JpOtAkrCxZFzCT8seWKa2eU8VdleRltwF5DO1x8Pny/hKNmhrUqxdkevY6lm4aEQjThA/EeBv1UPq52EFDteXLsZ6yBXyNAxcFNuPupour+K8hi0nfgbd/fsFqu5NUBOwz0hsqQh9OsTGt7SdiIyMSQgCttphaqhBbJ926UlG9d/O1W1u+i9rn7pECcH1eyUYlsNbYqghciz9pTrfRdqA8AIa2j7H/3Lxq37arxZCIDlTgl+Kk/8QUTsTefk+seGZsyiDyIkxW+FcmHBZLr3y85ST23szWSnyweV2hQHtPWnCE="
+        }
+      },
+      "auth": {
+        "google": {
+          "app_id": "U2FsdGVkX19ZkUS8HAnz17Sbcixaj0N4xDcaxztzAPdkxsc2i56kuEL+hVDv5z47HjiY4jOFN0zd5HbO9vf5/adwr6L8QQVEmz1BEEGEze13a5PgONGZlfQkxeuQLBT9"
+        },
+        "facebook": {
+          "app_id": "U2FsdGVkX1/kPjoWmEvESc276Ect4VZmAFVTkQKKjsxgk6LXWjj73vPrBsnJyPpR"
+        },
+        "accountkit": {
+          "app_id": ""
+        }
+      },
+      "google_map": {
+        "credentials": {
+          "api_key": "U2FsdGVkX1+5tBH/3lREPiDwVukCS/Q2ftu/CYD9RdLYK8hGO/XJfrs2zpoGDKCJBhgTDRESItRKR7Lt/w+zeQ=="
+        }
       }
     },
-    "auth": {
-      "google": {
-        "app_id": "U2FsdGVkX19ZkUS8HAnz17Sbcixaj0N4xDcaxztzAPdkxsc2i56kuEL+hVDv5z47HjiY4jOFN0zd5HbO9vf5/adwr6L8QQVEmz1BEEGEze13a5PgONGZlfQkxeuQLBT9"
-      },
-      "facebook": {
-        "app_id": "U2FsdGVkX1/kPjoWmEvESc276Ect4VZmAFVTkQKKjsxgk6LXWjj73vPrBsnJyPpR"
-      },
-      "accountkit": {
-        "app_id": ""
-      }
-    },
-    "google_map": {
-      "credentials": {
-        "api_key": "U2FsdGVkX1+5tBH/3lREPiDwVukCS/Q2ftu/CYD9RdLYK8hGO/XJfrs2zpoGDKCJBhgTDRESItRKR7Lt/w+zeQ=="
-      }
-    }
-  },
-  "_id": "5e285cb1df7e5b1421d5f840",
-  "application": "000000000000000000000004",
-  "created_at": "2020-01-22T14:31:13.192Z",
-  "modified_at": "2020-05-01T04:14:42.117Z",
-  "__v": 0
+    "_id": "5e285cb1df7e5b1421d5f840",
+    "application": "000000000000000000000004",
+    "created_at": "2020-01-22T14:31:13.192Z",
+    "modified_at": "2020-05-01T04:14:42.117Z",
+    "__v": 0
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -542,11 +574,25 @@ Success. Check the example shown below or refer `OrderingStores` for more detail
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "items": [
+      {
+        "uid": 1
+      }
+    ]
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -597,19 +643,27 @@ Success. Check the example shown below or refer `OrderingStore` for more details
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "uid": 1060,
-  "name": "THE MANDHANA PARK KAMLANAGAR DELHI",
-  "pincode": 110007,
-  "store_code": "MRVLB22",
-  "code": "MRVLB22",
-  "display_name": "Kamla Nagar",
-  "store_type": "mall"
+  "value": {
+    "uid": 1,
+    "name": "THE MANDHANA PARK KAMLANAGAR DELHI",
+    "pincode": 110007,
+    "store_code": "MRVLB22",
+    "code": "MRVLB22",
+    "display_name": "Kamla Nagar",
+    "store_type": "mall"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -655,106 +709,114 @@ Success. Check the example shown below or refer `AppFeatureResponse` for more de
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "feature": {
-    "product_detail": {
-      "similar": [
-        "basic",
-        "visual",
-        "brand",
-        "category",
-        "seller",
-        "price",
-        "specs"
-      ],
-      "seller_selection": true,
-      "update_product_meta": true,
-      "request_product": true
-    },
-    "landing_page": {
-      "launch_page": {
-        "page_type": "home",
-        "params": {},
-        "query": {}
-      },
-      "continue_as_guest": true,
-      "login_btn_text": "Click here to sign-in",
-      "show_domain_textbox": true,
-      "show_register_btn": true
-    },
-    "registration_page": {
-      "ask_store_address": false
-    },
-    "home_page": {
-      "order_processing": true
-    },
-    "common": {
-      "communication_optin_dialog": {
-        "visibility": true
-      },
-      "deployment_store_selection": {
-        "enabled": true,
-        "type": "hard"
-      },
-      "listing_price": {
-        "value": "min",
-        "sort": "min"
-      },
-      "currency": {
-        "value": [
-          "INR"
+  "value": {
+    "feature": {
+      "product_detail": {
+        "similar": [
+          "basic",
+          "visual",
+          "brand",
+          "category",
+          "seller",
+          "price",
+          "specs"
         ],
-        "type": "explicit",
-        "default_currency": "INR"
+        "seller_selection": true,
+        "update_product_meta": true,
+        "request_product": true
       },
-      "revenue_engine": {
-        "enabled": false
+      "landing_page": {
+        "launch_page": {
+          "page_type": "home",
+          "params": {},
+          "query": {}
+        },
+        "continue_as_guest": true,
+        "login_btn_text": "Click here to sign-in",
+        "show_domain_textbox": true,
+        "show_register_btn": true
       },
-      "feedback": {
-        "enabled": true
+      "registration_page": {
+        "ask_store_address": false
       },
-      "compare_products": {
-        "enabled": true
+      "home_page": {
+        "order_processing": true
       },
-      "reward_points": {
-        "credit": {
+      "common": {
+        "communication_optin_dialog": {
+          "visibility": true
+        },
+        "deployment_store_selection": {
+          "enabled": true,
+          "type": "hard"
+        },
+        "listing_price": {
+          "value": "min",
+          "sort": "min"
+        },
+        "currency": {
+          "value": [
+            "INR"
+          ],
+          "type": "explicit",
+          "default_currency": "INR"
+        },
+        "revenue_engine": {
+          "enabled": false
+        },
+        "feedback": {
           "enabled": true
         },
-        "debit": {
-          "enabled": true,
-          "auto_apply": false,
-          "strategy_channel": "REWARDS"
+        "compare_products": {
+          "enabled": true
+        },
+        "reward_points": {
+          "credit": {
+            "enabled": true
+          },
+          "debit": {
+            "enabled": true,
+            "auto_apply": false,
+            "strategy_channel": "REWARDS"
+          }
         }
-      }
-    },
-    "cart": {
-      "gst_input": true,
-      "staff_selection": true,
-      "placing_for_customer": true,
-      "google_map": true
-    },
-    "qr": {
-      "application": true,
-      "products": true,
-      "collections": true
-    },
-    "pcr": {
-      "staff_selection": true
-    },
-    "order": {
-      "buy_again": true
-    },
-    "_id": "5e57643c986e4119c973df7d",
-    "app": "000000000000000000000004",
-    "created_at": "2020-02-27T06:39:56.088Z",
-    "modified_at": "2021-02-02T11:04:14.289Z",
-    "__v": 1
+      },
+      "cart": {
+        "gst_input": true,
+        "staff_selection": true,
+        "placing_for_customer": true,
+        "google_map": true
+      },
+      "qr": {
+        "application": true,
+        "products": true,
+        "collections": true
+      },
+      "pcr": {
+        "staff_selection": true
+      },
+      "order": {
+        "buy_again": true
+      },
+      "_id": "5e57643c986e4119c973df7d",
+      "app": "000000000000000000000004",
+      "created_at": "2020-02-27T06:39:56.088Z",
+      "modified_at": "2021-02-02T11:04:14.289Z",
+      "__v": 1
+    }
   }
 }
 ```
+</details>
+
 </details>
 
 
@@ -800,13 +862,17 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
   "value": {
     "address": {
-      "loc": null,
+      "loc": {},
       "address_line": [
         "Warehouse 5, Near Industrial Complex",
         "2nd Lane, Andheri"
@@ -896,7 +962,7 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
     "business_highlights": [
       {
         "_id": "5fc901611dfba6c2e87d1ca9",
-        "title": "100% Genuine Products",
+        "title": "Most Genuine Products",
         "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
         "sub_title": "Directly from brands"
       },
@@ -920,6 +986,8 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
   }
 }
 ```
+</details>
+
 </details>
 
 
@@ -965,24 +1033,32 @@ Success. Check the example shown below or refer `CurrenciesResponse` for more de
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "items": [
-    {
-      "_id": "5ec75d11f7bfb54d798f3516",
-      "is_active": true,
-      "name": "United States Dollar",
-      "code": "USD",
-      "created_at": "2020-05-22T05:03:13.354Z",
-      "modified_at": "2020-06-05T09:12:04.248Z",
-      "decimal_digits": 2,
-      "symbol": "$"
-    }
-  ]
+  "value": {
+    "items": [
+      {
+        "_id": "5ec75d11f7bfb54d798f3516",
+        "is_active": true,
+        "name": "United States Dollar",
+        "code": "USD",
+        "created_at": "2020-05-22T05:03:13.354Z",
+        "modified_at": "2020-06-05T09:12:04.248Z",
+        "decimal_digits": 2,
+        "symbol": "$"
+      }
+    ]
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1033,20 +1109,28 @@ Success. Check the example shown below or refer `Currency` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "_id": "5ec75d11f7bfb501d88f3559",
-  "is_active": true,
-  "name": "Gold Ounce",
-  "code": "XAU",
-  "created_at": "2020-05-22T05:03:13.429Z",
-  "modified_at": "2020-06-05T09:12:04.248Z",
-  "decimal_digits": 1,
-  "symbol": ""
+  "value": {
+    "_id": "5ec75d11f7bfb501d88f3559",
+    "is_active": true,
+    "name": "Gold Ounce",
+    "code": "XAU",
+    "created_at": "2020-05-22T05:03:13.429Z",
+    "modified_at": "2020-06-05T09:12:04.248Z",
+    "decimal_digits": 1,
+    "symbol": ""
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1092,29 +1176,37 @@ Success. Check the example shown below or refer `AppCurrencyResponse` for more d
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "application": "000000000000000000000001",
-  "default_currency": {
-    "ref": "5ecf6122d953d4242c044907",
-    "code": "INR"
-  },
-  "supported_currency": [
-    {
-      "_id": "5ecf6122d953d4242c044907",
-      "is_active": true,
-      "name": "Indian Rupee",
-      "code": "INR",
-      "decimal_digits": 2,
-      "symbol": "₹",
-      "created_at": "2020-05-28T06:58:42.532Z",
-      "modified_at": "2021-04-05T16:44:14.358Z"
-    }
-  ]
+  "value": {
+    "application": "000000000000000000000001",
+    "default_currency": {
+      "ref": "5ecf6122d953d4242c044907",
+      "code": "INR"
+    },
+    "supported_currency": [
+      {
+        "_id": "5ecf6122d953d4242c044907",
+        "is_active": true,
+        "name": "Indian Rupee",
+        "code": "INR",
+        "decimal_digits": 2,
+        "symbol": "₹",
+        "created_at": "2020-05-28T06:58:42.532Z",
+        "modified_at": "2021-04-05T16:44:14.358Z"
+      }
+    ]
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1160,26 +1252,34 @@ Success. Check the example shown below or refer `LanguageResponse` for more deta
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "items": [
-    {
-      "name": "हिन्दी",
-      "code": "hi-IN"
-    },
-    {
-      "name": "English",
-      "code": "en-IN"
-    },
-    {
-      "name": "عربى",
-      "code": "ar-AE"
-    }
-  ]
+  "value": {
+    "items": [
+      {
+        "name": "हिन्दी",
+        "code": "hi-IN"
+      },
+      {
+        "name": "English",
+        "code": "en-IN"
+      },
+      {
+        "name": "عربى",
+        "code": "ar-AE"
+      }
+    ]
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1229,13 +1329,21 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "message": "success"
+  "value": {
+    "message": "success"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1281,13 +1389,21 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
 {
-  "message": "success"
+  "value": {
+    "message": "success"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1343,11 +1459,25 @@ Success. Check the example shown below or refer `AppStaffListResponse` for more 
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "items": [
+      {
+        "_id": "5e6b6ae7d450b1219ffdf3b2"
+      }
+    ]
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -1400,11 +1530,25 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "staff_users": [
+      {
+        "_id": "5e6b6ae7d450b1219ffdf3b2"
+      }
+    ]
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -1429,8 +1573,6 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | applicationInfo | [ApplicationInfo](#ApplicationInfo)? |  yes  |  |
- | companyInfo | [CompanyInfo](#CompanyInfo)? |  yes  |  |
- | ownerInfo | [OwnerInfo](#OwnerInfo)? |  yes  |  |
 
 ---
 
@@ -1441,19 +1583,27 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | companyInfo | [CompanyInfo](#CompanyInfo)? |  yes  |  |
+ | ownerInfo | [OwnerInfo](#OwnerInfo)? |  yes  |  |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of application information |
  | domain | [Domain](#Domain)? |  yes  |  |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
  | description | String? |  yes  | It contains details information about the sales channel |
  | name | String? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
- | meta | [ApplicationMeta](#ApplicationMeta)? |  yes  |  |
+ | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
  | token | String? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
  | secret | String? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
  | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel information creation |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | isActive | Bool? |  yes  | Indicates whether sales channel is active or not active |
+ | mode | String? |  yes  |  |
+ | tokens | [[TokenSchema](#TokenSchema)]? |  yes  |  |
+ | domains | [[Domain](#Domain)]? |  yes  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | slug | String? |  yes  |  |
 
 ---
 
@@ -1589,7 +1739,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) of the token |
  | application | String? |  yes  | Alphanumeric ID allotted to the current application created within the current business account |
  | createdAt | String? |  yes  | ISO 8601 timestamp of token creation |
- | updatedAt | String? |  yes  | ISO 8601 timestamp of token updation |
+ | modifiedAt | String? |  yes  | ISO 8601 timestamp of token updation |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
@@ -1933,7 +2083,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel features |
  | app | String? |  yes  | Application ID of the sales channel |
  | createdAt | String? |  yes  | ISO 8601 timestamp showing the date when the features were configured |
- | updatedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the sales channel feature configuration |
+ | modifiedAt | String? |  yes  | ISO 8601 timestamp of last known modifications to the sales channel feature configuration |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero |
 
 ---
@@ -1964,6 +2114,19 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | feedback | [FeedbackFeature](#FeedbackFeature)? |  yes  |  |
  | compareProducts | [CompareProductsFeature](#CompareProductsFeature)? |  yes  |  |
  | rewardPoints | [RewardPointsConfig](#RewardPointsConfig)? |  yes  |  |
+ | listingPage | [ListingPageFeature](#ListingPageFeature)? |  yes  |  |
+ | internationalShipping | [InternationalShipping](#InternationalShipping)? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InternationalShipping](#InternationalShipping)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | Bool? |  yes  | International shipping is enabled or not. |
 
 ---
 
@@ -1999,6 +2162,17 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | ---------- | ---- | -------- | ----------- |
  | value | String? |  yes  | Shows which price to display on PLP if one product has multiple prices (for each size), valid values are 'min', 'max', 'range'. Default value is range. |
  | sort | String? |  yes  | Sorting of listing price with min or max value. Default value is min. |
+
+---
+
+
+ 
+ 
+ #### [ListingPageFeature](#ListingPageFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sortOn | String? |  yes  |  |
 
 ---
 
@@ -2121,9 +2295,11 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | name | String? |  yes  | Name of the currency, e.g Indian Rupee |
  | code | String? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
  | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency creation |
- | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
+ | modifiedAt | String? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
  | decimalDigits | Int? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
  | symbol | String? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
+ | countryName | String? |  yes  |  |
+ | countryCode | String? |  yes  |  |
 
 ---
 
@@ -2236,7 +2412,7 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
  | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
  | createdAt | String? |  yes  | ISO 8601 timestamp of sales channel creation |
- | updatedAt | String? |  yes  | ISO 8601 timestamp of sales channel updation |
+ | modifiedAt | String? |  yes  | ISO 8601 timestamp of sales channel updation |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
@@ -2245,6 +2421,23 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | appType | String? |  yes  | It shows application is live or in development mode. |
  | mobileLogo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | domain | [Domain](#Domain)? |  yes  |  |
+ | slug | String? |  yes  |  |
+ | mode | String? |  yes  |  |
+ | status | String? |  yes  |  |
+ | tokens | [[TokenSchema](#TokenSchema)]? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [TokenSchema](#TokenSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | token | String? |  yes  |  |
+ | createdBy | [String: Any]? |  yes  |  |
+ | createdAt | String? |  yes  | ISO 8601 timestamp of when token created |
 
 ---
 
@@ -2256,6 +2449,17 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | String? |  yes  | Response message for not found |
+
+---
+
+
+ 
+ 
+ #### [InvalidPayloadRequest](#InvalidPayloadRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | String? |  yes  | Error message when request body payload is improper |
 
 ---
 
@@ -2354,13 +2558,13 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | address | [InformationAddress](#InformationAddress)? |  yes  |  |
  | support | [InformationSupport](#InformationSupport)? |  yes  |  |
  | socialLinks | [SocialLinks](#SocialLinks)? |  yes  |  |
- | links | [Links](#Links)? |  yes  |  |
+ | links | [[Links](#Links)]? |  yes  |  |
  | copyrightText | String? |  yes  | Copyright statement usually seen at the site's footer |
  | id | String? |  yes  | Unique identifier (24-digit Mongo Object ID) of the application information |
- | businessHighlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
+ | businessHighlights | [[BusinessHighlights](#BusinessHighlights)]? |  yes  |  |
  | application | String? |  yes  | Alphanumeric ID allotted to a sales channel application created within a business account |
  | createdAt | String? |  yes  | ISO 8601 timestamp of creation of the application information |
- | updatedAt | String? |  yes  | ISO 8601 timestamp of updation of the application information |
+ | modifiedAt | String? |  yes  | ISO 8601 timestamp of updation of the application information |
  | v | Int? |  yes  | Version key for tracking revisions. Default value is zero. |
 
 ---
@@ -2372,9 +2576,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | loc | String? |  yes  | Co-ordinates of the location |
+ | loc | [InformationLoc](#InformationLoc)? |  yes  |  |
  | addressLine | [String]? |  yes  | Contact address of the sales channel |
- | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
+ | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
  | city | String? |  yes  | Name of the city, e.g. Mumbai |
  | country | String? |  yes  | Name of the country, e.g. India |
  | pincode | Int? |  yes  | 6-digit PIN Code of the city, e.g. 400001 |
@@ -2396,12 +2600,49 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
  
  
+ #### [InformationSupportPhone](#InformationSupportPhone)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | String? |  yes  | Country code for contact number, e.g. +91 (for India) |
+ | number | String? |  yes  | 10-digit mobile number |
+ | key | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InformationSupportEmail](#InformationSupportEmail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | String? |  yes  | Value of email. |
+ | key | String? |  yes  |  |
+
+---
+
+
+ 
+ 
+ #### [InformationLoc](#InformationLoc)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | type | String? |  yes  | Country code for contact number, e.g. +91 (for India) |
+ | coordinates | [Int]? |  yes  | 10-digit mobile number |
+
+---
+
+
+ 
+ 
  #### [InformationSupport](#InformationSupport)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | phone | [String]? |  yes  |  |
- | email | [String]? |  yes  |  |
+ | phone | [[InformationSupportPhone](#InformationSupportPhone)]? |  yes  |  |
+ | email | [[InformationSupportEmail](#InformationSupportEmail)]? |  yes  |  |
  | timing | String? |  yes  | Working hours of support team, e.g. 9 AM to 9 PM |
 
 ---
@@ -2584,6 +2825,8 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
  | id | String? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |
+ | slug | String? |  yes  |  |
+ | companyId | Int? |  yes  |  |
 
 ---
 
@@ -2620,6 +2863,9 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
  | application | String? |  yes  | Alphanumeric ID allotted to an application (sales channel website) created within a business account |
  | defaultCurrency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
  | supportedCurrency | [[Currency](#Currency)]? |  yes  |  |
+ | id | String? |  yes  |  |
+ | createdAt | String? |  yes  |  |
+ | modifiedAt | String? |  yes  |  |
 
 ---
 

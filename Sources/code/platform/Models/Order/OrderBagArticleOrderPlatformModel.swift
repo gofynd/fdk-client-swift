@@ -14,7 +14,7 @@ public extension PlatformClient.Order {
         
         public var identifiers: [String: Any]?
         
-        public var returnConfig: ReturnConfig1?
+        public var returnConfig: ReturnConfig?
         
         public var uid: String?
         
@@ -33,7 +33,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, size: String? = nil, uid: String? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, uid: String? = nil) {
             
             self.identifiers = identifiers
             
@@ -62,7 +62,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    returnConfig = try container.decode(ReturnConfig1.self, forKey: .returnConfig)
+                    returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -139,7 +139,7 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var identifiers: [String: Any]?
         
-        public var returnConfig: ReturnConfig1?
+        public var returnConfig: ReturnConfig?
         
         public var uid: String?
         
@@ -158,7 +158,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig1? = nil, size: String? = nil, uid: String? = nil) {
+        public init(identifiers: [String: Any]? = nil, returnConfig: ReturnConfig? = nil, size: String? = nil, uid: String? = nil) {
             
             self.identifiers = identifiers
             
@@ -187,7 +187,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    returnConfig = try container.decode(ReturnConfig1.self, forKey: .returnConfig)
+                    returnConfig = try container.decode(ReturnConfig.self, forKey: .returnConfig)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

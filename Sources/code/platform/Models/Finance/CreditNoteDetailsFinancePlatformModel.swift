@@ -18,7 +18,7 @@ public extension PlatformClient.Finance {
         
         public var cnReferenceNumber: String?
         
-        public var cnDetails: [String: Any]?
+        public var cnDetails: CnDetails?
         
         public var redemptionDetails: [RedemptionDetails]?
         
@@ -49,7 +49,7 @@ public extension PlatformClient.Finance {
             
         }
 
-        public init(availableCnBalance: Int? = nil, cnAmount: Int? = nil, cnDetails: [String: Any]? = nil, cnReferenceNumber: String? = nil, cnStatus: String? = nil, customerMobileNumber: String? = nil, redemptionDetails: [RedemptionDetails]? = nil, remainingCnAmount: Int? = nil) {
+        public init(availableCnBalance: Int? = nil, cnAmount: Int? = nil, cnDetails: CnDetails? = nil, cnReferenceNumber: String? = nil, cnStatus: String? = nil, customerMobileNumber: String? = nil, redemptionDetails: [RedemptionDetails]? = nil, remainingCnAmount: Int? = nil) {
             
             self.cnStatus = cnStatus
             
@@ -110,7 +110,7 @@ public extension PlatformClient.Finance {
             
             
                 do {
-                    cnDetails = try container.decode([String: Any].self, forKey: .cnDetails)
+                    cnDetails = try container.decode(CnDetails.self, forKey: .cnDetails)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)

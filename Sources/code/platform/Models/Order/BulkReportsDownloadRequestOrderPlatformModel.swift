@@ -20,9 +20,9 @@ public extension PlatformClient.Order {
         
         public var reportType: String?
         
-        public var fromDate: String?
+        public var startDate: String?
         
-        public var toDate: String?
+        public var endDate: String?
         
         public var entities: [String]?
         
@@ -43,9 +43,9 @@ public extension PlatformClient.Order {
             
             case reportType = "report_type"
             
-            case fromDate = "from_date"
+            case startDate = "start_date"
             
-            case toDate = "to_date"
+            case endDate = "end_date"
             
             case entities = "entities"
             
@@ -57,7 +57,7 @@ public extension PlatformClient.Order {
             
         }
 
-        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: String? = nil, entities: [String]? = nil, filterType: String? = nil, fromDate: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, storeIds: [String]? = nil, toDate: String? = nil) {
+        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: String? = nil, endDate: String? = nil, entities: [String]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
             
             self.storeIds = storeIds
             
@@ -67,9 +67,9 @@ public extension PlatformClient.Order {
             
             self.reportType = reportType
             
-            self.fromDate = fromDate
+            self.startDate = startDate
             
-            self.toDate = toDate
+            self.endDate = endDate
             
             self.entities = entities
             
@@ -134,7 +134,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    fromDate = try container.decode(String.self, forKey: .fromDate)
+                    startDate = try container.decode(String.self, forKey: .startDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -146,7 +146,7 @@ public extension PlatformClient.Order {
             
             
                 do {
-                    toDate = try container.decode(String.self, forKey: .toDate)
+                    endDate = try container.decode(String.self, forKey: .endDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -231,12 +231,12 @@ public extension PlatformClient.Order {
             
             
             
-            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
             
             
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
             
             
             
@@ -283,9 +283,9 @@ public extension PlatformClient.ApplicationClient.Order {
         
         public var reportType: String?
         
-        public var fromDate: String?
+        public var startDate: String?
         
-        public var toDate: String?
+        public var endDate: String?
         
         public var entities: [String]?
         
@@ -306,9 +306,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             case reportType = "report_type"
             
-            case fromDate = "from_date"
+            case startDate = "start_date"
             
-            case toDate = "to_date"
+            case endDate = "end_date"
             
             case entities = "entities"
             
@@ -320,7 +320,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
         }
 
-        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: String? = nil, entities: [String]? = nil, filterType: String? = nil, fromDate: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, storeIds: [String]? = nil, toDate: String? = nil) {
+        public init(customFiltersForLane: [String: Any]? = nil, customHeaders: String? = nil, endDate: String? = nil, entities: [String]? = nil, filterType: String? = nil, isCrossCompanyEnabled: Bool? = nil, laneType: String? = nil, reportType: String? = nil, startDate: String? = nil, storeIds: [String]? = nil) {
             
             self.storeIds = storeIds
             
@@ -330,9 +330,9 @@ public extension PlatformClient.ApplicationClient.Order {
             
             self.reportType = reportType
             
-            self.fromDate = fromDate
+            self.startDate = startDate
             
-            self.toDate = toDate
+            self.endDate = endDate
             
             self.entities = entities
             
@@ -397,7 +397,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    fromDate = try container.decode(String.self, forKey: .fromDate)
+                    startDate = try container.decode(String.self, forKey: .startDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -409,7 +409,7 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
                 do {
-                    toDate = try container.decode(String.self, forKey: .toDate)
+                    endDate = try container.decode(String.self, forKey: .endDate)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -494,12 +494,12 @@ public extension PlatformClient.ApplicationClient.Order {
             
             
             
-            try? container.encodeIfPresent(fromDate, forKey: .fromDate)
+            try? container.encodeIfPresent(startDate, forKey: .startDate)
             
             
             
             
-            try? container.encodeIfPresent(toDate, forKey: .toDate)
+            try? container.encodeIfPresent(endDate, forKey: .endDate)
             
             
             

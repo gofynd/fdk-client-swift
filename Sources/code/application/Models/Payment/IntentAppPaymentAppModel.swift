@@ -109,7 +109,7 @@ public extension ApplicationClient.Payment {
             
             
             
-            try? container.encode(logos, forKey: .logos)
+            try? container.encodeIfPresent(logos, forKey: .logos)
             
             
             

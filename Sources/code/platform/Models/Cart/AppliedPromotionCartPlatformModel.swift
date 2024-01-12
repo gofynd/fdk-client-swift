@@ -18,6 +18,8 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var ownership: Ownership2?
         
+        public var currency: CartCurrency?
+        
         public var discountRules: [DiscountRulesApp]?
         
         public var appliedFreeArticles: [AppliedFreeArticles]?
@@ -38,16 +40,14 @@ public extension PlatformClient.ApplicationClient.Cart {
         
         public var promoId: String?
         
-        public var meta: [String: Any]?
-        
-        public var code: String?
-        
 
         public enum CodingKeys: String, CodingKey {
             
             case articleQuantity = "article_quantity"
             
             case ownership = "ownership"
+            
+            case currency = "currency"
             
             case discountRules = "discount_rules"
             
@@ -69,17 +69,15 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             case promoId = "promo_id"
             
-            case meta = "meta"
-            
-            case code = "code"
-            
         }
 
-        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, code: String? = nil, discountRules: [DiscountRulesApp]? = nil, meta: [String: Any]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
+        public init(amount: Double? = nil, appliedFreeArticles: [AppliedFreeArticles]? = nil, articleQuantity: Int? = nil, buyRules: [BuyRules]? = nil, currency: CartCurrency? = nil, discountRules: [DiscountRulesApp]? = nil, mrpPromotion: Bool? = nil, offerText: String? = nil, ownership: Ownership2? = nil, promotionGroup: String? = nil, promotionName: String? = nil, promotionType: String? = nil, promoId: String? = nil) {
             
             self.articleQuantity = articleQuantity
             
             self.ownership = ownership
+            
+            self.currency = currency
             
             self.discountRules = discountRules
             
@@ -101,10 +99,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             self.promoId = promoId
             
-            self.meta = meta
-            
-            self.code = code
-            
         }
 
         required public init(from decoder: Decoder) throws {
@@ -125,6 +119,18 @@ public extension PlatformClient.ApplicationClient.Cart {
             
                 do {
                     ownership = try container.decode(Ownership2.self, forKey: .ownership)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    currency = try container.decode(CartCurrency.self, forKey: .currency)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -254,30 +260,6 @@ public extension PlatformClient.ApplicationClient.Cart {
                 }
                 
             
-            
-                do {
-                    meta = try container.decode([String: Any].self, forKey: .meta)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
-            
-                do {
-                    code = try container.decode(String.self, forKey: .code)
-                
-                } catch DecodingError.typeMismatch(let type, let context) {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    
-                }
-                
-            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -291,6 +273,11 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(ownership, forKey: .ownership)
+            
+            
+            
+            
+            try? container.encodeIfPresent(currency, forKey: .currency)
             
             
             
@@ -341,16 +328,6 @@ public extension PlatformClient.ApplicationClient.Cart {
             
             
             try? container.encodeIfPresent(promoId, forKey: .promoId)
-            
-            
-            
-            
-            try? container.encodeIfPresent(meta, forKey: .meta)
-            
-            
-            
-            
-            try? container.encode(code, forKey: .code)
             
             
         }

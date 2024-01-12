@@ -28,7 +28,7 @@ public extension PlatformClient.Theme {
         
         public var marketplaceThemeId: String?
         
-        public var meta: Meta?
+        public var meta: ThemeMeta?
         
         public var name: String?
         
@@ -45,6 +45,12 @@ public extension PlatformClient.Theme {
         public var assets: Assets?
         
         public var availableSections: [SectionItem]?
+        
+        public var themeType: String?
+        
+        public var companyId: Double?
+        
+        public var src: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -83,9 +89,15 @@ public extension PlatformClient.Theme {
             
             case availableSections = "available_sections"
             
+            case themeType = "theme_type"
+            
+            case companyId = "company_id"
+            
+            case src = "src"
+            
         }
 
-        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: Meta? = nil, name: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, companyId: Double? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: ThemeMeta? = nil, name: String? = nil, src: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, themeType: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
             
             self.font = font
             
@@ -120,6 +132,12 @@ public extension PlatformClient.Theme {
             self.assets = assets
             
             self.availableSections = availableSections
+            
+            self.themeType = themeType
+            
+            self.companyId = companyId
+            
+            self.src = src
             
         }
 
@@ -224,7 +242,7 @@ public extension PlatformClient.Theme {
             
             
                 do {
-                    meta = try container.decode(Meta.self, forKey: .meta)
+                    meta = try container.decode(ThemeMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -330,6 +348,42 @@ public extension PlatformClient.Theme {
                 }
                 
             
+            
+                do {
+                    themeType = try container.decode(String.self, forKey: .themeType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    companyId = try container.decode(Double.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    src = try container.decode(String.self, forKey: .src)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -418,6 +472,21 @@ public extension PlatformClient.Theme {
             
             
             try? container.encodeIfPresent(availableSections, forKey: .availableSections)
+            
+            
+            
+            
+            try? container.encodeIfPresent(themeType, forKey: .themeType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(src, forKey: .src)
             
             
         }
@@ -452,7 +521,7 @@ public extension PlatformClient.ApplicationClient.Theme {
         
         public var marketplaceThemeId: String?
         
-        public var meta: Meta?
+        public var meta: ThemeMeta?
         
         public var name: String?
         
@@ -469,6 +538,12 @@ public extension PlatformClient.ApplicationClient.Theme {
         public var assets: Assets?
         
         public var availableSections: [SectionItem]?
+        
+        public var themeType: String?
+        
+        public var companyId: Double?
+        
+        public var src: String?
         
 
         public enum CodingKeys: String, CodingKey {
@@ -507,9 +582,15 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             case availableSections = "available_sections"
             
+            case themeType = "theme_type"
+            
+            case companyId = "company_id"
+            
+            case src = "src"
+            
         }
 
-        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: Meta? = nil, name: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
+        public init(applicationId: String? = nil, applied: Bool? = nil, assets: Assets? = nil, availableSections: [SectionItem]? = nil, companyId: Double? = nil, config: Config? = nil, createdAt: String? = nil, font: Font? = nil, isPrivate: Bool? = nil, marketplaceThemeId: String? = nil, meta: ThemeMeta? = nil, name: String? = nil, src: String? = nil, styles: [String: Any]? = nil, tags: [String]? = nil, templateThemeId: String? = nil, themeType: String? = nil, updatedAt: String? = nil, version: String? = nil, id: String? = nil) {
             
             self.font = font
             
@@ -544,6 +625,12 @@ public extension PlatformClient.ApplicationClient.Theme {
             self.assets = assets
             
             self.availableSections = availableSections
+            
+            self.themeType = themeType
+            
+            self.companyId = companyId
+            
+            self.src = src
             
         }
 
@@ -648,7 +735,7 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
                 do {
-                    meta = try container.decode(Meta.self, forKey: .meta)
+                    meta = try container.decode(ThemeMeta.self, forKey: .meta)
                 
                 } catch DecodingError.typeMismatch(let type, let context) {
                     print("Type '\(type)' mismatch:", context.debugDescription)
@@ -754,6 +841,42 @@ public extension PlatformClient.ApplicationClient.Theme {
                 }
                 
             
+            
+                do {
+                    themeType = try container.decode(String.self, forKey: .themeType)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    companyId = try container.decode(Double.self, forKey: .companyId)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
+            
+                do {
+                    src = try container.decode(String.self, forKey: .src)
+                
+                } catch DecodingError.typeMismatch(let type, let context) {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    
+                }
+                
+            
         }
         
         public func encode(to encoder: Encoder) throws {
@@ -842,6 +965,21 @@ public extension PlatformClient.ApplicationClient.Theme {
             
             
             try? container.encodeIfPresent(availableSections, forKey: .availableSections)
+            
+            
+            
+            
+            try? container.encodeIfPresent(themeType, forKey: .themeType)
+            
+            
+            
+            
+            try? container.encodeIfPresent(companyId, forKey: .companyId)
+            
+            
+            
+            
+            try? container.encodeIfPresent(src, forKey: .src)
             
             
         }
